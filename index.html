@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT News Digest — 2026-W18</title>
+  <style>
+    :root{--bg:#f8fafc;--surface:#fff;--border:#e2e8f0;--text:#1e293b;--muted:#64748b;--accent:#2563eb}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+    a{color:var(--accent)}
+
+    /* Header */
+    header{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+    .h-inner{max-width:1000px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .h-brand{font-size:1.1rem;font-weight:800;color:#1d4ed8}
+    .h-meta{font-size:.78rem;color:var(--muted)}
+    .h-controls{display:flex;gap:8px;align-items:center}
+    .btn{padding:5px 12px;border-radius:6px;font-size:.78rem;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);white-space:nowrap}
+    .btn:hover{background:#f1f5f9}
+    select.week-sel{padding:5px 10px;border-radius:6px;border:1px solid var(--border);background:var(--surface);font-size:.78rem;cursor:pointer;color:var(--text)}
+
+    /* Topic nav */
+    .t-nav{background:var(--surface);border-bottom:1px solid var(--border);overflow-x:auto}
+    .t-nav-inner{max-width:1000px;margin:0 auto;padding:8px 20px;display:flex;gap:6px;min-width:max-content}
+    .nav-link{font-size:.72rem;padding:3px 10px;border-radius:20px;border:2px solid var(--c,#2563eb);color:var(--c,#2563eb);text-decoration:none;font-weight:600;white-space:nowrap}
+    .nav-link:hover{background:var(--c,#2563eb);color:#fff}
+
+    /* Main */
+    main{max-width:1000px;margin:0 auto;padding:24px 20px}
+
+    .week-hero{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin-bottom:28px;display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+    .hero-title{font-size:1.6rem;font-weight:900;color:#1d4ed8}
+    .hero-sub{font-size:.85rem;color:var(--muted);margin-top:2px}
+    .stat-box{text-align:center;min-width:60px}
+    .stat-num{font-size:2rem;font-weight:900;color:#1d4ed8;line-height:1}
+    .stat-lbl{font-size:.65rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+
+    /* Topic */
+    .topic-section{margin-bottom:40px}
+    .topic-title{font-size:1.2rem;font-weight:800;color:var(--c,#2563eb);border-bottom:3px solid var(--c,#2563eb);padding-bottom:8px;margin-bottom:14px}
+    .count{font-size:.8rem;font-weight:400;color:var(--muted)}
+    .no-news{color:var(--muted);font-style:italic;font-size:.88rem}
+
+    /* Article card */
+    .article-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin-bottom:10px;display:flex;gap:12px;align-items:flex-start;transition:border-color .15s}
+    .article-card:hover{border-color:#94a3b8}
+    .article-body{flex:1;min-width:0}
+    .article-title{font-size:.95rem;font-weight:600;text-decoration:none;display:block;margin-bottom:3px;color:var(--accent)}
+    .article-title:hover{text-decoration:underline}
+    .article-meta{font-size:.72rem;color:var(--muted);margin-bottom:5px}
+    .article-summary{font-size:.85rem;color:#475569}
+
+    /* Hide button */
+    .hide-btn{flex-shrink:0;padding:5px 10px;border-radius:6px;font-size:.72rem;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--muted);white-space:nowrap;align-self:flex-start}
+    .hide-btn:hover{border-color:#ef4444;color:#ef4444;background:#fef2f2}
+    .lbl-show{display:none}
+
+    /* Hidden state */
+    .article-card.is-hidden{display:none}
+    body.reveal-hidden .article-card.is-hidden{display:flex;opacity:.45;border-style:dashed}
+    .article-card.is-hidden .lbl-hide{display:none}
+    .article-card.is-hidden .lbl-show{display:inline}
+    body.reveal-hidden .article-card.is-hidden .hide-btn{border-color:#16a34a;color:#16a34a}
+    body.reveal-hidden .article-card.is-hidden .hide-btn:hover{background:#f0fdf4}
+
+    footer{text-align:center;padding:24px 20px;color:var(--muted);font-size:.75rem;border-top:1px solid var(--border);margin-top:40px}
+
+
+    @media(max-width:600px){
+      .h-inner,.main{padding-left:14px;padding-right:14px}
+      .hero-title{font-size:1.3rem}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="h-inner">
+    <div>
+      <div class="h-brand">IT News Digest</div>
+      <div class="h-meta">Week 2026-W18 &bull; Apr 27 – May 03, 2026</div>
+    </div>
+    <div class="h-controls">
+      <button class="btn" id="reveal-btn" onclick="toggleReveal()">Show hidden</button>
+      <select class="week-sel" id="week-sel" onchange="if(this.value) location.href=this.value">
+        <option value="">&#128337; Archive&hellip;</option>
+      </select>
+    </div>
+  </div>
+</header>
+
+<nav class="t-nav"><div class="t-nav-inner"><a href="#windows" class="nav-link" style="--c:#0078D4">Microsoft Windows</a><a href="#azure" class="nav-link" style="--c:#00BCF2">Azure</a><a href="#sharepoint" class="nav-link" style="--c:#036C70">SharePoint</a><a href="#intune" class="nav-link" style="--c:#0F6CBD">Intune</a><a href="#entraid" class="nav-link" style="--c:#6B69D6">Entra ID</a><a href="#m365" class="nav-link" style="--c:#D83B01">Microsoft 365</a><a href="#iru" class="nav-link" style="--c:#7C3AED">Iru MDM (formerly Kandji)</a><a href="#cato" class="nav-link" style="--c:#FF6B35">Cato Networks</a></div></nav>
+
+<main>
+  <div class="week-hero">
+    <div>
+      <div class="hero-title">Week 2026-W18</div>
+      <div class="hero-sub">Apr 27 – May 03, 2026</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">47</div>
+      <div class="stat-lbl">Articles</div>
+    </div>
+  </div>
+
+    <section id="windows" class="topic-section">
+      <h2 class="topic-title" style="--c:#0078D4">Microsoft Windows <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="ab5efa13b3d">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMidkFVX3lxTFBLUmYtbUp4WDhLMlpPYnQ2X0x5elpwVUxranVFZzNuSTM5bE1zcmhOM3Noa2NRSXRMOGxDU1JrOEtvZjZ4VmEwU29QWFp1QzhhTldYZXZPc2tVMExTaE55U24xNjZfSnBwZXpHVXltWF9LMTJSSGc?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Go straight to sell! Windows second-chance setup hawks Microsoft services at IT's expense - theregister.com</a>
+          <div class="article-meta">theregister.com &bull; Apr 26, 2026</div>
+          <p class="article-summary">Go straight to sell! Windows second-chance setup hawks Microsoft services at IT's expense&amp;nbsp;&amp;nbsp;theregister.com</p>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ab5efa13b3d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a502875b9cb">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiwwFBVV95cUxNTl9GVXdfTFNVRm82dDljbUNhSVl6Q2hvbTBNY1BzT3A5N0pMUjUtQVFCWGdCWWVISVNYQkM5ZTVIMVZ5SUxMT0xGTHlYdld0Y1J1Y2xNbzdLWDNVQUpzWlZ1MC1rUVRYUWEwU28yeFFkRkRUX2hON1hKYXFwRDBzYmNiZHZhX2lxdktrdngxeG1HNS1vZzh1ejhhb01RMG9BWndhZGMxSHAzS2pCbHlIRHFoMHB1QklvSjJkMDhYMVBKMlU?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft finally agrees Windows 11 has problems, and K2 is its plan to fix them, claims report - XDA</a>
+          <div class="article-meta">XDA &bull; Apr 27, 2026</div>
+          <p class="article-summary">Microsoft finally agrees Windows 11 has problems, and K2 is its plan to fix them, claims report&amp;nbsp;&amp;nbsp;XDA</p>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a502875b9cb')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a65a07735ba">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiggFBVV95cUxQX1RSNEkwYzZYT2xWdmllOWtZQ1otMEtzc29kRHo1X2pWc3JrQlhBcHJVai04M2ZIaTY4dVlkNzBod0VBRVkzZEZTaURQYmtWZjdicmJmcl81UXJNeVZuY19ZZmRGc1E2cFQwbERSQnJBODN0WGtkZHVYbVZ2eE4yRkN3?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft updates the Windows Update Experience: You can hit pause now - theregister.com</a>
+          <div class="article-meta">theregister.com &bull; Apr 27, 2026</div>
+          <p class="article-summary">Microsoft updates the Windows Update Experience: You can hit pause now&amp;nbsp;&amp;nbsp;theregister.comWindows 11 Updates Can Now Be Skipped and Even Paused Indefinitely&amp;nbsp;&amp;nbsp;TechPowerUpForced Windows updates can now be paused forever&amp;nbsp;&amp;nbsp;Engadget</p>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a65a07735ba')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a829939a453">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMipwFBVV95cUxNRTF2Q2hYVXBQSnRWWUJBekhNekJZZDR0emNYSmRPMDhoOVBzYlh1MUpyek9tNHlDcXgxOGlqemExQVlGZkNyZk1oWDVLZTBtSmdtYmF1Ri1rUWhTaEZja0FWbmRjbko2SWdQV01xbHVLMUpVdzEzZUtOYUNENHYzbUllbFFNbzN3d0pQV1BWdGR1OVhYWWZiN1BENmpaUEtkSWx2ZTVxaw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">I'm a Lifelong Windows User. These 6 macOS 27 Upgrades Could Change My Mind - PCMag</a>
+          <div class="article-meta">PCMag &bull; Apr 26, 2026</div>
+          <p class="article-summary">I'm a Lifelong Windows User. These 6 macOS 27 Upgrades Could Change My Mind&amp;nbsp;&amp;nbsp;PCMag</p>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a829939a453')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a14577c328d">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMikAFBVV95cUxOX3BWcWg2TElSdjd4S3FLQU1xTkFRTG1OQkxSNGR1RFcxQ0Fkc1hRcE52TmdjLVZHRktkNlJVMDl0Z3VsUEFNN1Rfb2V0djRhbHZybVJ5dU03ZEVYNHZMYTBDOGUzQW4wVWx1MEFKZTdQczhJZXNwVkpNMEY3Ml9tM0FTeUxWU1dvdEVWSTJNMmHSAZYBQVVfeXFMTUxzVlQwUGVUWnd4T1AzZDRZY2xoMjMyVE5ucDJNaTh5Yjk5aUlxdXFlcEZrX3M4VTJqRzRFczJnc0VndXhBLWhsRzVmRDZoYnZOY0hhMHJvbGZIUUR6WGxDQkVoQVduMjl5X1hpYXVPU2F2LTBNLVktNk81RHRNMWRoZ3l2c0YzYTVPaE5POFFJMXc4ZkVn?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Incomplete Windows Patch Opens Door to Zero-Click Attacks - SecurityWeek</a>
+          <div class="article-meta">SecurityWeek &bull; Apr 27, 2026</div>
+          <p class="article-summary">Incomplete Windows Patch Opens Door to Zero-Click Attacks&amp;nbsp;&amp;nbsp;SecurityWeek</p>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a14577c328d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a04319c3c18">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMisgFBVV95cUxQSkxBWEs2N3lpZUdVOC15T0xSSGNvekFQZnVaTWtxOXYzb1EzRUdiUWg4SXZPUUxreHhDYTJLMzZCZzlFOHd5c19GV2t5YUg0dHgtRzRuR1lIazNCWjVNZl8zRHhzVTNlSFVIMkhTejhsekkzdnVaZE8zcGh4NGVwVTcwelA2WFlUcnBOSjd2R29TNnI3Y0g3c2Zra0EtbF83cUt2dHFiT01LNWpFaWhTUWtB?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">‘Out Of Stock’—Google Offers Free PC Upgrade For Windows Users - Forbes</a>
+          <div class="article-meta">Forbes &bull; Apr 27, 2026</div>
+          <p class="article-summary">‘Out Of Stock’—Google Offers Free PC Upgrade For Windows Users&amp;nbsp;&amp;nbsp;Forbes</p>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a04319c3c18')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a54a5e32e91">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMirgFBVV95cUxQWWV5cU1wRl90VXhYZjdtVWphUnpuaHIzdldkTTZSVy1CamV1ekVWT0k1R2hlMktNZkFpSks1VmhZdHNFSHB2cW43bUotaU9tcWk5U2xkWjNGempwUk5XNC1hRGs5cFAtNmJIem5GQWpaZXZPVVhiUUtFUGdwWnlLUVZaM3FKTE1vRE1iNmVsSDZjRkNDTHlGZlpNQWRoWnJzZVk0Y21Fd1E5S3RiOVE?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">20 free Windows apps that fix the most annoying parts of your PC - PCWorld</a>
+          <div class="article-meta">PCWorld &bull; Apr 27, 2026</div>
+          <p class="article-summary">20 free Windows apps that fix the most annoying parts of your PC&amp;nbsp;&amp;nbsp;PCWorld</p>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a54a5e32e91')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="afdfafa2f18">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiqgFBVV95cUxQcVN2VkJSZWxIMTAzN2ZZN0l3OVI3d1kzSFN4RFFxblJrN3ZjZ3dYNHdfdk1OQUdNV0MtY2hhOFQ1SjEyZzJVRkU0NGhPVFFBR1RkSEtxdUdySTRSMWszbG5CLTdGcmFUaTRvd2Z5NHdyd0tUZThUT2x5S3NfOTJHNmhDMkNlUUgxSGpVdFluVDZlSFVOdUh1NTJDT0lRM1lPeDkxTm4yMVh4UQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Unpatched 'PhantomRPC' Flaw in Windows Enables Privilege Escalation - Dark Reading</a>
+          <div class="article-meta">Dark Reading &bull; Apr 27, 2026</div>
+          <p class="article-summary">Unpatched 'PhantomRPC' Flaw in Windows Enables Privilege Escalation&amp;nbsp;&amp;nbsp;Dark Reading</p>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('afdfafa2f18')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="azure" class="topic-section">
+      <h2 class="topic-title" style="--c:#00BCF2">Azure <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a0b6b5e5d60">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMikwFBVV95cUxQeDkyNjNObG9TdTV5RlQ2RExISHZudVlHZ1NZTm1IWENaYm9KdWxZeDNjUDdROUlUX09CUUhDYWtsV2FQTzU4NUQ5QVhWS2IzMldFdXU1X0pmWk03LXQxQ21lQ0sxNjQweGRudFlKVThSZGxpN29KZkNRWG81dFVEUGNoU3dBUTJFeW04S0c3ZXhxVkk?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">OpenAI Breaks Free From Microsoft Azure Exclusivity - Analytics India Magazine</a>
+          <div class="article-meta">Analytics India Magazine &bull; Apr 27, 2026</div>
+          <p class="article-summary">OpenAI Breaks Free From Microsoft Azure Exclusivity&amp;nbsp;&amp;nbsp;Analytics India Magazine</p>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a0b6b5e5d60')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ae730287441">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiwgFBVV95cUxNWHl0Wm1kRF94RnRwRll5anFvR3k5Q3hCbUc5c0FXUl91X3VRZjVnNm5mMUJDNFJqRnA1dWh6bl9LUzJqVWJyN3RmWnlua3E0eVVkcjNwYVcwak54NWR0cWl4NEZGSEZUYnZCZVZ2ZUZyT21NWHl1U3FiWU9YcVBwRnJRblVZaGo2VTI5TVAwU29lc1NWc1luU1V1NDE2RUhSNTRtTjN5alp0dllpTldob1BVT3ZvdkdWdHpqYkI0RzhxZw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Sovereign Private Cloud scales to thousands of nodes with Azure Local - The Official Microsoft Blog</a>
+          <div class="article-meta">The Official Microsoft Blog &bull; Apr 27, 2026</div>
+          <p class="article-summary">Microsoft Sovereign Private Cloud scales to thousands of nodes with Azure Local&amp;nbsp;&amp;nbsp;The Official Microsoft Blog</p>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ae730287441')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a04a79b77f3">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMibkFVX3lxTFBIWjFhTVJJSG5kRU9TX3pSTEw5Ylg0RHBDR01RbzBQMnltTjFQcHRmSW9Cemlob1dRaVR4djI0NEJjYVBlS3dzRzVNYmNIb25VWU53UnBWeFVPVlJ1bFlFVGQwQno3TjEtR0hybWNR?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">The next phase of the Microsoft OpenAI partnership - OpenAI</a>
+          <div class="article-meta">OpenAI &bull; Apr 27, 2026</div>
+          <p class="article-summary">The next phase of the Microsoft OpenAI partnership&amp;nbsp;&amp;nbsp;OpenAI</p>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a04a79b77f3')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="af38aa3ebc0">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiwgFBVV95cUxOSEdISk1xNHBjeThWc2ZoMmtqdnEwMXZlckhaYzUzRnlVdXBKbl9iWHVNanpTREQweEdoU29VSXJuWnZQU1FSZWJINTZCUjV6SFFnM08zNDA0cVZMRG5pc25acFJMYk56bGhUWEV6SFF2VnlValg3ZlczNkRWMXVkODQ0Y3AzT3YzZDJDM3AxMEItOFZOWUVQYWJwQW9vMm1Db21feTNLTUZ6T3lQYzVpdkM4YVM2TEh6WUpkYnJiS2RwQQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Vaudoise accelerates cloud innovation with Microsoft Azure Shared Management - Microsoft Source</a>
+          <div class="article-meta">Microsoft Source &bull; Apr 23, 2026</div>
+          <p class="article-summary">Vaudoise accelerates cloud innovation with Microsoft Azure Shared Management&amp;nbsp;&amp;nbsp;Microsoft Source</p>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('af38aa3ebc0')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a36372af174">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiygFBVV95cUxOWFdVU3l2RV9EcVJ5SWYySzc4Nm1mTzkxTHJqWklLQnJqeDB2SW5aeko1cEVDckFfNUFxcmwwWndHeEptLTZFQ2NhaUs3cTdVdDlnR3l2dFVKN0ZtemFYMVdfamVGRlhxdmFrM092Z1B2VkJoRFZnQVdCMzNQblFESnZLanpzUmNVZ2FLLUk0cjdjMk8tdlZNbkFNR0VVakRtN0FTaktpMEZQRGVKemd5a3dpY0ZtYlM1dzBFZjFLaXNpRlBELVpkVGpB?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">OpenAI’s GPT-5.5 in Microsoft Foundry: Frontier intelligence on an enterprise ready platform - Microsoft Azure</a>
+          <div class="article-meta">Microsoft Azure &bull; Apr 23, 2026</div>
+          <p class="article-summary">OpenAI’s GPT-5.5 in Microsoft Foundry: Frontier intelligence on an enterprise ready platform&amp;nbsp;&amp;nbsp;Microsoft Azure</p>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a36372af174')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a9e50e73474">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMirAFBVV95cUxOcHMwMEJNb0VTdFpxMFZGbWctTkVBM3NlR0NiSjlSaXZKbHo2T3BRS1hLbFhIUk1wVTctZTg0dllpdmxFMThXc3NlMGhWdEVDTXhyRGZmNmRIMUlrVnNlSXVNQ3BrdUM1dm94NWJtcUNiZ3JYVkFGZmYwWkZLZjNLSFpFdTBjck9LZEdjczhhbU95dW5jcHZ4alZEY2x3UWpPMUtvOWUzYWxsalVr?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">OpenAI breaks off Microsoft exclusivity to free up path for Amazon, Google deals - WKZO</a>
+          <div class="article-meta">WKZO &bull; Apr 27, 2026</div>
+          <p class="article-summary">OpenAI breaks off Microsoft exclusivity to free up path for Amazon, Google deals&amp;nbsp;&amp;nbsp;WKZO</p>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a9e50e73474')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aeed48ab745">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMigwFBVV95cUxOZl90d0piaDQ4OVBtOW0wMUVod2MxTVgxQXVxTmUyQkM3ODZScFdZczhUNzRLYXRtUXA4aFY5UXpEMjZuYWw4SmFGY1FqXzdPeE5wRmRhNTl6OEV4MTIxY2NaRVdUNGhrSmoteWF1RURNbG1aTkxHN2VueE90ZF9aN3JmQdIBiAFBVV95cUxPb0RqcF9va2ZCaDlqcmFXSzhnMzJyQjZUQ0JJNWNLMGtQZ1U2QVFMSFNDTVBTd2xqdHFXV1YtaXF3Q3VOVUdTZlUydDE3U25GbldfWkNOMFFpQ3U0b1UxeGZ3S1BfOVE4ckdWc2t0M3dHTFNNNVlyWU8xRk02SHRvd01EajY0Rmpj?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">OpenAI shakes up partnership with Microsoft, capping revenue share payments - CNBC</a>
+          <div class="article-meta">CNBC &bull; Apr 27, 2026</div>
+          <p class="article-summary">OpenAI shakes up partnership with Microsoft, capping revenue share payments&amp;nbsp;&amp;nbsp;CNBC</p>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aeed48ab745')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="addcd83f1b5">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMijwFBVV95cUxPaElxZjFncW1RNlh4TkVieG9iamlOZml1dWMwS0YyYXJJREpEWmoyTkx6cnBMemZqek5LMTdvYlN2a0VGckJ0b0RFdXRFaDNiWnZjSW5mNnFJT0pwenIxQ0JCY05qbDg1d3FpbWpHRV9sUi0tRU15MU90azBLdWhtMEEtTmh1ay1tT2ozeXQxdw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Loosens OpenAI Ties, But Azure Still Comes First - Finimize</a>
+          <div class="article-meta">Finimize &bull; Apr 27, 2026</div>
+          <p class="article-summary">Microsoft Loosens OpenAI Ties, But Azure Still Comes First&amp;nbsp;&amp;nbsp;Finimize</p>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('addcd83f1b5')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="sharepoint" class="topic-section">
+      <h2 class="topic-title" style="--c:#036C70">SharePoint <span class="count">(6)</span></h2>
+      <div class="article-card" data-id="a18ceba2e94">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMirAFBVV95cUxObTgtSzJNNUlaWGNFTENDR2pVUFpqb19aZm1sVkdDRVVNNjQ0aS0wRWJjOFA0WTBkbUNvSW95LW9RTXdWTGY3NWd5ZUdvMEpqRTlKeV9CWHl5MUVFZ0FiMThFTHMxUEVkTXlJNy03M3JjMXlVUzBxTW0yV3lpeDI4ZHYzdDFLV3EtclN2b3hBYUI1U3FxQzB5NGJBS0s0WWNqZFZMR1FpU3VDTWJH?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft SharePoint vulnerability widely exposed across multiple countries - Cybersecurity Dive</a>
+          <div class="article-meta">Cybersecurity Dive &bull; Apr 22, 2026</div>
+          <p class="article-summary">Microsoft SharePoint vulnerability widely exposed across multiple countries&amp;nbsp;&amp;nbsp;Cybersecurity Dive</p>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a18ceba2e94')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a916225b568">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi5gFBVV95cUxQVjdONGdsdE5LRHFaeVJrVUR5OXdabWZtaUZycHBJc0pvMXdxemp3OUhrQmpoaC1qakE2VXJUZnZNNlhYQm1uWFlaalgxb0laRENWZGVpVzJXWFBiTHcyWFFBZmNNN2diaUlQazBzQ0FETC1Vb09rdnhtN0MtYjlraW9aRFZNN1JSYjZ2ZWFUUG96N3lPNU0ta3hab25yWkU2NXpjSnJKNE9xTUQxRTQ1SFZuSl9PbzlwM2w5cUNKY1QwVjkzMmxpX0x2NVhaZ3BOZHJZNmlaYWF1VU1NLUF1dVRNM190QQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">More Secure SharePoint Integration in Power Pages with Site‑Scoped Permissions - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; Apr 23, 2026</div>
+          <p class="article-summary">More Secure SharePoint Integration in Power Pages with Site‑Scoped Permissions&amp;nbsp;&amp;nbsp;Microsoft</p>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a916225b568')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a853c2f60c5">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiuAFBVV95cUxOazVYcHJweERQcnZrZU95eU1rWUk0ZzVjWkF0THM3dEJIQXo4RWt1ejVEZzFSZHpHNGR6LVp4aUFiZ2haNUFVaXYxaDZobGNaZmxUSGd0ZnZZaHBaanM1UVRhUzJla0lqUXgzTDNrZGh0aWxvQUl4ZDRQWV8xcHR0amJEM2xUcDJlaE9LcDI1ekU4a21tZkt2SWczTW5TaXhOVEtON0hMVlZjTUVGdDlHeDNJTkI2VEV30gG-AUFVX3lxTE5FazRnTHFNU05IX1BYdFZtSnBtUlpDaHVHb0Z2M1NSenM5V0FwUVpyS2Z0dGJOeEh5VzVyXzl0VFhZS0ptZWpwcF9YNEtUTXdEYXRYdWp1aldCd1JXWEdHcHhaVGFNX2M3TW1wVm5VN1hyZVNaTDh1ODNDNmZQZU5ITVowWU9aSTVBcTNQN1Jva1FldVZ1dzNyMDF2ckI3YXJGTkt1bXhyLUw1N3NWNVY2S0xPMzhuX2t5eWVNWVE?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Over 1,300 Microsoft SharePoint servers vulnerable to spoofing attacks - BleepingComputer</a>
+          <div class="article-meta">BleepingComputer &bull; Apr 22, 2026</div>
+          <p class="article-summary">Over 1,300 Microsoft SharePoint servers vulnerable to spoofing attacks&amp;nbsp;&amp;nbsp;BleepingComputer</p>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a853c2f60c5')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a848ec13e8b">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMilAFBVV95cUxQZzFSYm5RNDFJcVNBNjBGUXUteDd0MWI4am1kTms5TFU0NE5EREVHcktCV0FkZVl5QU1UNV9TT2tIcDFvc1VuNzV4Y1VpM3BCN0dmRV9ESVA3V2N3Qlp3WFpDbmhnVkNEMGU4LWI2ZDVPZzI5TmFTUWtlYkZhTjNRVUtkZ1Y5M0JfcEV6Wmo2aDdnUzRi?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Patch Still Leaves 1,300 SharePoint Servers Exposed - TechRepublic</a>
+          <div class="article-meta">TechRepublic &bull; Apr 22, 2026</div>
+          <p class="article-summary">Microsoft Patch Still Leaves 1,300 SharePoint Servers Exposed&amp;nbsp;&amp;nbsp;TechRepublic</p>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a848ec13e8b')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a7fd9932440">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMixgFBVV95cUxOdmUyT21XUVQtUEZueE9RNTFCT2RoVVpzbnZMdmYzdzZrQXF6a0NqX2tBTUV5anNWUl9NRmlybF81U0IwVk1BUjAxVlZmTnlWT250cEMxU2lxRWFkNkRXa0djalJfeWdXNlhyRThkN0lhNjhpZkhFTFNUUU9kXzBzV3FBUUNqczJRaFpRVmlyai1rVDR1ZVV4WHRUcnM5aHh2Q1hDcUVHMDRSaGZkUUVCcXVpMWtEUXRsbDhnS1FPWVNKcXNTZEE?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft’s April Security Update of High-Risk Vulnerability Notice for Multiple Products - Security Boulevard</a>
+          <div class="article-meta">Security Boulevard &bull; Apr 24, 2026</div>
+          <p class="article-summary">Microsoft’s April Security Update of High-Risk Vulnerability Notice for Multiple Products&amp;nbsp;&amp;nbsp;Security Boulevard</p>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a7fd9932440')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aa921f11cfc">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMic0FVX3lxTE9XTThuWVR3bVEzUldvbVloLUItcFhtalZzUXEtcXdyay1wamczX2Nxc3paS1lleWZweWtTUUpOcEJWZzJxVmhGX1VlREczQ0xJMEtKOTdaNVVabzY1UGpTdW1ZN1JRYVAycFlRSHlaUDFsdVnSAXhBVV95cUxNWkdOVnVkTHc2WE1mWXZJN0ZQTlgzaUtTcXNudWVkMTd0dkJ5Q3BpUnM1Ym1hU0RzamtDM2VNNnBXVHFrWXFiMGthWlJLZmtkTTBQNWdMbEpjOWRTNER3QjVVOTBuekR4NnpWaElMV0FYMU9mU2J6d2o?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">1,370+ Microsoft SharePoint Servers Vulnerable to Spoofing Attacks Exposed Online - CyberSecurityNews</a>
+          <div class="article-meta">CyberSecurityNews &bull; Apr 22, 2026</div>
+          <p class="article-summary">1,370+ Microsoft SharePoint Servers Vulnerable to Spoofing Attacks Exposed Online&amp;nbsp;&amp;nbsp;CyberSecurityNews</p>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aa921f11cfc')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="intune" class="topic-section">
+      <h2 class="topic-title" style="--c:#0F6CBD">Intune <span class="count">(5)</span></h2>
+      <div class="article-card" data-id="a52eaa10c43">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMitgFBVV95cUxPTU4wMXJBcTVPRmpKblh6WDE5QVlPN0lfMHpsMmlWOF9UM3RnQ09GX1VxWTBNVkVvMzBEbFBZTlV3dGJvand4S3M0U2ttS1NlVy1weXpUR2hKZDNIUFRtZ0Q4bWxpRTdPanQxODdUQjZoYUNDT1AxTGtjRFhoWTA2MTBibHA5NzhQU1dlUjExZ202VXhiYWpTamkwWW1IaXdXV2FwOTZZQkRyQmRtWThlSzcyUzM4QQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">AI-powered defense for an AI-accelerated threat landscape - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; Apr 22, 2026</div>
+          <p class="article-summary">AI-powered defense for an AI-accelerated threat landscape&amp;nbsp;&amp;nbsp;Microsoft</p>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a52eaa10c43')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a47d96125c0">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMipAFBVV95cUxQY3NVQzJpM2FnNjVBSThyQjItSDkyVlJvNjc0c0R6S3ZUS0VTVHBDbGR3V2hDV2hBR1dCTkRaQmZGMXR3SXhTVU1jaS1pclU1a0VPVG1GcUU0OWRwR0dHc0lwa1BuMHVaaGtWZlFBbUxNY05GZzNzU0UwN3NOWVVRUTdwdGgtVW5OQlB6a2xkWTFrbXU4d0tteHFKZTFTU1ItMGFnZw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Publishes Group Policy To Remove Copilot From Windows 11 - Let's Data Science</a>
+          <div class="article-meta">Let's Data Science &bull; Apr 27, 2026</div>
+          <p class="article-summary">Microsoft Publishes Group Policy To Remove Copilot From Windows 11&amp;nbsp;&amp;nbsp;Let's Data Science</p>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a47d96125c0')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a25e9c28ec9">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMikwFBVV95cUxONHVqVHRFLVlqZE9xYlE2dUdmUEdpUFNlMTVXMlZNM3R5VXJKR043Q2daWTJIMUZTcVJGNVhiYXNRUjR3YnQyRG5RZ2hYcTJOMHpvRlE3LWpreHJxSGRPUUwxWWxnVU1hLS1nRnhONFhKeGw2aTQ1NV96cFFlbC1NTkJjNkV4cEdFZThuTTJucjJsWTg?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Intune Enables Removal of Copilot App - Let's Data Science</a>
+          <div class="article-meta">Let's Data Science &bull; Apr 24, 2026</div>
+          <p class="article-summary">Microsoft Intune Enables Removal of Copilot App&amp;nbsp;&amp;nbsp;Let's Data Science</p>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a25e9c28ec9')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a196b0d0cab">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMixAFBVV95cUxQbTgyTEFhMmI1clo3QVFQREpSNGNXQXVTQ0pKRk4tZzFDOXhpTTVUX1Q3c1JDY29DWWFoUkhkTUV1VGtPZmJTd0tNRU1zZDdCU2pKejEtWVpuZnRDQlh0cVE3OWNSMmhSWWhuVk40ei14MVNQX2xLcjlfbkVUc3Q5M0p1blF0TUk5cElpQkxvWkZZTkE2UGVuTktlM2JKbjlBUml5bkxfTExDdjVmS2ltNEQyQVBxX3AtaFNCTEROMEFXQ3VH?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Adds Policy to Let IT Admins Uninstall Copilot From Enterprise Windows 11 Devices - gHacks</a>
+          <div class="article-meta">gHacks &bull; Apr 27, 2026</div>
+          <p class="article-summary">Microsoft Adds Policy to Let IT Admins Uninstall Copilot From Enterprise Windows 11 Devices&amp;nbsp;&amp;nbsp;gHacks</p>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a196b0d0cab')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a1af212407f">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMitAFBVV95cUxQY3RDaVBUQmZJQXFJcFpib3oxem9uc0Z4YnRLVndEMTVOdXJxazN1NDI1VHBuNnVkMFI1T0htc1pobDMtbHVjT3g1UE1qUHdtNVZReGc2RWpaU2Z6LXpsaFh4NkF4Rm5zWHNFN0V0OVpQX2NjNGN5cE5jVGp6YkI1dU9vY3dJZTRHcXptbnI3WERMbnBnRk9MLVpFbXo5dndaRmdEbXAtYW1OYVlHZHBEQTNpVUfSAboBQVVfeXFMTTA5YUx3QTNoMFJuX3V4dFU1RnVGQWFPSGVpWkM4QUlfTWRhR2pMbXQ3ZV9pVGJ1UjFPQ082Y2Y2Si1wV0xFUmtFWmtLamhGU1BadVlqcTVlazUwT0JLTk5oYmdEc3JkM0pvdTBOQ1MzMDRVRXRJbFVUeF9QbHBYYTBsQzBkdGRiS19FTzU0Z3d5RmtBTVM2TlVyeE9NQk1hRnNVRm5XZURnNzRpNDBRUS05d0pvQW90S3BB?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft now lets admins uninstall Copilot on enterprise devices - BleepingComputer</a>
+          <div class="article-meta">BleepingComputer &bull; Apr 24, 2026</div>
+          <p class="article-summary">Microsoft now lets admins uninstall Copilot on enterprise devices&amp;nbsp;&amp;nbsp;BleepingComputer</p>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a1af212407f')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="entraid" class="topic-section">
+      <h2 class="topic-title" style="--c:#6B69D6">Entra ID <span class="count">(6)</span></h2>
+      <div class="article-card" data-id="aa7b3f1bb4b">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMidEFVX3lxTE90NUJpaV9kenhjdW40WmhnWjNTUmlyOW5XbHpNdV9GMjlKS29HdTAydlprdVd2cGlMOXNTUUhrUER1NUlsaUZwMDZrbWdlejFJRG5MZE9NMzcwNWFIZ0g0ZUgyZXZCZk1EREJ6a2FXT19DOFlx0gF6QVVfeXFMTXprX1JJN2luUE9NRG9TdVBFemZVYTFvU2VoUjlvQzh1NDc0RTRxS3E2Q0NuYkl3TXpOc0dTcE4taFA4QjNpN1pVVkZaQUc1Nk1SZTJkS2NDMUVNRXFHeVl2YmJ6RFdDbW9YVHpsdnZ1VVdhcnVXRy12elE?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Hackers Can Abuse Entra Agent ID Administrator Role to Hijack Service Principals - CyberSecurityNews</a>
+          <div class="article-meta">CyberSecurityNews &bull; Apr 25, 2026</div>
+          <p class="article-summary">Hackers Can Abuse Entra Agent ID Administrator Role to Hijack Service Principals&amp;nbsp;&amp;nbsp;CyberSecurityNews</p>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aa7b3f1bb4b')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a1629fa644f">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMirwFBVV95cUxOTWY2Yy1BVGRCTnA1V3hLWVBjQ2NsbXYweVR4VWs3MDhtSzdVcU4zdDd6eUNSUzdQN3ZGczFpcWZRWUIyZEtieVZ4a3RCRW9iSjlrUHRKQU9hM3NsSk1IUTB2UUxnR0pFdTg5ZmNxMHgwb09abVRDMzl2OG9JU2U3bndidW8wYVZPMGFHV2tKVUNrajhfZUF4Q2k3ZnFQMERfOFpTZWx4N3dxYlpJWkww0gG0AUFVX3lxTE9EdVZNb2lIMDZCM0trT09ZLVNTb3RTZmMyN1hxdXh1c0J0dGhfWjlUNlJwTG9hUTVRMVBQb2l1dTNOLWMxVEIwa1lESVZJUVNXQVB5WTdVbjdXU0NZR29WLWE3bkUxRUNFaUJUeFNkdklSTVAtVUJRRDFPb0tQSGp2T0U0UXZzUU1Dek13UzVoSXViLWtxREhBcTd1Y0RKZlVCaE90MWJndGdlVGVTa3c3VXQ3Vw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft to roll out Entra passkeys on Windows in late April - BleepingComputer</a>
+          <div class="article-meta">BleepingComputer &bull; Apr 24, 2026</div>
+          <p class="article-summary">Microsoft to roll out Entra passkeys on Windows in late April&amp;nbsp;&amp;nbsp;BleepingComputer</p>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a1629fa644f')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ac68de9ddda">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMidkFVX3lxTE53MXE5YkFNbVZNY1p6YWJpLXdvQlQxY0JZVlBlV0M2dDg3NGU1Q1ZTWTVVQ1hJZ19mcWF5WHdmT2V0bVAzSnNFbTh0RnVxNUVrUzl2U2lwR2ZleHB6QXBhbENyTW5qdHdwZDRSaHVsWG9CQk5KVFE?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Entra Agent ID Flaw Enabled Tenant Takeover via Privilege Escalation - Hackread</a>
+          <div class="article-meta">Hackread &bull; Apr 26, 2026</div>
+          <p class="article-summary">Microsoft Entra Agent ID Flaw Enabled Tenant Takeover via Privilege Escalation&amp;nbsp;&amp;nbsp;Hackread</p>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac68de9ddda')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ad077358120">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMirwFBVV95cUxPV1JtVDFxQUMtamxOVHNnVVZQNUJjOXhocXl0VWM3MzhsUDVUdk5RWkxCRjNLalFpNmpfd25lbDJZanpGV0h3QThLc1hwZm5HU1hZZF9xZUR3bDNXN3ZrR2thc1l0dlJ4SHBVUlZyZGtQdEY2cVlRR1g1WnN3WU9SZ0htQnVKVHFJY1B5eTJCajdBOW5EcHdJVzl5WGc5U2lha012NDBYTEF5WTJCNlBv?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">VARStreet Now Supports SCIM-Based User Provisioning with Microsoft Entra ID - The National Law Review</a>
+          <div class="article-meta">The National Law Review &bull; Apr 27, 2026</div>
+          <p class="article-summary">VARStreet Now Supports SCIM-Based User Provisioning with Microsoft Entra ID&amp;nbsp;&amp;nbsp;The National Law Review</p>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ad077358120')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a8603bd08fb">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMinAFBVV95cUxNU3IzaHRsY3VBVG5DODRXM3dMTEZHNFlQVGRsTUplOWQ1TDZmS1hYUkQ0dUlKVFFjRk9hVl9GcklfNGE5QjFIMFBzaW94R0htN3JvVlBLU3dPbjlick01TnVfLTVaazRibldkaHJaN0pRZmczT09sU05NUURIS29qcjFocEN0NmpuQ3puSVpNdE1HSU5FWDdQbVBSdEg?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft patched an ‘agent-only’ role that was not - csoonline.com</a>
+          <div class="article-meta">csoonline.com &bull; Apr 27, 2026</div>
+          <p class="article-summary">Microsoft patched an ‘agent-only’ role that was not&amp;nbsp;&amp;nbsp;csoonline.com</p>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a8603bd08fb')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a52eaa10c43">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMitgFBVV95cUxPTU4wMXJBcTVPRmpKblh6WDE5QVlPN0lfMHpsMmlWOF9UM3RnQ09GX1VxWTBNVkVvMzBEbFBZTlV3dGJvand4S3M0U2ttS1NlVy1weXpUR2hKZDNIUFRtZ0Q4bWxpRTdPanQxODdUQjZoYUNDT1AxTGtjRFhoWTA2MTBibHA5NzhQU1dlUjExZ202VXhiYWpTamkwWW1IaXdXV2FwOTZZQkRyQmRtWThlSzcyUzM4QQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">AI-powered defense for an AI-accelerated threat landscape - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; Apr 22, 2026</div>
+          <p class="article-summary">AI-powered defense for an AI-accelerated threat landscape&amp;nbsp;&amp;nbsp;Microsoft</p>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a52eaa10c43')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="m365" class="topic-section">
+      <h2 class="topic-title" style="--c:#D83B01">Microsoft 365 <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a4aa0160bc2">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMizgFBVV95cUxPaUx3SFdlUlpFVTFHcGd1RXJVZFZMSnJkOVhnQUpvLTJid2l6dEZNb3kwOUJ1bTRGbXd3WG1zM0lwTkRqVkFqM0dXQkpJRWgyOXA3elV4SzVfcmxUaXlfYUdxeWpFRWpVY3dIS05UZ2pOUzkzcV9zQUdRRVQ0MjFqXzItd0k5Qm4zRnNTNVIzVE9DUUs3aFktNURMclhsS0RSZDA1WmEwZGVKeTY3ZVBfRUx6eUNscElOdVc4b0dSQkJkNTI0Ump0MDJIb0RTZw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Accenture is rolling out Copilot to a workforce the size of Denver. Here’s how they’re doing it. - Microsoft Source</a>
+          <div class="article-meta">Microsoft Source &bull; Apr 27, 2026</div>
+          <p class="article-summary">Accenture is rolling out Copilot to a workforce the size of Denver. Here’s how they’re doing it.&amp;nbsp;&amp;nbsp;Microsoft Source</p>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a4aa0160bc2')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ae730287441">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiwgFBVV95cUxNWHl0Wm1kRF94RnRwRll5anFvR3k5Q3hCbUc5c0FXUl91X3VRZjVnNm5mMUJDNFJqRnA1dWh6bl9LUzJqVWJyN3RmWnlua3E0eVVkcjNwYVcwak54NWR0cWl4NEZGSEZUYnZCZVZ2ZUZyT21NWHl1U3FiWU9YcVBwRnJRblVZaGo2VTI5TVAwU29lc1NWc1luU1V1NDE2RUhSNTRtTjN5alp0dllpTldob1BVT3ZvdkdWdHpqYkI0RzhxZw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Sovereign Private Cloud scales to thousands of nodes with Azure Local - The Official Microsoft Blog</a>
+          <div class="article-meta">The Official Microsoft Blog &bull; Apr 27, 2026</div>
+          <p class="article-summary">Microsoft Sovereign Private Cloud scales to thousands of nodes with Azure Local&amp;nbsp;&amp;nbsp;The Official Microsoft Blog</p>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ae730287441')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a69b43aa49c">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMixAFBVV95cUxOR1pydHJfaWJQVGNHZW1saDF3TTNtQ0pCQzJBVlhEZUo0cTA0ZHhWV3ZEMzlYTEg1U3E1YkRmcjc0Y3l0WkFacFVLM0pKMHJYUEJ3Y0xpQ1VMVG5Xcko0bE16ek4tbEE5S0lFV3BMNVZrRjJlb2RFY1NKRGdQMGw1dFNNWkUxRk5UZzF3bGNKWWpUVzV0MmN2MW54QzRiaTgyU3Fkb21jRGQ1bXZNVTBiczdTa25FdFMzYmtZaDFVQjBTTkk0?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Turning customer experience into a growth engine - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; Apr 27, 2026</div>
+          <p class="article-summary">Turning customer experience into a growth engine&amp;nbsp;&amp;nbsp;Microsoft</p>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a69b43aa49c')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="acd5c71cd2d">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi7gFBVV95cUxNWnBOb1NHR213RmRvR3JmOVZocERyRDlUWS1NaV9aRkI5a0x5dG5SX0lNTkNmWHFxcVFQaXBxeFIyV0MyNGJoa0pJTzdrV3NNd1JKemljWk44X1JaVlRrQUZnM0lySHk1T1JLNzY5TlJjU1pxcWdZYl9yMTlpQkMwMklpc0VHT0pwYmZHSmdLdGoySGlFazBodUhMWC0yQU9KSDRqc3ZfUFJJSkVUam1yMUg0THBRR09KLUV2cndDYnhIUXp4TldMSzg3NFdES3RkQkE5T0VsQzhWRnBHZWN3QmhpRklWX0RhT0tETE53?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Extend AI voice support: Introducing real-time voice agents in Microsoft Copilot Studio - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; Apr 27, 2026</div>
+          <p class="article-summary">Extend AI voice support: Introducing real-time voice agents in Microsoft Copilot Studio&amp;nbsp;&amp;nbsp;Microsoft</p>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('acd5c71cd2d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ad464a38090">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMivgFBVV95cUxNd0VWdlVteFVkUEl1UGdpeEcwZk1ZZEV1aWkxS2NlRXloalItdE90UGhSRWtRVDQtNmVydHVaQk1mYlR3NGd0c2hyWE9RSDZiUWJLUHY0a1VCeGhrUjFBbTB4bDhTdUJ2enZSam81YVVRc1lJMkNJX1U2Vm9EOGNsekJYWUttd203bkVBaXduYnU2bGk1YUEtUnh3a1ppZ2IzRHA2ZnlmNk04dEMxY2tQckFzNU4zekp2NjFRbFV3?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Introducing Expense Agent in Dynamics 365 Business Central - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; Apr 27, 2026</div>
+          <p class="article-summary">Introducing Expense Agent in Dynamics 365 Business Central&amp;nbsp;&amp;nbsp;Microsoft</p>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ad464a38090')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a6115c294f8">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMitgFBVV95cUxPY1JERFJWZGUyX2dNTzdUWk0tTWVOYmVEeWEzbGFIcllRaF9Hc0Y0RXJjeXB5NXNkc3c4YVItRTNiNmFJdzBEVXRKaVk4QUtzZEY4V0V2Z1U1ck9YSi1ZM3FZUU03NHUwQXh2TDRlTTNnanlPaEZ0T2xodHVoSmxjTFhsTDlnSHh0ZHZHVFJaQTFuU2x4VkE2Y1cySEhVWHJmVXlqUXN5eVFaQ1NhcEU1dFhodXQtQQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Dynamics 365 Contact Center AI Agents Transform CX - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; Apr 27, 2026</div>
+          <p class="article-summary">Dynamics 365 Contact Center AI Agents Transform CX&amp;nbsp;&amp;nbsp;Microsoft</p>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a6115c294f8')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ac91ae695af">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMimwFBVV95cUxNakYwXzBZNG85QlRVd01tNzEwaEM3djQxWnMya0FNXzNiV1BJMmdLUzcySkRVdHZ1NHlyLXNJZ29oQmpXdWcwZjZuclFOR3ZfWUpaamY3V0JFU0tGeFpzcmFjbU1Kb2F5WU0tZU5BUUNZRWZhRFVKaC1rZGtTSUdMakRGWDVPaUVJZERKeV9zR3lveFdHdmVmSjBCQQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">The next phase of the Microsoft-OpenAI partnership - The Official Microsoft Blog</a>
+          <div class="article-meta">The Official Microsoft Blog &bull; Apr 27, 2026</div>
+          <p class="article-summary">The next phase of the Microsoft-OpenAI partnership&amp;nbsp;&amp;nbsp;The Official Microsoft Blog</p>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac91ae695af')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a0ba11e6ee6">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMigAFBVV95cUxOWDR1VEV3Q0FRTy0ycnJWTmFwREhOWmw1T3Y4X0l5U3lBUE1vSDNqTm1aMkxnRUxIeWM3UzUyZUZjOWpzd19EQzRzNUdEcWJtdTBBb3lLb0ppQVNGS2owVmZXOTlpQklPWE5LTmRVbzlJSVMyc19XekhkcllxRjBtLQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Accenture deploying Microsoft 365 Copilot to 200,000 workers - qz.com</a>
+          <div class="article-meta">qz.com &bull; Apr 27, 2026</div>
+          <p class="article-summary">Accenture deploying Microsoft 365 Copilot to 200,000 workers&amp;nbsp;&amp;nbsp;qz.com</p>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a0ba11e6ee6')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="iru" class="topic-section">
+      <h2 class="topic-title" style="--c:#7C3AED">Iru MDM (formerly Kandji) </h2>
+      <p class="no-news">No articles found this week.</p>
+    </section>
+    <section id="cato" class="topic-section">
+      <h2 class="topic-title" style="--c:#FF6B35">Cato Networks <span class="count">(6)</span></h2>
+      <div class="article-card" data-id="ad6ca2a00c1">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiswFBVV95cUxPMHhnUUdJTWhJZ2RSNFY4OHFJSWpITlczUGtnVFBKM3RlRUx4UzdMdmlFM2tfSkwtMExlemtUVTI3UDdlWEkwQ2FZWGJrYTR0NXVaNUQ2bU11cHgyQjc0STBZNkswWXpsX3VSQW5LMjRZcmNVdXZYX1RQTHFUOW5iT1R3RU5HWHlKSkZzYnpHT2F3MGhyWnFxSlJmS3VIYzlnamZEbDFWakFpZXFPYVFoc0kydw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">“Seven Out of 10 Deals We Close Are Partner-Led” – Cato’s Channel Chief, Karl Soderlund - ChannelE2E</a>
+          <div class="article-meta">ChannelE2E &bull; Apr 27, 2026</div>
+          <p class="article-summary">“Seven Out of 10 Deals We Close Are Partner-Led” – Cato’s Channel Chief, Karl Soderlund&amp;nbsp;&amp;nbsp;ChannelE2E</p>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ad6ca2a00c1')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ad99b1bcfa3">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMipAFBVV95cUxOZ2s5NHlZZl9HTmFuZ0xUQjdqNExFbE1DQVRJc3dkMXpQZlJxQUZobTB5NGRNaXpzMlhCMGFHN3lGX3RVSmoyaTNEUlA5aTFVcUhHOWlmeUlZdXpMbHNLX2paem1fSXNXU0wyVEdqcUQyZGNHY040dFJqenV2YlZ3V3dDeXJjb1JGTlJnaXFsdFhwWXI3QWk2b3pkMGp1LUZkLThXYg?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks launches enterprise browser to tackle shadow AI threats - SDxCentral</a>
+          <div class="article-meta">SDxCentral &bull; Apr 21, 2026</div>
+          <p class="article-summary">Cato Networks launches enterprise browser to tackle shadow AI threats&amp;nbsp;&amp;nbsp;SDxCentral</p>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ad99b1bcfa3')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a6bd0c81106">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiywFBVV95cUxOclZETFZHeWlLNzY5QVI3b2F5eEc0SGtwWVc5SE5ndWFiaXFmUjVDb1BHTW81NVNzRDIyYlM3ZHZ6MTBuQ2JCSmZKbkZiS1FSUHhpYnJoRm1Ja01oVVJ6eXE0Vmk4YUhsVDFYWS1UU29UTjJfNHZpVnZmX1pCZHNPcnpPcXNYY0ZTMndlc05laHJlNWtldmFBX2lFZGlHWjFkNTZXbVpwWHZoX0did193Z2Qta2M2c0RHWHlZeDJjbThtVHB1MlF2cVlsMA?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks Launches Enterprise Browser to Strengthen Zero Trust Security Across All Users - TechAfrica News</a>
+          <div class="article-meta">TechAfrica News &bull; Apr 21, 2026</div>
+          <p class="article-summary">Cato Networks Launches Enterprise Browser to Strengthen Zero Trust Security Across All Users&amp;nbsp;&amp;nbsp;TechAfrica News</p>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a6bd0c81106')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ac1414a6365">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiggFBVV95cUxQSTVQeXI1dmN1ZHo0Qjc1b3c5UDA1ZTN4Y2otOXhCTlFUU2dTRHoyaGdidGRfRmhtMWFrdzBHUTFkME5JZjdfUEZOTTljOXRwUmVwSEp2TUZMXzMzb1pBSWpjaEJMeWJRQUoyUWd6Nm1pQ25ZQkhwTjdLYkhqUUpxUmx3?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks – Weekly Recap - TipRanks</a>
+          <div class="article-meta">TipRanks &bull; Apr 25, 2026</div>
+          <p class="article-summary">Cato Networks – Weekly Recap&amp;nbsp;&amp;nbsp;TipRanks</p>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac1414a6365')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a40eb487db5">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMirwFBVV95cUxPSy1aemRubVBkZVN4NWJKV3RQaXhCUmdlUUxLTWVZMkpJdTVQVnhxbW02NHJMVURJbXdLYWdqd0NSNWQ2aEZrcmdoaVpWd21IUTMyakkyR3JOaVBGRFN3UWF2dmpEd3RORm5rSzVmanFoc1lpLU51ZHdsZkUxUUV2aFRXOEpCSFpHR2pDZlZ4QmNaMG8wY25acm8tdm1qS3NCbEFoVzViTS05S243ekxV?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks launches new Enterprise Browser for secure web access - Telecompaper</a>
+          <div class="article-meta">Telecompaper &bull; Apr 21, 2026</div>
+          <p class="article-summary">Cato Networks launches new Enterprise Browser for secure web access&amp;nbsp;&amp;nbsp;Telecompaper</p>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a40eb487db5')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="afb83ef914f">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMivwFBVV95cUxNbThqaGRlendGY3l4dVBIeUNwT3RucTlzaVh4ZzUtdFlyb3RVbS1FcUpkQVBaOGwtSnJoRDVNZ3B3SjVlX3UydFAtdDlBOTFvVS1lU19VZjBHbHR5N3hCamJ0Y3dabWk5Tm5iSHR6VUZ5T0phUHZ0d01nNVNQMDZ6T0FzUWF5MVk5YXhmNUY1Y25Xbk12THZ2SkZRakpTSGYtQ3NtX3J0QXVHYmNkdTJpanIzWHh2dUotb080R2J4QQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks Highlights Compliance Focus for Healthcare-Focused Customers - TipRanks</a>
+          <div class="article-meta">TipRanks &bull; Apr 21, 2026</div>
+          <p class="article-summary">Cato Networks Highlights Compliance Focus for Healthcare-Focused Customers&amp;nbsp;&amp;nbsp;TipRanks</p>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('afb83ef914f')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+</main>
+
+<footer>
+  Generated every Sunday &mdash; Topics: Windows &bull; Azure &bull; SharePoint &bull; Intune &bull; Entra ID &bull; Microsoft 365 &bull; Iru MDM (formerly Kandji) &bull; Cato Networks
+</footer>
+
+<script>
+const KEY = 'it-news-hidden-v1';
+
+function getHidden() {
+  try { return new Set(JSON.parse(localStorage.getItem(KEY) || '[]')); }
+  catch { return new Set(); }
+}
+
+function saveHidden(s) {
+  localStorage.setItem(KEY, JSON.stringify([...s]));
+}
+
+function toggleArticle(id) {
+  const h = getHidden();
+  h.has(id) ? h.delete(id) : h.add(id);
+  saveHidden(h);
+  applyHidden(h);
+}
+
+function applyHidden(h) {
+  h = h || getHidden();
+  document.querySelectorAll('.article-card[data-id]').forEach(c => {
+    c.classList.toggle('is-hidden', h.has(c.dataset.id));
+  });
+}
+
+let revealing = false;
+function toggleReveal() {
+  revealing = !revealing;
+  document.body.classList.toggle('reveal-hidden', revealing);
+  document.getElementById('reveal-btn').textContent = revealing ? 'Hide hidden' : 'Show hidden';
+}
+
+// Load week archive navigation
+fetch('weeks.json').then(r => r.json()).then(weeks => {
+  const sel = document.getElementById('week-sel');
+  weeks.forEach(w => {
+    const o = document.createElement('option');
+    o.value = w.file;
+    o.textContent = w.label;
+    if (w.current) o.selected = true;
+    sel.appendChild(o);
+  });
+}).catch(() => {});
+
+applyHidden();
+</script>
+</body>
+</html>
