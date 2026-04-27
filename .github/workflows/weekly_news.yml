@@ -2,8 +2,9 @@ name: Weekly IT News Digest
 
 on:
   schedule:
-    # Every Sunday at 08:00 UTC
-    - cron: '0 8 * * 0'
+    # Every Sunday at 06:00 Jerusalem time (03:00 UTC, summer/IDT UTC+3)
+    # In winter (IST UTC+2) this runs at 05:00 local — GitHub Actions has no timezone support
+    - cron: '0 3 * * 0'
   workflow_dispatch:
     inputs:
       force_run:
