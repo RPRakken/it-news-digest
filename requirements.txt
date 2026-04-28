@@ -1,1 +1,4 @@
 feedparser>=6.0
+trafilatura>=1.12
+requests>=2.32
+gnews>=0.3
