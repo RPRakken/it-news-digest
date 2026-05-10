@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT News Digest — 2026-W19</title>
+  <style>
+    :root{--bg:#f8fafc;--surface:#fff;--border:#e2e8f0;--text:#1e293b;--muted:#64748b;--accent:#2563eb}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+    a{color:var(--accent)}
+
+    header{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+    .h-inner{max-width:1000px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .h-brand{font-size:1.1rem;font-weight:800;color:#1d4ed8}
+    .h-meta{font-size:.78rem;color:var(--muted)}
+    .h-controls{display:flex;gap:8px;align-items:center}
+    .btn{padding:5px 12px;border-radius:6px;font-size:.78rem;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);white-space:nowrap}
+    .btn:hover{background:#f1f5f9}
+    select.week-sel{padding:5px 10px;border-radius:6px;border:1px solid var(--border);background:var(--surface);font-size:.78rem;cursor:pointer;color:var(--text)}
+
+    .t-nav{background:var(--surface);border-bottom:1px solid var(--border);overflow-x:auto}
+    .t-nav-inner{max-width:1000px;margin:0 auto;padding:8px 20px;display:flex;gap:6px;min-width:max-content}
+    .nav-link{font-size:.72rem;padding:3px 10px;border-radius:20px;border:2px solid var(--c,#2563eb);color:var(--c,#2563eb);text-decoration:none;font-weight:600;white-space:nowrap}
+    .nav-link:hover{background:var(--c,#2563eb);color:#fff}
+
+    main{max-width:1000px;margin:0 auto;padding:24px 20px}
+
+    .week-hero{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin-bottom:28px;display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+    .hero-title{font-size:1.6rem;font-weight:900;color:#1d4ed8}
+    .hero-sub{font-size:.85rem;color:var(--muted);margin-top:2px}
+    .stat-box{text-align:center;min-width:60px}
+    .stat-num{font-size:2rem;font-weight:900;color:#1d4ed8;line-height:1}
+    .stat-lbl{font-size:.65rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+
+    .topic-section{margin-bottom:40px}
+    .topic-title{font-size:1.2rem;font-weight:800;color:var(--c,#2563eb);border-bottom:3px solid var(--c,#2563eb);padding-bottom:8px;margin-bottom:14px}
+    .count{font-size:.8rem;font-weight:400;color:var(--muted)}
+    .no-news{color:var(--muted);font-style:italic;font-size:.88rem}
+
+    .article-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:12px;display:flex;gap:12px;align-items:flex-start;transition:border-color .15s}
+    .article-card:hover{border-color:#94a3b8}
+    .article-body{flex:1;min-width:0}
+    .article-title{font-size:.98rem;font-weight:600;text-decoration:none;display:block;margin-bottom:4px;color:var(--accent)}
+    .article-title:hover{text-decoration:underline}
+    .article-meta{font-size:.72rem;color:var(--muted);margin-bottom:8px}
+
+    .article-summary{margin-top:6px;font-size:.875rem;color:#334155;line-height:1.75}
+    .article-summary p{margin-bottom:.6em}
+    .article-summary p:last-child{margin-bottom:0}
+    .gnews-badge{display:inline-block;font-size:.65rem;background:#fef3c7;color:#92400e;border-radius:4px;padding:1px 5px;margin-bottom:6px;vertical-align:middle}
+    .article-summary.snippet{color:var(--muted)}
+    .read-more{display:inline-block;margin-top:6px;font-size:.8rem;font-weight:600;color:var(--accent);text-decoration:none}
+    .read-more:hover{text-decoration:underline}
+
+    .hide-btn{flex-shrink:0;padding:5px 10px;border-radius:6px;font-size:.72rem;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--muted);white-space:nowrap;align-self:flex-start}
+    .hide-btn:hover{border-color:#ef4444;color:#ef4444;background:#fef2f2}
+    .lbl-show{display:none}
+
+    .article-card.is-hidden{display:none}
+    body.reveal-hidden .article-card.is-hidden{display:flex;opacity:.45;border-style:dashed}
+    .article-card.is-hidden .lbl-hide{display:none}
+    .article-card.is-hidden .lbl-show{display:inline}
+    body.reveal-hidden .article-card.is-hidden .hide-btn{border-color:#16a34a;color:#16a34a}
+    body.reveal-hidden .article-card.is-hidden .hide-btn:hover{background:#f0fdf4}
+
+    footer{text-align:center;padding:24px 20px;color:var(--muted);font-size:.75rem;border-top:1px solid var(--border);margin-top:40px}
+
+    @media(max-width:600px){
+      .h-inner,.main{padding-left:14px;padding-right:14px}
+      .hero-title{font-size:1.3rem}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="h-inner">
+    <div>
+      <div class="h-brand">IT News Digest</div>
+      <div class="h-meta">Week 2026-W19 &bull; May 04–10, 2026</div>
+    </div>
+    <div class="h-controls">
+      <button class="btn" id="reveal-btn" onclick="toggleReveal()">Show hidden</button>
+      <select class="week-sel" id="week-sel" onchange="if(this.value) location.href=this.value">
+        <option value="">&#128337; Archive&hellip;</option>
+      </select>
+    </div>
+  </div>
+</header>
+
+<nav class="t-nav"><div class="t-nav-inner"><a href="#windows" class="nav-link" style="--c:#0078D4">Microsoft Windows</a><a href="#azure" class="nav-link" style="--c:#00BCF2">Azure</a><a href="#sharepoint" class="nav-link" style="--c:#036C70">SharePoint</a><a href="#intune" class="nav-link" style="--c:#0F6CBD">Intune</a><a href="#entraid" class="nav-link" style="--c:#6B69D6">Entra ID</a><a href="#m365" class="nav-link" style="--c:#D83B01">Microsoft 365</a><a href="#iru" class="nav-link" style="--c:#7C3AED">Iru MDM (formerly Kandji)</a><a href="#cato" class="nav-link" style="--c:#FF6B35">Cato Networks</a></div></nav>
+
+<main>
+  <div class="week-hero">
+    <div>
+      <div class="hero-title">Week 2026-W19</div>
+      <div class="hero-sub">May 04–10, 2026</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">34</div>
+      <div class="stat-lbl">Articles</div>
+    </div>
+  </div>
+
+    <section id="windows" class="topic-section">
+      <h2 class="topic-title" style="--c:#0078D4">Microsoft Windows <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a36c4138342">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windows-insider/2026/05/08/announcing-new-builds-for-8-may-2026/" target="_blank" rel="noopener noreferrer" class="article-title">Announcing new builds for 8 May 2026</a>
+          <div class="article-meta">blogs.windows.com &bull; May 08, 2026</div>
+          <div class="article-summary"><p>Announcing new builds for 8 May 2026
+Hello Windows Insiders,
+We continue to expand the rollout of the new WIP changes to those channels already announced. We have not yet begun moving Insiders in Canary 29500 Series Channel or Beta Channel to the new WIP experience just yet, although we expect this to happen in the coming weeks.
+As a reminder, if you are in the Beta Channel and looking for best continuity of all existing features, we encourage you to consider moving to the Dev Channel prior to taking the new Beta experience. See the WIP changes rollout blog for more information.
+New builds this week
+Today we are releasing new Windows 11 Insider Preview Builds. As a reminder, all Insiders can find the release notes for your device based on the new channel system, even if you haven’t moved yet. This is to make finding build information as easy as possible during the transition. See your channel release notes here:
+- Beta (Including Beta Channel): Build 26220.8370
+- Experimental (Including former Dev Channel): Build 26300.8376
+For those on other specific build versions, here are today’s new builds and release notes:
+- Experimental (26H1) – Including former Canary 28000 series: Build 28020.2075
+- Experimental (Future Platforms) – Including Canary 29500 series: Build 29585.1000
+As a reminder, you can always find your build number in the watermark on bottom right-hand corner of your desktop.
+Notable new features:
+[Touchpad]
+Release channel: Experimental
+We’re adding new gesturing-related functionality to precision touchpads in Settings. The new features should be widely available across applications, with the exception that WinUI3-based UI requires new WinAppSDK versions for complete functionality – we’re in the process of bringing the necessary changes to versions 1.8 and 2.0.
+- Scroll / zoom speed: control the baseline speed for these gestures
+- Automatic scrolling: scrolling continues indefinitely without lifting your fingers. Activate by either bringing your fingers near the edge of the touchpad while scrolling, or holding them still and pressing harder (requires hardware support).
+- Accelerated scrolling: repeatedly scrolling increases their speed, allowing quick traversal of long documents.
+- Single-finger scrolling: perform a vertical scroll with a single finger starting from the left or right side of the touchpad.
+[EDU Licensing]
+Release channel: Experimental Beta Channel
+Free upgrade path to Windows 11 Pro Education for K-12
+Windows Insiders in K–12 education environments can now experience a seamless upgrade path from Windows 11 Home to Windows 11 Pro Education edition—at no additional cost. This enables educational organizations to procure Windows 11 Home devices, upgrade them to Windows 11 Pro Education, and bring devices under school management.
+See release notes for more information.
+Thanks,
+Stephen and the Windows Insider Program team</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a36c4138342')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a0da743280e">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windowsexperience/2026/05/07/an-inside-look-at-stranger-than-heaven-reveals-locations-and-snoop-doggs-role/" target="_blank" rel="noopener noreferrer" class="article-title">An inside look at Stranger Than Heaven reveals locations and Snoop Dogg’s role</a>
+          <div class="article-meta">blogs.windows.com &bull; May 07, 2026</div>
+          <div class="article-summary"><p>Gaming
+May 7, 2026
+An inside look at Stranger Than Heaven reveals locations and Snoop Dogg’s role
+“Xbox Presents: A Special Look at Stranger Than Heaven” recently wrapped. The entire show offered an inside look at the new project from RGG Studio, which arrives this winter.
+During the 30-minute broadcast, several minds behind the upcoming action-adventure game went through the story structure, the different locations players will explore and some of the bombastic personalities they’ll encounter.
+One of those characters, a “cutthroat and charismatic smuggler” – has a familiar voice: Snoop Dogg, whose son Cordell Broadus also plays a substantial role in this ambitious adventure.
+Head over to Xbox Wire to read the recap.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a0da743280e')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="af89872f37d">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windowsdeveloper/2026/05/07/publish-to-microsoft-store-as-a-company-now-with-free-registration-and-faster-onboarding/" target="_blank" rel="noopener noreferrer" class="article-title">Publish to Microsoft Store as a company—now with free registration and faster onboarding</a>
+          <div class="article-meta">blogs.windows.com &bull; May 07, 2026</div>
+          <div class="article-summary"><p>Publish to Microsoft Store as a company—now with free registration and faster onboarding
+We’re seeing growing demand from companies that want to reach Windows users across both consumer and enterprise devices, and we’ve heard consistent feedback that getting started should be simpler. Today, we’re addressing that with three updates: free account creation (removing the $99 fee), Microsoft Entra ID support for signing up with work accounts, and a faster onboarding experience that reduces friction and helps teams move from sign-up to submission faster.
+As part of our broader investment in improving developer experiences across the Microsoft Store, this new experience builds on recent improvements for individual developers that significantly increased onboarding funnel success, helping more developers complete account creation and reach submission faster. Used by over 250 million monthly active users, the Microsoft Store’s open policies enable scalable distribution across both consumer and commercial devices.
+“At Brave, our core mission is to put users first. Distributing Brave through the Microsoft Store enables us to offer greater choice and flexibility in how people discover and install our browser on Windows. It also provides a seamless distribution channel that supports our goal of making privacy‑focused web browsing more accessible to users everywhere.” – Brave, Company developer
+What’s new in company onboarding?
+Free registration
+The $99 onboarding fee for company developer accounts has been removed, lowering the barrier to get started on the Microsoft Store.
+Sign up using your work account (Microsoft Entra ID)
+Based on common feedback from developers, you can now sign up using your organization’s work account—streamlining onboarding and helping associate your developer account with your company’s organizational identity from the start.
+Faster, more transparent onboarding experience
+A redesigned step‑by‑step onboarding flow with clearer requirements, upfront validation and real‑time status updates to help reduce friction and common errors. Many verification checks are completed automatically, with timely feedback and email notifications to help you stay informed and take the next steps when needed.
+How to get your organization ready to publish faster
+To help you move quickly from account creation to app submission, here are a few best practices to prepare your organization before starting onboarding:
+Have your D-U-N-S Number ready
+Use your D-U-N-S Number to quickly retrieve your business details and expedite business verification, helping you complete onboarding faster. If your organization already has one, you can look it up here: https://www.dnb.com/duns-number/lookup.html. If not, you can request one for free here: https://www.dnb.com/duns-number/get-a-duns.html.
+No D-U-N-S Number? Upload supporting documents
+If your organization does not have a D-U-N-S Number, you can upload supporting documents for business verification, which may take longer due to manual review. Keep your documents ready in advance. Accepted documents include company formation documents (such as articles of incorporation), government-issued business licenses or registration certificates, official government registry records, and tax or stock exchange filings.
+Use a business domain email in contact details
+Provide an email address associated with your organization’s domain (e.g., [email protected]) to help verify your employment and speed up onboarding. Using a mismatched domain will require you to upload additional verification documents later for domain verification.
+Keep an eye on email notifications
+You’ll receive email updates on your verification status. Review them and act—the faster you respond, the sooner you can complete verification and onboarding. When submitting documents, make sure to upload valid and accurate documents to avoid delays.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('af89872f37d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ad77ed43327">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windowsexperience/2026/05/06/with-latest-world-update-microsoft-flight-simulator-shines-light-on-aerial-firefighting/" target="_blank" rel="noopener noreferrer" class="article-title">With latest world update, Microsoft Flight Simulator shines light on aerial firefighting</a>
+          <div class="article-meta">blogs.windows.com &bull; May 06, 2026</div>
+          <div class="article-summary"><p>With latest world update, Microsoft Flight Simulator shines light on aerial firefighting
+World Update 21: Australia of Microsoft Flight Simulator 2024 includes a collaboration with the New South Wales Rural Fire Service – widely acknowledged as the largest volunteer fire service in the world. Comprised of nearly 40,000 dedicated volunteers, the RFS is rooted in the NSW communities, studiously managing bushfires that remain a significant, reoccurring threat across Australia.
+Players can experience the critical real-world operations of aerial firefighting with a new RFS-inspired mission using water bombing to put out a fire in New South Wales.
+To learn more about their work in protecting the Australian wilderness, Xbox Wire talked with NSW’s director of aviation, Assistant Commissioner Jayson McKellar AFSM, about the yearly challenges the NSW Rural Fire Service faces in bushfire response, how flight simulations like Microsoft Flight Simulator can help educate players about aerial firefighting and what advances in technology have made the biggest difference to firefighter safety in recent years.
+Read that interview on Xbox Wire.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ad77ed43327')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="af29e902093">
+        <div class="article-body">
+          <a href="https://petri.com/why-windows-co-management-is-becoming-a-smarter-path/" target="_blank" rel="noopener noreferrer" class="article-title">Why Windows Co-Management Is Becoming a Smarter Path for Enterprise IT</a>
+          <div class="article-meta">petri.com &bull; May 06, 2026</div>
+          <div class="article-summary"><p>Reducing friction in endpoint operations by modernizing in phases instead of through a disruptive rip-and-replace migration.
+It isn’t hard to guess why Microsoft Intune is a common first choice for Windows device management. For enterprises already using Microsoft 365 and Entra ID, it offered a logical way to extend modern management to Windows devices while keeping administration aligned with the broader Microsoft ecosystem.
+But as device estates grow and operational demands become more complex, many IT teams are discovering that the real challenge is not access to management tools. It is day-to-day execution. That is why more enterprises are revisiting co-management, not as a stopgap, but as a practical modernization strategy.
+Instead of forcing a clean replacement of one management approach with another, co-management allows organizations to preserve the systems, workflows, and Microsoft integrations they already rely on while introducing additional management capabilities where they improve speed, flexibility, or control.
+Intune is good, but it doesn’t mean it’s free of gaps. And scripting is one of the clearest examples of this. Scripting remains central to Windows administration, especially in complex environments where IT teams need to remediate issues quickly, configure systems beyond baseline policy controls, or handle exceptions at scale. Intune supports PowerShell scripting and continues to expand script-related capabilities, including reporting and remediations. But the administrative experience still depends on prerequisites, assignment logic, monitoring steps, and execution conditions that teams must actively manage. PowerShell scripts do not simply run at every sign-in by default and depend on the Intune Management Extension service and device eligibility.
+That is not to say that PowerShell is ineffective. It means the operational burden does not disappear just because a feature exists. In real-world environments, admins judge management workflows by how repeatable, observable, and easy to troubleshoot they are under pressure.
+The same applies to policy deployment. Intune’s Windows update framework is mature, with update rings, feature update policies, and reporting designed to help organizations balance rollout control with user productivity. But it still leaves administrators with a difficult coordination problem: different device groups, different update tolerances, different user experiences, and different compliance requirements often need to be managed simultaneously.
+Traditional management transitions are often framed as replacement projects. The assumption is that once a new platform is selected, the old approach should be phased out as quickly as possible. That sounds efficient on paper. In practice, it can create unnecessary risk.
+Windows environments are rarely uniform enough for that kind of clean handoff. Large organizations often manage a mix of remote users, office-based employees, frontline devices, branch setups, and systems that still depend on long-standing Configuration Manager processes or on-premises infrastructure. In such cases, a quick and complete replacement effort can be highly disruptive.
+Microsoft’s co-management framework is built around the idea that organizations may need both Configuration Manager and Intune during their transition, and that workloads can be moved intentionally over time. Microsoft also positions cloud attach as a way to extend existing Configuration Manager investments into the cloud without requiring immediate disruption. The cloud attach guidance explicitly emphasizes phased enablement, while the setup flow includes recommended defaults to simplify onboarding rather than forcing organizations to redesign everything from day one.
+That is an important shift in mindset. It suggests that successful modernization is not about replacing the most technology in the shortest amount of time.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('af29e902093')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ad83b5aa0bf">
+        <div class="article-body">
+          <a href="https://petri.com/windows-365-reserve-user-initiated-provisioning/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Previews User‑Initiated Provisioning for Windows 365 Reserve</a>
+          <div class="article-meta">petri.com &bull; May 04, 2026</div>
+          <div class="article-summary"><p>User-initiated provisioning in Windows 365 Reserve aims to speed up Cloud PC access while keeping IT governance intact.
+Key Takeaways:
+Microsoft has introduced a public preview of user-initiated provisioning for Windows 365 Reserve. The feature enables selected users to spin up their own Reserve Cloud PC on demand, reducing reliance on IT administrators and minimizing downtime.
+Windows 365 Reserve is a cloud‑based service that provides employees with a temporary, fully configured virtual Windows PC when their main physical device is unavailable due to issues like loss, damage, or delays. It acts as a backup solution for business continuity, which allows users to securely access their work environment, apps, and data from another device through the cloud. The service is managed by IT teams using tools like Microsoft Intune to ensure that security policies and configurations remain consistent while minimizing downtime and helping employees quickly resume their work.
+Previously, creating Cloud PCs required IT administrators to manually set them up through Microsoft Intune for each request. With the new update, IT still manages policies and overall control, but end users no longer have to rely on IT for every request. This feature is especially useful in urgent or time‑sensitive roles, large‑scale device failures or disruptions, and situations where IT teams are overloaded.
+“User-initiated provisioning is an optional capability in Windows 365 Reserve that enables faster recovery and continuity for users. When turned on, users can initiate Cloud PC provisioning directly from the Windows App, without waiting for IT to take action, allowing them to get back to work as quickly as possible,” Microsoft explained.
+Administrative control remains unchanged even with the introduction of self‑service provisioning. IT teams still decide which users can access the feature through Microsoft Intune, while continuing to manage security policies, device configurations, and the overall Cloud PC lifecycle. Moreover, licensing requirements and provisioning rules remain consistent, which ensures that organizations maintain full governance despite giving users more flexibility.
+Microsoft notes that this feature is optional and comes with certain limitations. It is turned off by default, and only selected user groups, which are defined and configured by IT through Microsoft Intune, are allowed to use it. Moreover, this feature does not automatically create Cloud PCs for all users to ensure that provisioning happens only when needed and for authorized individuals.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ad83b5aa0bf')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ab2d4ac66b1">
+        <div class="article-body">
+          <a href="https://www.bleepingcomputer.com/news/security/jdownloader-site-hacked-to-replace-installers-with-python-rat-malware/" target="_blank" rel="noopener noreferrer" class="article-title">JDownloader site hacked to replace installers with Python RAT malware</a>
+          <div class="article-meta">bleepingcomputer.com &bull; May 09, 2026</div>
+          <div class="article-summary"><p>The website for the popular JDownloader download manager was compromised earlier this week to distribute malicious Windows and Linux installers, with the Windows payload found deploying a Python-based remote access trojan.
+The supply chain attack affects those who downloaded installers from the official website between May 6 and May 7, 2026 via the Windows &quot;Download Alternative Installer&quot; links or the Linux shell installer.
+According to the developers, the attackers modified the website's download links to point to malicious third-party payloads rather than legitimate installers.
+JDownloader is a widely used free download management application that supports automated downloads from file-hosting services, video sites, and premium link generators. The software has been available for more than a decade and is used by millions worldwide across Windows, Linux, and macOS.
+The JDownloader supply chain attack
+The compromise was first reported on Reddit by a user named &quot;PrinceOfNightSky,&quot; who noticed that downloaded installers were being flagged by Microsoft Defender.
+&quot;I been using Jdownloader and switched to a new PC a few weeks ago. Luckily I had the installer in a usb drive but decided to download the latest version,&quot; posted PrinceOfNightSky to Reddit.
+&quot;The website is official but all the Exes for windows are being reported as malicious software by windows and the developer is being listed as 'Zipline LLC.' And other times it's saying 'The Water Team' The software is obviously by Appwork and I have to manually unblock it from windows to run it which I will not do.&quot;
+The JDownloader developers later confirmed that the site had been compromised and took the website offline to investigate the incident.
+In an incident report, the devs said their website was compromised by attackers exploiting an unpatched vulnerability that allowed them to change website access control lists and content without authentication.
+&quot;Changes were made through the website's content management system, affecting published pages and links,&quot; reads the incident report.
+&quot;The attacker did not gain access to the underlying server stack — in particular no access to the host filesystem or broader operating-system-level control beyond CMS-managed web content.&quot;
+The developers stated that the compromise affected only the alternative Windows installer download links and the Linux shell installer link. In-app updates, macOS downloads, Flatpak, Winget, Snap packages, and the main JDownloader JAR package were not modified.
+The developers also said that users can confirm if an installer is legitimate by right-clicking the file, selecting Properties, and then clicking the Digital Signatures tab.
+If Digital Signatures shows it was signed by &quot;AppWork GmbH,&quot; then it is legitimate.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ab2d4ac66b1')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a4c60c8567b">
+        <div class="article-body">
+          <a href="https://www.bleepingcomputer.com/news/security/fake-openai-repository-on-hugging-face-pushes-infostealer-malware/" target="_blank" rel="noopener noreferrer" class="article-title">Fake OpenAI repository on Hugging Face pushes infostealer malware</a>
+          <div class="article-meta">bleepingcomputer.com &bull; May 09, 2026</div>
+          <div class="article-summary"><p>A malicious Hugging Face repository that reached the platform’s trending list impersonated OpenAI’s “Privacy Filter” project to deliver information-stealing malware to Windows users.
+The repository briefly reached #1 on Hugging Face and accumulated 244,000 downloads before the platform responded to reports and removed it.
+The Hugging Face platform lets developers and researchers share AI models, datasets, and machine learning (ML) tools. Models are pre-trained AI systems hosted on the platform comprising weight files, configuration, and code.
+Researchers at HiddenLayer, a company focused on safeguarding AI and ML models against attacks, discovered the campaign on May 7, after noticing a malicious repository named Open-OSS/privacy-filter.
+“The repository had typosquatted OpenAI's legitimate Privacy Filter release, copied its model card nearly verbatim, and shipped a loader.py file that fetches and executes infostealer malware on Windows machines,” the researchers explain.
+The ‘loader.py’ Python script included fake AI-related code to appear harmless, but in the background, it disabled SSL verification, decoded a base64 URL pointing to an external resource, and then fetched and executed a JSON payload containing a PowerShell command.
+The command, which is executed in an invisible window, downloads a batch file (start.bat) that performs privilege escalation, downloads the final payload (sefirah), adds it to Microsoft Defender's exclusions for it, and executes it.
+The final payload is a Rust-based infostealer that targets the following sensitive data:
+- Browser data from Chromium- and Gecko-based browsers (e.g., cookies, saved passwords, encryption keys, browsing data, session tokens)
+- Discord tokens, local databases, and master keys
+- Cryptocurrency wallets and wallet browser extensions
+- SSH, FTP, and VPN credentials and configuration files, including FileZilla
+- Sensitive local files and wallet seeds/keys
+- System information
+- Multi-monitor screenshots
+The stolen data is compressed and exfiltrated to a command-and-control (C2) server at recargapopular[.]com.
+HiddenLayer highlights the malware’s extensive anti-analysis features, which include checks for virtual machines, sandboxes, debuggers, and analysis tools, all with the purpose of evading analysis systems.
+The exact number of victims in this incident is unclear, and the researchers note that the vast majority of the 667 accounts that liked the malicious repository on Hugging Face appear to be auto-generated. Additionally, the 244,000 download count may have been artificially inflated.
+By examining those, the researchers uncovered other repositories that used the same malicious loader infrastructure. HiddenLayer researchers also noticed overlaps with an npm typosquatting campaign distributing the WinOS 4.0 implant.
+Users who downloaded files from the malicious repository are advised to reimage the machine, rotate all stored credentials, replace cryptocurrency wallets and seed phrases, and invalidate browser sessions and tokens.
+Threat actors have abused Hugging Face in the past to host malicious models, despite the platform's security measures.
+99% of What Mythos Found Is Still Unpatched.
+AI chained four zero-days into one exploit that bypassed both renderer and OS sandboxes. A wave of new exploits is coming.
+At the Autonomous Validation Summit (May 12 &amp; 14), see how autonomous, context-rich validation finds what's exploitable, proves controls hold, and closes the remediation loop.
+Claim Your Spot</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a4c60c8567b')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="azure" class="topic-section">
+      <h2 class="topic-title" style="--c:#00BCF2">Azure <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a94f707ebd0">
+        <div class="article-body">
+          <a href="https://azure.microsoft.com/en-us/blog/scaling-cloud-and-ai-microsoft-azures-commitment-to-europes-digital-future/" target="_blank" rel="noopener noreferrer" class="article-title">Scaling cloud and AI: Microsoft Azure’s commitment to Europe’s digital future</a>
+          <div class="article-meta">azure.microsoft.com &bull; May 06, 2026</div>
+          <div class="article-summary"><p>Customer demand for cloud and AI is accelerating worldwide, and this demand has been particularly strong in Europe. Public sector customers like Manchester City Council are using Microsoft 365 Copilot to streamline operations and improve citizen services, while companies like Inriver use Microsoft Foundry to transform product information management.
+These innovations are powered by Microsoft Azure—the platform underpinning both Microsoft 365 Copilot and Microsoft Foundry. Azure enables organizations to build, deploy, and scale AI solutions with performance, security, and trust. Across industries, customers are turning to Azure to run critical workloads and advance their AI strategies, driving a new wave of innovation across Europe.
+Meeting Europe’s cloud and AI demand
+To support customers running everything from core business systems to advanced analytics and AI-powered applications, we are significantly investing in datacenter regions across Europe.
+This fiscal year, we’ve expanded into new regions and continue to build across key markets. We’re scaling capacity across both new and existing regions so customers can grow with confidence including:
+Microsoft’s global infrastructure spans more than 80 datacenter regions in 34 countries, giving customers greater choice for storing data at rest and meeting data residency, compliance, and performance requirements.
+These investments deliver more than capacity; they provide trusted, sovereign solutions designed for transparency, operational control, and alignment with local regulations.
+Comprehensive sovereign solutions without compromise
+We’re expanding rapidly with a clear focus: helping customers scale as demand grows. We’re investing where customers are building and scaling critical workloads, and we’ll continue to grow our regional footprint with secure, resilient cloud and AI services—including sovereign solutions that help provide the control and deployment flexibility many organizations require.
+These investments go beyond expanding capacity, they deliver trusted sovereign infrastructure that supports innovation with transparency, operational control, and alignment with local regulations.
+Between Azure datacenter regions across the European Union, the European Union Data Boundary, and Microsoft Sovereign Cloud, customers gain control over where data is stored and processed — without giving up access to advanced cloud and AI capabilities.
+Northern Europe: Scaling AI and cloud innovation in the Nordics
+Across the Scandinavian countries in Northern Europe, demand from industry, the public sector, and enterprises is rising quickly, driven by advanced digital and AI workloads.
+In Sweden we’re pairing that growing demand with a more sustainable approach to how Azure datacenters are designed and powered from:
+- Free-air cooling.
+- Rainwater harvesting.
+- Renewable diesel backup power.
+- A partnership with Vattenfall to use every day renewable-energy matching.
+Organizations like Legora and inriver are using Azure and Azure OpenAI to innovate with AI-powered solutions and enhance digital experiences, while Sandvik is revolutionizing manufacturing with Microsoft AI solutions.
+That same focus on proximity, resilience, and trust is shaping cloud adoption across Denmark. In the recently launched Denmark East datacenter region, organizations can run workloads closer to users while meeting data residency and protection needs, while strengthening their digital resilience.
+As demand grows across the Nordics, we’re continuing to invest in cloud and AI infrastructure throughout the region, supporting the next wave of innovation from customers like Sanoma in Finland and the City of Stavanger in Norway.
+Southern Europe: Accelerating digital transformation with local Azure regions
+Southern Europe is seeing its own rapid growth in cloud adoption as organizations modernize IT estates, expand digital services, and bring AI workloads closer to users.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a94f707ebd0')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a2cac6e59b0">
+        <div class="article-body">
+          <a href="https://azure.microsoft.com/en-us/blog/azure-iaas-defense-in-depth-built-on-secure-by-design-principles/" target="_blank" rel="noopener noreferrer" class="article-title">Azure IaaS: Defense in depth built on secure-by-design principles</a>
+          <div class="article-meta">azure.microsoft.com &bull; May 04, 2026</div>
+          <div class="article-summary"><p>This blog post is the third part of a blog series called Azure IaaS which will share best practices and guidance to help you build a trusted infrastructure platform—from performance, resiliency, and security to scalability and cost efficiency.
+Security for cloud infrastructure is no longer defined by a single control, product, or boundary. Modern threats target identity, software supply chains, control planes, networks, and data simultaneously. Addressing this reality requires two things to work together: a layered defense-in-depth architecture and security principles that are enforced consistently across the platform.
+In Azure Infrastructure as a Service (IaaS), security is built around these two reinforcing ideas. First, Azure implements defense in depth, applying multiple, independent layers of protection across compute, networking, storage, and operations so that no single control stands alone. Second, those protections are guided by Microsoft’s Secure Future Initiative (SFI) principles: secure by design, secure by default, and secure in operation. Together, they define how Azure IaaS is engineered, configured, and operated at scale.
+Defense in depth as a system
+Defense in depth is not a checklist of features—it is a system-level security architecture. Each layer is designed with the assumption that another layer may fail, and that compromise at one point should not lead to platform-wide impact.
+In Azure IaaS, defense in depth spans the full infrastructure stack:
+- Hardware and host integrity
+- Virtualized compute isolation
+- Network segmentation and traffic control
+- Data protection for storage
+- Continuous monitoring and response
+These layers are intentionally independent. Hardware root-of-trust mechanisms validate host integrity before workloads ever start. Virtual machines (VM) run with strong isolation boundaries enforced by the hypervisor. Network controls limit lateral movement and restrict exposure. Storage services encrypt and protect data even if credentials are compromised. And telemetry and monitoring systems operate continuously, detecting and responding to anomalous behavior across the platform.
+This layered approach ensures that Azure IaaS security does not rely on perimeter assumptions or a single “control plane defense,” but instead applies multiple mutually reinforcing controls that work together.
+Secure by design: Engineering security into the platform
+“Secure by design” means security is architected into the platform from the beginning, not added after deployment. In Azure IaaS, this starts at the lowest layers of the stack.
+Hardware and host-level trust
+Azure servers are built with hardware roots of trust, measured boot, and secure firmware validation. Technologies such as Trusted Platform Modules (TPMs) and secure boot validate that host firmware, boot loaders, and operating systems have not been tampered with before the system joins the Azure fleet. These mechanisms reduce exposure to firmware-level and boot-chain attacks that traditional software-only defenses cannot address.
+Azure also offloads critical infrastructure functions—such as storage, networking, and management operations—into dedicated, hardened components like Azure Boost, reducing the attack surface of the host operating system and improving isolation between customer workloads and platform services.
+Virtual machine-layer trust
+At the virtual machine layer, Azure enforces strong virtualization boundaries using a hardened hypervisor. Features like Trusted Launch for Azure VM combine secure boot, virtual TPMs, and integrity monitoring to protect VMs against low-level attacks such as bootkits and kernel rootkits.
+For highly sensitive workloads, Azure confidential computing extends defense in depth by using trusted execution environments (TEEs) backed by hardware-based memory encryption (such as AMD SEV‑SNP or Intel TDX).</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a2cac6e59b0')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a00a56a730f">
+        <div class="article-body">
+          <a href="https://petri.com/azure-arc-kubernetes-cert-manager-tls-automation/" target="_blank" rel="noopener noreferrer" class="article-title">Azure Arc-Enabled Kubernetes Adds Cert-Manager for TLS Certificate Automation</a>
+          <div class="article-meta">petri.com &bull; May 07, 2026</div>
+          <div class="article-summary"><p>This feature simplifies TLS certificate management across Azure Arc-enabled Kubernetes clusters.
+Key Takeaways:
+Microsoft has announced the public preview of cert-manager support for Azure Arc-enabled Kubernetes. This new feature simplifies security by streamlining certificate issuance, renewal, and trust management across distributed Kubernetes clusters, which reduces manual effort and improves reliability.
+According to Microsoft, managing TLS certificates in Kubernetes (especially across hybrid, multicloud, and edge environments) has become increasingly complex and error‑prone, which often requires manual setup, renewal, and tracking across many distributed clusters. This fragmentation leads to security risks, inconsistent trust configurations, and service outages when certificates expire or are mismanaged, which makes it difficult for organizations to maintain reliable and secure communications at scale.
+Microsoft highlighted that cert-manager support for Azure Arc-enabled Kubernetes automates the full lifecycle of TLS certificates, including issuing, renewing, and managing them. It helps reduce manual work and minimize the risk of outages caused by expired certificates. This feature standardizes certificate handling across clusters to help organizations maintain secure communication between services and enforce consistent security policies.
+This new solution includes trust management capabilities that distribute trusted certificate authorities across workloads, which ensures all services rely on a unified set of trusted certificates. It’s designed for Azure Arc and supports Kubernetes clusters running on-premises, at the edge, or in other clouds, which makes it ideal for distributed environments.
+Microsoft mentioned that this feature integrates with existing enterprise PKI systems as well as self-signed certificates, which gives organizations flexibility in how certificates are issued and managed. It packages cert-manager and trust-manager into a Microsoft-supported extension to simplify deployment, improve reliability, and reduce configuration overhead.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a00a56a730f')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ab188adbfd0">
+        <div class="article-body">
+          <a href="https://petri.com/azure-local-thousands-servers-sovereign-deployments/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Azure Local Now Supports Thousands of Servers in Sovereign Deployments</a>
+          <div class="article-meta">petri.com &bull; May 06, 2026</div>
+          <div class="article-summary"><p>Sovereign cloud at scale with compliant, high-performance local workloads.
+Key Takeaways:
+Microsoft’s Azure Local can now support deployments of thousands of servers within a single sovereign environment. This allows organizations to run very large, complex workloads locally without redesigning their infrastructure.
+According to Microsoft, governments and regulated industries are increasingly prioritizing strict control over where their data is stored, how operations are managed, and how compliance requirements are met. Organizations must also ensure that their data and systems remain within defined legal or geographic boundaries while still benefiting from the scalability and flexibility of cloud technologies.
+Azure Local enables a cloud-like environment on customer-owned hardware, fully controlled within their own boundaries. Moreover, it works even in offline or partially connected scenarios, which ensures operations continue without reliance on public cloud access. Administrators can manage capabilities like security policies, access control, auditing, and compliance locally.
+Microsoft highlighted that this platform supports high resilience, using fault isolation and infrastructure pools to avoid service disruptions. Moreover, it can handle AI, analytics, and data-intensive applications directly within sovereign environments. GPU and AI support also allow organizations to run sensitive models without exposing data externally.
+Organizations can run distributed, latency-sensitive, and edge-based applications while maintaining sovereignty. Moreover, AI workloads can be deployed closer to where data is created, improving performance and control.
+Companies and government agencies (e.g., telecom providers, national registries, network operators) are using Azure Local to maintain full control of critical infrastructure. It also helps to protect sensitive national or customer data and scale operations while staying compliant.
+Azure Local integrates with hardware from major vendors and supports existing storage systems, which helps to protect prior investments. It uses modern processors (like Intel Xeon) with built-in AI acceleration to reduce the need for specialized hardware.
+Microsoft notes that this new platform is designed to adapt to requirements like strict data residency, disconnected operations, regulated environments, as well as Edge and AI workloads. The deployments can scale from small edge setups to full data center environments.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ab188adbfd0')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a6e22655a09">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMihgFBVV95cUxPcHd0SS1HN3kxckt0UER3STh4Y2NhZ3lmLWpad01mZGlUSXY1TktqdHlwUWE1ZGZVbFRETl85cTFjb3NHMS1QLS1ZTURWaURVSTZqZGotUDJRSmVNQ0JOSlZkV0ZFWExFOW9Wc1l3SkF1RmYyZHBCZklVd2VyMHV1MEVyZUdUZw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft: Azure Doing The Heavylifting (NASDAQ:MSFT) - Seeking Alpha</a>
+          <div class="article-meta">Seeking Alpha &bull; May 07, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft: Azure Doing The Heavylifting (NASDAQ:MSFT)&amp;nbsp;&amp;nbsp;Seeking Alpha</p><a href="https://news.google.com/rss/articles/CBMihgFBVV95cUxPcHd0SS1HN3kxckt0UER3STh4Y2NhZ3lmLWpad01mZGlUSXY1TktqdHlwUWE1ZGZVbFRETl85cTFjb3NHMS1QLS1ZTURWaURVSTZqZGotUDJRSmVNQ0JOSlZkV0ZFWExFOW9Wc1l3SkF1RmYyZHBCZklVd2VyMHV1MEVyZUdUZw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a6e22655a09')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="abcc6464e71">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMijAFBVV95cUxQOWdtbmJST21yanI3QnB6SVJZVTdCMFYtQndiMVgtNlVyVXlfYWJtM1J5MGhobjdFellFX1diaHVYUVpFZVZIakd2Ry1vLVFsUFgtZEhVLXFGWXJ1OU1EdnpxMFhzbXlFUWpJb1hmZWVVYnBXZXZHb0FhMEx5RTA2ZUktMThCTGsxZXZaRw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft’s OpenAI anxiety shows cloud loyalty has limits - Startup Fortune</a>
+          <div class="article-meta">Startup Fortune &bull; May 08, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft’s OpenAI anxiety shows cloud loyalty has limits&amp;nbsp;&amp;nbsp;Startup Fortune</p><a href="https://news.google.com/rss/articles/CBMijAFBVV95cUxQOWdtbmJST21yanI3QnB6SVJZVTdCMFYtQndiMVgtNlVyVXlfYWJtM1J5MGhobjdFellFX1diaHVYUVpFZVZIakd2Ry1vLVFsUFgtZEhVLXFGWXJ1OU1EdnpxMFhzbXlFUWpJb1hmZWVVYnBXZXZHb0FhMEx5RTA2ZUktMThCTGsxZXZaRw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('abcc6464e71')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a04cb174164">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMitAFBVV95cUxOaDVwNDNFQTVlMHlSVzA0ZEhSODlheWdid0dNR01ad2VqMlNGN0xiU0h2eUpLX2JJamo0WHVCSXJnTzRDV0tQc25SV3YtaHd4anpkRHRCS1ZWRkViLVo3QmN1a1NlVE9QNzVrYnNYUmprSjVnR2dhVHIxcTZQM3c2ZllsN0hZMGlBWVZVaVNuODVxc2VIRWppNjhXTDBfdUtVTkdZYTFWNzRORzAyeVdBcVcyU3c?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Scaling cloud and AI: Microsoft Azure’s commitment to Europe’s digital future - Microsoft Azure</a>
+          <div class="article-meta">Microsoft Azure &bull; May 06, 2026</div>
+          <div class="article-summary snippet"><p>Scaling cloud and AI: Microsoft Azure’s commitment to Europe’s digital future&amp;nbsp;&amp;nbsp;Microsoft Azure</p><a href="https://news.google.com/rss/articles/CBMitAFBVV95cUxOaDVwNDNFQTVlMHlSVzA0ZEhSODlheWdid0dNR01ad2VqMlNGN0xiU0h2eUpLX2JJamo0WHVCSXJnTzRDV0tQc25SV3YtaHd4anpkRHRCS1ZWRkViLVo3QmN1a1NlVE9QNzVrYnNYUmprSjVnR2dhVHIxcTZQM3c2ZllsN0hZMGlBWVZVaVNuODVxc2VIRWppNjhXTDBfdUtVTkdZYTFWNzRORzAyeVdBcVcyU3c?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a04cb174164')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="af5ff70b793">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiiwFBVV95cUxNa3ZWTnN2aXpEVkYwS2drZ2tFN1dWWUk5UTZxanZpVkRNcVkxUzBTT1hkcEFzUndReXdiMGZIQlh5a1hqWkZXakdodjByNjV3THFKUW9xeXIzNFVPRm01ajhhUVBicnVUM2VXcl9PN2thbnU5Y3BBUnhwUUZxSjdtVXExZ1Y5cHBOQ0Jr?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Procter &amp; Gamble modernizes SAP on Azure with 40% average performance gains - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; May 07, 2026</div>
+          <div class="article-summary snippet"><p>Procter &amp; Gamble modernizes SAP on Azure with 40% average performance gains&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMiiwFBVV95cUxNa3ZWTnN2aXpEVkYwS2drZ2tFN1dWWUk5UTZxanZpVkRNcVkxUzBTT1hkcEFzUndReXdiMGZIQlh5a1hqWkZXakdodjByNjV3THFKUW9xeXIzNFVPRm01ajhhUVBicnVUM2VXcl9PN2thbnU5Y3BBUnhwUUZxSjdtVXExZ1Y5cHBOQ0Jr?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('af5ff70b793')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="sharepoint" class="topic-section">
+      <h2 class="topic-title" style="--c:#036C70">SharePoint </h2>
+      <p class="no-news">No articles found this week.</p>
+    </section>
+    <section id="intune" class="topic-section">
+      <h2 class="topic-title" style="--c:#0F6CBD">Intune <span class="count">(4)</span></h2>
+      <div class="article-card" data-id="ade4407d996">
+        <div class="article-body">
+          <a href="https://techcommunity.microsoft.com/t5/intune-customer-success/known-issue-upgrading-microsoft-tunnel-version-20260129-1/ba-p/4517935" target="_blank" rel="noopener noreferrer" class="article-title">Known issue: Upgrading Microsoft Tunnel version 20260129.1</a>
+          <div class="article-meta">techcommunity.microsoft.com &bull; May 08, 2026</div>
+          <div class="article-summary snippet"><p>We identified an upgrade issue with the early March release of Microsoft Tunnel version 20260129.1 that caused servers to become stuck and unable to complete the upgrade. The issue can be resolved by uninstalling and reinstalling the server to a newer version (20260330.1 or later). Alternatively, we’ve created a script to help you update affected servers. This blog explains how to use the mstunnel-patch-2602 script to remediate the issue.
+Before you begin
+Before you run the script, make sure you have the following:
+
+Access to the Linux virtual machine hosting the Microsoft Tunnel server
+Permission to run commands with sudo
+The patch script downloaded to the server from https://aka.ms/mstunnel-patch-2602
+
+When to use this script
+Use this script if your server is showing one or more of the following behaviors:
+
+The server remains on the affected version (20260129.1) and doesn’t move to the latest version
+In the Intune admin center, the server health state appears as Healthy, but the upgrade banner shows an error
+The server rolls back to the affected version because of a version mismatch in Agent Settings
+
+Identify impacted servers
+The issue affects servers on version 20260129.1, use the following hash to identify whether your deployment is on this version:
+
+Agent:&amp;nbsp;sha256:abbdcd854aa5ac376aed32c828e4c84917e776a701855cd1e3febed18a3e4dae
+Server:sha256:ad57d6a7ffe21f64fc1577713063ae9b180914cf65bc70b4e49be21299cfc1d3
+
+The issue was resolved with version 20260330.1, released March 30, 2026. You can verify your servers are on this version with the following hash:
+
+Agent:&amp;nbsp;sha256:163214b94af6d91a5ef02690f891c5a41e87b1059b9530324716ee34778c1785
+Server:&amp;nbsp;sha256:dd62c292528e8e5aa4e7b84418efa42fd3830ec0db40467947cde8125aa17d7e
+
+Run the script
+After downloading the script to the server, complete the following steps.
+Step 1: Enable execution permissions
+If needed, make the script executable:
+chmod +x mstunnel-patch-2602.sh
+&amp;nbsp;
+Step 2: Run the script
+Run the script with elevated permissions:
+sudo ./mstunnel-patch-2602.sh
+When the script runs, it performs the following actions automatically:
+
+Checks whether the current server is using the affected build hashes.
+Creates backups of the current configuration so the system can revert if the update fails.
+Stops the Tunnel agent and server services.
+Updates the configuration with version 20260330.1 hashes
+Pulls version 20260330.1 and forces mst-cli install without requiring additional user input
+
+Expected results
+After the script completes successfully, the server should be updated to the March 30, 2026 version 20260330.1. This remediation is intended to resolve upgrade failures caused by a version mismatch and eliminate the need for a manual uninstall and reinstall workflow.
+&amp;nbsp;
+If you have any questions or issues running the script to update your servers, reply to this post or reach out to the team on X @IntuneSuppTeam.</p><a href="https://techcommunity.microsoft.com/t5/intune-customer-success/known-issue-upgrading-microsoft-tunnel-version-20260129-1/ba-p/4517935" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ade4407d996')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a48ef6c0344">
+        <div class="article-body">
+          <a href="https://techcommunity.microsoft.com/t5/intune-customer-success/support-tip-resolve-device-noncompliance-with-mobile-threat/ba-p/4491669" target="_blank" rel="noopener noreferrer" class="article-title">Support tip: Resolve device noncompliance with Mobile Threat Defense partner apps</a>
+          <div class="article-meta">techcommunity.microsoft.com &bull; May 06, 2026</div>
+          <div class="article-summary snippet"><p>Using a Mobile Threat Defense (MTD) solution, such as Microsoft Defender for Endpoint, with Microsoft Intune helps keep your organization’s resources protected and allows you to block devices that aren’t compliant with your organization’s policies.
+When an MTD detects a threat or determines that a device is noncompliant the device user will see one of two types of messages indicating:
+
+Install and activate partner app: The device needs the [MTD app] installed and activated to restore access to work or school resources. This message indicates that Intune hasn't received a signal from the [MTD app] the device, or the connection was lost.
+Resolve detected threats: The [MTD app] app identified one or more threats on the device. Open the [MTD app] and follow the guidance to resolve the threats before accessing work or school resources.
+
+In this blog, we’ll focus on troubleshooting and resolving the first scenario, where users will need to install and activate the MTD app.
+Note: For help resolving threats detected by the MTD app, open the partner app directly on the device for remediation guidance.
+Prerequisites
+Before you begin troubleshooting, confirm that:
+
+The user device is enrolled in Intune through the Company Portal app.
+The user has access to their work or school account credentials.
+The device has an active internet connection.
+
+&amp;nbsp;
+Restore device compliance
+Have the user follow these steps to resolve the noncompliance issue and restore access to work or school resources.
+&amp;nbsp;
+Step 1: Install and activate the partner app
+If the [MTD app] isn’t installed on the device:
+
+Open the Intune Company Portal app on the device.
+Go to&amp;nbsp;Devices&amp;nbsp;and select the device.
+Install the required [MTD app] shown in the noncompliance message.
+Open the [MTD app] and sign in with your work or school account.
+Complete any required setup or activation steps in the app.
+Wait up to 30 minutes for the device compliance status to update.
+
+If your device remains noncompliant after 30 minutes, continue to the next step.
+&amp;nbsp;
+Step 2: Refresh the connection
+If the [MTD app] is already installed and the user is signed in, the connection between the app and Intune services may need to be refreshed:
+
+Open the [MTD app] on the device.
+Sign out of the work or school account.
+Sign back in with the same work or school account.
+Wait up to 30 minutes for the device compliance status to update.
+
+If the device remains noncompliant after 30 minutes, continue to the next step.
+&amp;nbsp;
+Step 3: Reinstall the MTD app
+If refreshing the connection doesn't resolve the issue, reinstalling the app can restore the signal between services:
+
+Uninstall the [MTD app] from the device.
+Restart the device.
+Open the Company Portal app on the device.
+Reinstall the [MTD app].
+Open the app and sign in with the work or school account.
+Complete any required setup or activation steps.
+Wait up to 30 minutes for the device compliance status to update.
+
+Check device compliance status
+Users can verify their device's compliance status at any time:
+
+Open the Company Portal app.
+Go to&amp;nbsp;Devices.
+Select the device to view its current status.
+
+If the device shows as compliant, they can access work or school resources. If it &amp;nbsp;shows as noncompliant and they’ve taken steps to resolve, wait a few more minutes and check again, as compliance status updates can take up to 30 minutes to appear in the Company Portal app.
+&amp;nbsp;
+iOS/iPadOS: Enable simplified remediation for users
+Admins can configure a simplified remediation experience on iOS and iPadOS to help end‑users return to a compliant state more easily. This experience streamlines how users address Mobile Threat Defense (MTD)–related noncompliance and reduces the number of steps required to restore access.
+To enable this experience:
+
+Follow the guidance in&amp;nbsp;Simplifying compliance remediation with Microsoft Intune and Defender on iOS/iPadOS to configure the updated remediation workflow for your organization.
+Once enabled, end‑users will see clearer guidance within the Microsoft Defender app when their device is marked noncompliant.
+The Defender app will direct users through the necessary remediation steps automatically - such as re‑authentication, resolving threat signals, or re‑establishing the MTD connection.
+After the guided process is complete, Defender will send updated device status to Intune so the device can return to a compliant state.
+
+This simplified flow reduces support overhead and increases user success resolving MTD‑related compliance issues on iOS/iPadOS.
+Android: Refresh the MTD connection when sign‑out is blocked
+If the user is on an Android device, first have them try signing out of the Mobile Threat Defense (MTD) app and signing back in. This often re‑establishes the connection and allows Intune to receive updated device status.
+If the option to sign out of the MTD app is blocked by IT policy, follow these steps to reset the app’s data instead:
+
+Long‑press the Defender app in the work profile.&amp;nbsp;
+Tap ⓘ App info.&amp;nbsp;
+Go to Storage &amp;amp; cache → Clear data (do&amp;nbsp;not&amp;nbsp;select Clear cache).&amp;nbsp;
+Relaunch the Defender app - it will open to the welcome screen.&amp;nbsp;
+Sign back in with the work or school account.
+
+Once signed back in, Defender will update Intune with the latest device data, and the device should return to a compliant state after Intune receives the refreshed signals.
+Windows: Verify that Microsoft Defender for Endpoint is onboarded
+For Windows devices, noncompliance with Defender for Endpoint is commonly caused by devices that are no longer properly onboarded or connected to the service. When a device is not onboarded, it can’t report risk signals, which may result in the device being marked as noncompliant in Intune.
+Recommended action:
+If you identify Windows devices showing as noncompliant due to missing or stale Defender for Endpoint signals:
+
+Verify that the device is onboarded to Microsoft Defender for Endpoint
+Review your existing onboarding policies in Intune
+Onboard affected devices using Intune if needed
+
+Once properly onboarded, the device can participate in compliance evaluation. If devices continue to appear noncompliant after verifying onboarding and policy assignment, we recommend opening a support case for further investigation.
+To learn more about onboarding devices refer to the documentation:
+
+Onboarding using Microsoft Intune
+Onboard Windows devices to Defender for Endpoint using Intune
+Configure Microsoft Defender for Endpoint with Intune and onboard devices
+
+Related articles
+
+Mobile Threat Defense integration with Intune
+Using the Intune Company Portal website
+
+If you have any questions, leave a comment below or reach out to us on&amp;nbsp;X @IntuneSuppTeam!
+&amp;nbsp;
+Post updates:02/05/26: Added two new sections covering simplified user remediation on iOS/iPadOS and refreshing the MTD connection on Android when sign-out is blocked.
+05/06/26:&amp;nbsp;Added a new section covering Windows devices that may be noncompliant due to not being properly onboarded to Microsoft Defender for Endpoint.</p><a href="https://techcommunity.microsoft.com/t5/intune-customer-success/support-tip-resolve-device-noncompliance-with-mobile-threat/ba-p/4491669" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a48ef6c0344')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="af29e902093">
+        <div class="article-body">
+          <a href="https://petri.com/why-windows-co-management-is-becoming-a-smarter-path/" target="_blank" rel="noopener noreferrer" class="article-title">Why Windows Co-Management Is Becoming a Smarter Path for Enterprise IT</a>
+          <div class="article-meta">petri.com &bull; May 06, 2026</div>
+          <div class="article-summary"><p>Reducing friction in endpoint operations by modernizing in phases instead of through a disruptive rip-and-replace migration.
+It isn’t hard to guess why Microsoft Intune is a common first choice for Windows device management. For enterprises already using Microsoft 365 and Entra ID, it offered a logical way to extend modern management to Windows devices while keeping administration aligned with the broader Microsoft ecosystem.
+But as device estates grow and operational demands become more complex, many IT teams are discovering that the real challenge is not access to management tools. It is day-to-day execution. That is why more enterprises are revisiting co-management, not as a stopgap, but as a practical modernization strategy.
+Instead of forcing a clean replacement of one management approach with another, co-management allows organizations to preserve the systems, workflows, and Microsoft integrations they already rely on while introducing additional management capabilities where they improve speed, flexibility, or control.
+Intune is good, but it doesn’t mean it’s free of gaps. And scripting is one of the clearest examples of this. Scripting remains central to Windows administration, especially in complex environments where IT teams need to remediate issues quickly, configure systems beyond baseline policy controls, or handle exceptions at scale. Intune supports PowerShell scripting and continues to expand script-related capabilities, including reporting and remediations. But the administrative experience still depends on prerequisites, assignment logic, monitoring steps, and execution conditions that teams must actively manage. PowerShell scripts do not simply run at every sign-in by default and depend on the Intune Management Extension service and device eligibility.
+That is not to say that PowerShell is ineffective. It means the operational burden does not disappear just because a feature exists. In real-world environments, admins judge management workflows by how repeatable, observable, and easy to troubleshoot they are under pressure.
+The same applies to policy deployment. Intune’s Windows update framework is mature, with update rings, feature update policies, and reporting designed to help organizations balance rollout control with user productivity. But it still leaves administrators with a difficult coordination problem: different device groups, different update tolerances, different user experiences, and different compliance requirements often need to be managed simultaneously.
+Traditional management transitions are often framed as replacement projects. The assumption is that once a new platform is selected, the old approach should be phased out as quickly as possible. That sounds efficient on paper. In practice, it can create unnecessary risk.
+Windows environments are rarely uniform enough for that kind of clean handoff. Large organizations often manage a mix of remote users, office-based employees, frontline devices, branch setups, and systems that still depend on long-standing Configuration Manager processes or on-premises infrastructure. In such cases, a quick and complete replacement effort can be highly disruptive.
+Microsoft’s co-management framework is built around the idea that organizations may need both Configuration Manager and Intune during their transition, and that workloads can be moved intentionally over time. Microsoft also positions cloud attach as a way to extend existing Configuration Manager investments into the cloud without requiring immediate disruption. The cloud attach guidance explicitly emphasizes phased enablement, while the setup flow includes recommended defaults to simplify onboarding rather than forcing organizations to redesign everything from day one.
+That is an important shift in mindset. It suggests that successful modernization is not about replacing the most technology in the shortest amount of time.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('af29e902093')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a3848476ae5">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiqAFBVV95cUxNRE5uaF9SX25DRjY4TER0VnZ5amd3a0lzR3B4RjhnMkVlUEV5UGp2eEsyZ19BenFxTWRfQi1nNjg1UnNObjJ6YWFvc2RETXFsekZvV3FjNy12TDV3em1hNW1iX2hNcDJOSGtGdEJEVEhiamE3YWdHcTB1dFpTeHNqN3dXcDJOMDRyQmdXQjFVd3lVbUtpRXp2TVlCVlFKNE8xWWctSGxLbjQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">OpenAI releases Intune-managed version of ChatGPT iOS app - UC Today</a>
+          <div class="article-meta">UC Today &bull; May 05, 2026</div>
+          <div class="article-summary snippet"><p>OpenAI releases Intune-managed version of ChatGPT iOS app&amp;nbsp;&amp;nbsp;UC Today</p><a href="https://news.google.com/rss/articles/CBMiqAFBVV95cUxNRE5uaF9SX25DRjY4TER0VnZ5amd3a0lzR3B4RjhnMkVlUEV5UGp2eEsyZ19BenFxTWRfQi1nNjg1UnNObjJ6YWFvc2RETXFsekZvV3FjNy12TDV3em1hNW1iX2hNcDJOSGtGdEJEVEhiamE3YWdHcTB1dFpTeHNqN3dXcDJOMDRyQmdXQjFVd3lVbUtpRXp2TVlCVlFKNE8xWWctSGxLbjQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a3848476ae5')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="entraid" class="topic-section">
+      <h2 class="topic-title" style="--c:#6B69D6">Entra ID <span class="count">(5)</span></h2>
+      <div class="article-card" data-id="af29e902093">
+        <div class="article-body">
+          <a href="https://petri.com/why-windows-co-management-is-becoming-a-smarter-path/" target="_blank" rel="noopener noreferrer" class="article-title">Why Windows Co-Management Is Becoming a Smarter Path for Enterprise IT</a>
+          <div class="article-meta">petri.com &bull; May 06, 2026</div>
+          <div class="article-summary"><p>Reducing friction in endpoint operations by modernizing in phases instead of through a disruptive rip-and-replace migration.
+It isn’t hard to guess why Microsoft Intune is a common first choice for Windows device management. For enterprises already using Microsoft 365 and Entra ID, it offered a logical way to extend modern management to Windows devices while keeping administration aligned with the broader Microsoft ecosystem.
+But as device estates grow and operational demands become more complex, many IT teams are discovering that the real challenge is not access to management tools. It is day-to-day execution. That is why more enterprises are revisiting co-management, not as a stopgap, but as a practical modernization strategy.
+Instead of forcing a clean replacement of one management approach with another, co-management allows organizations to preserve the systems, workflows, and Microsoft integrations they already rely on while introducing additional management capabilities where they improve speed, flexibility, or control.
+Intune is good, but it doesn’t mean it’s free of gaps. And scripting is one of the clearest examples of this. Scripting remains central to Windows administration, especially in complex environments where IT teams need to remediate issues quickly, configure systems beyond baseline policy controls, or handle exceptions at scale. Intune supports PowerShell scripting and continues to expand script-related capabilities, including reporting and remediations. But the administrative experience still depends on prerequisites, assignment logic, monitoring steps, and execution conditions that teams must actively manage. PowerShell scripts do not simply run at every sign-in by default and depend on the Intune Management Extension service and device eligibility.
+That is not to say that PowerShell is ineffective. It means the operational burden does not disappear just because a feature exists. In real-world environments, admins judge management workflows by how repeatable, observable, and easy to troubleshoot they are under pressure.
+The same applies to policy deployment. Intune’s Windows update framework is mature, with update rings, feature update policies, and reporting designed to help organizations balance rollout control with user productivity. But it still leaves administrators with a difficult coordination problem: different device groups, different update tolerances, different user experiences, and different compliance requirements often need to be managed simultaneously.
+Traditional management transitions are often framed as replacement projects. The assumption is that once a new platform is selected, the old approach should be phased out as quickly as possible. That sounds efficient on paper. In practice, it can create unnecessary risk.
+Windows environments are rarely uniform enough for that kind of clean handoff. Large organizations often manage a mix of remote users, office-based employees, frontline devices, branch setups, and systems that still depend on long-standing Configuration Manager processes or on-premises infrastructure. In such cases, a quick and complete replacement effort can be highly disruptive.
+Microsoft’s co-management framework is built around the idea that organizations may need both Configuration Manager and Intune during their transition, and that workloads can be moved intentionally over time. Microsoft also positions cloud attach as a way to extend existing Configuration Manager investments into the cloud without requiring immediate disruption. The cloud attach guidance explicitly emphasizes phased enablement, while the setup flow includes recommended defaults to simplify onboarding rather than forcing organizations to redesign everything from day one.
+That is an important shift in mindset. It suggests that successful modernization is not about replacing the most technology in the shortest amount of time.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('af29e902093')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="af1b3ea016d">
+        <div class="article-body">
+          <a href="https://petri.com/over-privileged-entra-apps-are-a-dangerous-attack-path/" target="_blank" rel="noopener noreferrer" class="article-title">Why Over‑Privileged Apps Are One of the Most Dangerous Attack Paths in Microsoft Entra</a>
+          <div class="article-meta">petri.com &bull; May 05, 2026</div>
+          <div class="article-summary"><p>Why application identities, and not users, are quickly becoming the most overlooked administrative risk in Entra tenants.
+“Applications can be incredibly powerful. If you own the application, you can act as that application. And if that application is highly privileged, you could effectively become a global admin without ever being in that group.”
+Nicolas Blank, Identity Architect, Microsoft MVP, and CTO of NBConsult
+In Microsoft Entra, being an application owner can be as powerful than being a Global Administrator. In many tenants, that reality isn’t documented, reviewed, or even understood. That makes application identities one of the easiest ways for attackers to escalate privileges without touching traditional admin roles.
+That observation from Nicolas Blank neatly captures a security risk that many Microsoft Entra tenants still underestimate. In a recent conversation, Blank explained why application identities, and not just users, are now one of the most dangerous attack paths in cloud environments. He also explained why organizations urgently need better visibility into what their apps can do.
+Modern Microsoft Entra tenants are full of non-human identities, including applications, service principals, and increasingly, AI agents. Each of these identities can be granted permissions that are equivalent to those held by Global Admins.
+“Once you have authenticated as that application, you are everything that application is, including all of the privileges that it has.”, Blank said.
+Most over-privileged apps aren’t created with malicious intent. They happen when teams rely on over-broad defaults, copy sample configurations that “just work,” and carry legacy permissions forward into production. The result is predictable: permissions accrete over time, ownership changes, and nobody revisits whether the access is still justified.
+Backup applications are a common offender because teams often grant them broad access across core services by default.
+These applications often combine directory, user, mail, and SharePoint permissions, not because they genuinely require them, but because no one challenges the defaults.
+If an attacker compromises a user account, their next step is often to look for a faster route to tenant‑wide privileges than traditional admin role assignment.
+Even organizations enforcing multifactor authentication (MFA) are not immune. Token theft and adversary-in-the-middle attacks can still allow attackers to enumerate applications and identify dangerous ownership relationships. At that point, the application, not the user, becomes the attack vehicle.
+That’s why application security must be treated as an identity problem, not simply an app configuration issue.
+Basic controls like multifactor authentication (MFA), patching, antivirus, and Conditional Access still stop most opportunistic attacks.
+“If you’ve got MFA, patched machines, decent antivirus, and conditional access in place, then 96% of attacks are worthless.”
+Because many organizations don’t have a clear view of which apps are privileged and who owns them, the first priority is simply surfacing those relationships.
+“If you didn’t know before, you know now. Everything starts with inventory.”
+Start with visibility: map which apps have high privileges and who controls them.
+Blank’s Privileged App Path Auditor is one example of that approach. It surfaces applications that are over-privileged, who owns them, and what remediation steps you could consider. In many cases, the right response is not removal but permission scoping, ownership review, or improved monitoring.
+The same ownership and over-permission problems now apply to AI agents, often with even less scrutiny. That makes them a force multiplier for the exact risks described earlier.
+AI agents also make the visibility problem worse by rapidly increasing the number of non-human identities being created in Entra.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('af1b3ea016d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="af622c9663c">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/05/progress-patches-critical-moveit.html" target="_blank" rel="noopener noreferrer" class="article-title">Progress Patches Critical MOVEit Automation Bug Enabling Authentication Bypass</a>
+          <div class="article-meta">thehackernews.com &bull; May 04, 2026</div>
+          <div class="article-summary"><p>Progress Software has released updates to address two security flaws in MOVEit Automation, including a critical bug that could result in an authentication bypass.
+MOVEit Automation (formerly Central) is a secure, server-based managed file transfer (MFT) solution used to schedule and automate file movement workflows in enterprise environments without requiring any custom scripts.
+The vulnerabilities in question are CVE-2026-4670 (CVSS score: 9.8), an authentication bypass vulnerability, and CVE-2026-5174 (CVSS score: 7.7), an improper input validation vulnerability that could allow privilege escalation.
+&quot;Critical and high vulnerabilities in MOVEit Automation may allow authentication bypass and privilege escalation through the service backend command port interfaces,&quot; Progress Software said in an advisory. &quot;Exploitation may lead to unauthorized access, administrative control, and data exposure.&quot;
+The shortcomings affect the following versions -
+- MOVEit Automation &lt;= 2025.1.4 (Fixed in MOVEit Automation 2025.1.5)
+- MOVEit Automation &lt;= 2025.0.8 (Fixed in MOVEit Automation 2025.0.9)
+- MOVEit Automation &lt;= 2024.1.7 (Fixed in MOVEit Automation 2024.1.8)
+Airbus SecLab researchers Anaïs Gantet, Delphine Gourdou, Quentin Liddell, and Matteo Ricordeau have been credited with discovering and reporting the two vulnerabilities. There are no workarounds that resolve the issues.
+While Progress makes no mention of the flaws being exploited in the wild, it's essential that users apply the fixes as soon as possible for optimal protection, particularly given that prior flaws in MOVEit Transfer have been exploited by ransomware gangs like Cl0p.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('af622c9663c')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a7f1685549f">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiswFBVV95cUxObVpOc21IMEtMMVl4ZjVmcVE5M1E3YzhCcXEwY1dENlIxVG91bHoxTE5ZdjdlaTJZTm55c0pIWUgwMk5IaldTcy1mMnFRTmVfbW5maTBuRExQZmdKTk14Vm01dXFqMDVFMGRqQXF6bzkzVF9TMTJyTWxwenA1bmI3Smx4cHUyMTdobXgya2xBVmQyOFRkNlJhRm1ZeW55bmVzbkJ6NmxjYXA3VlVsbDNuMnE5TQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">World Passkey Day: Advancing passwordless authentication - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; May 07, 2026</div>
+          <div class="article-summary snippet"><p>World Passkey Day: Advancing passwordless authentication&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMiswFBVV95cUxObVpOc21IMEtMMVl4ZjVmcVE5M1E3YzhCcXEwY1dENlIxVG91bHoxTE5ZdjdlaTJZTm55c0pIWUgwMk5IaldTcy1mMnFRTmVfbW5maTBuRExQZmdKTk14Vm01dXFqMDVFMGRqQXF6bzkzVF9TMTJyTWxwenA1bmI3Smx4cHUyMTdobXgya2xBVmQyOFRkNlJhRm1ZeW55bmVzbkJ6NmxjYXA3VlVsbDNuMnE5TQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a7f1685549f')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="af1e11ec10d">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMilwFBVV95cUxPeGxlMkFGMDNpZk1jWkdkN0o1c3dQemRmeVlUNm84Y01ZNXloYXlsR045U2FFaW9CZUdXVV8zSlZyU2trMEtJNjc0QUZjeXRvbUdaaFU5dEVrNjdEUkw0aEh5elNYRHdSNmZWYVVoMUZaU2pkTlJHWjZRaXZFeVdWaDVrR2dDeEQwdVJndTdlNlZqUm5lTW9N?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">cellcentric reduces virtual desktop costs by 33% with Microsoft Entra Suite - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; May 08, 2026</div>
+          <div class="article-summary snippet"><p>cellcentric reduces virtual desktop costs by 33% with Microsoft Entra Suite&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMilwFBVV95cUxPeGxlMkFGMDNpZk1jWkdkN0o1c3dQemRmeVlUNm84Y01ZNXloYXlsR045U2FFaW9CZUdXVV8zSlZyU2trMEtJNjc0QUZjeXRvbUdaaFU5dEVrNjdEUkw0aEh5elNYRHdSNmZWYVVoMUZaU2pkTlJHWjZRaXZFeVdWaDVrR2dDeEQwdVJndTdlNlZqUm5lTW9N?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('af1e11ec10d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="m365" class="topic-section">
+      <h2 class="topic-title" style="--c:#D83B01">Microsoft 365 <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="ae95d0ce794">
+        <div class="article-body">
+          <a href="https://www.microsoft.com/en-us/microsoft-365/blog/2026/05/05/copilot-cowork-from-conversation-to-action-across-skills-integrations-and-devices/" target="_blank" rel="noopener noreferrer" class="article-title">Copilot Cowork: From conversation to action across skills, integrations, and devices</a>
+          <div class="article-meta">microsoft.com &bull; May 05, 2026</div>
+          <div class="article-summary"><p>Over the past few years, AI has transformed how we access information and get answers. The next step is helping people take actions. That’s the shift behind Copilot Cowork.
+We recently introduced Copilot Cowork through the Frontier program to move beyond chat and into execution—helping you delegate real tasks and have them completed for you. Since then, we’ve seen people use Cowork in ways that go far beyond simple prompts: orchestrating inbox workflows, conducting deep research, generating structured documents, and even building full web pages.
+What is becoming clear is that once AI understands your work, it can start contributing to it and working alongside you. Cowork is built on Work IQ, our intelligence layer that understands your data, your tools, and your organization. That foundation allows Cowork to plan, act, and produce outcomes that are grounded in how your business runs and not just what is available on the public internet.
+Today, we’re announcing additional capabilities in Cowork to expand on what it can make possible for you.
+Work doesn’t just happen at your desk—bringing Cowork to iOS and Android mobile
+A key part of our Copilot vision is bringing AI into the flow of work, wherever that work happens.
+Cowork already runs in the cloud, so you don’t have to worry about closing your laptop or if your PC is running. Now, we’re introducing Cowork on iOS and Android so you can delegate work the moment you think of it—on your commute, between meetings, or away from your desk—and come back to a finished outcome. Instead of completing those tasks, you can hand them off and keep going while the work progresses in the background.
+Turning work into reusable intelligence with Cowork Skills
+A lot of work follows repeatable structures and that’s where skills come in. A skill is a reusable set of instructions that guides Cowork on how to complete a task or workflow. Instead of starting from scratch each time, you can capture how you want something done—your structure, your tone, and your process—and ask Cowork to apply it consistently.
+We’re introducing built-in skills across Microsoft 365 to help with common workflows like creating documents, coordinating meetings, and conducting research. You can also create your own custom skills, whether you’re standardizing a team process or automating recurring work.
+Over time, these skills become a shared layer of intelligence that helps teams scale how work gets done.
+Connecting work across your tools with Cowork plugins
+We also know that work doesn’t live in a single place. It spans documents, data, and line-of-business systems. To meet that reality, Cowork is connecting more deeply to the tools your organization already relies on so it can operate across systems.
+We’re introducing new native integrations across Microsoft products, including Fabric IQ with Power BI, so you can bring your data directly into Cowork workflows. We’re also expanding integrations with Dynamics 365 across sales, customer service, and enterprise resource planning (ERP) applications to support scenarios like pipeline reviews, case resolution, and order approvals.
+In the coming weeks, we’ll be releasing connectors to popular third-party solutions such as LSEG (London Stock Exchange Group), Miro, monday.com, and S&amp;P Global Energy, with more to come.
+Organizations can also build custom plugins to extend Cowork to their unique systems and processes. Learn how to add, create, and manage plugins in Copilot Cowork and start building yours today.
+Try Copilot Cowork
+We’re still early and moving fast. Over the last few weeks, we’ve been continuously expanding what Cowork can do and you’ll continue to see rapid improvements as we build alongside how customers are using it.
+Copilot Cowork is available through the Frontier program, with new capabilities rolling out continuously. Get started using Cowork in your own workflows today.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ae95d0ce794')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ae817f0153b">
+        <div class="article-body">
+          <a href="https://www.microsoft.com/en-us/microsoft-365/blog/2026/05/05/microsoft-365-copilot-human-agency-and-the-opportunity-for-every-organization/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft 365 Copilot, human agency, and the opportunity for every organization</a>
+          <div class="article-meta">microsoft.com &bull; May 05, 2026</div>
+          <div class="article-summary"><p>The nature of work is changing fast. As AI and agents take on more of the execution, people have more agency than ever to unlock their ambition, direct what gets done, and own the outcomes. But most organizations are not keeping up, and the gap between what their people can do and what they are built to support is widening.
+That tension sits at the center of the 2026 Work Trend Index (WTI) annual report. We analyzed trillions of anonymized Microsoft 365 productivity signals and surveyed 20,000 workers using AI across 10 countries. We also spoke with leading experts in AI, work, and organizational psychology. We are building Microsoft 365 Copilot with the future of work in mind, and our latest wave of Copilot helps employees, leaders, and organizations meet the moment.
+AI lifts individual potential
+Work is already changing at the individual level. Our privacy-preserving analysis of more than 100,000 chats in Microsoft 365 Copilot shows 49% of conversations support cognitive work—analyzing, solving, and thinking that once required deep expertise. More than half (58%) of AI users say they are producing work they could not have a year ago. And among Frontier Professionals—the most advanced AI users in our research—that number jumps to 80%.
+That shift starts early. Work no longer begins from a cold start—it begins with signals and context already in motion. Microsoft 365 Copilot captures this and turns it into action, grounded in the knowledge of Work IQ and protected with Enterprise Data Protection. Copilot’s agentic capabilities take multi-step, app-native actions directly in your documents, worksheets, and presentations—helping you move from intent to outcome faster.
+The people moving the fastest are those that decided where to delegate and what to own. They build systems that work on their behalf. And they reinvest the time saved to expand what they can do while staying responsible for the thinking. For example, they are looking around corners using Copilot in Outlook to proactively help manage meetings—not just schedule them once, but to manage the cadence and wind them down when necessary.
+The job of every leader is to rearchitect work
+The report shows that as employees move from executing work to designing it, the constraint between what their employees can do and what their organizations are built to support shifts. We found that only 1 in 4 AI users in an organization say their leadership is clearly and consistently aligned on AI. In fact, 65% of AI users fear falling behind if they do not use AI to adapt quickly, yet almost half (45%) say it feels safer to focus on current goals than to redesign how work gets done with AI.
+This is what we call the Transformation Paradox: in plain and simple language, the same forces accelerating AI adoption are also holding us back.
+Resolving this paradox requires a different kind of leadership: designing how work flows between people and agents across an organization. Microsoft Agent 365 is a unified control plane that keeps agents governed, observable, and secure. Agent 365 is now generally available, with new capabilities in preview to discover and manage shadow AI agents, including local agents like OpenClaw and Claude Code. Leaders must focus on defining the right outcomes and making the right judgement calls that move work forward with clarity of intent.
+Every organization is a learning system
+We analyzed responses from our global survey and tested a broad set of organizational, individual, and demographic factors against self-reported AI impact—whether employees say AI helps them produce higher quality work, collaborate more effectively, expand the type of work they do, and more.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ae817f0153b')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="af29e902093">
+        <div class="article-body">
+          <a href="https://petri.com/why-windows-co-management-is-becoming-a-smarter-path/" target="_blank" rel="noopener noreferrer" class="article-title">Why Windows Co-Management Is Becoming a Smarter Path for Enterprise IT</a>
+          <div class="article-meta">petri.com &bull; May 06, 2026</div>
+          <div class="article-summary"><p>Reducing friction in endpoint operations by modernizing in phases instead of through a disruptive rip-and-replace migration.
+It isn’t hard to guess why Microsoft Intune is a common first choice for Windows device management. For enterprises already using Microsoft 365 and Entra ID, it offered a logical way to extend modern management to Windows devices while keeping administration aligned with the broader Microsoft ecosystem.
+But as device estates grow and operational demands become more complex, many IT teams are discovering that the real challenge is not access to management tools. It is day-to-day execution. That is why more enterprises are revisiting co-management, not as a stopgap, but as a practical modernization strategy.
+Instead of forcing a clean replacement of one management approach with another, co-management allows organizations to preserve the systems, workflows, and Microsoft integrations they already rely on while introducing additional management capabilities where they improve speed, flexibility, or control.
+Intune is good, but it doesn’t mean it’s free of gaps. And scripting is one of the clearest examples of this. Scripting remains central to Windows administration, especially in complex environments where IT teams need to remediate issues quickly, configure systems beyond baseline policy controls, or handle exceptions at scale. Intune supports PowerShell scripting and continues to expand script-related capabilities, including reporting and remediations. But the administrative experience still depends on prerequisites, assignment logic, monitoring steps, and execution conditions that teams must actively manage. PowerShell scripts do not simply run at every sign-in by default and depend on the Intune Management Extension service and device eligibility.
+That is not to say that PowerShell is ineffective. It means the operational burden does not disappear just because a feature exists. In real-world environments, admins judge management workflows by how repeatable, observable, and easy to troubleshoot they are under pressure.
+The same applies to policy deployment. Intune’s Windows update framework is mature, with update rings, feature update policies, and reporting designed to help organizations balance rollout control with user productivity. But it still leaves administrators with a difficult coordination problem: different device groups, different update tolerances, different user experiences, and different compliance requirements often need to be managed simultaneously.
+Traditional management transitions are often framed as replacement projects. The assumption is that once a new platform is selected, the old approach should be phased out as quickly as possible. That sounds efficient on paper. In practice, it can create unnecessary risk.
+Windows environments are rarely uniform enough for that kind of clean handoff. Large organizations often manage a mix of remote users, office-based employees, frontline devices, branch setups, and systems that still depend on long-standing Configuration Manager processes or on-premises infrastructure. In such cases, a quick and complete replacement effort can be highly disruptive.
+Microsoft’s co-management framework is built around the idea that organizations may need both Configuration Manager and Intune during their transition, and that workloads can be moved intentionally over time. Microsoft also positions cloud attach as a way to extend existing Configuration Manager investments into the cloud without requiring immediate disruption. The cloud attach guidance explicitly emphasizes phased enablement, while the setup flow includes recommended defaults to simplify onboarding rather than forcing organizations to redesign everything from day one.
+That is an important shift in mindset. It suggests that successful modernization is not about replacing the most technology in the shortest amount of time.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('af29e902093')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ae76c501a5f">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi1wFBVV95cUxQb01SUEU0MklRWW4xazhJVHdSOWhCUDZHZUFBYXRNWnphMTllWlo5a3ZxXzROQ2s4S0NVQnFTUTBTd3dJRE5NZ21ib1lkX0Fjak1DazV3eXVUM2FJdjNxSWs2aTNqcFhBcl9vbk9zb2NyYzRkSkdLMFlvQ1kweWpid0Q2Ull5NFozSzhKRGdsZS1IUDRmc2tEbmVmOHA2eFZkZzBWQmc4d3VGbkRtc0w2Q3V6eHNQNUVZemRpdEV4cFFuSHpFYWc3TDVZMUtUYXNNZU9xTEQzTQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft 365 Copilot, human agency, and the opportunity for every organization - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; May 05, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft 365 Copilot, human agency, and the opportunity for every organization&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMi1wFBVV95cUxQb01SUEU0MklRWW4xazhJVHdSOWhCUDZHZUFBYXRNWnphMTllWlo5a3ZxXzROQ2s4S0NVQnFTUTBTd3dJRE5NZ21ib1lkX0Fjak1DazV3eXVUM2FJdjNxSWs2aTNqcFhBcl9vbk9zb2NyYzRkSkdLMFlvQ1kweWpid0Q2Ull5NFozSzhKRGdsZS1IUDRmc2tEbmVmOHA2eFZkZzBWQmc4d3VGbkRtc0w2Q3V6eHNQNUVZemRpdEV4cFFuSHpFYWc3TDVZMUtUYXNNZU9xTEQzTQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ae76c501a5f')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a61ef50d88e">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMicEFVX3lxTE5rUXFUVHZ6cHFRMXZoVl9ZNzNSbXdsQlFlUk9XMkQ5UFhLZjF2azNQb0lXMmdIbC0xRWVkb1o1SmpZd0tXNUFhaVlyYVlvT2xRMzRYTG5MbGhvLVZoQVBXM004ZjMtTERvSGx3RnBUY3U?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Winning at the Curve: Navien drives AI-powered process excellence on Microsoft Azure - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; May 08, 2026</div>
+          <div class="article-summary snippet"><p>Winning at the Curve: Navien drives AI-powered process excellence on Microsoft Azure&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMicEFVX3lxTE5rUXFUVHZ6cHFRMXZoVl9ZNzNSbXdsQlFlUk9XMkQ5UFhLZjF2azNQb0lXMmdIbC0xRWVkb1o1SmpZd0tXNUFhaVlyYVlvT2xRMzRYTG5MbGhvLVZoQVBXM004ZjMtTERvSGx3RnBUY3U?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a61ef50d88e')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="afe704bf8a6">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMifkFVX3lxTE9IV1JkdWVWbXRzQnpoZ1lrMDFqRFVNTFZVU1k0MFJKQ1JkYlNmMWljUG03ci13SVYwdWh2am53b0UybUstNFBidTVoMWdkaG91Uk1iX29FM256MEQ2MnBPY1dtZ3RrNVBPeGkwX1RmZExxSU9Od2lTWGptTTNLQdIBgwFBVV95cUxNb3BrYUtYMnRBbDlBQk82aGpMSk1hMUo3emh4dlZRREhnbEE3SFdQbTkyRXZTZ3FZVExDdGJNM2lQU29NeG85eXZrRnpoTjdlNEVLR3N5YnBqLVNxekJPRVhFT01DbXdpakNvVmNlM2xzSU0zNEVwRnFQazc2UXdRQ3JoSQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Critical Microsoft 365 Copilot Vulnerabilities Expose sensitive Information - CyberSecurityNews</a>
+          <div class="article-meta">CyberSecurityNews &bull; May 10, 2026</div>
+          <div class="article-summary snippet"><p>Critical Microsoft 365 Copilot Vulnerabilities Expose sensitive Information&amp;nbsp;&amp;nbsp;CyberSecurityNews</p><a href="https://news.google.com/rss/articles/CBMifkFVX3lxTE9IV1JkdWVWbXRzQnpoZ1lrMDFqRFVNTFZVU1k0MFJKQ1JkYlNmMWljUG03ci13SVYwdWh2am53b0UybUstNFBidTVoMWdkaG91Uk1iX29FM256MEQ2MnBPY1dtZ3RrNVBPeGkwX1RmZExxSU9Od2lTWGptTTNLQdIBgwFBVV95cUxNb3BrYUtYMnRBbDlBQk82aGpMSk1hMUo3emh4dlZRREhnbEE3SFdQbTkyRXZTZ3FZVExDdGJNM2lQU29NeG85eXZrRnpoTjdlNEVLR3N5YnBqLVNxekJPRVhFT01DbXdpakNvVmNlM2xzSU0zNEVwRnFQazc2UXdRQ3JoSQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('afe704bf8a6')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a714abeccab">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMihAFBVV95cUxNeTVtTDRBZlhjWGl2TkxXRzlPOTdyNUhaT0xRdDNvTjNUVk1GSWo2UGItU3R5cWFDQVpoNUdTTkVlYjVtQWlYbTJZblJqWWJTcERqX21HeFY3WHZkbDJpX0JxZEg3VmpuOE55ZERraUF6RmZyeDZSTHIycVZwX1lzUTA0ZmQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Gallagher: AI as a force multiplier for trusted advisors – better insight, faster decisions, stronger results - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; May 06, 2026</div>
+          <div class="article-summary snippet"><p>Gallagher: AI as a force multiplier for trusted advisors – better insight, faster decisions, stronger results&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMihAFBVV95cUxNeTVtTDRBZlhjWGl2TkxXRzlPOTdyNUhaT0xRdDNvTjNUVk1GSWo2UGItU3R5cWFDQVpoNUdTTkVlYjVtQWlYbTJZblJqWWJTcERqX21HeFY3WHZkbDJpX0JxZEg3VmpuOE55ZERraUF6RmZyeDZSTHIycVZwX1lzUTA0ZmQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a714abeccab')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a3f650c14e5">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiwgFBVV95cUxPUlVES29hQXZldjhNNnlSSFZ2Q3JWWHktOUNvTEhCeXpZVFo4ZDJFb01zZEk3VENLRTMzTFhTN2NpZ1lFZ1A5MWFZalctSUMyajBpdVBidHFPQ2wxX1dWeGZUUlNoN3NJcUo1UHhZcTBmMHlrbkgyRzNCV0piN2RzMl9teGlhYklJcVBXLXlSbXlaTUpnVHRTVFRTN1N0OW5IclVrd1hSSUo4V1NRX2s0RUxJSVgzQWRCemtvNGhVVjBjZw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Global AI Diffusion in Q1 2026 - AI Economy Institute - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; May 07, 2026</div>
+          <div class="article-summary snippet"><p>Global AI Diffusion in Q1 2026 - AI Economy Institute&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMiwgFBVV95cUxPUlVES29hQXZldjhNNnlSSFZ2Q3JWWHktOUNvTEhCeXpZVFo4ZDJFb01zZEk3VENLRTMzTFhTN2NpZ1lFZ1A5MWFZalctSUMyajBpdVBidHFPQ2wxX1dWeGZUUlNoN3NJcUo1UHhZcTBmMHlrbkgyRzNCV0piN2RzMl9teGlhYklJcVBXLXlSbXlaTUpnVHRTVFRTN1N0OW5IclVrd1hSSUo4V1NRX2s0RUxJSVgzQWRCemtvNGhVVjBjZw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a3f650c14e5')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="iru" class="topic-section">
+      <h2 class="topic-title" style="--c:#7C3AED">Iru MDM (formerly Kandji) </h2>
+      <p class="no-news">No articles found this week.</p>
+    </section>
+    <section id="cato" class="topic-section">
+      <h2 class="topic-title" style="--c:#FF6B35">Cato Networks <span class="count">(1)</span></h2>
+      <div class="article-card" data-id="ae341b47353">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiqgFBVV95cUxQRUVSWmRMTGZYQjA2X3FRd0dSOHZnQlFQd0p3MkZOVTNYcXJXT2wyU25vMW5Sc2hybjdRM3dlZTNiWVJKWWJuMEg2SnRRWnlLUV8zanpqQ0FlZGlqQ18yc1M3djM0ZVNlbVVBZzE1TFg3ckpfajU5YUhnZFBJVHB3QzVueWN4WVY0bjJUOWczZVY4SGlSVnNpbmd6VHhYMEJkR2VGOVc4dGx1dw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Matrix Networks Deepens Cato Networks Partnership with Pooled Bandwidth Designation - The National Law Review</a>
+          <div class="article-meta">The National Law Review &bull; May 04, 2026</div>
+          <div class="article-summary snippet"><p>Matrix Networks Deepens Cato Networks Partnership with Pooled Bandwidth Designation&amp;nbsp;&amp;nbsp;The National Law Review</p><a href="https://news.google.com/rss/articles/CBMiqgFBVV95cUxQRUVSWmRMTGZYQjA2X3FRd0dSOHZnQlFQd0p3MkZOVTNYcXJXT2wyU25vMW5Sc2hybjdRM3dlZTNiWVJKWWJuMEg2SnRRWnlLUV8zanpqQ0FlZGlqQ18yc1M3djM0ZVNlbVVBZzE1TFg3ckpfajU5YUhnZFBJVHB3QzVueWN4WVY0bjJUOWczZVY4SGlSVnNpbmd6VHhYMEJkR2VGOVc4dGx1dw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ae341b47353')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+</main>
+
+<footer>
+  Generated every Sunday &mdash; Topics: Windows &bull; Azure &bull; SharePoint &bull; Intune &bull; Entra ID &bull; Microsoft 365 &bull; Iru MDM (formerly Kandji) &bull; Cato Networks
+</footer>
+
+<script>
+const KEY = 'it-news-hidden-v1';
+function getHidden() {
+  try { return new Set(JSON.parse(localStorage.getItem(KEY) || '[]')); }
+  catch { return new Set(); }
+}
+function saveHidden(s) { localStorage.setItem(KEY, JSON.stringify([...s])); }
+function toggleArticle(id) {
+  const h = getHidden();
+  h.has(id) ? h.delete(id) : h.add(id);
+  saveHidden(h); applyHidden(h);
+}
+function applyHidden(h) {
+  h = h || getHidden();
+  document.querySelectorAll('.article-card[data-id]').forEach(c => {
+    c.classList.toggle('is-hidden', h.has(c.dataset.id));
+  });
+}
+let revealing = false;
+function toggleReveal() {
+  revealing = !revealing;
+  document.body.classList.toggle('reveal-hidden', revealing);
+  document.getElementById('reveal-btn').textContent = revealing ? 'Hide hidden' : 'Show hidden';
+}
+fetch('weeks.json').then(r => r.json()).then(weeks => {
+  const sel = document.getElementById('week-sel');
+  weeks.forEach(w => {
+    const o = document.createElement('option');
+    o.value = w.file; o.textContent = w.label;
+    if (w.current) o.selected = true;
+    sel.appendChild(o);
+  });
+}).catch(() => {});
+applyHidden();
+</script>
+</body>
+</html>
