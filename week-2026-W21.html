@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT News Digest — 2026-W21</title>
+  <style>
+    :root{--bg:#f8fafc;--surface:#fff;--border:#e2e8f0;--text:#1e293b;--muted:#64748b;--accent:#2563eb}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+    a{color:var(--accent)}
+
+    header{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+    .h-inner{max-width:1000px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .h-brand{font-size:1.1rem;font-weight:800;color:#1d4ed8}
+    .h-meta{font-size:.78rem;color:var(--muted)}
+    .h-controls{display:flex;gap:8px;align-items:center}
+    .btn{padding:5px 12px;border-radius:6px;font-size:.78rem;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);white-space:nowrap}
+    .btn:hover{background:#f1f5f9}
+    select.week-sel{padding:5px 10px;border-radius:6px;border:1px solid var(--border);background:var(--surface);font-size:.78rem;cursor:pointer;color:var(--text)}
+
+    .t-nav{background:var(--surface);border-bottom:1px solid var(--border);overflow-x:auto}
+    .t-nav-inner{max-width:1000px;margin:0 auto;padding:8px 20px;display:flex;gap:6px;min-width:max-content}
+    .nav-link{font-size:.72rem;padding:3px 10px;border-radius:20px;border:2px solid var(--c,#2563eb);color:var(--c,#2563eb);text-decoration:none;font-weight:600;white-space:nowrap}
+    .nav-link:hover{background:var(--c,#2563eb);color:#fff}
+
+    main{max-width:1000px;margin:0 auto;padding:24px 20px}
+
+    .week-hero{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin-bottom:28px;display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+    .hero-title{font-size:1.6rem;font-weight:900;color:#1d4ed8}
+    .hero-sub{font-size:.85rem;color:var(--muted);margin-top:2px}
+    .stat-box{text-align:center;min-width:60px}
+    .stat-num{font-size:2rem;font-weight:900;color:#1d4ed8;line-height:1}
+    .stat-lbl{font-size:.65rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+
+    .topic-section{margin-bottom:40px}
+    .topic-title{font-size:1.2rem;font-weight:800;color:var(--c,#2563eb);border-bottom:3px solid var(--c,#2563eb);padding-bottom:8px;margin-bottom:14px}
+    .count{font-size:.8rem;font-weight:400;color:var(--muted)}
+    .no-news{color:var(--muted);font-style:italic;font-size:.88rem}
+
+    .article-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:12px;display:flex;gap:12px;align-items:flex-start;transition:border-color .15s}
+    .article-card:hover{border-color:#94a3b8}
+    .article-body{flex:1;min-width:0}
+    .article-title{font-size:.98rem;font-weight:600;text-decoration:none;display:block;margin-bottom:4px;color:var(--accent)}
+    .article-title:hover{text-decoration:underline}
+    .article-meta{font-size:.72rem;color:var(--muted);margin-bottom:8px}
+
+    .article-summary{margin-top:6px;font-size:.875rem;color:#334155;line-height:1.75}
+    .article-summary p{margin-bottom:.6em}
+    .article-summary p:last-child{margin-bottom:0}
+    .gnews-badge{display:inline-block;font-size:.65rem;background:#fef3c7;color:#92400e;border-radius:4px;padding:1px 5px;margin-bottom:6px;vertical-align:middle}
+    .article-summary.snippet{color:var(--muted)}
+    .read-more{display:inline-block;margin-top:6px;font-size:.8rem;font-weight:600;color:var(--accent);text-decoration:none}
+    .read-more:hover{text-decoration:underline}
+
+    .hide-btn{flex-shrink:0;padding:5px 10px;border-radius:6px;font-size:.72rem;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--muted);white-space:nowrap;align-self:flex-start}
+    .hide-btn:hover{border-color:#ef4444;color:#ef4444;background:#fef2f2}
+    .lbl-show{display:none}
+
+    .article-card.is-hidden{display:none}
+    body.reveal-hidden .article-card.is-hidden{display:flex;opacity:.45;border-style:dashed}
+    .article-card.is-hidden .lbl-hide{display:none}
+    .article-card.is-hidden .lbl-show{display:inline}
+    body.reveal-hidden .article-card.is-hidden .hide-btn{border-color:#16a34a;color:#16a34a}
+    body.reveal-hidden .article-card.is-hidden .hide-btn:hover{background:#f0fdf4}
+
+    footer{text-align:center;padding:24px 20px;color:var(--muted);font-size:.75rem;border-top:1px solid var(--border);margin-top:40px}
+
+    @media(max-width:600px){
+      .h-inner,.main{padding-left:14px;padding-right:14px}
+      .hero-title{font-size:1.3rem}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="h-inner">
+    <div>
+      <div class="h-brand">IT News Digest</div>
+      <div class="h-meta">Week 2026-W21 &bull; May 18–24, 2026</div>
+    </div>
+    <div class="h-controls">
+      <button class="btn" id="reveal-btn" onclick="toggleReveal()">Show hidden</button>
+      <select class="week-sel" id="week-sel" onchange="if(this.value) location.href=this.value">
+        <option value="">&#128337; Archive&hellip;</option>
+      </select>
+    </div>
+  </div>
+</header>
+
+<nav class="t-nav"><div class="t-nav-inner"><a href="#windows" class="nav-link" style="--c:#0078D4">Microsoft Windows</a><a href="#azure" class="nav-link" style="--c:#00BCF2">Azure</a><a href="#sharepoint" class="nav-link" style="--c:#036C70">SharePoint</a><a href="#intune" class="nav-link" style="--c:#0F6CBD">Intune</a><a href="#entraid" class="nav-link" style="--c:#6B69D6">Entra ID</a><a href="#m365" class="nav-link" style="--c:#D83B01">Microsoft 365</a><a href="#iru" class="nav-link" style="--c:#7C3AED">Iru MDM (formerly Kandji)</a><a href="#cato" class="nav-link" style="--c:#FF6B35">Cato Networks</a></div></nav>
+
+<main>
+  <div class="week-hero">
+    <div>
+      <div class="hero-title">Week 2026-W21</div>
+      <div class="hero-sub">May 18–24, 2026</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">46</div>
+      <div class="stat-lbl">Articles</div>
+    </div>
+  </div>
+
+    <section id="windows" class="topic-section">
+      <h2 class="topic-title" style="--c:#0078D4">Microsoft Windows <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a1a485153e5">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windows-insider/2026/05/22/announcing-new-builds-for-22-may-2026/" target="_blank" rel="noopener noreferrer" class="article-title">Announcing new builds for 22 May 2026</a>
+          <div class="article-meta">blogs.windows.com &bull; May 22, 2026</div>
+          <div class="article-summary"><p>Announcing new builds for 22 May 2026
+Hello Windows Insiders,
+Today, we continue to expand the rollout of the new Windows Insider Program changes to devices in channels already announced. As a reminder, we have not yet begun moving devices in the Canary 29500 Series Channel to the new WIP experience.
+New builds this week
+Today we are releasing new Windows 11 Insider Preview Builds. As a reminder, all Insiders can find the release notes for your device based on the new channel system, even if you haven’t moved yet. This is to make finding build information as easy as possible during the transition. See your channel release notes here:
+- Beta: Build 26220.8491
+- Experimental: Build 26300.8497
+For those on other specific build versions, here are today’s new builds and release notes:
+- Experimental (26H1): Build 28020.2149
+- Experimental (Future Platforms) – Including Canary 29500 series: Build 29595.1000
+As a reminder, you can always find your build number in the watermark on bottom right-hand corner of your desktop.
+Notable new features:
+[Accessibility – screen tint]
+Release channel: Experimental
+New Accessibility setting – screen tint
+We’re introducing screen tint, a new accessibility setting that applies a color overlay across your entire display, softening its intensity so it’s easier on your eyes throughout the day. If bright, saturated screens leave you with tired or sensitive eyes by the end of a long session, screen tint can help.
+See release notes for more details on how to get started and provide feedback
+[Narrator]
+Release channel: Experimental
+Braille displays now connect instantly with Narrator
+We are making refreshable braille displays easier to use in Windows. Narrator now supports displays that use the HID standard — an open industry standard for braille displays. If your display supports HID, simply connect it via USB and start reading — true plug-and-play with no additional setup required. For Bluetooth, pair your HID braille display in Settings &gt; Bluetooth &amp; devices just like any other accessory, and you can work wirelessly without being tethered to your PC.
+[Voice Isolation in Voice Access]
+Release channel: Experimental
+We’re introducing Voice Isolation, a new option in Voice Access that helps it focus on your voice, even when others are speaking nearby. Whether you’re in a shared office, an open floor plan, or at home with family around, Voice Isolation filters out other voices and background noise so Voice Access can better understand you. All processing happens privately on your device.
+See release notes for more details on how to get started.
+Thanks,
+Stephen and the Windows Insider Program team</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a1a485153e5')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ada12393545">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/msedgedev/2026/05/20/new-in-edge-for-business-ai-for-work-safe-from-day-one/" target="_blank" rel="noopener noreferrer" class="article-title">New in Edge for Business: AI for work, safe from day one</a>
+          <div class="article-meta">blogs.windows.com &bull; May 20, 2026</div>
+          <div class="article-summary"><p>New in Edge for Business: AI for work, safe from day one
+TL;DR: Edge for Business adds agentic browsing in limited preview, a Copilot-inspired new tab page, and mobile availability for multi-tab reasoning and YouTube summarization. These experiences are built on a secure enterprise browser foundation with an IT-managed system of controls—policy-based enablement, tenant protections, and data loss prevention—so AI is safe for work from day one.
+AI is moving from answering questions to completing work—and the browser is where that shift becomes real. Business users want the latest AI capabilities to help with everyday work without adding another tool, and IT wants to deliver them—but the bar is higher: productivity must come with security, compliance, and IT control.
+Today, we’re introducing agentic browsing in Edge for Business in limited preview and expanding AI experiences that help users get started faster, connect information across tabs, and make decisions more quickly—all on a secure enterprise browser foundation with IT-managed controls from day one.
+Here’s a look at what’s new:
+- Agentic browsing with Copilot (limited preview)
+- AI across tabs to move from information to decisions
+- Deliver AI securely—without losing control
+- Protect against shadow AI in the browser
+- Join the limited preview
+Introducing agentic browsing with Copilot in Edge for Business
+Agentic browsing lets Copilot complete multi-step tasks on approved sites, with IT controls and user oversight.
+Business users across your organization often spend time on repetitive, multi-step work in the browser—filling out forms, navigating sites to complete tasks, and pulling information across tabs. It’s exactly the kind of work people want to shortcut.
+Available today in limited preview, agentic browsing with Copilot in Edge for Business brings multi-step task completion into a managed enterprise experience. Copilot can navigate pages, fill in information, and complete workflows—helping users save time without turning to unsanctioned AI.
+For IT, enabling Copilot to browse doesn’t mean giving up control: you decide when to turn it on and exactly where it can run. You enable it through its own policy and is scoped to sites you designate, so you can roll it out deliberately. Purview continues to enforce data protection policies, such as copy/paste of sensitive data, while Copilot browses. For users, clear visual indicators show when Copilot is taking action, and they can pause or stop it at any time. For sensitive actions such as entering passwords or credit card numbers, Copilot pauses for user input.
+IT admins can request to join the limited preview. Available worldwide with a Microsoft 365 Copilot license, excluding the European Economic Area.
+Quickly move from tabs to decisions
+Beyond agentic browsing, we’re expanding AI capabilities that help users get oriented faster, pull together information across tabs, and get to an answer—right in the flow of work.
+Copilot-inspired new tab page
+The Copilot-inspired new tab page brings calendar, files, and prompts into one work dashboard—generally available on desktop and mobile.
+Every day starts the same way: users open the browser, review their calendar, and track down files. A reimagined new tab page brings calendar, files, and Copilot prompts into one view, reducing the need to switch between tools. An intelligent box enables chat and search from one entry point, while work cards surface upcoming meetings, Microsoft 365 files, and suggested Copilot prompts for quick action. The experience becomes even more personalized with a Microsoft 365 Copilot license.
+Generally available today on desktop and mobile. Learn how to configure.
+Multi-tab reasoning and YouTube summarization
+Multi-tab reasoning and YouTube summarization are now available on mobile, in addition to desktop, turning open tabs and videos into quick takeaways.
+Users live in tabs—jumping between docs, web pages, and videos just to piece together an answer.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ada12393545')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a62f16c876d">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/devices/2026/05/19/introducing-new-surface-devices-built-for-business-and-ai-acceleration/" target="_blank" rel="noopener noreferrer" class="article-title">Introducing new Surface devices built for business and AI acceleration</a>
+          <div class="article-meta">blogs.windows.com &bull; May 19, 2026</div>
+          <div class="article-summary"><p>Introducing new Surface devices built for business and AI acceleration
+Every IT leader and partner we work with is navigating the same challenges: AI is changing the demands of how teams work, security threats are growing more sophisticated and agents are changing investment decisions for the future. All under greater scrutiny than ever before. The decisions organizations make now about their PC fleet will determine whether they lead through this transformation or spend years trying to catch up.
+Microsoft builds Surface to meet these demands. From silicon to software, Surface hardware brings security, hybrid AI capability and intentional design into one integrated platform, so customers do not have to compromise to meet their business outcomes. For customers and partners charting a path forward, Surface is the foundation that makes the rest of the strategy possible:
+“At Flagstar, we’re focused on equipping our teams with technology that’s secure, flexible and ready for the next wave of AI. Surface brings together the hardware, security and Microsoft ecosystem in a way that just works, giving our teams the confidence to run AI-powered workflows on device while staying protected and productive wherever they are.” — Jason Pope, Chief Technology Officer, Flagstar Bank
+We have always believed that the hardware people use enables businesses and teams to achieve more. Surface was created to set the standard for what a premium Windows PC can be, and that standard has never been higher.
+Today, we are proud to announce the next generation of the Surface for Business portfolio, the new Surface Pro for Business and Surface Laptop for Business powered by Intel Core Ultra Series 3 processors are available today in select markets, delivering world-class performance and AI on the edge to accelerate productivity.
+Powered by Intel’s next‑generation Core Ultra Series 3 architecture, the new Surface Laptop for Business and Surface Pro for Business deliver a meaningful leap in graphics performance, delivering up to 35% more graphics performance than MacBook Air with M5[1], and more than 90% faster performance than Laptop 5[2] on select configurations with Intel Core Ultra X7.
+From analyzing complex information to presenting to customers or creating content on the go, the Intel Core Ultra Series 3 GPU enables work to move in real time, delivering the sustained, fluid performance leaders expect from a premium business PC, without compromising mobility, battery life or security.
+Whether your teams are in the boardroom, at a customer site or working from anywhere, these AI PCs are built to perform at the speed of business. Later this year, we will extend the Surface for Business portfolio with models featuring the Snapdragon X2 processors, delivering up to 80% faster local AI inferencing than before[3] and uncompromising battery life[4].
+The new Surface Laptop for Business 13-inch is the most portable Surface Laptop, available starting today in select markets in 16GB and 24GB configurations starting at $1,499 (MSRP), with an 8GB configuration coming later this year starting at $1,299.99 (MSRP). With on-device AI processing, Wi-Fi 7[5] and a removable Gen 4 SSD designed for enterprise serviceability, it brings the full Surface experience to the entry-premium tier without asking IT or employees to trade off performance and productivity for portability.
+The new Surface Laptop for Business, available in 13.8-inch and 15-inch, is designed for knowledge workers who move fast and expect their technology to keep pace, available starting today in select markets, starting at $1,949.99 (MSRP). Featuring an advanced haptic touchpad, stunning high‑resolution touchscreen display and an optional integrated privacy screen with anti‑glare on select configurations, it delivers a premium productivity experience wherever work happens.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a62f16c876d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a7180c83dbb">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windowsexperience/2026/05/18/xbox-player-voice-a-simpler-way-to-share-feedback/" target="_blank" rel="noopener noreferrer" class="article-title">XBOX Player Voice: A simpler way to share feedback</a>
+          <div class="article-meta">blogs.windows.com &bull; May 18, 2026</div>
+          <div class="article-summary"><p>Gaming
+May 18, 2026
+XBOX Player Voice: A simpler way to share feedback
+XBOX Player Voice is a new place for the gaming community to share and track their feedback and get a clearer sense of how that input is shaping XBOX’s future.
+Teams will review and organize the feedback and, in some cases, ideas will move forward. While not every piece of feedback will turn into a feature or result in a change, better visibility helps close the gap between what the community tells XBOX and what will happen next on it.
+Get more details at XBOX Wire.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a7180c83dbb')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a56011c59bb">
+        <div class="article-body">
+          <a href="https://petri.com/first-ring-daily-gritty-surfaces/" target="_blank" rel="noopener noreferrer" class="article-title">First Ring Daily: Gritty Surfaces</a>
+          <div class="article-meta">petri.com &bull; May 22, 2026</div>
+          <div class="article-summary"><p>In this episode of First Ring Daily, Brad Sams and Paul Thurrott discuss the latest Intel-powered Surface for Business from Microsoft and the company’s ongoing work to improve the core fundamentals of Windows 11.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a56011c59bb')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a2756042b29">
+        <div class="article-body">
+          <a href="https://petri.com/windows-zero-days-bitlocker-privilege-controls/" target="_blank" rel="noopener noreferrer" class="article-title">How New Windows Zero-Day Bugs Bypass BitLocker and Enable SYSTEM-Level Access</a>
+          <div class="article-meta">petri.com &bull; May 20, 2026</div>
+          <div class="article-summary"><p>New Windows zero-days could bypass BitLocker and enable full system compromise.
+Key Takeaways:
+A cybersecurity researcher has disclosed two new zero-day vulnerabilities affecting Windows and also released a proof-of-concept exploit for another flaw that Microsoft patched back in 2020. The disclosures have raised fresh concerns over Windows security, particularly because no official fixes were available for the newly revealed flaws at the time of publication.
+The researcher (known as Nightmare-Eclipse) has disclosed two previously unknown Windows zero-day vulnerabilities, named YellowKey and GreenPlasma. The researcher also released proof-of-concept exploits in response to frustration with Microsoft’s vulnerability‑handling process. The flaws are considered high risk, as no official patches were available at the time of disclosure, which raises serious security concerns.
+Specifically, YellowKey is a vulnerability that compromises BitLocker, which allows its protections to be completely bypassed under specific conditions. It operates through the Windows Recovery Environment (WinRE), which exploits the way it handles encrypted drives. This flaw allows an attacker with physical access to use a USB drive and a particular boot process to open a command shell and gain full access to the encrypted data without needing any credentials or recovery keys.
+GreenPlasma is a local privilege escalation flaw that affects the Windows CTFMON component, which supports text input services. It enables attackers with limited access to elevate their privileges to the highest SYSTEM level and execute code without needing administrative credentials by manipulating memory structures that trusted system processes rely on. This flaw ultimately allows full control of the system, including installing malware, stealing data, or maintaining long-term access.
+These two vulnerabilities can be combined into a multi‑stage attack. YellowKey provides initial access to encrypted data, especially when physical access to a device is possible. GreenPlasma is then used to escalate privileges and take full control of the Windows system. This approach enables attackers to carry out more advanced operations such as stealing sensitive data, moving across networks, and deploying ransomware.
+These vulnerabilities are part of a larger series of disclosures by the same researcher, who has previously found flaws such as BlueHammer, RedSun, and UnDefend. Some of these vulnerabilities were reportedly exploited soon after becoming public. This pattern has raised concerns that YellowKey and GreenPlasma could also be quickly weaponized. Cybersecurity researchers highlighted that physical‑access attacks like YellowKey pose serious risks to devices such as laptops, and privilege escalation flaws like GreenPlasma are frequently leveraged in real‑world cyberattacks.
+Organizations are advised to take these vulnerabilities seriously and strengthen both their technical defenses and operational security practices. Security teams should reinforce device protection by restricting unauthorized physical access, securing laptops and servers, and reviewing how BitLocker is configured. They should also closely follow vendor guidance, apply any available mitigations (such as modifying WinRE behavior), and continuously monitor systems for unusual recovery‑environment activity or unauthorized access attempts.
+Additionally, organizations need to harden their systems against privilege escalation risks by improving endpoint security, limiting user privileges, and monitoring for suspicious behavior within trusted processes. Moreover, security teams should prioritize patch management, threat detection, and incident response readiness, as well as review overall system configurations to reduce attack surfaces.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a2756042b29')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a96742d9f18">
+        <div class="article-body">
+          <a href="https://www.bleepingcomputer.com/news/security/trend-micro-warns-of-apex-one-zero-day-exploited-in-attacks/" target="_blank" rel="noopener noreferrer" class="article-title">Trend Micro warns of Apex One zero-day exploited in the wild</a>
+          <div class="article-meta">bleepingcomputer.com &bull; May 22, 2026</div>
+          <div class="article-summary"><p>Japanese cybersecurity software company Trend Micro has addressed an Apex One zero-day vulnerability exploited in attacks targeting Windows systems.
+Apex One is Trend Micro's enterprise-grade endpoint security platform that protects corporate networks from a wide range of security threats, including malware, ransomware, fileless attacks, and web-based threats.
+Tracked as CVE-2026-34926, this directory traversal vulnerability in the Apex One (on-premises) server allows local attackers with admin privileges to inject malicious code.
+&quot;A directory traversal vulnerability in the Apex One (on-premise) server could allow a pre-authenticated local attacker to modify a key table on the server to inject malicious code to deploy to agents on affected installations,&quot; Trend Micro saidon Thursday.
+&quot;This vulnerability is only exploitable on the on-premise version of Apex One and a potential attacker must have access to the Apex One Server and already obtained administrative credentials to the server via some other method to exploit this vulnerability.&quot;
+However, despite the restrictive requirements for successful exploitation, the company warned that &quot;TrendAI has observed at least one attempt to exploit this vulnerability in the wild.&quot;
+Federal agencies ordered to patch within three weeks
+Yesterday, the U.S. Cybersecurity and Infrastructure Security Agency (CISA) also added CVE-2026-34926 to its list of actively exploited vulnerabilities and ordered federal agencies to patch their devices by June 4.
+&quot;These types of vulnerabilities are frequent attack vectors for malicious cyber actors and pose significant risks to the federal enterprise,&quot; CISA warned. &quot;Apply mitigations per vendor instructions, follow applicable BOD 22-01 guidance for cloud services, or discontinue use of the product if mitigations are unavailable.&quot;
+On Thursday, Trend Micro also released security updates to address seven local privilege escalation vulnerabilities in the Apex One Standard Endpoint Protection (SEP) agent that attackers can exploit if they have permission to execute low-privileged code on the target system.
+Threat actors have frequently targeted flaws in Trend Micro Apex One over the last several years, often in zero-day attacks.
+For instance, Trend Micro warned of an actively exploited Apex One RCE bug (CVE-2025-54948) in August 2025 and addressed two other Apex One zero-days exploited in the wild in September 2022 (CVE-2022-40139) and September 2023 (CVE-2023-41179).
+CISA currently tracks 12 Trend Micro Apex vulnerabilities that have either been or are still being abused in attacks.
+The Validation Gap: Automated Pentesting Answers One Question. You Need Six.
+Automated pentesting tools deliver real value, but they were built to answer one question: can an attacker move through the network? They were not built to test whether your controls block threats, your detection rules fire, or your cloud configs hold.
+This guide covers the 6 surfaces you actually need to validate.
+Download Now</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a96742d9f18')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a42726646c5">
+        <div class="article-body">
+          <a href="https://www.bleepingcomputer.com/news/security/chinese-hackers-target-telcos-with-new-linux-windows-malware/" target="_blank" rel="noopener noreferrer" class="article-title">Chinese hackers target telcos with new Linux, Windows malware</a>
+          <div class="article-meta">bleepingcomputer.com &bull; May 21, 2026</div>
+          <div class="article-summary"><p>A Chinese cyber-espionage campaign has been targeting telecommunications providers with newly discovered Linux and Windows malware dubbed Showboat and JFMBackdoor, respectively.
+The operation has been active since at least mid-2022 and targeted organizations across the Asia Pacific and parts of the Middle East. It was attributed to the Calypso threat group, also tracked as Red Lamassu.
+According to researchers at Lumen's Black Lotus Labs and PwC Threat Intelligence, the threat actor set up and used multiple telecom-themed domains to impersonate their targets.
+The Showboat Linux malware
+The Linux implant Calypso uses in these attacks, dubbed Showboat/kworker, is a modular post-exploitation framework built to for long-term persistence after initial compromise. The initial infection vector is unknown.
+According to a report today from Black Lotus Labs, once Showboat is deployed on a target system, it starts collecting information about the host and sends it to a command-and-control (C2) server.
+The malware can also upload or download files, hide its own process, and establish persistence via a new service.
+“One notable feature is the 'hide' command, which enables a process to conceal itself on a host machine by retrieving code stored on external websites such as Pastebin or online forums for use as a ‘dead drop’, Lumen's Black Lotus Labs researchers explain.
+Its most notable function is acting as a SOCKS5 proxy and port-forwarding pivot point, serving as a foothold on compromised endpoints and enabling the attackers to move to other systems on the internal network.
+The JMFBackdoor Windows malware
+Researchers at PwC Threat Intelligence analyzed Red Lamassu's infection chain on Windows and noted that it starts with the execution of a batch script that drops payloads to stage a DLL-sideloading procedure (fltMC.exe + FLTLIB.dll). Ultimately, the final payload called JMFBackdoor is loaded.
+According to the researchers, JFMBackdoor is a full-featured Windows espionage implant that has the following capabilities:
+- Reverse shell access — Remote command execution on the infected machine.
+- File management — Upload, download, modify, move, and delete files.
+- TCP proxying — Uses the victim system as a network relay into internal systems.
+- Process/service management — Start, stop, create, or kill processes and services.
+- Registry manipulation — Modify Windows registry keys and values.
+- Screenshot capture — Take screenshots of the victim's desktop and encrypt them for exfiltration.
+- Encrypted configuration management — Store/update malware settings in encrypted configs.
+- Self-removal and anti-forensics — Hide activity, remove persistence, and delete traces.
+Infrastructure analysis suggests that the hackers follow a partially decentralized operational model, in which multiple clusters share similar certificate-generation patterns and tooling but target distinct victim sets.
+Lumen concludes that the tooling is likely shared across multiple China-aligned threat groups, each targeting different regions and using the same malware ecosystem.
+The Validation Gap: Automated Pentesting Answers One Question. You Need Six.
+Automated pentesting tools deliver real value, but they were built to answer one question: can an attacker move through the network? They were not built to test whether your controls block threats, your detection rules fire, or your cloud configs hold.
+This guide covers the 6 surfaces you actually need to validate.
+Download Now</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a42726646c5')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="azure" class="topic-section">
+      <h2 class="topic-title" style="--c:#00BCF2">Azure <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a40d11651be">
+        <div class="article-body">
+          <a href="https://azure.microsoft.com/en-us/blog/powering-multi-cluster-workloads-with-seamless-cross-cluster-networking-for-azure-kubernetes-fleet-manager/" target="_blank" rel="noopener noreferrer" class="article-title">Powering multi-cluster workloads with seamless cross‑cluster networking for Azure Kubernetes Fleet Manager</a>
+          <div class="article-meta">azure.microsoft.com &bull; May 22, 2026</div>
+          <div class="article-summary"><p>As organizations modernize their application portfolios, we are witnessing a fundamental shift in how cloud-native infrastructure is architected. No longer is the question “How do we scale a cluster?” but rather “How do we scale across clusters, regions, and clouds while maintaining operational simplicity?”
+Today, we are thrilled to announce the public preview of cross-cluster networking for Azure Kubernetes Fleet Manager. This capability represents the next evolution in multi-cluster management by introducing transparent E-W multi-cluster networking powered by Advanced Container Networking Services.
+The challenge of multi-cluster networking
+Whether driven by regulatory requirements, regional disaster recovery, or the need to isolate blast domains, organizations of every size often run multiple Azure Kubernetes Service (AKS) clusters. However, managing these clusters has historically introduced a “networking tax.” Traditional approaches rely on complex VPNs, gateways, and manual service discovery, adding latency and operational complexity.
+Even when operating just a few clusters and especially when operating large scale fleets of clusters, teams need consistent, reliable cross‑cluster connectivity to support scenarios like failover, shared services architectures, and seamlessly shifting workloads across regions for capacity or latency. At the same time, platform teams want to abstract infrastructure details from developers, enabling seamless cluster-level changes without disrupting applications.
+Our vision: Multi-cluster management with seamless networking
+In response to similar challenges, we built Azure Kubernetes Fleet Manager. Fleet Manager is designed to simplify multi-cluster Kubernetes for everyone. While Fleet Manager has already simplified workload propagation (deploying to many clusters) and update orchestration (safe, staged upgrades), the network remained a challenge.
+With the introduction of Cilium-based cross-cluster networking in Azure Kubernetes Fleet Manager, we are delivering a managed, high-performance network that can span your entire fleet.
+This capability extends the Kubernetes networking model across clusters, enabling services and workloads to communicate across cluster boundaries as if they were local, while preserving cluster-level isolation and governance.
+Built on an open-source foundation, this capability uses Cilium for dataplane and Kubefleet for fleet-level orchestration, both active Cloud Native Computing Foundation (CNCF) projects. This ensures transparency, portability, and alignment with the broader Kubernetes ecosystem, while benefiting from continuous innovation from the open-source community.
+The following diagram shows how clusters in a fleet are connected through a unified, managed network, enabling seamless communication, service discovery, and policy enforcement.
+Key capabilities include:
+- Seamless east-west connectivity: Using eBPF-based routing with power of Azure CNI powered by Cilium and Advanced Container Networking Services, pods can communicate across clusters with native performance, no proxies or gateways required.
+- Global service discovery: With a simple annotation (service.cilium.io/global=true), a standard Kubernetes Service becomes “global.” Cross-cluster networking automatically discovers endpoints across joined member clusters, providing transparent load balancing and failover.
+- Multi‑cluster observability: Gain a unified view of network health across clusters with aggregated metrics, logs, and flow visibility. Advanced Container Networking Services integrates Cilium telemetry to provide consistent insights, faster troubleshooting, and end‑to‑end visibility across the fleet.
+- Unified security and governance: Security policies are no longer confined by cluster boundaries.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a40d11651be')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a8d701ace82">
+        <div class="article-body">
+          <a href="https://azure.microsoft.com/en-us/blog/azure-netapp-files-for-eda-workloads-from-revolution-to-breakthrough-at-scale/" target="_blank" rel="noopener noreferrer" class="article-title">Azure NetApp Files for EDA workloads: From revolution to breakthrough at scale</a>
+          <div class="article-meta">azure.microsoft.com &bull; May 22, 2026</div>
+          <div class="article-summary"><p>Last year, we outlined how Azure NetApp Files helped reshape silicon design by delivering the low-latency, high-throughput storage required for Electronic Design Automation (EDA) workloads at cloud scale. Since then, we have continued to extend performance and scalability. Today, we are advancing that progress with another significant step forward.
+Modern semiconductor design is defined by scale. Thousands of concurrent EDA jobs spanning simulation, synthesis, and verification run continuously against shared datasets, where even small variations in storage latency can ripple across entire design cycles. For many teams, this has historically limited how far EDA workflows could scale in the cloud.
+That constraint is now changing.
+Azure NetApp Files (ANF) is redefining what is possible for EDA in the cloud by delivering predictable, high-performance shared storage at massive concurrency. With new independent benchmark results and growing adoption by leading semiconductor companies, Azure is establishing itself as a viable—and in many cases superior—platform for modern EDA environments.
+Why EDA storage has been difficult to scale in the cloud
+EDA workloads combine three characteristics that have traditionally challenged cloud storage architectures:
+- Extremely high concurrency, with thousands of jobs accessing shared file systems simultaneously.
+- Strict latency sensitivity, where even minor delays reduce compute efficiency and extend runtimes.
+- Intensive shared data access patterns, creating contention under load.
+While cloud compute scales easily, shared storage has often introduced variability that limits overall system efficiency. As concurrency increases, storage becomes the bottleneck, impacting regression cycles, increasing tool license costs, and slowing time to tape-out.
+For EDA teams evaluating cloud transformation, the central question has remained consistent: can storage scale with compute while maintaining predictable performance?
+A modern approach: Azure NetApp Files for EDA at scale
+Azure NetApp Files is designed specifically to address this challenge. Its architecture aligns directly to the requirements of highly parallel, shared workloads like EDA.
+At its core, ANF enables independent scaling of compute and storage, so EDA clusters can grow without storage becoming the constraint, and additional compute nodes do not introduce hotspots or contention at the storage layer. It natively supports concurrent metadata operations at scale, handling the millions of small file interactions typical of EDA workflows without degradation. And its service-level performance model ensures that throughput and IOPS scale predictably with capacity, eliminating the need for complex tuning.
+More recently, innovations such as large volumes and large volumes breakthrough mode have expanded the concurrency envelope even further. These capabilities allow thousands of parallel jobs to share a single storage environment while maintaining consistent latency under sustained load.
+This delivers what cloud-based EDA systems have long struggled to provide: consistent, repeatable performance, not only at low utilization, but also under full production load.
+Independent validation: SPECstorage® Solution 2020 benchmark results
+To validate these capabilities in a real-world context, Azure NetApp Files was measured using the industry-standard SPECstorage® Solution 2020 EDA_BLENDED benchmark.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a8d701ace82')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a156b2e3515">
+        <div class="article-body">
+          <a href="https://azure.microsoft.com/en-us/blog/azure-iaas-deploy-high-performance-workloads-with-a-system-level-approach/" target="_blank" rel="noopener noreferrer" class="article-title">Azure IaaS: Deploy high-performance workloads with a system-level approach</a>
+          <div class="article-meta">azure.microsoft.com &bull; May 20, 2026</div>
+          <div class="article-summary"><p>This blog post is the third part of a blog series called Azure IaaS which will share best practices and guidance to help you build a trusted infrastructure platform—from performance, resiliency, and security to scalability and cost efficiency.
+Performance has become one of the most defining factors in how applications succeed or fail in the cloud. Whether you’re training AI models, scaling a Kubernetes platform, or running a business-critical database, performance is no longer a single decision about CPU, storage, or networking. It’s the outcome of how all three work together and requires a system-level approach.
+Many organizations still approach performance by provisioning more resources—larger virtual machines (VMs), faster disks, or higher network bandwidth. But modern workloads don’t behave predictably enough for that strategy to hold. Bottlenecks shift dynamically. A database may be constrained by storage latency at one moment and network bandwidth shortly after that. An AI pipeline may stall not because of compute limitations, but because data cannot move fast enough between nodes.
+This is why performance in the cloud has evolved from a resource-level concern to a system-level challenge. And it’s why Azure approaches performance differently, engineering it into the platform so customers can achieve consistent, scalable outcomes without manually tuning every layer.
+Rethinking performance in the cloud
+Performance today is not just about peak speed. It’s about consistency, scalability, and responsiveness under real-world conditions.
+For customers, that means evaluating performance across multiple dimensions:
+- Latency—including tail latency (P99/P99.9), which directly impacts user experience.
+- Throughput—or how much work can be completed over time.
+- Scalability—the ability to maintain performance as demand increases.
+- Consistency—ensuring performance doesn’t degrade unpredictably under load.
+Equally important is time-to-performance, how quickly infrastructure can be provisioned, scaled, or recovered. In many cases, how fast you can respond to change matters just as much as how fast your system runs.
+Azure IaaS brings these dimensions together, aligning compute, storage, and networking capabilities to the needs of specific workloads. The result is performance that is delivered as a coordinated system, not assembled from isolated components.
+Accelerating AI workloads with system-level performance
+AI workloads are among the most demanding environments for performance. Training and inference pipelines require massive parallel compute, high-throughput data access, and low-latency communication between distributed components.
+In these scenarios, performance is only as strong as the weakest layer. Azure addresses this by optimizing the full data path.
+Compute efficiency through platform acceleration
+Azure Boost helps improve VM performance by offloading storage and networking processing from the host CPU to dedicated hardware and software components. This helps reduce hypervisor overhead and helps free up compute cycles for model training and inference, improving both throughput and latency consistency.
+High-throughput storage for sustained data access
+AI workloads depend on continuous access to large datasets. Azure storage options are designed to help deliver sustained IO performance and help ensure that compute resources are not idle while waiting on data. Services like Azure Blob Storage and ADLS help deliver the high-throughput, low-latency, and massively scalable data foundation AI workloads need—enabling fast ingestion and retrieval of large datasets for training and inference. Their optimized parallel data access and seamless integration with AI tools help maximize compute utilization and help eliminate pipeline bottlenecks.
+Low-latency, high-bandwidth networking
+Distributed training requires rapid communication between nodes.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a156b2e3515')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="af02f2d899e">
+        <div class="article-body">
+          <a href="https://azure.microsoft.com/en-us/blog/azure-files-entra-only-identities-advancing-cloud-native-identity-and-security/" target="_blank" rel="noopener noreferrer" class="article-title">Azure Files Entra-Only identities: Advancing cloud-native identity and security</a>
+          <div class="article-meta">azure.microsoft.com &bull; May 19, 2026</div>
+          <div class="article-summary"><p>We are excited to announce the general availability (GA) of Entra-Only identities for Azure Files SMB. With native Microsoft Entra ID authentication, organizations can now grant secure, identity-based access to SMB file shares using cloud-only identities.
+This means no Active Directory, hybrid sync, or managed domain controllers required, significantly simplifying architecture while reducing ongoing management and maintenance costs. Entra-Only identities elevate Azure Files with a highly integrated, modern identity experience—delivering a leading, best-in-class standard for secure, seamless and comprehensive cloud native access.
+As customers look to migrate to Azure Files, reliance on on-premises Active Directory authentication has been seen as a key blocker to a complete cloud-native experience. Entra-Only identities support for Azure Files SMB removes that blocker, enabling organizations to authenticate users and devices directly through Microsoft Entra ID, helping modernize storage, compute and identity, while aligning with Zero-Trust principles.
+Entra-Only identities enable seamless virtual desktop infrastructure (VDI) profile management on Azure Files while meeting modern security standards. In Azure Virtual Desktop (AVD), built-in B2B support extends this further, allowing external partners to use their existing identities with FSLogix profiles, without creating duplicate accounts.
+For general-purpose scenarios, this unlocks migration of on-prem Windows-based workloads to a fully cloud-native platform, retaining native SMB compatibility while delivering a highly integrated identity, security, and management experience. Users can securely access files from anywhere without domain setup, VPNs, or complex networking requirements. Together, these capabilities help organizations reduce operational complexity while strengthening their security posture.
+Why choose Entra-Only identities with Azure Files
+- Modern, cloud-native identity with simplified operations. Access to Azure Files is secured using native Entra ID authentication with client-side Intune integration, eliminating overhead of identity lifecycle maintenance and compliance, VPNs, and hybrid sync—simplifying deployment, reducing maintenance overhead, and streamlining management.
+- Co-existence with hybrid identities setup. Organizations with a mix of hybrid and cloud-native identities can use this feature concurrently while in the journey to retire active directory.
+- Secure access from anywhere. Users can access file shares via Entra-joined clients, enabling seamless remote work without duplicating identities.
+- Extended support to MacOS clients (limited preview). Secure file share access is extended to modern MacOS clients, Entra-joined via Platform SSO, enabling creative and cross-platform workloads to integrate with Azure Files using Entra-based identity.
+What’s new with Entra-Only identities
+- Portal-based NTFS permissions management: Granular file and directory ACLs for Entra-Only (and hybrid) users and groups can be configured directly from the Azure portal, eliminating the need for domain-joined clients or legacy tools. This is now available for all users across all regions.
+- Expanded RBAC support for secure authorization: Adding share-level RBAC for specific users and groups is now available for Entra only users and groups in limited regions. For regional availability, please check here.
+How Entra-Only identities work with Azure Files
+This feature modernizes SMB authentication by making Microsoft Entra ID the primary Kerberos Key Distribution Center (KDC). Clients authenticate directly with Microsoft Entra ID to obtain Kerberos tickets for cloud identities, eliminating the need for Active Directory or Entra Connect sync.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('af02f2d899e')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a2605343e6d">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMilgFBVV95cUxNU0ZYUndBNkVkRHJkWmZOLUQxR0tSY0Vja0pvNE9VcVFUamJMT2czNnd1RVVrUTg2aC1zaFJZTTc2dFpGZko4TXJPYVNXdFVpaUJubEZ0aEJaNVQ3Y3lhZEc2dzJoTkhvMXJ3YzA0UEJWMVNYakJSbm5sbzRRbGR1S0ZjR2pYNUFZVTRHY3JZS1pCR3ZsY3c?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft, Proximus team on sovereign cloud for 2 countries - Fierce Network</a>
+          <div class="article-meta">Fierce Network &bull; May 21, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft, Proximus team on sovereign cloud for 2 countries&amp;nbsp;&amp;nbsp;Fierce Network</p><a href="https://news.google.com/rss/articles/CBMilgFBVV95cUxNU0ZYUndBNkVkRHJkWmZOLUQxR0tSY0Vja0pvNE9VcVFUamJMT2czNnd1RVVrUTg2aC1zaFJZTTc2dFpGZko4TXJPYVNXdFVpaUJubEZ0aEJaNVQ3Y3lhZEc2dzJoTkhvMXJ3YzA0UEJWMVNYakJSbm5sbzRRbGR1S0ZjR2pYNUFZVTRHY3JZS1pCR3ZsY3c?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a2605343e6d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a87d7171051">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiyAFBVV95cUxPek5GOVN5OWJDQ2piSUxCeW1lV0o4VlFmc0lWdlM0QUxneTVPMmw5YllCdWUyTkF0X3llM3JNSWlGQlhBNG1ZVjJPLWcwdjVxSGdZT29wWVp6anJZYlpJNUFHdUJqUUdiTnNuQ2FBNEU2RUZBZm8wV3dORlpLX1NPOEdaQ3YwMzVtQ3dkUnl5V01STFVOZnNfenFtdUlxRzNDZk42dnRoUTZGNjE0OEZrd1pFXzNmTVRaWE1CZGR0TzNpbWhqMld2dg?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">What is Microsoft? Everything You Need to Know About Its History, Azure, and Copilot AI - TradingKey</a>
+          <div class="article-meta">TradingKey &bull; May 23, 2026</div>
+          <div class="article-summary snippet"><p>What is Microsoft? Everything You Need to Know About Its History, Azure, and Copilot AI&amp;nbsp;&amp;nbsp;TradingKey</p><a href="https://news.google.com/rss/articles/CBMiyAFBVV95cUxPek5GOVN5OWJDQ2piSUxCeW1lV0o4VlFmc0lWdlM0QUxneTVPMmw5YllCdWUyTkF0X3llM3JNSWlGQlhBNG1ZVjJPLWcwdjVxSGdZT29wWVp6anJZYlpJNUFHdUJqUUdiTnNuQ2FBNEU2RUZBZm8wV3dORlpLX1NPOEdaQ3YwMzVtQ3dkUnl5V01STFVOZnNfenFtdUlxRzNDZk42dnRoUTZGNjE0OEZrd1pFXzNmTVRaWE1CZGR0TzNpbWhqMld2dg?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a87d7171051')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aee280c60fe">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiugFBVV95cUxPd29aeFZvRUpvQS1BTlRKaWctZ1JkSVJkbDJleThNTFVQRi1KUXd1U0FGSnpkMWFvZ0xzaTd1UzVod2xnTEtSVVE2YnJjcmFKMERuYndMNmRXT1JNYzhOallUekNCY2RFcDliTXRob1o3Y1FjOURIV2k1bE9sNEtwSUYzRF9Dd2kxUFV0VUUzdUdqWjlEUmNjZGg5OVpYSndEV1BrNVNWVWEtU251Vk5vSjdJeWFzbUZzMUE?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Azure Files Entra-Only identities: Advancing cloud-native identity and security - Microsoft Azure</a>
+          <div class="article-meta">Microsoft Azure &bull; May 19, 2026</div>
+          <div class="article-summary snippet"><p>Azure Files Entra-Only identities: Advancing cloud-native identity and security&amp;nbsp;&amp;nbsp;Microsoft Azure</p><a href="https://news.google.com/rss/articles/CBMiugFBVV95cUxPd29aeFZvRUpvQS1BTlRKaWctZ1JkSVJkbDJleThNTFVQRi1KUXd1U0FGSnpkMWFvZ0xzaTd1UzVod2xnTEtSVVE2YnJjcmFKMERuYndMNmRXT1JNYzhOallUekNCY2RFcDliTXRob1o3Y1FjOURIV2k1bE9sNEtwSUYzRF9Dd2kxUFV0VUUzdUdqWjlEUmNjZGg5OVpYSndEV1BrNVNWVWEtU251Vk5vSjdJeWFzbUZzMUE?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aee280c60fe')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a72003b551d">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiuwFBVV95cUxPUHlfQWEwOVJ4TTBCVG9kb0p6UVllLUt0Q1lxZTI5dFN1elV6TFVDakNFWEtaUFlJaTZoajVqZjZzVi1wdUFZSXJJeTNfVE1ZajFsUlFxRTViSi1fc003WFJkc0hicklFcXBOZHh2a2dsWGtWTW1RTXJEUFhWX2g0TnZueFFqcUU5bXZFb2lWc0kwcEpEbW5PeGRYUXlrRkhZa0hoMWxiZXo0MEZxWElBQWE3c1N1SGo3U2JJ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">How Storm-2949 turned a compromised identity into a cloud-wide breach - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; May 18, 2026</div>
+          <div class="article-summary snippet"><p>How Storm-2949 turned a compromised identity into a cloud-wide breach&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMiuwFBVV95cUxPUHlfQWEwOVJ4TTBCVG9kb0p6UVllLUt0Q1lxZTI5dFN1elV6TFVDakNFWEtaUFlJaTZoajVqZjZzVi1wdUFZSXJJeTNfVE1ZajFsUlFxRTViSi1fc003WFJkc0hicklFcXBOZHh2a2dsWGtWTW1RTXJEUFhWX2g0TnZueFFqcUU5bXZFb2lWc0kwcEpEbW5PeGRYUXlrRkhZa0hoMWxiZXo0MEZxWElBQWE3c1N1SGo3U2JJ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a72003b551d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="sharepoint" class="topic-section">
+      <h2 class="topic-title" style="--c:#036C70">SharePoint <span class="count">(2)</span></h2>
+      <div class="article-card" data-id="a219ecf717c">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMihAFBVV95cUxOdzBXOUIyNmVBTEFmWkxZTmJJdTlSSU9OVmZFOEZhQVpmNGF6MVp2SXNjM0tWLV9ydXBXZVRiMkdySFhOYVBrUDhpWTRpc283TS1hT2xDWVJmMXNJS0tPR0pXakRNZ1dESENQM05XeThFYmJSUXpmUUNpODFIVDhVQXFpUjU?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Hong Kong is moving its tech stack closer to China - Startup Fortune</a>
+          <div class="article-meta">Startup Fortune &bull; May 24, 2026</div>
+          <div class="article-summary snippet"><p>Hong Kong is moving its tech stack closer to China&amp;nbsp;&amp;nbsp;Startup Fortune</p><a href="https://news.google.com/rss/articles/CBMihAFBVV95cUxOdzBXOUIyNmVBTEFmWkxZTmJJdTlSSU9OVmZFOEZhQVpmNGF6MVp2SXNjM0tWLV9ydXBXZVRiMkdySFhOYVBrUDhpWTRpc283TS1hT2xDWVJmMXNJS0tPR0pXakRNZ1dESENQM05XeThFYmJSUXpmUUNpODFIVDhVQXFpUjU?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a219ecf717c')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="af97524d022">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMingFBVV95cUxNZmJ5RFU1Nk45T1RlSzRmbFBwNGdpWkN6c09XWjVUWE1vNm1ZeGJDY1J6bHpyOUdIcDFrSGxlOTJaWVI1WFROYnVUcHliYkhTQXlwSHFsS2VDbzJEWHRZVnVsVE9rMFBCUmxEbDRkVXdaYU4xckhaWllvMEhoMzgzcnkzREN1UnRfMjdTazh6TGdub1U0eTVZNFAya003QQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">OpenAI Adds ChatGPT Integration to Microsoft PowerPoint - Let's Data Science</a>
+          <div class="article-meta">Let's Data Science &bull; May 22, 2026</div>
+          <div class="article-summary snippet"><p>OpenAI Adds ChatGPT Integration to Microsoft PowerPoint&amp;nbsp;&amp;nbsp;Let's Data Science</p><a href="https://news.google.com/rss/articles/CBMingFBVV95cUxNZmJ5RFU1Nk45T1RlSzRmbFBwNGdpWkN6c09XWjVUWE1vNm1ZeGJDY1J6bHpyOUdIcDFrSGxlOTJaWVI1WFROYnVUcHliYkhTQXlwSHFsS2VDbzJEWHRZVnVsVE9rMFBCUmxEbDRkVXdaYU4xckhaWllvMEhoMzgzcnkzREN1UnRfMjdTazh6TGdub1U0eTVZNFAya003QQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('af97524d022')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="intune" class="topic-section">
+      <h2 class="topic-title" style="--c:#0F6CBD">Intune <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a068f2b987a">
+        <div class="article-body">
+          <a href="https://techcommunity.microsoft.com/t5/intune-customer-success/new-platform-sso-with-registration-during-automated-device/ba-p/4519846" target="_blank" rel="noopener noreferrer" class="article-title">New Platform SSO with registration during Automated Device Enrollment on macOS</a>
+          <div class="article-meta">techcommunity.microsoft.com &bull; May 18, 2026</div>
+          <div class="article-summary snippet"><p>By Iris Yuning Ye, Product Manager – Microsoft Intune &amp;amp; Justin Ploegert, Principal Product Manager – Microsoft Entra
+A new setting ‘Enable Registration During Setup’ for Platform single sign-on (PSSO) during Automated Device Enrollment (ADE) is now generally available for macOS devices in Microsoft Intune. With this new setting and a compatible version of the Intune Company Portal (5.2604.0 and newer), this feature enables users sign in with their Microsoft Entra account during Setup Assistant, complete device registration before reaching the desktop, and get immediate access to work resources and ready to be productive sooner.
+Why this matters
+Previously, Platform SSO registration occurred only after users completed Setup Assistant and reached the desktop. They then had to notice and act on a separate notification to finish Platform SSO registration. When Platform SSO registration isn't completed, it can cause issues with app authentication or lead to noncompliance, delaying users from getting started on the device:
+
+Missed notifications - Users dismiss or ignore the post-enrollment PSSO prompt, leaving devices in an incomplete device registration state.
+Broken app authentication - Apps like Microsoft Outlook could fail to authenticate because SSO isn’t fully configured.
+Compliance gaps - Devices are flagged as noncompliant in the Intune Company Portal because Platform SSO registration isn’t completed.
+Helpdesk burden - IT teams field repeated tickets for issues that should have been handled automatically during provisioning.
+Migration blocker - Incomplete Platform SSO setup slows down migrating macOS devices to Intune.
+
+Platform SSO during ADE with EnableRegistrationDuringSetup key eliminates these issues. Device registration, identity bootstrap, and credential setup all happen inline during Setup Assistant before the user ever reaches the desktop.
+What the feature enables
+
+Capability
+
+Details
+
+Microsoft Entra device registration during ADE
+
+The device registers with Microsoft Entra ID before the user reaches the desktop. A hardware-bound Workplace Join certificate is issued and stored securely.
+
+Early device identity
+
+Device identity is established early in the provisioning process, enabling immediate access to resources protected by Conditional Access.
+
+Platform SSO credentials during initial setup
+
+When configured with Secure Enclave, credentials are stored in the device's Secure Enclave, providing hardware-bound, phishing-resistant protection aligned with Zero Trust principles.
+
+Minimized delays
+
+Users arrive at the desktop already signed in. No additional prompts, no waiting for policies, no broken apps.
+
+How it works
+This feature requires three policies that work together. All three must be configured correctly before enrollment starts and assigned to the same static user groups:
+
+A Platform SSO settings catalog policy with “Enable Registration During Setup” configured to Enabled.
+Intune Company Portal (version 5.2604 or newer) deployed as a line-of-business (LOB) app, which provides the Microsoft Enterprise SSO extension.
+An ADE enrollment profile configured with Setup Assistant with modern authentication and Await final configuration = Yes.
+
+When a device enrolls with these three policies in place, here's what happens:
+
+The device powers on and begins the ADE enrollment flow.
+Intune delivers the Platform SSO settings catalog policy with Enable Registration During Setup enabled.
+Intune Company Portal is installed automatically as a LOB app, providing the Microsoft Enterprise SSO plug-in.
+During Setup Assistant, the user signs in with their Microsoft Entra credentials. This first sign-in starts the regular enrollment process.
+A second sign-in authenticates the identity in Intune Company Portal and fetches the SSO extension.
+The device registers with Microsoft Entra ID, and a Microsoft Entra device registration certificate is issued.
+The user arrives at the desktop fully authenticated, with SSO active and Conditional Access satisfied.
+
+Note: During enrollment, users are prompted to enter their Microsoft Entra credentials at least twice. We're working on improvements to reduce the number of sign-ins in a future update.
+Prerequisites
+
+Requirement
+
+Details
+
+macOS version
+
+macOS 26 and newer
+
+Enrollment method
+
+ADE via Apple Business
+
+Intune Company Portal
+
+Version 5.2604.0 or newer, deployed as a LOB app. Download from https://go.microsoft.com/fwlink/?linkid=853070
+
+Intune role for configuration
+
+Admin account with at least the Policy and Profile Manager built-in role
+
+Group type
+
+Assigned (static) user groups only. Dynamic groups and device groups are not supported.
+
+Important: Review the full Platform SSO prerequisites in the Platform SSO configuration guide before you begin.
+&amp;nbsp;
+High level step-by-step configuration
+Step 1: Create or update the Platform SSO settings catalog policy
+
+In the Microsoft Intune admin center, go to Devices &amp;gt; Manage devices &amp;gt; Configuration. If this is your first time configuring Platform SSO, follow the full&amp;nbsp;Platform SSO configuration guide.
+Add and configure the following setting:
+
+Setting
+
+Value
+
+Description
+
+Authentication &amp;gt; Extensible Single Sign On &amp;gt; Platform SSO &amp;gt; Enable Registration During Setup
+
+Enabled
+
+Enables the Platform SSO registration process during Setup Assistant.
+
+&amp;nbsp;
+
+
+If using the&amp;nbsp;Password authentication method, it’s recommended to add for password sync function:
+Setting
+
+Value
+
+Description
+
+Authentication &amp;gt; Extensible Single Sign On &amp;gt; Platform SSO &amp;gt; Enable Create First User During Setup
+
+Enabled
+
+Enables the password synchronization experience during Setup Assistant. Only configure this if using the Password authentication method.
+
+
+
+Tip: Microsoft recommends using Secure Enclave as the authentication method for the strongest hardware-backed security. Enable Create First User During Setup setting will be available soon in settings catalog.
+Assign the policy to your static user groups. Filter is also supported with correct static group setting.
+&amp;nbsp;
+Step 2: Install Intune Company Portal as a LOB app
+
+Download the Company Portal for macOS PKG from https://go.microsoft.com/fwlink/?linkid=853070.
+In the Intune admin center, go to Apps &amp;gt; All Apps &amp;gt; Create.
+Add Intune Company Portal as a macOS LOB app.
+Make it a required app and assign it to the same groups as the Platform SSO policy from Step 1.
+
+Important: Company Portal 5.2604.0 and newer is required. If you install an older version, Platform SSO fails. When Intune detects Company Portal as a deployed policy, it sends it with priority during enrollment.
+And clean up the App bundle ID that are not related to Company Portal, make sure only com.microsoft.CompanyPortalMac as the relevant App bundle ID is kept.
+Figure 1: Microsoft Intune admin center Add App screen for a macOS line-of-business app, showing CompanyPortal-Installer.pkg details, macOS Tahoe 26.0 minimum OS, ignore app version enabled, install as managed disabled, and included app bundle ID com.microsoft.CompanyPortalMac version 5.26040.
+Step 3: Set up the enrollment profile
+
+In the Intune admin center, go to Devices &amp;gt; Device onboarding &amp;gt; Enrollment &amp;gt; Apple tab.
+Create or edit an Automated Device Enrollment profile with these Management settings:
+
+Setting
+
+Value
+
+User affinity
+
+Enroll with User Affinity
+
+Authentication
+
+Setup Assistant with modern authentication
+
+Await final configuration
+
+Yes
+
+Locked enrollment
+
+Yes
+
+
+Assign the profile to the&amp;nbsp;same devices targeted as Steps 1 and 2.
+
+Critical: You must assign all three policies to the same devices targeted. If any policy is assigned to a different group, or if any step is misconfigured, enrollment will fail. In that case, wipe the device and re-enroll with all steps correctly configured.
+&amp;nbsp;
+Key things to remember
+
+✅ Three policies, one group: Settings catalog, Company Portal LOB app, and ADE enrollment profile, all assigned to the same static user groups.
+✅ Static groups only: This feature does not work with device groups or dynamic groups.
+✅ One SSO policy per device: If you already have a Platform SSO policy assigned to enrolled devices, make sure device is wiped appropriately before kicking of enrollment with new PSSO flow.
+✅ Latest Intune Company Portal: Version 5.2604.0 or newer is required.
+✅ macOS 26 required: This feature is supported on macOS 26 and newer.
+✅ Secure Enclave recommended: For the strongest hardware-backed credential protection.
+
+For more details, refer to Configure Platform Single Sign-On (PSSO) during Automated Device Enrollment for macOS devices.
+Looking ahead: Reducing Platform SSO sign-in prompts
+Signing in multiple times during enrollment isn't the ideal experience, and we're actively working to streamline it with a new enrollment setting that enables users to complete both Intune enrollment and Platform SSO device registration with a single sign-in. This will further simplify the onboarding experience, reduce friction for users, and bring macOS enrollment closer to a truly seamless, zero-touch provisioning flow. Stay tuned to What’s new in Intune for the release.
+Related resources
+
+SSO in ADE profile (new article): Add Platform SSO policy to ADE Profile on macOS devices
+SSO scenarios: Platform SSO scenarios for macOS devices
+Platform SSO configuration guide for macOS devices using Microsoft Intune
+Common Platform SSO scenarios for macOS devices
+Install Company Portal for macOS as a macOS LOB app
+Set up automated device enrollment (ADE)
+Troubleshoot the Microsoft Enterprise SSO Extension plugin on Apple devices
+macOS Platform single sign-on known issues and troubleshooting
+
+&amp;nbsp;
+As always, we'd love your feedback. If you've piloted Platform SSO during Setup Assistant, share your tips and lessons learned in the comments below or reach out to us on&amp;nbsp;X&amp;nbsp;@IntuneSuppTeam.</p><a href="https://techcommunity.microsoft.com/t5/intune-customer-success/new-platform-sso-with-registration-during-automated-device/ba-p/4519846" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a068f2b987a')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ae35f3022ef">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiggFBVV95cUxQZjR4UTB1Q1ZJa3dBdWN1YWU3YkRURHlVbTk5X1Y4RE81U3pxSUhUSVBQME41b1lJX1lNUmhoMUpDUWc4UDVwQzc5ZnNJVlVPdGpXS0F0R2NuZ3FrUUltNjBpdE11aXdra2lNaUJqVDUtaHZEQlBJRm5oV1N4SnhyRHJn?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Senac-RS empowers 120K+ students with secure access using Microsoft 365 and Intune - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; May 21, 2026</div>
+          <div class="article-summary snippet"><p>Senac-RS empowers 120K+ students with secure access using Microsoft 365 and Intune&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMiggFBVV95cUxQZjR4UTB1Q1ZJa3dBdWN1YWU3YkRURHlVbTk5X1Y4RE81U3pxSUhUSVBQME41b1lJX1lNUmhoMUpDUWc4UDVwQzc5ZnNJVlVPdGpXS0F0R2NuZ3FrUUltNjBpdE11aXdra2lNaUJqVDUtaHZEQlBJRm5oV1N4SnhyRHJn?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ae35f3022ef')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a66fca3a2c5">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMijwFBVV95cUxPdGNRM2R3TnU3TjRRWXBSQ3NXSVRkSEdjMHNLZ2hlOHIwMHJjenNqOXIwWnF4blFwbFdQUl9sajFmNEtWVWRHZDMtemtGMmI4RVJFNGhmeF9yYzBra2RXS0lVT0JBd09Fd09fbUwxTDZqVVdjNnlfZWZ0QUkwUVVHdXpfSjk2V0txNkJxWENMZw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Windows 11 adds policy to remove Copilot app - Let's Data Science</a>
+          <div class="article-meta">Let's Data Science &bull; May 23, 2026</div>
+          <div class="article-summary snippet"><p>Windows 11 adds policy to remove Copilot app&amp;nbsp;&amp;nbsp;Let's Data Science</p><a href="https://news.google.com/rss/articles/CBMijwFBVV95cUxPdGNRM2R3TnU3TjRRWXBSQ3NXSVRkSEdjMHNLZ2hlOHIwMHJjenNqOXIwWnF4blFwbFdQUl9sajFmNEtWVWRHZDMtemtGMmI4RVJFNGhmeF9yYzBra2RXS0lVT0JBd09Fd09fbUwxTDZqVVdjNnlfZWZ0QUkwUVVHdXpfSjk2V0txNkJxWENMZw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a66fca3a2c5')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a83362b36cf">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMikgFBVV95cUxQT0V3QmlSR3I0T3A0QTZuaDlSeDQ2VE1LQ0dabUNUdWJKOEcwanR5YVkzLWJ1a1dlNk83TU51M25NamxtalhUTHQ4MXB6YllBR2RrRWNFSm56YnBfdzYybzIwQXl1ay1iNjNfTV9aYWVIN1o5eXZQNlFoTnhvc0dPOUJBZm9ubG0xODNyRkt0NTNTZw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Rushes Out Emergency Mitigation For ‘YellowKey’ BitLocker Bypass Vulnerability - LinkedIn</a>
+          <div class="article-meta">LinkedIn &bull; May 20, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft Rushes Out Emergency Mitigation For ‘YellowKey’ BitLocker Bypass Vulnerability&amp;nbsp;&amp;nbsp;LinkedIn</p><a href="https://news.google.com/rss/articles/CBMikgFBVV95cUxQT0V3QmlSR3I0T3A0QTZuaDlSeDQ2VE1LQ0dabUNUdWJKOEcwanR5YVkzLWJ1a1dlNk83TU51M25NamxtalhUTHQ4MXB6YllBR2RrRWNFSm56YnBfdzYybzIwQXl1ay1iNjNfTV9aYWVIN1o5eXZQNlFoTnhvc0dPOUJBZm9ubG0xODNyRkt0NTNTZw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a83362b36cf')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a72003b551d">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiuwFBVV95cUxPUHlfQWEwOVJ4TTBCVG9kb0p6UVllLUt0Q1lxZTI5dFN1elV6TFVDakNFWEtaUFlJaTZoajVqZjZzVi1wdUFZSXJJeTNfVE1ZajFsUlFxRTViSi1fc003WFJkc0hicklFcXBOZHh2a2dsWGtWTW1RTXJEUFhWX2g0TnZueFFqcUU5bXZFb2lWc0kwcEpEbW5PeGRYUXlrRkhZa0hoMWxiZXo0MEZxWElBQWE3c1N1SGo3U2JJ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">How Storm-2949 turned a compromised identity into a cloud-wide breach - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; May 18, 2026</div>
+          <div class="article-summary snippet"><p>How Storm-2949 turned a compromised identity into a cloud-wide breach&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMiuwFBVV95cUxPUHlfQWEwOVJ4TTBCVG9kb0p6UVllLUt0Q1lxZTI5dFN1elV6TFVDakNFWEtaUFlJaTZoajVqZjZzVi1wdUFZSXJJeTNfVE1ZajFsUlFxRTViSi1fc003WFJkc0hicklFcXBOZHh2a2dsWGtWTW1RTXJEUFhWX2g0TnZueFFqcUU5bXZFb2lWc0kwcEpEbW5PeGRYUXlrRkhZa0hoMWxiZXo0MEZxWElBQWE3c1N1SGo3U2JJ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a72003b551d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a8797b16302">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMitAFBVV95cUxNdjl3NmdWUms5SW1abGxDUEY2SWktZUxmSTJNZDdSNHZFWFYwVnQ1XzF6cjFQZHZrV3J4U0JHb2JvVlkwQ1BadHczVVh1eEI4enk0NlVhT05ZbkE0Z0dQWnl5dWgxck16SE5ycWRHTDdyamtGNXEwaEsxQ1NiajNURzI0bXJDcEI1SUQwRnFFNlY4M2lIeUlrQjgzRjBpWUJJYUVfd1hyNXRwdC1janAzZ0dFM2g?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Exposing Fox Tempest: A malware-signing service operation - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; May 19, 2026</div>
+          <div class="article-summary snippet"><p>Exposing Fox Tempest: A malware-signing service operation&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMitAFBVV95cUxNdjl3NmdWUms5SW1abGxDUEY2SWktZUxmSTJNZDdSNHZFWFYwVnQ1XzF6cjFQZHZrV3J4U0JHb2JvVlkwQ1BadHczVVh1eEI4enk0NlVhT05ZbkE0Z0dQWnl5dWgxck16SE5ycWRHTDdyamtGNXEwaEsxQ1NiajNURzI0bXJDcEI1SUQwRnFFNlY4M2lIeUlrQjgzRjBpWUJJYUVfd1hyNXRwdC1janAzZ0dFM2g?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a8797b16302')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a2783c77d40">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMinwFBVV95cUxQYzZkWE9qQWp5ZkQ2dXV4UVdNclpFT1lJc1dYM2pYY3ZuUk9jUVc2dnZ1UjRHWmxLSzBZNmhNa1ZZUlU2N21BTlVDemlKaTNKMEZsWTJpNTROckJJbVpTa29nRmI5a0x6NjJDWHNrSW1LOVBFQUI3c0gySExSclkzYmh0dXpNelJjQzQyVEREUFIwTEc5ak5OWFAxUkRZc0k?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft issues YellowKey mitigation, no patch yet - Security Affairs</a>
+          <div class="article-meta">Security Affairs &bull; May 20, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft issues YellowKey mitigation, no patch yet&amp;nbsp;&amp;nbsp;Security Affairs</p><a href="https://news.google.com/rss/articles/CBMinwFBVV95cUxQYzZkWE9qQWp5ZkQ2dXV4UVdNclpFT1lJc1dYM2pYY3ZuUk9jUVc2dnZ1UjRHWmxLSzBZNmhNa1ZZUlU2N21BTlVDemlKaTNKMEZsWTJpNTROckJJbVpTa29nRmI5a0x6NjJDWHNrSW1LOVBFQUI3c0gySExSclkzYmh0dXpNelJjQzQyVEREUFIwTEc5ak5OWFAxUkRZc0k?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a2783c77d40')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a0be451d5f2">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiqwFBVV95cUxQOEhKdFRQX1lnTUpBRC0tS0NOaXNtRjRZdGFlSEJvNUwzVm9FVk5OYVE4clRIbFJKX25BaWV2WWI0Y0pvY1hKcEZLUUtrY2hJQkFJWFVmVDBUNG1FS21sWGk3bnhSRGVnQlR0UXRfSWV3Y0NyYjVQVEtmdmt3YTltbXU5SjY2UmYwUTdPRzNvTHZfZzE0OUxuZ1ZtNlY5YmNLVk1hNkROWUtjTDDSAbABQVVfeXFMUEZWbmFEaUhQNkVVd3pWd2lYcV9SMjhsbmZpOW55djZ5cVJLakgzZUF2TWZwa0R1aUFNQVBQeWh5R3lzdkkwck50X1FpRm5GUGtsMTVSLXgtMDNLSktuaU44dnBCRDJpUHptbWUyc3hSUnh4Y3pLeFlBSS1XMTJIVXFHeUZCNU9qUnhKRUVmOTA2eWlGV3ljWjBJSUVfbjMzejhsSmpfeFhFd2h6ZlNMSWo?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft shares mitigation for YellowKey Windows zero-day - BleepingComputer</a>
+          <div class="article-meta">BleepingComputer &bull; May 20, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft shares mitigation for YellowKey Windows zero-day&amp;nbsp;&amp;nbsp;BleepingComputer</p><a href="https://news.google.com/rss/articles/CBMiqwFBVV95cUxQOEhKdFRQX1lnTUpBRC0tS0NOaXNtRjRZdGFlSEJvNUwzVm9FVk5OYVE4clRIbFJKX25BaWV2WWI0Y0pvY1hKcEZLUUtrY2hJQkFJWFVmVDBUNG1FS21sWGk3bnhSRGVnQlR0UXRfSWV3Y0NyYjVQVEtmdmt3YTltbXU5SjY2UmYwUTdPRzNvTHZfZzE0OUxuZ1ZtNlY5YmNLVk1hNkROWUtjTDDSAbABQVVfeXFMUEZWbmFEaUhQNkVVd3pWd2lYcV9SMjhsbmZpOW55djZ5cVJLakgzZUF2TWZwa0R1aUFNQVBQeWh5R3lzdkkwck50X1FpRm5GUGtsMTVSLXgtMDNLSktuaU44dnBCRDJpUHptbWUyc3hSUnh4Y3pLeFlBSS1XMTJIVXFHeUZCNU9qUnhKRUVmOTA2eWlGV3ljWjBJSUVfbjMzejhsSmpfeFhFd2h6ZlNMSWo?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a0be451d5f2')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="entraid" class="topic-section">
+      <h2 class="topic-title" style="--c:#6B69D6">Entra ID <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a54489769d2">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-purview-dspm-entra-id-security-updates/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Expands Purview, Entra ID, and Agent 365 Security Capabilities</a>
+          <div class="article-meta">petri.com &bull; May 22, 2026</div>
+          <div class="article-summary"><p>Microsoft rolls out new AI security, identity, and investigation upgrades for stronger enterprise protection.
+Key Takeaways:
+Microsoft has detailed the recent security enhancements designed to give organizations stronger oversight, management, and defense across increasingly complex digital environments. These updates help ensure that data, applications, and operations remain secure and well‑governed across the entire ecosystem.
+First off, Microsoft has launched a new Claude Compliance API for Microsoft Purview. This new integration allows organizations to monitor and investigate usage of Anthropic’s Claude within the Purview solution. It helps security teams maintain centralized oversight of activity and data across mixed environments.
+The new Microsoft Purview Data Security Posture Management (DSPM) is now generally available for commercial customers. It provides a unified workflow for discovering sensitive data, assessing risks, and taking corrective actions. This release brings various improvements, including better reporting, easier remediation, and visibility across third‑party sources.
+Microsoft has also upgraded its Purview Data Security Investigations tool with optical character recognition (OCR) and custom examination capabilities. The OCR tool allows security teams to extract text from images, and custom analysis options help to tailor investigations. It allows deeper analysis of both structured and unstructured data, including visuals that were previously hard to scan.
+In Microsoft Entra ID, the account recovery feature allows users to regain access to their accounts when they have lost all authentication methods (such as devices or credentials) by verifying their identity through secure external methods rather than relying on passwords or helpdesk support.
+This feature uses third‑party identity verification (like government IDs and biometrics) to re‑establish trust and treat recovery as a fresh onboarding process. It reduces the risk of social engineering attacks while enabling organizations to automate and securely manage account access restoration in situations like device loss, full lockout, or account compromise.
+Last but not least, Windows 365 for Agents and Microsoft Agent 365 work together to create a unified and secure setup for managing and running AI agents. Agent 365 focuses on defining what tasks agents are allowed to perform by applying organizational policies and identity controls. Windows 365 for Agents also provides the environment where those tasks are carried out through dedicated Cloud PCs.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a54489769d2')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a938aed7511">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/05/pre-stuxnet-fast16-malware-tampered.html" target="_blank" rel="noopener noreferrer" class="article-title">Pre-Stuxnet Fast16 Malware Tampered with Nuclear Weapons Simulations</a>
+          <div class="article-meta">thehackernews.com &bull; May 18, 2026</div>
+          <div class="article-summary"><p>A new analysis of the Lua-based fast16 malware has confirmed that it was a cyber sabotage tool designed to tamper with nuclear weapons testing simulations.
+According to Broadcom-owned Symantec and Carbon Black teams, the pre-Stuxnet tool was engineered to corrupt uranium-compression simulations that are central to nuclear weapon design.
+&quot;Fast16's hook engine is selectively interested in high-explosive simulations inside LS-DYNA and AUTODYN,&quot; the Threat Hunter Team said. &quot;The malware checks for the density of the material being simulated and only acts when that value passes 30 g/cm³, the threshold uranium can only be reached under the shock compression of an implosion device.
+The development comes weeks after SentinelOne presented an analysis of fast16, describing it as the first sabotage framework whose components may have developed as early as 2005, predating the earliest known version of Stuxnet (aka Stuxnet 0.5) by two years.
+Evidence unearthed by the cybersecurity company included a reference to the string &quot;fast16&quot; in a text file that was leaked by an anonymous hacking group called The Shadow Brokers in 2017. The file was part of a huge tranche of hacking tools and exploits allegedly used by the Equation Group, a state-sponsored threat actor with suspected ties to the U.S. National Security Agency (NSA).
+At its core, the industrial sabotage malware features a set of 101 rules to tamper with mathematical calculations carried out by certain engineering and simulation programs that were prevalent at the time. Although the exact binaries that are patched by the malware is unclear, SentinelOne identified three probable candidates: LS-DYNA version 970, Practical Structural Design and Construction Software (PKPM), and Modelo Hidrodinâmico (MOHID).
+Symantec's latest analysis has now confirmed that LS-DYNA and AUTODYN are the two applications targeted by fast16, adding it was designed explicitly to interfere with simulations of high-explosive detonations, almost certainly to facilitate sabotage against nuclear weapons research.
+&quot;Both are software applications used to simulate real-world problems such as vehicle crashworthiness, material modelling, and explosive simulation,&quot; Symantec and Carbon Black said. &quot;The hooks fast16 places inside of the simulation program consist of three attack strategies. The tampering only activates during full-scale transient blast and detonation runs.&quot;
+The 101 hook rules can be categorized further into 9-10 hook groups, each targeting different builds of LS-DYNA or AUTODYN, suggesting that the developers of the malware were keeping track of software updates and adding support for different versions over time. This points to a methodical and sustained operation.
+&quot;If hook rule groups were added sequentially as needed, we see a hook group added for a previous version of the software after a newer version,&quot; researchers explained.
+&quot;One may imagine, the simulation user reverted to an older version when faced with the anomaly, before that version was also targeted. Secondly, the hook groups represent up to 10 different versions of simulation software, meaning the simulation user updates versions semi-frequently.
+Fast16 is crafted such that it will not infect computers that have certain security products installed.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a938aed7511')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aee280c60fe">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiugFBVV95cUxPd29aeFZvRUpvQS1BTlRKaWctZ1JkSVJkbDJleThNTFVQRi1KUXd1U0FGSnpkMWFvZ0xzaTd1UzVod2xnTEtSVVE2YnJjcmFKMERuYndMNmRXT1JNYzhOallUekNCY2RFcDliTXRob1o3Y1FjOURIV2k1bE9sNEtwSUYzRF9Dd2kxUFV0VUUzdUdqWjlEUmNjZGg5OVpYSndEV1BrNVNWVWEtU251Vk5vSjdJeWFzbUZzMUE?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Azure Files Entra-Only identities: Advancing cloud-native identity and security - Microsoft Azure</a>
+          <div class="article-meta">Microsoft Azure &bull; May 19, 2026</div>
+          <div class="article-summary snippet"><p>Azure Files Entra-Only identities: Advancing cloud-native identity and security&amp;nbsp;&amp;nbsp;Microsoft Azure</p><a href="https://news.google.com/rss/articles/CBMiugFBVV95cUxPd29aeFZvRUpvQS1BTlRKaWctZ1JkSVJkbDJleThNTFVQRi1KUXd1U0FGSnpkMWFvZ0xzaTd1UzVod2xnTEtSVVE2YnJjcmFKMERuYndMNmRXT1JNYzhOallUekNCY2RFcDliTXRob1o3Y1FjOURIV2k1bE9sNEtwSUYzRF9Dd2kxUFV0VUUzdUdqWjlEUmNjZGg5OVpYSndEV1BrNVNWVWEtU251Vk5vSjdJeWFzbUZzMUE?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aee280c60fe')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a72003b551d">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiuwFBVV95cUxPUHlfQWEwOVJ4TTBCVG9kb0p6UVllLUt0Q1lxZTI5dFN1elV6TFVDakNFWEtaUFlJaTZoajVqZjZzVi1wdUFZSXJJeTNfVE1ZajFsUlFxRTViSi1fc003WFJkc0hicklFcXBOZHh2a2dsWGtWTW1RTXJEUFhWX2g0TnZueFFqcUU5bXZFb2lWc0kwcEpEbW5PeGRYUXlrRkhZa0hoMWxiZXo0MEZxWElBQWE3c1N1SGo3U2JJ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">How Storm-2949 turned a compromised identity into a cloud-wide breach - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; May 18, 2026</div>
+          <div class="article-summary snippet"><p>How Storm-2949 turned a compromised identity into a cloud-wide breach&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMiuwFBVV95cUxPUHlfQWEwOVJ4TTBCVG9kb0p6UVllLUt0Q1lxZTI5dFN1elV6TFVDakNFWEtaUFlJaTZoajVqZjZzVi1wdUFZSXJJeTNfVE1ZajFsUlFxRTViSi1fc003WFJkc0hicklFcXBOZHh2a2dsWGtWTW1RTXJEUFhWX2g0TnZueFFqcUU5bXZFb2lWc0kwcEpEbW5PeGRYUXlrRkhZa0hoMWxiZXo0MEZxWElBQWE3c1N1SGo3U2JJ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a72003b551d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a28fe087d08">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-purview-dspm-entra-id-security-updates/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Expands Purview, Entra ID, and Agent 365 Security Capabilities - Petri IT Knowledgebase</a>
+          <div class="article-meta">Petri IT Knowledgebase &bull; May 22, 2026</div>
+          <div class="article-summary"><p>Microsoft rolls out new AI security, identity, and investigation upgrades for stronger enterprise protection.
+Key Takeaways:
+Microsoft has detailed the recent security enhancements designed to give organizations stronger oversight, management, and defense across increasingly complex digital environments. These updates help ensure that data, applications, and operations remain secure and well‑governed across the entire ecosystem.
+First off, Microsoft has launched a new Claude Compliance API for Microsoft Purview. This new integration allows organizations to monitor and investigate usage of Anthropic’s Claude within the Purview solution. It helps security teams maintain centralized oversight of activity and data across mixed environments.
+The new Microsoft Purview Data Security Posture Management (DSPM) is now generally available for commercial customers. It provides a unified workflow for discovering sensitive data, assessing risks, and taking corrective actions. This release brings various improvements, including better reporting, easier remediation, and visibility across third‑party sources.
+Microsoft has also upgraded its Purview Data Security Investigations tool with optical character recognition (OCR) and custom examination capabilities. The OCR tool allows security teams to extract text from images, and custom analysis options help to tailor investigations. It allows deeper analysis of both structured and unstructured data, including visuals that were previously hard to scan.
+In Microsoft Entra ID, the account recovery feature allows users to regain access to their accounts when they have lost all authentication methods (such as devices or credentials) by verifying their identity through secure external methods rather than relying on passwords or helpdesk support.
+This feature uses third‑party identity verification (like government IDs and biometrics) to re‑establish trust and treat recovery as a fresh onboarding process. It reduces the risk of social engineering attacks while enabling organizations to automate and securely manage account access restoration in situations like device loss, full lockout, or account compromise.
+Last but not least, Windows 365 for Agents and Microsoft Agent 365 work together to create a unified and secure setup for managing and running AI agents. Agent 365 focuses on defining what tasks agents are allowed to perform by applying organizational policies and identity controls. Windows 365 for Agents also provides the environment where those tasks are carried out through dedicated Cloud PCs.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a28fe087d08')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="afcc20c6aae">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMifEFVX3lxTFBiZmluM0MxSkNKME9adjdhV1lYOW4yZnBRN29zczlNT1VvWF9GVDJvYzM5S0pPYUpvZTNSWWpvODg5WG1paVc3MTlNaEhsSGQwZ1h2WXp1dFFMZEhTUVpyZXRCaWJjNGpRM0pBbWoxUDhWWUtyWGhmeHdHQUzSAYIBQVVfeXFMTzE3WXBFbTNfSDg0MldDX3N6N3ZUM3BQZHFjOUE3dVBqQURzYUNldEtnMTk2R2JEcnJBMG1QUGVoR3BZUEN4bUZ4X2RZb2hpb0MyX2p3ODJSdlJ6SGJ0QTk0U29BNks5c2sweWtoQ2lYX1JreTBiTFhmTWhMRjh5OEtzUQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Hackers Abuse Microsoft Entra ID Accounts to Exfiltrate Microsoft 365 and Azure Data - CyberSecurityNews</a>
+          <div class="article-meta">CyberSecurityNews &bull; May 19, 2026</div>
+          <div class="article-summary snippet"><p>Hackers Abuse Microsoft Entra ID Accounts to Exfiltrate Microsoft 365 and Azure Data&amp;nbsp;&amp;nbsp;CyberSecurityNews</p><a href="https://news.google.com/rss/articles/CBMifEFVX3lxTFBiZmluM0MxSkNKME9adjdhV1lYOW4yZnBRN29zczlNT1VvWF9GVDJvYzM5S0pPYUpvZTNSWWpvODg5WG1paVc3MTlNaEhsSGQwZ1h2WXp1dFFMZEhTUVpyZXRCaWJjNGpRM0pBbWoxUDhWWUtyWGhmeHdHQUzSAYIBQVVfeXFMTzE3WXBFbTNfSDg0MldDX3N6N3ZUM3BQZHFjOUE3dVBqQURzYUNldEtnMTk2R2JEcnJBMG1QUGVoR3BZUEN4bUZ4X2RZb2hpb0MyX2p3ODJSdlJ6SGJ0QTk0U29BNks5c2sweWtoQ2lYX1JreTBiTFhmTWhMRjh5OEtzUQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('afcc20c6aae')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a9562946367">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMirwFBVV95cUxORXlNTERtLVhLMWZIWUt4UG5tWDdQNWxvZXRUa3RGd1prZVBBUHFpZElHMWhSUUsyNXpWMDN1VVVWVG9BTkNOVEVHb0lxMnNMYUdLcHZKZFZUSGN6U1NkUlBBM090QXVKZTJLQ3luaW8yVmtaYUN4dGg1SGNWalppaUZKd1RrdHpCMUJtOXNKRWRhbS1zRkVsNWhXTVY5UlE2dE9CNWZrN0JMcTBoS2Vn?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Hackers Abuse Microsoft Entra ID Accounts to Exfiltrate Microsoft 365 and Azure Data - Cryptika Cybersecurity</a>
+          <div class="article-meta">Cryptika Cybersecurity &bull; May 19, 2026</div>
+          <div class="article-summary snippet"><p>Hackers Abuse Microsoft Entra ID Accounts to Exfiltrate Microsoft 365 and Azure Data&amp;nbsp;&amp;nbsp;Cryptika Cybersecurity</p><a href="https://news.google.com/rss/articles/CBMirwFBVV95cUxORXlNTERtLVhLMWZIWUt4UG5tWDdQNWxvZXRUa3RGd1prZVBBUHFpZElHMWhSUUsyNXpWMDN1VVVWVG9BTkNOVEVHb0lxMnNMYUdLcHZKZFZUSGN6U1NkUlBBM090QXVKZTJLQ3luaW8yVmtaYUN4dGg1SGNWalppaUZKd1RrdHpCMUJtOXNKRWRhbS1zRkVsNWhXTVY5UlE2dE9CNWZrN0JMcTBoS2Vn?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a9562946367')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a9f002de546">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiggFBVV95cUxQRm10OEpPdWlfZm9JWjUxWkZFZXg4Y0dPbWlHaXJDZkx2dzkxNHJNVjJtUjc4bV9yaTJRN3VXdEU3YmhybzA4dXpHY05fNEl1NzM4YjdlQ285QUZFcGE4Nmh5UlVhOWdueUJLQ3hWbFVLVE91Z1BwVEpQOTdfakxmMGRB?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Passkeys Aren’t Enough: Why Enforcement Matters in Entra ID - Petri IT Knowledgebase</a>
+          <div class="article-meta">Petri IT Knowledgebase &bull; May 18, 2026</div>
+          <div class="article-summary snippet"><p>Passkeys Aren’t Enough: Why Enforcement Matters in Entra ID&amp;nbsp;&amp;nbsp;Petri IT Knowledgebase</p><a href="https://news.google.com/rss/articles/CBMiggFBVV95cUxQRm10OEpPdWlfZm9JWjUxWkZFZXg4Y0dPbWlHaXJDZkx2dzkxNHJNVjJtUjc4bV9yaTJRN3VXdEU3YmhybzA4dXpHY05fNEl1NzM4YjdlQ285QUZFcGE4Nmh5UlVhOWdueUJLQ3hWbFVLVE91Z1BwVEpQOTdfakxmMGRB?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a9f002de546')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="m365" class="topic-section">
+      <h2 class="topic-title" style="--c:#D83B01">Microsoft 365 <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a319b4ed1c2">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMigAFBVV95cUxPRjRYRmhyZFBISTN2UXl6U2RMVm5FY2lBMkRIc0NFNjFjUHlQSjc4LVNjOXR5ZWNlaEZwTXVyQ2pvV1pCcF9jNzhHUEJNMHdtN0hwODZPejJVTFZnd3llXzc2VXJOUUxSSTNvOE5LWmFEUS1jZElvcF9SaF9LZk96aw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">What’s New in Microsoft 365 – May 2026 - Seton Hall University</a>
+          <div class="article-meta">Seton Hall University &bull; May 20, 2026</div>
+          <div class="article-summary snippet"><p>What’s New in Microsoft 365 – May 2026&amp;nbsp;&amp;nbsp;Seton Hall University</p><a href="https://news.google.com/rss/articles/CBMigAFBVV95cUxPRjRYRmhyZFBISTN2UXl6U2RMVm5FY2lBMkRIc0NFNjFjUHlQSjc4LVNjOXR5ZWNlaEZwTXVyQ2pvV1pCcF9jNzhHUEJNMHdtN0hwODZPejJVTFZnd3llXzc2VXJOUUxSSTNvOE5LWmFEUS1jZElvcF9SaF9LZk96aw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a319b4ed1c2')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ae35f3022ef">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiggFBVV95cUxQZjR4UTB1Q1ZJa3dBdWN1YWU3YkRURHlVbTk5X1Y4RE81U3pxSUhUSVBQME41b1lJX1lNUmhoMUpDUWc4UDVwQzc5ZnNJVlVPdGpXS0F0R2NuZ3FrUUltNjBpdE11aXdra2lNaUJqVDUtaHZEQlBJRm5oV1N4SnhyRHJn?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Senac-RS empowers 120K+ students with secure access using Microsoft 365 and Intune - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; May 21, 2026</div>
+          <div class="article-summary snippet"><p>Senac-RS empowers 120K+ students with secure access using Microsoft 365 and Intune&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMiggFBVV95cUxQZjR4UTB1Q1ZJa3dBdWN1YWU3YkRURHlVbTk5X1Y4RE81U3pxSUhUSVBQME41b1lJX1lNUmhoMUpDUWc4UDVwQzc5ZnNJVlVPdGpXS0F0R2NuZ3FrUUltNjBpdE11aXdra2lNaUJqVDUtaHZEQlBJRm5oV1N4SnhyRHJn?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ae35f3022ef')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a83062a2108">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi5gFBVV95cUxQekt5Mk5mTmJPN3pVclVLMURtMUFvclhsVWktUGpnYlVTV0pHaHd0cTdZMXgxc05BSUpGVm9xYWZvVUIxWEI2LUpCeDBacWwtcTlsSExjTHQ5SmZ5aFMtazNJc0NST1U4OTVQc21YZERIYkV2eUtyUlpSUDVjUW12d3lTZlhDV1ZkWEN3QUZiLTRjcldOR3dOeVFsUDhHYWNLLW5ycWV2RDc5TnBrVG1ObnNGNWFnN1dCTkwzSTVtb1Jpb0Fndm9pVDIwN0Q5VTdwM2F6N3NldHB3d1BIUUkwaW43N2VkUQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Security success stories: How St. Luke’s and ManpowerGroup are securing AI foundations - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; May 22, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft Security success stories: How St. Luke’s and ManpowerGroup are securing AI foundations&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMi5gFBVV95cUxQekt5Mk5mTmJPN3pVclVLMURtMUFvclhsVWktUGpnYlVTV0pHaHd0cTdZMXgxc05BSUpGVm9xYWZvVUIxWEI2LUpCeDBacWwtcTlsSExjTHQ5SmZ5aFMtazNJc0NST1U4OTVQc21YZERIYkV2eUtyUlpSUDVjUW12d3lTZlhDV1ZkWEN3QUZiLTRjcldOR3dOeVFsUDhHYWNLLW5ycWV2RDc5TnBrVG1ObnNGNWFnN1dCTkwzSTVtb1Jpb0Fndm9pVDIwN0Q5VTdwM2F6N3NldHB3d1BIUUkwaW43N2VkUQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a83062a2108')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a8e911640fe">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMinwFBVV95cUxNdVNmT0pRWlM5UGJLNEI5aFVPQVlOSkY2VjVTWUJyUl9mNW4wbmhwTE9CNkZiRGEzNGt1LUx5a0V0VVFQUG05aFVBRXRoRFlWSFBUY3pSSHExREZyNEdnWDNKS2x0bG1WMlp4dmx1V0VhLV8wVmNyWHF5elRhRk03RVloS2JFT2E4UmpodFVoenVma3JzWU5ESGdwQnZicUE?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">What’s new in Microsoft Security: May 2026 - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; May 21, 2026</div>
+          <div class="article-summary snippet"><p>What’s new in Microsoft Security: May 2026&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMinwFBVV95cUxNdVNmT0pRWlM5UGJLNEI5aFVPQVlOSkY2VjVTWUJyUl9mNW4wbmhwTE9CNkZiRGEzNGt1LUx5a0V0VVFQUG05aFVBRXRoRFlWSFBUY3pSSHExREZyNEdnWDNKS2x0bG1WMlp4dmx1V0VhLV8wVmNyWHF5elRhRk03RVloS2JFT2E4UmpodFVoenVma3JzWU5ESGdwQnZicUE?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a8e911640fe')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a30816eb134">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi6gFBVV95cUxOQi1xWTRiaUFOZURXaHhPTnJkRktSTHhoYm1hWndrN3J5X0NfelozMS15Z2lMdzNrMDJMRkk0aGk4bkdMNkhyUEowRHA0czc3RW9fWUIzU2xsQml4U29YTU1JMWwxdHBDZEtQVWRHelZzMTlpOVpiVzh0aDdMNUx4ZjJPVEp3T2dFZTJKdUh1b1NqLVRTUG00LWRZLTdaX29Eak1ZMmROLW05cGh3NElmYzdmSm50UFZVRGNrMWxPWDRnbU00YUhPLUN0OW5lWmRULXM1V3lMaXhtVXhiSmYwOFVibWZRcGxhTGc?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft recognized as a Leader in The Forrester Wave™ for Workforce Identity Security Platforms - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; May 22, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft recognized as a Leader in The Forrester Wave™ for Workforce Identity Security Platforms&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMi6gFBVV95cUxOQi1xWTRiaUFOZURXaHhPTnJkRktSTHhoYm1hWndrN3J5X0NfelozMS15Z2lMdzNrMDJMRkk0aGk4bkdMNkhyUEowRHA0czc3RW9fWUIzU2xsQml4U29YTU1JMWwxdHBDZEtQVWRHelZzMTlpOVpiVzh0aDdMNUx4ZjJPVEp3T2dFZTJKdUh1b1NqLVRTUG00LWRZLTdaX29Eak1ZMmROLW05cGh3NElmYzdmSm50UFZVRGNrMWxPWDRnbU00YUhPLUN0OW5lWmRULXM1V3lMaXhtVXhiSmYwOFVibWZRcGxhTGc?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a30816eb134')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="af0d2ba8fd3">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiggFBVV95cUxOYjVETE9RbWE3OFlCd2o5SEtzejUtaWlnVHBvYWxlVFZESFhySENkbWhDeWIzd3hkOWxRbUdrSnZWVjZ3VUkwTDhLeVFQYnA4aUxVS21HS0xWekhPZ3VHZ1JUYkgxRGV0YlRpeVFhRmdKUHNBWW8wb3R0OFFydVQtUlhB?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Genworth speeds portfolio trade construction and investment insights with Microsoft 365 Copilot - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; May 19, 2026</div>
+          <div class="article-summary snippet"><p>Genworth speeds portfolio trade construction and investment insights with Microsoft 365 Copilot&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMiggFBVV95cUxOYjVETE9RbWE3OFlCd2o5SEtzejUtaWlnVHBvYWxlVFZESFhySENkbWhDeWIzd3hkOWxRbUdrSnZWVjZ3VUkwTDhLeVFQYnA4aUxVS21HS0xWekhPZ3VHZ1JUYkgxRGV0YlRpeVFhRmdKUHNBWW8wb3R0OFFydVQtUlhB?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('af0d2ba8fd3')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="af0619dbd01">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi5wFBVV95cUxQNUh4dU9lV0VpZ1RJckVLaG1kVDg4Vi1MMGt2TkdkZkRDaFAtYVFvNnBzcGZGSVg5NU14YlBhN1NxNmEwZ0hhVUpoMTV0Q1ktd0tLbmxDLUpmWUZaamZXelF1M3FrNzJnaWh6WUwyaXNKdDRpRWtnYWd5aXFiZ3hiQ0QzQmZOWnpIbDRzN0xMNXF1OVpiSEJ3OFk2SlVrb2h0dDlfSDN6UEx5SVBnN2w4RFRnRGRVT1Vvd2ItTmZyaDY3Yjlvc0RoYnRVTGVJaTBiQUN2R1hWR09zWFRiVGJTT1ZTVDlyWUU?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">From edge appliance to enterprise compromise: Multi-stage Linux intrusion via F5 and Confluence - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; May 22, 2026</div>
+          <div class="article-summary snippet"><p>From edge appliance to enterprise compromise: Multi-stage Linux intrusion via F5 and Confluence&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMi5wFBVV95cUxQNUh4dU9lV0VpZ1RJckVLaG1kVDg4Vi1MMGt2TkdkZkRDaFAtYVFvNnBzcGZGSVg5NU14YlBhN1NxNmEwZ0hhVUpoMTV0Q1ktd0tLbmxDLUpmWUZaamZXelF1M3FrNzJnaWh6WUwyaXNKdDRpRWtnYWd5aXFiZ3hiQ0QzQmZOWnpIbDRzN0xMNXF1OVpiSEJ3OFk2SlVrb2h0dDlfSDN6UEx5SVBnN2w4RFRnRGRVT1Vvd2ItTmZyaDY3Yjlvc0RoYnRVTGVJaTBiQUN2R1hWR09zWFRiVGJTT1ZTVDlyWUU?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('af0619dbd01')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a1b9f236575">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi0gFBVV95cUxPV1ZIVmdYb25NcGs3VElpRVBIdC1OUjJ1WGhPNEo3RHYtcmtBLUt5M01XZ1BqN1lOZVJlODN3ZjNRbEdrYkVGcjNjOGlsX1FkSEVpMkE4TllKemkzbUZUb3ZqeHI1N1FBMV9ScTZPRnM3eTU1WkZ3ZERwZGN3czRFSHhEdUZfWFAyYlFoalNUc1VJbFBnQ1dwTmt4ak1iN3R6RVJxWlF6ZEFtU012NjFxbGRfQnp5OTBmVGthYm5PRkRHUnE0VVhPeUZ0RWNkT2dUS1E?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Elevate for Educators: Advanced recognition application guide 2026-2027 - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; May 21, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft Elevate for Educators: Advanced recognition application guide 2026-2027&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMi0gFBVV95cUxPV1ZIVmdYb25NcGs3VElpRVBIdC1OUjJ1WGhPNEo3RHYtcmtBLUt5M01XZ1BqN1lOZVJlODN3ZjNRbEdrYkVGcjNjOGlsX1FkSEVpMkE4TllKemkzbUZUb3ZqeHI1N1FBMV9ScTZPRnM3eTU1WkZ3ZERwZGN3czRFSHhEdUZfWFAyYlFoalNUc1VJbFBnQ1dwTmt4ak1iN3R6RVJxWlF6ZEFtU012NjFxbGRfQnp5OTBmVGthYm5PRkRHUnE0VVhPeUZ0RWNkT2dUS1E?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a1b9f236575')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="iru" class="topic-section">
+      <h2 class="topic-title" style="--c:#7C3AED">Iru MDM (formerly Kandji) </h2>
+      <p class="no-news">No articles found this week.</p>
+    </section>
+    <section id="cato" class="topic-section">
+      <h2 class="topic-title" style="--c:#FF6B35">Cato Networks <span class="count">(4)</span></h2>
+      <div class="article-card" data-id="aebcb91c99c">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMipAFBVV95cUxObzRBTDZ2bkVmSkRkbElXbTRQMFpMdUhVT2V5R1hhdFoybmJVcnk2ZWoyUHEzZW5iRmNIeVI1X01ITlFYWHBYODVwZmdoUVYxNl91d054SWVaVjZmUC1sM3N5b082VVdtYVpOeGtDM05yb2dxOWR3REtiUUFSNmtUYWtzdjBfZng0UFhndFJSWGJPZUExOFJOSk1tRUY1aGJTa05PNQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks Adds Cyera DSPM Integration to XOps - Channel Insider</a>
+          <div class="article-meta">Channel Insider &bull; May 19, 2026</div>
+          <div class="article-summary snippet"><p>Cato Networks Adds Cyera DSPM Integration to XOps&amp;nbsp;&amp;nbsp;Channel Insider</p><a href="https://news.google.com/rss/articles/CBMipAFBVV95cUxObzRBTDZ2bkVmSkRkbElXbTRQMFpMdUhVT2V5R1hhdFoybmJVcnk2ZWoyUHEzZW5iRmNIeVI1X01ITlFYWHBYODVwZmdoUVYxNl91d054SWVaVjZmUC1sM3N5b082VVdtYVpOeGtDM05yb2dxOWR3REtiUUFSNmtUYWtzdjBfZng0UFhndFJSWGJPZUExOFJOSk1tRUY1aGJTa05PNQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aebcb91c99c')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aed5b9eced0">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMikgFBVV95cUxQQzJuQXNUcGJYZEN2VzlsenlQdGktOGFvb2dsWGR2V1NLX09FRXAwU0ZJVml1UERSMXRISFdPdkhISEdvVHJCWm5GMkdsZ2t5ZkNKWGd4cHRrVFl5Nzdnd01kZDdOT1lyeW4taG14SmtZbUxxbWtKQ3hMWHlKc2lPWGdUb1pub1pFY0g3VkJwOHpIZw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato integrates Cyera data platform into XOps globally - SecurityBrief UK</a>
+          <div class="article-meta">SecurityBrief UK &bull; May 21, 2026</div>
+          <div class="article-summary snippet"><p>Cato integrates Cyera data platform into XOps globally&amp;nbsp;&amp;nbsp;SecurityBrief UK</p><a href="https://news.google.com/rss/articles/CBMikgFBVV95cUxQQzJuQXNUcGJYZEN2VzlsenlQdGktOGFvb2dsWGR2V1NLX09FRXAwU0ZJVml1UERSMXRISFdPdkhISEdvVHJCWm5GMkdsZ2t5ZkNKWGd4cHRrVFl5Nzdnd01kZDdOT1lyeW4taG14SmtZbUxxbWtKQ3hMWHlKc2lPWGdUb1pub1pFY0g3VkJwOHpIZw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aed5b9eced0')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a44e3c577b1">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiuAFBVV95cUxPSnQwbGNmNUpFQ2lRYkZlQ0ZJMmNoVV90aXg5ZmQtZFpydUxuRVk5SDZaTUJxN3ZBOFE2RklKMWlfSU91VWt5T05INWdBR3hZeHNPYnkzTGNpaU5xLUwxVVdjSWNpVU0yRmJBSG84bE9ub01Qcmd6amtLbHhEOEdIZ2UyT2ctMnVnSU12cW9oZFpGd2hKZ3BKYWM5Nnd3Q01VY2hMQ19OX19UVjFpcVR6V3VKWFJQSjYz?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks Emphasizes AI-Driven Cyber Threats and Defense Strategy - TipRanks</a>
+          <div class="article-meta">TipRanks &bull; May 21, 2026</div>
+          <div class="article-summary snippet"><p>Cato Networks Emphasizes AI-Driven Cyber Threats and Defense Strategy&amp;nbsp;&amp;nbsp;TipRanks</p><a href="https://news.google.com/rss/articles/CBMiuAFBVV95cUxPSnQwbGNmNUpFQ2lRYkZlQ0ZJMmNoVV90aXg5ZmQtZFpydUxuRVk5SDZaTUJxN3ZBOFE2RklKMWlfSU91VWt5T05INWdBR3hZeHNPYnkzTGNpaU5xLUwxVVdjSWNpVU0yRmJBSG84bE9ub01Qcmd6amtLbHhEOEdIZ2UyT2ctMnVnSU12cW9oZFpGd2hKZ3BKYWM5Nnd3Q01VY2hMQ19OX19UVjFpcVR6V3VKWFJQSjYz?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a44e3c577b1')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="af2141535d5">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiyAFBVV95cUxPRG9HalFDOFZNS1kwazhxQW1uU2ZEX3FVVTJReElhd0xRSWV2RmdaTUFhZXo0UkNzZEJ2cm52VmRnREotN2hKdWJtSHlqQndIQkRkZDJZakRsRUZYTW9IUzluTkF0em01V1RLY0Y1Q2g2LXBDUU5hMndQbVNZN1BMZEVUQVpjbDVORlZyY014Q1F5aEN6clE4cjkzWVlwdU5IZUNEcmlaZ0FueHFtdkdOU0wzMXBTcTRKR3g2YU1IdVZBQ01fcEdQRA?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks Integrates Cyera DSPM to Bring Data Intelligence into XOps Platform - TipRanks</a>
+          <div class="article-meta">TipRanks &bull; May 19, 2026</div>
+          <div class="article-summary snippet"><p>Cato Networks Integrates Cyera DSPM to Bring Data Intelligence into XOps Platform&amp;nbsp;&amp;nbsp;TipRanks</p><a href="https://news.google.com/rss/articles/CBMiyAFBVV95cUxPRG9HalFDOFZNS1kwazhxQW1uU2ZEX3FVVTJReElhd0xRSWV2RmdaTUFhZXo0UkNzZEJ2cm52VmRnREotN2hKdWJtSHlqQndIQkRkZDJZakRsRUZYTW9IUzluTkF0em01V1RLY0Y1Q2g2LXBDUU5hMndQbVNZN1BMZEVUQVpjbDVORlZyY014Q1F5aEN6clE4cjkzWVlwdU5IZUNEcmlaZ0FueHFtdkdOU0wzMXBTcTRKR3g2YU1IdVZBQ01fcEdQRA?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('af2141535d5')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+</main>
+
+<footer>
+  Generated every Sunday &mdash; Topics: Windows &bull; Azure &bull; SharePoint &bull; Intune &bull; Entra ID &bull; Microsoft 365 &bull; Iru MDM (formerly Kandji) &bull; Cato Networks
+</footer>
+
+<script>
+const KEY = 'it-news-hidden-v1';
+function getHidden() {
+  try { return new Set(JSON.parse(localStorage.getItem(KEY) || '[]')); }
+  catch { return new Set(); }
+}
+function saveHidden(s) { localStorage.setItem(KEY, JSON.stringify([...s])); }
+function toggleArticle(id) {
+  const h = getHidden();
+  h.has(id) ? h.delete(id) : h.add(id);
+  saveHidden(h); applyHidden(h);
+}
+function applyHidden(h) {
+  h = h || getHidden();
+  document.querySelectorAll('.article-card[data-id]').forEach(c => {
+    c.classList.toggle('is-hidden', h.has(c.dataset.id));
+  });
+}
+let revealing = false;
+function toggleReveal() {
+  revealing = !revealing;
+  document.body.classList.toggle('reveal-hidden', revealing);
+  document.getElementById('reveal-btn').textContent = revealing ? 'Hide hidden' : 'Show hidden';
+}
+fetch('weeks.json').then(r => r.json()).then(weeks => {
+  const sel = document.getElementById('week-sel');
+  weeks.forEach(w => {
+    const o = document.createElement('option');
+    o.value = w.file; o.textContent = w.label;
+    if (w.current) o.selected = true;
+    sel.appendChild(o);
+  });
+}).catch(() => {});
+applyHidden();
+</script>
+</body>
+</html>
