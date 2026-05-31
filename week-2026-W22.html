@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT News Digest — 2026-W22</title>
+  <style>
+    :root{--bg:#f8fafc;--surface:#fff;--border:#e2e8f0;--text:#1e293b;--muted:#64748b;--accent:#2563eb}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+    a{color:var(--accent)}
+
+    header{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+    .h-inner{max-width:1000px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .h-brand{font-size:1.1rem;font-weight:800;color:#1d4ed8}
+    .h-meta{font-size:.78rem;color:var(--muted)}
+    .h-controls{display:flex;gap:8px;align-items:center}
+    .btn{padding:5px 12px;border-radius:6px;font-size:.78rem;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);white-space:nowrap}
+    .btn:hover{background:#f1f5f9}
+    select.week-sel{padding:5px 10px;border-radius:6px;border:1px solid var(--border);background:var(--surface);font-size:.78rem;cursor:pointer;color:var(--text)}
+
+    .t-nav{background:var(--surface);border-bottom:1px solid var(--border);overflow-x:auto}
+    .t-nav-inner{max-width:1000px;margin:0 auto;padding:8px 20px;display:flex;gap:6px;min-width:max-content}
+    .nav-link{font-size:.72rem;padding:3px 10px;border-radius:20px;border:2px solid var(--c,#2563eb);color:var(--c,#2563eb);text-decoration:none;font-weight:600;white-space:nowrap}
+    .nav-link:hover{background:var(--c,#2563eb);color:#fff}
+
+    main{max-width:1000px;margin:0 auto;padding:24px 20px}
+
+    .week-hero{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin-bottom:28px;display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+    .hero-title{font-size:1.6rem;font-weight:900;color:#1d4ed8}
+    .hero-sub{font-size:.85rem;color:var(--muted);margin-top:2px}
+    .stat-box{text-align:center;min-width:60px}
+    .stat-num{font-size:2rem;font-weight:900;color:#1d4ed8;line-height:1}
+    .stat-lbl{font-size:.65rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+
+    .topic-section{margin-bottom:40px}
+    .topic-title{font-size:1.2rem;font-weight:800;color:var(--c,#2563eb);border-bottom:3px solid var(--c,#2563eb);padding-bottom:8px;margin-bottom:14px}
+    .count{font-size:.8rem;font-weight:400;color:var(--muted)}
+    .no-news{color:var(--muted);font-style:italic;font-size:.88rem}
+
+    .article-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:12px;display:flex;gap:12px;align-items:flex-start;transition:border-color .15s}
+    .article-card:hover{border-color:#94a3b8}
+    .article-body{flex:1;min-width:0}
+    .article-title{font-size:.98rem;font-weight:600;text-decoration:none;display:block;margin-bottom:4px;color:var(--accent)}
+    .article-title:hover{text-decoration:underline}
+    .article-meta{font-size:.72rem;color:var(--muted);margin-bottom:8px}
+
+    .article-summary{margin-top:6px;font-size:.875rem;color:#334155;line-height:1.75}
+    .article-summary p{margin-bottom:.6em}
+    .article-summary p:last-child{margin-bottom:0}
+    .gnews-badge{display:inline-block;font-size:.65rem;background:#fef3c7;color:#92400e;border-radius:4px;padding:1px 5px;margin-bottom:6px;vertical-align:middle}
+    .article-summary.snippet{color:var(--muted)}
+    .read-more{display:inline-block;margin-top:6px;font-size:.8rem;font-weight:600;color:var(--accent);text-decoration:none}
+    .read-more:hover{text-decoration:underline}
+
+    .hide-btn{flex-shrink:0;padding:5px 10px;border-radius:6px;font-size:.72rem;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--muted);white-space:nowrap;align-self:flex-start}
+    .hide-btn:hover{border-color:#ef4444;color:#ef4444;background:#fef2f2}
+    .lbl-show{display:none}
+
+    .article-card.is-hidden{display:none}
+    body.reveal-hidden .article-card.is-hidden{display:flex;opacity:.45;border-style:dashed}
+    .article-card.is-hidden .lbl-hide{display:none}
+    .article-card.is-hidden .lbl-show{display:inline}
+    body.reveal-hidden .article-card.is-hidden .hide-btn{border-color:#16a34a;color:#16a34a}
+    body.reveal-hidden .article-card.is-hidden .hide-btn:hover{background:#f0fdf4}
+
+    footer{text-align:center;padding:24px 20px;color:var(--muted);font-size:.75rem;border-top:1px solid var(--border);margin-top:40px}
+
+    @media(max-width:600px){
+      .h-inner,.main{padding-left:14px;padding-right:14px}
+      .hero-title{font-size:1.3rem}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="h-inner">
+    <div>
+      <div class="h-brand">IT News Digest</div>
+      <div class="h-meta">Week 2026-W22 &bull; May 25–31, 2026</div>
+    </div>
+    <div class="h-controls">
+      <button class="btn" id="reveal-btn" onclick="toggleReveal()">Show hidden</button>
+      <select class="week-sel" id="week-sel" onchange="if(this.value) location.href=this.value">
+        <option value="">&#128337; Archive&hellip;</option>
+      </select>
+    </div>
+  </div>
+</header>
+
+<nav class="t-nav"><div class="t-nav-inner"><a href="#windows" class="nav-link" style="--c:#0078D4">Microsoft Windows</a><a href="#azure" class="nav-link" style="--c:#00BCF2">Azure</a><a href="#sharepoint" class="nav-link" style="--c:#036C70">SharePoint</a><a href="#intune" class="nav-link" style="--c:#0F6CBD">Intune</a><a href="#entraid" class="nav-link" style="--c:#6B69D6">Entra ID</a><a href="#m365" class="nav-link" style="--c:#D83B01">Microsoft 365</a><a href="#iru" class="nav-link" style="--c:#7C3AED">Iru MDM (formerly Kandji)</a><a href="#cato" class="nav-link" style="--c:#FF6B35">Cato Networks</a></div></nav>
+
+<main>
+  <div class="week-hero">
+    <div>
+      <div class="hero-title">Week 2026-W22</div>
+      <div class="hero-sub">May 25–31, 2026</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">43</div>
+      <div class="stat-lbl">Articles</div>
+    </div>
+  </div>
+
+    <section id="windows" class="topic-section">
+      <h2 class="topic-title" style="--c:#0078D4">Microsoft Windows <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="abee35b9eb2">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windows-insider/2026/05/29/windows-quality-update-may/" target="_blank" rel="noopener noreferrer" class="article-title">Windows quality update: May</a>
+          <div class="article-meta">blogs.windows.com &bull; May 29, 2026</div>
+          <div class="article-summary"><p>Windows quality update: May
+Hey Windows Insiders,
+One of the best parts of the work is hearing directly from the people using Windows every day. I was recently in Hyderabad and Taipei meeting with local Windows Insiders, and those conversations gave me a lot of energy heading into Build next week.
+The feedback we’re hearing from you continues to reinforce that we’re focused on the right places.
+For me, the theme this month is momentum.
+Some of that momentum is in performance. We’re making steady progress across core areas like File Explorer, search, and broader system responsiveness, backed by architectural improvements that are starting to unlock more consistent gains across Windows.
+Some of it is in craft: the small details that make Windows feel more polished, more predictable, and more personal. Address bar improvements in File Explorer. A modern Run experience. More taskbar positioning flexibility with app labels. These are the kinds of refinements we’re working through across Windows, and you’ll continue to see more of them in Insider builds throughout the coming year.
+Let’s get into what started showing up this month, including new experiences beginning to roll out in today’s flights.
+Making Taskbar and Start more personal
+This month, we began rolling out more personalization for Taskbar and Start, two of the most use and most personal surfaces in Windows.
+With these updates, you can move the taskbar to any edge of the screen, choose icon alignment based on its position, and use app labels across positions to make open windows easier to tell apart. There’s also a new smaller taskbar option to help reclaim screen space.
+We’re also making Start easier to shape around how you work. New controls let you independently show or hide sections like Pinned, Recommended, and All apps, adjust Start menu size, and hide your name and profile picture for more privacy. The Recommended section is also being updated to Recent, with better file relevancy, so surfaced content better reflects what you’re actually working on.
+These updates have started to roll out in the Experimental Channel. Read more about the considerations and improvements we’re bringing to taskbar and Start in the recent blog post from Diego Baca.
+Improving driver quality, reliability, and security with the Driver Quality Initiative (DQI), and Cloud Initiated Driver Recovery
+In March, we committed to delivering a smoother, more dependable Windows experience with our ecosystem of partners. Drivers are a critical part of that work.
+Drivers sit at the heart of Windows, connecting the OS to silicon, components, and peripherals. With thousands of partners contributing to tens of thousands of active driver families, improving driver quality is essential to making Windows more reliable over time.
+At WinHEC 2026, we introduced the Driver Quality Initiative (DQI), a comprehensive effort designed to improve driver quality, reliability, and security across Windows.
+We also rolled out new changes with Cloud Initiated Driver Recovery to improve how drivers are validated, delivered, and maintained. By catching issues earlier, targeting updates more precisely, and enabling automatic recovery when needed, devices can stay reliable over time with fewer disruptions and a better path back to a known-good state.
+This is part of our ongoing work with partners to make Windows more dependable over time.
+File Explorer improvements across reliability, readability and usability
+Building on last month’s improvements, we made several updates to File Explorer across reliability, readability, and usability, including the Address Bar, file size formatting, keyboard navigation, and renaming.
+The Address Bar now supports paths containing double backslashes and quotation marks, such as C:\Users\user or “C:\Users\user”, improving compatibility with more of the paths people paste or type into File Explorer.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('abee35b9eb2')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a85f7cdb0a4">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windows-insider/2026/05/29/announcing-new-builds-for-29-may-2026/" target="_blank" rel="noopener noreferrer" class="article-title">Announcing new builds for 29 May 2026</a>
+          <div class="article-meta">blogs.windows.com &bull; May 29, 2026</div>
+          <div class="article-summary"><p>Announcing new builds for 29 May 2026
+Hello Windows Insiders,
+This week we continue to expand the rollout of the new Windows Insider Program changes to devices in channels already announced.
+New builds this week
+Today we are releasing new Windows 11 Insider Preview Builds. As a reminder, all Insiders can find the release notes for your device based on the new channel system, even if you haven’t moved yet. This is to make finding build information as easy as possible during the transition. See your channel release notes here:
+- Beta: Build 26220.8544
+- Experimental: Build 26300.8553
+For those on other specific build versions, here are today’s new builds and release notes:
+- Experimental (26H1): Build 28020.2207
+- Experimental (Future Platforms) – Including Canary 29500 series: Build 29599.1000
+- Please note: We have identified an issue internally causing crashes on AMD machines supporting System Guard, meaning these devices in WIP will not be offered this week’s Experimental (Future Platforms) build. This should be fixed by the next flight.
+As a reminder, you can always find your build number in the watermark on bottom right-hand corner of your desktop.
+Advanced core selection
+As mentioned in recent WIP blogs, we are in the process of releasing the Windows 11 version 26H1 build to those Insiders who have elected this version under Advanced options in the Windows Insider Program settings. We will begin releasing this version to those Insiders who have elected this change on June 5 2026.
+As outlined in our Windows IT Pro Blog, Windows 11 26H1 is a targeted release that supports some of the new device innovations coming in 2026, including devices with Qualcomm Snapdragon X2 Series processors. Devices running Windows 11, version 26H1 will not be able to update to the next annual feature update in the second half of 2026. This is because Windows 11, version 26H1 is based on a different Windows core than Windows 11, versions 24H2 and 25H2, and the upcoming feature update. These devices will have a path to update in a future Windows release.
+Insiders who have elected the 26H1 option in Advanced options but no longer wish to take this version, should reselect version 25H2 before version 26H1 is made available to these devices beginning June 5. Insiders who do take version 26H1 and want to move back to 25H2 will be able to do so through a complete reinstall of Windows.
+Notable new features:
+[Start menu]
+Release channel: Experimental
+This update brings a number of improvements for the Start menu as first outlined in the Making Taskbar and Start more personal Insider blog. This includes:
+- Renamed “Recommended” section to “Recent” in Start and Settings page
+- Section-level toggles to independently show or hide Pinned, Recommended, and All.
+- Choose between a small and large Start menu, in addition to “Automatic (default)” setting option that’s already available today
+- The option to hide your name and profile picture in Start
+- Redesigned Start menu settings page
+[Windows Search]
+Release channel: Experimental, Beta
+We’re improving Windows Search results:
+- Search by Substring: Files with compound names or content (e.g., MeetingNotesApril, ProjectStatusReport) are now easily discoverable by typing “april” or “status”.
+Thanks,
+Stephen and the Windows Insider Program team</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a85f7cdb0a4')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a0b1d729041">
+        <div class="article-body">
+          <a href="https://petri.com/windows-server-2016-domain-controller-lookup-bug/" target="_blank" rel="noopener noreferrer" class="article-title">Windows Server 2016 Bug Affects Domain Controller Lookup</a>
+          <div class="article-meta">petri.com &bull; May 29, 2026</div>
+          <div class="article-summary"><p>A new Windows Server 2016 bug can break domain controller discovery and disrupt Active Directory operations.
+Key Takeaways:
+Microsoft has acknowledged a new issue in Windows Server 2016 where domain controller discovery may fail after installing the May 2026 KB5087537 security update. The problem specifically affects Windows Server machines with certain hostname conditions, which disrupt critical network and administrative functions.
+Domain controller lookup is a process in Active Directory that allows a computer or application to find a suitable domain controller within a network. This mechanism ensures systems can authenticate users, access resources, and perform administrative tasks by automatically locating the correct server that manages domain services.
+According to Microsoft, the May 12 security update can cause domain controller (DC) lookup or discovery to fail, which disrupts normal Active Directory operations. The problem occurs only on servers where the hostname is exactly 15 characters long. This bug can break administrative tools, scripts, and applications, services relying on Active Directory, and Tasks like DFS Namespace management.
+“When the hostname is 15 characters long, DCLocator calls (for example, using nltest /dsgetdc: /pdc) will return ERROR_INVALID_PARAMETER, preventing applications and administrative tools from locating a domain controller,” Microsoft explained.
+Microsoft says this issue only impacts Windows Server 2016 machines that meet the specific hostname length condition. The company is actively investigating the problem but has not yet shared an official fix. There is no workaround, but changing the server name to something other than 15 characters may help prevent the problem.
+Microsoft still supports Windows Server 2016, even though its mainstream support phase ended in 2022. The company has committed to providing extended support until January 12, 2027, which ensures continued security updates and maintenance for organizations still using Windows Server 2016.
+Beyond that, customers can opt into the Extended Security Updates (ESU) program, which offers up to three additional years of critical security updates while they transition to newer versions of Windows Server.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a0b1d729041')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a805680dc4c">
+        <div class="article-body">
+          <a href="https://petri.com/azure-arc-hotpatching-free-windows-server-2025/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Makes Hotpatching Enabled by Azure Arc Free For Windows Server 2025</a>
+          <div class="article-meta">petri.com &bull; May 28, 2026</div>
+          <div class="article-summary"><p>Hotpatching in Windows Server 2025 via Azure Arc enables seamless security updates without restarts across hybrid environments.
+Key Takeaways:
+Keeping servers secure has long meant disruptive restarts, but Microsoft is changing that approach with a major update. With Windows Server 2025, hotpatching enabled by Azure Arc is now available at no additional cost, allowing organizations to apply critical security fixes in real time without interrupting operations.
+Hotpatching is a feature that allows security updates to be applied directly to a running system without requiring a restart by modifying the in‑memory code of active processes. This approach helps maintain continuous uptime, reduces service disruption, and enables faster deployment of security fixes, while still using periodic full updates when deeper system changes require a reboot.
+With Windows Server 2025, hotpatching is no longer limited to Azure virtual machines and can now be used across on‑premises and multicloud environments via Azure Arc. Azure Arc allows organizations to consistently control and maintain their servers, regardless of where they are hosted.
+Microsoft has now removed previous barriers by making hotpatching available at no additional cost for Azure Arc–enabled Windows Server 2025 machines. This decision was driven by customer feedback, which aims to encourage broader adoption in enterprise environments.
+To enable hotpatching, servers must be running Windows Server 2025 in either the Standard or Datacenter edition and be connected to Azure Arc through the Azure Connected Machine agent. Moreover, virtualization‑based security (VBS) needs to be turned on before the feature can be activated.
+After onboarding, hotpatching can be activated through multiple interfaces, including the Azure Portal, PowerShell, CLI tools, and REST APIs. Once enabled, updates are centrally managed using Azure Update Manager, which streamlines scheduling, deployment, and monitoring across large environments.
+Overall, hotpatching reduces the need for frequent reboots, which helps minimize downtime and reduces overall maintenance effort. Moreover, it enables faster deployment of security updates and minimizes exposure to vulnerabilities. This feature provides unified patch management across hybrid environments to improve efficiency for IT teams.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a805680dc4c')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a771f9fcc69">
+        <div class="article-body">
+          <a href="https://petri.com/windows-autopatch-secure-boot-certificate-readiness/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Adds New Secure Boot Status Report to Windows Autopatch for Certificate Readiness</a>
+          <div class="article-meta">petri.com &bull; May 27, 2026</div>
+          <div class="article-summary"><p>New reporting gives IT teams clearer visibility into Secure Boot certificate readiness.
+Key Takeaways:
+Microsoft has enhanced Windows Autopatch with a new Secure Boot status report that improves visibility into device readiness for certificate updates. The update enables IT teams to move beyond policy-based checks and make more informed, data-driven rollout decisions.
+Secure Boot is a security feature that ensures a device starts only with trusted, digitally signed software, which helps protect systems from low-level malware attacks. However, as the digital certificates it relies on are updated over time and older ones approach expiration, organizations face the challenge of identifying which devices are properly updated, which are outdated, and which may be blocked due to configuration or firmware limitations. This makes it difficult to maintain consistent security across all systems.
+In Windows Autopatch, the updated Secure Boot report provides clear, device-level visibility into certificate status, allowing IT administrators to see whether devices are fully updated, require action, or don’t apply because Secure Boot is disabled. Admins can drill down into each device to review detailed certificate information, which makes it easier to identify gaps and take precise action where needed.
+This updated Secure Boot status report also highlights how each device is configured in terms of trust, which shows whether it supports only Microsoft-signed components or also allows third-party ones. This distinction is important because not every device needs the same certificates, and understanding this helps avoid unnecessary updates. This report also introduces a confidence level indicator, which uses Microsoft’s aggregated data to guide deployment decisions to help security teams reduce uncertainty and plan targeted deployments.
+This Secure Boot status report also includes alerts and freshness indicators that help teams prioritize their work. These alerts flag devices missing diagnostic data, those requiring attention, and when data was last updated, which ensures that decisions are based on current and reliable information.
+Microsoft highlighted that the new Secure Boot status report allows organizations to identify exactly which devices need updates and avoid unnecessary or broad deployments. It also helps to plan targeted remediation strategies, as well as reduce risk during certificate rollout.
+Secure Boot certificate updates require devices to restart to fully apply the changes, which can affect deployment planning. Devices that rely on hotpatch updates may receive these updates more slowly because they don’t always collect the data needed to determine whether a high-confidence rollout is appropriate. Consequently, organizations may need to adjust their approach by installing preview updates, scheduling restarts, and temporarily modifying their update strategies to ensure devices receive the necessary certificates efficiently.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a771f9fcc69')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a31b944de01">
+        <div class="article-body">
+          <a href="https://petri.com/windirstat-quickly-find-and-remove-large-files/" target="_blank" rel="noopener noreferrer" class="article-title">WinDirStat: Quickly Find and Remove Large Files on Windows</a>
+          <div class="article-meta">petri.com &bull; May 26, 2026</div>
+          <div class="article-summary"><p>How to visualize disk usage, identify storage hogs, and clean up Windows systems more efficiently
+If your Windows PCs or servers are running low on storage and you cannot tell what is actually consuming the space, WinDirStat is one of the easiest tools to use. It scans a drive or folder and shows the results as a directory list, file type breakdown, and visual treemap, making it easier to spot oversized files, duplicate content, and other storage hogs so you can clean up your system more intelligently.
+Find out more at Cayosoft.com
+WinDirStat works with Windows 8 and higher, including newer Windows releases such as Windows 10 and 11. Windows Server is also supported, beginning with Windows Server 2012. WinDirStat does not work with non-Windows operating systems, but several open source alternatives are available for systems running MacOS or Linux.
+The easiest way to get WinDirStat is from the official download page, which now offers several installation options. Most users can choose the Microsoft Store version if they want simpler installation and updates, while IT pros and power users may prefer the MSI installer for a more traditional deployment experience.
+The official site also points to the latest installers and portable packages hosted on GitHub, including x64, x86, and ARM64 builds. If you manage Windows systems from the command line, you can also install WinDirStat with winget, Chocolatey, or Scoop.
+As with any utility, it is best to stick to official sources such as the WinDirStat website, Microsoft Store, or the project’s GitHub releases rather than downloading installers from third-party sites. If you are deploying the tool more broadly or want extra assurance, you can also verify the published file hashes before installation.
+WinDirStat currently supports 12 languages including Czech, Dutch, Estonian, Finnish, German, English, Spanish, French, Hungarian, Italian, Polish, and Russian.
+How WinDirStat installs depends on the package you choose. If you install it from the Microsoft Store, setup and updates are handled for you. If you use the MSI installer, the process is straightforward: launch the package, accept the license terms, choose the install location if you want to change it, and complete the wizard.
+For most users, the default options are fine. You can add a desktop shortcut or context menu entry if those fit your workflow, but neither is required to start using the tool.
+Be sure to choose the package that matches your system architecture. The x64 build will be the right choice for most modern PCs, but x86 and ARM64 versions are also available if needed.
+Figure 1 shows the MSI installer options, including the choice to create a desktop shortcut and add a classic shell context menu entry. These are convenience settings rather than essential configuration steps.
+You can optionally create a desktop shortcut and a classic shell context menu entry.
+When prompted, click the Install button to move forward with the installation process. When the installation completes, click Finish.
+When you run WinDirStat, you will be asked if you would like to run the tool with elevated privileges, as shown in Figure 2. Using elevated privileges improves performance and provides you with a more comprehensive view of the file system.
+You will be asked whether you want to run WinDirStat with elevated permissions.
+At this point, you will be taken to a screen, similar to the one shown in Figure 3, asking you what you want to scan. By default, WinDirStat will scan all of your local drives, including network drives that have been mapped to a local drive letter. Depending on your use case however, you may be better off only scanning the C: drive. Incidentally, there is also an option to scan an individual folder rather than scanning an entire disk.
+As you can see in the figure above, the dialog box also gives you the option of scanning for duplicate files.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a31b944de01')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a941c6052ca">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMitgFBVV95cUxQWnVLOHBlWmZIZ3gyME1WZ3ZUY2VkU2VwdFYzR1FzNV9hTEM5bW16SUxrYmx5ZzdWSGxnSTRzeHJBOE5paGRWUnQ3QW1nYVBkYVY5OExaRlZoV0pMV1NVTDJTbGZTMFFjNzc0WWNhbVppaThrZUIzU1FmOVJBU1c4Q2NiSTVxeE1TRXM1VHp6YU15THBJR25KSloxZ3BhMDl6eElCdlc1U2lRM3dIVTdVclRZckhSUQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">First Windows PC powered by Nvidia chips to debut next week, Axios reports - Reuters</a>
+          <div class="article-meta">Reuters &bull; May 30, 2026</div>
+          <div class="article-summary snippet"><p>First Windows PC powered by Nvidia chips to debut next week, Axios reports&amp;nbsp;&amp;nbsp;Reuters</p><a href="https://news.google.com/rss/articles/CBMitgFBVV95cUxQWnVLOHBlWmZIZ3gyME1WZ3ZUY2VkU2VwdFYzR1FzNV9hTEM5bW16SUxrYmx5ZzdWSGxnSTRzeHJBOE5paGRWUnQ3QW1nYVBkYVY5OExaRlZoV0pMV1NVTDJTbGZTMFFjNzc0WWNhbVppaThrZUIzU1FmOVJBU1c4Q2NiSTVxeE1TRXM1VHp6YU15THBJR25KSloxZ3BhMDl6eElCdlc1U2lRM3dIVTdVclRZckhSUQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a941c6052ca')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ae66805568f">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiowFBVV95cUxNZWZmMlMtMHVkamF1NUJrZ25yajBWTlZnYVJIR1RtTHRmV2xiZzhfRFlraTYzdmI0ZktWRXpsbXY5ZVVqaF9VVXlOZU9zVFM1V1JQSi1rZkJ6ZHpReUpWRWFPbXBnTmRwSVZ1R2JSUC1tVUFTMGZMaHR2TEdhMjZDdU1Vb3MzanJWclU2UjQ0OUl0UGhzMmdxN2pfdXctclJQRkUw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Nvidia and Microsoft Just Dropped a Cryptic Tease. Is an Arm-Powered Windows PC Chip Finally Coming? - PCMag</a>
+          <div class="article-meta">PCMag &bull; May 29, 2026</div>
+          <div class="article-summary snippet"><p>Nvidia and Microsoft Just Dropped a Cryptic Tease. Is an Arm-Powered Windows PC Chip Finally Coming?&amp;nbsp;&amp;nbsp;PCMag</p><a href="https://news.google.com/rss/articles/CBMiowFBVV95cUxNZWZmMlMtMHVkamF1NUJrZ25yajBWTlZnYVJIR1RtTHRmV2xiZzhfRFlraTYzdmI0ZktWRXpsbXY5ZVVqaF9VVXlOZU9zVFM1V1JQSi1rZkJ6ZHpReUpWRWFPbXBnTmRwSVZ1R2JSUC1tVUFTMGZMaHR2TEdhMjZDdU1Vb3MzanJWclU2UjQ0OUl0UGhzMmdxN2pfdXctclJQRkUw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ae66805568f')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="azure" class="topic-section">
+      <h2 class="topic-title" style="--c:#00BCF2">Azure <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a805680dc4c">
+        <div class="article-body">
+          <a href="https://petri.com/azure-arc-hotpatching-free-windows-server-2025/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Makes Hotpatching Enabled by Azure Arc Free For Windows Server 2025</a>
+          <div class="article-meta">petri.com &bull; May 28, 2026</div>
+          <div class="article-summary"><p>Hotpatching in Windows Server 2025 via Azure Arc enables seamless security updates without restarts across hybrid environments.
+Key Takeaways:
+Keeping servers secure has long meant disruptive restarts, but Microsoft is changing that approach with a major update. With Windows Server 2025, hotpatching enabled by Azure Arc is now available at no additional cost, allowing organizations to apply critical security fixes in real time without interrupting operations.
+Hotpatching is a feature that allows security updates to be applied directly to a running system without requiring a restart by modifying the in‑memory code of active processes. This approach helps maintain continuous uptime, reduces service disruption, and enables faster deployment of security fixes, while still using periodic full updates when deeper system changes require a reboot.
+With Windows Server 2025, hotpatching is no longer limited to Azure virtual machines and can now be used across on‑premises and multicloud environments via Azure Arc. Azure Arc allows organizations to consistently control and maintain their servers, regardless of where they are hosted.
+Microsoft has now removed previous barriers by making hotpatching available at no additional cost for Azure Arc–enabled Windows Server 2025 machines. This decision was driven by customer feedback, which aims to encourage broader adoption in enterprise environments.
+To enable hotpatching, servers must be running Windows Server 2025 in either the Standard or Datacenter edition and be connected to Azure Arc through the Azure Connected Machine agent. Moreover, virtualization‑based security (VBS) needs to be turned on before the feature can be activated.
+After onboarding, hotpatching can be activated through multiple interfaces, including the Azure Portal, PowerShell, CLI tools, and REST APIs. Once enabled, updates are centrally managed using Azure Update Manager, which streamlines scheduling, deployment, and monitoring across large environments.
+Overall, hotpatching reduces the need for frequent reboots, which helps minimize downtime and reduces overall maintenance effort. Moreover, it enables faster deployment of security updates and minimizes exposure to vulnerabilities. This feature provides unified patch management across hybrid environments to improve efficiency for IT teams.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a805680dc4c')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a0efec1821d">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMinwFBVV95cUxPcnRrOFQ4SHk2TTNDU2F3cFRzQUhFR0pZNUJCalUzbjdyZjBMcTlWV0drSDBKYzE5X3Zsc2lqcTdJN2sySjR2Ylh5Nm5xc1o2LTZIOTgtNV9Mdlp1d1VjdTd5d1JIYS0tT2llM1U5VTAtSWpxVHRNcWlmRTlEdHhwZWJQRnh2YXBQZFM3ZnE2ejNFQXhDb1o5Z0dxclE4Ymc?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Copilot and Azure Experience Widespread Outage - Let's Data Science</a>
+          <div class="article-meta">Let's Data Science &bull; May 29, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft Copilot and Azure Experience Widespread Outage&amp;nbsp;&amp;nbsp;Let's Data Science</p><a href="https://news.google.com/rss/articles/CBMinwFBVV95cUxPcnRrOFQ4SHk2TTNDU2F3cFRzQUhFR0pZNUJCalUzbjdyZjBMcTlWV0drSDBKYzE5X3Zsc2lqcTdJN2sySjR2Ylh5Nm5xc1o2LTZIOTgtNV9Mdlp1d1VjdTd5d1JIYS0tT2llM1U5VTAtSWpxVHRNcWlmRTlEdHhwZWJQRnh2YXBQZFM3ZnE2ejNFQXhDb1o5Z0dxclE4Ymc?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a0efec1821d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a0a03f43205">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiwgFBVV95cUxNWl9lc1FzQkFvMS1kckQ4UkdodTRhSW5wVjhWazUtZ09jS2Iyc1N4WDRYZWwybXZTM3I4SlZ6emhqYWV4RlRXS2VGazFmY0w1RkE0Nm1ua2k4NFM5bGpjZkFTR05zOHRhMGgwdThZcXdfQ2tjNVdWVklJX1NIaXN4TllRS05SbTVvYVVFM3REcFRNQ0hoX002dkNhcTkwWFl2bnl6d3hYdy1ZYTlab3AzNm9naDVfMDhnX2lZVkF5cVhkUdIBxwFBVV95cUxQWVNVNVFRVzVjRTNrb2p3V1o5OXlUYUxscVBXOUlScGVZN0cyeGlXbV9HLTZkV3M3SGlCQ284WEEzUUVKdHdjOF9lQ01Rek5vdWhCRVRMSUxXU2QtWTB0SkFDMmVZSldVVHpzQ0xYcFh5Y0YwUndjSGx5elo5d0x0N2xtbVUyWGNjZFZzUmJiNFlvMVdORXdSel9EUF9ldjZwQnlkMl9WSDRDYWdFeGtZa3BVTl9UUkRzMHRWMG9pV2xISGVIZU9n?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Meta may rival Microsoft, Amazon as Zuckerberg says cloud business 'on the table' | 'Almost every week firms ask us for compute' | Inshorts - Inshorts</a>
+          <div class="article-meta">Inshorts &bull; May 28, 2026</div>
+          <div class="article-summary snippet"><p>Meta may rival Microsoft, Amazon as Zuckerberg says cloud business 'on the table' | 'Almost every week firms ask us for compute' | Inshorts&amp;nbsp;&amp;nbsp;Inshorts</p><a href="https://news.google.com/rss/articles/CBMiwgFBVV95cUxNWl9lc1FzQkFvMS1kckQ4UkdodTRhSW5wVjhWazUtZ09jS2Iyc1N4WDRYZWwybXZTM3I4SlZ6emhqYWV4RlRXS2VGazFmY0w1RkE0Nm1ua2k4NFM5bGpjZkFTR05zOHRhMGgwdThZcXdfQ2tjNVdWVklJX1NIaXN4TllRS05SbTVvYVVFM3REcFRNQ0hoX002dkNhcTkwWFl2bnl6d3hYdy1ZYTlab3AzNm9naDVfMDhnX2lZVkF5cVhkUdIBxwFBVV95cUxQWVNVNVFRVzVjRTNrb2p3V1o5OXlUYUxscVBXOUlScGVZN0cyeGlXbV9HLTZkV3M3SGlCQ284WEEzUUVKdHdjOF9lQ01Rek5vdWhCRVRMSUxXU2QtWTB0SkFDMmVZSldVVHpzQ0xYcFh5Y0YwUndjSGx5elo5d0x0N2xtbVUyWGNjZFZzUmJiNFlvMVdORXdSel9EUF9ldjZwQnlkMl9WSDRDYWdFeGtZa3BVTl9UUkRzMHRWMG9pV2xISGVIZU9n?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a0a03f43205')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a09702023a4">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTE05bGRIQldLMzhZcmhVV3lZcDNjenRXX2RBLXVVM3JrMmhyTGJ3N2h0NlVlTzc5U1RhbHlPX1RDOUxidG9GbGJPMEIwelhoUlpIVnFvTTQ2SUZTVmJnM1JNUlFHNjc3Qnc?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Announces Azure Linux 4.0, Its First General-Purpose Server Linux Distribution - infoq.com</a>
+          <div class="article-meta">infoq.com &bull; May 28, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft Announces Azure Linux 4.0, Its First General-Purpose Server Linux Distribution&amp;nbsp;&amp;nbsp;infoq.com</p><a href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTE05bGRIQldLMzhZcmhVV3lZcDNjenRXX2RBLXVVM3JrMmhyTGJ3N2h0NlVlTzc5U1RhbHlPX1RDOUxidG9GbGJPMEIwelhoUlpIVnFvTTQ2SUZTVmJnM1JNUlFHNjc3Qnc?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a09702023a4')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a0797e7db1a">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMikwFBVV95cUxOdWZBNFJ3Nk1QbkNObGVrTFVKek1yNjZuaHJoOXZHa2FWNjBnSldTZ1ZIcHVSazgtdS0zUWRGT2Rib1RtVWFYS0dJSVlmUEpJMVR2ZW5LYjdUWlhzWTdzV3l4Z2N0VHktY3NKODN4NDVtM0ZPMGtiN1gwQmo4THBvU0cxbmFYVkdYdTlTQUFycFhzb3c?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Pentagon Announces $9 Billion Dell-Microsoft Deal - Redmondmag.com</a>
+          <div class="article-meta">Redmondmag.com &bull; May 29, 2026</div>
+          <div class="article-summary snippet"><p>Pentagon Announces $9 Billion Dell-Microsoft Deal&amp;nbsp;&amp;nbsp;Redmondmag.com</p><a href="https://news.google.com/rss/articles/CBMikwFBVV95cUxOdWZBNFJ3Nk1QbkNObGVrTFVKek1yNjZuaHJoOXZHa2FWNjBnSldTZ1ZIcHVSazgtdS0zUWRGT2Rib1RtVWFYS0dJSVlmUEpJMVR2ZW5LYjdUWlhzWTdzV3l4Z2N0VHktY3NKODN4NDVtM0ZPMGtiN1gwQmo4THBvU0cxbmFYVkdYdTlTQUFycFhzb3c?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a0797e7db1a')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a161b4bb385">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiowFBVV95cUxNRFY2OTBWOGZNV1dGblYxc2x3UWxzeVlrWUQtNDNDam5yc2VKWE4xMXVjOTNKU2FQMXh5SUd3Q0tQNHRacWxrOFA2eGFLZzUzZDJ3X1hzcThYWVV1bWxiWkJwS29YMmxDM2lOZHR0ZWFXWVB5b3FGU1RodHZ3U3d4NkMtQ1dURUNneE1acjVBUWxzYlhLRVhYb01DX1ZBbm9wQUJv?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Agora, the Denodo Cloud Service, now available on the Microsoft Marketplace to Power Agentic AI Use Cases - Yahoo Finance</a>
+          <div class="article-meta">Yahoo Finance &bull; May 27, 2026</div>
+          <div class="article-summary snippet"><p>Agora, the Denodo Cloud Service, now available on the Microsoft Marketplace to Power Agentic AI Use Cases&amp;nbsp;&amp;nbsp;Yahoo Finance</p><a href="https://news.google.com/rss/articles/CBMiowFBVV95cUxNRFY2OTBWOGZNV1dGblYxc2x3UWxzeVlrWUQtNDNDam5yc2VKWE4xMXVjOTNKU2FQMXh5SUd3Q0tQNHRacWxrOFA2eGFLZzUzZDJ3X1hzcThYWVV1bWxiWkJwS29YMmxDM2lOZHR0ZWFXWVB5b3FGU1RodHZ3U3d4NkMtQ1dURUNneE1acjVBUWxzYlhLRVhYb01DX1ZBbm9wQUJv?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a161b4bb385')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a802ea38a7f">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMisAFBVV95cUxPXzNHdnliZGZ3NmI0WmRkQzduYlJMaGJISTBEVGpDQXphb1FTU21LclZIZUtiWGtObnN1dFJnUzUxU0oyUHItdjdrRUh3cDQ1eElWNW04NHlVZExrMGFaNGpPZllaUkVvajIzS1F1cXdacHEwSzBGb3ZtU0I2dDE1aHAxdFhfMDIxb2VCMlI3NzNyODl6V0FQZzBmUS1MdjYwb0NKR19NNEh2bV9kSFJJWA?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft cloud revenue could surge as deployments set to rise sharply: MS (MSFT:NASDAQ) - Seeking Alpha</a>
+          <div class="article-meta">Seeking Alpha &bull; May 27, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft cloud revenue could surge as deployments set to rise sharply: MS (MSFT:NASDAQ)&amp;nbsp;&amp;nbsp;Seeking Alpha</p><a href="https://news.google.com/rss/articles/CBMisAFBVV95cUxPXzNHdnliZGZ3NmI0WmRkQzduYlJMaGJISTBEVGpDQXphb1FTU21LclZIZUtiWGtObnN1dFJnUzUxU0oyUHItdjdrRUh3cDQ1eElWNW04NHlVZExrMGFaNGpPZllaUkVvajIzS1F1cXdacHEwSzBGb3ZtU0I2dDE1aHAxdFhfMDIxb2VCMlI3NzNyODl6V0FQZzBmUS1MdjYwb0NKR19NNEh2bV9kSFJJWA?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a802ea38a7f')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ab2373f816c">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiuwFBVV95cUxPbVdSdTRHbHB1X0NuLXhPWnZ1c3h2TzJGM0l0VDVhSUtrTHVpZDVDWDBfU3o5V1UzcWg4XzVBb3dNSTJCY0U4elFJMUNnNVRlNUozZ1d6QUJ2YV9hTDlkZWZESjJuR09rc28yWXNPTWtoenBNU3RWRHhNR29yUGNOSVdaS1N5Q0J1OVc2b0ZVcDNNZUFETGF1MDU2LVItbEZBMVBTU0lmMDR3V0QtbG93eDNVTlhFTDdERFk4?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Zammo.ai accelerates AI adoption with Microsoft Azure and Microsoft Marketplace - Technology Record</a>
+          <div class="article-meta">Technology Record &bull; May 26, 2026</div>
+          <div class="article-summary snippet"><p>Zammo.ai accelerates AI adoption with Microsoft Azure and Microsoft Marketplace&amp;nbsp;&amp;nbsp;Technology Record</p><a href="https://news.google.com/rss/articles/CBMiuwFBVV95cUxPbVdSdTRHbHB1X0NuLXhPWnZ1c3h2TzJGM0l0VDVhSUtrTHVpZDVDWDBfU3o5V1UzcWg4XzVBb3dNSTJCY0U4elFJMUNnNVRlNUozZ1d6QUJ2YV9hTDlkZWZESjJuR09rc28yWXNPTWtoenBNU3RWRHhNR29yUGNOSVdaS1N5Q0J1OVc2b0ZVcDNNZUFETGF1MDU2LVItbEZBMVBTU0lmMDR3V0QtbG93eDNVTlhFTDdERFk4?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ab2373f816c')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="sharepoint" class="topic-section">
+      <h2 class="topic-title" style="--c:#036C70">SharePoint <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="aa99ed87ef5">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-fixes-sharepoint-rce-flaw-on-prem-servers/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Fixes SharePoint RCE Vulnerability Affecting On-Prem Servers</a>
+          <div class="article-meta">petri.com &bull; May 28, 2026</div>
+          <div class="article-summary"><p>Microsoft warns that a SharePoint flaw could let low-privilege attackers execute code and compromise servers.
+Key Takeaways:
+Microsoft has released security updates to fix a high-severity remote code execution vulnerability in Microsoft SharePoint Server that could allow attackers to compromise vulnerable servers. This flaw could be exploited by attackers with only minimal access privileges, potentially enabling malicious code execution without requiring administrator rights.
+CVE‑2026‑45659 is a remote code execution (RCE) vulnerability that affects Microsoft SharePoint Server. It results from the platform improperly handling untrusted data during the deserialization process, which can allow attackers to execute malicious code on the server. Due to its high severity rating (CVSS score of 8.8), this flaw is considered a significant security risk with the potential to seriously impact affected systems.
+To exploit this vulnerability, an attacker must first be authenticated, but only minimal access (such as site member privileges) is required. Once inside, the attack can be carried out over the network with little effort and without user interaction. If successful, it can allow the attacker to run malicious code, access or alter sensitive information, and potentially gain full control of the affected SharePoint server.
+“In a network-based attack, an authenticated attacker, who has a minimum of Site Member permissions [Privileges Required: Low], could execute code remotely on the SharePoint Server,” Microsoft explained. “The attack complexity is low because an attacker does not require significant prior knowledge of the system and can achieve repeatable success with the payload against the vulnerable component.”
+This remote code execution vulnerability (RCE) was discovered by a security researcher called MEOW. It affects on‑premises SharePoint versions, including SharePoint Server Subscription Edition, SharePoint Server 2019, and SharePoint Enterprise Server 2016.
+Microsoft has released security updates to address this issue across all affected versions of SharePoint Server. The company has warned that a successful exploit could affect the confidentiality, availability, and integrity of the system.
+At the time the vulnerability was disclosed, there was no evidence of active attacks or publicly available exploit code, and Microsoft assessed that it was less likely to be exploited, though the risk was not eliminated. However, security experts emphasize that SharePoint remains a highly attractive target due to the sensitive data it often holds, and similar vulnerabilities in the past have been rapidly turned into real-world attacks.
+SharePoint servers often serve as central platforms for storing documents, managing workflows, and enabling collaboration, so a security breach can have far‑reaching consequences across an organization. Moreover, even attackers with limited access rights can take advantage of this vulnerability to elevate their privileges and potentially move deeper into the network.
+Organizations should act quickly to reduce the risk from this vulnerability by applying Microsoft’s security updates as soon as possible. It’s also important to keep SharePoint servers fully updated, especially those exposed to the internet, to help close the security gap before attackers can take advantage of it.
+Additionally, companies should strengthen their overall security posture by limiting user permissions to only what is necessary, regularly reviewing access rights, and monitoring system logs for unusual activity. It’s highly recommended to implement extra protections (such as network segmentation, web application firewalls, and security monitoring), which can also help detect or block suspicious behavior and reduce the chances of a successful attack.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aa99ed87ef5')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a7627e971c0">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/05/microsoft-patches-sharepoint-rce-flaw.html" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Patches SharePoint RCE Flaw CVE-2026-45659 Across Server Versions</a>
+          <div class="article-meta">thehackernews.com &bull; May 26, 2026</div>
+          <div class="article-summary"><p>Microsoft has rolled out updates to fix a remote code execution vulnerability impacting SharePoint that could be exploited by bad actors in attacks without requiring any specialized conditions to be met.
+The vulnerability, tracked as CVE-2026-45659, carries a CVSS score of 8.8. It has been assigned an important severity.
+&quot;Deserialization of untrusted data in Microsoft Office SharePoint allows an authorized attacker to execute code over a network,&quot; Microsoft said in an advisory released last week.
+Microsoft noted that the vulnerability could be triggered by any authenticated attacker, and that it does not require administrator or other elevated privileges.
+&quot;In a network-based attack, an authenticated attacker, who has a minimum of Site Member permissions (PR:L), could execute code remotely on the SharePoint Server,&quot; the Windows maker added.
+Microsoft credited a researcher named MEOW for discovering and reporting the flaw. Updates have been released for the following versions -
+Last month, Microsoft issued fixes for a spoofing vulnerability impacting Microsoft SharePoint Server (CVE-2026-32201, CVSS score: 6.5) that it said has been exploited in the wild.
+Although the tech giant notes that CVE-2026-45659 is less likely to be exploited, it's essential that users apply the necessary fixes for optimal protection, particularly when considering the fact that several flaws in the collaborative platform have been repeatedly weaponized by attackers over the years.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a7627e971c0')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a2e5811b9da">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMijgFBVV95cUxNa20wekx4c2tmeDRqcnVlZU50anFsQ0FWNDdLMEZ4VlBLTkJPeE41WjVEQkZqclVsNGJ4X1VaOHdtdUhyT1IzVFliTkNhZUFJNmlkZC1GOXpoQTlUMHRDXy1GQkFPUzhlbEhNYkZBTEc2VWZNYW94bmNjNXlyVnZLVFlpTzJlc0E4TGlKOEp3?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Issues Out-of-Band SharePoint Patch - Dark Reading</a>
+          <div class="article-meta">Dark Reading &bull; May 26, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft Issues Out-of-Band SharePoint Patch&amp;nbsp;&amp;nbsp;Dark Reading</p><a href="https://news.google.com/rss/articles/CBMijgFBVV95cUxNa20wekx4c2tmeDRqcnVlZU50anFsQ0FWNDdLMEZ4VlBLTkJPeE41WjVEQkZqclVsNGJ4X1VaOHdtdUhyT1IzVFliTkNhZUFJNmlkZC1GOXpoQTlUMHRDXy1GQkFPUzhlbEhNYkZBTEc2VWZNYW94bmNjNXlyVnZLVFlpTzJlc0E4TGlKOEp3?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a2e5811b9da')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a6fe4f130dc">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/05/microsoft-patches-sharepoint-rce-flaw.html" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Patches SharePoint RCE Flaw CVE-2026-45659 Across Server Versions - The Hacker News</a>
+          <div class="article-meta">The Hacker News &bull; May 26, 2026</div>
+          <div class="article-summary"><p>Microsoft has rolled out updates to fix a remote code execution vulnerability impacting SharePoint that could be exploited by bad actors in attacks without requiring any specialized conditions to be met.
+The vulnerability, tracked as CVE-2026-45659, carries a CVSS score of 8.8. It has been assigned an important severity.
+&quot;Deserialization of untrusted data in Microsoft Office SharePoint allows an authorized attacker to execute code over a network,&quot; Microsoft said in an advisory released last week.
+Microsoft noted that the vulnerability could be triggered by any authenticated attacker, and that it does not require administrator or other elevated privileges.
+&quot;In a network-based attack, an authenticated attacker, who has a minimum of Site Member permissions (PR:L), could execute code remotely on the SharePoint Server,&quot; the Windows maker added.
+Microsoft credited a researcher named MEOW for discovering and reporting the flaw. Updates have been released for the following versions -
+Last month, Microsoft issued fixes for a spoofing vulnerability impacting Microsoft SharePoint Server (CVE-2026-32201, CVSS score: 6.5) that it said has been exploited in the wild.
+Although the tech giant notes that CVE-2026-45659 is less likely to be exploited, it's essential that users apply the necessary fixes for optimal protection, particularly when considering the fact that several flaws in the collaborative platform have been repeatedly weaponized by attackers over the years.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a6fe4f130dc')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a57b4dd2f76">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiiwFBVV95cUxQMXZ4YkFvZXZ0d3gyclFtNEg1cDA0SlZVdkRGWXRaSlZ3YW54VGFoTEdsTk8tU1lvZTlrZFQ0M19rUHpBZ1pGOHp4a1cxUEdzREQtWFVwbEF0SG9ZVVktTm14aERDN2NuZHJKNDFYeXRaM1A1amhqdFozX3ZHa2lOeUxFbUY4cldlZ3pB?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">High-severity SharePoint RCE bug patched by Microsoft (CVE-2026-45659) - Help Net Security</a>
+          <div class="article-meta">Help Net Security &bull; May 26, 2026</div>
+          <div class="article-summary snippet"><p>High-severity SharePoint RCE bug patched by Microsoft (CVE-2026-45659)&amp;nbsp;&amp;nbsp;Help Net Security</p><a href="https://news.google.com/rss/articles/CBMiiwFBVV95cUxQMXZ4YkFvZXZ0d3gyclFtNEg1cDA0SlZVdkRGWXRaSlZ3YW54VGFoTEdsTk8tU1lvZTlrZFQ0M19rUHpBZ1pGOHp4a1cxUEdzREQtWFVwbEF0SG9ZVVktTm14aERDN2NuZHJKNDFYeXRaM1A1amhqdFozX3ZHa2lOeUxFbUY4cldlZ3pB?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a57b4dd2f76')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ab90e8347a0">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-fixes-sharepoint-rce-flaw-on-prem-servers/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Fixes SharePoint RCE Vulnerability Affecting On-Prem Servers - Petri IT Knowledgebase</a>
+          <div class="article-meta">Petri IT Knowledgebase &bull; May 28, 2026</div>
+          <div class="article-summary"><p>Microsoft warns that a SharePoint flaw could let low-privilege attackers execute code and compromise servers.
+Key Takeaways:
+Microsoft has released security updates to fix a high-severity remote code execution vulnerability in Microsoft SharePoint Server that could allow attackers to compromise vulnerable servers. This flaw could be exploited by attackers with only minimal access privileges, potentially enabling malicious code execution without requiring administrator rights.
+CVE‑2026‑45659 is a remote code execution (RCE) vulnerability that affects Microsoft SharePoint Server. It results from the platform improperly handling untrusted data during the deserialization process, which can allow attackers to execute malicious code on the server. Due to its high severity rating (CVSS score of 8.8), this flaw is considered a significant security risk with the potential to seriously impact affected systems.
+To exploit this vulnerability, an attacker must first be authenticated, but only minimal access (such as site member privileges) is required. Once inside, the attack can be carried out over the network with little effort and without user interaction. If successful, it can allow the attacker to run malicious code, access or alter sensitive information, and potentially gain full control of the affected SharePoint server.
+“In a network-based attack, an authenticated attacker, who has a minimum of Site Member permissions [Privileges Required: Low], could execute code remotely on the SharePoint Server,” Microsoft explained. “The attack complexity is low because an attacker does not require significant prior knowledge of the system and can achieve repeatable success with the payload against the vulnerable component.”
+This remote code execution vulnerability (RCE) was discovered by a security researcher called MEOW. It affects on‑premises SharePoint versions, including SharePoint Server Subscription Edition, SharePoint Server 2019, and SharePoint Enterprise Server 2016.
+Microsoft has released security updates to address this issue across all affected versions of SharePoint Server. The company has warned that a successful exploit could affect the confidentiality, availability, and integrity of the system.
+At the time the vulnerability was disclosed, there was no evidence of active attacks or publicly available exploit code, and Microsoft assessed that it was less likely to be exploited, though the risk was not eliminated. However, security experts emphasize that SharePoint remains a highly attractive target due to the sensitive data it often holds, and similar vulnerabilities in the past have been rapidly turned into real-world attacks.
+SharePoint servers often serve as central platforms for storing documents, managing workflows, and enabling collaboration, so a security breach can have far‑reaching consequences across an organization. Moreover, even attackers with limited access rights can take advantage of this vulnerability to elevate their privileges and potentially move deeper into the network.
+Organizations should act quickly to reduce the risk from this vulnerability by applying Microsoft’s security updates as soon as possible. It’s also important to keep SharePoint servers fully updated, especially those exposed to the internet, to help close the security gap before attackers can take advantage of it.
+Additionally, companies should strengthen their overall security posture by limiting user permissions to only what is necessary, regularly reviewing access rights, and monitoring system logs for unusual activity. It’s highly recommended to implement extra protections (such as network segmentation, web application firewalls, and security monitoring), which can also help detect or block suspicious behavior and reduce the chances of a successful attack.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ab90e8347a0')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ac00299d179">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiwwFBVV95cUxNeEZzS1pNVTA0MGhUX1hHYm9BTXE1bFc0VUdfX2JHSHlnZjBUYm4zWW8ybGU0eTF0bjFVTG5hbmwxeVJGVGwzcTRPNVNZcHZXM2c0YlEzMC0xb2w2dU5UMFBfNHUwZ0U0NmI4bm1mYmF5aENTWU40N3pEWHhLNV9kdFM2WTlnelZrbHdBdFhfLUlrQU9oY0VvcHhlcDJkWjdLZG96WXdfV3NJaURpU2dKMUliem0xejRhTmtLbE5ESkVJdFHSAcgBQVVfeXFMUEdSeXpNb3ZlNXVUeHBKdjhIVmtVRm1iR0c1RDVheE5RWHgwWjk2OVZPLWN2NjhvYk1nb1ZZZGktbVRta0VBazg2V0E4bmN0cjM3WVlzUXZ4LVowUTJzcHZIdWNYUUdkNkRIeTRobF9EcmdJZDdDUnI2Rl9Wa1pFR3JCUTYxbDAya0lnWFRFWGJQMU9RVDEzTHB6VDNZb1NyNFBhbzZkb3VGeUZXRHpiRHkyTnRaSEJvSnUtTS16bzZIOHYtYkd5YlE?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft SharePoint Has a New RCE Flaw. If You Haven’t Patched Yet, Go Do That. - Security Affairs</a>
+          <div class="article-meta">Security Affairs &bull; May 27, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft SharePoint Has a New RCE Flaw. If You Haven’t Patched Yet, Go Do That.&amp;nbsp;&amp;nbsp;Security Affairs</p><a href="https://news.google.com/rss/articles/CBMiwwFBVV95cUxNeEZzS1pNVTA0MGhUX1hHYm9BTXE1bFc0VUdfX2JHSHlnZjBUYm4zWW8ybGU0eTF0bjFVTG5hbmwxeVJGVGwzcTRPNVNZcHZXM2c0YlEzMC0xb2w2dU5UMFBfNHUwZ0U0NmI4bm1mYmF5aENTWU40N3pEWHhLNV9kdFM2WTlnelZrbHdBdFhfLUlrQU9oY0VvcHhlcDJkWjdLZG96WXdfV3NJaURpU2dKMUliem0xejRhTmtLbE5ESkVJdFHSAcgBQVVfeXFMUEdSeXpNb3ZlNXVUeHBKdjhIVmtVRm1iR0c1RDVheE5RWHgwWjk2OVZPLWN2NjhvYk1nb1ZZZGktbVRta0VBazg2V0E4bmN0cjM3WVlzUXZ4LVowUTJzcHZIdWNYUUdkNkRIeTRobF9EcmdJZDdDUnI2Rl9Wa1pFR3JCUTYxbDAya0lnWFRFWGJQMU9RVDEzTHB6VDNZb1NyNFBhbzZkb3VGeUZXRHpiRHkyTnRaSEJvSnUtTS16bzZIOHYtYkd5YlE?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac00299d179')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a1d00eb8d04">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMirAFBVV95cUxPQ0JyS01KYW16U045T2xwT1U3bG9xSVFNNUZsRnZsLUVZOGI0UVBUN2x2bzZ0SkVqeXFkOE16YTU0dHdnRWFkUGd2UkxEaHpyTGl4SU1FOUZTMy03NTFTLVo3clAxWE1TS3M2UER4ZVdWUmJDdXBjeVJhS3RDNG5ESHJWMFhhTU41dUpNZ3ZWU2czTnlWdEZSUUR0NVZiREtBQ3o5MTBjbzEyMHJU?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">FBI sounds alarm on phishing tool that steals Microsoft 365 accounts without passwords - New York Post</a>
+          <div class="article-meta">New York Post &bull; May 28, 2026</div>
+          <div class="article-summary snippet"><p>FBI sounds alarm on phishing tool that steals Microsoft 365 accounts without passwords&amp;nbsp;&amp;nbsp;New York Post</p><a href="https://news.google.com/rss/articles/CBMirAFBVV95cUxPQ0JyS01KYW16U045T2xwT1U3bG9xSVFNNUZsRnZsLUVZOGI0UVBUN2x2bzZ0SkVqeXFkOE16YTU0dHdnRWFkUGd2UkxEaHpyTGl4SU1FOUZTMy03NTFTLVo3clAxWE1TS3M2UER4ZVdWUmJDdXBjeVJhS3RDNG5ESHJWMFhhTU41dUpNZ3ZWU2czTnlWdEZSUUR0NVZiREtBQ3o5MTBjbzEyMHJU?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a1d00eb8d04')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="intune" class="topic-section">
+      <h2 class="topic-title" style="--c:#0F6CBD">Intune <span class="count">(1)</span></h2>
+      <div class="article-card" data-id="aaf4f883aca">
+        <div class="article-body">
+          <a href="https://techcommunity.microsoft.com/t5/intune-customer-success/unpacking-endpoint-management-is-back-and-we-ve-got-a-lot-to/ba-p/4514599" target="_blank" rel="noopener noreferrer" class="article-title">Unpacking Endpoint Management is back - and we’ve got a lot to talk about</a>
+          <div class="article-meta">techcommunity.microsoft.com &bull; May 28, 2026</div>
+          <div class="article-summary snippet"><p>If you've been missing real, candid conversations about endpoint management, good news! Unpacking Endpoint Management is officially back.
+This series is all about what actually works. No fluff, just practical tips, proven strategies, and honest discussions to help you optimize and simplify the way you manage and secure endpoints today (and prepare for what's next).
+We're bringing together people from across Microsoft Intune, Security, and Customer Experience engineering and product teams, along with guest practitioners, to share what's worked, what hasn't, and what we've learned along the way. And yes…we're absolutely here for the tough questions.
+A quick update on the hosts
+Danny Guillory, a familiar face to the community and a Product Manager for Intune and Configuration Manager, will continue to host the series. He's joined this season by Rachelle Blanchard as co‑host, bringing a strong community and discovery lens to the series. Rachelle focuses on surfacing real customer questions and guiding conversations toward practical outcomes, helping ensure each episode reflects how endpoint management works in the real world.
+Up next
+
+June 30, 2026 – 9:00 a.m. PDTTopic TBD - What should we cover? Drop ideas below in the comments.
+
+July 30, 2026 - 9:00 a.m. PDTTopic TBD
+
+
+Sign in to the Tech Community and follow this post for the latest updates on upcoming episodes.
+Catch up on demand
+You may have missed them, but you don't have to miss out on the learnings. Watch and learn when it's convenient for you.
+
+Device security with Microsoft Intune
+Trends in endpoint management (live from Tech Takeoff 2026)
+
+Not sure where to start? Watch our most recent episode, Policy: from hybrid to cloud-native, now on demand!
+
+&amp;nbsp;
+What's the format?
+This web series is streamed live on Tech Community, LinkedIn, YouTube, and X. In addition to open discussion, we answer your questions so sign in (or sign up for) the Tech Community and RSVP to submit questions early and throughout the live show.
+How do I join?
+There's no call or meeting to join. Simply head to aka.ms/JoinUEM. Show up at start time, watch live, and jump into the discussion with us.
+Help shape the series
+This series is for you - so tell us what you want to hear. Drop a comment below with:
+
+Topics you'd like us to cover
+Tough questions you want answered
+Speakers you'd love to hear from
+
+We can't wait to get started - and even more excited to hear from you along the way.
+Join the Community to get early insight into what's coming for Intune, connect with experts, and share real-world feedback that helps shape the product. 👉 aka.ms/JoinIntuneCommunity</p><a href="https://techcommunity.microsoft.com/t5/intune-customer-success/unpacking-endpoint-management-is-back-and-we-ve-got-a-lot-to/ba-p/4514599" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aaf4f883aca')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="entraid" class="topic-section">
+      <h2 class="topic-title" style="--c:#6B69D6">Entra ID <span class="count">(3)</span></h2>
+      <div class="article-card" data-id="aba946c3e1d">
+        <div class="article-body">
+          <a href="https://www.bleepingcomputer.com/news/security/us-charges-google-security-engineer-with-polymarket-insider-trading/" target="_blank" rel="noopener noreferrer" class="article-title">US charges Google security engineer with Polymarket insider trading</a>
+          <div class="article-meta">bleepingcomputer.com &bull; May 29, 2026</div>
+          <div class="article-summary"><p>A Google security engineer was charged with insider trading after winning $1.2 million using confidential company data to place bets on the cryptocurrency-based Polymarket decentralized prediction market.
+36-year-old Michele Spagnuolo, an Italian citizen residing in Switzerland and a Google employee since 2014, appeared on Wednesday in the Southern District of New York.
+In parallel, the Commodity Futures Trading Commission (CFTC) filed a separate civil complaint the same day, seeking restitution, disgorgement, civil monetary penalties, and trading and registration bans.
+According to the criminal complaint, throughout this scheme, Spagnuolo used his access to an internal software tool containing confidential &quot;Year in Search&quot; data (Google's annual ranking of top trending search terms), which was marked with a &quot;Google Confidential&quot; banner in red text.
+Beginning in October 2025, Spagnuolo allegedly used a Polymarket account under the alias &quot;AlphaRaccoon&quot; to bet on whether specific individuals would appear on Google's top trending search lists. He also allegedly used confidential data from Google's internal data tool and placed bets with near-perfect accuracy across approximately 25 unlikely outcomes, while risking roughly $2.75 million in total.
+After Google publicly announced its Year in Search results on December 4, 2025, Spagnuolo's AlphaRaccoon Polymarket account collected approximately $1.2 million in USDC.e winnings.
+&quot;From on or about December 4, 2025 through on or about December 10, 2025, when the Polymarket markets regarding Google's Year in Search resolved, the software released approximately 3,914,362 million USDC.e to the AlphaRaccoon Polymarket account. On or about December 10, 2025, the AlphaRaccoon Polymarket account sent approximately 5.045 million USDC.e, to Wallet-0xAf6,&quot; the complaint reads.
+The FBI traced the AlphaRaccoon account to a payment processor account registered in Spagnuolo's name and linked to an Italian government identification card. After online communities on Discord and X began speculating that AlphaRaccoon was a Google insider, the username was removed from the account, reverting it to an alphanumeric wallet address.
+Prosecutors said that Spagnuolo subsequently moved the illegal proceeds through multiple cryptocurrency-swapping services, including one that removes wallet addresses from the blockchain.
+&quot;Today's charges reinforce a decades-old message: corporate insiders cannot use confidential business information to turn a profit in our markets,&quot; said U.S. Attorney Jay Clayton. &quot;As alleged, Spagnuolo violated the duties he owed to his employer and used Google's confidential business information to make more than $1.2 million in trading profits on Polymarket.&quot;
+&quot;Employees who are entrusted with confidential business information cannot misappropriate that information for personal financial gain,&quot; added CFTC Director of Enforcement David I. Miller.
+Spagnuolo now faces a maximum of 10 years in prison on a commodities fraud count and 20 years each on wire fraud and money laundering counts.
+The Validation Gap: Automated Pentesting Answers One Question. You Need Six.
+Automated pentesting tools deliver real value, but they were built to answer one question: can an attacker move through the network? They were not built to test whether your controls block threats, your detection rules fire, or your cloud configs hold.
+This guide covers the 6 surfaces you actually need to validate.
+Download Now</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aba946c3e1d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a310e252e39">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/05/new-ai-usage-report-enterprise-ai-risk.html" target="_blank" rel="noopener noreferrer" class="article-title">New AI Usage Report: Enterprise AI Risk Is Heavily Concentrated Among a Small Group of AI &quot;Power users&quot;</a>
+          <div class="article-meta">thehackernews.com &bull; May 28, 2026</div>
+          <div class="article-summary"><p>State of AI Usage Report 2026 (full report here) by LayerX Security reveals the extent of the enterprise AI visibility gap and why most organizations still don't understand where their AI exposure is actually coming from. The research shows that enterprise AI risk is not distributed evenly across users or platforms. Instead, it is heavily concentrated among a small group of AI power users and a handful of dominant AI platforms that drive the majority of enterprise AI activity and sensitive data exposure.
+At the same time, AI usage is rapidly fragmenting across personal accounts, AI browser extensions, embedded copilots, AI connectors, and secondary AI tools operating outside traditional visibility and governance controls. The result is a fragmented AI ecosystem that most organizations still cannot fully see or govern.
+While AI Is Everywhere in the Enterprise, Most Employees Are Casual
+The common perception is that &quot;everyone uses AI now&quot;. The report paints a much more nuanced picture. While nearly half of enterprise users interacted with AI tools over the past year, only 18% use AI on a weekly basis. This suggests that most employees remain casual users.
+At first glance, that sounds like good news for security teams. Fewer users should mean lower risk. But the report found the opposite.
+Enterprise AI activity is heavily concentrated among a very small group of employees. While half of the users had 12 AI conversations or fewer, the top 5% generated at least 144 conversations. These same users also engaged in much deeper interactions, averaging 18 prompts per conversation compared to the average of 2.
+This creates a new class of &quot;AI power users&quot; that conduct far more conversations, interact across multiple AI platforms, and engage in significantly deeper prompt chains than average employees.
+The result: AI risk is not distributed evenly across the organization. A relatively small group of users drives a disproportionate amount of enterprise AI exposure.
+ChatGPT Is Still Dominating Enterprise AI Usage, But Copilot is Coming Closer
+Despite the rapid growth of enterprise copilots, ChatGPT remains the dominant AI platform inside enterprises by a significant margin. It accounts for 36% of enterprise AI users and more than 55% of all AI conversations. That gap matters because it shows ChatGPT users are far more active than users of competing platforms.
+Copilot M365 is growing quickly, reaching 29% adoption and nearly a quarter of enterprise AI conversations. The growth of Copilot also signals something important: enterprise AI usage is starting to split between governed enterprise-native AI and consumer-driven AI adoption. But beyond those two leaders, most AI platforms remain far behind despite the attention they receive.
+While Copilot M365 usage is largely tied to corporate-managed Microsoft environments, where organizations typically maintain stronger visibility and governance controls, Gemini presents a very different risk profile. Most enterprise Gemini usage still happens through the regular consumer version, not Gemini Enterprise. In many cases, employees access it through personal accounts and unmanaged environments. That means organizations often have little visibility into how data is retained, whether prompts are used for model training, or how enterprise information is ultimately handled.
+The implication is significant: not all enterprise AI adoption carries the same level of risk. The real governance challenge increasingly comes from consumer AI usage operating inside enterprise workflows under the appearance of legitimate productivity tools.
+Shadow AI Is No Longer A Few Applications; It's a Long Tail of Under-the-Radar AI Apps
+Most organizations still think about Shadow AI as employees using an unapproved chatbot.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a310e252e39')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ae2ae8424ca">
+        <div class="article-body">
+          <a href="https://www.neowin.net/news/microsoft-is-making-a-major-change-to-entra-id-authentication/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft is making a major change to Entra ID authentication - Neowin</a>
+          <div class="article-meta">Neowin &bull; May 30, 2026</div>
+          <div class="article-summary"><p>Microsoft Entra ID is the Redmond tech company's identity and access management (IAM) system that powers authentication, single sign-on (SSO), multi-factor authentication (MFA), and conditional access policy mechanisms used to govern access to internal organizational resources and external applications. It was previously known as Azure Active Directory (AAD), before being renamed to Entra ID in 2023. Now, Microsoft has announced a significant change for Entra ID customers.
+In a Message Center update tagged as MC1325414, Microsoft has begun informing customers that it will soon allow only registered authentication mechanisms for the Self-Service Password Reset (SSPR) portal. Right now, users can leverage any attribute stored in their contact information such as mobile phone, business phone, and alternate email, even if these methods have not been registered as authentication methods.
+In a bid to further enhance security, SSPR will mandate authenticated and trusted methods rather than relying on contact attributes stored in the directory. From July 6, Microsoft will kick off a campaign that will prompt impacted users to register their authentication methods. Then, on September 7, the company will begin its enforcement process after which the unregistered methods will not be supported. This means that general availability is scheduled for September 2026.
+Microsoft has noted that 86% of Entra ID SSPR users already use registered methods, so they are not impacted. However, after September 7, affected users will not be able to perform password resets and will be asked to register an authentication method or contact their IT admins. It's worth noting that this change does not mean that phone numbers and alternate email addresses won't be allowed as authentication methods, but it does mandate their registration first.
+IT admins have been encouraged to view their SSPR coverage details via Microsoft Entra admin center &gt; Authentication methods &gt; User registration details, and ensure that all users (especially IT admins) have at least one registered authentication method. They should also have fallback plans in place and begin informing users about this configuration change already.
+Microsoft has flagged this as a &quot;Major Change&quot; in the Message Center, which makes sense considering it introduces significant compliance considerations. It also enhances the cybersecurity posture of firms as Entra ID is an essential component protecting organizational resources. This change is a part of Microsoft's Secure Future Initiative (SFI), which aims to beef up cybersecurity perimeters.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ae2ae8424ca')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="m365" class="topic-section">
+      <h2 class="topic-title" style="--c:#D83B01">Microsoft 365 <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="aade397eb0e">
+        <div class="article-body">
+          <a href="https://petri.com/kali365-mfa-bypass-microsoft-365-phishing/" target="_blank" rel="noopener noreferrer" class="article-title">Kali365 Phishing-As-A-Service Bypasses MFA To Hijack Microsoft 365 Accounts</a>
+          <div class="article-meta">petri.com &bull; May 27, 2026</div>
+          <div class="article-summary"><p>FBI warns of Kali365, a phishing platform that bypasses MFA to hijack Microsoft 365 accounts through stealth token theft.
+Key Takeaways:
+The US Federal Bureau of Investigation has issued a warning about a new Phishing-as-a-Service platform called Kali365, which is designed to compromise Microsoft 365 accounts. This cybercrime tool enables attackers to bypass traditional security protections and gain persistent access to accounts without raising suspicion.
+Phishing‑as‑a‑Service (PhaaS) is an emerging cybercrime model in which ready‑made phishing tools and services are sold or shared, which allows even inexperienced individuals to launch sophisticated attacks. These platforms provide prebuilt templates, automation features, and user‑friendly dashboards. PhaaS kits are becoming increasingly advanced and widely used, which allows rookie hackers to carry out highly convincing and large‑scale phishing campaigns with minimal effort.
+According to a new report from the FBI, this new Phishing-as-a-Service (PhaaS) tool called Kali365 was first observed in April 2026. It’s distributed through Telegram and is designed to help cybercriminals target Microsoft 365 customers. This makes it particularly dangerous because it bypasses common security protections.
+This attack works through several carefully designed steps, beginning with a phishing email that impersonates a trusted service, such as Microsoft tools, and tricks the victim into following instructions. The message directs the user to enter a device code on a legitimate Microsoft login page. However, the victim unknowingly authorizes the attacker’s access, which allows them to capture authentication tokens and maintain long‑term access to services like Outlook, Microsoft Teams, and OneDrive without re‑authentication.
+“Kali365 has primarily been distributed via Telegram, enabling cyber threat actors to obtain Microsoft 365 access tokens and bypass multi-factor authentication (MFA) protocols without intercepting the user’s credentials,” the FBI explained.
+Kali365 provides tools, templates, dashboards, and AI‑generated phishing messages, which makes it easier for even low‑skill attackers to launch campaigns. The federal agency encourages victims to report incidents to the IC3 and provide details like phishing emails, login activity, and suspicious devices.
+This is not the first instance of a PhaaS operation focusing on Microsoft customers. Previously, Microsoft collaborated with cybersecurity authorities to disrupt major phishing services such as Tycoon 2FA, which had been targeting Microsoft 365 accounts. Last year, Microsoft worked alongside Cloudflare to disrupt another organized phishing platform aimed at stealing Microsoft credentials.
+The FBI recommends strengthening security by reducing the ways attackers can exploit login processes. An important step is to limit or completely disable device code authentication where it is not necessary, because this feature can be abused in phishing attacks. Moreover, organizations should apply conditional access controls to block or restrict risky sign‑in methods, which ensure that only verified and secure login attempts are allowed. It’s also advised to review how these authentication methods are currently used so that any legitimate business needs are identified before restrictions are enforced.
+Administrators should also stop authentication from being transferred between devices, which attackers can misuse to gain unauthorized access. Moreover, they should maintain a small number of well‑protected emergency access accounts to prevent being locked out of critical systems while implementing stricter controls. These steps help reduce vulnerabilities, strengthen account protection, and make it much harder for attackers to exploit authentication systems.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aade397eb0e')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a9dc5c09d5c">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi3wFBVV95cUxPUHczc3Rjd1hYcmh6OWMtb2dOVnd3LWZmd05NWThQRzZYOHFRWkNvbzB0c0ZzTXk1X05IQU1ra21FUmZiRnRwQ0dWNWJWbWI1bnpDdmVvUTR5UnF3V0FPTzBZTjlxU0JwaVZ2dWtjUjNiQzZ3Wm1GdHJiTE9GX3lMMWlRUHNhX29MazZkRWN5bGxCYm1RQUR6b1RwejJzbkUzWnRvTU8xcXY5VmRfcFFyWlpSQk1GOGV0Yy1rOHJ5OG1DU3FCX2dkLTJwOFBVdGkydEFVNnJlMDA0Ymg5YWdR?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Introducing Microsoft 365 Business with Copilot: The new standard for small business - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; May 28, 2026</div>
+          <div class="article-summary snippet"><p>Introducing Microsoft 365 Business with Copilot: The new standard for small business&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMi3wFBVV95cUxPUHczc3Rjd1hYcmh6OWMtb2dOVnd3LWZmd05NWThQRzZYOHFRWkNvbzB0c0ZzTXk1X05IQU1ra21FUmZiRnRwQ0dWNWJWbWI1bnpDdmVvUTR5UnF3V0FPTzBZTjlxU0JwaVZ2dWtjUjNiQzZ3Wm1GdHJiTE9GX3lMMWlRUHNhX29MazZkRWN5bGxCYm1RQUR6b1RwejJzbkUzWnRvTU8xcXY5VmRfcFFyWlpSQk1GOGV0Yy1rOHJ5OG1DU3FCX2dkLTJwOFBVdGkydEFVNnJlMDA0Ymg5YWdR?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a9dc5c09d5c')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="abf0e88dc31">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiswFBVV95cUxNRjdjUHR6OUY0MGdQSm1NbjkwVzlEN01ibEZqd1VxaVBOT0ZwdDlEdENMbUFEdGZ1bk5CU3FmeDZRVXFkY0hZOExuSzNlRHFLeVlkNlR6OV82Q0wwcHNaMTNsMmowY3FPcTBfRXBuOFVDbmF4V0t0VkpEbm84dzFCXy04eEV2UC1tOUc5NzZLT3piQlBna0hNUUU4bXA4eGdQbmZzamt1WklCc3M0S2ZKWExYbw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Introducing a new design for Microsoft 365 Copilot - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; May 28, 2026</div>
+          <div class="article-summary snippet"><p>Introducing a new design for Microsoft 365 Copilot&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMiswFBVV95cUxNRjdjUHR6OUY0MGdQSm1NbjkwVzlEN01ibEZqd1VxaVBOT0ZwdDlEdENMbUFEdGZ1bk5CU3FmeDZRVXFkY0hZOExuSzNlRHFLeVlkNlR6OV82Q0wwcHNaMTNsMmowY3FPcTBfRXBuOFVDbmF4V0t0VkpEbm84dzFCXy04eEV2UC1tOUc5NzZLT3piQlBna0hNUUU4bXA4eGdQbmZzamt1WklCc3M0S2ZKWExYbw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('abf0e88dc31')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a1e24818903">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMijAFBVV95cUxQcjNYaU9aOHRyRDNnQWFLVW5uTEl2bk1aN1JMcFBBTE54R0ZtU2hJeHI1NnFvaUJNeXVIaDUxYmRvYzRfRWJadDM2a1Y3R1JpYmZ5ME9mNnhmTXhXUGdMT3dLaTYwcl9PS0JSVm50UkhvamFHN1F3MW1UQ21keXRnQ0tHWmhsOENXNGMtRw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft 365: A guide to the updates - Computerworld</a>
+          <div class="article-meta">Computerworld &bull; May 27, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft 365: A guide to the updates&amp;nbsp;&amp;nbsp;Computerworld</p><a href="https://news.google.com/rss/articles/CBMijAFBVV95cUxQcjNYaU9aOHRyRDNnQWFLVW5uTEl2bk1aN1JMcFBBTE54R0ZtU2hJeHI1NnFvaUJNeXVIaDUxYmRvYzRfRWJadDM2a1Y3R1JpYmZ5ME9mNnhmTXhXUGdMT3dLaTYwcl9PS0JSVm50UkhvamFHN1F3MW1UQ21keXRnQ0tHWmhsOENXNGMtRw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a1e24818903')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aee8945ae5f">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiwgFBVV95cUxPR09VWUZ1Wk1ndWpwRG9ud1YxdE9yM0cxRG9lNEF1b19xc0EzdUgtZjZtVTlNdWxJX3ByeEh6WFRIQXE1N3dCbkFxRUNiU1JJbEpqLURSTzFNS0NCQnQwWUlCYUNyUjZKVzhhY2l3V3YzTHZMQnNFUVNBZnhsQk1JSmFaMENkWmNJSHhlV0pFVDJyVElpeGhnYkcyanpUbk4wS3QwNDBlajc5NnJ4b285VXR1blRSbGpSMEQtQWFZekFSZ9IB1gFBVV95cUxNNFFKSm5KVkxVZU5UeG5vak93SEpGYXA2UWxuUU4wOHpTYnZxZGt3aHZYRWducUtERkE2aHF3dFV0cGpLUFIwOG9MNndfWEVBcldQaUY4eHVoQ3lUOEJoY1p3RV95TFEwRzZNV0FHZXJYTU81UzYtNUQ1S3dWWHJHV2NSVDZUN055LWFfam9lSEpVTUJ0NDgwRzhENFpaaGlEUGdTc3dURV9IQnc3UUh1ME5IbUJ2U1JwRVVpNzB0b01FX2lFeGo1V1FwYTE1SnNnVnRLY0NR?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">FBI issues urgent warning on phishing scam that can hack your Microsoft 365 account - SILive.com</a>
+          <div class="article-meta">SILive.com &bull; May 30, 2026</div>
+          <div class="article-summary snippet"><p>FBI issues urgent warning on phishing scam that can hack your Microsoft 365 account&amp;nbsp;&amp;nbsp;SILive.com</p><a href="https://news.google.com/rss/articles/CBMiwgFBVV95cUxPR09VWUZ1Wk1ndWpwRG9ud1YxdE9yM0cxRG9lNEF1b19xc0EzdUgtZjZtVTlNdWxJX3ByeEh6WFRIQXE1N3dCbkFxRUNiU1JJbEpqLURSTzFNS0NCQnQwWUlCYUNyUjZKVzhhY2l3V3YzTHZMQnNFUVNBZnhsQk1JSmFaMENkWmNJSHhlV0pFVDJyVElpeGhnYkcyanpUbk4wS3QwNDBlajc5NnJ4b285VXR1blRSbGpSMEQtQWFZekFSZ9IB1gFBVV95cUxNNFFKSm5KVkxVZU5UeG5vak93SEpGYXA2UWxuUU4wOHpTYnZxZGt3aHZYRWducUtERkE2aHF3dFV0cGpLUFIwOG9MNndfWEVBcldQaUY4eHVoQ3lUOEJoY1p3RV95TFEwRzZNV0FHZXJYTU81UzYtNUQ1S3dWWHJHV2NSVDZUN055LWFfam9lSEpVTUJ0NDgwRzhENFpaaGlEUGdTc3dURV9IQnc3UUh1ME5IbUJ2U1JwRVVpNzB0b01FX2lFeGo1V1FwYTE1SnNnVnRLY0NR?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aee8945ae5f')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a050a19c858">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiugFBVV95cUxQR1FOaF96YnBMdEFHMmRqSVFSNERWdnhJclc3SmM1a2dhZGwxb1FacngyVFRvTDdyRXZpbjRqTUMxdkJiSmNyVUFSM0ZJYzRfczhWZXhtMTJ6cEE0WkJ0Qy1UeFZvZndyc3N5NjdES0V3LVFZQk8zNXQ0VWZJdWlKM0JWOEpHdXM2ZHVoU0txeE14ejFxQVFyNkU1d21MVkFRdzBEUTZVeWl1VF83VW1RVFhPZXNpVzF4TVE?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Meet the future of innovation: Microsoft Imagine Cup World Championship - The Official Microsoft Blog</a>
+          <div class="article-meta">The Official Microsoft Blog &bull; May 30, 2026</div>
+          <div class="article-summary snippet"><p>Meet the future of innovation: Microsoft Imagine Cup World Championship&amp;nbsp;&amp;nbsp;The Official Microsoft Blog</p><a href="https://news.google.com/rss/articles/CBMiugFBVV95cUxQR1FOaF96YnBMdEFHMmRqSVFSNERWdnhJclc3SmM1a2dhZGwxb1FacngyVFRvTDdyRXZpbjRqTUMxdkJiSmNyVUFSM0ZJYzRfczhWZXhtMTJ6cEE0WkJ0Qy1UeFZvZndyc3N5NjdES0V3LVFZQk8zNXQ0VWZJdWlKM0JWOEpHdXM2ZHVoU0txeE14ejFxQVFyNkU1d21MVkFRdzBEUTZVeWl1VF83VW1RVFhPZXNpVzF4TVE?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a050a19c858')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a1d5b17c1ac">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiwgFBVV95cUxOQ0xMTl9ZbTRRaXplbFc3QWNsMk5CZUVUVDE0blFpcTBrVHl4WVd3Wm13Tkl5T25JMzlrdl9oOWVnWVhsMnhPcWh3b3JCVC10OXNON2xqQkhOcXFocTl6UVhEMmt5TkdfZWs3Qk0weUNsU3p6cVZlN3UzNWFfLTFXR0FpM3dLRi1oYjJoWHFTWnN4cVlCYnhuUWpFZnBLemRzV2hRWDYxUTJjQjJMSTJqTGhPVG9PazlLd0tNQnQwX0VqZw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Strengthening our approach to tackling non-consensual intimate imagery - The Official Microsoft Blog</a>
+          <div class="article-meta">The Official Microsoft Blog &bull; May 27, 2026</div>
+          <div class="article-summary snippet"><p>Strengthening our approach to tackling non-consensual intimate imagery&amp;nbsp;&amp;nbsp;The Official Microsoft Blog</p><a href="https://news.google.com/rss/articles/CBMiwgFBVV95cUxOQ0xMTl9ZbTRRaXplbFc3QWNsMk5CZUVUVDE0blFpcTBrVHl4WVd3Wm13Tkl5T25JMzlrdl9oOWVnWVhsMnhPcWh3b3JCVC10OXNON2xqQkhOcXFocTl6UVhEMmt5TkdfZWs3Qk0weUNsU3p6cVZlN3UzNWFfLTFXR0FpM3dLRi1oYjJoWHFTWnN4cVlCYnhuUWpFZnBLemRzV2hRWDYxUTJjQjJMSTJqTGhPVG9PazlLd0tNQnQwX0VqZw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a1d5b17c1ac')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="af846f77676">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiogFBVV95cUxNaTJTcUZoV05nUjJnZjQwQTRUc3pmTl9zOEZHSmUtemtxem9YVFJNdTdGT0pMd1JMdm9Lc2dJQXNaMkRhX2Y0cXNicE5KOHA1cjhGVV8xNXZaMV9KZjYyVFg5bm4zNjltdjBQUUQ1bmpDNmEyTlEyRzlVS0NmeGpxWkV1eVUyOUhTUEpUWGtYMTRLNlc3QzZ6TWNTOFlDYnhiWkE?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">A lifetime license for Word, Excel, PowerPoint, and more now costs less than 2 years of Microsoft 365 - Mashable</a>
+          <div class="article-meta">Mashable &bull; May 30, 2026</div>
+          <div class="article-summary snippet"><p>A lifetime license for Word, Excel, PowerPoint, and more now costs less than 2 years of Microsoft 365&amp;nbsp;&amp;nbsp;Mashable</p><a href="https://news.google.com/rss/articles/CBMiogFBVV95cUxNaTJTcUZoV05nUjJnZjQwQTRUc3pmTl9zOEZHSmUtemtxem9YVFJNdTdGT0pMd1JMdm9Lc2dJQXNaMkRhX2Y0cXNicE5KOHA1cjhGVV8xNXZaMV9KZjYyVFg5bm4zNjltdjBQUUQ1bmpDNmEyTlEyRzlVS0NmeGpxWkV1eVUyOUhTUEpUWGtYMTRLNlc3QzZ6TWNTOFlDYnhiWkE?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('af846f77676')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="iru" class="topic-section">
+      <h2 class="topic-title" style="--c:#7C3AED">Iru MDM (formerly Kandji) </h2>
+      <p class="no-news">No articles found this week.</p>
+    </section>
+    <section id="cato" class="topic-section">
+      <h2 class="topic-title" style="--c:#FF6B35">Cato Networks <span class="count">(7)</span></h2>
+      <div class="article-card" data-id="abeb0eb845b">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMilAFBVV95cUxPbm5YM2xYdmsySGlnLVV1UVNCcGE4X3ZYYV9Za3NfaHRLSzFkU1ZObVZhWkItS18yNFd1Y2JQdE93c2tscTZkOW1mUlJCYWdjU3poZklFRDlMUmZ3SkE1bnFSTldlYURkWWxSSUR5TnQyNUpDUU5uWnVqMmktd1doN3hYdFFEMC1Ya1NXcXVOZ2F2dTk20gGaAUFVX3lxTE1iMUtPdFJabEgyOFAxX2ZITjBVeURvcThwbGdxNURwNTVXTkJvakc4ZTNOYk1XWTVrQXB0Y0E3cjdFaTBNNllBOTZyQ2hnWDlaWTV5RUFZVEhhMTNXRmxiSlZVVEM3R0Z2dF8wZUN3dEp5MW5YRThfM3pFMl93ajc5alc1UjlmSHlSWFFWcS1PSTM3ZXVCaW9BQWc?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks Appoints Tristan Elder As Vice President Of EMEA Channel - Pulse 2.0</a>
+          <div class="article-meta">Pulse 2.0 &bull; May 28, 2026</div>
+          <div class="article-summary snippet"><p>Cato Networks Appoints Tristan Elder As Vice President Of EMEA Channel&amp;nbsp;&amp;nbsp;Pulse 2.0</p><a href="https://news.google.com/rss/articles/CBMilAFBVV95cUxPbm5YM2xYdmsySGlnLVV1UVNCcGE4X3ZYYV9Za3NfaHRLSzFkU1ZObVZhWkItS18yNFd1Y2JQdE93c2tscTZkOW1mUlJCYWdjU3poZklFRDlMUmZ3SkE1bnFSTldlYURkWWxSSUR5TnQyNUpDUU5uWnVqMmktd1doN3hYdFFEMC1Ya1NXcXVOZ2F2dTk20gGaAUFVX3lxTE1iMUtPdFJabEgyOFAxX2ZITjBVeURvcThwbGdxNURwNTVXTkJvakc4ZTNOYk1XWTVrQXB0Y0E3cjdFaTBNNllBOTZyQ2hnWDlaWTV5RUFZVEhhMTNXRmxiSlZVVEM3R0Z2dF8wZUN3dEp5MW5YRThfM3pFMl93ajc5alc1UjlmSHlSWFFWcS1PSTM3ZXVCaW9BQWc?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('abeb0eb845b')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="afd3131167d">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMifEFVX3lxTE9GckZiMFUxcDFUNnhZUTBKQWhaZGxtTEJvVU9QaDJ5elNXS3otWmZPMU5qY19oYkctVl9EWmlVVXBpazVPS09NX0J3OWpUMFFZOUIxaE5JMmtPcDV1TG1IbkZGeHJCWHZmOFZTbHAzaHpyakc1SUtrRDJwSGM?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks hires VP for EMEA channel - SDxCentral</a>
+          <div class="article-meta">SDxCentral &bull; May 27, 2026</div>
+          <div class="article-summary snippet"><p>Cato Networks hires VP for EMEA channel&amp;nbsp;&amp;nbsp;SDxCentral</p><a href="https://news.google.com/rss/articles/CBMifEFVX3lxTE9GckZiMFUxcDFUNnhZUTBKQWhaZGxtTEJvVU9QaDJ5elNXS3otWmZPMU5qY19oYkctVl9EWmlVVXBpazVPS09NX0J3OWpUMFFZOUIxaE5JMmtPcDV1TG1IbkZGeHJCWHZmOFZTbHAzaHpyakc1SUtrRDJwSGM?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('afd3131167d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a663bff6fc2">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMic0FVX3lxTE9Bcm1NV2R0QTZYZEkxTGJmWTVoTWhieldiMEc5OUxnWWFrMV90Si1YTmQtQXRkRmVVa21acGlFZ2N0el8yRkRUXzRucHR0aVZGVEVvclhsVE9CWnk3U3BHVWlPR2hjVGRHVmNsejlrS0JrdEE?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks names an EMEA channels chief - IT Europa</a>
+          <div class="article-meta">IT Europa &bull; May 27, 2026</div>
+          <div class="article-summary snippet"><p>Cato Networks names an EMEA channels chief&amp;nbsp;&amp;nbsp;IT Europa</p><a href="https://news.google.com/rss/articles/CBMic0FVX3lxTE9Bcm1NV2R0QTZYZEkxTGJmWTVoTWhieldiMEc5OUxnWWFrMV90Si1YTmQtQXRkRmVVa21acGlFZ2N0el8yRkRUXzRucHR0aVZGVEVvclhsVE9CWnk3U3BHVWlPR2hjVGRHVmNsejlrS0JrdEE?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a663bff6fc2')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a16a94d45f9">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi5gFBVV95cUxON1B6M09Qb2RnYXBlTXExclU1TXlIcGxIQ19EcmJpdld0TVJ1ZVJHNHBwMG5NaFRmN3gtc01wcDFSVnBiUzFSWjN0QnRfbHVDelFZb0VDdXpwMFNLeUU0Mmh0aGlPbkRWR2twSkhEcVdEanlISlR2Z2Yyc29WVUdHU2NubFdLeWoxblA0d2JfWjNpVTY5VHg0Z19BMVg2TGhMNnItMUZuaVJqVVhNMy1QX1RpUDlUeGhWM1ZuVl9NVkFROXhhZGdJcEpvTFRhMFlObThoT2ExWmEyaEg5TGE3cFBicUhadw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks Appoints Tristan Elder as VP of EMEA Channel to Accelerate AI Security Growth - The Fast Mode</a>
+          <div class="article-meta">The Fast Mode &bull; May 28, 2026</div>
+          <div class="article-summary snippet"><p>Cato Networks Appoints Tristan Elder as VP of EMEA Channel to Accelerate AI Security Growth&amp;nbsp;&amp;nbsp;The Fast Mode</p><a href="https://news.google.com/rss/articles/CBMi5gFBVV95cUxON1B6M09Qb2RnYXBlTXExclU1TXlIcGxIQ19EcmJpdld0TVJ1ZVJHNHBwMG5NaFRmN3gtc01wcDFSVnBiUzFSWjN0QnRfbHVDelFZb0VDdXpwMFNLeUU0Mmh0aGlPbkRWR2twSkhEcVdEanlISlR2Z2Yyc29WVUdHU2NubFdLeWoxblA0d2JfWjNpVTY5VHg0Z19BMVg2TGhMNnItMUZuaVJqVVhNMy1QX1RpUDlUeGhWM1ZuVl9NVkFROXhhZGdJcEpvTFRhMFlObThoT2ExWmEyaEg5TGE3cFBicUhadw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a16a94d45f9')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a9b192aca76">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMimAFBVV95cUxNU0c3MFRxMWFDOVUtLXdEd3NRZlBEaEdLOGdMOW5sRlRYZjNQRWZJVkxLb3BINk5QV0s0QkU2VjJkQktBOUNyMmVoZVBKLUg3OXVvSkpucllFc3RpSW9ZbDJqNmYwOHNCSkFoZWk1Y01ranZ5cXhmSDRCRU1pRWstV05UdTl1a2NXZ0M1aUV2blpiakZ2VmQ4Xw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks appoints Elder as VP of EMEA channel - Telecompaper</a>
+          <div class="article-meta">Telecompaper &bull; May 27, 2026</div>
+          <div class="article-summary snippet"><p>Cato Networks appoints Elder as VP of EMEA channel&amp;nbsp;&amp;nbsp;Telecompaper</p><a href="https://news.google.com/rss/articles/CBMimAFBVV95cUxNU0c3MFRxMWFDOVUtLXdEd3NRZlBEaEdLOGdMOW5sRlRYZjNQRWZJVkxLb3BINk5QV0s0QkU2VjJkQktBOUNyMmVoZVBKLUg3OXVvSkpucllFc3RpSW9ZbDJqNmYwOHNCSkFoZWk1Y01ranZ5cXhmSDRCRU1pRWstV05UdTl1a2NXZ0M1aUV2blpiakZ2VmQ4Xw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a9b192aca76')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="afaab278515">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMikAFBVV95cUxPaG1KTHk4aTRxTVY3MG1mRFdwbUlnWldkZVVCY1hOVXprYkkwaVRvQjhfWkhXdnN6allMWVBQUk1kblRlQUxHUHEydHRIT0VoMm9wVEs1azJlM3RZaG1ydWd0ekRuR2dncnJVdUlJQzdmZ3RrSE5ocEdZc2xVMlAtSl9Va0dMblpZUklTbTIyRWY?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks names Tristan Elder VP of EMEA Channel - pcr-online.biz</a>
+          <div class="article-meta">pcr-online.biz &bull; May 27, 2026</div>
+          <div class="article-summary snippet"><p>Cato Networks names Tristan Elder VP of EMEA Channel&amp;nbsp;&amp;nbsp;pcr-online.biz</p><a href="https://news.google.com/rss/articles/CBMikAFBVV95cUxPaG1KTHk4aTRxTVY3MG1mRFdwbUlnWldkZVVCY1hOVXprYkkwaVRvQjhfWkhXdnN6allMWVBQUk1kblRlQUxHUHEydHRIT0VoMm9wVEs1azJlM3RZaG1ydWd0ekRuR2dncnJVdUlJQzdmZ3RrSE5ocEdZc2xVMlAtSl9Va0dMblpZUklTbTIyRWY?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('afaab278515')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a9261e1b90b">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi0AFBVV95cUxPME9qbjNQY2pKTDR0SUdEMmRZeEs2dUJVWnBocUZEN3FZZTU5SFlFSzVGVE9tR0ZRX3E0Q2ROVF9IRE1yVWEyRE9nUG9tMnRPZ2UtVFlyQ2xpZEVvb0p1TmthQnpvWVJNamZqR3NUS0V0czRiVVRNUUY0a0FsOVpoM0xKeDFhR2JDUUtuSVVEY3NfUWxpWGYxZFM2cDdYUEFqMV9Pc2tMYk1MRC0wMDZVbXRRT3dlMG1hZ0VoMW1sOHhUY0RNb1ZBYnNZMm1kbC02?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks, Cyera Partner to Deliver Unified Data Security and Threat Response - The Fast Mode</a>
+          <div class="article-meta">The Fast Mode &bull; May 25, 2026</div>
+          <div class="article-summary snippet"><p>Cato Networks, Cyera Partner to Deliver Unified Data Security and Threat Response&amp;nbsp;&amp;nbsp;The Fast Mode</p><a href="https://news.google.com/rss/articles/CBMi0AFBVV95cUxPME9qbjNQY2pKTDR0SUdEMmRZeEs2dUJVWnBocUZEN3FZZTU5SFlFSzVGVE9tR0ZRX3E0Q2ROVF9IRE1yVWEyRE9nUG9tMnRPZ2UtVFlyQ2xpZEVvb0p1TmthQnpvWVJNamZqR3NUS0V0czRiVVRNUUY0a0FsOVpoM0xKeDFhR2JDUUtuSVVEY3NfUWxpWGYxZFM2cDdYUEFqMV9Pc2tMYk1MRC0wMDZVbXRRT3dlMG1hZ0VoMW1sOHhUY0RNb1ZBYnNZMm1kbC02?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a9261e1b90b')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+</main>
+
+<footer>
+  Generated every Sunday &mdash; Topics: Windows &bull; Azure &bull; SharePoint &bull; Intune &bull; Entra ID &bull; Microsoft 365 &bull; Iru MDM (formerly Kandji) &bull; Cato Networks
+</footer>
+
+<script>
+const KEY = 'it-news-hidden-v1';
+function getHidden() {
+  try { return new Set(JSON.parse(localStorage.getItem(KEY) || '[]')); }
+  catch { return new Set(); }
+}
+function saveHidden(s) { localStorage.setItem(KEY, JSON.stringify([...s])); }
+function toggleArticle(id) {
+  const h = getHidden();
+  h.has(id) ? h.delete(id) : h.add(id);
+  saveHidden(h); applyHidden(h);
+}
+function applyHidden(h) {
+  h = h || getHidden();
+  document.querySelectorAll('.article-card[data-id]').forEach(c => {
+    c.classList.toggle('is-hidden', h.has(c.dataset.id));
+  });
+}
+let revealing = false;
+function toggleReveal() {
+  revealing = !revealing;
+  document.body.classList.toggle('reveal-hidden', revealing);
+  document.getElementById('reveal-btn').textContent = revealing ? 'Hide hidden' : 'Show hidden';
+}
+fetch('weeks.json').then(r => r.json()).then(weeks => {
+  const sel = document.getElementById('week-sel');
+  weeks.forEach(w => {
+    const o = document.createElement('option');
+    o.value = w.file; o.textContent = w.label;
+    if (w.current) o.selected = true;
+    sel.appendChild(o);
+  });
+}).catch(() => {});
+applyHidden();
+</script>
+</body>
+</html>
