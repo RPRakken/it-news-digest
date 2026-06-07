@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT News Digest — 2026-W23</title>
+  <style>
+    :root{--bg:#f8fafc;--surface:#fff;--border:#e2e8f0;--text:#1e293b;--muted:#64748b;--accent:#2563eb}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+    a{color:var(--accent)}
+
+    header{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+    .h-inner{max-width:1000px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .h-brand{font-size:1.1rem;font-weight:800;color:#1d4ed8}
+    .h-meta{font-size:.78rem;color:var(--muted)}
+    .h-controls{display:flex;gap:8px;align-items:center}
+    .btn{padding:5px 12px;border-radius:6px;font-size:.78rem;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);white-space:nowrap}
+    .btn:hover{background:#f1f5f9}
+    select.week-sel{padding:5px 10px;border-radius:6px;border:1px solid var(--border);background:var(--surface);font-size:.78rem;cursor:pointer;color:var(--text)}
+
+    .t-nav{background:var(--surface);border-bottom:1px solid var(--border);overflow-x:auto}
+    .t-nav-inner{max-width:1000px;margin:0 auto;padding:8px 20px;display:flex;gap:6px;min-width:max-content}
+    .nav-link{font-size:.72rem;padding:3px 10px;border-radius:20px;border:2px solid var(--c,#2563eb);color:var(--c,#2563eb);text-decoration:none;font-weight:600;white-space:nowrap}
+    .nav-link:hover{background:var(--c,#2563eb);color:#fff}
+
+    main{max-width:1000px;margin:0 auto;padding:24px 20px}
+
+    .week-hero{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin-bottom:28px;display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+    .hero-title{font-size:1.6rem;font-weight:900;color:#1d4ed8}
+    .hero-sub{font-size:.85rem;color:var(--muted);margin-top:2px}
+    .stat-box{text-align:center;min-width:60px}
+    .stat-num{font-size:2rem;font-weight:900;color:#1d4ed8;line-height:1}
+    .stat-lbl{font-size:.65rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+
+    .topic-section{margin-bottom:40px}
+    .topic-title{font-size:1.2rem;font-weight:800;color:var(--c,#2563eb);border-bottom:3px solid var(--c,#2563eb);padding-bottom:8px;margin-bottom:14px}
+    .count{font-size:.8rem;font-weight:400;color:var(--muted)}
+    .no-news{color:var(--muted);font-style:italic;font-size:.88rem}
+
+    .article-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:12px;display:flex;gap:12px;align-items:flex-start;transition:border-color .15s}
+    .article-card:hover{border-color:#94a3b8}
+    .article-body{flex:1;min-width:0}
+    .article-title{font-size:.98rem;font-weight:600;text-decoration:none;display:block;margin-bottom:4px;color:var(--accent)}
+    .article-title:hover{text-decoration:underline}
+    .article-meta{font-size:.72rem;color:var(--muted);margin-bottom:8px}
+
+    .article-summary{margin-top:6px;font-size:.875rem;color:#334155;line-height:1.75}
+    .article-summary p{margin-bottom:.6em}
+    .article-summary p:last-child{margin-bottom:0}
+    .gnews-badge{display:inline-block;font-size:.65rem;background:#fef3c7;color:#92400e;border-radius:4px;padding:1px 5px;margin-bottom:6px;vertical-align:middle}
+    .article-summary.snippet{color:var(--muted)}
+    .read-more{display:inline-block;margin-top:6px;font-size:.8rem;font-weight:600;color:var(--accent);text-decoration:none}
+    .read-more:hover{text-decoration:underline}
+
+    .hide-btn{flex-shrink:0;padding:5px 10px;border-radius:6px;font-size:.72rem;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--muted);white-space:nowrap;align-self:flex-start}
+    .hide-btn:hover{border-color:#ef4444;color:#ef4444;background:#fef2f2}
+    .lbl-show{display:none}
+
+    .article-card.is-hidden{display:none}
+    body.reveal-hidden .article-card.is-hidden{display:flex;opacity:.45;border-style:dashed}
+    .article-card.is-hidden .lbl-hide{display:none}
+    .article-card.is-hidden .lbl-show{display:inline}
+    body.reveal-hidden .article-card.is-hidden .hide-btn{border-color:#16a34a;color:#16a34a}
+    body.reveal-hidden .article-card.is-hidden .hide-btn:hover{background:#f0fdf4}
+
+    footer{text-align:center;padding:24px 20px;color:var(--muted);font-size:.75rem;border-top:1px solid var(--border);margin-top:40px}
+
+    @media(max-width:600px){
+      .h-inner,.main{padding-left:14px;padding-right:14px}
+      .hero-title{font-size:1.3rem}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="h-inner">
+    <div>
+      <div class="h-brand">IT News Digest</div>
+      <div class="h-meta">Week 2026-W23 &bull; Jun 01–07, 2026</div>
+    </div>
+    <div class="h-controls">
+      <button class="btn" id="reveal-btn" onclick="toggleReveal()">Show hidden</button>
+      <select class="week-sel" id="week-sel" onchange="if(this.value) location.href=this.value">
+        <option value="">&#128337; Archive&hellip;</option>
+      </select>
+    </div>
+  </div>
+</header>
+
+<nav class="t-nav"><div class="t-nav-inner"><a href="#windows" class="nav-link" style="--c:#0078D4">Microsoft Windows</a><a href="#azure" class="nav-link" style="--c:#00BCF2">Azure</a><a href="#sharepoint" class="nav-link" style="--c:#036C70">SharePoint</a><a href="#intune" class="nav-link" style="--c:#0F6CBD">Intune</a><a href="#entraid" class="nav-link" style="--c:#6B69D6">Entra ID</a><a href="#m365" class="nav-link" style="--c:#D83B01">Microsoft 365</a><a href="#iru" class="nav-link" style="--c:#7C3AED">Iru MDM (formerly Kandji)</a><a href="#cato" class="nav-link" style="--c:#FF6B35">Cato Networks</a></div></nav>
+
+<main>
+  <div class="week-hero">
+    <div>
+      <div class="hero-title">Week 2026-W23</div>
+      <div class="hero-sub">Jun 01–07, 2026</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">49</div>
+      <div class="stat-lbl">Articles</div>
+    </div>
+  </div>
+
+    <section id="windows" class="topic-section">
+      <h2 class="topic-title" style="--c:#0078D4">Microsoft Windows <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a849e019f64">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/devices/2026/06/02/building-the-next-generation-of-devices-for-developers-surface-rtx-spark-dev-box/" target="_blank" rel="noopener noreferrer" class="article-title">Building the next generation of devices for developers: Surface RTX Spark Dev Box</a>
+          <div class="article-meta">blogs.windows.com &bull; Jun 02, 2026</div>
+          <div class="article-summary"><p>Building the next generation of devices for developers: Surface RTX Spark Dev Box
+Software developers are some of the most ambitious makers we serve. They push devices harder, ask more of their tools and expect their environment to help define the pace of modern software creation. Development today means longer running jobs, larger models and a growing need to prototype and iterate locally rather than paying for every cloud call. That is why we embarked on a project to build two new Surface devices designed specifically for the needs of these makers.
+Earlier this week, we introduced Surface Laptop Ultra, a high-performance laptop built for developers, creators and technical professionals who need serious performance wherever they work. Today at Microsoft Build, we are introducing Surface RTX Spark Dev Box, a compact developer PC engineered with NVIDIA RTX Spark superchip and built on the Windows developer platform, designed for local-first AI development. Surface RTX Spark Dev Box is for developers who want to prototype, fine-tune and run capable models on their desk, and reach for the cloud when the work calls for it.
+Together, Surface Laptop Ultra and Surface RTX Spark Dev Box represent the next step for Surface: purpose-built devices for the people building what’s next.
+A new category of Surface, built for developers
+The way developers build software is fundamentally changing. AI models are growing in capability and complexity, agentic workflows demand sustained compute, and every iteration can incur cloud costs, even when the work doesn’t require state-of-the-art models. Surface RTX Spark Dev Box changes that equation. It’s a purpose-built Windows AI developer box that puts up to 1 petaflop of AI compute directly on the desk. By bringing powerful AI compute to the edge, developers can reserve frontier model calls for truly frontier problems and handle the rest on their own hardware. The result is a development workflow that can be more efficient and responsive, with developers in control of where their compute dollars go.
+Sustained AI performance in a compact form factor
+At the heart of this new developer machine is the NVIDIA RTX Spark superchip, combining a powerful NVIDIA Blackwell RTX GPU and an ultra-efficient NVIDIA Grace CPU to deliver up to 1 petaflop of AI compute with 128 GB of unified memory. That’s enough compute power to run 120B+ parameter models with 1 million token context locally at interactive speeds or fine-tune models that previously required cloud GPU instancesi.
+With an aluminum chassis engineered to double as a heatsink, Surface RTX Spark Dev Box is designed for the workloads that matter most to developers: long-running training jobs, large model inference and complex agentic pipelines that benefit from consistent, sustained performance.
+Built for the tools and workflows developers already use, out of the box
+Surface RTX Spark Dev Box ships with Windows 11 Pro pre-configured for developers at the image level. This brings a purposeful set of defaults, preinstalled tools and tuned settings so the development environment is the default from first sign-in.
+The setup keeps developers in their workflow: dark theme, taskbar simplified for development, Widgets removed, Do Not Disturb on. Developer Mode is enabled. PowerShell 7 is the default shell.
+Under the hood, WSL 2 is configured with GPU passthrough and CUDA support. VS Code, GitHub Copilot, Git, Python and Node.js are installed. Your favorite IDEs, agents, coding assistants, frameworks and libraries all work on Surface RTX Spark Dev Box, whether you prefer the Windows side or WSL.
+Surface RTX Spark Dev Box is also a world class entry point to the rest of the Microsoft AI stack. AI Toolkit for VS Code brings model conversion, fine-tuning and evaluation into the editor developers already use. Windows ML with TensorRT, and Windows Copilot Runtime give you a consistent local inference surface.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a849e019f64')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a02d77cbee0">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windowsdeveloper/2026/06/02/windows-platform-security-for-ai-agents/" target="_blank" rel="noopener noreferrer" class="article-title">Windows platform security for AI agents</a>
+          <div class="article-meta">blogs.windows.com &bull; Jun 02, 2026</div>
+          <div class="article-summary"><p>Windows platform security for AI agents
+Making Windows the trustworthy OS for agents
+AI agents are no longer just answering questions, they are taking actions across systems with increasing autonomy. As they become persistent participants in how software runs, they introduce new risk to control and trust, challenging the security assumptions that have defined computing for decades.
+Developers are building agents that read files, invoke services, modify environments and chain operations together at increasing speed. That capability is powerful, but it raises a critical question: how do you ensure these systems remain trustworthy when they operate autonomously, at scale, on real data?
+This shift changes what developers, IT and security teams need from the platform. Security for agents must be built into the foundation by design so they can be developed, deployed and governed with confidence. When that foundation is in place, organizations can scale agent adoption while maintaining control and trust. Containment, identity and manageability are built as foundational primitives in Windows, extending security beyond the app and model into the OS.
+We’ve previously shared the principles guiding how we secure agent workflows on Windows. Then in May we announced how Microsoft Agent 365 was expanding its capabilities, including the ability to discover and manage local agents on Windows, starting with OpenClaw agents and expanding soon to other widely used agents like GitHub Copilot CLI and Claude Code. We also announced that “beyond monitoring, organizations will be able to apply policy-based controls to set guardrails for what agents are allowed to do.” At Build 2026 we are sharing an update on how Agent 365 and Windows are working together to provide those capabilities with the introduction of Microsoft Execution Containers (MXC) SDK. For developers, Windows will provide the building blocks needed to implement agents that are more secure on both consumer and enterprise systems.
+For IT teams looking to balance deploying agents at scale while managing risks, Agent 365 and Windows provide the observability, governance and security capabilities that are critically needed.
+Policy-based controls
+Containment bounds what agents can access and do, so non-deterministic behavior doesn’t translate into uncontrollable risk. Unlike traditional applications, agent behavior is dynamic and often generated at runtime. The agent often uses models to generate complex code for each prompt that can read, act and chain multiple operations. Containment ensures agents can do useful work without being granted the full authority of the user’s session.
+The Microsoft Execution Containers (MXC) SDK
+To contain agent impact without limiting productivity gains, we’re introducing an early preview of the Microsoft Execution Containers (MXC) SDK, a cross-platform, policy-driven execution layer for agents on Windows and WSL. Developers define what to constrain in their apps and agents, and Windows enforces those constraints consistently at runtime through MXC. MXC provides an abstraction layer across isolation primitives, so developers do not have to manage low-level isolation details.
+The composable sandbox and containment spectrum
+The composable sandbox is how Windows applies isolation and containment in practice, with MXC as the control surface for developers. The same policy model and SDK can map to different isolation constructs depending on the workload and containment requirements. A coding agent and an enterprise data-processing agent may not need the same guardrails, but they do need one coherent trust story. The composable sandbox delivers the flexibility and control that developers and IT need. Agent 365’s policy-based controls with Microsoft Entra and Intune will be used to apply those MXC constraints to a specific agent.
+Windows supports a range of containment options so that guardrails can match the nature and risk of the workload.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a02d77cbee0')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a9c074ee92c">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windowsdeveloper/2026/06/02/build-2026-furthering-windows-as-the-trusted-platform-for-development/" target="_blank" rel="noopener noreferrer" class="article-title">Build 2026: Furthering Windows as the trusted platform for development</a>
+          <div class="article-meta">blogs.windows.com &bull; Jun 02, 2026</div>
+          <div class="article-summary"><p>Build 2026: Furthering Windows as the trusted platform for development
+Build is one of our favorite moments each year – a chance to connect with the global developer community and share what we’ve been building.
+Over the past year, we have connected with many developers pushing the boundaries of what’s possible on Windows. What we consistently hear is that you want a platform that meets you where you are, removes friction and gives you the flexibility to choose how and where you build across local and cloud, across platforms, languages and frameworks. That feedback has shaped everything we are announcing today.
+The foundation of great development starts with strong fundamentals, coupled with a great developer experience. We are continuing to raise the bar on Windows 11 quality and deeply focused on making Windows more secure, more reliable across the shell – from Explorer to Start to Search – with a simple goal to reduce cognitive load. Whether you are building modern applications or experimenting with agent-driven workflows, we are committed to making Windows more adaptable, capable and aligned with how development actually happens today. And as AI continues to reshape how software is built, we are investing deeply in enabling you to run your AI workloads securely where it makes the most sense on-device, in the cloud or across both without trade-offs. Our goal is simply to give you a platform that accelerates your ideas.
+What’s new for Windows platform at Build?
+- Developer-optimized Windows 11 experience to build and ship faster.
+- Coreutils for Windows – a set of Linux-like command line utilities that run natively on Windows, now generally available.
+- WSL containers – a built-in way to create, run and interact with Linux containers using familiar CLI &amp; API, coming soon to public preview.
+- Windows Development Skills – gives agents structured knowledge to build great native Windows apps end-to-end using WinUI3 skills and WinApp CLI, now generally available.
+- Intelligent Terminal – intentionally brings context-aware intelligence to your favorite agents directly into a terminal based experience to help debug errors, run multi-step tasks so you can stay in your flow, available in experimental preview.
+- Windows Developer Configurations – powered by WinGet, sets up a distraction-free dev environment with VS Code, GitHub Copilot, WSL, PowerShell 7 and developer-optimized settings with one command on any Windows 11 device, now generally available.
+- Windows 365 with Developer configuration – Windows 365 comes pre-configured with the same Windows developer configuration, available in public preview.
+- Secure Windows platform to build and run agents with OS-enforced agent identity, containment and enterprise-grade manageability.
+- Introducing Microsoft Execution Containers (MXC) SDK– A policy-driven execution layer that lets developers declare what an agent can access (e.g., files, network) with containment boundaries enforced at runtime. MXC offers a spectrum of isolation semantics that are dynamically composable based on intent and risk, available in early preview.
+- Agent 365 native integration with MXC enables agents running on Windows to start secure and stay secure. Integration will deliver Defender, Entra, Intune and Purview protections so security and IT teams can constrain and secure local agents to prevent enterprise risk, available in preview in July.
+- OpenClaw runs natively on Windows leveraging MXC – The Windows node and gateway run contained, so your system stays secure. You can easily install and use OpenClaw in Windows with its own companion app and set up your own claws or connect to existing ones, available in open-source.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a9c074ee92c')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a9df200e30c">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/msedgedev/2026/06/02/expanding-on-device-ai-in-microsoft-edge-new-models-and-apis-for-the-web/" target="_blank" rel="noopener noreferrer" class="article-title">Expanding on‑device AI in Microsoft Edge: New models and APIs for the web</a>
+          <div class="article-meta">blogs.windows.com &bull; Jun 02, 2026</div>
+          <div class="article-summary"><p>At Build 2025, we introduced the Prompt and Writing Assistance APIs in Microsoft Edge with the Phi-4-mini language model. Since then, we’ve heard from web developers, incorporated your feedback, and expanded Edge’s on-device AI capabilities with new models and APIs.
+Today, we’re introducing three updates:
+- A developer preview of the pre-release Aion-1.0-Instruct small language model for early testing and feedback.
+- The Language Detector and Translator APIs in Edge 148, powered by on-device, task-specific models.
+- Experimental on-device speech recognition with the Web Speech API, available in Edge Canary and Dev channels.
+Developer preview of Aion-1.0-Instruct
+For the past year, the Prompt and Writing Assistance APIs have used Phi-4-mini, a highly capable 4B-parameter language model, in Edge. While it delivers strong text understanding, reasoning, and instruction-following for web scenarios, the model’s hardware requirements have limited its availability across devices.
+Today, we’re introducing a developer preview of the pre-release Aion-1.0-Instruct small language model in Edge Canary and Dev channels. This language model is smaller, faster, and more efficient. It expands support to significantly more devices — including those with less capable GPUs and, through CPU-inference, devices without a GPU — while delivering strong quality for a wide range of web use-cases.
+This preview allows you to evaluate Aion-1.0-Instruct in real-world web scenarios, test API interoperability, and provide feedback that will guide final optimizations, ahead of its planned open-source release on Hugging Face in July. To try out the model, explore the documentation for the Prompt API and Writing Assistance APIs, experiment with the playground samples, and share your feedback on GitHub.
+Language Detector and Translator APIs in Edge 148
+The Language Detector and Translator APIs enable websites and browser extensions to identify the language of text and translate between language pairs. These APIs are now available in Edge 148, powered by on-device, task-specific models built directly into the browser. They deliver fast, high-quality translation, support 145+ languages, and are optimized for translation workloads on the web.
+You can use these APIs from JavaScript in your site or extension, gaining improved user privacy, network independence, and zero translation costs compared to cloud-based services.
+In their simplest form, the Language Detector and Translator APIs can be used as shown:
+// Create a Language Detector session. const detector = await LanguageDetector.create(); // Detect the language of the text. const results = await detector.detect(userText); // Use the results. for (const result of results) { // Show the full list of potential languages with their likelihood, // ranked from most likely to least likely. console.log(result.detectedLanguage, result.confidence); } // Create a Translator session. const translator = await Translator.create({ sourceLanguage: &quot;es&quot;, targetLanguage: &quot;en&quot; }); // Translate the text and wait for the translation to be done. const translatedText = await translatorSession.translate(userText); // Use the translation. console.log(translatedText);
+To learn more, check out the documentation for the Language Detector API and Translator API, try our playground samples, and share your feedback in the Language Detector and Translator feedback issues on GitHub.
+On-device speech recognition with the Web Speech API
+The Web Speech API enables you to incorporate voice or audio input into websites and browser extensions. This API is typically backed by cloud-based services for speech recognition (speech-to-text) and synthesis (text-to-speech).
+In the latest Edge Canary and Dev channels, we’re introducing a task-specific model that processes speech locally on the user’s device.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a9df200e30c')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a0cbd73f38b">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windowsexperience/2026/06/01/tune-into-xbox-games-showcase-june-7/" target="_blank" rel="noopener noreferrer" class="article-title">Tune into XBOX Games Showcase June 7</a>
+          <div class="article-meta">blogs.windows.com &bull; Jun 01, 2026</div>
+          <div class="article-summary"><p>Gaming
+June 1, 2026
+Tune into XBOX Games Showcase June 7
+On June 7, the annual XBOX Games Showcase returns, offering a look at what’s next from XBOX and its partners.
+This year marks 25 years of XBOX, and this Showcase is poised to be a true celebration, offering world premieres, new gameplay, fresh updates and more.
+Gears of War: E-Day Direct will stream immediately after Showcase.
+Find out how and when to watch on XBOX Wire.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a0cbd73f38b')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a0ad5718f19">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/devices/2026/05/31/introducing-surface-laptop-ultra-made-for-world-makers/" target="_blank" rel="noopener noreferrer" class="article-title">Introducing Surface Laptop Ultra: Made for world makers</a>
+          <div class="article-meta">blogs.windows.com &bull; Jun 01, 2026</div>
+          <div class="article-summary"><p>Introducing Surface Laptop Ultra: Made for world makers
+The world is full of makers. Only a few make the world.
+Surface Laptop Ultra is for them.
+For those building the systems, the breakthroughs and the infrastructure the world runs on and gets changed by. The ones who see limits as flaws and have the vision to push past them.
+Surface Laptop Ultra is the most powerful Surface Laptop ever built. Engineered with NVIDIA from the silicon up, optimized for RTX Spark, built on Windows. Made for a kind of work that does not fit in a standard laptop.
+The work from creators, developers and AI builders has a common shape: massive scenes, long compile cycles, local models and datasets that no longer sit politely in the background. We built Surface Laptop Ultra to meet that work without flinching.
+From the start, we channeled these makers, pushing through thermal and structural challenges, refining every detail from the inside out to create a device where uncompromising craft meets raw power.
+Surface Laptop Ultra is our first laptop to combine a powerful NVIDIA Blackwell RTX GPU with up to 128GB of unified memory and full CUDA support. Unified memory allows the pool of RAM to be dynamically allocated wherever your workloads need it most across CPU and GPU, so AI creation, 3D rendering and multi-model workflows run simultaneously, with 1 petaflop of AI compute, capable of running up to 120B parameter models locally[i]. No walls. No compromises.
+And it does all of it quietly.
+The ultra-efficient CPU architecture gives creators the headroom to push further. And with all-day battery life[ii], Laptop Ultra keeps moving when the work does. The kind of endurance that lets you finish the work. No matter how ambitious. No matter how demanding.
+Every detail was considered.
+We designed Surface Laptop Ultra from the inside out. Mechanical, electrical, thermal, acoustic, materials, industrial design and software engineers at the table from day one. The internal architecture and the external form built as one system. Our engineers designed it with the same discipline we know you bring to your craft, where every micron matters and every choice is deliberate.
+Precise and light. Available in two finishes: Platinum and Nightfall.
+The 15-inch mini-LED PixelSense Ultra touchscreen runs up to 2,000 nits of peak HDR brightness, 262 pixels per inch and high-precision color accuracy. The brightest display we’ve ever shipped.
+The haptic touchpad is the largest we’ve ever put on a Surface. Every port you actually use is on the device: HDMI, USB-C, USB-A, SD card, headphone. These are the ports creators need, and they were picked on purpose. This is Surface craft at its most considered. Performance, durability and repairability living together rather than trading against each other.
+Nothing wasted. Everything intentional.
+Surface Laptop Ultra was purpose-built for world makers, in a partnership between Windows, Surface and NVIDIA that approached every challenge with the same intention and the same standard.
+A machine like this should not sit still. It should be pushed. Taken to the edge. Used to make real what others call impossible.
+It belongs in the hands of world makers.
+Surface Laptop Ultra will be available later this year[iii]. Learn more at microsoft.com/ultra.
+[i] Source: NVIDIA. Based on 1 Theoretical FP4 TOPS using the sparsity feature.
+[ii] Based on internal testing of pre‑release units. Battery life varies significantly based on usage, settings and other factors.
+[iii] Microsoft Surface Laptop Ultra is a pre-release product and features are subject to change and may vary by country/region. Product and features are subject to regulatory certification/approval; actual sale and delivery is contingent on compliance with applicable requirements.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a0ad5718f19')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a3c99a488bf">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windowsexperience/2026/05/31/introducing-a-powerful-new-chapter-for-windows-pcs-accelerated-by-nvidia-rtx-spark/" target="_blank" rel="noopener noreferrer" class="article-title">Introducing a powerful new chapter for Windows PCs, accelerated by NVIDIA RTX Spark</a>
+          <div class="article-meta">blogs.windows.com &bull; Jun 01, 2026</div>
+          <div class="article-summary"><p>Introducing a powerful new chapter for Windows PCs, accelerated by NVIDIA RTX Spark
+Today at NVIDIA GTC, Microsoft and NVIDIA announced the world’s most powerful and efficient thin-and-light Windows PCs ever. Accelerated by NVIDIA RTX Spark, these new PCs unlock incredible momentum for developers, creators and power users, and are purpose-built for the new wave of agents.
+This marks a key milestone in the rich, full‑stack collaboration between Microsoft and NVIDIA spanning gaming, AI and cloud – from DirectX and RTX to NVIDIA‑accelerated AI workloads on Azure – driving end-to-end innovation for our shared customers. These next-generation Windows PCs represent the next step on that journey.
+Builders and creators today are reimagining how things get done, and they need reimagined hardware, silicon and platform capabilities to support them. They need PCs capable of running graphically intensive tasks efficiently, highly capable AI models, and a platform that simply and securely runs agents locally. It’s the combination of Windows’ platform and ecosystem leadership, with NVIDIA’s silicon innovation and industry-leading graphics and AI leadership, that has resulted in a collection of powerhouse laptops that will redefine how developers and creators interact with their PCs.
+“NVIDIA and Microsoft share a vision that agents are the future of personal computing,” said Jeff Fisher, senior vice president of personal computing at NVIDIA. “RTX Spark combines NVIDIA’s full technology stack with Microsoft Windows and is purpose-built for creators, gamers and AI developers in the personal AI era.”
+Taking Windows to the next level on RTX Spark
+RTX Spark delivers 1 petaflop of AI performance, industry-leading performance-per-watt, full stack NVIDIA AI and RTX graphics technology, with up to 6144 Blackwell RTX cores, up to 20 power-efficient cores built with the Arm architecture and up to 128GB of unified memory.
+Paired with Windows, it unlocks the capabilities creators and developers need to run advanced workloads, build with the tools they depend on and even play their favorite games. Bringing Windows to RTX Spark enables you to do the work that matters on silicon that delivers the performance you demand.
+Great silicon deserves deep platform work. We optimized Windows to bring out the full performance of RTX Spark.
+Performance and power management
+To get the most out of Windows on RTX Spark’s powerful, heterogeneous architecture, we implemented workload profile scheduling (WPS) and optimized it for RTX Spark, enabling the Windows scheduler to more efficiently scale workloads across all 20 cores. Whether you’re checking your email or running an agent locally to debug code, the Windows scheduler on RTX Spark will ensure you get the best performance and efficiency out of your CPU.
+We also worked with NVIDIA to enable the Microsoft Power and Thermal Framework (MPTF) on RTX Spark, to maximize performance and power on the go. MPTF standardizes one of the most complex parts of a modern PC and will enable RTX Spark based PCs to deliver industry-leading power efficiency while staying cool under intense workloads.
+Beyond its industry-leading performance per watt for creative, AI and gaming workloads, RTX Spark is positioned to take advantage of our advancements to DirectX 12, including support for neural rendering and optimized ray tracing performance, and has been tuned to maximize the performance of its Blackwell GPU, making it one of the best places to play on Windows. In addition, Microsoft and NVIDIA have worked to unlock the power of the GPU for local AI workloads through Windows ML, enabling AI developers to leverage TensorRT natively in Windows.
+Unified memory optimizations
+To realize the potential of up to 128GB of unified memory on RTX Spark, we have focused on improving how Windows supports unified memory systems, starting with a new higher, smarter limit on total system memory accessible by the GPU.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a3c99a488bf')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a84016d4b1f">
+        <div class="article-body">
+          <a href="https://www.bleepingcomputer.com/news/security/hola-browser-for-windows-compromised-to-deliver-cryptominer/" target="_blank" rel="noopener noreferrer" class="article-title">Hola Browser for Windows compromised to deliver cryptominer</a>
+          <div class="article-meta">bleepingcomputer.com &bull; Jun 04, 2026</div>
+          <div class="article-summary"><p>The Windows version of the Hola Browser has been compromised in a supply chain attack that delivered an undeclared executable identified by researchers as a cryptocurrency miner.
+The compromise was uncovered during periodic certification checks on Hola Browser as part of its AppEsteem certification testing procedure, which it had previously passed.
+Hola is an Israeli company best known for Hola VPN, a service that allows users to route internet traffic through other users' devices or through paid proxy infrastructure to bypass geographic restrictions and access content from different countries.
+Hola Browser is based on Chromium and integrates VPN and proxy functionality directly into the browser.
+The company and its products have attracted controversy in the past due to opaque traffic-handling practices related to the operation of a commercial service called Luminati Networks, which turned free users into proxies.
+In the latest app integrity checks, Sophos and other cybersecurity companies involved in the evaluation process discovered an undeclared executable named ‘me.exe’ being installed in some cases under C:\Program Files\Hola\.
+The file had not been certified, had no timestamp, wasn’t digitally signed, contained obfuscated code, and could write to memory.
+On closer examination, Sophos found signs that the binary was a Monero cryptocurrency miner, including strings pointing to its true nature.
+The miner adds a Windows Defender exclusion rule, copies itself to Program Files as ‘HolaMonitorService.exe,’ creates an auto-starting Windows service named ‘hola_monitor_svc,’ and runs when the computer is idle.
+Holas's response
+Hola was informed of the findings by AppEsteem and confirmed that they had suffered a supply chain compromise, which was also independently detected by cybersecurity firm Sygnia.
+Despite that, the software vendor says that only about 0.1% of its users were affected, and there’s no evidence of user data access, theft, or compromise.
+“We have since completely rebuilt our distribution pipeline, implemented advanced code-signing verification, and introduced tighter access controls and continuous monitoring across our infrastructure,” assured Hola’s CEO, Avi Raz Cohen.
+“These measures are designed to ensure that only declared, certified, and signed components are ever delivered to our users.”
+BleepingComputer has contacted Hola to request more information about how the breach occurred, who the perpetrators are, and whether clients on other platforms were also affected, but we have not heard back as of this publishing.
+Test every layer before attackers do
+Security teams log 54% of successful attacks and alert on just 14%. The rest move through your environment unseen.
+The Picus whitepaper shows how breach and attack simulation tests your SIEM and EDR rules so threats stop slipping by detection.
+Get the whitepaper</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a84016d4b1f')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="azure" class="topic-section">
+      <h2 class="topic-title" style="--c:#00BCF2">Azure <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="ab7a35a944d">
+        <div class="article-body">
+          <a href="https://blogs.microsoft.com/blog/2026/06/02/ai-alone-wont-change-your-business-the-system-running-it-will/" target="_blank" rel="noopener noreferrer" class="article-title">AI alone won’t change your business. The system running it will.</a>
+          <div class="article-meta">blogs.microsoft.com &bull; Jun 02, 2026</div>
+          <div class="article-summary"><p>AI has arrived in the enterprise, and the shift is happening all at once. Every function, every role, every workflow is being reshaped. At the same time, a new class of organizations is emerging, one that will look fundamentally different from the companies that defined the last era of business. The winners won’t be those with the most demos, but those that turn AI into a governed, continuously improving system for running real work.
+This isn’t just about chatbots, either. Those experiences are useful, but they don’t transform how large organizations operate. The real opportunity is teams of agents executing long running work across functions like software delivery, support, finance, HR, and operations — with the identity, context, policy, and human oversight required to trust them in production.
+To make this possible, enterprises need more than access to a powerful AI model or scalable compute. What determines success is the system around the AI: how agents are built and deployed by engineering teams, how they’re contextualized in the enterprise, how they’re governed and observed in production, and how they improve safely over time. Without that system, AI remains fragmented, fragile, and difficult to trust at scale.
+We’re taking a fundamentally different approach. We are building a comprehensive agent platform: one that supports many models, is open, and gives you choice and flexibility at every layer of the stack. And we are purposefully designing it with developers at the center. Today, the next pieces of that platform are clicking into place.
+Building a system for the agentic enterprise
+To succeed in this new era, an agent platform must meet a higher bar. It must run real production workloads, map real organizational complexity, and manage real business responsibility.
+We’re building around three key principles:
+First, it must be a single, integrated system, with support for a wide range of models.
+Enterprises can’t afford to assemble their agent strategy one piece at a time. Disconnected tools stitched together after the fact can slow teams down and introduce unnecessary risk. Building, contextualizing, running, governing, and improving agents should happen within one coherent system. That’s why we’re bringing together Azure, GitHub, Microsoft IQ, Fabric, Foundry, Windows, Microsoft Security, and Microsoft 365 to operate as a single system you can use to deploy agents at enterprise scale. Enterprises also need the flexibility to choose the right model for the task, balancing quality, speed, and cost — including Microsoft models, partner models, and open models.
+Second, it must be secured and governed by design.
+Governance is easy to claim and much harder to deliver. Making it real means starting with a single stack that spans development through production, built on the identity, access, compliance, and security foundations enterprises already trust. By extending Entra, Purview, Defender, Agent 365, and the broader Microsoft Security stack, governance becomes native to the system rather than bolted on later, supporting the ambitions of an AI first enterprise without compromising control.
+Third, it must improve continuously.
+Enterprise AI systems can’t be static. Agent behavior, outcomes, and human feedback must flow back into the system, so it can improve safely over time under human oversight. As the system runs, models, workflows, and agents become more capable and more specific to an enterprise’s unique business processes. The result is a system that compounds in value the longer it’s in use.
+These properties are becoming must-haves, and enterprises that align their AI ambitions with these three principles will pull ahead in quarters, not years.
+So how does a system like this actually take shape inside a real enterprise? It starts where work begins, with how agents are built. Let’s walk through what that looks like on the platform we’ve built.
+1. Build in GitHub
+GitHub is where your developers already work.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ab7a35a944d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a42712ffccf">
+        <div class="article-body">
+          <a href="https://azure.microsoft.com/en-us/blog/announcing-microsoft-discovery-general-availability-and-microsoft-discovery-app-preview/" target="_blank" rel="noopener noreferrer" class="article-title">Announcing Microsoft Discovery general availability and Microsoft Discovery app preview</a>
+          <div class="article-meta">azure.microsoft.com &bull; Jun 02, 2026</div>
+          <div class="article-summary"><p>Breakthroughs in science and engineering rarely come from a single insight. They emerge through cycles of hypothesis, experimentation, refinement, and review across teams, tools, and data.
+Today at Microsoft Build, we are announcing that Microsoft Discovery is now generally available for all organizations, providing a comprehensive platform for building and governing agentic AI workflows across scientific and engineering disciplines. We are also introducing the Microsoft Discovery app in preview, a local desktop experience that helps researchers, students, and scientific teams begin working with Microsoft Discovery today.
+Since introducing Microsoft Discovery in private preview at Microsoft Build last year, we have worked closely with organizations applying AI to complex research and development (R&amp;D) workflows. Their feedback helped reinforce where agentic AI needs to go beyond individual assistance, like supporting the iterative loops, evidence preservation, and tool coordination that define scientific work.
+The most challenging problems in R&amp;D require more than just a prompt interface or a single model response. Scientific workflows require:
+- Integration with institutional knowledge and domain expertise.
+- Access to specialized modeling, simulation, and analysis tools.
+- Connection to experimental evidence and validation data.
+- Support for review processes that shape research decisions.
+A materials scientist may need to evaluate performance, safety, and cost alongside manufacturability and regulatory constraints. A semiconductor team may need to explore a larger design space without losing physical fidelity or traceability. A life sciences researcher may need to connect literature and experimental data with models and cohort-level evidence before deciding what to validate next.
+Microsoft Discovery is designed to work within these existing R&amp;D environments, not replace them. The platform helps experts understand the reasoning path behind outputs and keeps human judgment at the center of scientific and engineering decisions. The general availability of Microsoft Discovery marks a significant milestone in turning these requirements into a production-ready platform for R&amp;D environments with governance and transparency built in.
+How Microsoft Discovery supports R&amp;D workflows at scale
+Microsoft Discovery enables organizations to define agentic workflows around their own R&amp;D programs. Teams can create and coordinate specialized agents, connect those agents to institutional knowledge and external scientific information, and orchestrate work across modeling, simulation, analysis, and validation tools.
+At the center of the platform is the Microsoft Discovery Engine, which supports the core loop of scientific work by helping teams move from evidence to hypotheses, through execution and analysis, and into the next iteration. This loop allows teams to move beyond isolated analysis toward repeatable, evidence-driven exploration, where they can compare tradeoffs, question assumptions, and narrow a search space in a way that can be reviewed and repeated.
+As we continued product development, we focused on what it takes to bring agentic AI into production R&amp;D environments:
+- Workflows need to remain reproducible.
+- Outputs must be reviewable.
+- Proprietary knowledge must be connected and governed appropriately.
+- Agentic systems need to fit into the operating model of R&amp;D organizations.
+Those considerations, along with continued customer feedback, helped shape the general availability release and the platform capabilities behind it.
+Expanding access with the Microsoft Discovery app preview
+An important goal for Microsoft is to make advanced AI and computing capabilities more accessible to the people working on some of today’s most difficult scientific and engineering challenges.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a42712ffccf')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a516c8b6f4f">
+        <div class="article-body">
+          <a href="https://azure.microsoft.com/en-us/blog/microsoft-build-2026-building-agentic-apps-with-microsoft-fabric-and-microsoft-databases/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Build 2026: Building agentic apps with Microsoft Fabric and Microsoft Databases</a>
+          <div class="article-meta">azure.microsoft.com &bull; Jun 02, 2026</div>
+          <div class="article-summary"><p>AI is driving a fundamental shift in how work gets done and how applications are built. As the 2026 Microsoft Work Trend Index Report highlights, a growing share of workers are moving beyond asking questions to handing off entire tasks and orchestrating multi-agent systems.
+This shift introduces a new constraint. The challenge is no longer model capability, but consistent, shared data context across the business.
+Developers and business users know what they want to automate, and today’s models can deliver. The bottleneck is context. Every new agent starts from zero, relearning how the business works, where data lives, and what rules to follow. Without a consistent foundation, agents can’t coordinate or scale.
+That’s the challenge we are solving with Microsoft Fabric. It provides a unified data and AI platform that empowers you to bring together data and move from isolated AI experiments to production-ready agent systems, in which each new agent builds on shared organizational context. This vision is already driving strong momentum among the millions of developers building on Fabric and Microsoft Databases.
+At Microsoft Build, we are extending this foundation with new capabilities that help developers move from prototype to production faster. These include Rayfin, a new software development kit (SDK) and command-line interface (CLI) designed to make Fabric a production-ready application backend, and Azure HorizonDB, a new PostgreSQL database designed for AI‑powered applications, now in public preview.
+Introducing Rayfin: From prompt to production backend
+Coding agents are accelerating app development. Moving those applications from prototype to production, however, remains a challenge. Agent-created or not, every production-ready application still relies on a backend to manage data, enforce identity and permissions, coordinate state, and operate reliably over time. Existing software-service platforms were either not designed for agents or do not fully meet enterprise requirements for deployment, security, and governance.
+Rayfin, a new open-source SDK and CLI, is designed to close that gap. It lets developers and coding agents describe what to build and get an enterprise-grade application backend directly into the application code, including a database, authentication, and more. Rayfin then deploys directly to Microsoft Fabric, giving every application enterprise-grade security and scale from day one. Developers and AI agents can now move from prompt to production without managing infrastructure.
+With Rayfin, developers work through familiar GitHub‑based workflows to define data models, backend logic, and access policies entirely in code, giving teams and agents a consistent, programmable interface for building and managing applications. Watch Rayfin in action:
+Because Rayfin can be deployed directly on Fabric, application data lands directly in OneLake, where it is immediately available to the full Fabric data stack, unified with analytics, operational and real-time data, and AI engines by default. This enables developers to build their enterprise apps on trusted business logic, integrate with semantic models, and embed rich data visuals.
+We’re excited to partner with Replit, a leading AI coding platform, to help customers build enterprise-grade apps in the interface they know and love while keeping app, data, and services managed in their own Fabric tenant.
+Rayfin unlocks a new development model for our users. Agents write the code. Fabric ships it quickly and safely.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a516c8b6f4f')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="af48bfde910">
+        <div class="article-body">
+          <a href="https://azure.microsoft.com/en-us/blog/new-azure-cobalt-200-vms-deliver-50-performance-improvement-fully-optimized-for-modern-agentic-ai-workloads/" target="_blank" rel="noopener noreferrer" class="article-title">New Azure Cobalt 200 VMs deliver 50% performance improvement, fully optimized for modern agentic AI workloads</a>
+          <div class="article-meta">azure.microsoft.com &bull; Jun 02, 2026</div>
+          <div class="article-summary"><p>As organizations increasingly embrace the agentic era for AI, customer demands for compute are reshaping the architecture of cloud infrastructure as we know it. Today at Microsoft Build 2026, we are announcing the early access preview for Azure Cobalt 200 Arm-based Virtual Machines (VMs), designed from the ground up for scale-out, cloud-native, and Linux-based agentic AI workloads, with up to 50% better generational performance over Cobalt 100.
+Cobalt 200 is purpose-built from silicon to servers to services—integrating Microsoft’s latest innovations in security, networking, storage, and offload to outperform traditional Arm-based compute. That hardware-software co-optimization lets us push the boundaries of scale, security, and cost for AI inferencing, data pipelines, and the web and API tiers that power modern services. Agents are unique from traditional workloads: they reason, make sequential decisions, and run continuously at scale—demanding a fundamentally different computational profile. Cobalt 200 is built for exactly this environment, delivering 50% performance gains for the workloads defining the next era of enterprise AI, making agents faster, more capable, and economically viable at scale.
+Building on the success of Cobalt 100 VMs
+Microsoft Azure Cobalt 100, our first custom-built processor for cloud-native workloads is now deployed in 32 Azure datacenter regions around the world, with cloud analytics leaders like Databricks and Snowflake adopting Cobalt 100 to optimize their cloud footprint, while customers like Amadeus, OneTrust, Siemens, Sprinklr, and Temenos have achieved significant real-world performance and efficiency gains.
+Within Microsoft’s own cloud services, Azure Cobalt 100 VMs are delivering up to 45% better performance while using 35% fewer compute cores compared to its previous compute platform. Microsoft Defender for Endpoint (MDE) saw 40% better performance in its cyber data curator, enabling faster threat response at massive scale.
+With Cobalt 200 VMs, we are applying everything we learned towards supporting these demanding services to raise the bar even further.
+What’s new in Cobalt 200 Arm-based VMs
+The Cobalt 200 CPU represents a significant leap forward in performance, security, and efficiency. At the heart of every Cobalt 200 VM is the Cobalt 200 System-on-Chip (SoC), our second-generation Arm processor built around the Arm Neoverse V3 Compute Subsystems, the highest-performance V-series core in Arm’s portfolio.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('af48bfde910')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a632085afa4">
+        <div class="article-body">
+          <a href="https://devblogs.microsoft.com/foundry/build-smarter-agents-faster-with-foundry-iq/" target="_blank" rel="noopener noreferrer" class="article-title">Foundry IQ: Build smarter agents faster with unified knowledge and serverless retrieval</a>
+          <div class="article-meta">devblogs.microsoft.com &bull; Jun 02, 2026</div>
+          <div class="article-summary"><p>Developers building agent fleets keep hitting the same pattern: the agent logic is ready, but the knowledge infrastructure underneath is complex to do well. Getting to production means solving for stability, scale, data access, answer quality, security, and content ingestion all at once. Today, we are enabling developers to have faster impact by simplifying the enterprise knowledge platform.
+Your company’s IQ, powered by Microsoft IQ, is the collective intelligence locked in documents, emails, meetings, operational data, and the live web. This is where your true competitive edge lives. Foundry IQ grounds agents with the knowledge from these sources and continuously improves based on your business goals.
+The announcements today are designed to help customers provision knowledge bases faster, unify enterprise and external sources, and expose that knowledge through the Foundry IQ Model Context Protocol (MCP) server for any agent framework or MCP-compatible hosts.
+What’s new
+- Foundry IQ Serverless in preview: Provision instant, no-friction context retrieval with scale to zero pricing. Developer tier now available in public preview with more coming soon. Docs | Create a Foundry IQ resource
+- New knowledge sources in preview: Ground agents across Work IQ, Fabric IQ (including Data agents and Ontology), File Search, Azure SQL, and MCP through a multi-source knowledge base, with no custom integrations required. Docs | Cookbook
+- Web IQ in Foundry IQ is now available: Extend agent context to the web, honoring publisher preferences, and marketplace data with sub-165 ms latency and zero data retention. Blog | Website
+- Foundry IQ knowledge bases are generally available: Ship production agents on a fully SLA-backed knowledge layer with stable APIs, compliance certifications, and the Foundry IQ MCP server for any MCP-compatible host. Docs | Quickstart
+- Agentic retrieval quality improvements: The latest updates to the agentic retrieval engine improve answer performance across datasets, effort tiers, and model sizes while spending fewer tokens. Blog | Quickstart
+- Data pipeline updates in preview: Automatic layout-aware ingestion of documents, image enrichment, and broader SharePoint indexing ground agents in complete documents, not just raw text. Blog | Quickstart
+- Security updates in preview: New controls for encryption, permissions sync, and sensitivity-label governance keep enterprise policy intact as content flows into agents. Blog | Quickstart
+Foundry IQ Serverless in public preview
+We know agent workloads are bursty and event-driven: an agent might execute hundreds of steps in seconds, then go idle for hours. Serverless eliminates infrastructure friction: no clusters to manage, no capacity to reserve, no idle costs. Go from zero to production fast, with instant retrieval-augmented generation (RAG) and state-of-the-art retrieval quality built in.
+Foundry IQ Serverless (Developer tier) is available in public preview. You are billed for compute resources and storage used, and the service scales to zero when idle.
+Serverless tiers use Compute Units (CU) to measure resource consumption, including CPU utilization, memory and storage I/O. Usage is calculated each minute in increments of 0.25 CUs.
+For large-scale serverless deployments, contact us for additional options.
+Billing is expected to begin in late 2026 with details provided at least 30 days in advance. Customers using Serverless Developer won’t be charged before billing is enabled. Current Compute Unit measurements are estimates only and subject to change before billing is enabled.
+Next steps: create a Foundry IQ Serverless resource in the Foundry portal.
+New knowledge sources in preview
+How do I give an agent access to organizational knowledge and structured business data without building a custom connector for every system?
+Bringing enterprise knowledge into agent workflows often means stitching together custom integrations across each data source.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a632085afa4')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a77a3a10c1e">
+        <div class="article-body">
+          <a href="https://devblogs.microsoft.com/foundry/build-2026-foundry-models/" target="_blank" rel="noopener noreferrer" class="article-title">A Developer’s Guide to Managing Models, Cost and Quality in Microsoft Foundry</a>
+          <div class="article-meta">devblogs.microsoft.com &bull; Jun 02, 2026</div>
+          <div class="article-summary"><p>A Developer’s Guide to Managing Models, Cost and Quality in Microsoft Foundry
+The hardest part of building AI systems today is no longer getting access to a capable model. It is knowing how to choose, validate, optimize, and operate the right model across the full lifecycle of a real application.
+Take a retrieval-augmented generation (RAG)-based customer support copilot or a tool-calling agent that helps employees complete business workflows. In a prototype, it may be enough to pick a strong model, connect a few data sources, and get a useful response. In production, the system needs to retrieve the right context, call the right tools, meet quality and safety thresholds, stay within latency targets, and run at a cost the business can sustain.
+Models evolve, costs shift, and production requirements often arrive after the first version is already working. Success depends less on choosing the most powerful model and more on building a disciplined operating approach around the application.
+That is where Microsoft Foundry comes in: a unified platform to select, evaluate, optimize, operate, and continuously improve AI applications at production scale.
+What’s new
+Microsoft Foundry continues to expand the model ecosystem and operating surface for developers building production AI systems.
+Fireworks AI on Microsoft Foundry is now generally available, giving developers access to production-grade open model inference through a single Azure endpoint, with enterprise service-level agreements (SLAs) and zero-setup onboarding.
+Foundry is also adding new model families and capabilities across modalities, including Microsoft AI models, partner models, open-source models, custom models, and post-trained variants. Together, these updates give developers more choice while keeping selection, evaluation, deployment, and operations in one consistent workflow.
+The challenge is no longer access. It is operations.
+In a prototype, the questions are simple: Can the model answer the prompt? Can it connect to my data? Can it complete the happy path?
+In production, the questions change. Which model fits each task? How do I validate it on my own data? What latency budget does this experience require? How much throughput do I need at peak? What happens when quota is constrained, costs spike, or a newer model becomes available? How do I monitor quality, detect eval drift, roll back safely, and prove the system is governed?
+Agentic systems often fail when the model is mismatched, evaluation is incomplete, costs run unchecked, or governance arrives too late. Teams that rely on a single provider face another risk: lock-in, with no escape hatch when a model degrades, pricing changes, or capacity becomes constrained.
+Foundry is built on the opposite philosophy. It is a model-agnostic platform spanning Microsoft, open-source, and independent software vendor (ISV) partner models, all on the same operating surface.
+The answer is to treat model selection and optimization as a continuous operating discipline:
+1. Select the right model for the task
+Model selection is about workload fit, not leaderboard rank. Before choosing a model, define the task contract: what the model needs to do, what good looks like, what constraints it must operate within, and which failure modes are unacceptable.
+A routing step may need low latency. A policy question may need grounded reasoning with citations. A coding agent may need deeper reasoning and tool use. A customer-facing copilot may need strong safety boundaries, predictable latency, and cost efficiency at scale.
+A simple model selection framework:
+Effective model choice depends on four dimensions: capability, safety, latency, and cost.
+Foundry helps developers make these tradeoffs through a broad model ecosystem and a consistent operating surface.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a77a3a10c1e')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a8bae61544d">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/06/pcpjack-hijacks-230-aws-google-cloud.html" target="_blank" rel="noopener noreferrer" class="article-title">PCPJack Hijacks 230 AWS, Google Cloud, and Azure Servers for Covert SMTP Relay Network - The Hacker News</a>
+          <div class="article-meta">The Hacker News &bull; Jun 05, 2026</div>
+          <div class="article-summary"><p>The threat actor known as PCPJack has hijacked cloud servers associated with Amazon Web Services (AWS), Google Cloud, and Microsoft Azure to create a covert SMTP email relay network.
+&quot;Compromised business servers across the U.S., Europe, and Asia were quietly converted into SMTP proxies, verified for mail relay capability, and synced to a downstream consumer every five minutes,&quot; Hunt.io said in a statement. &quot;The infrastructure was still running when we found it.&quot;
+The threat intelligence company said it found source code, compiled binaries, deployment state logs, internet scanners, exploitation tooling, and a live Sliver configuration after the threat actor behind the operation left two open directories on a command-and-control (C2) server (&quot;213.136.80[.]73&quot;) without any authentication.
+PCPJack was first discovered by SentinelOne in April 2026 after it identified a credential theft framework that specifically targets cloud services, while taking steps to terminate and remove processes or artifacts associated with TeamPCP, another notorious hacking group that has attracted attention in recent months for its software supply chain attacks.
+Staged in one of the open directories Sliver-integrated SMTP proxy deployment toolkit, along with Chisel tunneling and proxy binaries for most Linux CPU architectures, such as AMD64, ARM64, and x86. On the victim side, the binary is dropped as a hidden dot-prefixed file and persisted at &quot;/var/tmp/.xs.&quot;
+Also found in the directories are deployer scripts designed to load the Sliver C2 client configuration and filter for Linux beacons that have checked in within the last ten minutes. Beacons are implants that periodically phone home to the C2 server at regular intervals to check in and retrieve commands.
+&quot;The deployer scripts are the automation layer that turns compromised Linux servers into SOCKS5 proxies,&quot; Hunt.io told The Hacker News. &quot;They connect to the local Sliver C2, pull a list of active Linux beacons, push a Chisel binary to each one, and install it as a persistent service.&quot;
+&quot;Each beacon receives a SOCKS5 proxy port derived deterministically from an MD5 hash of its Sliver UUID, mapped into the range 10000-14999,&quot; Hunt.io noted. &quot;The same beacon always maps to the same port across runs, eliminating the need for a shared port registry.&quot;
+The script is also capable of running an SMTP quality gate that probes for outbound access to smtp.gmail[.]com:587. Hosts that fail this check are skipped with an exit code of zero.
+&quot;This gate defines the operation's purpose: hosts that cannot relay email have no value to this pipeline,&quot; the cybersecurity company added. &quot;Beacons are processed in batches of 50, with a 25-minute wait after uploads and 15 minutes after execution commands, to accommodate slow-interval beacon check-ins.&quot;
+Subsequent iterations of the deployer scripts have been found to remove the SMTP gate and the batching logic. Also present is a diagnostic script that selects five active beacons and tasks them each a shell command that checks for the following -
+- Presence of Chisel binaries at known drop paths
+- A Chisel process is running
+- Disk space
+- Reachability of port 9000 on the C2, and
+- Presence of persistence artifacts, such as the cron entry or systemd service
+In addition, the C2 server runs a Python script named &quot;chisel_verifier.py&quot; as a persistent background daemon, which enumerates active Chisel tunnel ports via ss -tlnp every 60 seconds, tests each new port for SMTP capability, and removes failed or dropped tunnels from the active pool.
+Verified proxies are enriched with exit IP address, country, and ASN via services like api.ipify[.]org and ip-api[.]com. The proxy lists are then synced every five minutes via the Secure Copy Protocol (SCP) to a separate downstream server at 38.242.204[.]245. The server is currently not accessible. The end goal of the operation remains unclear at this stage.
+&quot;The 230-node outcome is the observable result.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a8bae61544d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aa592fd74c4">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMifkFVX3lxTE9yN0NaU1lYTmx3WmZOUHJQUDFOY0JTTU1HRDNEcHFZT3doUmRaV2Z0ZEZwaTY0MkVPdVNNUHVocnhycUxUbUFBejctTmYzUmV5Q2FabnBnczVSVWxtYU5mZTNpdk5nUHkzd0ZxMy14TnVJQmt0Qm14bzdtRzNZZw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Opens the Door to Azure Linux 4.0 Testing - Linuxiac</a>
+          <div class="article-meta">Linuxiac &bull; Jun 05, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft Opens the Door to Azure Linux 4.0 Testing&amp;nbsp;&amp;nbsp;Linuxiac</p><a href="https://news.google.com/rss/articles/CBMifkFVX3lxTE9yN0NaU1lYTmx3WmZOUHJQUDFOY0JTTU1HRDNEcHFZT3doUmRaV2Z0ZEZwaTY0MkVPdVNNUHVocnhycUxUbUFBejctTmYzUmV5Q2FabnBnczVSVWxtYU5mZTNpdk5nUHkzd0ZxMy14TnVJQmt0Qm14bzdtRzNZZw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aa592fd74c4')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="sharepoint" class="topic-section">
+      <h2 class="topic-title" style="--c:#036C70">SharePoint <span class="count">(6)</span></h2>
+      <div class="article-card" data-id="aef1ae3f247">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMimgFBVV95cUxOOGhhS2FqdG5pN2VoZEhCclkzR1hxTG1lS0xuUjVwWGNvRnpYLWlIUWFJNkd5dE9sV0NiZ3pua2lBRU9tRkFNU2kySmpKVzFMU0VibndobUpGRUFwZEtBd1gwVklCWExuVm10TlRhQWVXMW5XQmhmcm1sdkdrelhFTFBoYlAzQUQ2c29kLVJucDh5Z0UzUXkyR3lB?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Announcing the new Work IQ APIs - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; Jun 02, 2026</div>
+          <div class="article-summary snippet"><p>Announcing the new Work IQ APIs&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMimgFBVV95cUxOOGhhS2FqdG5pN2VoZEhCclkzR1hxTG1lS0xuUjVwWGNvRnpYLWlIUWFJNkd5dE9sV0NiZ3pua2lBRU9tRkFNU2kySmpKVzFMU0VibndobUpGRUFwZEtBd1gwVklCWExuVm10TlRhQWVXMW5XQmhmcm1sdkdrelhFTFBoYlAzQUQ2c29kLVJucDh5Z0UzUXkyR3lB?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aef1ae3f247')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a1276b75b36">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiwAFBVV95cUxONjhpMjhKUnBxWXk3ak9vMzRoZFJQbF9yM08yYi1EQW15TnFCTmVhb3RsaWNFb3I5WGZKcElYVXd2TUdXN29MNzNGeU9YMzd4QnVQdHlqdm0zbERCczVVdU9lSzhrRDB1djN2aHZTMWh1Zkx6NlhEZ1h3UUNlVVlrdWItRkdtSmJmaFo5TkhfeElVVFR3bmNTM3NyMWM5Z0ZTWGZlaTFpNlEzS25vRS1tcndBNjlWZ0ZacllxTzVrZTA?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">UH SharePoint, OneDrive exceed maximum capacity: Students, faculty unable to save files - The Daily Cougar</a>
+          <div class="article-meta">The Daily Cougar &bull; Jun 02, 2026</div>
+          <div class="article-summary snippet"><p>UH SharePoint, OneDrive exceed maximum capacity: Students, faculty unable to save files&amp;nbsp;&amp;nbsp;The Daily Cougar</p><a href="https://news.google.com/rss/articles/CBMiwAFBVV95cUxONjhpMjhKUnBxWXk3ak9vMzRoZFJQbF9yM08yYi1EQW15TnFCTmVhb3RsaWNFb3I5WGZKcElYVXd2TUdXN29MNzNGeU9YMzd4QnVQdHlqdm0zbERCczVVdU9lSzhrRDB1djN2aHZTMWh1Zkx6NlhEZ1h3UUNlVVlrdWItRkdtSmJmaFo5TkhfeElVVFR3bmNTM3NyMWM5Z0ZTWGZlaTFpNlEzS25vRS1tcndBNjlWZ0ZacllxTzVrZTA?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a1276b75b36')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a4b9bd29ac2">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMivAFBVV95cUxPV05vaTgybEpsRVBhZGFEai12SHFkYWZiZjRSR1VaMXFJckxYRnU5MHc2Q3QzTVFqVklRb21qck80M0I0VEZQQjBKS2tuQ2l6bURRQ2NhYkwwTnQya3d5OGsyMTU1V3gtd3ZtZ2F4b3JFTXdoY0N1YXJ4eUthalkyTUg3N2RaR3NzYVZyNEZlRkRMUUROMmV3c1ctN3htRklTdmdTeTVLOFQxNmhwOVNJU2k5WFNfbFNJWWhVSQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Introducing Microsoft Scout: Your always-on personal agent - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; Jun 02, 2026</div>
+          <div class="article-summary snippet"><p>Introducing Microsoft Scout: Your always-on personal agent&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMivAFBVV95cUxPV05vaTgybEpsRVBhZGFEai12SHFkYWZiZjRSR1VaMXFJckxYRnU5MHc2Q3QzTVFqVklRb21qck80M0I0VEZQQjBKS2tuQ2l6bURRQ2NhYkwwTnQya3d5OGsyMTU1V3gtd3ZtZ2F4b3JFTXdoY0N1YXJ4eUthalkyTUg3N2RaR3NzYVZyNEZlRkRMUUROMmV3c1ctN3htRklTdmdTeTVLOFQxNmhwOVNJU2k5WFNfbFNJWWhVSQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a4b9bd29ac2')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ab2d95a1d16">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiigFBVV95cUxQaE0xUWZwV1FFZHN0VWZ2c0JFSDlKUFRyRG1jLW1mbFZwYUFraUdYR2lBa25jeXc4Q3p1TkdaTWJCb05OZ1FoNUluR0wzLURuOG1vUU0xaVhaaEN2RU9hWExSdGdYWWo4cm9nXzVGN2s1VHVKSHNVTUpkRmk5eXFoWXB2ckZwd0xBaWc?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Who Will Break Who: Microsoft or Mythos? - CPO Magazine</a>
+          <div class="article-meta">CPO Magazine &bull; Jun 05, 2026</div>
+          <div class="article-summary snippet"><p>Who Will Break Who: Microsoft or Mythos?&amp;nbsp;&amp;nbsp;CPO Magazine</p><a href="https://news.google.com/rss/articles/CBMiigFBVV95cUxQaE0xUWZwV1FFZHN0VWZ2c0JFSDlKUFRyRG1jLW1mbFZwYUFraUdYR2lBa25jeXc4Q3p1TkdaTWJCb05OZ1FoNUluR0wzLURuOG1vUU0xaVhaaEN2RU9hWExSdGdYWWo4cm9nXzVGN2s1VHVKSHNVTUpkRmk5eXFoWXB2ckZwd0xBaWc?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ab2d95a1d16')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aaba4c842e4">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiggFBVV95cUxQQUpHSDNRQ2pYTllid21VNlBhUHdtUnc3NUdXTkc2eE1xUUdZSGlxVmNqbjRRamZRNUVnejNRUF82N3VJajFWREM1NWgzYWRhRXdzY01ZYmxrUmpuc1dtZ2o5LWhnaG9zS1NQUkw3Yk0wT1BpZ2h5Q05QLWZRZmpQUVR3?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">June 2026 Patch Tuesday forecast: Where are the CVEs? - Help Net Security</a>
+          <div class="article-meta">Help Net Security &bull; Jun 05, 2026</div>
+          <div class="article-summary snippet"><p>June 2026 Patch Tuesday forecast: Where are the CVEs?&amp;nbsp;&amp;nbsp;Help Net Security</p><a href="https://news.google.com/rss/articles/CBMiggFBVV95cUxQQUpHSDNRQ2pYTllid21VNlBhUHdtUnc3NUdXTkc2eE1xUUdZSGlxVmNqbjRRamZRNUVnejNRUF82N3VJajFWREM1NWgzYWRhRXdzY01ZYmxrUmpuc1dtZ2o5LWhnaG9zS1NQUkw3Yk0wT1BpZ2h5Q05QLWZRZmpQUVR3?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aaba4c842e4')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aaad937340b">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMivgFBVV95cUxPSDhGN2JjNWprekJfbmpnMnk1TFFkbjZnVGxWYnJ0QkYxakM4WTJER3ViTjNpUF9KUmlmYlExUndmV0RJb3k5NVE0TUl1SVNXSXlLWU04elgtT2xPbkFPZmpHT2RiUHUwMHB1QjZzaWtLSmxRZFNTSDQzNEJxdE9BSjdpOElRdGR6QkFCSXZmXzRyQUdhR0NJOEFkZWViYWFzdnZWbGZLQmxkNkR5emRQVnpJVlRKVFN0a2pSaHB3?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Launches Scout, an Autonomous AI Agent Built on OpenClaw for Microsoft 365 - Analytics India Magazine</a>
+          <div class="article-meta">Analytics India Magazine &bull; Jun 03, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft Launches Scout, an Autonomous AI Agent Built on OpenClaw for Microsoft 365&amp;nbsp;&amp;nbsp;Analytics India Magazine</p><a href="https://news.google.com/rss/articles/CBMivgFBVV95cUxPSDhGN2JjNWprekJfbmpnMnk1TFFkbjZnVGxWYnJ0QkYxakM4WTJER3ViTjNpUF9KUmlmYlExUndmV0RJb3k5NVE0TUl1SVNXSXlLWU04elgtT2xPbkFPZmpHT2RiUHUwMHB1QjZzaWtLSmxRZFNTSDQzNEJxdE9BSjdpOElRdGR6QkFCSXZmXzRyQUdhR0NJOEFkZWViYWFzdnZWbGZLQmxkNkR5emRQVnpJVlRKVFN0a2pSaHB3?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aaad937340b')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="intune" class="topic-section">
+      <h2 class="topic-title" style="--c:#0F6CBD">Intune <span class="count">(4)</span></h2>
+      <div class="article-card" data-id="a8b735af0dd">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi2wFBVV95cUxPYjVVT3czUU9DcGIzQVdDOUYzbDZ0bVBIbzJaeW1QcmNBcmlIeHhNVlg3V0lqSXZfR1pBMFk0VFFDcEhvVEI3RXNVYWVhOWVnM2JHSENaZklqdXRuTXgybHQzNDRkNWxtRWxKWWhtS3NCY0NQQ0swT0Y0QlQ4QnF3akhkdFlPeWR5czhYUGNwZ01mZkNHZ1A5SEhZQW9DVWU5VXJMWHdybThRZWZLbEh0RUs1YmtTRTJyTDc3TUFyc0dINXl4cFc3VzdDeTUzLTZ5QXFhaWZRbUhxWXc?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Build 2026: Securing code, agents, and models across the development lifecycle - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; Jun 02, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft Build 2026: Securing code, agents, and models across the development lifecycle&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMi2wFBVV95cUxPYjVVT3czUU9DcGIzQVdDOUYzbDZ0bVBIbzJaeW1QcmNBcmlIeHhNVlg3V0lqSXZfR1pBMFk0VFFDcEhvVEI3RXNVYWVhOWVnM2JHSENaZklqdXRuTXgybHQzNDRkNWxtRWxKWWhtS3NCY0NQQ0swT0Y0QlQ4QnF3akhkdFlPeWR5czhYUGNwZ01mZkNHZ1A5SEhZQW9DVWU5VXJMWHdybThRZWZLbEh0RUs1YmtTRTJyTDc3TUFyc0dINXl4cFc3VzdDeTUzLTZ5QXFhaWZRbUhxWXc?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a8b735af0dd')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aba0a68e0ea">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE9Nc0VFd042Zml2d3p0NWJvRVpEcXJjTF9PaDJYb053eE1NS1FXeVEtOGE5YjRGdkQtZWdsTG9SNUtaaWRmbEE1OVZqeW9ESUlPVGhObzJnRFFMTUJOeTRQVQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">What’s New in Microsoft Intune – May 2026 - Petri IT Knowledgebase</a>
+          <div class="article-meta">Petri IT Knowledgebase &bull; Jun 02, 2026</div>
+          <div class="article-summary snippet"><p>What’s New in Microsoft Intune – May 2026&amp;nbsp;&amp;nbsp;Petri IT Knowledgebase</p><a href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE9Nc0VFd042Zml2d3p0NWJvRVpEcXJjTF9PaDJYb053eE1NS1FXeVEtOGE5YjRGdkQtZWdsTG9SNUtaaWRmbEE1OVZqeW9ESUlPVGhObzJnRFFMTUJOeTRQVQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aba0a68e0ea')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a197d3d1b68">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiekFVX3lxTE00WnV1U0laUjdtbkd2SXVZREdTOXQ0WVRCUUtYU0pScXZKX2w5cFpaUWV1SDlIODFCSDVIaEVJMjhJLUR5c19wYmFURktVdmRKTVZKZTAzSmhuelFCSFM3RWNicFIxWEJwMm1rVXJEbG9XNWxKNno3ZXdn?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">How Microsoft Execution Containers Define Boundaries for AI Agents - Petri IT Knowledgebase</a>
+          <div class="article-meta">Petri IT Knowledgebase &bull; Jun 05, 2026</div>
+          <div class="article-summary snippet"><p>How Microsoft Execution Containers Define Boundaries for AI Agents&amp;nbsp;&amp;nbsp;Petri IT Knowledgebase</p><a href="https://news.google.com/rss/articles/CBMiekFVX3lxTE00WnV1U0laUjdtbkd2SXVZREdTOXQ0WVRCUUtYU0pScXZKX2w5cFpaUWV1SDlIODFCSDVIaEVJMjhJLUR5c19wYmFURktVdmRKTVZKZTAzSmhuelFCSFM3RWNicFIxWEJwMm1rVXJEbG9XNWxKNno3ZXdn?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a197d3d1b68')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a738909ff17">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMipAFBVV95cUxPSW5QWFkxQW4zYmx5azAwc3FQSzc5NWFCQUFRX045NDl0Njl0QnlRWFdYSmhoMXpReUQ2THF6V1hpbU5DUFFyRU85RDVjWkxQU09RM0hsNmJTd1BNbktUV2NZTUhZcjJuTkxMLVhHc0h2azNXN2l1aldmSE5MLS1OcTNGeEo0WUVFNktwY1RBM2FROE9kOEQ0N2FIbFR6WVFreXBJbQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft unveils Project Solara agent-first device platform - Let's Data Science</a>
+          <div class="article-meta">Let's Data Science &bull; Jun 03, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft unveils Project Solara agent-first device platform&amp;nbsp;&amp;nbsp;Let's Data Science</p><a href="https://news.google.com/rss/articles/CBMipAFBVV95cUxPSW5QWFkxQW4zYmx5azAwc3FQSzc5NWFCQUFRX045NDl0Njl0QnlRWFdYSmhoMXpReUQ2THF6V1hpbU5DUFFyRU85RDVjWkxQU09RM0hsNmJTd1BNbktUV2NZTUhZcjJuTkxMLVhHc0h2azNXN2l1aldmSE5MLS1OcTNGeEo0WUVFNktwY1RBM2FROE9kOEQ0N2FIbFR6WVFreXBJbQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a738909ff17')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="entraid" class="topic-section">
+      <h2 class="topic-title" style="--c:#6B69D6">Entra ID <span class="count">(7)</span></h2>
+      <div class="article-card" data-id="aaee9050720">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/06/shrinking-iam-attack-surface-through.html" target="_blank" rel="noopener noreferrer" class="article-title">Shrinking the IAM Attack Surface through Identity Visibility and Intelligence Platforms (IVIP)</a>
+          <div class="article-meta">thehackernews.com &bull; Jun 03, 2026</div>
+          <div class="article-summary"><p>The Fragmented State of Modern Enterprise Identity
+Enterprise IAM is approaching a breaking point. As organizations scale, identity becomes increasingly fragmented across thousands of applications, decentralized teams, machine identities, and autonomous systems.
+The result is Identity Dark Matter: identity activity that sits outside the visibility of centralized IAM and beyond the reach of security teams.
+According to Orchid Security's analysis, 46% of enterprise identity activity occurs outside centralized IAM visibility. In other words, nearly half of the enterprise identity surface may be operating unseen. This hidden layer includes unmanaged applications, local accounts, opaque authentication flows, and over-permissioned non-human identities. It is further amplified by disconnected tools, siloed ownership, and the rapid rise of Agentic AI.
+The consequence is a widening gap between what the security organizations think they have and the access that actually exists. That gap is where modern identity risk now lives.
+Defining the IVIP Category: The Visibility &amp; Observability Layer
+To close these gaps, Gartner has introduced the Identity Visibility and Intelligence Platform (IVIP) as a fundamental &quot;System of Systems.&quot; Within the Identity Fabric framework, IVIPs occupy Layer 5: Visibility and Observability, providing an independent layer of oversight above access management and governance.
+By formal definition, an IVIP solution rapidly ingests and unifies IAM data, leveraging AI-driven analytics to provide a single window into identity events, user-resource relationships, and posture.
+What an IVIP Must Actually Do
+A credible IVIP cannot be just another identity repository. It has to serve as an active intelligence engine for the enterprise identity ecosystem.
+First, it must provide continuous discovery of both human and non-human identities across every relevant system, including those that sit outside formal IAM onboarding. Second, it must act as an identity data platform, unifying fragmented information from directories, applications, and infrastructure into a more coherent source of truth. Third, it must deliver intelligence, using analytics and AI to convert scattered identity signals into meaningful security insight.
+From a technical standpoint, that means supporting capabilities such as automated remediation, so posture gaps can be corrected directly across the IAM stack; real-time signal sharing, using standards like CAEP to trigger immediate security actions; and intent-based intelligence, where LLMs help interpret the purpose behind identity activity and separate normal operational behavior from truly risky patterns.
+This is the shift from identity visibility to identity understanding and ultimately, to identity control.
+Orchid Security: Delivering the IVIP Control Plane
+Orchid Security operationalizes the Identity Visibility and Intelligence Platform (IVIP) model by transforming fragmented identity signals into continuous, application-level intelligence. Rather than relying solely on centralized IAM integrations, Orchid builds visibility directly from the application estate itself, allowing organizations to discover, unify, and analyze identity activity across systems that traditional tools cannot see.
+1. Visibility and Data Scope: Seeing the Full Application and Identity Estate
+A core IVIP requirement is continuous discovery of identities and the systems they operate in. Orchid achieves this through binary analysis and dynamic instrumentation, enabling it to inspect native authentication and authorization logic directly inside applications and infrastructure without requiring APIs, source-code changes, or lengthy integrations.
+This approach provides a critical advantage in application estate discovery. Many enterprises cannot govern identities across applications that central security teams do not even know exist. Orchid surfaces these systems first, because you cannot assess, govern, or secure what you cannot see.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aaee9050720')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a0b414f89f2">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiqAFBVV95cUxQbXlLcEEzbUhLT3R4akhtWWNEeDhKc3AwRjM5bTBtMnFGWU1vRTB5alBWaE00ekQteUxDTVBOdWxqaEhTT1d0elMySnBPcmdxYWhsWDN2eWpCemhVWi1nXzV5a0g4cHEyeXBId3lqeU1IbXN5SHAwSVA0VFdOWk9XRmVXU0dBQ0N6MlhBd2hZa2EwX1ItRGtJNU40Q1RlcFZQNXRCUzFaYTQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft is tightening password reset security in Entra ID - Techzine Global</a>
+          <div class="article-meta">Techzine Global &bull; Jun 01, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft is tightening password reset security in Entra ID&amp;nbsp;&amp;nbsp;Techzine Global</p><a href="https://news.google.com/rss/articles/CBMiqAFBVV95cUxQbXlLcEEzbUhLT3R4akhtWWNEeDhKc3AwRjM5bTBtMnFGWU1vRTB5alBWaE00ekQteUxDTVBOdWxqaEhTT1d0elMySnBPcmdxYWhsWDN2eWpCemhVWi1nXzV5a0g4cHEyeXBId3lqeU1IbXN5SHAwSVA0VFdOWk9XRmVXU0dBQ0N6MlhBd2hZa2EwX1ItRGtJNU40Q1RlcFZQNXRCUzFaYTQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a0b414f89f2')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="af4ebe3eed6">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiiwFBVV95cUxNaTNZVko0UnBLMTZNTnJ4MXdWUWRQaTJuVEVyUkFENWVMVlVjMU8wTnZxV214MlJWWkoyd083SmMwRTZMTlVWR2hyRVhDcHRwQ25aNkY4Q2tMLVVBNENselhMREdIcm9rRzRZOW9HVEZHR0NLbzRtOTB2ZEFOWDdLM1J5YmlQRkM2eW9F?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Entra pushes passkeys, tightens identity security - Help Net Security</a>
+          <div class="article-meta">Help Net Security &bull; Jun 02, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft Entra pushes passkeys, tightens identity security&amp;nbsp;&amp;nbsp;Help Net Security</p><a href="https://news.google.com/rss/articles/CBMiiwFBVV95cUxNaTNZVko0UnBLMTZNTnJ4MXdWUWRQaTJuVEVyUkFENWVMVlVjMU8wTnZxV214MlJWWkoyd083SmMwRTZMTlVWR2hyRVhDcHRwQ25aNkY4Q2tMLVVBNENselhMREdIcm9rRzRZOW9HVEZHR0NLbzRtOTB2ZEFOWDdLM1J5YmlQRkM2eW9F?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('af4ebe3eed6')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aaf7f7b10d5">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi_wFBVV95cUxQcFU1b0ItOEpsdVMyeVE0RFZWb2dVUER3UF9ock5COUdvcFpWLS1VV1h2b3JhYkVZbmdTa0V0eDdIVE9ERzlGMmh6Wl8xNUdUY0dpM0ZTdFc0eVZYaWxETk1kaThPYjhDT1hvNFoxUTJSNktrbjZZbms5V3NfMVE1RE1MeDVBWG84N3VZWEpJemo4dnlOaXEzaXZ5NWtTdUV2bC1ZQkNBS3BlSDFEZ1dsejNuRmlmQ3RfVW9JRm1pNF9tZHZ2TEdldUtWNU5WVGVQd2F4SklUb0JKckJiQWYySzVuU1JCTUx5YTNRMTR4WHNyN2E0OWJBTENNVTZqQ2M?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft to enforce registered methods for Entra ID password resets - MSN</a>
+          <div class="article-meta">MSN &bull; Jun 01, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft to enforce registered methods for Entra ID password resets&amp;nbsp;&amp;nbsp;MSN</p><a href="https://news.google.com/rss/articles/CBMi_wFBVV95cUxQcFU1b0ItOEpsdVMyeVE0RFZWb2dVUER3UF9ock5COUdvcFpWLS1VV1h2b3JhYkVZbmdTa0V0eDdIVE9ERzlGMmh6Wl8xNUdUY0dpM0ZTdFc0eVZYaWxETk1kaThPYjhDT1hvNFoxUTJSNktrbjZZbms5V3NfMVE1RE1MeDVBWG84N3VZWEpJemo4dnlOaXEzaXZ5NWtTdUV2bC1ZQkNBS3BlSDFEZ1dsejNuRmlmQ3RfVW9JRm1pNF9tZHZ2TEdldUtWNU5WVGVQd2F4SklUb0JKckJiQWYySzVuU1JCTUx5YTNRMTR4WHNyN2E0OWJBTENNVTZqQ2M?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aaf7f7b10d5')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a61794f976c">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMilgFBVV95cUxON2NzbndHOHVaWUNGU3dlMlZ2SEMybWdHWEJ3QU1nSTBxY3hsWHZRYzZzVm9tVXhkQ2hPRU8yNER6dDhmQmc5VjU1b2hONHhQalM3UzFXTnNTSDAwS082dDAzanJJblJwbl93Y19wZlBEWHcxb1pITTF4VFA3UjM0R0Nhd1NWTVFSOFk4RENiTHcxczFIUUE?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft to Tighten Entra ID Password Reset Rules - WinBuzzer</a>
+          <div class="article-meta">WinBuzzer &bull; Jun 01, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft to Tighten Entra ID Password Reset Rules&amp;nbsp;&amp;nbsp;WinBuzzer</p><a href="https://news.google.com/rss/articles/CBMilgFBVV95cUxON2NzbndHOHVaWUNGU3dlMlZ2SEMybWdHWEJ3QU1nSTBxY3hsWHZRYzZzVm9tVXhkQ2hPRU8yNER6dDhmQmc5VjU1b2hONHhQalM3UzFXTnNTSDAwS082dDAzanJJblJwbl93Y19wZlBEWHcxb1pITTF4VFA3UjM0R0Nhd1NWTVFSOFk4RENiTHcxczFIUUE?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a61794f976c')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a9b88425f75">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMif0FVX3lxTFBsR3VpUmlTWTlTQmtqbnhFYlJJUDRWNFpnUjNKUjJMMXAxaXhQRmJYLUtYWFktdzM4NHU1U1R5RkVHOTZmY08wdEFDTHE4czJIRjNQaFhhTlNKYXZYN18xWUdpYTdYd0NUdV81OEdoa2RlekNnblktby1aLTFIUTTSAYQBQVVfeXFMTVhtN3lnRWMwS2lWQlczcEhIU00zcGthak1Yc1JvTTBrQ3hFa3B1SDRNSTlJcGtYallUUGhKNDNMY3FMT19qNFVhcmpIM3c4TFlHS2NQbXE4dTZTcWpHOFJQU29xNmhiY3V6dEhKaUltemhpOXM4b01WQTZtbENBbTh5VEdv?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Tightens Entra ID Password Resets With New Authentication Change - CyberSecurityNews</a>
+          <div class="article-meta">CyberSecurityNews &bull; Jun 01, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft Tightens Entra ID Password Resets With New Authentication Change&amp;nbsp;&amp;nbsp;CyberSecurityNews</p><a href="https://news.google.com/rss/articles/CBMif0FVX3lxTFBsR3VpUmlTWTlTQmtqbnhFYlJJUDRWNFpnUjNKUjJMMXAxaXhQRmJYLUtYWFktdzM4NHU1U1R5RkVHOTZmY08wdEFDTHE4czJIRjNQaFhhTlNKYXZYN18xWUdpYTdYd0NUdV81OEdoa2RlekNnblktby1aLTFIUTTSAYQBQVVfeXFMTVhtN3lnRWMwS2lWQlczcEhIU00zcGthak1Yc1JvTTBrQ3hFa3B1SDRNSTlJcGtYallUUGhKNDNMY3FMT19qNFVhcmpIM3c4TFlHS2NQbXE4dTZTcWpHOFJQU29xNmhiY3V6dEhKaUltemhpOXM4b01WQTZtbENBbTh5VEdv?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a9b88425f75')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a738909ff17">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMipAFBVV95cUxPSW5QWFkxQW4zYmx5azAwc3FQSzc5NWFCQUFRX045NDl0Njl0QnlRWFdYSmhoMXpReUQ2THF6V1hpbU5DUFFyRU85RDVjWkxQU09RM0hsNmJTd1BNbktUV2NZTUhZcjJuTkxMLVhHc0h2azNXN2l1aldmSE5MLS1OcTNGeEo0WUVFNktwY1RBM2FROE9kOEQ0N2FIbFR6WVFreXBJbQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft unveils Project Solara agent-first device platform - Let's Data Science</a>
+          <div class="article-meta">Let's Data Science &bull; Jun 03, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft unveils Project Solara agent-first device platform&amp;nbsp;&amp;nbsp;Let's Data Science</p><a href="https://news.google.com/rss/articles/CBMipAFBVV95cUxPSW5QWFkxQW4zYmx5azAwc3FQSzc5NWFCQUFRX045NDl0Njl0QnlRWFdYSmhoMXpReUQ2THF6V1hpbU5DUFFyRU85RDVjWkxQU09RM0hsNmJTd1BNbktUV2NZTUhZcjJuTkxMLVhHc0h2azNXN2l1aldmSE5MLS1OcTNGeEo0WUVFNktwY1RBM2FROE9kOEQ0N2FIbFR6WVFreXBJbQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a738909ff17')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="m365" class="topic-section">
+      <h2 class="topic-title" style="--c:#D83B01">Microsoft 365 <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a34aa1c5c7e">
+        <div class="article-body">
+          <a href="https://www.microsoft.com/en-us/microsoft-365/blog/2026/06/02/introducing-microsoft-scout-your-always-on-personal-agent/" target="_blank" rel="noopener noreferrer" class="article-title">Introducing Microsoft Scout: Your always-on personal agent</a>
+          <div class="article-meta">microsoft.com &bull; Jun 02, 2026</div>
+          <div class="article-summary"><p>Work is moving forward in new ways, with the rhythm shifting from single exchanges to something more continuous. Most systems still stop at answering the question. The real unlock is in the follow-through, where systems hold your priorities and act on them for you, under your control.
+A new category of agents
+Today we are introducing a new category of agents called Autopilots. Autopilots are always-on agents that work autonomously, with their own identity, and act on your behalf.
+Autopilots stay active in the background, understand how work gets done across your apps and systems, and take action without needing to be prompted each time. Because they operate with their own identity, they can carry out tasks within the permissions and policies you and your organization set. This creates a more durable way to keep work in motion so it continues even when your attention is elsewhere.
+Introducing Microsoft Scout
+We are also introducing Microsoft Scout, our first Autopilot agent.
+Microsoft Scout is integrated across the Microsoft 365 apps you use every day, keeping it grounded in your flow of work. It operates across cloud, desktop, and web, connecting to Teams, Outlook, OneDrive, and SharePoint, and to the data that powers your day, including chats, email, calendar, and contacts. You interact with it in Teams, and extend its reach through the desktop app to your browser, local resources, and model context protocol servers.
+Microsoft Scout is built with enterprise-grade security and controls so it can be trusted in your organization from day one. It is powered by OpenClaw open-source technology, reflecting our commitment to building with the community while extending capabilities to meet enterprise needs.
+Microsoft Scout reduces the coordination work that builds throughout the day. It can proactively schedule and coordinate meeting times across time zones, flag important meetings, and generate the materials you need to prepare while keeping you in the loop. It identifies upcoming deliverables, then automatically blocks time on your calendar to help you stay on track. It can also spot risks, like stalled decisions, so you can address them before they become blockers.
+Over time, Microsoft Scout builds context powered by Work IQ, learning how you work, what you care about, and what needs to happen next. Work IQ carries work forward, becoming more useful, relevant, and aligned to your priorities.
+Contributing back to the open-source community
+We are contributing policy conformance directly upstream to OpenClaw.
+Organizations running OpenClaw will be able to validate whether their environment is configured within their security and compliance requirements, operating securely, and get a verifiable, audit-ready answer.
+Making Microsoft Scout ready for enterprises
+Microsoft Scout adds the enterprise solution built on Microsoft 365: the identity, credential, and access controls that turn open-source capability into something you can safely run across your organization. Every agent operates under its own governed Entra identity, not a shared, anonymous service account, so the work it does is attributable to a known actor your directory already understands.
+The credentials behind that identity are protected end to end: scoped to the task at hand, redacted from logs or diagnostics, and managed with the same rigor you expect from any first-party Microsoft service. When Microsoft Scout acts on your behalf, you know precisely whose authority it carried and that nothing sensitive leaked along the way.
+Identity tells you who is acting; access control determines what they can do. With Microsoft Scout, agents can only reach the resources and destinations you’ve approved. Sensitive actions can require a human to sign off before they proceed, and data protection policies from Microsoft Purview, including sensitivity labels and loss prevention, are enforced in the moment, before anything is sent or written.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a34aa1c5c7e')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a730b2b7aef">
+        <div class="article-body">
+          <a href="https://www.microsoft.com/en-us/microsoft-365/blog/2026/06/02/announcing-the-new-work-iq-apis/" target="_blank" rel="noopener noreferrer" class="article-title">Announcing the new Work IQ APIs</a>
+          <div class="article-meta">microsoft.com &bull; Jun 02, 2026</div>
+          <div class="article-summary"><p>Software is moving from applications built for people to agents that can reason, retrieve context, and even act on a user’s behalf. That shift calls for a different kind of API surface. Today we are announcing that the Work IQ APIs will be generally available on June 16, 2026. This new API set will be the best way for agents to interact with Microsoft 365 data and apps.
+Work IQ is the intelligence layer behind how work gets done. It builds a semantic understanding of your business by continuously processing content from email, calendar, meetings, chats, files, people, collaboration patterns, and your line of business systems. Work IQ provides intelligence you can’t get from the data alone: a real-time model of how your organization operates. With the Work IQ APIs, you can bring that understanding directly into your own agents, so they can work with business context, not just raw data, and take actions across your organization.
+The Work IQ APIs: 5 distinct advantages
+Traditional interfaces were designed for human interaction, but agents work differently. They need richer context, simpler tool surfaces, lower latency, and enterprise controls built in from the start. This is what the Work IQ APIs are built for, with five core advantages: intelligence, speed, efficiency, scale, and security.
+1. Intelligence
+The Work IQ APIs give agents higher quality results because they do more than retrieve or search content. Work IQ builds on a semantic index with ultra-low latency, personal memory, personal and organizational skills, structured schema on top of files, and business-specific knowledge tuning. The result is that agents can work from the most relevant and continuously updated context with a comprehensive understanding of people, organizational structures, roles, and collaboration patterns.
+2. Speed
+The Work IQ APIs operate at the speed of agents. They use an agent-optimized retrieval system that reduces round trips to the service and lowers access latency to rich context. For tool calling, Work IQ APIs collapses operations into just 10 generic tools with progressive disclosure through model context protocol (MCP), so developers do not need to teach agents hundreds of data-specific tools. That simpler surface helps agents move from reasoning to action much faster, and gives agents higher throughput, accelerating response tokens per second.
+3. Efficiency
+The Work IQ APIs reduce the total number of tokens needed to retrieve context and use tools by moving more of the AI processing into the Work IQ runtime. Instead of returning raw data that an orchestration layer has to read, stitch together, and interpret, specialized large language models (LLMs) and agents within Work IQ package relevant context and data in a structure that is easier for agents to consume. It also trims file record strings, message IDs, and app IDs during tool calling to save tokens.
+4. Scale
+Work IQ has been optimized to support the scale of agent usage. When people use software or interact with systems, it can be intermittent and relatively shallow. Agents execute continuous, high-frequency, multi-step operations that are broader, deeper, and more systematic than how people use software. Work IQ is designed for that usage pattern and the much higher throughput that comes with it. This will allow Microsoft 365 to scale as hundreds of millions of agents come online over the next few years.
+5. Security
+With Work IQ, agent operations are secure by design. Data, context, and insights stay within the Microsoft 365 tenant trust boundary, and actions that an agent takes are auditable and discoverable. This gives developers and IT the controls they need to build enterprise agents without adding a separate governance layer.
+Work IQ API architecture
+The Work IQ APIs consist of four domains that map how agents work:
+- Chat. Programmatic access to the full power and intelligence of Microsoft 365 Copilot.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a730b2b7aef')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a7433cfe360">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMihgJBVV95cUxPaHZQTXN5SlVYTHRFOVhoTVhSLUlQclhWRUlUejVkU3VFS2J0V2c2RS1odUFBSUpCRFF3cXdTUmdHaVRNaVAwc3FIajZKd0dkNHU4UXBBaDVRVUZnQlF5dnY1cmJ4dmltZXVveVlSYjFTV2ZaQmFXN0hDYTRvZW9fdUhoZThYWjIyeGp3YWZURlk0cl9IZzJ6U3dGem5uUTB3TElqSmVvSjFaS196QVEtaXkwSW1SeFprb1A5Tm1NTG5ORTg2U3dqQzVNRkNST1hmSmNNU2VlckZPd1RYRVNBc2ZSNC05UFNoLUJOMTR5alFySHFmMEh0Z1FjNXljTjc4Wmo5ZHFR?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">NHS England rolls out Microsoft 365 Copilot to 505,000 staff - Microsoft UK Stories</a>
+          <div class="article-meta">Microsoft UK Stories &bull; Jun 07, 2026</div>
+          <div class="article-summary snippet"><p>NHS England rolls out Microsoft 365 Copilot to 505,000 staff&amp;nbsp;&amp;nbsp;Microsoft UK Stories</p><a href="https://news.google.com/rss/articles/CBMihgJBVV95cUxPaHZQTXN5SlVYTHRFOVhoTVhSLUlQclhWRUlUejVkU3VFS2J0V2c2RS1odUFBSUpCRFF3cXdTUmdHaVRNaVAwc3FIajZKd0dkNHU4UXBBaDVRVUZnQlF5dnY1cmJ4dmltZXVveVlSYjFTV2ZaQmFXN0hDYTRvZW9fdUhoZThYWjIyeGp3YWZURlk0cl9IZzJ6U3dGem5uUTB3TElqSmVvSjFaS196QVEtaXkwSW1SeFprb1A5Tm1NTG5ORTg2U3dqQzVNRkNST1hmSmNNU2VlckZPd1RYRVNBc2ZSNC05UFNoLUJOMTR5alFySHFmMEh0Z1FjNXljTjc4Wmo5ZHFR?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a7433cfe360')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a4b9bd29ac2">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMivAFBVV95cUxPV05vaTgybEpsRVBhZGFEai12SHFkYWZiZjRSR1VaMXFJckxYRnU5MHc2Q3QzTVFqVklRb21qck80M0I0VEZQQjBKS2tuQ2l6bURRQ2NhYkwwTnQya3d5OGsyMTU1V3gtd3ZtZ2F4b3JFTXdoY0N1YXJ4eUthalkyTUg3N2RaR3NzYVZyNEZlRkRMUUROMmV3c1ctN3htRklTdmdTeTVLOFQxNmhwOVNJU2k5WFNfbFNJWWhVSQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Introducing Microsoft Scout: Your always-on personal agent - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; Jun 02, 2026</div>
+          <div class="article-summary snippet"><p>Introducing Microsoft Scout: Your always-on personal agent&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMivAFBVV95cUxPV05vaTgybEpsRVBhZGFEai12SHFkYWZiZjRSR1VaMXFJckxYRnU5MHc2Q3QzTVFqVklRb21qck80M0I0VEZQQjBKS2tuQ2l6bURRQ2NhYkwwTnQya3d5OGsyMTU1V3gtd3ZtZ2F4b3JFTXdoY0N1YXJ4eUthalkyTUg3N2RaR3NzYVZyNEZlRkRMUUROMmV3c1ctN3htRklTdmdTeTVLOFQxNmhwOVNJU2k5WFNfbFNJWWhVSQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a4b9bd29ac2')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aef1ae3f247">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMimgFBVV95cUxOOGhhS2FqdG5pN2VoZEhCclkzR1hxTG1lS0xuUjVwWGNvRnpYLWlIUWFJNkd5dE9sV0NiZ3pua2lBRU9tRkFNU2kySmpKVzFMU0VibndobUpGRUFwZEtBd1gwVklCWExuVm10TlRhQWVXMW5XQmhmcm1sdkdrelhFTFBoYlAzQUQ2c29kLVJucDh5Z0UzUXkyR3lB?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Announcing the new Work IQ APIs - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; Jun 02, 2026</div>
+          <div class="article-summary snippet"><p>Announcing the new Work IQ APIs&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMimgFBVV95cUxOOGhhS2FqdG5pN2VoZEhCclkzR1hxTG1lS0xuUjVwWGNvRnpYLWlIUWFJNkd5dE9sV0NiZ3pua2lBRU9tRkFNU2kySmpKVzFMU0VibndobUpGRUFwZEtBd1gwVklCWExuVm10TlRhQWVXMW5XQmhmcm1sdkdrelhFTFBoYlAzQUQ2c29kLVJucDh5Z0UzUXkyR3lB?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aef1ae3f247')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a35c4103697">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiuwFBVV95cUxQS0E4VzhhVVcyaG9CS09qR1NXakFRR3Q1ZktJTEFtVDhNUk54aUdPVFE3cm8xdlo3LVNVRTRDdl9VZ2djTGxUZW00WE0wZ2JyRDVEQUZrLURPd1gybkJrYVJkcjJkeUxnYkpVVXFqc05YOWx3TjRlUTlvMFJPYWwtUnM2T3ZoWkszRENfVWt4U3JqdV9hc2VZeDJZcVB0TnI0SDNrWmdZdHJoSkFYRGNXQkNwZ0ZTWEpUSWRR?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Trade your monthly Microsoft 365 bill for a $44.97 lifetime Office license - Macworld</a>
+          <div class="article-meta">Macworld &bull; Jun 06, 2026</div>
+          <div class="article-summary snippet"><p>Trade your monthly Microsoft 365 bill for a $44.97 lifetime Office license&amp;nbsp;&amp;nbsp;Macworld</p><a href="https://news.google.com/rss/articles/CBMiuwFBVV95cUxQS0E4VzhhVVcyaG9CS09qR1NXakFRR3Q1ZktJTEFtVDhNUk54aUdPVFE3cm8xdlo3LVNVRTRDdl9VZ2djTGxUZW00WE0wZ2JyRDVEQUZrLURPd1gybkJrYVJkcjJkeUxnYkpVVXFqc05YOWx3TjRlUTlvMFJPYWwtUnM2T3ZoWkszRENfVWt4U3JqdV9hc2VZeDJZcVB0TnI0SDNrWmdZdHJoSkFYRGNXQkNwZ0ZTWEpUSWRR?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a35c4103697')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a81b40cfc0f">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMinAFBVV95cUxNN3pvNjJqVjZRTEh3RkdLbDlhUVRkajFLd3NMbURBZVNtWVZ3dUdQenNWWlNueVJueEFtc3c1N3kyb05zM0FMRXJGQ2RfYTBCSmoycVdPUDZ3aFpSSjhZd1VmWkNSeDAzZi14QWxDeXI4bXFpeHJNWU5PNHhESzJZMTNHdUd1YU5vR0l1bENOYWRUYmVNU1FKYlpkMkU?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Strengthening biosecurity in the era of AI - The Official Microsoft Blog</a>
+          <div class="article-meta">The Official Microsoft Blog &bull; Jun 04, 2026</div>
+          <div class="article-summary snippet"><p>Strengthening biosecurity in the era of AI&amp;nbsp;&amp;nbsp;The Official Microsoft Blog</p><a href="https://news.google.com/rss/articles/CBMinAFBVV95cUxNN3pvNjJqVjZRTEh3RkdLbDlhUVRkajFLd3NMbURBZVNtWVZ3dUdQenNWWlNueVJueEFtc3c1N3kyb05zM0FMRXJGQ2RfYTBCSmoycVdPUDZ3aFpSSjhZd1VmWkNSeDAzZi14QWxDeXI4bXFpeHJNWU5PNHhESzJZMTNHdUd1YU5vR0l1bENOYWRUYmVNU1FKYlpkMkU?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a81b40cfc0f')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a1e24818903">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMijAFBVV95cUxQcjNYaU9aOHRyRDNnQWFLVW5uTEl2bk1aN1JMcFBBTE54R0ZtU2hJeHI1NnFvaUJNeXVIaDUxYmRvYzRfRWJadDM2a1Y3R1JpYmZ5ME9mNnhmTXhXUGdMT3dLaTYwcl9PS0JSVm50UkhvamFHN1F3MW1UQ21keXRnQ0tHWmhsOENXNGMtRw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft 365: A guide to the updates - Computerworld</a>
+          <div class="article-meta">Computerworld &bull; Jun 03, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft 365: A guide to the updates&amp;nbsp;&amp;nbsp;Computerworld</p><a href="https://news.google.com/rss/articles/CBMijAFBVV95cUxQcjNYaU9aOHRyRDNnQWFLVW5uTEl2bk1aN1JMcFBBTE54R0ZtU2hJeHI1NnFvaUJNeXVIaDUxYmRvYzRfRWJadDM2a1Y3R1JpYmZ5ME9mNnhmTXhXUGdMT3dLaTYwcl9PS0JSVm50UkhvamFHN1F3MW1UQ21keXRnQ0tHWmhsOENXNGMtRw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a1e24818903')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="iru" class="topic-section">
+      <h2 class="topic-title" style="--c:#7C3AED">Iru MDM (formerly Kandji) </h2>
+      <p class="no-news">No articles found this week.</p>
+    </section>
+    <section id="cato" class="topic-section">
+      <h2 class="topic-title" style="--c:#FF6B35">Cato Networks <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="adced108807">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE9US2VkTHpIM1VwN2Q3UVpoYVZRMHFiSUhzTWlraWY4VHpLNkc1Y2VVMTFDUjRCSmNfQ2RuQ0hMemFBVGplVTlQNmlzUFIwRGZpTnVaSnZ4NzlEdHhCSVRHaHRSSjQzVkpQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks opens London hub, plans 50 new hires as global workforce expands - CTech</a>
+          <div class="article-meta">CTech &bull; Jun 03, 2026</div>
+          <div class="article-summary snippet"><p>Cato Networks opens London hub, plans 50 new hires as global workforce expands&amp;nbsp;&amp;nbsp;CTech</p><a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE9US2VkTHpIM1VwN2Q3UVpoYVZRMHFiSUhzTWlraWY4VHpLNkc1Y2VVMTFDUjRCSmNfQ2RuQ0hMemFBVGplVTlQNmlzUFIwRGZpTnVaSnZ4NzlEdHhCSVRHaHRSSjQzVkpQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('adced108807')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a2313d60299">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi3gFBVV95cUxOblB3OWxvV0ZVWWpHVEJGMm9wdDZ6U0VtUXZKb0M0QWpYbGhGYUZkUEpfVjZneU01OE95Z3hMYUg0bzVnSV9BaVNvTkZTVzBzZ19PVmRXZ3dma2NFUklmQ3FJckRpcFFqc0hQTjVENlYzYzZidjlQc0V4WXhOSEN3N0hnNFhWNXZmYUZENHJzRFZpRVpDR0dYdDFxU1NoZUpJcmdJai1nLUNqY0tLZnR2T2tZN01GUDdNSTFCTDIxYjNhN3dYM0FTZTczV0hvcDJIMERzRGdfclhhZkVDY1E?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks Achieves Record 45-Minute CVE Mitigation Time with Agentic Security Platform - The Fast Mode</a>
+          <div class="article-meta">The Fast Mode &bull; Jun 02, 2026</div>
+          <div class="article-summary snippet"><p>Cato Networks Achieves Record 45-Minute CVE Mitigation Time with Agentic Security Platform&amp;nbsp;&amp;nbsp;The Fast Mode</p><a href="https://news.google.com/rss/articles/CBMi3gFBVV95cUxOblB3OWxvV0ZVWWpHVEJGMm9wdDZ6U0VtUXZKb0M0QWpYbGhGYUZkUEpfVjZneU01OE95Z3hMYUg0bzVnSV9BaVNvTkZTVzBzZ19PVmRXZ3dma2NFUklmQ3FJckRpcFFqc0hQTjVENlYzYzZidjlQc0V4WXhOSEN3N0hnNFhWNXZmYUZENHJzRFZpRVpDR0dYdDFxU1NoZUpJcmdJai1nLUNqY0tLZnR2T2tZN01GUDdNSTFCTDIxYjNhN3dYM0FTZTczV0hvcDJIMERzRGdfclhhZkVDY1E?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a2313d60299')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a179dad1ee7">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiiwFBVV95cUxOb3dlbEVaZS1LbEdXOWZqYzE2MVctOUNhSDVkVl9rWmxMZDV3UzE5SUZmX0xhU0Y1MS03UUNRRWhfaWxsYkdtZmVHa1JjeTFlTXNreVVkbENQR3N4RUZVQUg3dGY4eC1aOU40dzhjYXZjbl92YzdvN3E3dWpSRm9kckVFQVdFdEhGemp3?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato claims 45-minute CVE protection with agentic AI - MSSP Alert</a>
+          <div class="article-meta">MSSP Alert &bull; Jun 03, 2026</div>
+          <div class="article-summary snippet"><p>Cato claims 45-minute CVE protection with agentic AI&amp;nbsp;&amp;nbsp;MSSP Alert</p><a href="https://news.google.com/rss/articles/CBMiiwFBVV95cUxOb3dlbEVaZS1LbEdXOWZqYzE2MVctOUNhSDVkVl9rWmxMZDV3UzE5SUZmX0xhU0Y1MS03UUNRRWhfaWxsYkdtZmVHa1JjeTFlTXNreVVkbENQR3N4RUZVQUg3dGY4eC1aOU40dzhjYXZjbl92YzdvN3E3dWpSRm9kckVFQVdFdEhGemp3?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a179dad1ee7')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a3280ecb144">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMirgFBVV95cUxPWFZuNEFxZ29HSUExbVExX1k3TUIzMExNV0hBdEdEUF9JaVBZZ3dlenRZd3F2UjRkZmRtRjM0Rkp0YTZ3MEFDd0g5Y3M2WHd3dE4yM3ZtVzByV0ZNRldsM0xHZnJkanZQYTJwSXM4M1pJcnNwVlZmT0psQVdVUktNMF93M3ZIMjJGX2plZ1oxQl94d2c4aXNjbHJTdEhRdndBMVJ6UDd1NjVMemtyQkE?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks opens new London hub in regional R&amp;D drive - IT Pro</a>
+          <div class="article-meta">IT Pro &bull; Jun 02, 2026</div>
+          <div class="article-summary snippet"><p>Cato Networks opens new London hub in regional R&amp;amp;D drive&amp;nbsp;&amp;nbsp;IT Pro</p><a href="https://news.google.com/rss/articles/CBMirgFBVV95cUxPWFZuNEFxZ29HSUExbVExX1k3TUIzMExNV0hBdEdEUF9JaVBZZ3dlenRZd3F2UjRkZmRtRjM0Rkp0YTZ3MEFDd0g5Y3M2WHd3dE4yM3ZtVzByV0ZNRldsM0xHZnJkanZQYTJwSXM4M1pJcnNwVlZmT0psQVdVUktNMF93M3ZIMjJGX2plZ1oxQl94d2c4aXNjbHJTdEhRdndBMVJ6UDd1NjVMemtyQkE?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a3280ecb144')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a596454ba04">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMihAFBVV95cUxPRk81bVQ2UFpBbTQxNWZwNzdYWFRhNHlEcURsYTJXbko2dmhSUmYzZkVxTjMwOFpGVEZadEJpclpocDNTZUVwbU9nR1JROEc2dGY3MzRIdENkYVp3NlRVbThqem8xWWpFamRMUkMzMURWUzVSTWpNcXo3eVRWRXJ4cC1uZWs?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks Opens London AI Hub to Expand R&amp;D Footprint and Tap World-Class Tech Talent - Yahoo Finance Singapore</a>
+          <div class="article-meta">Yahoo Finance Singapore &bull; Jun 02, 2026</div>
+          <div class="article-summary snippet"><p>Cato Networks Opens London AI Hub to Expand R&amp;amp;D Footprint and Tap World-Class Tech Talent&amp;nbsp;&amp;nbsp;Yahoo Finance Singapore</p><a href="https://news.google.com/rss/articles/CBMihAFBVV95cUxPRk81bVQ2UFpBbTQxNWZwNzdYWFRhNHlEcURsYTJXbko2dmhSUmYzZkVxTjMwOFpGVEZadEJpclpocDNTZUVwbU9nR1JROEc2dGY3MzRIdENkYVp3NlRVbThqem8xWWpFamRMUkMzMURWUzVSTWpNcXo3eVRWRXJ4cC1uZWs?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a596454ba04')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aec24dd11bb">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMijgFBVV95cUxPaVRHTGxmZTRsUm9uN1h3eHlScFhUZkRVTjJaUmp4bWd4SDZaVFZNZEJCMDA5Wlg3UWc1c2djeWJ1SjhSeGNldHhhUkoyaEIzR1BJcWJVOHp2VGoyeTRRQVZUX2I2N05DcVdqQXlFRncyQTJwcVlBOUx2eVNGcFFpOWpfTnFTaTVGRHlpX1l3?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks opens AI hub in London for R&amp;D growth - SecurityBrief UK</a>
+          <div class="article-meta">SecurityBrief UK &bull; Jun 04, 2026</div>
+          <div class="article-summary snippet"><p>Cato Networks opens AI hub in London for R&amp;amp;D growth&amp;nbsp;&amp;nbsp;SecurityBrief UK</p><a href="https://news.google.com/rss/articles/CBMijgFBVV95cUxPaVRHTGxmZTRsUm9uN1h3eHlScFhUZkRVTjJaUmp4bWd4SDZaVFZNZEJCMDA5Wlg3UWc1c2djeWJ1SjhSeGNldHhhUkoyaEIzR1BJcWJVOHp2VGoyeTRRQVZUX2I2N05DcVdqQXlFRncyQTJwcVlBOUx2eVNGcFFpOWpfTnFTaTVGRHlpX1l3?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aec24dd11bb')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a5f4170a6ce">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMigAFBVV95cUxNRWtLdWFuSWlDV1NKWjZsODlfMjB6eW41bDRtb3VhMjRoMWJIUE9MaExBUE5ITTlwS29pdlpGNTZsZ0ZwMGVmcHZnSlE4dEUzcFdGVWRaM1BMU05GUnEyR2FmTW1BcjRfUWFsSGhOazUtX2Y1ZlFsVGVTTHc4Z2RmVw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks opens AI development hub in London - IT Europa</a>
+          <div class="article-meta">IT Europa &bull; Jun 02, 2026</div>
+          <div class="article-summary snippet"><p>Cato Networks opens AI development hub in London&amp;nbsp;&amp;nbsp;IT Europa</p><a href="https://news.google.com/rss/articles/CBMigAFBVV95cUxNRWtLdWFuSWlDV1NKWjZsODlfMjB6eW41bDRtb3VhMjRoMWJIUE9MaExBUE5ITTlwS29pdlpGNTZsZ0ZwMGVmcHZnSlE4dEUzcFdGVWRaM1BMU05GUnEyR2FmTW1BcjRfUWFsSGhOazUtX2Y1ZlFsVGVTTHc4Z2RmVw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a5f4170a6ce')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ad2ec8aa3d7">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMipAFBVV95cUxNeDlrWW1wLVhFTWtvZnE5REZyOHVjZzh5UkI2S1hGQXdYQjVnb001OF9XaldlZlJYV2lXUHBHSXhyTDR3Y0tjUFRDNHhLRUdXMmlyODRhaHZDMU9LTmx3ZFhxZlVsUVdOLWYzYmVXNkUtNnR0VlNoSnZYWXlQU0pwUEFqNHFHR3A1MldaYmhkSXFfNzdsa3MtVkljQktiNUJJcXVuQQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Who’s Being Lured To London? Cato Networks To Recruit 50 At New Holborn Pad - IT Channel Oxygen</a>
+          <div class="article-meta">IT Channel Oxygen &bull; Jun 06, 2026</div>
+          <div class="article-summary snippet"><p>Who’s Being Lured To London? Cato Networks To Recruit 50 At New Holborn Pad&amp;nbsp;&amp;nbsp;IT Channel Oxygen</p><a href="https://news.google.com/rss/articles/CBMipAFBVV95cUxNeDlrWW1wLVhFTWtvZnE5REZyOHVjZzh5UkI2S1hGQXdYQjVnb001OF9XaldlZlJYV2lXUHBHSXhyTDR3Y0tjUFRDNHhLRUdXMmlyODRhaHZDMU9LTmx3ZFhxZlVsUVdOLWYzYmVXNkUtNnR0VlNoSnZYWXlQU0pwUEFqNHFHR3A1MldaYmhkSXFfNzdsa3MtVkljQktiNUJJcXVuQQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ad2ec8aa3d7')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+</main>
+
+<footer>
+  Generated every Sunday &mdash; Topics: Windows &bull; Azure &bull; SharePoint &bull; Intune &bull; Entra ID &bull; Microsoft 365 &bull; Iru MDM (formerly Kandji) &bull; Cato Networks
+</footer>
+
+<script>
+const KEY = 'it-news-hidden-v1';
+function getHidden() {
+  try { return new Set(JSON.parse(localStorage.getItem(KEY) || '[]')); }
+  catch { return new Set(); }
+}
+function saveHidden(s) { localStorage.setItem(KEY, JSON.stringify([...s])); }
+function toggleArticle(id) {
+  const h = getHidden();
+  h.has(id) ? h.delete(id) : h.add(id);
+  saveHidden(h); applyHidden(h);
+}
+function applyHidden(h) {
+  h = h || getHidden();
+  document.querySelectorAll('.article-card[data-id]').forEach(c => {
+    c.classList.toggle('is-hidden', h.has(c.dataset.id));
+  });
+}
+let revealing = false;
+function toggleReveal() {
+  revealing = !revealing;
+  document.body.classList.toggle('reveal-hidden', revealing);
+  document.getElementById('reveal-btn').textContent = revealing ? 'Hide hidden' : 'Show hidden';
+}
+fetch('weeks.json').then(r => r.json()).then(weeks => {
+  const sel = document.getElementById('week-sel');
+  weeks.forEach(w => {
+    const o = document.createElement('option');
+    o.value = w.file; o.textContent = w.label;
+    if (w.current) o.selected = true;
+    sel.appendChild(o);
+  });
+}).catch(() => {});
+applyHidden();
+</script>
+</body>
+</html>
