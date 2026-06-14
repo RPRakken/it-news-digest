@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT News Digest — 2026-W24</title>
+  <style>
+    :root{--bg:#f8fafc;--surface:#fff;--border:#e2e8f0;--text:#1e293b;--muted:#64748b;--accent:#2563eb}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+    a{color:var(--accent)}
+
+    header{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+    .h-inner{max-width:1000px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .h-brand{font-size:1.1rem;font-weight:800;color:#1d4ed8}
+    .h-meta{font-size:.78rem;color:var(--muted)}
+    .h-controls{display:flex;gap:8px;align-items:center}
+    .btn{padding:5px 12px;border-radius:6px;font-size:.78rem;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);white-space:nowrap}
+    .btn:hover{background:#f1f5f9}
+    select.week-sel{padding:5px 10px;border-radius:6px;border:1px solid var(--border);background:var(--surface);font-size:.78rem;cursor:pointer;color:var(--text)}
+
+    .t-nav{background:var(--surface);border-bottom:1px solid var(--border);overflow-x:auto}
+    .t-nav-inner{max-width:1000px;margin:0 auto;padding:8px 20px;display:flex;gap:6px;min-width:max-content}
+    .nav-link{font-size:.72rem;padding:3px 10px;border-radius:20px;border:2px solid var(--c,#2563eb);color:var(--c,#2563eb);text-decoration:none;font-weight:600;white-space:nowrap}
+    .nav-link:hover{background:var(--c,#2563eb);color:#fff}
+
+    main{max-width:1000px;margin:0 auto;padding:24px 20px}
+
+    .week-hero{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin-bottom:28px;display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+    .hero-title{font-size:1.6rem;font-weight:900;color:#1d4ed8}
+    .hero-sub{font-size:.85rem;color:var(--muted);margin-top:2px}
+    .stat-box{text-align:center;min-width:60px}
+    .stat-num{font-size:2rem;font-weight:900;color:#1d4ed8;line-height:1}
+    .stat-lbl{font-size:.65rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+
+    .topic-section{margin-bottom:40px}
+    .topic-title{font-size:1.2rem;font-weight:800;color:var(--c,#2563eb);border-bottom:3px solid var(--c,#2563eb);padding-bottom:8px;margin-bottom:14px}
+    .count{font-size:.8rem;font-weight:400;color:var(--muted)}
+    .no-news{color:var(--muted);font-style:italic;font-size:.88rem}
+
+    .article-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:12px;display:flex;gap:12px;align-items:flex-start;transition:border-color .15s}
+    .article-card:hover{border-color:#94a3b8}
+    .article-body{flex:1;min-width:0}
+    .article-title{font-size:.98rem;font-weight:600;text-decoration:none;display:block;margin-bottom:4px;color:var(--accent)}
+    .article-title:hover{text-decoration:underline}
+    .article-meta{font-size:.72rem;color:var(--muted);margin-bottom:8px}
+
+    .article-summary{margin-top:6px;font-size:.875rem;color:#334155;line-height:1.75}
+    .article-summary p{margin-bottom:.6em}
+    .article-summary p:last-child{margin-bottom:0}
+    .gnews-badge{display:inline-block;font-size:.65rem;background:#fef3c7;color:#92400e;border-radius:4px;padding:1px 5px;margin-bottom:6px;vertical-align:middle}
+    .article-summary.snippet{color:var(--muted)}
+    .read-more{display:inline-block;margin-top:6px;font-size:.8rem;font-weight:600;color:var(--accent);text-decoration:none}
+    .read-more:hover{text-decoration:underline}
+
+    .hide-btn{flex-shrink:0;padding:5px 10px;border-radius:6px;font-size:.72rem;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--muted);white-space:nowrap;align-self:flex-start}
+    .hide-btn:hover{border-color:#ef4444;color:#ef4444;background:#fef2f2}
+    .lbl-show{display:none}
+
+    .article-card.is-hidden{display:none}
+    body.reveal-hidden .article-card.is-hidden{display:flex;opacity:.45;border-style:dashed}
+    .article-card.is-hidden .lbl-hide{display:none}
+    .article-card.is-hidden .lbl-show{display:inline}
+    body.reveal-hidden .article-card.is-hidden .hide-btn{border-color:#16a34a;color:#16a34a}
+    body.reveal-hidden .article-card.is-hidden .hide-btn:hover{background:#f0fdf4}
+
+    footer{text-align:center;padding:24px 20px;color:var(--muted);font-size:.75rem;border-top:1px solid var(--border);margin-top:40px}
+
+    @media(max-width:600px){
+      .h-inner,.main{padding-left:14px;padding-right:14px}
+      .hero-title{font-size:1.3rem}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="h-inner">
+    <div>
+      <div class="h-brand">IT News Digest</div>
+      <div class="h-meta">Week 2026-W24 &bull; Jun 08–14, 2026</div>
+    </div>
+    <div class="h-controls">
+      <button class="btn" id="reveal-btn" onclick="toggleReveal()">Show hidden</button>
+      <select class="week-sel" id="week-sel" onchange="if(this.value) location.href=this.value">
+        <option value="">&#128337; Archive&hellip;</option>
+      </select>
+    </div>
+  </div>
+</header>
+
+<nav class="t-nav"><div class="t-nav-inner"><a href="#windows" class="nav-link" style="--c:#0078D4">Microsoft Windows</a><a href="#azure" class="nav-link" style="--c:#00BCF2">Azure</a><a href="#sharepoint" class="nav-link" style="--c:#036C70">SharePoint</a><a href="#intune" class="nav-link" style="--c:#0F6CBD">Intune</a><a href="#entraid" class="nav-link" style="--c:#6B69D6">Entra ID</a><a href="#m365" class="nav-link" style="--c:#D83B01">Microsoft 365</a><a href="#iru" class="nav-link" style="--c:#7C3AED">Iru MDM (formerly Kandji)</a><a href="#cato" class="nav-link" style="--c:#FF6B35">Cato Networks</a></div></nav>
+
+<main>
+  <div class="week-hero">
+    <div>
+      <div class="hero-title">Week 2026-W24</div>
+      <div class="hero-sub">Jun 08–14, 2026</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">35</div>
+      <div class="stat-lbl">Articles</div>
+    </div>
+  </div>
+
+    <section id="windows" class="topic-section">
+      <h2 class="topic-title" style="--c:#0078D4">Microsoft Windows <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a3a023c0b06">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windows-insider/2026/06/12/announcing-new-builds-for-12-june-2026/" target="_blank" rel="noopener noreferrer" class="article-title">Announcing new builds for 12 June 2026</a>
+          <div class="article-meta">blogs.windows.com &bull; Jun 12, 2026</div>
+          <div class="article-summary"><p>Announcing new builds for 12 June 2026
+Hello Windows Insiders,
+We have a number of releases today with new builds across Beta, Experimental and Release Preview.
+Release notes for inbox Windows 11 apps
+Windows 11 inbox apps are now getting their own release notes section on the Windows Insider Program Documentation Hub site. This is to help make finding app updates easier, with each inbox app getting its own dedicated page as new updates rollout. Check out some of the app updates rolling out to Experimental across Calculator, Camera, Clock, Media Player, Paint, Photos and Sound Recorder. More apps will be added over time.
+New builds this week
+Today we are releasing new Windows 11 Insider Preview Builds. As a reminder, all Insiders can find the release notes for your device based on the new channel system, even if you haven’t moved yet. This is to make finding build information as easy as possible during the transition. See your channel release notes here:
+- Beta: Build 26220.8680
+- Experimental: Build 26300.8687
+For those on other specific build versions, here are today’s new builds and release notes:
+- Beta (26H1): Build 28020.2298
+- Experimental (26H1): Build 28120.2302
+- Experimental (Future Platforms) – Including Canary 29600 series: Build 29610.1000
+- Note: The issue affecting AMD machines supporting System Guard has been resolved meaning these devices will be offered the Experimental (Future Platforms) build as usual
+ 
+We also have Release Preview builds today for 24H2/25H2 and 26H1:
+- Release Preview 24H2/25H2: Build 26100.8728/26200.8728
+- Release Preview 26H1: Build 28000.2333
+Notable new features
+[Windows Update]
+Release channel: Experimental
+- As announced in the Windows Update announce blog, we are rolling out a new unified update experience to reduce the number of reboots you see per month. We are starting by coordinating driver, .NET, and firmware updates to align with the monthly quality update, reducing the update experience to a single monthly restart. See the blog for more information.
+[Search]
+Release channel: Experimental
+- Finding apps is more forgiving. Search is better at handling typos, dropped letters, extra letters, and partial words for apps. Queries like “utlook” can still find Outlook.
+- Settings results are improving. We’ve made ranking improvements to help more relevant settings appear higher in results.
+Thanks,
+Stephen and the Windows Insider Program team</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a3a023c0b06')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a23c5fe32c0">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/msedgedev/2026/06/11/faster-updates-enterprise-friendly-schedule-the-new-microsoft-edge-release-cycle/" target="_blank" rel="noopener noreferrer" class="article-title">Faster updates, enterprise-friendly schedule: the new Microsoft Edge release cycle</a>
+          <div class="article-meta">blogs.windows.com &bull; Jun 11, 2026</div>
+          <div class="article-summary"><p>Faster updates, enterprise-friendly schedule: the new Microsoft Edge release cycle
+Microsoft Edge is moving to a two-week release cycle, bringing new features and improvements to users and organizations faster than ever. This is great news for teams that thrive on innovation: instead of waiting a full month for the next update, you get a steady, continuous stream of new capabilities to put to work sooner.
+For organizations that prefer a more deliberate pace, Extended Stable is not changing. We introduced it in 2021 to provide a longer, predictable rhythm, and that commitment remains firmly in place. Extended Stable remains unchanged in timing.
+Changes to the release schedule
+Starting with Microsoft Edge 152 (Stable on August 27), Edge will move to a 2-week release cycle. Extended Stable will now receive updates every fourth release (for example, 156, 160, 164). The time between Extended Stable updates stays the same, at every eight weeks.
+For customers on Stable, the practical effect of the new cycle is smaller, steadier change. Each release brings about half as much new content as before, delivered twice as often. Security and platform improvements reach your users faster, and each change set is smaller, which can make validation more manageable.
+Both channels receive critical security updates. The difference is how quickly new features arrive: Stable delivers them on the new 2-week cycle, while Extended Stable spaces feature updates over an 8-week window for organizations that prefer a longer planning rhythm.
+Recommended action
+In summary, here is what to do, depending on the channel you run:
+- If you are on Extended Stable: no action needed. Your 8-week cycle and the same support model continue.
+- If you are on Stable: plan for smaller, more frequent change sets and faster delivery of security improvements.
+- Whichever channel you run: add a pilot group to Beta and start testing from day one to maximize your validation time.
+Early testing gives you more time to identify issues, provide feedback, and address them before the Stable release reaches your organization. Enterprise Preview is our supported path for piloting Beta, with setup guidance built for IT admins, which helps you stay ahead of the faster cadence.
+To prepare for the transition, please refer to the updated Microsoft Edge release schedule and the Microsoft Edge Lifecycle page. We will continue to share updates through the Microsoft Edge Blog and the Microsoft 365 Message Center.
+The pace of Edge is accelerating, and your users get to enjoy the payoff: more features, more improvements, arriving sooner and more often. And whatever pace suits your organization, you stay in control of it. We appreciate the partnership of our customers, and we are committed to supporting every team, on every channel, as Edge keeps getting better, faster.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a23c5fe32c0')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a29b650c13d">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/devices/2026/06/10/computex-2026-empowering-a-billion-users-with-windows-across-the-ecosystem/" target="_blank" rel="noopener noreferrer" class="article-title">Computex 2026: Empowering a billion users with Windows across the ecosystem</a>
+          <div class="article-meta">blogs.windows.com &bull; Jun 10, 2026</div>
+          <div class="article-summary"><p>Computex 2026: Empowering a billion users with Windows across the ecosystem
+Computex has always been one of the most important moments of the year for the PC industry — a stage where our partners come together to show what is next for hardware, silicon and the experiences they unlock. This year our partner ecosystem is shaping the future of the PC for more than a billion daily users around the world.
+Partners unveiled a new wave of Windows 11 PCs that span every form factor and customer need. Together, these announcements reflect the deep collaboration across the Windows ecosystem and how it is accelerating industry‑wide transformation — delivering greater performance, more efficiency and thoughtful new designs for the way people work, create and play. The power of the Windows platform means that there’s a Windows device for every person and purpose no matter what price point.
+Let’s look at a selection of the key announcements from our partners at Computex 2026.
+New Windows 11 PCs from across the ecosystem
+Acer
+Acer announced a comprehensive lineup of innovation, with all new laptops running on Windows 11. The lineup featured Copilot+ PCs prominently, including several new entries to Acer’s mainstream Aspire product line: the high-powered Aspire X 16 AI laptop for prosumers, the Aspire 18 AI laptop with greater screen space for creative workflows and productivity and the Aspire C AI Series all-in-one desktops with an innovative new ErgoStand design. Acer also added two new Copilot+ PCs to the premium Swift line with two versions of Swift Spin 14 AI — one powered by Intel Core Ultra Series 3 processors and the other by Snapdragon X2 Series processors — also marking Acer’s first convertible 2-in-1 laptops under the Swift line.
+ASUS
+ASUS showcased its latest AI PC portfolio designed to make AI more practical and accessible for every user. The new ProArt P16 and P14, powered by NVIDIA RTX Spark, bring next-generation agentic AI workflows and powerful local AI capabilities to creators and developers. For mainstream consumers, the new Zenbook 14 delivers a Windows experience with premium design, all-day mobility and fresh new Ceraluminum colors, while the Snapdragon-powered Vivobook S series expands AI-enhanced productivity to an even broader audience. Together, these innovations demonstrate ASUS’ vision of bringing advanced AI experiences across every category of personal computing.
+The 2026 ROG Strix SCAR 18 redefines the gaming flagship laptop with up to 320W total system power, powered by up to an Intel Core Ultra 9 processor 290HX Plus and an NVIDIA GeForce RTX 5090 Laptop GPU, and featuring the world’s first 18-inch 4K 240Hz Mini LED ROG Nebula HDR display with ROG Nebula Extreme Low Motion Blur (ELMB) for uncompromising gaming and creator experiences [1].
+Dell
+The new XPS 13 starting at $699 proves that a lower price doesn’t mean accepting less. As Dell’s thinnest and lightest laptop yet, with up to 17 hours of streaming battery life, it delivers true all-day portability. Every detail reflects XPS craftsmanship – from the durable CNC aluminum chassis to the 2.5K touchscreen, backlit keyboard and Intel Wi-Fi 7 that all come standard, redefining what a premium laptop can be at this price.
+“With XPS 13, we’re proving that a lower price doesn’t mean accepting less. It’s the thinnest and lightest XPS we’ve ever built. This reflects where XPS is headed: more power, more innovation and stronger competition across price points.”
+– Donnie Oliphant, XPS Product Lead, Dell Technologies
+The XPS 16 Creator Edition is a creator-class laptop built for the most demanding creative and developer work on the go. Powered by NVIDIA RTX Spark with a powerful RTX GPU and ultra-efficient CPU, it’s the first XPS laptop to deliver NVIDIA’s full stack AI platform and complete suite of NVIDIA RTX technologies in a portable form factor.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a29b650c13d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a7472c54611">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windows-insider/2026/06/08/announcing-new-builds-8-june-2026-2/" target="_blank" rel="noopener noreferrer" class="article-title">Announcing new builds 8 June 2026</a>
+          <div class="article-meta">blogs.windows.com &bull; Jun 08, 2026</div>
+          <div class="article-summary"><p>Announcing new builds 8 June 2026
+[Update 6/11/2026: Release notes have now been published to Windows Insider release notes – Windows Insider Program | Microsoft Learn.]
+Hello Windows Insiders,
+Announcing several new builds today across Beta and Experimental, including a new build train for 26H1!
+New build series for Windows 11 26H1
+Today we are releasing a new Windows 11 Insider Preview Build train for Windows 11 version 26H1. As mentioned in previous blogs, Insiders in the Experimental (26H1) channel who had since selected to move to the Beta experience, were still receiving the same build version while we worked to introduce a new branch.
+Starting today, Insiders in the Experimental (26H1) channel will begin receiving a new 28100 series build number, while we officially introduce a new Beta (26H1) channel based on the 28000 series builds. This enables our goal of giving Windows 11 26H1 Insiders the same choice between Beta and Experimental development branches, with the associated differences outlined in our original blog announcing the program changes. As part of that commitment, Insiders in Experimental (26H1) can easily switch to Beta (26H1), or vice versa, by simply switching the experience selection in Settings &gt; Windows Update &gt; Windows Insider Program. This entails a simple in place upgrade (IPU), meaning no clean reinstallation of Windows is required.
+As a reminder, while Insiders do have the ability to specifically select Windows 11 version 26H1 under the Advanced options tab in the Windows Insider settings, Windows 11 26H1 is a targeted release of Windows supporting specific silicon launching this year, including Qualcomm Snapdragon X2 Series devices. It is generally otherwise recommended to stick with the default Windows core version selected within Advanced options.
+New builds this week
+See below for today’s Insider Preview build numbers and detailed release notes:
+- Beta: Build 26220.8575
+- Experimental: We do not have a new build for this channel today. Keep an eye out for future flights.
+For those on other specific build versions, here are today’s new builds and release notes:
+- Beta (26H1): Build 28020.2236
+- Experimental (26H1): Build 28120.2242
+- Experimental (Future Platforms) – Including Canary 29500 series: We do not have a new build for this channel today. Keep an eye out for future flights.
+As a reminder, you can always find your build number in the watermark on bottom right-hand corner of your desktop.
+Thanks,
+Stephen and the Windows Insider Program team</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a7472c54611')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aee33f09b1c">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windowsexperience/2026/06/08/xbox-games-showcase-2026-recap/" target="_blank" rel="noopener noreferrer" class="article-title">XBOX Games Showcase 2026 recap</a>
+          <div class="article-meta">blogs.windows.com &bull; Jun 08, 2026</div>
+          <div class="article-summary"><p>XBOX Games Showcase 2026 recap
+If you weren’t able to catch the XBOX Games Showcase 2026 over the weekend, our colleagues over at XBOX Wire have you covered, with a recap of all the major news on titles, hardware and accessories – such as the XBOX Series X25 Limited Edition and XBOX Wireless Controller X25 Special Edition that commemorate the 25th anniversary of XBOX.
+Among the announcements were a bevy of PC-focused games: world premieres for Senua, Spyro: A Realm Beyond and DOOM: The Dark Ages | Revelations; a new trailer for Fable (and its lead villain, played by Hayley Atwell); release dates and brand new gameplay for Halo: Campaign Evolved and Minecraft Dungeons II; fresh looks at State of Decay 3 and Clockwork Revolution; and a peek at Call of Duty: Modern Warfare 4‘s DMZ experience.
+Head over to XBOX Wire to find out more about these and all the other reveals from the Showcase.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aee33f09b1c')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a63f4976061">
+        <div class="article-body">
+          <a href="https://petri.com/windows-server-2025-dns-over-https-secure-dns/" target="_blank" rel="noopener noreferrer" class="article-title">Windows Server 2025 Enables DNS Over HTTPS to Secure Enterprise DNS Traffic</a>
+          <div class="article-meta">petri.com &bull; Jun 12, 2026</div>
+          <div class="article-summary"><p>The latest update strengthens privacy and communication integrity within on‑premises DNS environments.
+Key Takeaways:
+Microsoft has officially introduced DNS over HTTPS (DoH) support for Windows DNS Server in Windows Server 2025. The new feature enables organizations to secure DNS communications with encryption and server authentication, allowing encrypted client-to-resolver traffic to be deployed directly within existing on-premises DNS environments.
+Microsoft mentioned that traditional DNS communication is unprotected, which makes it vulnerable to interception, monitoring, and manipulation by attackers and unauthorized parties. This lack of security exposes sensitive information about user activity and system behaviour, increasing the risk of cyberattacks such as spoofing or man-in-the-middle interception.
+DNS over HTTPS (DoH) is a security protocol that improves how internet devices resolve website addresses by sending DNS requests over encrypted HTTPS connections. This means that when the device asks a DNS server to translate a domain name into an IP address, the request is protected with encryption. This makes it much harder for attackers, internet providers, or other third parties to view, track, or change that information.
+DNS over HTTPS (DoH) in Windows DNS Server provides several capabilities focused on improving security and compatibility. First, it encrypts DNS queries and responses using HTTPS, which ensures that sensitive information cannot be easily intercepted or altered during transmission. It also uses digital certificates to authenticate the DNS server, which allows clients to confirm they are communicating with a trusted source and reduces the chances of spoofing or impersonation attacks.
+Additionally, DoH is built on widely accepted Internet standards, which means it works smoothly with modern clients that support encrypted DNS. It is designed to integrate directly into existing Windows DNS Server setups. This feature supports both encrypted and traditional DNS together, which enables a gradual transition without disrupting existing operations.
+“The goal is to help improve privacy, reduce spoofing risk, and advance Zero Trust DNS without requiring a new resolver architecture. This release helps organizations secure one of the most critical, and traditionally exposed components of modern networks while preserving compatibility with existing enterprise DNS deployments,” Microsoft explained.
+This release supports Microsoft’s broader Zero Trust DNS strategy, which enables encrypted communication between clients and on-premises DNS servers. It also helps organizations align with modern security frameworks and regulatory expectations.
+According to Microsoft, DoH support for Windows DNS Server is available on Windows Server 2025 running the June 9, 2026 update (or newer). To deploy this feature, administrators will need to configure a trusted TLS certificate, enable DoH in the DNS Server service, and configure supported clients to use the secure endpoint.
+Microsoft notes that encryption currently supports client-to-resolver communication. The company plans to extend support for encrypted communication between the Windows DNS Server and upstream DNS resolvers.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a63f4976061')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a241c019ce9">
+        <div class="article-body">
+          <a href="https://petri.com/windows-ready-print-ipp-printer-drivers/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Introduces Windows Ready Print Using IPP To Replace Traditional Printer Drivers</a>
+          <div class="article-meta">petri.com &bull; Jun 11, 2026</div>
+          <div class="article-summary"><p>New approach focuses on built‑in capabilities and standards‑based device management.
+Key Takeaways:
+Microsoft is rebranding its Modern Print Platform as Windows Ready Print, reinforcing its commitment to a simpler, more modern printing experience. The goal is to improve reliability, strengthen security, and reduce management complexity across Windows devices.
+The change is driven by long-standing challenges with traditional printer drivers, which are often difficult to manage, inconsistent across devices, and can introduce security risks. Microsoft is moving toward a modern, standards-based approach like IPP and reducing dependence on OEM drivers. It should help to create a more reliable, secure, and streamlined printing experience that is easier to manage for both users and IT administrators.
+According to Microsoft, Windows Ready Print uses the Internet Printing Protocol (IPP) and built-in Windows capabilities to install and manage printers. This approach simplifies setup and avoids the need for downloading and maintaining separate drivers.
+“Windows Ready Print highlights what matters most: a streamlined, dependable printing experience built for modern Windows environments. It represents our commitment to simplifying printing, aligning modern standards, and delivering consistent, forward-looking experiences for users, IT admins, and partners,” Microsoft explained.
+In July 2026, all new printer installations will default to Windows Ready Print on eligible devices. Microsoft will introduce a more flexible driver selection system, and users will be able to choose between Windows Ready Print and traditional OEM drivers. It will be up to the users to toggle this configuration through Settings or Group Policy.
+Microsoft acknowledged that not all environments will be able to transition to this platform immediately. This feature supports a gradual migration, which allows legacy printers and drivers to continue working if needed.
+Microsoft emphasized that this new model aims to provide a simpler printer setup, improved reliability, and better security (fewer risky third‑party drivers). It also offers a more consistent experience across devices.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a241c019ce9')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a40d550de3d">
+        <div class="article-body">
+          <a href="https://petri.com/windows-11-iakerb-localkdc-reduce-ntlm/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Previews IAKerb And LocalKDC To Reduce NTLM Reliance in Windows 11</a>
+          <div class="article-meta">petri.com &bull; Jun 11, 2026</div>
+          <div class="article-summary"><p>New authentication features extend secure identity workflows across domain and local environments.
+Key Takeaways:
+Microsoft is preparing to introduce two new authentication features in Windows 11 that are designed to reduce reliance on NTLM. The capabilities are currently available in public preview for Windows Insiders enrolled in the Canary Channel.
+NTLM (NT LAN Manager) is an older Microsoft authentication protocol that verifies a user’s identity using a challenge‑response mechanism instead of sending passwords directly. It’s considered less secure than Kerberos, but remains in use because many real‑world environments depend on it.
+For instance, when systems cannot reach a domain controller, when users log in with local (non-domain) accounts, or in standalone and legacy setups that lack modern infrastructure. This means removing NTLM entirely would break authentication in these scenarios, so it remains a fallback option while organizations gradually transition to more secure methods.
+Microsoft highlighted that IAKerb and LocalKDC are designed to address some of these issues in Windows devices. IAKerb (Initial and Pass‑Through Authentication using Kerberos) is an extension of the Kerberos authentication system that allows a client to authenticate even when it cannot directly reach a domain controller. The client sends its Kerberos requests through the target application server, which acts as a proxy and forwards the messages to the KDC on its behalf.
+This approach keeps the authentication process within the Kerberos framework rather than falling back to weaker methods like NTLM. This makes it especially useful in restricted or segmented network environments where direct access to the domain controller is not available.
+LocalKDC is a lightweight Key Distribution Center in Windows that allows Kerberos authentication for local user accounts instead of domain accounts. Kerberos depends on a domain controller to issue authentication tickets, which is why systems using local accounts or operating outside a domain had to rely on NTLM.
+LocalKDC removes this limitation by acting as a KDC on the local machine itself, which generates Kerberos tickets for locally stored credentials. Consequently, it allows secure Kerberos-based authentication in standalone systems, workgroup environments, and other scenarios where no domain infrastructure is present.
+These new authentication features are currently available in public preview in the Canary Channel. Microsoft plans to make them generally available for Windows 11 version 24H2 and Windows Server 2025 in the second half of 2026.
+Microsoft recommends that administrators analyze where NTLM is still used before disabling this feature within their organizations. The new logging features in Windows show who is using NTLM, why Kerberos was not used, and which systems are involved. Administrators can find these logs in Event Viewer by heading to Applications and Services Logs &gt; Microsoft &gt; Windows &gt; NTLM &gt; Operational.
+Microsoft notes that while IAKerb and LocalKDC reduce situations where systems fall back to NTLM, they do not eliminate it. Some legacy applications and older systems still rely on NTLM, and certain use cases may continue to trigger it.
+Microsoft is following a gradual strategy to eliminate NTLM by first giving organizations better visibility into its usage through enhanced auditing capabilities. The next stage involves introducing newer technologies like IAKerb and LocalKDC this year to expand where Kerberos can be used and reduce dependence on NTLM. In the final phase, Microsoft plans to turn off NTLM by default in a future Windows release, which is expected in 2027–2028.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a40d550de3d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="azure" class="topic-section">
+      <h2 class="topic-title" style="--c:#00BCF2">Azure <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a31e969631a">
+        <div class="article-body">
+          <a href="https://azure.microsoft.com/en-us/blog/claude-fable-5-available-today-in-microsoft-foundry-powering-the-next-era-of-autonomous-agents/" target="_blank" rel="noopener noreferrer" class="article-title">Claude Fable 5 available today in Microsoft Foundry: Powering the next era of autonomous agents</a>
+          <div class="article-meta">azure.microsoft.com &bull; Jun 09, 2026</div>
+          <div class="article-summary snippet"><p>Claude Fable 5, Anthropic’s latest Frontier model, available today in Microsoft Foundry, powering agents in GitHub Copilot and Foundry Agent Service.
+The post Claude Fable 5 available today in Microsoft Foundry: Powering the next era of autonomous agents appeared first on Microsoft Azure Blog.</p><a href="https://azure.microsoft.com/en-us/blog/claude-fable-5-available-today-in-microsoft-foundry-powering-the-next-era-of-autonomous-agents/" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a31e969631a')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a7131fe57d8">
+        <div class="article-body">
+          <a href="https://petri.com/azure-database-postgresql-pre-upgrade-validation-checks/" target="_blank" rel="noopener noreferrer" class="article-title">Azure Database for PostgreSQL Gains Pre-Upgrade Validation Checks to Identify Issues Before Version Upgrades</a>
+          <div class="article-meta">petri.com &bull; Jun 10, 2026</div>
+          <div class="article-summary"><p>This new capability helps identify compatibility and configuration gaps before upgrade windows.
+Key Takeaways:
+Microsoft has introduced support for Pre‑Upgrade Validation Checks in public preview for Azure Database for PostgreSQL. This new feature allows IT teams to catch and fix potential issues before performing version upgrades in enterprise environments.
+Azure Database for PostgreSQL is a managed cloud service provided by Microsoft Azure that lets users run PostgreSQL databases without handling the underlying servers or maintenance tasks. It automates operations such as updates, backups, scaling, and security, while still giving developers a flexible and reliable environment to build and manage applications using PostgreSQL.
+According to Microsoft, one of the biggest challenges with PostgreSQL upgrades is that issues (such as compatibility problems, unsupported extensions, or configuration gaps) are often discovered only after the upgrade process has already started. This reactive approach can lead to failed upgrades, unexpected downtime, and rushed troubleshooting during critical maintenance windows, which makes the overall process risky and unpredictable for production systems.
+“This new capability lets you validate upgrade readiness before starting the actual major version upgrade, helping you identify and resolve blockers early. With Pre-Upgrade Validation Checks, you can run upgrade checks independently, review actionable results, fix issues, and re-run validation until your server is ready. This shifts upgrade troubleshooting from the upgrade window to a proactive pre-flight step,” Microsoft explained.
+The validation process checks both Azure-specific requirements and PostgreSQL compatibility to ensure the system is ready for an upgrade. It reviews factors such as overall system readiness (including configuration, server status, and available storage) along with extension compatibility to identify any unsupported or sensitive extensions.
+It also examines database dependencies and objects like replication slots, triggers, and PostGIS settings, while performing engine-level checks using PostgreSQL’s built-in pg_upgrade –check tool. If any issues are detected, this feature provides clear, actionable recommendations to help resolve them before proceeding with the upgrade.
+Microsoft notes that the Pre-Upgrade Validation Checks feature is currently available in public preview for Azure Database for PostgreSQL flexible server. Administrators can get started by opening their flexible server in the Azure portal, navigating to Upgrade, choosing their target PostgreSQL version, and then selecting Validate only.
+These checks help identify potential problems early, as well as reduce the chances of failed upgrade attempts and minimize unexpected disruptions. This capability helps improve planning and predictability, which makes production upgrades smoother and more reliable.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a7131fe57d8')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ac310465544">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-june-2026-patch-tuesday-updates/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft’s June 2026 Patch Tuesday Fixes Critical Windows RCE Vulnerabilities</a>
+          <div class="article-meta">petri.com &bull; Jun 10, 2026</div>
+          <div class="article-summary"><p>Microsoft fixes 208 vulnerabilities while introducing Windows 11 performance, security, and user experience enhancements.
+Key Takeaways:
+Microsoft has released the June 2026 Patch Tuesday updates for Windows 11 versions 25H2, 24H2, and 26H1. This month, the company has fixed over 200 vulnerabilities in Windows, Office, Microsoft Edge, Azure, Exchange Server, Hyper-V, Microsoft Defender, and other components.
+On the quality and experiences update front, this update improves Secure Boot by adding more reliable device-targeting data to Windows quality updates. It also fixes a bug that could result in Stop errors HYPERVISOR_ERROR (0x20001) and KMODE_EXCEPTION_NOT_HANDLED (0x1E) after installing KB5089573 on some devices. This problem occurred during system restarts, virtual machine operations, or when running certain gaming apps.
+As pointed out by the Zero Day Initiative, Microsoft has fixed 208 new security flaws this month. Specifically, 38 of them are deemed “Critical,” and the rest are rated as “Important” in severity. Let’s take a look at the most important vulnerabilities Microsoft fixed this month:
+You can find below the full list of security patches Microsoft released this month:
+For Windows 11 versions 25H2 and 24H2, the KB5094126 patch brings several new features, including Shared audio, multi-app camera support, as well as enhancements for magnifier, Windows Search and performance. The Shared Audio feature lets two users with Bluetooth LE audio accessories listen to the same audio together. Users can enable this feature through the Quick Settings panel from the taskbar.
+Microsoft has introduced a new “Low Latency Profile” to speed up app launches and core shell experiences, including the Start menu, Search, and Action Center. This update also lets multiple Windows apps access the users’ camera stream at the same time.
+Organizations looking to deploy this month’s patches should conduct thorough testing before deploying them widely on production systems. That said, applying the patches widely shouldn’t be delayed longer than necessary, as hackers start to work out how to weaponize newly reported vulnerabilities.
+A best practice is to make sure you have backed up systems before applying updates. Every month, users experience issues with Windows updates that lead to systems not booting, application and hardware compatibility issues, or even data loss in extreme cases.
+There are backup tools built into Windows and Windows Server that you can use to restore systems in the event a patch causes a problem. The backup features in Windows can be used to restore an entire system or files and folders on a granular basis.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac310465544')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a6b1c2c99ad">
+        <div class="article-body">
+          <a href="https://petri.com/confidential-live-migration-secure-azure-vm-transfers/" target="_blank" rel="noopener noreferrer" class="article-title">Confidential Live Migration Enables Secure Azure VM Transfers without Reboots</a>
+          <div class="article-meta">petri.com &bull; Jun 08, 2026</div>
+          <div class="article-summary"><p>Confidential Live Migration for Azure improves availability during secure VM maintenance tasks.
+Key Takeaways:
+Microsoft is enhancing cloud security and reliability with Confidential Live Migration for Azure. This new feature is designed to enable live migration of confidential virtual machines without compromising security and privacy safeguards.
+Confidential computing strengthens security by isolating data in protected hardware environments, but this added protection has made routine maintenance tasks more disruptive. While standard virtual machines can usually handle updates with only brief pauses, confidential VMs have often required full restarts to apply critical patches. This problem leads to repeated service interruptions and reduced availability throughout the year.
+“Confidential Live Migration helps address that tradeoff by improving operational flexibility and availability while supporting the confidentiality and integrity objectives of confidential computing through protected, attested transfers. Confidential Live Migration is designed to move a Confidential VM to another host while maintaining protections against privileged software access,” Microsoft explained.
+Confidential Live Migration is built to ensure secure and trustworthy migration through multiple safeguards. This feature first verifies that the target host meets strict security requirements before allowing any transfer to ensure compliance with defined policies. During the migration, all data and state information are protected to prevent unauthorized access or exposure.
+Additionally, additional checks ensure that the virtual machine’s data is transferred accurately and remains consistent, which enables a controlled, one-directional switch to the new host without errors or tampering.
+The migration process begins by confirming that the VM and its current environment are suitable for migration, which is followed by verifying that the target host meets all security and policy requirements. A secure communication channel is then established using authenticated key exchange, after which the VM’s memory and execution state are transferred while tracking any changes in real time. Lastly, this feature briefly pauses the VM to send the remaining updates, completes a secure one-way transition, and restarts the VM on the new host with minimal disruption.
+Confidential Live Migration is important for organizations because it allows them to perform system maintenance and infrastructure upgrades without interrupting services. It also supports workloads that demand both strong security and continuous availability, which makes it especially valuable for industries handling sensitive data. Overall, it helps organizations run critical and regulated applications in the cloud more efficiently while maintaining high performance and reliability.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a6b1c2c99ad')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a6209d99cad">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiwAFBVV95cUxQcU10anl1YTF2d3duMk1ESWpDOUgzclkzanJWbGlkTm5taFEwOGlKTkRqaHh0UEVzcTEtMUcxT2ZyOE5wckRmTExtTVFSR1FCSFhjWkNnOE9FX0pjUkNIajVObWtnRFJqTUtjMGx1X0diQXF6N1dwcTZpRkdKY2RuLVJQUGFmRWVpOFB4Nk56emNsZm1rbzlIVURTUzNBRExMV0prMkZyZXVLRl9BNlRsZTBKc2ZYN2xmelpPb19Ucks?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Tech Moves: Microsoft exec departs Azure; Xealth gets first CRO; Slalom names Pacific NW leader - GeekWire</a>
+          <div class="article-meta">GeekWire &bull; Jun 12, 2026</div>
+          <div class="article-summary snippet"><p>Tech Moves: Microsoft exec departs Azure; Xealth gets first CRO; Slalom names Pacific NW leader&amp;nbsp;&amp;nbsp;GeekWire</p><a href="https://news.google.com/rss/articles/CBMiwAFBVV95cUxQcU10anl1YTF2d3duMk1ESWpDOUgzclkzanJWbGlkTm5taFEwOGlKTkRqaHh0UEVzcTEtMUcxT2ZyOE5wckRmTExtTVFSR1FCSFhjWkNnOE9FX0pjUkNIajVObWtnRFJqTUtjMGx1X0diQXF6N1dwcTZpRkdKY2RuLVJQUGFmRWVpOFB4Nk56emNsZm1rbzlIVURTUzNBRExMV0prMkZyZXVLRl9BNlRsZTBKc2ZYN2xmelpPb19Ucks?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a6209d99cad')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a2a7091d63d">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi3AFBVV95cUxPQjN0Rm14bjBZVUZwcjIzOUs4N1lFRXZYU2tMckVSa1hkbnd6UldBMmdNQkgzcWhOYnY2enYzQmxQLUx4TUtVaGk3SzJ1ZDlrWFdPZFQ2c3hvRmt3TTJLNkpER08zNEVpNEM1bFNyN3ZxVGtJclJDT29RZ3lkNmVhTzhmMlVfVzRZTFJnTzZCVlVGQmc5MENRd05raVNNZ3gyb0dUejB0U1VZVG45WkhwLWVmeTF1VzR4RTU5NE9jS2c4U0dTbTl4bFZNbzY1MFY1cW9uVWpwZ1hSaXN0?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft is reportedly cutting hundreds of Azure jobs in China for the third time in two years - TweakTown</a>
+          <div class="article-meta">TweakTown &bull; Jun 12, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft is reportedly cutting hundreds of Azure jobs in China for the third time in two years&amp;nbsp;&amp;nbsp;TweakTown</p><a href="https://news.google.com/rss/articles/CBMi3AFBVV95cUxPQjN0Rm14bjBZVUZwcjIzOUs4N1lFRXZYU2tMckVSa1hkbnd6UldBMmdNQkgzcWhOYnY2enYzQmxQLUx4TUtVaGk3SzJ1ZDlrWFdPZFQ2c3hvRmt3TTJLNkpER08zNEVpNEM1bFNyN3ZxVGtJclJDT29RZ3lkNmVhTzhmMlVfVzRZTFJnTzZCVlVGQmc5MENRd05raVNNZ3gyb0dUejB0U1VZVG45WkhwLWVmeTF1VzR4RTU5NE9jS2c4U0dTbTl4bFZNbzY1MFY1cW9uVWpwZ1hSaXN0?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a2a7091d63d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ad28c01360a">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiwwFBVV95cUxNUVBWenFZcUlmX1pRYjc4MGkyNWUwbXBJTzZDWWlwVE42UDRBTlRoY09HQ25FRG9fd2g0UFQ4SzdibTJTaUhnbTZudmpSeDJ4a2V6Mnc2RndiOTktRERaWjlSRVAtZVhfUS1aVHMwUXZVdEtzUVd6RjBqbFdnMThNM0pBcW5XdEgzNDl1eVdaVnFxN1N2MFJUZ21vLWFCWi1SX3ZHVFF2MjMzTU1CelNhcHYwa0F3eXdXRU5JbjZGS2lBT0U?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Cuts 200-400 China Azure Jobs as Cloud Revenue Jumps 40% - TradingView</a>
+          <div class="article-meta">TradingView &bull; Jun 11, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft Cuts 200-400 China Azure Jobs as Cloud Revenue Jumps 40%&amp;nbsp;&amp;nbsp;TradingView</p><a href="https://news.google.com/rss/articles/CBMiwwFBVV95cUxNUVBWenFZcUlmX1pRYjc4MGkyNWUwbXBJTzZDWWlwVE42UDRBTlRoY09HQ25FRG9fd2g0UFQ4SzdibTJTaUhnbTZudmpSeDJ4a2V6Mnc2RndiOTktRERaWjlSRVAtZVhfUS1aVHMwUXZVdEtzUVd6RjBqbFdnMThNM0pBcW5XdEgzNDl1eVdaVnFxN1N2MFJUZ21vLWFCWi1SX3ZHVFF2MjMzTU1CelNhcHYwa0F3eXdXRU5JbjZGS2lBT0U?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ad28c01360a')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ad3d738155c">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiyAFBVV95cUxQWWVwYmdhV2p0WERPdTlGdnZfblFXSVF6dUZXV2NLcWNTYkJ0bmVYYldicE9wTFFsRy14TTRtNjN0dkUweUttQ05RMWhWSFpta3FzZDRpdHNxNFdjQWZiekQxZUt6aUJXVjFIOGJXdk1LbDBVcUFHOExQaF9KdGJWWlZyaHlaRUZQMEpfcUd2eVNpazIxT3owN2NWOUk1RGZNUHFnRjJMNzNVQUIycmVYalJhRGwxcVRLTWZ1WlZ1UHF3V25hek1GVNIByAFBVV95cUxQeEd1TGtzRlQzdUk1MVFvQVFGQnZwYTlkUVQ2S1pVVkE2R1ZteUhQU25hSHVSa3NQajYyNXpDTE9WQVI4WlNtUXUwd09xT1pFV3JjQW1IeXpJekVEZlpVYkVpT0pMS2V5ZWJBUEp4Y1ZBVmRRQ0ZRM3dNUHZwYUJIWGFYZ0szUC1EZVRnWC12bE5WNlhESkozQ19zdlRpTjNnWV9RRHZvUFVnMTQ2aE5JdjNCM04tQ28zWEpiRVpKdXFVV05falNQSw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft cuts hundreds of mainland cloud jobs, as China, US tighten data laws - South China Morning Post</a>
+          <div class="article-meta">South China Morning Post &bull; Jun 09, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft cuts hundreds of mainland cloud jobs, as China, US tighten data laws&amp;nbsp;&amp;nbsp;South China Morning Post</p><a href="https://news.google.com/rss/articles/CBMiyAFBVV95cUxQWWVwYmdhV2p0WERPdTlGdnZfblFXSVF6dUZXV2NLcWNTYkJ0bmVYYldicE9wTFFsRy14TTRtNjN0dkUweUttQ05RMWhWSFpta3FzZDRpdHNxNFdjQWZiekQxZUt6aUJXVjFIOGJXdk1LbDBVcUFHOExQaF9KdGJWWlZyaHlaRUZQMEpfcUd2eVNpazIxT3owN2NWOUk1RGZNUHFnRjJMNzNVQUIycmVYalJhRGwxcVRLTWZ1WlZ1UHF3V25hek1GVNIByAFBVV95cUxQeEd1TGtzRlQzdUk1MVFvQVFGQnZwYTlkUVQ2S1pVVkE2R1ZteUhQU25hSHVSa3NQajYyNXpDTE9WQVI4WlNtUXUwd09xT1pFV3JjQW1IeXpJekVEZlpVYkVpT0pMS2V5ZWJBUEp4Y1ZBVmRRQ0ZRM3dNUHZwYUJIWGFYZ0szUC1EZVRnWC12bE5WNlhESkozQ19zdlRpTjNnWV9RRHZvUFVnMTQ2aE5JdjNCM04tQ28zWEpiRVpKdXFVV05falNQSw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ad3d738155c')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="sharepoint" class="topic-section">
+      <h2 class="topic-title" style="--c:#036C70">SharePoint <span class="count">(5)</span></h2>
+      <div class="article-card" data-id="a70c6d30c5b">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiuAFBVV95cUxQeW00YWUzQkJIUTlvZjFqc1BIUmFIMk81M0R3dVdvZ1pWQmVnYkZpU1hxMzBleEc3Q054dkxHT3U5NjJmMWJoeTVCMTNLSm5MUS1YZ0RxLVJZdnpMUjIwZzZuRnpFYlE5dFBSS1pyc2RRa1FaZ2VmQ1lQYnYxbFY2TGVOcms1dzU4ZVhqbVJjUE9rMW1jVHJmR2EzVEVrcmRvUUl3Umh6Zi1MZWR1b1dRRnZnTTlFbFRp?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">What's New in ArcGIS for Microsoft 365 (June 2026) - Esri</a>
+          <div class="article-meta">Esri &bull; Jun 08, 2026</div>
+          <div class="article-summary snippet"><p>What's New in ArcGIS for Microsoft 365 (June 2026)&amp;nbsp;&amp;nbsp;Esri</p><a href="https://news.google.com/rss/articles/CBMiuAFBVV95cUxQeW00YWUzQkJIUTlvZjFqc1BIUmFIMk81M0R3dVdvZ1pWQmVnYkZpU1hxMzBleEc3Q054dkxHT3U5NjJmMWJoeTVCMTNLSm5MUS1YZ0RxLVJZdnpMUjIwZzZuRnpFYlE5dFBSS1pyc2RRa1FaZ2VmQ1lQYnYxbFY2TGVOcms1dzU4ZVhqbVJjUE9rMW1jVHJmR2EzVEVrcmRvUUl3Umh6Zi1MZWR1b1dRRnZnTTlFbFRp?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a70c6d30c5b')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a36aaa45d47">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMirwFBVV95cUxPR3VwZXRqMnRaYml0S1BpSXdiX0x0Nm0tdGtJMEVVQ2ZIeWZ0TDdndzkzRy10dDFtb1dIQ28teTFDTlA3LUdfeGdBQ2Y0d2hka3dyak5wUFNZa3hMcFJNN1FXdVB6ZVAwTGJmU3pENlhCcGN5SVhuSHl6ZWpJYWxyUFpmMHUyMjV5bWtjZjdFZnRmSTFTTGdiTlJoNFp5b1Z1cmtmRkkwY0pQbUNzc1A00gG0AUFVX3lxTE5qV2RuektGMV9xM3gwUjcxZXlacEtCdHUxS0E4Z3FfMzQtTHF6bzk4WHpZTTBKMDd0cjRDMF96dUE1TXpXTzBJVjBPODN1c2xCTm12cWRUSzBGaXp0WlFyY3NxOF9aY0Nwa0MxTmVpVmM4N1g1OTR6aGFVMnpvenowZHBQQlpQQ1dSelNRTy1xa1IyRmJyV2pWRDBjNTNqckM2eGJ1bmdrREF3ZEk2dVhsMGhLYw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft June 2026 Patch Tuesday fixes 6 zero-days, 200 flaws - BleepingComputer</a>
+          <div class="article-meta">BleepingComputer &bull; Jun 09, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft June 2026 Patch Tuesday fixes 6 zero-days, 200 flaws&amp;nbsp;&amp;nbsp;BleepingComputer</p><a href="https://news.google.com/rss/articles/CBMirwFBVV95cUxPR3VwZXRqMnRaYml0S1BpSXdiX0x0Nm0tdGtJMEVVQ2ZIeWZ0TDdndzkzRy10dDFtb1dIQ28teTFDTlA3LUdfeGdBQ2Y0d2hka3dyak5wUFNZa3hMcFJNN1FXdVB6ZVAwTGJmU3pENlhCcGN5SVhuSHl6ZWpJYWxyUFpmMHUyMjV5bWtjZjdFZnRmSTFTTGdiTlJoNFp5b1Z1cmtmRkkwY0pQbUNzc1A00gG0AUFVX3lxTE5qV2RuektGMV9xM3gwUjcxZXlacEtCdHUxS0E4Z3FfMzQtTHF6bzk4WHpZTTBKMDd0cjRDMF96dUE1TXpXTzBJVjBPODN1c2xCTm12cWRUSzBGaXp0WlFyY3NxOF9aY0Nwa0MxTmVpVmM4N1g1OTR6aGFVMnpvenowZHBQQlpQQ1dSelNRTy1xa1IyRmJyV2pWRDBjNTNqckM2eGJ1bmdrREF3ZEk2dVhsMGhLYw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a36aaa45d47')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a57173726fa">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMixAJBVV95cUxNRHJPdDJMSVRDVk9ib2xiT1BNa1ZPNmVUMTV4LUlzdkpvcDhpQWhRNHowV2VRZkhDMFJRMWR5bDJBeVFSQkxUNG5NUlQ1bndJRFlGX3VNSVVBRWE1WGdua29YVGdaZG0zZHZrYy1WOXYtbkg1OFZwZUFaRnh3VkpWTkF4UjdsWWUzUDBmZGdqbXRFZnh4RHJYeDFhdTVxSWRidE0xdTVrMkNybGFpSFB4MndfR0NEa1RyeHRwemp4UVc2RGxFTjlOdnktT2xLdWZPc09DT1k4MUlTMGR5NFNRdEhxOW9sSFBBQjVRWG53WXZDNjFVUTV2OXNfUTIxcnhmOU1RSWpzdTVvR29xcm5UcDVlVXpJT2pOLW10dXNvMWxSRXhXaWx2SDJrYzRDQ3k4akkxd01mdC1vUDg0S0VheGdicXA?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Nuclear Weapons Agency Breached in Microsoft SharePoint Hack - msn.com</a>
+          <div class="article-meta">msn.com &bull; Jun 10, 2026</div>
+          <div class="article-summary snippet"><p>Nuclear Weapons Agency Breached in Microsoft SharePoint Hack&amp;nbsp;&amp;nbsp;msn.com</p><a href="https://news.google.com/rss/articles/CBMixAJBVV95cUxNRHJPdDJMSVRDVk9ib2xiT1BNa1ZPNmVUMTV4LUlzdkpvcDhpQWhRNHowV2VRZkhDMFJRMWR5bDJBeVFSQkxUNG5NUlQ1bndJRFlGX3VNSVVBRWE1WGdua29YVGdaZG0zZHZrYy1WOXYtbkg1OFZwZUFaRnh3VkpWTkF4UjdsWWUzUDBmZGdqbXRFZnh4RHJYeDFhdTVxSWRidE0xdTVrMkNybGFpSFB4MndfR0NEa1RyeHRwemp4UVc2RGxFTjlOdnktT2xLdWZPc09DT1k4MUlTMGR5NFNRdEhxOW9sSFBBQjVRWG53WXZDNjFVUTV2OXNfUTIxcnhmOU1RSWpzdTVvR29xcm5UcDVlVXpJT2pOLW10dXNvMWxSRXhXaWx2SDJrYzRDQ3k4akkxd01mdC1vUDg0S0VheGdicXA?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a57173726fa')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a69391271fe">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMihAFBVV95cUxOOVpRR0hoRENZbTlyRkpYbFdXOFdnZF93d0EwYlQ5SnN0QmxmbFA3UTJBRW05TXVYLVhuU2xHekN0VzdQOWdkQUR2YTFySlFhcVE2SGVNSXprT2JPc1Z1R01TeHh1aXRyLVVGb3YtUzVPZFh5ekdidWFsTGZIX3VSYXJmck8?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">End of life of legacy SharePoint 2016 - Trinity College Dublin</a>
+          <div class="article-meta">Trinity College Dublin &bull; Jun 09, 2026</div>
+          <div class="article-summary snippet"><p>End of life of legacy SharePoint 2016&amp;nbsp;&amp;nbsp;Trinity College Dublin</p><a href="https://news.google.com/rss/articles/CBMihAFBVV95cUxOOVpRR0hoRENZbTlyRkpYbFdXOFdnZF93d0EwYlQ5SnN0QmxmbFA3UTJBRW05TXVYLVhuU2xHekN0VzdQOWdkQUR2YTFySlFhcVE2SGVNSXprT2JPc1Z1R01TeHh1aXRyLVVGb3YtUzVPZFh5ekdidWFsTGZIX3VSYXJmck8?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a69391271fe')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aec016ecce2">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMirwFBVV95cUxPYlc5T0FKTGNIeW1BaUgxeGhkQjctVVZNREdhVU9JS2Y3b3c4d2VKVTdsZzVfTGY0SlFCUW1fb19FUk1EcGNvd25ZNE16Zm52cTFOS2M1VnVvNks4NUgxWTltdHAxSEtQMEtuSkNRUUV6Zm5VQmFDZlpscHdQLWtKTmVxYS0xMndYX0RwZEZhWnNfV2JMRmxIWWpmVjZGdm42MUdMV0VxczFGZktDd3ZV?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Leading with Microsoft: InfoVerge’s roadmap for 2026 and beyond - ITWeb</a>
+          <div class="article-meta">ITWeb &bull; Jun 11, 2026</div>
+          <div class="article-summary snippet"><p>Leading with Microsoft: InfoVerge’s roadmap for 2026 and beyond&amp;nbsp;&amp;nbsp;ITWeb</p><a href="https://news.google.com/rss/articles/CBMirwFBVV95cUxPYlc5T0FKTGNIeW1BaUgxeGhkQjctVVZNREdhVU9JS2Y3b3c4d2VKVTdsZzVfTGY0SlFCUW1fb19FUk1EcGNvd25ZNE16Zm52cTFOS2M1VnVvNks4NUgxWTltdHAxSEtQMEtuSkNRUUV6Zm5VQmFDZlpscHdQLWtKTmVxYS0xMndYX0RwZEZhWnNfV2JMRmxIWWpmVjZGdm42MUdMV0VxczFGZktDd3ZV?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aec016ecce2')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="intune" class="topic-section">
+      <h2 class="topic-title" style="--c:#0F6CBD">Intune <span class="count">(4)</span></h2>
+      <div class="article-card" data-id="adf4d2e603a">
+        <div class="article-body">
+          <a href="https://techcommunity.microsoft.com/t5/intune-customer-success/mdop-is-out-of-support-what-to-do-next-with-microsoft-intune/ba-p/4526024" target="_blank" rel="noopener noreferrer" class="article-title">MDOP is out of support: What to do next with Microsoft Intune</a>
+          <div class="article-meta">techcommunity.microsoft.com &bull; Jun 08, 2026</div>
+          <div class="article-summary snippet"><p>By: Joe Lurie – Sr. Product Manager | Microsoft Intune
+On April 14, 2026, the Microsoft Desktop Optimization Pack (MDOP) reached the end of extended support. Microsoft no longer provides security updates, bug fixes, or technical support for MDOP components. For more information, refer to: Microsoft Desktop Optimization Pack (MDOP) support extended.
+If your organization still relies on parts of MDOP, it’s time to move to supported options. In most cases, including Windows desktop management, app virtualization, BitLocker administration, and Group Policy change control, you can handle the same workloads with capabilities in Microsoft Entra ID, Intune, Windows 11, and Configuration Manager.
+Moving these workloads to the cloud does more than keep you supported. It removes on-premises server infrastructure you have to stand up and patch, brings management of cross-platform devices into a unified console, and connects capabilities like encryption and recovery into a Zero Trust framework with Conditional Access.
+Quick start checklist
+
+Inventory what you actually use. Confirm whether Application Virtualization (App-V) server components, Microsoft BitLocker Administration and Monitoring (MBAM), Diagnostics and Recovery Toolset (DaRT), User Experience Virtualization (UE-V), or Advanced Group Policy Management (AGPM) are still in production.
+Prioritize BitLocker Management first. If you still rely on MBAM, plan your move to BitLocker management in Intune and confirm recovery key escrow is working as expected.
+Plan your App-V exit. Keep existing App-V packages running where needed but shift net-new packaging work to MSIX.
+Validate your PC recovery story. Document how you’ll handle common break/fix scenarios using Quick Machine Recovery, WinRE, bootable media, and Intune remote actions.
+Decide how you want to handle policy change management. For cloud policy, we recommend Multi Admin Approval for sensitive actions and policy-as-code practices for versioning and review.
+
+App-V
+App-V let you virtualize applications so they could run in isolated environments without a traditional install, which helped avoid app conflicts. It was especially useful for legacy line-of-business apps that were hard to install or update cleanly.
+ImportantThe App-V server components (Management Server, Publishing Server, Reporting Server) reached end of extended support in April 2026. The App-V client and sequencer are still included with Windows Enterprise and Education editions. They will continue to receive security fixes for the support lifecycle of the Windows versions they ship with. If you are distributing App-V packages today via Configuration Manager, that can still work. The key change is that you should not plan on using the standalone App-V server infrastructure going forward. For more details refer to: App-V in Windows support policy.
+What to do instead: For new packaging work, we recommend moving to MSIX. MSIX is a modern packaging format that supports clean install and uninstall and more predictable updating. The MSIX Packaging Tool can help you convert existing installers. In Azure Virtual Desktop, MSIX App Attach can deliver apps without baking them into the base image. A good starting point is to inventory your App-V packages, identify the ones you still need, and prioritize candidates to convert to MSIX.
+MBAM
+MBAM gave IT admins centralized control over BitLocker, including policy enforcement, compliance reporting, and a self-service recovery portal. Many organizations used MBAM as their standard management solution.
+What to do instead: We recommend replacing MBAM with Microsoft Intune’s BitLocker policy management through an Endpoint security policy. Intune management provides backup of recovery keys to Microsoft Entra ID, reporting, and Conditional Access integration so you can require encryption for access to company resources. If you already manage devices with Intune, you may only need to create a disk encryption policy and confirm recovery keys are being escrowed. For detailed guidance, review Encrypt Windows devices with BitLocker using Intune.
+DaRT
+DaRT provided a bootable recovery environment with advanced tools like file recovery, registry editing, and offline troubleshooting. You typically used DaRT when a machine wouldn’t boot and you needed to repair it or recover data without reimaging.
+What to do instead: Windows includes the Windows Recovery Environment (WinRE) with tools like Startup Repair, System Restore, command prompt, and reset options. For many scenarios DaRT covered, WinRE is enough. You can also boot from a Windows installation USB, select &quot;Repair your computer,&quot; and use the recovery tools for tasks like offline troubleshooting.
+For managed devices, you can pair recovery options with Intune remote actions, such as restart, wipe, or collect diagnostics, or use Quick Machine Recovery. Additionally, Quick Machine Recovery can automatically detect and fix boot failures using cloud-based remediation delivered through Windows Update, with no hands-on IT intervention required for managed devices running Windows 11 version 24H2 or later. You can enable and configure it through the settings catalog in Intune, and Windows Autopilot scenarios for redeployment. These don’t replace every DaRT capability, but they cover many common use cases and work without shipping a separate recovery toolkit.
+UE-V
+UE-V roamed (synchronized) some user application and OS settings to persist across devices so users could sign in to a different Windows PC and keep a familiar experience. This was often used in shared workstation scenarios.
+What to do instead: For Windows settings roaming, Windows Backup for Organizations syncs certain Windows settings across Microsoft Entra ID joined devices. Review the latest guidance to confirm which settings are covered and how to enable it in your environment.
+Important:
+Windows Backup for Organizations syncs Windows settings (theme, password, language) but doesn’t roam per-application settings for Win32 apps. Some apps may provide their own cloud-based sync. Windows Backup for Organizations is not a direct replacement for UE-V.
+For user files, we recommend OneDrive Known Folder Move to back up Desktop, Documents, and Pictures so content follows the user. Many Microsoft applications also sync their own settings through the cloud, which reduces the need for an OS-level roaming solution.
+Another option is to use a virtualized solution, like Azure Virtual Desktop or Windows 365. With a Cloud PC, users connect to the same environment from any device, so settings and apps are already there when they sign in. For scenarios where UE-V mattered most, like shared workstation environments, Windows 365 can be a practical alternative. And for Azure Virtual Desktop, FSLogix is a viable option.
+Important:
+Enterprise State Roaming does not roam per-application settings for traditional Win32 desktop apps the way UE-V did. So, Windows 365 may not be the right fit if you need settings roaming across multiple physical devices.
+AGPM
+AGPM brought version control, change tracking, and approval workflows to Group Policy management. Instead of an admin changing Group Policy Objects (GPOs) directly in production, AGPM enforced a check-out and check-in model with full audit history. This mattered most in environments with strict change management requirements.
+What to do instead: Move to cloud-managed endpoints and replace Group Policy settings with Intune configuration profiles and security baselines. The settings catalog in Intune includes thousands of settings, including many ADMX-backed policies. If you use custom ADMX files for third-party or internal applications, you can import them into Intune. For settings that aren’t available in the catalog, custom OMA-URI profiles can sometimes be used, depending on the CSP support for that setting.
+For change management, Intune offers&amp;nbsp;Multi Admin Approval for certain policy changes, which can add a second-admin approval step. If you want deeper versioning and review workflows, we often see teams using Configuration as Code. Teams practicing Configuration as Code define Intune policies as code or structured data, such as in a JSON file stored outside the Intune admin center. This can be stored in version control like Azure DevOps or GitHub, and use Microsoft Graph – directly or via tooling – to deploy and reconcile the service. This enables deep versioning, peer review, and repeatable, auditable changes. And with Intune, you can use Graph API to get two years of audit events.
+Summary
+
+MDOP tool
+
+What it did
+
+Cloud-native replacement
+
+App-V (Server)
+
+Application virtualization and streaming
+
+MSIX packaging and Intune deployment (client still supported in Windows)
+
+MBAM
+
+BitLocker management and recovery
+
+Intune management of BitLocker and Microsoft Entra ID key escrow
+
+DaRT
+
+Bootable diagnostics and recovery
+
+Windows Recovery Environment (WinRE), bootable USB, and Intune remote actions
+
+UE-V
+
+User settings roaming
+
+Windows 365 Cloud PC, Windows Backup for Organizations, OneDrive Known Folder Move, app-native sync
+
+AGPM
+
+GPO version control and approval workflows
+
+Intune settings catalog, Multi Admin Approval, policy-as-code in source control
+
+Moving forward
+By moving to cloud endpoint management, most MDOP scenarios are covered through Microsoft Intune and Microsoft Entra ID supported capabilities with less infrastructure to maintain, making it easier for you to manage.
+If you haven’t started planning yet, we suggest starting with MBAM since Intune is the most direct replacement. Then, you can work through App-V, DaRT, UE-V, and AGPM based on what’s still in use.
+If you’re in the middle of an MDOP exit and need help leave a comment below or reach out to us on X @IntuneSuppTeam. Tell us which components you still have and how you manage endpoints today (Intune, Configuration Manager, hybrid, or other). We can help you sanity-check dependencies, choose an order of operations, and avoid common migration pitfalls.</p><a href="https://techcommunity.microsoft.com/t5/intune-customer-success/mdop-is-out-of-support-what-to-do-next-with-microsoft-intune/ba-p/4526024" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('adf4d2e603a')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a068f2b987a">
+        <div class="article-body">
+          <a href="https://techcommunity.microsoft.com/t5/intune-customer-success/new-platform-sso-with-registration-during-automated-device/ba-p/4519846" target="_blank" rel="noopener noreferrer" class="article-title">New Platform SSO with registration during Automated Device Enrollment on macOS</a>
+          <div class="article-meta">techcommunity.microsoft.com &bull; Jun 09, 2026</div>
+          <div class="article-summary snippet"><p>By Iris Yuning Ye, Product Manager – Microsoft Intune &amp;amp; Justin Ploegert, Principal Product Manager – Microsoft Entra
+A new setting ‘Enable Registration During Setup’ for Platform single sign-on (PSSO) during Automated Device Enrollment (ADE) is now generally available for macOS devices in Microsoft Intune. With this new setting and a compatible version of the Intune Company Portal (5.2604.0 and newer), this feature enables users sign in with their Microsoft Entra account during Setup Assistant, complete device registration before reaching the desktop, and get immediate access to work resources and ready to be productive sooner.
+Why this matters
+Previously, Platform SSO registration occurred only after users completed Setup Assistant and reached the desktop. They then had to notice and act on a separate notification to finish Platform SSO registration. When Platform SSO registration isn't completed, it can cause issues with app authentication or lead to noncompliance, delaying users from getting started on the device:
+
+Missed notifications - Users dismiss or ignore the post-enrollment PSSO prompt, leaving devices in an incomplete device registration state.
+Broken app authentication - Apps like Microsoft Outlook could fail to authenticate because SSO isn’t fully configured.
+Compliance gaps - Devices are flagged as noncompliant in the Intune Company Portal because Platform SSO registration isn’t completed.
+Helpdesk burden - IT teams field repeated tickets for issues that should have been handled automatically during provisioning.
+Migration blocker - Incomplete Platform SSO setup slows down migrating macOS devices to Intune.
+
+Platform SSO during ADE with EnableRegistrationDuringSetup key eliminates these issues. Device registration, identity bootstrap, and credential setup all happen inline during Setup Assistant before the user ever reaches the desktop.
+What the feature enables
+
+Capability
+
+Details
+
+Microsoft Entra device registration during ADE
+
+The device registers with Microsoft Entra ID before the user reaches the desktop. A hardware-bound Workplace Join certificate is issued and stored securely.
+
+Early device identity
+
+Device identity is established early in the provisioning process, enabling immediate access to resources protected by Conditional Access.
+
+Platform SSO credentials during initial setup
+
+When configured with Secure Enclave, credentials are stored in the device's Secure Enclave, providing hardware-bound, phishing-resistant protection aligned with Zero Trust principles.
+
+Minimized delays
+
+Users arrive at the desktop already signed in. No additional prompts, no waiting for policies, no broken apps.
+
+How it works
+This feature requires three policies that work together. All three must be configured correctly before enrollment starts and assigned to the same static user groups:
+
+A Platform SSO settings catalog policy with “Enable Registration During Setup” configured to Enabled.
+Intune Company Portal (version 5.2604 or newer) deployed as a line-of-business (LOB) app, which provides the Microsoft Enterprise SSO extension.
+An ADE enrollment profile configured with Setup Assistant with modern authentication and Await final configuration = Yes.
+
+When a device enrolls with these three policies in place, here's what happens:
+
+The device powers on and begins the ADE enrollment flow.
+Intune delivers the Platform SSO settings catalog policy with Enable Registration During Setup enabled.
+Intune Company Portal is installed automatically as a LOB app, providing the Microsoft Enterprise SSO plug-in.
+During Setup Assistant, the user signs in with their Microsoft Entra credentials. This first sign-in starts the regular enrollment process.
+A second sign-in authenticates the identity in Intune Company Portal and fetches the SSO extension.
+The device registers with Microsoft Entra ID, and a Microsoft Entra device registration certificate is issued.
+The user arrives at the desktop fully authenticated, with SSO active and Conditional Access satisfied.
+
+Note: During enrollment, users are prompted to enter their Microsoft Entra credentials at least twice. We're working on improvements to reduce the number of sign-ins in a future update.
+Prerequisites
+
+Requirement
+
+Details
+
+macOS version
+
+macOS 26 and newer
+
+Enrollment method
+
+ADE via Apple Business
+
+Intune Company Portal
+
+Version 5.2604.0 or newer, deployed as a LOB app. Download from https://go.microsoft.com/fwlink/?linkid=853070
+
+Intune role for configuration
+
+Admin account with at least the Policy and Profile Manager built-in role
+
+Group type
+
+Assigned (static) user groups only. Dynamic groups and device groups are not supported.
+
+Important: Review the full Platform SSO prerequisites in the Platform SSO configuration guide before you begin.
+&amp;nbsp;
+High level step-by-step configuration
+Step 1: Create or update the Platform SSO settings catalog policy
+
+In the Microsoft Intune admin center, go to Devices &amp;gt; Manage devices &amp;gt; Configuration. If this is your first time configuring Platform SSO, follow the full&amp;nbsp;Platform SSO configuration guide.
+Add and configure the following setting:
+
+Setting
+
+Value
+
+Description
+
+Authentication &amp;gt; Extensible Single Sign On &amp;gt; Platform SSO &amp;gt; Enable Registration During Setup
+
+Enabled
+
+Enables the Platform SSO registration process during Setup Assistant.
+
+&amp;nbsp;
+
+
+If using the&amp;nbsp;Password authentication method, it’s recommended to add for password sync function:
+Setting
+
+Value
+
+Description
+
+Authentication &amp;gt; Extensible Single Sign On &amp;gt; Platform SSO &amp;gt; Enable Create First User During Setup
+
+Enabled
+
+Enables the password synchronization experience during Setup Assistant. This configuration is recommended for Password authentication method.
+
+
+
+Tip: Microsoft recommends using Secure Enclave as the authentication method for the strongest hardware-backed security.
+Assign the policy to your static user groups. Filter is also supported with correct static group setting.
+&amp;nbsp;
+Step 2: Install Intune Company Portal as a LOB app
+
+Download the Company Portal for macOS PKG from https://go.microsoft.com/fwlink/?linkid=853070.
+In the Intune admin center, go to Apps &amp;gt; All Apps &amp;gt; Create.
+Add Intune Company Portal as a macOS LOB app.
+Make it a required app and assign it to the same groups as the Platform SSO policy from Step 1.
+
+Important: Company Portal 5.2604.0 and newer is required. If you install an older version, Platform SSO fails. When Intune detects Company Portal as a deployed policy, it sends it with priority during enrollment.
+And clean up the App bundle ID that are not related to Company Portal, make sure only com.microsoft.CompanyPortalMac as the relevant App bundle ID is kept.
+Figure 1: Microsoft Intune admin center Add App screen for a macOS line-of-business app, showing CompanyPortal-Installer.pkg details, macOS Tahoe 26.0 minimum OS, ignore app version enabled, install as managed disabled, and included app bundle ID com.microsoft.CompanyPortalMac version 5.26040.
+Step 3: Set up the enrollment profile
+
+In the Intune admin center, go to Devices &amp;gt; Device onboarding &amp;gt; Enrollment &amp;gt; Apple tab.
+Create or edit an Automated Device Enrollment profile with these Management settings:
+
+Setting
+
+Value
+
+User affinity
+
+Enroll with User Affinity
+
+Authentication
+
+Setup Assistant with modern authentication
+
+Await final configuration
+
+Yes
+
+Locked enrollment
+
+Yes
+
+
+Assign the profile to the devices afflicated with the users targeted&amp;nbsp;as Steps 1 and 2.
+
+Critical: You must assign all three policies to the devices afflicated with the users targeted. If any policy is assigned to a different group, or if any step is misconfigured, enrollment will fail. In that case, wipe the device and re-enroll with all steps correctly configured.
+&amp;nbsp;
+Key things to remember
+
+✅ Three policies, one group: Settings catalog, Company Portal LOB app, and ADE enrollment profile, all assigned to the same static groups or devices/users affliated with the groups.
+✅ Static groups only: This feature does not work with device groups or dynamic groups.
+✅ One SSO policy per device: If you already have a Platform SSO policy assigned to enrolled devices, make sure device is wiped appropriately before kicking of enrollment with new PSSO flow.
+✅ Latest Intune Company Portal: Version 5.2604.0 or newer is required.
+✅ macOS 26 required: This feature is supported on macOS 26 and newer.
+✅ Secure Enclave recommended: For the strongest hardware-backed credential protection.
+
+For more details, refer to Configure Platform Single Sign-On (PSSO) during Automated Device Enrollment for macOS devices.
+Looking ahead: Reducing Platform SSO sign-in prompts
+Signing in multiple times during enrollment isn't the ideal experience, and we're actively working to streamline it with a new enrollment setting that enables users to complete both Intune enrollment and Platform SSO device registration with a single sign-in. This will further simplify the onboarding experience, reduce friction for users, and bring macOS enrollment closer to a truly seamless, zero-touch provisioning flow. Stay tuned to What’s new in Intune for the release.
+Related resources
+
+SSO in ADE profile (new article): Add Platform SSO policy to ADE Profile on macOS devices
+SSO scenarios: Platform SSO scenarios for macOS devices
+Platform SSO configuration guide for macOS devices using Microsoft Intune
+Common Platform SSO scenarios for macOS devices
+Install Company Portal for macOS as a macOS LOB app
+Set up automated device enrollment (ADE)
+Troubleshoot the Microsoft Enterprise SSO Extension plugin on Apple devices
+macOS Platform single sign-on known issues and troubleshooting
+
+&amp;nbsp;
+As always, we'd love your feedback. If you've piloted Platform SSO during Setup Assistant, share your tips and lessons learned in the comments below or reach out to us on&amp;nbsp;X&amp;nbsp;@IntuneSuppTeam.
+&amp;nbsp;
+Post Updates:6/8/26: Refreshed guidance recommending this configuration for the Password authentication method and clearer targeting language around devices and users affiliated with the groups targeted.</p><a href="https://techcommunity.microsoft.com/t5/intune-customer-success/new-platform-sso-with-registration-during-automated-device/ba-p/4519846" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a068f2b987a')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a3c0d670e89">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiigFBVV95cUxNVUVUMkR6bXVBaDJoX3d6TXRZOXFwb3AyVUFibE5Va0xWd2I5MUFZc0Z4V2RJUnhwZ3VKWVN3X0FNOXBpaXhuQ1lCVG9hU2QtMjhRSjIwdmhsRkd0QnFUS2NEZnlVYm1rRVlSWDZzMzZvZnVheHB3Q2EyeDYxcUFWM2wxTGNmRFNlZ3c?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Making the switch from the Hub to Intune - University of Nebraska Medical Center</a>
+          <div class="article-meta">University of Nebraska Medical Center &bull; Jun 08, 2026</div>
+          <div class="article-summary snippet"><p>Making the switch from the Hub to Intune&amp;nbsp;&amp;nbsp;University of Nebraska Medical Center</p><a href="https://news.google.com/rss/articles/CBMiigFBVV95cUxNVUVUMkR6bXVBaDJoX3d6TXRZOXFwb3AyVUFibE5Va0xWd2I5MUFZc0Z4V2RJUnhwZ3VKWVN3X0FNOXBpaXhuQ1lCVG9hU2QtMjhRSjIwdmhsRkd0QnFUS2NEZnlVYm1rRVlSWDZzMzZvZnVheHB3Q2EyeDYxcUFWM2wxTGNmRFNlZ3c?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a3c0d670e89')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aa188da0dc3">
+        <div class="article-body">
+          <a href="https://petri.com/windows-365-admin-insights-cloud-pc-management/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Introduces Admin Insights For Windows 365 to Streamline Cloud PC Management - Petri IT Knowledgebase</a>
+          <div class="article-meta">Petri IT Knowledgebase &bull; Jun 09, 2026</div>
+          <div class="article-summary"><p>New feature consolidates key signals to help IT teams identify issues and optimize environments.
+Key Takeaways:
+Microsoft has introduced support for Admin Insights for Windows 365 in public preview for commercial customers. This new feature allows enterprise admins to more easily manage Windows 365 Cloud PCs.
+“Admin Insights for Windows 365 gives IT administrators a prioritized set of items to review—such as issues that need attention and opportunities to optimize your Cloud PC environment—directly in the Windows 365 experience in the Microsoft Intune admin center. Admin Insights is service-driven: items are generated by the Windows 365 service and aren’t configured through customer-defined thresholds or alert rules,” Microsoft explained.
+This new Admin Insights feature enhances existing reporting and monitoring tools by consolidating key signals directly within the Windows 365 interface, which makes it easier for IT administrators to manage their Cloud PC environments. It enables IT admins to quickly identify issues that require attention, gain a clear overview of system health without reviewing multiple reports, detect unusual trends or performance problems, and take informed next steps using insights presented in a streamlined view.
+Admin Insights presents automatically generated insight cards within the Windows 365 management portal in Microsoft Intune, based on patterns and activity across the Cloud PC environment to highlight important information. These cards (up to 15 at a time) appear as relevant changes occur, which draws attention to issues such as system health concerns or connectivity problems, with each card focusing on a specific scenario that may require administrative action.
+To view Admin Insights, IT admins will need to sign in to the Microsoft Intune admin center and then head over to Devices &gt; Manage Windows 365 Cloud PCs. They will be able to view Admin Insights as a section on the Cloud PC Overview page.
+Microsoft notes that the Admin Insights feature is available for organizations with an active Windows 365 Enterprise or Windows 365 Flex (Windows 365 Frontline) license. These permissions are typically granted through roles such as Cloud PC Reader, Cloud PC Administrator, or Windows 365 Administrator.
+Admin Insights matters for organizations because it significantly reduces the operational burden on IT teams, especially in environments with large or rapidly growing Cloud PC deployments. Instead of relying on reactive troubleshooting or manually correlating data from multiple dashboards, IT teams can move toward a more proactive and predictive management approach, which involves catching issues before they affect end users.
+This leads to improved employee productivity, as downtime and performance degradation can be addressed faster, and also helps organizations optimize resource usage by identifying inefficiencies such as underutilized or misconfigured systems. Over time, this kind of intelligent visibility can lower support costs, improve service reliability, and enable IT departments to focus more on strategic initiatives rather than routine monitoring.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aa188da0dc3')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="entraid" class="topic-section">
+      <h2 class="topic-title" style="--c:#6B69D6">Entra ID <span class="count">(2)</span></h2>
+      <div class="article-card" data-id="af7e7d468af">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/06/china-linked-jdy-botnet-expands-to-1500.html" target="_blank" rel="noopener noreferrer" class="article-title">China-Linked JDY Botnet Expands to 1,500+ Devices for Cyber Reconnaissance</a>
+          <div class="article-meta">thehackernews.com &bull; Jun 10, 2026</div>
+          <div class="article-summary"><p>Cybersecurity researchers have warned of a &quot;resurgence and expansion&quot; of JDY, a covert network associated with China-nexus state-sponsored threat actors.
+&quot;The JDY botnet comprises over 1,500 SOHO [small office and home office] and IoT devices and operates as a centrally controlled, high-performance scanner used to discover, fingerprint, and continuously map exposed services at scale,&quot; Lumen's Black Lotus Labs said in a report shared with The Hacker News.
+JDY was first flagged as a cluster within another botnet codenamed KV-botnet in mid-December 2023. Primarily used for broader scanning against internet targets, the stealthy network comprising compromised SOHO routers, firewalls, and IoT devices has been put to use by Chinese hacking groups like Volt Typhoon.
+Following KV-botnet's takedown by the U.S. government in early 2024, the botnet operators began making behavioral changes to the network, with the second KV cluster largely going offline. It's suspected that the botnet is offered by the operators to various hacking outfits, while carrying out reconnaissance and targeting on their own.
+The latest findings from Black Lotus Labs show that the malware has expanded in scope to infect a broader range of devices and act as a conduit to feed &quot;structured reconnaissance data&quot; into a larger scanning ecosystem for follow-on target identification and exploitation.
+Specifically, the JDY cluster is being used to conduct targeted scanning and service fingerprinting with an aim to flag vulnerable infrastructure following public disclosures. This points to an industrialized reconnaissance effort, the results of which are leveraged by Chinese nation-state groups.
+This has been complemented by a growth in the botnet's size, which has surged from 650 bots at the start of January 2024 to more than 1,500 compromised devices. Most of the hacked nodes are located in the U.S. and Brazil, followed by Europe and Asia. Black Lotus Labs told The Hacker News that the cluster in Brazil is reflective of the fact that &quot;we're seeing more and more botnets made up of Brazilian victims these days.&quot;
+Where previously the cluster primarily featured Cisco RV320 and RV325 routers, the present makeup of the botnet is a lot more diverse, including devices from Araknis, Mimosa Networks, Ubiquiti, Draytek, Hikvision, and Linksys.
+The vast majority of the victim devices are assessed to have reached end-of-life (EoL) with known vulnerabilities. Although the exact nature of the security flaws remains unclear, it's suspected to involve the following based on the specific device models that are being exploited -
+- 
+    Cisco RV042 - Possibly vulnerable to flaws like CVE-2023-20118 
+- 
+    DrayTek Vigor3900 Series - Possibly vulnerable to flaws like CVE-2022-32548 
+- 
+    Araknis AN-300-RT-4L2W - Possibly vulnerable to flaws like CVE-2023-24738 
+- 
+    Hikvision IP cameras - Possibly vulnerable to flaws like CVE-2021-36260 
+- 
+    Linksys LRT224 - No known CVEs, but alleged zero-days have been sold on the dark web 
+&quot;The botnet's large number of U.S.-based SOHO/IoT devices enables the botnet operators to evade defenses and traditional IP-based controls, such as geofencing, IP reputation-based detection, and static blocklists,&quot; Black Lotus Labs said.
+&quot;By distributing their scanning and reconnaissance activity across a wide range of IP addresses, the operators make it less likely that any single IP will be labeled as a scanner and blocked. Additionally, using compromised SOHO and IoT devices helps this activity blend in with legitimate user traffic.&quot;
+The architecture that powers the botnet is best described as layered: the operators use Tor nodes to manage infected infrastructure, including both the command-and-control (C2) and payload servers. The C2 servers direct the bots to perform targeted reconnaissance and system profiling, as opposed to indiscriminate scanning.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('af7e7d468af')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a180a9a47b5">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiuwFBVV95cUxOZnktc1g1SUlwVnNEbFBYSG1tN3pidk5uNmFZb3FMeTRVMXJsNEJkVWlzMTI5dW1Eekd2YkQ4OG5Nb1U2dDNxbUxGOTEzUFBITmxYcF9BRGkzUUN4dFc2UkJoSkJCRVItSFUyc3d5cEptYnAtOFdGTGRyLWd5ZXFmUFR5QWZoRWYyRVltOVAyT3NwY3FSbnlhZmpPOVlkTEtJY0VZYmgyS3NMNGkxbjBoY2s4RWZldkRMSXc4?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">OCI Workload Identity Federation (WIF) with Microsoft Entra ID Applications and keycloak - Oracle Blogs</a>
+          <div class="article-meta">Oracle Blogs &bull; Jun 10, 2026</div>
+          <div class="article-summary snippet"><p>OCI Workload Identity Federation (WIF) with Microsoft Entra ID Applications and keycloak&amp;nbsp;&amp;nbsp;Oracle Blogs</p><a href="https://news.google.com/rss/articles/CBMiuwFBVV95cUxOZnktc1g1SUlwVnNEbFBYSG1tN3pidk5uNmFZb3FMeTRVMXJsNEJkVWlzMTI5dW1Eekd2YkQ4OG5Nb1U2dDNxbUxGOTEzUFBITmxYcF9BRGkzUUN4dFc2UkJoSkJCRVItSFUyc3d5cEptYnAtOFdGTGRyLWd5ZXFmUFR5QWZoRWYyRVltOVAyT3NwY3FSbnlhZmpPOVlkTEtJY0VZYmgyS3NMNGkxbjBoY2s4RWZldkRMSXc4?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a180a9a47b5')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="m365" class="topic-section">
+      <h2 class="topic-title" style="--c:#D83B01">Microsoft 365 <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="af24a48d700">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-365-baseline-security-mode-not-a-flip-switch/" target="_blank" rel="noopener noreferrer" class="article-title">Why Microsoft 365’s Baseline Security Mode Is a Migration Target, Not a Flip Switch</a>
+          <div class="article-meta">petri.com &bull; Jun 09, 2026</div>
+          <div class="article-summary"><p>The secure-by-default model makes sense, but most tenants still need dependency cleanup, policy rationalization, and tighter exception control before rollout.
+Microsoft 365’s new Baseline Security Mode is an opt-in, secure-by-default bundle of 18 configuration settings across authentication, files, and room devices, exposed in Org settings → Security &amp; privacy. It’s a better attempt at secure-by-default than Security Essentials.
+But this convenience hides some judgment calls you can’t outsource to a wizard. Don’t get me wrong here, I love a good wizard.
+Baseline Security Mode is a sensible direction for most Microsoft 365 tenants, but it is not something I would enable blindly. If your environment still depends on legacy authentication, overlapping Conditional Access policies, old Office workflows, or special-case meeting room devices, the real work starts before you switch anything on.
+That is why I see Baseline Security Mode as a migration target, not a shortcut. Microsoft is right to centralize controls that admins have historically managed across Entra, Exchange, SharePoint, Office, and Teams, and features such as simulation mode and impact reporting should make adoption easier. But those tools do not replace the need to map dependencies, remove duplicated policy logic, and decide where exceptions are genuinely justified.
+The biggest deployment mistakes will not come from misunderstanding the settings. They will come from assuming the wizard has already done the thinking for you.
+Authentication is where the baseline does most of its work, especially on legacy protocols and app‑to‑app authentication. Recommendations include blocking new password credentials for app registrations, turning on restricted user consent, blocking Exchange Web Services and basic authentication prompts, and shutting down legacy browser auth paths to SharePoint and OneDrive.
+The problem is not the goal; it is the order of operations. Many tenants still have scanners, backup tools, or internal apps using Exchange Web Services (EWS), basic SMTP, or old SharePoint protocols. Not taking these into account in advance of deploying these policies is a common mistake. I’m consulting with an MSP now where I found a bunch of apps still registered in Entra with passwords. All of these things have to be dealt with first.
+Security Baseline conditional access policies are mostly implemented by Microsoft‑managed Conditional Access policies that sit alongside your existing CA strategy. You can usually only switch them On or Off and define exclusions; all the interesting bits—the conditions and controls—are locked.
+This is fine in a greenfield tenant, but you probably already have “block legacy auth,” “require MFA for admins,” or “restrict high‑risk sign‑ins” policies, if you implement these you now have two sources of truth. Duplications are never a good idea.
+The Files portion of the baseline leans on the Office security baselines for Microsoft 365 Apps: opening ancient formats in Protected View, blocking editing of older formats, disabling ActiveX and some OLE objects, and turning off DDE server launch in Excel. These settings are there to kill off entire classes of Office‑based attacks, and they’re aligned with the long‑standing Windows and Office security baselines. You need these policies and I’m happy to see them here because a lot of MSPs don’t protect office from abuse.
+Where it gets interesting is the long tail of “weird” Office use. Departments that still rely on complex Excel models with DDE links, embedded legacy charts, or macros built against older file formats often discover the baseline when their workbook stops working. Not to mention users who are using old .xls files as templates thus saving new files with old file types.
+Baseline Security Mode also includes protections for meeting room devices, such as blocking unmanaged Teams Rooms devices and tightening how they connect.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('af24a48d700')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aca58d3f3b4">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMinwFBVV95cUxPNHRvc3VfWVZwc1JFUi0wWUg2S2Fra3FzLWo5MnFYLXpTRUstQzI4M2ozdTBzR1ZxVVZLSjdZNmhmUEN0V21wb21QMUp3ZEVFVjhqaGxVamdETUpmUWtQOC1VSHRtaFp2RHJQRmJickVveF9JNzJDTmlIUEU5QkNrQ0NNZ0ZQUVplazhIYWFDVFNfSXlVSmNKX3U1WHNLSlk?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">inforcer targets Microsoft 365 alert fatigue with new TDR platform - ChannelE2E</a>
+          <div class="article-meta">ChannelE2E &bull; Jun 11, 2026</div>
+          <div class="article-summary snippet"><p>inforcer targets Microsoft 365 alert fatigue with new TDR platform&amp;nbsp;&amp;nbsp;ChannelE2E</p><a href="https://news.google.com/rss/articles/CBMinwFBVV95cUxPNHRvc3VfWVZwc1JFUi0wWUg2S2Fra3FzLWo5MnFYLXpTRUstQzI4M2ozdTBzR1ZxVVZLSjdZNmhmUEN0V21wb21QMUp3ZEVFVjhqaGxVamdETUpmUWtQOC1VSHRtaFp2RHJQRmJickVveF9JNzJDTmlIUEU5QkNrQ0NNZ0ZQUVplazhIYWFDVFNfSXlVSmNKX3U1WHNLSlk?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aca58d3f3b4')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a70c6d30c5b">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiuAFBVV95cUxQeW00YWUzQkJIUTlvZjFqc1BIUmFIMk81M0R3dVdvZ1pWQmVnYkZpU1hxMzBleEc3Q054dkxHT3U5NjJmMWJoeTVCMTNLSm5MUS1YZ0RxLVJZdnpMUjIwZzZuRnpFYlE5dFBSS1pyc2RRa1FaZ2VmQ1lQYnYxbFY2TGVOcms1dzU4ZVhqbVJjUE9rMW1jVHJmR2EzVEVrcmRvUUl3Umh6Zi1MZWR1b1dRRnZnTTlFbFRp?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">What's New in ArcGIS for Microsoft 365 (June 2026) - Esri</a>
+          <div class="article-meta">Esri &bull; Jun 08, 2026</div>
+          <div class="article-summary snippet"><p>What's New in ArcGIS for Microsoft 365 (June 2026)&amp;nbsp;&amp;nbsp;Esri</p><a href="https://news.google.com/rss/articles/CBMiuAFBVV95cUxQeW00YWUzQkJIUTlvZjFqc1BIUmFIMk81M0R3dVdvZ1pWQmVnYkZpU1hxMzBleEc3Q054dkxHT3U5NjJmMWJoeTVCMTNLSm5MUS1YZ0RxLVJZdnpMUjIwZzZuRnpFYlE5dFBSS1pyc2RRa1FaZ2VmQ1lQYnYxbFY2TGVOcms1dzU4ZVhqbVJjUE9rMW1jVHJmR2EzVEVrcmRvUUl3Umh6Zi1MZWR1b1dRRnZnTTlFbFRp?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a70c6d30c5b')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ab30a25977d">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMikwFBVV95cUxQZkVwTVpIQnE3aUtTWHVWbDhfOElkZDQzelkyZmtHZEFnTi1GN0FZVTk1WURMRnFva2NockZkS2hQcUhCdlZkNmE4UUl4S1lORXB6OWlKbE5pemxkRHpDaUFjTGdseW9OV1NxV2ZING13T09UUVAtQUE2T21VUUVxR2JQb0FlNWpkWE9jTF9xWV9rU1E?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">How CoreView Helps HALO Secure Global Microsoft 365 Estate - Cyber Magazine</a>
+          <div class="article-meta">Cyber Magazine &bull; Jun 09, 2026</div>
+          <div class="article-summary snippet"><p>How CoreView Helps HALO Secure Global Microsoft 365 Estate&amp;nbsp;&amp;nbsp;Cyber Magazine</p><a href="https://news.google.com/rss/articles/CBMikwFBVV95cUxQZkVwTVpIQnE3aUtTWHVWbDhfOElkZDQzelkyZmtHZEFnTi1GN0FZVTk1WURMRnFva2NockZkS2hQcUhCdlZkNmE4UUl4S1lORXB6OWlKbE5pemxkRHpDaUFjTGdseW9OV1NxV2ZING13T09UUVAtQUE2T21VUUVxR2JQb0FlNWpkWE9jTF9xWV9rU1E?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ab30a25977d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a089a635a7b">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMirwFBVV95cUxQbzBjQ0VhNURoMzdXOUlXZTlUcFk0U3hTTmpDOU5rVFVicjN3Y3EzWUtaMnBWY1M0eVJxTWtFalUtN1JRZnpiQ3NKcmZiSFd5eXZLMFVuejBIa0VGNjRjcTFFa3Q2eFJNZlVmSDJnQmE5cmEzSFJIczFCek00M29CaXZnclR1ZndpRU9Hc3I3Nm80Tlhta0VzU1VRTXhCOW43YTRPZk9LYTZTZkc2ZmJn?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Intelligence on tap: How Work IQ enables AI and agents at Microsoft - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; Jun 11, 2026</div>
+          <div class="article-summary snippet"><p>Intelligence on tap: How Work IQ enables AI and agents at Microsoft&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMirwFBVV95cUxQbzBjQ0VhNURoMzdXOUlXZTlUcFk0U3hTTmpDOU5rVFVicjN3Y3EzWUtaMnBWY1M0eVJxTWtFalUtN1JRZnpiQ3NKcmZiSFd5eXZLMFVuejBIa0VGNjRjcTFFa3Q2eFJNZlVmSDJnQmE5cmEzSFJIczFCek00M29CaXZnclR1ZndpRU9Hc3I3Nm80Tlhta0VzU1VRTXhCOW43YTRPZk9LYTZTZkc2ZmJn?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a089a635a7b')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a8e4361592f">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi8AFBVV95cUxQTEFrS19QQlN1a1RLV1hkWWJHcHo1bS1GOHlsQThOdGQwZGNTNURhLWRPR0FIeUYtYU42XzhFZ0JCMmRPNndXdkkyMUJQbzJsN1dsaHFWYWZYZ3V4d2NvV21iaDlINGltUUhRcWFQbFh5dlFEN1JmcEthQ1ctVDRuNTBDc3JHZ3lybUNtN1R4Z2VWd1pWcXF4TF9hZEEtUDdiVkJtSmQtbDg2Yy1fMjk0cjR2RC1jYUdFRkpXUkFTNEx1WHR3cHRhbC1SMkpFaVJqSGdiVFg1VDhvMDk1YmMyOVd0MHBTR3NxRWhubWh3dFA?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Empowering STEM teachers to co-create, save time, and build more responsible AI use in future-ready classrooms - Microsoft Source</a>
+          <div class="article-meta">Microsoft Source &bull; Jun 12, 2026</div>
+          <div class="article-summary snippet"><p>Empowering STEM teachers to co-create, save time, and build more responsible AI use in future-ready classrooms&amp;nbsp;&amp;nbsp;Microsoft Source</p><a href="https://news.google.com/rss/articles/CBMi8AFBVV95cUxQTEFrS19QQlN1a1RLV1hkWWJHcHo1bS1GOHlsQThOdGQwZGNTNURhLWRPR0FIeUYtYU42XzhFZ0JCMmRPNndXdkkyMUJQbzJsN1dsaHFWYWZYZ3V4d2NvV21iaDlINGltUUhRcWFQbFh5dlFEN1JmcEthQ1ctVDRuNTBDc3JHZ3lybUNtN1R4Z2VWd1pWcXF4TF9hZEEtUDdiVkJtSmQtbDg2Yy1fMjk0cjR2RC1jYUdFRkpXUkFTNEx1WHR3cHRhbC1SMkpFaVJqSGdiVFg1VDhvMDk1YmMyOVd0MHBTR3NxRWhubWh3dFA?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a8e4361592f')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ac5ecc21a12">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi0AFBVV95cUxPbVR1NGs1c2ZsOFhRN0ktd25lZXVyVi05b0tXLUhfZTUtclM3N0IzTHBMZEprZzBTLUtTTnhaY0x4TEhKYm9xT19neFhoUGJOTDRRMUZCS0JTTzg2d2JtTVZxZnFLX2s0dXdDTWRlT19ZTWFmTndVSW9IWHNqWmJveU9KQzlaWWhielRmc1h2U29ZQzJfNnJ1Slo2ZS0zaE82UmdRZmd2dnhadFZiWXVZX0NveEJuZ2NkTUVWSDZfRUFVd3FkUVRSWGVGeDVjWHhF?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Who evaluates the evaluators? The data science behind agent evals - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; Jun 11, 2026</div>
+          <div class="article-summary snippet"><p>Who evaluates the evaluators? The data science behind agent evals&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMi0AFBVV95cUxPbVR1NGs1c2ZsOFhRN0ktd25lZXVyVi05b0tXLUhfZTUtclM3N0IzTHBMZEprZzBTLUtTTnhaY0x4TEhKYm9xT19neFhoUGJOTDRRMUZCS0JTTzg2d2JtTVZxZnFLX2s0dXdDTWRlT19ZTWFmTndVSW9IWHNqWmJveU9KQzlaWWhielRmc1h2U29ZQzJfNnJ1Slo2ZS0zaE82UmdRZmd2dnhadFZiWXVZX0NveEJuZ2NkTUVWSDZfRUFVd3FkUVRSWGVGeDVjWHhF?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac5ecc21a12')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="af12fd48881">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi_AFBVV95cUxPTDNOMjB3MlMwNWZuMFZULU0yN00tMldlX05MT2FpT2VpaWV0SmxRVWF5MEQ3SlFKci1LMWxEWkZHVWJTa19udzA2b2RTRTdYZmNWb2N1cUlUQ1FWRmpZc2NjeXN2WFllWE1tTVBRQloxcFFpd01NYUxEQUdnTVR5SjBidE52QnRwRHRTSVdNcURmQU5FSGgtUTRCWTU2VTZSMVRDenYzV0F5TEZueU1YZDZhNjhXQWtwaGZFTEE5eXFhMnBWcHFMZU1WX25hNmJtOHFHbFJPZkFfR0Nmd3I5WkIzTnhuaUY5SlJGaHFqX21rS2c5WkRVNW1HM3c?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Atos Group and Microsoft expand strategic collaboration to scale secure agentic AI across Atos Group workforce and clients - Microsoft Source</a>
+          <div class="article-meta">Microsoft Source &bull; Jun 09, 2026</div>
+          <div class="article-summary snippet"><p>Atos Group and Microsoft expand strategic collaboration to scale secure agentic AI across Atos Group workforce and clients&amp;nbsp;&amp;nbsp;Microsoft Source</p><a href="https://news.google.com/rss/articles/CBMi_AFBVV95cUxPTDNOMjB3MlMwNWZuMFZULU0yN00tMldlX05MT2FpT2VpaWV0SmxRVWF5MEQ3SlFKci1LMWxEWkZHVWJTa19udzA2b2RTRTdYZmNWb2N1cUlUQ1FWRmpZc2NjeXN2WFllWE1tTVBRQloxcFFpd01NYUxEQUdnTVR5SjBidE52QnRwRHRTSVdNcURmQU5FSGgtUTRCWTU2VTZSMVRDenYzV0F5TEZueU1YZDZhNjhXQWtwaGZFTEE5eXFhMnBWcHFMZU1WX25hNmJtOHFHbFJPZkFfR0Nmd3I5WkIzTnhuaUY5SlJGaHFqX21rS2c5WkRVNW1HM3c?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('af12fd48881')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="iru" class="topic-section">
+      <h2 class="topic-title" style="--c:#7C3AED">Iru MDM (formerly Kandji) </h2>
+      <p class="no-news">No articles found this week.</p>
+    </section>
+    <section id="cato" class="topic-section">
+      <h2 class="topic-title" style="--c:#FF6B35">Cato Networks </h2>
+      <p class="no-news">No articles found this week.</p>
+    </section>
+</main>
+
+<footer>
+  Generated every Sunday &mdash; Topics: Windows &bull; Azure &bull; SharePoint &bull; Intune &bull; Entra ID &bull; Microsoft 365 &bull; Iru MDM (formerly Kandji) &bull; Cato Networks
+</footer>
+
+<script>
+const KEY = 'it-news-hidden-v1';
+function getHidden() {
+  try { return new Set(JSON.parse(localStorage.getItem(KEY) || '[]')); }
+  catch { return new Set(); }
+}
+function saveHidden(s) { localStorage.setItem(KEY, JSON.stringify([...s])); }
+function toggleArticle(id) {
+  const h = getHidden();
+  h.has(id) ? h.delete(id) : h.add(id);
+  saveHidden(h); applyHidden(h);
+}
+function applyHidden(h) {
+  h = h || getHidden();
+  document.querySelectorAll('.article-card[data-id]').forEach(c => {
+    c.classList.toggle('is-hidden', h.has(c.dataset.id));
+  });
+}
+let revealing = false;
+function toggleReveal() {
+  revealing = !revealing;
+  document.body.classList.toggle('reveal-hidden', revealing);
+  document.getElementById('reveal-btn').textContent = revealing ? 'Hide hidden' : 'Show hidden';
+}
+fetch('weeks.json').then(r => r.json()).then(weeks => {
+  const sel = document.getElementById('week-sel');
+  weeks.forEach(w => {
+    const o = document.createElement('option');
+    o.value = w.file; o.textContent = w.label;
+    if (w.current) o.selected = true;
+    sel.appendChild(o);
+  });
+}).catch(() => {});
+applyHidden();
+</script>
+</body>
+</html>
