@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT News Digest — 2026-W25</title>
+  <style>
+    :root{--bg:#f8fafc;--surface:#fff;--border:#e2e8f0;--text:#1e293b;--muted:#64748b;--accent:#2563eb}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+    a{color:var(--accent)}
+
+    header{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+    .h-inner{max-width:1000px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .h-brand{font-size:1.1rem;font-weight:800;color:#1d4ed8}
+    .h-meta{font-size:.78rem;color:var(--muted)}
+    .h-controls{display:flex;gap:8px;align-items:center}
+    .btn{padding:5px 12px;border-radius:6px;font-size:.78rem;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);white-space:nowrap}
+    .btn:hover{background:#f1f5f9}
+    select.week-sel{padding:5px 10px;border-radius:6px;border:1px solid var(--border);background:var(--surface);font-size:.78rem;cursor:pointer;color:var(--text)}
+
+    .t-nav{background:var(--surface);border-bottom:1px solid var(--border);overflow-x:auto}
+    .t-nav-inner{max-width:1000px;margin:0 auto;padding:8px 20px;display:flex;gap:6px;min-width:max-content}
+    .nav-link{font-size:.72rem;padding:3px 10px;border-radius:20px;border:2px solid var(--c,#2563eb);color:var(--c,#2563eb);text-decoration:none;font-weight:600;white-space:nowrap}
+    .nav-link:hover{background:var(--c,#2563eb);color:#fff}
+
+    main{max-width:1000px;margin:0 auto;padding:24px 20px}
+
+    .week-hero{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin-bottom:28px;display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+    .hero-title{font-size:1.6rem;font-weight:900;color:#1d4ed8}
+    .hero-sub{font-size:.85rem;color:var(--muted);margin-top:2px}
+    .stat-box{text-align:center;min-width:60px}
+    .stat-num{font-size:2rem;font-weight:900;color:#1d4ed8;line-height:1}
+    .stat-lbl{font-size:.65rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+
+    .topic-section{margin-bottom:40px}
+    .topic-title{font-size:1.2rem;font-weight:800;color:var(--c,#2563eb);border-bottom:3px solid var(--c,#2563eb);padding-bottom:8px;margin-bottom:14px}
+    .count{font-size:.8rem;font-weight:400;color:var(--muted)}
+    .no-news{color:var(--muted);font-style:italic;font-size:.88rem}
+
+    .article-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:12px;display:flex;gap:12px;align-items:flex-start;transition:border-color .15s}
+    .article-card:hover{border-color:#94a3b8}
+    .article-body{flex:1;min-width:0}
+    .article-title{font-size:.98rem;font-weight:600;text-decoration:none;display:block;margin-bottom:4px;color:var(--accent)}
+    .article-title:hover{text-decoration:underline}
+    .article-meta{font-size:.72rem;color:var(--muted);margin-bottom:8px}
+
+    .article-summary{margin-top:6px;font-size:.875rem;color:#334155;line-height:1.75}
+    .article-summary p{margin-bottom:.6em}
+    .article-summary p:last-child{margin-bottom:0}
+    .gnews-badge{display:inline-block;font-size:.65rem;background:#fef3c7;color:#92400e;border-radius:4px;padding:1px 5px;margin-bottom:6px;vertical-align:middle}
+    .article-summary.snippet{color:var(--muted)}
+    .read-more{display:inline-block;margin-top:6px;font-size:.8rem;font-weight:600;color:var(--accent);text-decoration:none}
+    .read-more:hover{text-decoration:underline}
+
+    .hide-btn{flex-shrink:0;padding:5px 10px;border-radius:6px;font-size:.72rem;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--muted);white-space:nowrap;align-self:flex-start}
+    .hide-btn:hover{border-color:#ef4444;color:#ef4444;background:#fef2f2}
+    .lbl-show{display:none}
+
+    .article-card.is-hidden{display:none}
+    body.reveal-hidden .article-card.is-hidden{display:flex;opacity:.45;border-style:dashed}
+    .article-card.is-hidden .lbl-hide{display:none}
+    .article-card.is-hidden .lbl-show{display:inline}
+    body.reveal-hidden .article-card.is-hidden .hide-btn{border-color:#16a34a;color:#16a34a}
+    body.reveal-hidden .article-card.is-hidden .hide-btn:hover{background:#f0fdf4}
+
+    footer{text-align:center;padding:24px 20px;color:var(--muted);font-size:.75rem;border-top:1px solid var(--border);margin-top:40px}
+
+    @media(max-width:600px){
+      .h-inner,.main{padding-left:14px;padding-right:14px}
+      .hero-title{font-size:1.3rem}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="h-inner">
+    <div>
+      <div class="h-brand">IT News Digest</div>
+      <div class="h-meta">Week 2026-W25 &bull; Jun 15–21, 2026</div>
+    </div>
+    <div class="h-controls">
+      <button class="btn" id="reveal-btn" onclick="toggleReveal()">Show hidden</button>
+      <select class="week-sel" id="week-sel" onchange="if(this.value) location.href=this.value">
+        <option value="">&#128337; Archive&hellip;</option>
+      </select>
+    </div>
+  </div>
+</header>
+
+<nav class="t-nav"><div class="t-nav-inner"><a href="#windows" class="nav-link" style="--c:#0078D4">Microsoft Windows</a><a href="#azure" class="nav-link" style="--c:#00BCF2">Azure</a><a href="#sharepoint" class="nav-link" style="--c:#036C70">SharePoint</a><a href="#intune" class="nav-link" style="--c:#0F6CBD">Intune</a><a href="#entraid" class="nav-link" style="--c:#6B69D6">Entra ID</a><a href="#m365" class="nav-link" style="--c:#D83B01">Microsoft 365</a><a href="#iru" class="nav-link" style="--c:#7C3AED">Iru MDM (formerly Kandji)</a><a href="#cato" class="nav-link" style="--c:#FF6B35">Cato Networks</a></div></nav>
+
+<main>
+  <div class="week-hero">
+    <div>
+      <div class="hero-title">Week 2026-W25</div>
+      <div class="hero-sub">Jun 15–21, 2026</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">41</div>
+      <div class="stat-lbl">Articles</div>
+    </div>
+  </div>
+
+    <section id="windows" class="topic-section">
+      <h2 class="topic-title" style="--c:#0078D4">Microsoft Windows <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="adc82de1b70">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windows-insider/2026/06/19/announcing-new-builds-for-19-june-2026-26h2-for-experimental/" target="_blank" rel="noopener noreferrer" class="article-title">Announcing new builds for 19 June 2026, version 26H2 for Experimental</a>
+          <div class="article-meta">blogs.windows.com &bull; Jun 19, 2026</div>
+          <div class="article-summary"><p>Announcing new builds for 19 June 2026, version 26H2 for Experimental
+Hello Windows Insiders,
+We have new releases today with builds across Beta and Experimental, including Windows 11, version 26H2 for Experimental.
+Windows 11, version 26H2
+Windows 11, version 26H2 represents our yearly second half major update as part of our standard annual Windows 11 update cadence. As Windows 11, version 26H2 shares the same servicing branch as Windows 11, version 25H2, the update is implemented through an enablement package (eKB). This means your device will be updated to the next version through a single restart – providing a familiar, fast, and reliable update experience.
+Devices already enrolled in the Experimental channel will begin seeing their versioning updated to version 26H2 under Settings &gt; System &gt; About (and winver). If you are in the Beta channel and would like to switch to the Experimental, you can easily do so under Settings &gt; Windows Update &gt; Windows Insider Program. Remember, you can easily switch back to Beta at any time, without having to do a full Windows reinstall.
+Not currently enrolled in the Windows Insider Program and wanting to preview version 26H2? Register for WIP selecting the Dev channel, while it’s transitioning to Experimental. Once the transition is complete, the new channel name to preview version 26H2 will appear as Experimental.
+For more information on Windows 11, version 26H2, especially for IT professionals, please see Get ready for Windows 11, version 26H2.
+Note: Devices running Windows 11, version 26H1 will not be able to update to version 26H2. Instead, they’ll have a path to update to a future Windows release. This is because Windows 11, version 26H1 is based on a different Windows core than Windows 11, versions 24H2, 25H2, and 26H2. Here’s What to know about Windows 11, version 26H1.
+New builds this week
+Today we are releasing new Windows 11 Insider Preview Builds. As a reminder, all Insiders can find the release notes for your device based on the new channel system, even if you haven’t moved yet. This is to make finding build information as easy as possible during the transition. See your channel release notes here:
+• Beta: Build 26220.8690
+• Experimental: Build 26300.8697
+For those on other specific build versions, here are today’s new builds and release notes:
+• Beta (26H1): Build 28020.2308
+• Experimental (26H1): Build 28120.2315
+• Experimental (Future Platforms) – Including Canary 29600 series: Build 29613.1000
+Thanks,
+Stephen and the Windows Insider Program team</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('adc82de1b70')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a822638586d">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/devices/2026/06/16/introducing-the-next-surface-pro-and-surface-laptop-built-for-performance-and-flexibility/" target="_blank" rel="noopener noreferrer" class="article-title">Introducing the next Surface Pro and Surface Laptop, built for performance and flexibility</a>
+          <div class="article-meta">blogs.windows.com &bull; Jun 16, 2026</div>
+          <div class="article-summary"><p>Introducing the next Surface Pro and Surface Laptop, built for performance and flexibility
+For more than 13 years, Surface has been shaped by the people who use it.
+Architects sketch buildings, developers train models, students build startups and field engineers solve problems that rarely make headlines.
+We didn’t intend to design for one audience, but the people who’ve chosen Surface have defined it through their work. They build, shape, solve and ship, often before anyone else sees what’s coming.
+That pattern is now the platform: new devices, new features and a continued commitment to the makers who show us what Surface means by how they use it.
+Expanding Surface for the work ahead
+2026 has brought important updates for Surface. We delivered our broadest Surface for Business lineup to date, with new enterprise features including an integrated privacy screen. Later this year, we’ll deliver Surface Laptop Ultra, our most powerful Surface Laptop ever, built for developers and creative professionals pushing their work further. We’ll also deliver Surface RTX Spark Dev Box, an entirely new category of Surface hardware purpose-built for AI developers who need sustained local compute. Surface is investing everywhere: from entry points to ultra-premium performance, from the enterprise to the individual maker.
+Today, we’re introducing the next Surface Pro and Surface Laptop, powered by Snapdragon X2 processors.
+New: Surface Pro and Surface Laptop with Snapdragon X2
+The next Surface Pro and Surface Laptop ship with Snapdragon X2 processors, delivering more performance for the work people do every day. These new PCs are available starting June 16, with Surface for Business availability beginning July 14.
+Surface Pro 13-inch: The most versatile 2-in-1 PC
+Available in Platinum, Black and Dune [1], the new Surface Pro combines the flexibility of a tablet with the capability of full Windows, so you can move from sketching and notetaking to real desktop work on one device. Starting at $1,499 (MSRP), the new Surface Pro 13-inch with Snapdragon X2 delivers up to 53% faster graphic performance than the previous generation [2], up to 15.5 hours of battery life [3] and a 1440p Quad HD camera with ultrawide field of view for clear video and natural framing on screen. With a stunning optional OLED display, it delivers deeper blacks, higher contrast and greater color accuracy, so you can trust what you’re seeing without second guessing. Paired with the optional Surface Pro Flex Keyboard, now available in Dune, this is the 2-in-1 for the makers who want a lightweight tablet without stepping down from the power and flexibility of Windows. No tradeoffs required.
+Surface Laptop 13.8-inch and 15-inch: All-day performance
+Starting at $1,599 (MSRP), the Surface Laptop pairs the premium build quality Surface is known for with the power of Snapdragon X2 with up to 58% more graphics performance than the previous generation [4]. The new Laptop delivers up to 20 hours of battery life on the 13.8-inch and up to 19 hours on the 15-inch [5].
+Whether you’re running local models, collaborating across time zones or deep in a creative workflow, it keeps up when the work stacks up.
+That focus carries through to the display. Both models feature bright, color-accurate LCD screens, and the new Surface Laptop 15-inch display gets sharper, jumping from 201 PPI to 262 PPI for greater detail and clarity. In addition to Platinum, Black and Dune, the 13.8-inch Surface Laptop comes in a beautiful new color: Jade. Round it out with the No.1 ranked laptop camera by DXOMARK [6], and Surface Laptop holds its place as the everyday workhorse of the lineup.
+Making AI work for real work
+We don’t believe AI should be confined to one place. Some workloads belong on device: processed locally, fast always available. Others need the scale of the cloud. Most real work moves between both, sometimes in the same session.
+Surface is built for that reality.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a822638586d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a1dbcb1710a">
+        <div class="article-body">
+          <a href="https://petri.com/windows-sprysocks-backdoor-kernel-driver-evasion/" target="_blank" rel="noopener noreferrer" class="article-title">New Windows SprySOCKS Backdoor Uses Kernel Drivers to Evade Detection</a>
+          <div class="article-meta">petri.com &bull; Jun 19, 2026</div>
+          <div class="article-summary"><p>New variants introduce advanced persistence techniques and expand espionage activity beyond Linux systems.
+Key Takeaways:
+A sophisticated cyber‑espionage group has quietly expanded its toolkit with new Windows versions of its SprySOCKS backdoor. This malware leverages kernel-level drivers to operate in stealth, allowing attackers to maintain persistent access, conduct covert surveillance, and evade many traditional security defenses.
+ESET researchers identified two previously unknown Windows versions of the SprySOCKS backdoor, which had earlier only been seen on Linux systems. These variants are linked to the FishMonger cyber‑espionage group, which is believed to operate out of China. This state-aligned threat group is associated with other known aliases (e.g., Earth Lusca, Aquatic Panda).
+Typically, FishMonger targets government and institutional organizations and uses a wide range of advanced tools for espionage. The activity involving the Windows variants occurred mainly between 2023 and 2024. This group targeted victims in Asia and Latin America, including Pakistan, Taiwan, Thailand, and Honduras.
+The new Windows variants of SprySOCKS (called WIN_DRV and WIN_PLUS) retain the core capabilities of the previous Linux backdoor, including extensive command‑and‑control communication, system reconnaissance, and file and process management. However, they are designed for Windows environments and use multiple communication protocols such as TCP, UDP, and WebSocket, which allow operators to maintain resilient connections with compromised systems.
+The WIN_DRV variant uses a kernel‑level driver to significantly enhance stealth and persistence. This component allows the malware to conceal its files, processes, and network activity and redirects traffic to let attackers interact with the backdoor without revealing its listening port. On the other hand, the WIN_PLUS version lacks these deep system‑level features, but still provides a backdoor with a wide command set.
+The malware uses various stealth techniques to avoid detection and maintain persistence on infected systems. It leverages DLL side‑loading to disguise malicious components as legitimate software and uses encryption to securely store and execute its payloads. This malware injects code into trusted system processes to blend in with normal activity and relies on kernel‑level mechanisms to hide its operations from security tools.
+Organizations should strengthen their defensive posture by prioritizing basic security hygiene alongside advanced monitoring. This includes keeping systems and public‑facing applications fully patched to block cyberattacks. Security teams should closely monitor unusual system behavior, such as unexpected driver installations, suspicious scheduled tasks, or abnormal network traffic patterns.
+It’s highly recommended to adopt deeper visibility into endpoint activity, particularly at the kernel level, where advanced threats like the WIN_DRV variant attempt to hide. Moreover, security teams must deploy robust detection tools to identify process injection, DLL side‑loading, and concealed network connections for detecting such stealthy intrusions. They should ensure regular threat hunting and maintain up‑to‑date threat intelligence, which allows organizations to recognize emerging tactics and respond more quickly.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a1dbcb1710a')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a932b681faf">
+        <div class="article-body">
+          <a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-confirms-recycle-bin-bug-on-all-supported-windows-releases/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft: June 2026 Windows updates break Recycle Bin prompts</a>
+          <div class="article-meta">bleepingcomputer.com &bull; Jun 19, 2026</div>
+          <div class="article-summary"><p>Microsoft has confirmed a confusing Windows bug that causes different filenames to appear in the confirmation dialog when deleting a file from the Recycle Bin.
+&quot;When permanently deleting a single item from the Recycle Bin, the confirmation dialog displays the internal Recycle Bin filename (for example, $Rxxxxx.ext) instead of the original filename,&quot; the company explained in a Thursday update to the Windows release health dashboard.
+&quot;The Recycle Bin itself correctly displays the original filename, and restoring the item also restores it using the original filename.&quot;
+While Microsoft didn't share how widespread this known issue is, it said that it affects all supported Windows releases across both client and server platforms after installing the June 2026 security updates.
+The complete list of affected Windows versions includes:
+- Client: Windows 11, version 26H1; Windows 11, version 25H2; Windows 11, version 24H2; Windows 11, version 23H2; Windows 10, version 22H2; Windows 10 Enterprise LTSC 2021; Windows 10 Enterprise LTSC 2019; Windows 10 Enterprise LTSB 2016,
+- Server: Windows Server 2025; Windows Server 2022; Windows Server 2019; Windows Server 2016; Windows Server 2012 R2; Windows Server 2012.
+Microsoft said that its engineers are working on a fix for this bug, which will ship to affected systems in a future Windows update.
+However, while a fix is not yet generally available, Microsoft added that a temporary workaround is available for businesses that will reach out to its Business Support team.
+&quot;A workaround is available for affected devices. To apply this workaround in your organization and mitigate the issue, please contact Microsoft's Support for business,&quot; it noted.
+Earlier this week, Microsoft confirmed another issue that blocks third-party apps from launching Word, Excel, PowerPoint, Access, and other Office applications (or from opening documents) on Windows systems after installing the June 2026 updates.
+More recently, on Thursday, it also fixed a known issue that caused the June 2026 security updates to fail on Windows Server 2016 systems that didn't have the May KB5087537 security update installed.
+Test every layer before attackers do
+Security teams log 54% of successful attacks and alert on just 14%. The rest move through your environment unseen.
+The Picus whitepaper shows how breach and attack simulation tests your SIEM and EDR rules so threats stop slipping by detection.
+Get the whitepaper</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a932b681faf')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a92a4490489">
+        <div class="article-body">
+          <a href="https://www.bleepingcomputer.com/news/security/usb-worm-spreads-crypto-stealing-malware-via-windows-shortcut-files/" target="_blank" rel="noopener noreferrer" class="article-title">USB worm spreads crypto-stealing malware via Windows shortcut files</a>
+          <div class="article-meta">bleepingcomputer.com &bull; Jun 18, 2026</div>
+          <div class="article-summary"><p>Threat actors targeting cryptocurrency wallets have been distributing clipboard-stealing malware with self-spreading capabilities and using the Tor network to conceal communication.
+The campaign has been active since at least February and relies on LNK (shortcut) files on USB drives to push clipper malware that monitors clipboard contents and replaces cryptocurrency wallet addresses with ones controlled by the attacker.
+Additionally, it monitors for seed phrases and private keys, and can capture screenshots that are exfiltrated over Tor.
+Infection and worm propagation
+Microsoft says that the infection process starts with the victim opening the LNK file, triggering the malware on the USB drive. Additional payloads are staged from a .ONION address.
+A local scan searches for document files on the system. When such files are found, the malware hides the originals and replaces them with malicious shortcuts bearing the same names. This causes the malware to execute when users attempt to open the documents.
+The worm creates a scheduled task that monitors for newly connected USB storage devices. When a removable drive is connected, the malware it copies itself to the device and creates additional malicious shortcut files.
+Data stealer
+The stealer component in the malware executes after checking that Task Manager is inactive, establishing communications with the command-and-control (C2) host using a Tor executable (ugate.exe).
+Every half a second, the malware checks the clipboard for the following data:
+- 12-word BIP39 seed phrases
+- 24-word BIP39 seed phrases
+- Ethereum private keys
+- Bitcoin WIF keys
+- Bitcoin legacy, P2SH, Bech32, and Taproot wallet addresses
+- Tron wallet addresses
+- Monero wallet addresses
+The targeted addresses are chosen based on their starting digits or characters to partially resemble the attackers’ wallet addresses, to lower the chance of the user discovering the fraud at a quick glance.
+Apart from monitoring the clipboard, the malware also captures five screenshots of the victim’s screen every ten seconds and sends them to the C2 using the curl tool.
+According to Microsoft, there is also support for remote code execution, which can be triggered by a C2 EVAL instruction. Specifically, the malware downloads JavaScript content into a file named ‘cfile,’ and executes it on the infected machine.
+The researchers say that the strongest indicators of an infection are behavioral rather than signature-based, and recommend monitoring for process activity on wscript.exe and cscript.exe, unexpected launches of curl, PowerShell, and cmd.exe, along with unusual child processes.
+Also, connections to ‘localhost:9050’ and Tor proxy activity are red flags associated with this campaign.
+Test every layer before attackers do
+Security teams log 54% of successful attacks and alert on just 14%. The rest move through your environment unseen.
+The Picus whitepaper shows how breach and attack simulation tests your SIEM and EDR rules so threats stop slipping by detection.
+Get the whitepaper</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a92a4490489')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ace9ba1aaf0">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE5pQ1ktRjhhUThEdHdVZ2d3SU5qSE9DVS1naHo2N19NOGx6S0hiYUNCR0RfUEQ0T1k4ZlI1TGR4b21HQnVvYTNRWGkyZ3UzWjFLTENwM1ZmWDUwdlZzTTd6V3lYZ1dXM01fd1E?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Modernize your PC setup with Windows 11 Pro for less than $10 during Deal Days - Mashable</a>
+          <div class="article-meta">Mashable &bull; Jun 20, 2026</div>
+          <div class="article-summary snippet"><p>Modernize your PC setup with Windows 11 Pro for less than $10 during Deal Days&amp;nbsp;&amp;nbsp;Mashable</p><a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE5pQ1ktRjhhUThEdHdVZ2d3SU5qSE9DVS1naHo2N19NOGx6S0hiYUNCR0RfUEQ0T1k4ZlI1TGR4b21HQnVvYTNRWGkyZ3UzWjFLTENwM1ZmWDUwdlZzTTd6V3lYZ1dXM01fd1E?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ace9ba1aaf0')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aa8e7932239">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMisAFBVV95cUxPNW0xUmJJSTAzSjFrdWUtQ1hhN3ZqUjNlbDV3RWJ3bG1QSnhELTdNRmpLX250UVFnNkNNRDVLSXczQ3NlWFkzam4xaDIxMTZjd1lQbm1vOHdReVd1clZMQV91NkFZQ19SMEJzVTVxQldBVjdQZ0J4R05pbk82bTJxb2d0R3B0V3pZWlVVcXVXQ0xsNnI2dUNXR0VoQ25ZVGh1WkVYRkp5WUI2YktKampicw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft's Patch Tuesday update strikes again — Windows trips over garbage - Windows Central</a>
+          <div class="article-meta">Windows Central &bull; Jun 19, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft's Patch Tuesday update strikes again — Windows trips over garbage&amp;nbsp;&amp;nbsp;Windows Central</p><a href="https://news.google.com/rss/articles/CBMisAFBVV95cUxPNW0xUmJJSTAzSjFrdWUtQ1hhN3ZqUjNlbDV3RWJ3bG1QSnhELTdNRmpLX250UVFnNkNNRDVLSXczQ3NlWFkzam4xaDIxMTZjd1lQbm1vOHdReVd1clZMQV91NkFZQ19SMEJzVTVxQldBVjdQZ0J4R05pbk82bTJxb2d0R3B0V3pZWlVVcXVXQ0xsNnI2dUNXR0VoQ25ZVGh1WkVYRkp5WUI2YktKampicw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aa8e7932239')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="af040c63fa0">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMirwFBVV95cUxPa0h2akN6Ym1xb05xN19tNFN2RW5fOEs1RmZKeFBXWnc5WEdDcVlWTjBHd180RXlDbTB2Ym1zZ1BpRHExbGo4TmxodzVhY2FtM0ltSWdNeUEwYVh0RGtRLTlQZ1BIcy1XNUxVcE51Sk1TSFJVLS11UDlfQ0dETERHVXlmbXJlNTloV2lXbVA2V2hJeDIwdjVRODNrLXdVRWpDRWdyY09HREdZeVNmTXpv?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Windows 11's New Media Player Uses 3.5x More RAM, Charges for Popular Video Codecs - extremetech.com</a>
+          <div class="article-meta">extremetech.com &bull; Jun 18, 2026</div>
+          <div class="article-summary snippet"><p>Windows 11's New Media Player Uses 3.5x More RAM, Charges for Popular Video Codecs&amp;nbsp;&amp;nbsp;extremetech.com</p><a href="https://news.google.com/rss/articles/CBMirwFBVV95cUxPa0h2akN6Ym1xb05xN19tNFN2RW5fOEs1RmZKeFBXWnc5WEdDcVlWTjBHd180RXlDbTB2Ym1zZ1BpRHExbGo4TmxodzVhY2FtM0ltSWdNeUEwYVh0RGtRLTlQZ1BIcy1XNUxVcE51Sk1TSFJVLS11UDlfQ0dETERHVXlmbXJlNTloV2lXbVA2V2hJeDIwdjVRODNrLXdVRWpDRWdyY09HREdZeVNmTXpv?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('af040c63fa0')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="azure" class="topic-section">
+      <h2 class="topic-title" style="--c:#00BCF2">Azure <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a112e053603">
+        <div class="article-body">
+          <a href="https://azure.microsoft.com/en-us/blog/modernize-your-data-with-azure-storage-plan-and-migrate-with-confidence/" target="_blank" rel="noopener noreferrer" class="article-title">Modernize your data with Azure Storage: Plan and migrate with confidence</a>
+          <div class="article-meta">azure.microsoft.com &bull; Jun 16, 2026</div>
+          <div class="article-summary"><p>Enterprise storage migrations are rarely just about copying data. They are about protecting business continuity, maintaining performance, managing cost, and giving teams confidence when terabytes or petabytes of data sit at the heart of critical applications.
+That confidence is difficult to build when migration planning is fragmented. Many organizations still rely on a patchwork of scripts, third-party tools, and disconnected processes to: assess environments, move data, and keep systems aligned during transition. The result can be delayed timelines, avoidable disruption, and teams struggling to keep critical workloads running.
+A successful migration strategy starts with understanding that different data requires different approaches:
+- Some workloads need dependency assessment and sequencing before anything moves.
+- Some datasets are too large to transfer efficiently over the network.
+- Some file systems must remain synchronized while business operations continue.
+- Some data needs to land in Azure ready to support modernization scenarios such as analytics, AI, or application transformation initiatives.
+In this blog, we’ll walk through how to approach Azure Storage migration from planning to execution:
+- How Azure Migrate and Azure Copilot Migration Agent can support assessment and decision-making.
+- How to select the right Microsoft first-party migration tool.
+- Azure Storage Mover and Azure Data Box can help address online, offline, and phased migration scenarios across real-world customer needs.
+Tool overview
+Azure Migrate: Centralized hub for migration discovery, assessment, and planning.
+Azure Copilot Migration Agent: AI-powered extension for Azure Migrate, streamlining storage migration decisions (preview).
+Azure Storage Mover: Free, managed online migration and synchronization tool for file/object data.
+Azure Data Box: Secure offline transfer solution for large-scale or bandwidth-constrained datasets.
+1. Azure Storage migration planning: Build your data migration strategy
+Before organizations select a migration tool, they need to understand what they are moving, how systems are connected, which workloads carry the most risk, and what the destination architecture needs to support.
+Azure Migrate provides a centralized hub for migration discovery, assessment, business case development, dependency analysis, and planning. It helps teams discover infrastructure and workloads, assess Azure readiness, evaluate cost considerations, understand dependencies, and organize migration activity across on-premises and multicloud environments. For customers moving servers, applications, databases, or dependent workloads to Azure, this creates the planning foundation needed to make informed migration decisions before execution begins.
+Azure Copilot Migration Agent: Preview and benefits
+To help close the gap between planning and action, Azure Copilot Migration Agent is extending Azure Migrate with new Azure Storage integration, now available in preview. Instead of leaving teams to interpret assessment outputs and manually map them to a storage migration approach, this guided, AI-powered experience uses Azure Migrate project data to help evaluate storage options, align workloads to the right Azure storage services, and identify the most appropriate execution tool, whether that is Azure Storage Move, Azure Data Box, or another Azure storage migration approach. The result is a faster, more connected path from discovery to decision, helping teams reduce uncertainty and move into execution with greater confidence.
+From there, teams need to make storage-specific decisions.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a112e053603')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a27f7d9cd39">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-lawsuit-azure-growth-ai-investment-claims/" target="_blank" rel="noopener noreferrer" class="article-title">Lawsuit Alleges Microsoft Misrepresented Azure Performance and AI Investment Costs</a>
+          <div class="article-meta">petri.com &bull; Jun 17, 2026</div>
+          <div class="article-summary"><p>Investor claims focus on cloud performance trends and the financial impact of AI expansion.
+Key Takeaways:
+Microsoft is facing renewed legal pressure as investors accuse the company of presenting an overly optimistic view of its Azure cloud performance. The lawsuit raises concerns that Microsoft may have understated slowing growth and the financial impact of its aggressive expansion into AI infrastructure.
+This lawsuit was filed by a Michigan pension fund against several senior Microsoft officials, including Chief Executive Officer Satya Nadella and Chief Financial Officer Amy Hood. Investors claim Microsoft did not fully disclose important issues affecting its business, particularly a slowdown in Azure cloud growth and the financial burden of expanding its AI infrastructure.
+In fiscal year 2025, Microsoft Azure brought in over $75 billion, which marks a 34 percent increase in revenue. However, Microsoft’s Intelligent Cloud division also saw a significant rise in profit margins. Microsoft emphasized that Azure would remain the primary driver of its overall revenue growth between May 1, 2025, and January 28 this year.
+“Defendants highlighted the purported success of Copilot and Microsoft’s foray into AI development, claiming that Copilot offered best-in-class capabilities and enjoyed widespread and growing user adoption. Defendants also downplayed concerns about the Company’s AI investments and business dealings with LLM providers and other companies,” the lawsuit states.
+According to the lawsuit, Microsoft moved computing resources away from core Azure services towards AI projects such as Microsoft Copilot, which may have contributed to weaker cloud performance. However, the company didn’t disclose that the Copilot family of products experienced several major issues regarding user experience, brand positioning, usage, computational capacity, organizational aspects, and interoperability.
+This issue gained attention after Microsoft’s share price dropped sharply (around 10%) following an earnings report, which wiped out hundreds of billions in market value. Microsoft has rejected the allegations and said that its disclosures were accurate and that it will defend itself against the claims.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a27f7d9cd39')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a12130f3350">
+        <div class="article-body">
+          <a href="https://petri.com/azure-monitor-dynamic-thresholds-log-anomaly-detection/" target="_blank" rel="noopener noreferrer" class="article-title">Azure Monitor Adds Dynamic Thresholds to Detect Log Anomalies Without Manual Limits</a>
+          <div class="article-meta">petri.com &bull; Jun 17, 2026</div>
+          <div class="article-summary"><p>This new capability adapts to changing patterns and reduces reliance on static alert configurations.
+Key Takeaways:
+Microsoft has announced that dynamic thresholds for log search alerts are generally available in Azure Monitor. This new feature leverages machine learning to automatically determine normal behaviour from historical log data and identify anomalies without requiring manual threshold configuration.
+According to Microsoft, traditional monitoring systems rely on static thresholds, which must be manually set and often fail to keep up with changing workloads and patterns. As systems grow more complex and dynamic, these fixed limits either trigger too many false alarms during normal fluctuations or miss genuine issues. This problem makes it harder for security teams to accurately detect meaningful anomalies and respond effectively.
+“Dynamic thresholds make anomaly detection easier by using machine learning to learn normal behavior from your historical log query results, automatically account for patterns such as hourly, daily, and weekly seasonality, and adapt as your environment changes. Instead of manually choosing static limits that can quickly become outdated, you can let Azure Monitor automatically determine the right threshold for each alert rule,” Microsoft explained.
+Microsoft mentioned that dynamic thresholds offer a more intelligent approach to monitoring by eliminating the need for manual setup and adjustments of alert thresholds. Instead, alerts automatically adapt to changing usage patterns and seasonal trends, while also scaling across multiple dimensions such as resources, namespaces, or subscriptions. This feature is included within standard alert pricing without any additional charges.
+With dynamic thresholds, administrators can detect unusual spikes in pod restarts by adapting to fluctuating workloads. It detects abnormal increases or decreases in cloud resources, which is useful for detecting unexpected deployments or deletions across large environments.
+For IT teams, the dynamic thresholds feature transitions monitoring from a maintenance-heavy task to a more proactive approach. Security teams can focus on investigating real issues and improving system reliability rather than constantly reviewing and adjusting alert rules. It also helps to reduce alert fatigue, improves response accuracy, and allows security teams to manage large environments more effectively.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a12130f3350')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a4351f36b10">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiygFBVV95cUxNSEdTOHg2V0VLeFlKN2xzWnVVdlJnVXdFTmVITVo3RmNLaUZraWZrcndQV2p6eHZZTjVSSVdRdW8xSERfclZUQW8yVjJOUGFsVmI0X3lvZFpZTE5HRVV6TndEV3pRTzRKd3NlLTZmUV9qSFdwaWJ5c0ZRTlAwNXVmX1d5em1faUdRYnQwRERhM3lvMURVM0N1WHNjYndQUU4zR2Fpc01GYTZKYVBiSmpJTVg0R0xZM29RenhXQmFTZmYyeEVvSmlmdDZR?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft, Amazon cloud services expected to face EU digital competition scrutiny, report says (MSFT:NASDAQ) - Seeking Alpha</a>
+          <div class="article-meta">Seeking Alpha &bull; Jun 18, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft, Amazon cloud services expected to face EU digital competition scrutiny, report says (MSFT:NASDAQ)&amp;nbsp;&amp;nbsp;Seeking Alpha</p><a href="https://news.google.com/rss/articles/CBMiygFBVV95cUxNSEdTOHg2V0VLeFlKN2xzWnVVdlJnVXdFTmVITVo3RmNLaUZraWZrcndQV2p6eHZZTjVSSVdRdW8xSERfclZUQW8yVjJOUGFsVmI0X3lvZFpZTE5HRVV6TndEV3pRTzRKd3NlLTZmUV9qSFdwaWJ5c0ZRTlAwNXVmX1d5em1faUdRYnQwRERhM3lvMURVM0N1WHNjYndQUU4zR2Fpc01GYTZKYVBiSmpJTVg0R0xZM29RenhXQmFTZmYyeEVvSmlmdDZR?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a4351f36b10')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a32a0c9f6f2">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMikwFBVV95cUxPaFl4NzdVRVdRRTJSc2pjZ0xHeUhlM1FiQ0VrdG8wVnp3UC1jY0NwYV92NmVYTGlncGxPVUFoc0lhd3J4WkpMM3VPa0I2TTZWUkV5R1JzU0tKNFl0TjFUZUluUUNQblJmWG5mLTUzZmZnX0ppMFVJVHkzbGpLMDRBZ2V0QkNKRlhMV2Yyb0V1Yk9ONGM?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Expands Y Combinator Partnership with Azure AI Cloud Credits - WinBuzzer</a>
+          <div class="article-meta">WinBuzzer &bull; Jun 19, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft Expands Y Combinator Partnership with Azure AI Cloud Credits&amp;nbsp;&amp;nbsp;WinBuzzer</p><a href="https://news.google.com/rss/articles/CBMikwFBVV95cUxPaFl4NzdVRVdRRTJSc2pjZ0xHeUhlM1FiQ0VrdG8wVnp3UC1jY0NwYV92NmVYTGlncGxPVUFoc0lhd3J4WkpMM3VPa0I2TTZWUkV5R1JzU0tKNFl0TjFUZUluUUNQblJmWG5mLTUzZmZnX0ppMFVJVHkzbGpLMDRBZ2V0QkNKRlhMV2Yyb0V1Yk9ONGM?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a32a0c9f6f2')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ac09ce77381">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiqwFBVV95cUxNUmJQUkh0dTUzZ2dITlpFWVp1ZGp4d0t2T3RYNHZMTVVra042ZVNYTk94R1dKdjM2cU0yWTh5cXNCVlVHTkFXRDFiT3ptRnNPeDUteGR1RDV5eWVoS3M4NFJsNDVpcHlVTVluQWViLUI0a29XR0JOaERIUXZnUTJ2V2VXSWs4MFBzMlFUR2NGNHJRcEFjUWptTU84dEZ2UllET0NWX2hsTDgwRDQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft sued by shareholders over expenses, cloud business, AI - Reuters</a>
+          <div class="article-meta">Reuters &bull; Jun 15, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft sued by shareholders over expenses, cloud business, AI&amp;nbsp;&amp;nbsp;Reuters</p><a href="https://news.google.com/rss/articles/CBMiqwFBVV95cUxNUmJQUkh0dTUzZ2dITlpFWVp1ZGp4d0t2T3RYNHZMTVVra042ZVNYTk94R1dKdjM2cU0yWTh5cXNCVlVHTkFXRDFiT3ptRnNPeDUteGR1RDV5eWVoS3M4NFJsNDVpcHlVTVluQWViLUI0a29XR0JOaERIUXZnUTJ2V2VXSWs4MFBzMlFUR2NGNHJRcEFjUWptTU84dEZ2UllET0NWX2hsTDgwRDQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac09ce77381')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a53eb712fd5">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiwAJBVV95cUxPV01UUlpSdXl3VXA5Tkl5TzJ1c2NHYk55ZHBxRVhDUnk5Y3RqRHVMWXNmQWZPbzlFUVRpcElZTU1uMS1JSEVWNFRYX3JEeUtvTERxWVZPM3lfTlRUd0tCbTQ4SzhSdzc2RnNuRlk3cF82YmNHTEFUNFJCVktxZjBLUlFLZ0JDdlhHRFh4bVpwWnpPZGkyT3YyODNoVkNBUFhBMkZPNGJGZ2tHbS1hN3B6OXVqUHd6ZFU0MExFSWozeTFNaWNiNVdjejgwQ2taQmxXN2FWTjZVUk9laXZweW9hZjBWWVBoelRJVThtR1drN2EwWXlrT2hXQmZ0Q1FjWXFZOVlfYXhOWW5aaVc3eXNZdGlNRUZkVll0YkN2bFpxbFFmRF9ZU3dmRXdMZHBIOS1LNWxmbGVjeld5M0tUS2FEVw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">ELCA collaborates with Microsoft to Expand its Sovereign Cloud Options in Switzerland with Locally Operated Services Built on Microsoft Azure Local and Microsoft 365 Local - Microsoft Source</a>
+          <div class="article-meta">Microsoft Source &bull; Jun 16, 2026</div>
+          <div class="article-summary snippet"><p>ELCA collaborates with Microsoft to Expand its Sovereign Cloud Options in Switzerland with Locally Operated Services Built on Microsoft Azure Local and Microsoft 365 Local&amp;nbsp;&amp;nbsp;Microsoft Source</p><a href="https://news.google.com/rss/articles/CBMiwAJBVV95cUxPV01UUlpSdXl3VXA5Tkl5TzJ1c2NHYk55ZHBxRVhDUnk5Y3RqRHVMWXNmQWZPbzlFUVRpcElZTU1uMS1JSEVWNFRYX3JEeUtvTERxWVZPM3lfTlRUd0tCbTQ4SzhSdzc2RnNuRlk3cF82YmNHTEFUNFJCVktxZjBLUlFLZ0JDdlhHRFh4bVpwWnpPZGkyT3YyODNoVkNBUFhBMkZPNGJGZ2tHbS1hN3B6OXVqUHd6ZFU0MExFSWozeTFNaWNiNVdjejgwQ2taQmxXN2FWTjZVUk9laXZweW9hZjBWWVBoelRJVThtR1drN2EwWXlrT2hXQmZ0Q1FjWXFZOVlfYXhOWW5aaVc3eXNZdGlNRUZkVll0YkN2bFpxbFFmRF9ZU3dmRXdMZHBIOS1LNWxmbGVjeld5M0tUS2FEVw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a53eb712fd5')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="afb1d319742">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi0wFBVV95cUxOWFlyeFF2Q2tWZzJQa2l4QnpXdUJ3cjYzVFVXX24wRGhuUllNdmZBNDQyem5WZTdHUGdTWUgyN3NwWGFNQlBmQUNGQ1U5cVlkdWZtcmoxTFZIUUxWV0dkaDNrdHQ2MG5oZXBFcFZibS01WDZEdVh3OGp2Nk92RTg3c1VKQ083Z2tmUXlzMFJOLVdrTTRmZDljWGpnd0dkdXdVLTVTaHpIZWpVTkJJWEY5MnhWYkxRdGVEWVZ3anM3dnVFdUF2b28yb21DUUtSb1E5NnVz?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">The week in GRC: Microsoft to possibly face shareholder litigation over cloud business as Citigroup launches tokenization share option - | Governance Intelligence</a>
+          <div class="article-meta">| Governance Intelligence &bull; Jun 19, 2026</div>
+          <div class="article-summary snippet"><p>The week in GRC: Microsoft to possibly face shareholder litigation over cloud business as Citigroup launches tokenization share option&amp;nbsp;&amp;nbsp;| Governance Intelligence</p><a href="https://news.google.com/rss/articles/CBMi0wFBVV95cUxOWFlyeFF2Q2tWZzJQa2l4QnpXdUJ3cjYzVFVXX24wRGhuUllNdmZBNDQyem5WZTdHUGdTWUgyN3NwWGFNQlBmQUNGQ1U5cVlkdWZtcmoxTFZIUUxWV0dkaDNrdHQ2MG5oZXBFcFZibS01WDZEdVh3OGp2Nk92RTg3c1VKQ083Z2tmUXlzMFJOLVdrTTRmZDljWGpnd0dkdXdVLTVTaHpIZWpVTkJJWEY5MnhWYkxRdGVEWVZ3anM3dnVFdUF2b28yb21DUUtSb1E5NnVz?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('afb1d319742')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="sharepoint" class="topic-section">
+      <h2 class="topic-title" style="--c:#036C70">SharePoint <span class="count">(4)</span></h2>
+      <div class="article-card" data-id="ae9e9c0e9e7">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiuwFBVV95cUxOMXE5RktkcVZqQ3hfVnlFT3Bvb2M2V1hQMHBKdzlQLTd6MWpFLS1vV0RhN09JdlpmWVZlZDRiQ2hmTkFXbXdad05PRk5LR0FIN2JnODgweEpzbWc0RnJkSzBvRHFzbHRPQXlRbkpHeldUbDVtRzZwZmpBTE9WWmxMRjZNR3VrV3h2b3UwWE5YRDBHQnhVZTZJSDNNc0VhYnE2Z1Q3alhsMExXU0FaMThjUVpKX3prQ1dEXzZB?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Rapid7 Analysis: CVE-2020-16952 — Microsoft SharePoint Remote Code Execution Vulnerabilities - Rapid7</a>
+          <div class="article-meta">Rapid7 &bull; Jun 16, 2026</div>
+          <div class="article-summary snippet"><p>Rapid7 Analysis: CVE-2020-16952 — Microsoft SharePoint Remote Code Execution Vulnerabilities&amp;nbsp;&amp;nbsp;Rapid7</p><a href="https://news.google.com/rss/articles/CBMiuwFBVV95cUxOMXE5RktkcVZqQ3hfVnlFT3Bvb2M2V1hQMHBKdzlQLTd6MWpFLS1vV0RhN09JdlpmWVZlZDRiQ2hmTkFXbXdad05PRk5LR0FIN2JnODgweEpzbWc0RnJkSzBvRHFzbHRPQXlRbkpHeldUbDVtRzZwZmpBTE9WWmxMRjZNR3VrV3h2b3UwWE5YRDBHQnhVZTZJSDNNc0VhYnE2Z1Q3alhsMExXU0FaMThjUVpKX3prQ1dEXzZB?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ae9e9c0e9e7')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a1b781c8e59">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi-wFBVV95cUxOSHFrMDRUbm9CdDNRUl9rczExNnJfSWNYVGZxd0pKRDk3M1Q4ckg3aDU5M1RnTDZJdjJUT1BzVDBzVXlVOVRGVVM0VlFYbG9WYzNMQV93SkpIaENfM0lMelRYWTVBT0Z3OUpTcHlqZ0h2cHJZLTFXZm10QzJIMzc3a1l1STJtdjI0OHdmdHA1c2haOENDRDRiSXlUTVZrX3VYU1BGTjBJcmpVNE1JR09SR3VGUFJBZ2ZFcFNuTWlqOW9yOHFTcEQ0MF9XQkY1SzN5SmN1Q1hqNE5GYy16VjdjTGRCcnFjdG1CaEZLSDM4Q2xWWVJhN3RISWRacw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Hackers turn Microsoft 365 Copilot into a one-click data theft tool - TechRadar</a>
+          <div class="article-meta">TechRadar &bull; Jun 16, 2026</div>
+          <div class="article-summary snippet"><p>Hackers turn Microsoft 365 Copilot into a one-click data theft tool&amp;nbsp;&amp;nbsp;TechRadar</p><a href="https://news.google.com/rss/articles/CBMi-wFBVV95cUxOSHFrMDRUbm9CdDNRUl9rczExNnJfSWNYVGZxd0pKRDk3M1Q4ckg3aDU5M1RnTDZJdjJUT1BzVDBzVXlVOVRGVVM0VlFYbG9WYzNMQV93SkpIaENfM0lMelRYWTVBT0Z3OUpTcHlqZ0h2cHJZLTFXZm10QzJIMzc3a1l1STJtdjI0OHdmdHA1c2haOENDRDRiSXlUTVZrX3VYU1BGTjBJcmpVNE1JR09SR3VGUFJBZ2ZFcFNuTWlqOW9yOHFTcEQ0MF9XQkY1SzN5SmN1Q1hqNE5GYy16VjdjTGRCcnFjdG1CaEZLSDM4Q2xWWVJhN3RISWRacw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a1b781c8e59')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a987007e043">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiwgFBVV95cUxQQWNKV3NaalE4eEpxRU82Y1A2Y2xyUXdySlhCWWdwWXpZeWpCRk11R2hLbjEzdXh1Z1ptV290YU16Q3ppbzh5eE1iZnJBNnNhTDg0S2c2MGNIMVBpYUhZaUhXbW9oaU4xOE1qajctM2pkYl9DU0NyV2ExZzJuUlFESUxEcWlXYVpmV1hJbHFHUFNsMnBVakxHNnQ2d0p2Z28tMmlRZVl3b1dFOGNHZm1jdTlBWHVBeUQyNFVVYkVYVkNkdw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft SharePoint 2019 for beginners: Complete tutorial &amp; overview - MSN</a>
+          <div class="article-meta">MSN &bull; Jun 18, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft SharePoint 2019 for beginners: Complete tutorial &amp; overview&amp;nbsp;&amp;nbsp;MSN</p><a href="https://news.google.com/rss/articles/CBMiwgFBVV95cUxQQWNKV3NaalE4eEpxRU82Y1A2Y2xyUXdySlhCWWdwWXpZeWpCRk11R2hLbjEzdXh1Z1ptV290YU16Q3ppbzh5eE1iZnJBNnNhTDg0S2c2MGNIMVBpYUhZaUhXbW9oaU4xOE1qajctM2pkYl9DU0NyV2ExZzJuUlFESUxEcWlXYVpmV1hJbHFHUFNsMnBVakxHNnQ2d0p2Z28tMmlRZVl3b1dFOGNHZm1jdTlBWHVBeUQyNFVVYkVYVkNkdw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a987007e043')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a28a8854908">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMitwFBVV95cUxOT3hxN0FSMUtXdVkxZXVNOFhna2lHdXBxS18zeFpLS0ExWm56VjFzc2JMT2Fqam9KbWY2TjBZMmVaSzI1LWN2UG5BYXA0WFQ2QzAzeEx5S0lHUW96ellaMWpib2poMTBEaTJNSW9seDVNNjlOazBTdmZiUzd3ak5KNnNycGJ6aGhUaG5IVnJYYUZuNDZEMXR3MmNBenVrazlKdUJxS1l2UjhxT01icUp5a2VjOWNwY2PSAbwBQVVfeXFMTzVLZDlUeHpHaTlVRW9BNVg4QzZkbEp6YTVpOVdxSm1DSlpQWDhRSk1VYTVXOGVtdXZmM0hMRGdlOWxaZTVWS3VLY0s0NUlXOVVrOHpPc0FSTUh2QnlKMVVCdUxId1o2alVSbEwxa1lyNFFTZEpvbm0xYXhJc1FVZFBxSEFxWUkxLWszVGJTbmc2RlJUdVRNeFM3cTFaRUJpWVdZUzdzZkZON0ZPUWdZaDk3YXJDZGZJaS1Wakk?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">New attack turned Microsoft 365 Copilot into 1-click data theft tool - BleepingComputer</a>
+          <div class="article-meta">BleepingComputer &bull; Jun 15, 2026</div>
+          <div class="article-summary snippet"><p>New attack turned Microsoft 365 Copilot into 1-click data theft tool&amp;nbsp;&amp;nbsp;BleepingComputer</p><a href="https://news.google.com/rss/articles/CBMitwFBVV95cUxOT3hxN0FSMUtXdVkxZXVNOFhna2lHdXBxS18zeFpLS0ExWm56VjFzc2JMT2Fqam9KbWY2TjBZMmVaSzI1LWN2UG5BYXA0WFQ2QzAzeEx5S0lHUW96ellaMWpib2poMTBEaTJNSW9seDVNNjlOazBTdmZiUzd3ak5KNnNycGJ6aGhUaG5IVnJYYUZuNDZEMXR3MmNBenVrazlKdUJxS1l2UjhxT01icUp5a2VjOWNwY2PSAbwBQVVfeXFMTzVLZDlUeHpHaTlVRW9BNVg4QzZkbEp6YTVpOVdxSm1DSlpQWDhRSk1VYTVXOGVtdXZmM0hMRGdlOWxaZTVWS3VLY0s0NUlXOVVrOHpPc0FSTUh2QnlKMVVCdUxId1o2alVSbEwxa1lyNFFTZEpvbm0xYXhJc1FVZFBxSEFxWUkxLWszVGJTbmc2RlJUdVRNeFM3cTFaRUJpWVdZUzdzZkZON0ZPUWdZaDk3YXJDZGZJaS1Wakk?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a28a8854908')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="intune" class="topic-section">
+      <h2 class="topic-title" style="--c:#0F6CBD">Intune <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="ae72c8a216e">
+        <div class="article-body">
+          <a href="https://techcommunity.microsoft.com/t5/intune-customer-success/deploying-platform-sso-for-pre-macos-26-with-microsoft-intune/ba-p/4521368" target="_blank" rel="noopener noreferrer" class="article-title">Deploying Platform SSO for pre macOS 26 with Microsoft Intune: Lessons Learned</a>
+          <div class="article-meta">techcommunity.microsoft.com &bull; Jun 19, 2026</div>
+          <div class="article-summary snippet"><p>By: Naveen Akkugari, Sr. Service Engineer and Michael Griswold, Principal Service Engineering Manager | Microsoft Intune
+Who we are
+Our internal Intune administration team at Microsoft is responsible for running Intune and Configuration Manager for the devices used by employees. We receive early access to features for evaluation and feedback using real world usage scenarios. As such, some features may be changed before the public release and be slightly different. The experience should be similar and we wanted to share our learnings when deploying platform single sign-on (PSSO). It is worth noting that since the time of this experience a new method for newer OS versions is available and you can read more about it at:&amp;nbsp;New Platform SSO with registration during Automated Device Enrollment on macOS | Microsoft Community Hub.
+Why we implemented Platform single sign-on (PSSO) and what we learned
+As IT admins managing a growing Mac fleet, we kept running into the same gap. Our Windows devices had hardware-backed authentication, token protection, and seamless SSO through Windows Hello for Business, but our Macs were still relying on browser-based prompts with no easy way to enforce the same level of security and identity protection. Platform SSO finally closed that gap for us. It’s worth noting that new macOS allows new capabilities in this space and we are evaluating them as well. The new flow can be read about at https://aka.ms/Intune/MacPSSO-Setup.
+While there were fewer pip-ups, we found the changes in the security layer to be the real value to our operations. Platform SSO binds authentication tokens (Primary Refresh Tokens) to the device’s Secure Enclave hardware. Even if a PRT is intercepted, it’s designed to not be replayed from another device. For our team, this unlocked two things we couldn’t do on macOS before:
+
+Token protection policies: Conditional Access can now verify that tokens are device-bound, the same enforcement we had been relying on with Windows Hello for Business
+Phishing-resistant MFA: Secure Enclave keys act as FIDO2 passkeys, so users authenticate with Touch ID instead of passwords or SMS codes
+
+Getting from documentation to production took real effort for us. A password policy issue that silently blocked registration for half our pilot group, users who swiped away the registration banner without knowing what it was, and macOS updates that broke SSO overnight. This blog post is what we wish someone had written before we started.
+How it works under the hood: Intune delivers the SSO extension profile → macOS prompts the user to register → the device registers with Microsoft Entra ID and gets a hardware-bound workplace (WPJ) certificate → a PRT is issued and bound to device hardware (not designed to be exported) → SSO works across Microsoft 365 apps, browsers, and Kerberos resources, all with token protection enforced.
+Available authentication methods when we implemented
+
+CapabilitySecure EnclaveSmart CardPassword SyncPasswordless and phishing-resistant✅✅❌Touch ID / passkey (WebAuthn)✅❌ Touch ID only❌Local password synced with Microsoft Entra❌❌✅Minimum macOS13.014.013.0
+&amp;nbsp;
+Recommendation: Start with Secure Enclave. Keys are hardware-bound, phishing-resistant, and double as FIDO2 passkeys via WebAuthn, enabling browser-based passwordless login (Touch ID instead of passwords) and meeting Conditional Access multi-factor authentication (MFA) requirements. Unlike iCloud-synced passkeys, these are device-bound, aligning with Zero Trust.
+
+Quick setup using the Intune settings catalog
+Prerequisites: macOS 13+, Intune with Microsoft Entra ID, Intune Company Portal v5.2404.0+
+In the Intune admin center, navigate to Devices &amp;gt; Configuration &amp;gt; Create &amp;gt; macOS &amp;gt; Settings Catalog &amp;gt; Authentication &amp;gt; Extensible SSO
+
+SettingValueExtension Identifiercom.microsoft.CompanyPortalMac.ssoextensionTeam IdentifierUBF8T346G9TypeRedirectRegistration Token{{DEVICEREGISTRATION}}Use Shared Device KeysEnabledScreen Locked BehaviorDoNotHandleURLshttps://login.microsoftonline.comhttps://login.microsoft.comhttps://sts.windows.nethttps://login-us.microsoftonline.com
+&amp;nbsp;Users see a “Registration required” notification → sign in → complete MFA → SSO works everywhere.
+
+
+What the user experience looks like
+Knowing what users see on their screen helps you write better rollout communications and cuts down help desk tickets.
+First-time registration flow:
+
+ Profile arrives silently: After enrollment, Intune pushes the SSO extension profile to the Mac. Nothing visible to the user yet.
+ Registration banner appears: macOS displays a notification: “Registration required: Your organization requires you to register your device.” The user must click this to proceed. (This is our #1 learning point, users swipe it away, and there’s no simple way to retrigger it.)
+ Sign-in window: The user enters their Microsoft Entra ID email and password.
+ MFA challenge: Authenticator app push, phone call, or other configured method.
+ Secure Enclave key creation: macOS generates a hardware-bound key pair. The user may see a Touch ID or local password prompt to authorize this.
+ Registration completes: Device registers with Microsoft Entra ID, a WPJ certificate and PRT are issued. User sees a success confirmation.
+ SSO is active: From here, Microsoft 365 apps, Edge (natively), Chrome (with SSO extension), and Kerberos resources authenticate without prompts. Touch ID replaces password entry.
+
+Missed the registration notification? Here is how to manually register:
+This was our most common help desk ticket during rollout. If a user dismissed or missed the banner, they can still register manually through the following options:
+
+ (Recommended) System Settings → Users &amp;amp; Groups → Network Account Server: This is the easiest method. Go to System Settings → Users &amp;amp; Groups, scroll down to “Network Account Server” and click “Edit.” This opens a panel showing two sections: Network Servers and Platform single sign-on. If the Platform SSO policy is deployed, “Mac SSO Extension” will be listed under Platform single sign-on. If the device isn’t registered, there will be a “Register” button that can be selected to start the Platform SSO device registration flow.
+Lock / Sign out and back in: Performing a lock or signing out of macOS followed by signing back in can retrigger the registration notification upon the next login attempt.
+ Wait for the notification to reappear: macOS retries the notification periodically around every 15 mins.
+ Last resort, reprofile: If none of the above work, an IT admin can remove and reassign the SSO extension profile in Intune. Before doing so, ensure any stale device objects are cleared from Microsoft Entra ID to avoid conflicts. Once the new profile lands on the device, the registration notification reappears.
+
+How to verify Platform SSO registration
+One of the first questions we got after rollout was “how do I know it’s actually working?” Here’s how both users and IT admins can confirm.
+For IT admins (Microsoft Entra ID &amp;amp; Intune admin centers):
+
+What to checkPlatform SSO registered deviceNon-registered deviceMicrosoft Entra ID → DevicesJoin Type shows Microsoft Entra joinedJoin Type shows Microsoft Entra registeredIntune → Device configurationSSO extension profile shows SucceededProfile may show Pending, Error, or not assigned
+
+&amp;nbsp;
+For users (on the Mac):
+
+ System Settings → Users &amp;amp; Groups → Network Account Server: Scroll down in Users &amp;amp; Groups to “Network Account Server” and click “Edit.” If the Platform SSO policy is deployed, they will see “Mac SSO Extension” listed under Platform Single Sign-on. A registered device shows a green dot with “Registered” status and a “Repair” button (useful if registration gets into a bad state). If not registered, they will see a “Register” button instead. This is the quickest at-a-glance check for users.
+ System Settings → Users &amp;amp; Groups: Click on the user account name in Users &amp;amp; Groups (on macOS 14+, click the info button “i” next to the user name). When Platform SSO registration is complete, a “Platform Single Sign-on” section will be listed under the account. If Platform SSO is active, the user account shows the Microsoft Entra ID identity linked to the local account.
+ Company Portal app → Devices: The device should show as “Compliant” and “Microsoft Entra ID registered.” If registration failed, it shows “Registration required.”
+ Terminal command: Run app-sso platform -s to check Platform SSO status.
+
+Troubleshooting Platform SSO errors
+If you run into issues during deployment, here’s how you can diagnose and fix issues.
+Step 1: Check the Platform SSO profile in Intune device management
+Before troubleshooting on the Mac itself, confirm the profile reached the device:
+In Intune: Go to Devices → select the device → Device configuration. The SSO extension profile should show “Succeeded.” If it shows “Pending” or “Error,” the device hasn’t received the policy. Check assignment groups, sync status, and whether the device is enrolled.
+Then&amp;nbsp;on the Mac: Go to System Settings → General → Device Management (or Profiles on older macOS). Look for the SSO extension profile (com.apple.extensiblesso). It should show as “Installed” with no errors. If the profile isn’t listed, it hasn’t been delivered yet. Check Intune assignment and device sync.
+Step 2: Check registration status on the Mac 
+Refer to the previous section “How to verify Platform SSO registration” for steps.
+Step 3: Check SSO extension logs
+Run in Terminal for real-time logs:
+log stream --predicate 'subsystem == &quot;com.apple.AppSSO&quot;' --level debug
+Then prompt a sign-in (open Edge or Outlook). Look for:Error 10002: Duplicate SSO profiles. Remove the extra one from Intune.Error 10003: Registration failed. Usually a network issue or TLS inspection blocking auth URLs.User cancelled: User dismissed the registration banner.Token refresh failed: PRT could not refresh. Check network and whether the Microsoft Entra ID password was recently changed.
+&amp;nbsp;
+Step 4: Verify from the admin side
+
+CheckHowWhat It Tells YouProfile deliveryIntune &amp;gt; Devices &amp;gt; select device &amp;gt; Device configurationWhether the SSO profile reached the device and its install statusRegistration stateEntra ID &amp;gt; Devices &amp;gt; search device &amp;gt; PropertiesWhether the device has PSSO registration and NGC credentialSign-in failuresEntra ID &amp;gt; Sign-in logs &amp;gt; filter by userError codes like AADSTS50076 MFA required, AADSTS700024 token issue, or AADSTS7000218 client assertionToken protectionEntra ID &amp;gt; Sign-in logs &amp;gt; Conditional Access tabWhether token protection policy was applied or skippedCompany Portal versionIntune &amp;gt; Apps &amp;gt; macOS &amp;gt; Company PortalMust be v5.2404.0+ for PSSO; older versions silently fail
+
+&amp;nbsp;
+Common error codes and fixes:
+
+ErrorCauseFix10002Multiple SSO extension profiles assignedRemove duplicate profiles; keep only the Settings Catalog policy10003Registration failed network/TLSAllowlist Apple and Microsoft auth URLs from TLS inspectionAADSTS50076MFA required but not completedUser needs to complete MFA during registrationAADSTS700024Client assertion invalidPassword likely needs reset; have user reset Entra ID password and retryAADSTS7000218Request body must contain client_assertionCompany Portal version too old; update to v5.2404.0+
+
+&amp;nbsp;
+Best practices
+
+ Have newer OS devices and use the new flow: New Platform SSO with registration during Automated Device Enrollment on macOS.
+ Have users reset their password before Platform SSO registration. During initial enrollment, if password configuration or compliance policies are applied, users are required to reset their password after device enrollment and prior to initiating Platform SSO registration. Skipping this step can result in silent registration failures that are difficult to diagnose. Ensure this is communicated as the first step in your rollout guidance.
+ Assign the SSO profile during enrollment, not after. Deploying during enrollment means the registration prompt shows up at first login, a natural part of setup. Retrofitting existing devices forces users to notice and click a notification banner. Many will not. macOS Tahoe (26) Simplified Setup will auto-register, removing this friction.
+ One SSO profile per device, no exceptions. Duplicate profiles cause Error 10002. If you are migrating from a Device Features template to Settings Catalog, remove the old one first.
+ Pilot with realistic scenarios. Don’t just test “can I open Outlook.” Test registration, SSO to Microsoft 365, on-prem file shares, password change mid-session, reboot behavior, and what happens when a user dismisses the registration banner. We found issues in every one of these.
+ Align password policies end-to-end. For Password Sync, Intune compliance and Microsoft Entra ID password policies must match: length, complexity, expiration.
+ Integrate legacy Kerberos properly. If you run a standalone Kerberos SSO extension, set usePlatformSSOTGT = true in its ExtensionData to reuse Platform SSO TGT instead of running duplicate flows. Requires macOS 14.6+ and Company Portal 5.2408.0+.Enable Kerberos SSO to on-premises Active Directory and Microsoft Entra ID Kerberos Resources in Platform SSO.
+ Allowlist auth URLs from TLS inspection. Apple and Microsoft authentication endpoints must be excluded from proxy/TLS inspection. If they are not, registration fails silently with no error.
+
+Challenges we faced
+
+ChallengeWhat we experiencedSolutionPassword must be reset before registration during the new enrollmentHalf our pilot group could not register after the new enrollment as their Entra ID password had not been reset.Require a password reset before rollout; make this step 1 in user communicationsUsers dismiss the registration bannerThe notification is easy to swipe away. Once dismissed, there is no simple way to retrigger it.Send screenshots and instructions before rollout; macOS Tahoe auto-registers via Simplified SetupSSO breaks after macOS updatesAfter point updates, SSO stopped working until re-registration.Restart swcd process; some cases required full re-registration; check release notesPassword policy mismatchUsers changed Microsoft Entra password, but local Mac password did not sync, causing lockouts.Match Intune compliance and Microsoft Entra ID password policies exactly; test end-to-endBrowser SSO inconsistencyEdge worked natively, Chrome needed extension, Safari varied by OS.Deploy Chrome SSO extension via Intune; test Safari on each target OS version
+
+Conclusion
+Platform SSO delivers phishing-resistant passwordless authentication, seamless cross-platform SSO, and Conditional Access compliance with hardware-backed identity. Start your implementation with Secure Enclave, deploy via Intune Settings Catalog, pilot small, then scale.
+If you have questions on implementing Platform SSO, leave a comment below or reach out to us on X @IntuneSuppTeam.
+Join our community!&amp;nbsp;Discuss real-world scenarios, get expert guidance, connect with peers, and influence the future of Microsoft Security products. Learn more at aka.ms/JoinIntuneCommunity.</p><a href="https://techcommunity.microsoft.com/t5/intune-customer-success/deploying-platform-sso-for-pre-macos-26-with-microsoft-intune/ba-p/4521368" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ae72c8a216e')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a3b181ad74f">
+        <div class="article-body">
+          <a href="https://techcommunity.microsoft.com/t5/intune-customer-success/triage-vulnerabilities-with-the-vulnerability-remediation-agent/ba-p/4528646" target="_blank" rel="noopener noreferrer" class="article-title">Triage vulnerabilities with the Vulnerability Remediation Agent, now in public preview</a>
+          <div class="article-meta">techcommunity.microsoft.com &bull; Jun 19, 2026</div>
+          <div class="article-summary snippet"><p>As automation and AI accelerate the pace of vulnerability discovery, the window between disclosure and exploitation continues to shrink. For IT and security teams, the challenge is no longer just finding vulnerabilities - it's prioritizing the ones that matter and acting on them before they can be exploited. To help organizations close that gap, we're pleased to announce that the&amp;nbsp;Vulnerability Remediation Agent for Security Copilot in Microsoft Intune is now in public preview and rolling out to all customers.
+Following a successful limited preview, the agent is now broadly available. This release brings agentic vulnerability remediation out of an early-access cohort and into the hands of every eligible organization - an important step in our continued investment in helping admins reduce exposure faster and with greater confidence. View eligibility prerequisites&amp;nbsp;here.
+How the agent helps you identify and triage vulnerabilities
+The Vulnerability Remediation Agent uses data from Microsoft Defender Vulnerability Management to identify Common Vulnerabilities and Exposures (CVEs) across your Intune-managed Windows devices and apps, then prioritizes them for remediation. Rather than leaving admins to sift through lengthy &amp;nbsp;CVE lists with little context, the agent surfaces a prioritized set of recommendations directly in the Intune admin center - accessible from both the Agents and Endpoint security pages.
+When the agent runs, it evaluates vulnerability data and ranks threats based on factors such as CVSS scores, exposure impact, and affected device count, so the most critical issues rise to the top. Drilling into any suggestion provides:
+
+The count of associated CVEs
+A Copilot-assisted summarized impact analysis
+Suggested actions and affected systems
+Exposed devices and potential impact
+Step-by-step guidance for remediating the threat using Intune
+
+After acting on a recommendation, admins can mark it as applied, allowing the agent to retain a record for tracking remediation actions over time. The result is a meaningful reduction in the time it takes to investigate, prioritize, and remediate - strengthening overall security posture.
+Introducing agentic identity for the Vulnerability Remediation Agent
+With this release, the agent now operates under Microsoft Entra agentic identity - a meaningful advancement in how autonomous agents are governed and secured.
+What it is. Agentic identity is a specialized identity in Microsoft Entra ID that allows the agent to operate securely and independently. During setup, the agent provisions a dedicated agentic identity and a corresponding agentic user in your tenant's Microsoft Entra directory. The agent then runs under the permissions delegated to that agentic user rather than under a human user account.
+Why it matters. Agentic identity decouples the agent from any one person, ensuring its behavior is strictly bound to the permissions and scope you delegate to it. This delivers clearer accountability, a cleaner audit trail, and enterprise-grade governance for autonomous operations.
+How it helps. Admins remain firmly in control. After setup, delegate the required read permissions to the agentic user in the &amp;nbsp;Microsoft Intune and Microsoft Defender admin centers, then use the built-in Readiness Check to confirm everything is configured correctly before the agent runs.
+Learn more in Agent identity.
+Getting started: Connect → Enable → Run → Remediate → Track
+One of the design goals behind the Vulnerability Remediation Agent is to make agentic security approachable, not complex. Rather than stitching together signals across multiple tools and admin centers, the agent guides admins through a clear, repeatable flow - from connecting your data to tracking measurable improvement over time.
+
+
+ Connect — bring Defender and Intune data together. The agent draws on Microsoft Defender Vulnerability Management for CVE intelligence and Microsoft Intune for device and configuration context. With the required Microsoft Defender and Microsoft Intune plugins in place, your vulnerability and management signals work as one. Learn more on what is needed to connect the experience.
+Enable — turn on the agent. From the Agents node in the Microsoft Intune admin center, set up the agent in a few guided steps. During setup, the agent provisions its Microsoft Entra agentic identity and surfaces the permissions and plugins it needs, so you know exactly what to delegate before the first run.
+Run — let automated prioritization do the heavy lifting. Once permissions are delegated and the Run Readiness Check passes, you can configure the agent to run on demand or schedule it to run automatically in the background on a cadence you define; scheduling is a unique capability that helps teams stay ahead of emerging risks without requiring constant manual intervention. Each run analyzes your environment and produces a prioritized list of recommendations ranked by CVSS score, exposure impact, and affected device count so the most critical risks rise to the top automatically.
+Remediate — act with guided, Intune-ready actions. Each recommendation includes a Copilot-assisted impact summary, &amp;nbsp;exposed devices, and step-by-step guidance for remediating the threat using Intune. Admins move directly from insight to action, without leaving the admin center.
+Track — measure improvement over time. Recommendations can be marked as applied, and the agent retains a record of your remediation actions.
+
+The outcome is a streamlined operating model: connect once, enable with confidence, and let the agent drive a continuous cycle of prioritization, remediation, and view progress. For full prerequisites, licensing, plugin, and role requirements, see Vulnerability Remediation Agent overview and set up.
+The Vulnerability Remediation Agent represents a meaningful step toward a more proactive, AI-assisted security posture, one where admins spend less time sifting through CVE lists and more time acting on what matters most. We invite you to try the public preview today, connect your Defender and Intune data, and experience how agentic remediation can help your team stay ahead of emerging threats.
+As always, we'd love to hear your feedback as we continue investing in making security in Intune faster, smarter, and more accessible. Share your tips and lessons learned in the comments below or reach out to us on X&amp;nbsp;@IntuneSuppTeam.
+Join our community!&amp;nbsp;Discuss real-world scenarios, get expert guidance, connect with peers, and influence the future of Microsoft Security products. Learn more at aka.ms/JoinIntuneCommunity.</p><a href="https://techcommunity.microsoft.com/t5/intune-customer-success/triage-vulnerabilities-with-the-vulnerability-remediation-agent/ba-p/4528646" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a3b181ad74f')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="affad0ecf88">
+        <div class="article-body">
+          <a href="https://techcommunity.microsoft.com/t5/intune-customer-success/how-enterprise-app-management-secures-your-app-catalog-from/ba-p/4528361" target="_blank" rel="noopener noreferrer" class="article-title">How Enterprise App Management secures your App Catalog from ingestion to device</a>
+          <div class="article-meta">techcommunity.microsoft.com &bull; Jun 19, 2026</div>
+          <div class="article-summary snippet"><p>By: Joe Lurie, Sr. Product Manager | Microsoft Intune
+One of the most common questions I get from customers when I talk about Enterprise App Management is some version of: &quot;Okay, but how do I know these apps are safe?&quot;
+It's a fair question. You're trusting a catalog of pre-packaged Win32 apps to land on thousands of managed devices across your organization. If you're responsible for endpoint security, you should be asking that question. This post explains how Enterprise App Management works behind the scenes, how apps get into the catalog, what happens before they're visible to your tenant, and why the architecture matters for your security posture.
+The architecture: Not a new system, but an extension of what you already trust
+An important design decision with Enterprise App Management is that it's not a separate app delivery system. It's an extension of the existing Intune Win32 app architecture.
+From the admin perspective, everything starts in the Intune admin center. But behind the scenes, there's a clean separation between the control plane and the data plane:
+
+Control plane: For each app being added to the Enterprise App Management catalog, Intune curates app metadata, including app version, install commands, uninstall commands, detection logic, requirements, and supported configurations. This metadata is validated and normalized before it shows up in your tenant. That's why catalog apps behave consistently whether you're deploying to 50 devices or 50,000.
+Data plane: Once an app is assigned by an admin, it flows through the same Win32 app delivery and enforcement pipeline you already rely on. Your devices don't know they're installing an &quot;Enterprise App Management app&quot; - they're enforcing a Win32 app with well-defined intent. Same Enrollment Status Page support, same reporting, same retry logic, same Intune Management Extension. No new agent. No new runtime. And finally, Enterprise App Management apps have the same support for&amp;nbsp;App Control for Business with Managed Installer which can automatically tag the apps as safe.
+
+This is important because it means Enterprise App Management inherits all the trust and operational maturity of Win32 app management in Intune. Curated content is delivered through established, reliable infrastructure.
+How Enterprise App Management apps are delivered: The ingestion pipeline
+This section walks through what happens from the moment an app is sourced to the moment it appears in your catalog.
+Content ingestion
+It starts with the catalog. Microsoft receives app metadata, including install and uninstall commands, version info, and download URLs. The data is then ingested, flattened, transformed, and Microsoft's own identifiers are applied. After the data lands in the database, eligibility and filtering gates are applied through allow and deny lists. Apps on the allow list are permitted to download content from controlled internet locations. This process handles both net-new apps and version updates to apps already in the catalog.
+Security and functional validation
+This is the part that answers the &quot;how do I know it's safe?&quot; question. Once content ingestion is complete, every app is submitted for security and functional validation. This is a queue-driven service that runs two parallel tracks:
+
+
+Static malware detection scans the installer and related artifacts for malicious content, assigning a VirusTotal score. If an app receives a non-zero score, it's blocked from proceeding, full stop. Static scanning is about establishing baseline trust before deployment. It validates that binaries are intact, that they originate from trusted sources, and they don't carry known indicators of malware or tampering. This process catches embedded malicious payloads, corrupted binaries, and known bad signatures before they can impact any device.
+
+Dynamic analysis (detonation) runs in parallel. The app is installed and uninstalled inside a VM detonation chamber, producing install results, logs, and artifacts. This is about validating behavior, not just files. Modern threats don't always look malicious at rest; some issues only surface when an installer or application runs or interacts with the system. Dynamic evaluation catches unexpected system changes, unsafe persistence mechanisms, and activity inconsistent with enterprise deployment expectations.
+
+If an app fails automatic validation, it goes through manual validation by Intune engineering.
+Both layers are required. Static scanning provides speed and broad coverage, while dynamic scanning provides depth and behavioral assurance.
+After publication: Ongoing scanning
+The security story doesn't end at publication. Apps already in the catalog are periodically re-scanned. If a version that previously passed validation is later found to fail a malware scan, it's flagged and removed from the catalog. This is a critical detail - the catalog isn't a snapshot-in-time trust decision. It's a continuously validated inventory.
+Update velocity
+Once a new app version is received, the target is to have it available in the catalog within 24 hours. Around 80–90% of apps hit that timeline. The remainder are apps that don't pass automatic validation and require manual review, which takes longer. But the pipeline processes updates through the exact same ingestion and validation flow as new apps - no shortcuts.
+Where Zero Trust fits in
+If you've been following Microsoft's Zero Trust model, this pipeline should feel familiar. Zero Trust is built on three principles: verify explicitly, use least-privilege access, and assume breach. EAM's validation pipeline maps directly to these:
+
+Verify explicitly: Every app is verified through multiple independent signals, including source integrity, static malware scanning, and dynamic behavioral analysis, before it's ever exposed to a tenant. No app gets a pass based on reputation or publisher name alone. Trust is earned through evidence, every time.
+Use least-privilege access: Enterprise App Management catalog apps ship with prefilled, scoped install and uninstall commands, detection rules, and requirements. You're not handing an installer broad system access and hoping for the best. The deployment surface is defined and constrained by design.
+Assume breach: This is why the pipeline doesn't stop at initial validation. Ongoing re-scanning means that even apps that previously cleared every check are continuously re-evaluated. If an app that was clean six months ago is later found to carry a risk, it's flagged and pulled from the catalog. The system assumes that trust is perishable, exactly the way Zero Trust says it should be.
+
+In practice, this means Enterprise App Management gives you an app lifecycle that's not just convenient - it follows the same security framework your organization is likely already adopting for identity, network, and device access. The app layer is often the last piece to catch up, and Enterprise App Management closes that gap.
+Here's the ingestion flow that shows how all of this fits together:
+Figure 1: The Enterprise App Management ingestion pipeline: from source metadata through content ingestion, static and dynamic security validation, manual review for failures, periodic re-scanning, and finally publication to the catalog.
+Takeaways
+If you're evaluating Enterprise App Management or explaining it to your security team, here's what I'd suggest that you land on:
+
+Enterprise App Management reduces the packaging tax. Pre-packaged apps with prefilled install details, detection rules, requirements, and restart behavior mean you spend less time building the same scaffolding repeatedly and more time on policy and rollout strategy.
+Patching becomes more predictable. Guided update flows using supersedence and a documented expectation of 24-hour update availability give you a cadence you can plan around, not react to.
+The security model is layered and continuous. Static scanning, dynamic detonation, manual review fallback, and ongoing re-scanning mean the catalog maintains a high trust bar - not just at ingestion, but over time. And it's all built on the same Win32 delivery infrastructure that you and your devices already trust.
+
+The bottom line: Enterprise App Management isn’t just about convenience. It shifts the app lifecycle from a manual, error-prone process to one with built-in security validation, operational consistency, and governance you can defend to your security team. Rather than manually sourcing installers and creating detection rules, use this approach to streamline the process.
+If you have any questions, leave a comment below or reach out to us on X @IntuneSuppTeam!
+Want to go deeper? Check out the Enterprise App Management documentation and keep an eye out for upcoming changes to Intune Suite licensing that will make Enterprise App Management available in the Microsoft 365 plans you may already own. And as always, drop feedback at aka.ms/IntuneFeedback.
+Join our community!&amp;nbsp;Discuss real-world scenarios, get expert guidance, connect with peers, and influence the future of Microsoft Security products. Learn more at aka.ms/JoinIntuneCommunity .</p><a href="https://techcommunity.microsoft.com/t5/intune-customer-success/how-enterprise-app-management-secures-your-app-catalog-from/ba-p/4528361" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('affad0ecf88')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="adf4d2e603a">
+        <div class="article-body">
+          <a href="https://techcommunity.microsoft.com/t5/intune-customer-success/mdop-is-out-of-support-what-to-do-next-with-microsoft-intune/ba-p/4526024" target="_blank" rel="noopener noreferrer" class="article-title">MDOP is out of support: What to do next with Microsoft Intune</a>
+          <div class="article-meta">techcommunity.microsoft.com &bull; Jun 19, 2026</div>
+          <div class="article-summary snippet"><p>By: Joe Lurie – Sr. Product Manager | Microsoft Intune
+On April 14, 2026, the Microsoft Desktop Optimization Pack (MDOP) reached the end of extended support. Microsoft no longer provides security updates, bug fixes, or technical support for MDOP components. For more information, refer to: Microsoft Desktop Optimization Pack (MDOP) support extended.
+If your organization still relies on parts of MDOP, it’s time to move to supported options. In most cases, including Windows desktop management, app virtualization, BitLocker administration, and Group Policy change control, you can handle the same workloads with capabilities in Microsoft Entra ID, Intune, Windows 11, and Configuration Manager.
+Moving these workloads to the cloud does more than keep you supported. It removes on-premises server infrastructure you have to stand up and patch, brings management of cross-platform devices into a unified console, and connects capabilities like encryption and recovery into a Zero Trust framework with Conditional Access.
+Quick start checklist
+
+Inventory what you actually use. Confirm whether Application Virtualization (App-V) server components, Microsoft BitLocker Administration and Monitoring (MBAM), Diagnostics and Recovery Toolset (DaRT), User Experience Virtualization (UE-V), or Advanced Group Policy Management (AGPM) are still in production.
+Prioritize BitLocker Management first. If you still rely on MBAM, plan your move to BitLocker management in Intune and confirm recovery key escrow is working as expected.
+Plan your App-V exit. Keep existing App-V packages running where needed but shift net-new packaging work to MSIX.
+Validate your PC recovery story. Document how you’ll handle common break/fix scenarios using Quick Machine Recovery, WinRE, bootable media, and Intune remote actions.
+Decide how you want to handle policy change management. For cloud policy, we recommend Multi Admin Approval for sensitive actions and policy-as-code practices for versioning and review.
+
+App-V
+App-V let you virtualize applications so they could run in isolated environments without a traditional install, which helped avoid app conflicts. It was especially useful for legacy line-of-business apps that were hard to install or update cleanly.
+ImportantThe App-V server components (Management Server, Publishing Server, Reporting Server) reached end of extended support in April 2026. The App-V client and sequencer are still included with Windows Enterprise and Education editions. They will continue to receive security fixes for the support lifecycle of the Windows versions they ship with. If you are distributing App-V packages today via Configuration Manager, that can still work. The key change is that you should not plan on using the standalone App-V server infrastructure going forward. For more details refer to: App-V in Windows support policy.
+What to do instead: For new packaging work, we recommend moving to MSIX. MSIX is a modern packaging format that supports clean install and uninstall and more predictable updating. The MSIX Packaging Tool can help you convert existing installers. In Azure Virtual Desktop, MSIX App Attach can deliver apps without baking them into the base image. A good starting point is to inventory your App-V packages, identify the ones you still need, and prioritize candidates to convert to MSIX.
+MBAM
+MBAM gave IT admins centralized control over BitLocker, including policy enforcement, compliance reporting, and a self-service recovery portal. Many organizations used MBAM as their standard management solution.
+What to do instead: We recommend replacing MBAM with Microsoft Intune’s BitLocker policy management through an Endpoint security policy. Intune management provides backup of recovery keys to Microsoft Entra ID, reporting, and Conditional Access integration so you can require encryption for access to company resources. If you already manage devices with Intune, you may only need to create a disk encryption policy and confirm recovery keys are being escrowed. For detailed guidance, review Encrypt Windows devices with BitLocker using Intune.
+DaRT
+DaRT provided a bootable recovery environment with advanced tools like file recovery, registry editing, and offline troubleshooting. You typically used DaRT when a machine wouldn’t boot and you needed to repair it or recover data without reimaging.
+What to do instead: Windows includes the Windows Recovery Environment (WinRE) with tools like Startup Repair, System Restore, command prompt, and reset options. For many scenarios DaRT covered, WinRE is enough. You can also boot from a Windows installation USB, select &quot;Repair your computer,&quot; and use the recovery tools for tasks like offline troubleshooting.
+For managed devices, you can pair recovery options with Intune remote actions, such as restart, wipe, or collect diagnostics, or use Quick Machine Recovery. Additionally, Quick Machine Recovery can automatically detect and fix boot failures using cloud-based remediation delivered through Windows Update, with no hands-on IT intervention required for managed devices running Windows 11 version 24H2 or later. You can enable and configure it through the settings catalog in Intune, and Windows Autopilot scenarios for redeployment. These don’t replace every DaRT capability, but they cover many common use cases and work without shipping a separate recovery toolkit.
+UE-V
+UE-V roamed (synchronized) some user application and OS settings to persist across devices so users could sign in to a different Windows PC and keep a familiar experience. This was often used in shared workstation scenarios.
+What to do instead: For Windows settings roaming, Windows Backup for Organizations syncs certain Windows settings across Microsoft Entra ID joined devices. Review the latest guidance to confirm which settings are covered and how to enable it in your environment.
+Important:
+Windows Backup for Organizations syncs Windows settings (theme, password, language) but doesn’t roam per-application settings for Win32 apps. Some apps may provide their own cloud-based sync. Windows Backup for Organizations is not a direct replacement for UE-V.
+For user files, we recommend OneDrive Known Folder Move to back up Desktop, Documents, and Pictures so content follows the user. Many Microsoft applications also sync their own settings through the cloud, which reduces the need for an OS-level roaming solution.
+Another option is to use a virtualized solution, like Azure Virtual Desktop or Windows 365. With a Cloud PC, users connect to the same environment from any device, so settings and apps are already there when they sign in. For scenarios where UE-V mattered most, like shared workstation environments, Windows 365 can be a practical alternative. And for Azure Virtual Desktop, FSLogix is a viable option.
+Important:
+Enterprise State Roaming does not roam per-application settings for traditional Win32 desktop apps the way UE-V did. So, Windows 365 may not be the right fit if you need settings roaming across multiple physical devices.
+AGPM
+AGPM brought version control, change tracking, and approval workflows to Group Policy management. Instead of an admin changing Group Policy Objects (GPOs) directly in production, AGPM enforced a check-out and check-in model with full audit history. This mattered most in environments with strict change management requirements.
+What to do instead: Move to cloud-managed endpoints and replace Group Policy settings with Intune configuration profiles and security baselines. The settings catalog in Intune includes thousands of settings, including many ADMX-backed policies. If you use custom ADMX files for third-party or internal applications, you can import them into Intune. For settings that aren’t available in the catalog, custom OMA-URI profiles can sometimes be used, depending on the CSP support for that setting.
+For change management, Intune offers&amp;nbsp;Multi Admin Approval for certain policy changes, which can add a second-admin approval step. If you want deeper versioning and review workflows, we often see teams using Configuration as Code. Teams practicing Configuration as Code define Intune policies as code or structured data, such as in a JSON file stored outside the Intune admin center. This can be stored in version control like Azure DevOps or GitHub, and use Microsoft Graph – directly or via tooling – to deploy and reconcile the service. This enables deep versioning, peer review, and repeatable, auditable changes. And with Intune, you can use Graph API to get two years of audit events.
+Summary
+
+MDOP tool
+
+What it did
+
+Cloud-native replacement
+
+App-V (Server)
+
+Application virtualization and streaming
+
+MSIX packaging and Intune deployment (client still supported in Windows)
+
+MBAM
+
+BitLocker management and recovery
+
+Intune management of BitLocker and Microsoft Entra ID key escrow
+
+DaRT
+
+Bootable diagnostics and recovery
+
+Windows Recovery Environment (WinRE), bootable USB, and Intune remote actions
+
+UE-V
+
+User settings roaming
+
+Windows 365 Cloud PC, Windows Backup for Organizations, OneDrive Known Folder Move, app-native sync
+
+AGPM
+
+GPO version control and approval workflows
+
+Intune settings catalog, Multi Admin Approval, policy-as-code in source control
+
+Moving forward
+By moving to cloud endpoint management, most MDOP scenarios are covered through Microsoft Intune and Microsoft Entra ID supported capabilities with less infrastructure to maintain, making it easier for you to manage.
+If you haven’t started planning yet, we suggest starting with MBAM since Intune is the most direct replacement. Then, you can work through App-V, DaRT, UE-V, and AGPM based on what’s still in use.
+If you’re in the middle of an MDOP exit and need help leave a comment below or reach out to us on X @IntuneSuppTeam. Tell us which components you still have and how you manage endpoints today (Intune, Configuration Manager, hybrid, or other). We can help you sanity-check dependencies, choose an order of operations, and avoid common migration pitfalls.
+Join our community!&amp;nbsp;Discuss real-world scenarios, get expert guidance, connect with peers, and influence the future of Microsoft Security products. Learn more at aka.ms/JoinIntuneCommunity.</p><a href="https://techcommunity.microsoft.com/t5/intune-customer-success/mdop-is-out-of-support-what-to-do-next-with-microsoft-intune/ba-p/4526024" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('adf4d2e603a')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ade4407d996">
+        <div class="article-body">
+          <a href="https://techcommunity.microsoft.com/t5/intune-customer-success/known-issue-upgrading-microsoft-tunnel-version-20260129-1/ba-p/4517935" target="_blank" rel="noopener noreferrer" class="article-title">Known issue: Upgrading Microsoft Tunnel version 20260129.1</a>
+          <div class="article-meta">techcommunity.microsoft.com &bull; Jun 15, 2026</div>
+          <div class="article-summary snippet"><p>We identified an upgrade issue with the early March release of Microsoft Tunnel version 20260129.1 that caused servers to become stuck and unable to complete the upgrade. The issue can be resolved by uninstalling and reinstalling the server to a newer version (20260330.1 or later). Alternatively, we’ve created a script to help you update affected servers. This blog explains how to use the mstunnel-patch-2602 script to remediate the issue.
+Before you begin
+Before you run the script, make sure you have the following:
+
+Access to the Linux virtual machine hosting the Microsoft Tunnel server
+Permission to run commands with sudo
+The patch script downloaded to the server from https://aka.ms/mstunnel-patch-2602
+
+When to use this script
+Use this script if your server is showing one or more of the following behaviors:
+
+The server remains on the affected version (20260129.1) and doesn’t move to the latest version
+In the Intune admin center, the server health state appears as Healthy, but the upgrade banner shows an error
+The server rolls back to the affected version because of a version mismatch in Agent Settings
+
+Identify impacted servers
+The issue affects servers on version 20260129.1, use the following hash to identify whether your deployment is on this version:
+
+Agent:&amp;nbsp;sha256:abbdcd854aa5ac376aed32c828e4c84917e776a701855cd1e3febed18a3e4dae
+Server:sha256:ad57d6a7ffe21f64fc1577713063ae9b180914cf65bc70b4e49be21299cfc1d3
+
+The issue was resolved with version 20260330.1, released March 30, 2026. You can verify your servers are on this version with the following hash:
+
+Agent:&amp;nbsp;sha256:163214b94af6d91a5ef02690f891c5a41e87b1059b9530324716ee34778c1785
+Server:&amp;nbsp;sha256:dd62c292528e8e5aa4e7b84418efa42fd3830ec0db40467947cde8125aa17d7e
+
+Additionally, in the Intune admin center check the server site auto upgrade setting. If auto upgrade is turned off (Automatically upgrade servers at this site = No), select &quot;Upgrade servers&quot; to configure the latest image for site.
+
+Figure 1: Screenshot of the Microsoft Intune admin center showing a Microsoft Tunnel Gateway site named “SimpleSite” with theUpgrade servers option highlighted.
+
+Run the script
+After downloading the script to the server, complete the following steps.
+Step 1: Enable execution permissions
+If needed, make the script executable:
+chmod +x mstunnel-patch-2602.sh
+&amp;nbsp;
+Step 2: Run the script
+Run the script with elevated permissions:
+sudo ./mstunnel-patch-2602.sh
+When the script runs, it performs the following actions automatically:
+
+Checks whether the current server is using the affected build hashes.
+Creates backups of the current configuration so the system can revert if the update fails.
+Stops the Tunnel agent and server services.
+Updates the configuration with version 20260330.1 hashes
+Pulls version 20260330.1 and forces mst-cli install without requiring additional user input
+
+Expected results
+After the script completes successfully, the server should be updated to the March 30, 2026 version 20260330.1. This remediation is intended to resolve upgrade failures caused by a version mismatch and eliminate the need for a manual uninstall and reinstall workflow.
+If you have any questions or issues running the script to update your servers, reply to this post or reach out to the team on X @IntuneSuppTeam.
+&amp;nbsp;
+Post Updates:6/15/26: Added guidance to check the server site auto-upgrade setting in Intune and use the Upgrade servers option when auto upgrade is disabled to apply the latest image.</p><a href="https://techcommunity.microsoft.com/t5/intune-customer-success/known-issue-upgrading-microsoft-tunnel-version-20260129-1/ba-p/4517935" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ade4407d996')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aaf4f883aca">
+        <div class="article-body">
+          <a href="https://techcommunity.microsoft.com/t5/intune-customer-success/unpacking-endpoint-management-is-back-and-we-ve-got-a-lot-to/ba-p/4514599" target="_blank" rel="noopener noreferrer" class="article-title">Unpacking Endpoint Management is back - and we’ve got a lot to talk about</a>
+          <div class="article-meta">techcommunity.microsoft.com &bull; Jun 19, 2026</div>
+          <div class="article-summary snippet"><p>If you've been missing real, candid conversations about endpoint management, good news! Unpacking Endpoint Management is officially back.
+This series is all about what actually works. No fluff, just practical tips, proven strategies, and honest discussions to help you optimize and simplify the way you manage and secure endpoints today (and prepare for what's next).
+We're bringing together people from across Microsoft Intune, Security, and Customer Experience engineering and product teams, along with guest practitioners, to share what's worked, what hasn't, and what we've learned along the way. And yes…we're absolutely here for the tough questions.
+A quick update on the hosts
+Danny Guillory, a familiar face to the community and a Product Manager for Intune and Configuration Manager, will continue to host the series. He's joined this season by Rachelle Blanchard as co‑host, bringing a strong community and discovery lens to the series. Rachelle focuses on surfacing real customer questions and guiding conversations toward practical outcomes, helping ensure each episode reflects how endpoint management works in the real world.
+Up next
+
+June 30, 2026 – 9:00 a.m. PDT
+App management at scale with Intune
+
+
+July 30, 2026 - 9:00 a.m. PDTTopic TBD - What should we cover? Drop ideas below in the comments.
+
+
+Sign in to the Tech Community and follow this post for the latest updates on upcoming episodes.
+Catch up on demand
+You may have missed them, but you don't have to miss out on the learnings. Watch and learn when it's convenient for you.
+
+Device security with Microsoft Intune
+Trends in endpoint management (live from Tech Takeoff 2026)
+
+Not sure where to start? Watch our most recent episode, Policy: from hybrid to cloud-native, now on demand!
+
+&amp;nbsp;
+What's the format?
+This web series is streamed live on Tech Community, LinkedIn, YouTube, and X. In addition to open discussion, we answer your questions so sign in (or sign up for) the Tech Community and RSVP to submit questions early and throughout the live show.
+How do I join?
+There's no call or meeting to join. Simply head to aka.ms/JoinUEM. Show up at start time, watch live, and jump into the discussion with us.
+Help shape the series
+This series is for you - so tell us what you want to hear. Drop a comment below with:
+
+Topics you'd like us to cover
+Tough questions you want answered
+Speakers you'd love to hear from
+
+We can't wait to get started - and even more excited to hear from you along the way.
+Join the Community to get early insight into what's coming for Intune, connect with experts, and share real-world feedback that helps shape the product. 👉 aka.ms/JoinIntuneCommunity</p><a href="https://techcommunity.microsoft.com/t5/intune-customer-success/unpacking-endpoint-management-is-back-and-we-ve-got-a-lot-to/ba-p/4514599" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aaf4f883aca')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a1670c8dc7b">
+        <div class="article-body">
+          <a href="https://techcommunity.microsoft.com/t5/intune-customer-success/how-to-enable-https-support-for-microsoft-connected-cache-for/ba-p/4496173" target="_blank" rel="noopener noreferrer" class="article-title">How to enable HTTPS support for Microsoft Connected Cache for Enterprise and Education</a>
+          <div class="article-meta">techcommunity.microsoft.com &bull; Jun 18, 2026</div>
+          <div class="article-summary snippet"><p>By: Aditya Middha | Product Manager 2 - Microsoft Connected Cache
+Starting on&amp;nbsp;June 16th, 2026, or soon after, Intune will enforce HTTPS content delivery for customers using Microsoft Connected Cache for Enterprise and Education. To continue using Microsoft Connected Cache to localize Intune Win32 app downloads and reduce the bandwidth impact on your network, you’ll need to configure HTTPS on Connected Cache nodes. Without this configuration, devices will still fetch the requested content, but they’ll fall back to the Content Delivery Network (CDN) and lose the performance and bandwidth savings that Microsoft Connected Cache provides.
+This guide assumes you have already deployed a standalone Microsoft Connected Cache node in your environment. If not, please see the Create and configure Microsoft Connected Cache nodes page.
+By the end of this walkthrough, you’ll be able to:
+
+Prepare the TLS certificate that your Connected Cache needs
+Enable HTTPS support on both Windows and Linux‑based Microsoft Connected Cache servers
+Validate that HTTPS is working end‑to‑end
+Diagnose the most common setup issues
+
+This guide mirrors the workflow described in Microsoft Connected Cache’s public documentation. &amp;nbsp;For further explanation of what HTTPS support changes for Microsoft Connected Cache review HTTPS Support for Microsoft Connected Cache Overview, then proceed to Configure HTTPS on Windows or Configure HTTPS on Linux.
+Step-by-step: Enabling HTTPS support
+To keep this walkthrough easy to follow, the screenshots and command examples use a simple, reproducible environment that matches what most admins will see during their first HTTPS configuration. In this guide, the examples are based on:
+
+A single Connected Cache node deployment
+Windows 11, using a local user runtime account
+Public certificate authority (CA)-signed TLS certificate
+
+This baseline environment is only meant to make the screenshots and file paths predictable. Your own environment may look different, and that’s completely fine. Many customers run Microsoft Connected Cache on:
+
+Linux (Ubuntu or RHEL)
+Windows Server 2022 or Windows Server 2025
+Networks with outbound restrictions
+
+Most of the workflow is identical across these variations. The folder structure, log locations, and command flow will look nearly the same on any Windows host. If you’re running Microsoft Connected Cache on Linux, the workflow is the same, but simpler—bash scripts are ran directly instead of being invoked through PowerShell.
+If your environment includes proxies, make sure all required endpoints are allowed.
+Before you start
+Before generating a certificate signing request (CSR) or importing a certificate, there are a few quick checks to make sure your Connected Cache server can enable HTTPS successfully.
+First, visit the “Cache Node Management” tab on Azure portal. Under the “Software Version” column, verify that your cache node is running on software version 2.0.0.2112 or higher. If not, you will need to reinstall Connected Cache.
+Next, confirm the hostname or IP address your client devices use to reach your Connected Cache node—this value will be configured when you generate the CSR. Also, ake sure port 443 is free on the host; Microsoft Connected Cache needs to bind to it.
+Finally, if your network performs&amp;nbsp;TLS-inspection, ensure the required endpoints are allowed. Intercepted HTTPS traffic will cause devices to reject Microsoft Connected Cache’s TLS certificate, even if everything else is configured correctly.
+Once these checks are done, your node is ready for the HTTPS workflow: generate the CSR on your Connected Cache host machine, sign it with your CA, and import the resulting certificate.
+For more details, refer to the documentation: HTTPS on Windows Prerequisites.
+&amp;nbsp;
+1. Generate a CSR
+The first step in enabling HTTPS support is generating a CSR directly on your Microsoft Connected Cache node. This step cannot be skipped. Microsoft Connected Cache must create the CSR itself so it can generate and retain the private key that will later be paired with your signed certificate during TLS negotiation.
+When configuring the parameters for the generateCsr script, the most important values to get right are the Subject and SAN. These must match exactly how your managed client devices connect to your Connected Cache node. If the client devices use FQDN, include that FQDN; if they connect via IP, include that IP. A mismatch here won’t break CSR generation, but it’ll cause clients to bypass Microsoft Connected Cache later since they won’t trust the certificate during the TLS negotiation.
+For parameter configuration guidance on your specific environment, review these documented scenario-based parameter examples.
+After parameter configuration, you will need to locate the Installer scripts directory, the same as when you installed Microsoft Connected Cache originally. You can move directly to this path by running the following command in your terminal:
+Push-Location (deliveryoptimization-cli mcc-get-scripts-path)
+Once in the correct folder path, run the generateCsr command with your configured parameters. Running the command launches the CSR generation workflow inside the Microsoft Connected Cache-managed Windows Subsystem for Linux (WSL) distribution. The terminal output shows exactly what Connected Cache is doing: where it stores certificate files, where logs are written, which WSL distribution is being used, and the final location of the generated CSR. You’ll also see that Microsoft Connected Cache runs the CSR generation as a scheduled task inside WSL—this is expected and part of the normal flow.
+For example:
+
+This output confirms that Microsoft Connected Cache:
+
+Validated the CSR request
+Passed the Subject (Common Name) and SAN values to the internal script
+Generated the private key and CSR, stored both inside the container
+Wrote logs to the \Certificates\logs folder
+Created the CSR file in the Certificates folder
+
+&amp;nbsp;
+When the process completes, you’ll see the timestamped CSR written to the Windows-side certificates folder (…\Certificates\certs). This is the file you’ll submit to your signing CA:
+
+Troubleshooting:
+
+Every time you run generateCsr, Microsoft Connected Cache writes a full log to a directory that ends with …\Certificates\logs. The terminal output shows you the exact path, and you can always return to this folder if you need to understand what happened during CSR generation. If you do need to troubleshoot, start by opening the most recent log file.
+The generateCsr log provides a detailed trace of each step. The following lines are checkpoints (in order) that you can look for in the more extensive log output:
+
+“Algorithm validation passed / CSR name validation passed” - Microsoft Connected Cache accepted your inputs and is ready to generate the CSR.
+“Subject Components: … / SAN Components: …” - Microsoft Connected Cache will embed these values into the CSR. If these don’t match your Connected Cache server hostname or IP address, regenerate the CSR.
+“Attempting to call http://localhost:5000/csr” - Microsoft Connected Cache internal controller is generating the keypair and CSR inside the WSL container.
+“Key verification succeeded” - Microsoft Connected Cache successfully generated and validated the private key.
+“CSR verification successful” - OpenSSL has validated the CSR structure.
+“Successfully copied logs to windowsCerts location” -&amp;nbsp;The logs were written to the host machine directory.
+“CSR generation completed successfully” - Completed end-to-end successfully.
+
+&amp;nbsp;
+One thing to be aware of: during a successful run, you may still see messages like:
+mkdir: cannot create directory '/keys': Permission denied chmod: cannot access '/keys': No such file or directory
+These are not errors.
+The script checks for required folders before creating them, and if they already exist, those checks generate harmless warnings. As long as the script finishes with a success message and you see a .csr file in the certs folder, the run is successful.
+&amp;nbsp;
+2. Sign the CSR
+This step occurs outside of the scope of Microsoft Connected Cache. Signing your CSR will rely on the PKI that your organization has chosen to use. This may include an internal ADCS, other enterprise internal PKI, or an externally hosted PKI (DigiCert, Let’s Encrypt, etc.). Of note, Cloud PKI will not work with Connected Cache because it requires the CSR be generated via SCEP before signing.
+Ensure that your client devices will be able to trust the CA signature. For many customers, we recommend signing using a public CA that Windows client devices automatically trust. Please reference documentation on signing the CSR for more details.
+The only requirement on the Connected Cache side is that the certificate is in unencrypted .crt format. Microsoft Connected Cache cannot import password-protected certificate formats yet - including .pfx bundles - even if they contain the correct certificate. For now, make sure your signing CA gives you, or allows you to export, a plain X.509 .crt file.
+After your CA signs the CSR, you’ll import the resulting certificate back to Microsoft Connected Cache. With the signed certificate in hand, place it in the same certs folder where your CSR was generated. Microsoft Connected Cache expects both files to live together so it can pair the returned certificate with the private key created earlier. A successful setup in the folder directory looks like this:
+
+If the certificate exists in the Certificates folder in .crt format, you’re ready to continue. Note: The CSR and .crt certificate do not have to have the same name.
+3. Import the certificate back to Microsoft Connected Cache
+Before importing your certificate, remember that the CSR must have been generated on the same Microsoft Connected Cache node. You cannot skip directly to importing a certificate - Microsoft Connected Cache must have created the private key during CSR generation so it can pair the signed certificate with that key.
+After configuring the parameters referenced in the documentation to import the signed TLS certificate, run the importCert command from the same scripts directory used during CSR generation.
+When you start the import, Microsoft Connected Cache runs a full verification workflow inside its managed WSL distribution. The terminal output for this step is intentionally simple—it shows only that the certificate file passed basic validation, that the internal import script was invoked, and that the import is running as a scheduled task within the WSL distribution. You’ll also see that logging is active and that Microsoft Connected Cache has begun monitoring the process:
+
+Although the terminal output is brief, the full workflow is visible in the import logs. A successful import means Microsoft Connected Cache:
+
+Found your .crt file in the expected folder
+Ran cryptographic verification confirming the certificate, CSR, and private key all match
+Copied the certificate into the container and updated Microsoft Connected Cache internal configuration
+Restarted the container with the new certificate
+Enabled HTTPS for Microsoft Connected Cache’s Intune content endpoints
+
+Once these steps are complete, Microsoft Connected Cache is fully configured to serve HTTPS content. You usually won’t see new files added to the Windows certs folder after import as the changes occur inside the Connected Cache container. The final validation that import is successful is if the script exits successfully and the logs show that Microsoft Connected Cache restarted with the new certificate in place.
+Troubleshooting
+Troubleshooting certificate import is similar to troubleshooting CSR generation: every run produces a detailed log in the ...\Certificates\logs folder. If import fails, these logs will show exactly which step did not complete. At this stage, SAN or hostname mismatches do not show up; those only appear later during client-side validation.
+The importCert script only ensures that your certificate, CSR, and private key match (stored inside container, not visible from Certificates folder) and that Microsoft Connected Cache can load them.
+
+&amp;nbsp;
+To help interpret the log, below are the checkpoints you can reference (in order):
+
+“Certificate file validation passed” - Microsoft Connected Cache found the .crt file in the&amp;nbsp;certs folder and its .crt format is valid.
+“Using CertName: … / CSR being used: …” - Microsoft Connected Cache matched the certificate to the CSR that generated the private key.
+“SUCCESS: The CSR, certificate and private key cryptographic materials all match” - Microsoft Connected Cache verified the keypair, CSR, and certificate are a correct trio.
+“Nginx restarted successfully with new certificates” - Microsoft Connected Cache is now configured to serve HTTPS on port 443 inside the container.
+“Certificate import completed successfully” - The end-to-end import succeeded with no errors.
+
+Once the importCert script succeeds, your node is ready for validation.
+Validating HTTPS support end-to-end
+Once your certificate is imported, the final step is validating that Microsoft Connected Cache is now serving content over HTTPS. Detailed test commands are all documented in the Validate HTTPS on Windows guide. Complete the tests first on the Microsoft Connected Cache server, then on a client device. This order matters - server-side validation confirms Microsoft Connected Cache is listening on port 443 with its new TLS certificate; client-side validation confirms that client devices can trust and use that certificate.
+On your Microsoft Connected Cache server
+Start validation on the Microsoft Connected Cache host server. The server side tests include HTTPS and HTTP health endpoint checks that confirm:
+
+Microsoft Connected Cache is successfully bound to port 443
+The TLS certificate loaded correctly
+The TLS certificate, private key, and CSR all correspond
+Microsoft Connected Cache can return its health endpoint over HTTPS
+
+If any of the server-side validation steps fail, check the generateCsr and importCert logs in the …\Certificates\logs folder. The validation guide includes troubleshooting tests that help distinguish whether the issue is certificate-related, connectivity-related, or due to another process on the host.
+Only move on to client-side validation once the Microsoft Connected Cache server passes its own tests.
+On your client device
+After confirming the server is configured correctly, the next stage is validating HTTPS content delivery from a client device that is pointed to use Microsoft Connected Cache. The client-side tests contain both browser-based and command line tests that help verify:
+
+The client trusts the issuing CA
+DNS resolves the Microsoft Connected Cache hostname correctly
+The device can complete a full TLS handshake with Microsoft Connected Cache
+The device is retrieving HTTPS content from Microsoft Connected Cache rather than falling back to CDN
+
+Once both server-side and client side-validation steps succeed, you can be confident that your Microsoft Connected Cache node is fully configured and ready to serve Intune content securely over HTTPS.
+Known issues with HTTPS Support Configuration
+Most customers will complete the HTTPS workflow without any problems, but there are a few known issues we want to call out proactively.
+These issues have been fully addressed with the release of the new Windows-hosted deployment application (v1.0.26.0) for Windows host machines, the new Linux-hosted deployment package (v1.10) for Linux host machines, and the latest GA container release (v2.0.0.2124_e) for all cache nodes.
+
+ ImportCert issues on Windows Server 2022/2025 using a gMSA account, and on Windows 11 using a local user runtime account
+
+If your Microsoft Connected Cache runtime account is a Group Managed Service Account (gMSA) on a Windows Server 2022 or Windows Server 2025 host machine, you may see failures when running importCert. In the importCert logs, this can show up as unsuccessful permissions access or indefinite logging.
+The same importCert issues can also appear on Windows 11 if you are using a local user as the runtime account.
+Status: RESOLVED
+Please download Windows-hosted deployment application v1.0.26.0 by running the following command in an elevated PowerShell window:
+Add-AppxPackage https://aka.ms/do-mcc-ent-windows-x64
+Then you may proceed to re-deploy your Connected Cache node, which will implement the necessary changes.
+You can further verify that you are deploying with the correct application version. When run in the terminal, the copied “Cache Node deployment command” given in the Azure portal will run deploymcconwsl.ps1 out of the folder path that looks like:
+C:\ProgramFiles\WindowsApps\Microsoft.DeliveryOptimization_1.0.26.0_neutral__8wekyb3d8bbwe\deliveryoptimization-cli
+
+ ImportCert hangs on software version 2119_e (buffer bug)
+
+During the week of January 19th, 2026, we deployed container version 2119_e to all customer cache nodes.We discovered a bug where the container’s internal buffer is not cleared during importCert, causing the import to run indefinitely. If you see this behavior and your Azure portal shows that your cache node is on version 2119_e, this is likely the cause.
+Status: RESOLVED:
+On March 3rd, 2026, we pushed container version 2124_e to all cache nodes on the “Fast Ring” update schedule.
+If your cache node is on software version 2119_e today, you can change the update schedule configuration to the “Fast Ring”. Head to the 3rd tab (“Updates”) of the Cache Node Configuration on the Azure portal and configure the update ring. Container version 2124_e will be pushed to all “Slow Ring” nodes in early April 2026.
+If your cache node is still not pulling down container version 2124_e after being configured on the Fast Ring, please reach out to us.
+The fixes for these issues have all been validated. Once ready for public release, the latest software version will be pushed to all cache nodes and the updated Windows installer will be available to download in Azure portal. Stay tuned to the&amp;nbsp;Microsoft Connected Cache Release Notes for up-to-date information.
+Enabling HTTPS support on Linux hosts
+This guide walked through the setup of HTTPS using a Windows-based Microsoft Connected Cache host, since that’s what most customers deploy today. If you're running Microsoft Connected Cache on Linux, the overall steps are the same - generate a CSR on the node, sign it with your CA, and import the resulting .crt file - but a few details differ.
+For a Linux-hosted Microsoft Connected Cache nodes, shell scripts handle the entire process, specifically generateCsr.sh and importCert.sh. The Enable HTTPS Support on Linux guide documents these steps in detail, including the exact script parameters, file locations, and how to interpret the Linux-specific logs. The biggest differences on Linux are:
+
+You run the CSR and import scripts directly in bash (no WSL component).
+File paths and log locations follow the Linux directory structure (/var/mcc/...).
+Check port conflicts, firewall configuration, and TLS inspection using Linux tools (ss, iptables, proxy settings).
+Validation steps use Linux equivalents of the server side tests documented in the Windows validation guide.
+
+Maintaining your HTTPS configuration
+Once your Microsoft Connected Cache node is serving content over HTTPS, the next thing to plan for is ongoing certificate maintenance. TLS certificates aren’t a onetime import - certificates expire, CA chains change, and your operational process needs to keep up. Microsoft Connected Cache will soon surface certificate details both through a command line script and directly in the Azure portal, but those capabilities are not available yet. Until then, verification and rotation rely on simple checks you perform on the Microsoft Connected Cache host.
+Monitoring
+The easiest way to monitor your deployment today is to periodically check the Key Metrics chart in the Overview blade of your Microsoft Connected Cache resource in Azure. If Intune content is flowing through Microsoft Connected Cache, that’s a strong proxy signal that HTTPS is healthy.
+For the certificate itself, many admins perform a lightweight weekly or monthly review: ensuring the TLS certificate is still valid, not approaching expiration, and still matches the configuration you imported. Re-running the validation tests from our public documentation every so often is also a good way to catch any issues early.
+The updated Windows installer, as mentioned in Known Issues, will also have a PowerShell script that displays the status and expiration date of existing TLS certificates.
+Renewal
+When planning for renewal, we recommend starting at least 60 days before the certificate expires. Renewal is typically straightforward: either reuse the existing CSR (most common) or generate a new one, then have your CA resign it, convert it into .crt format, and test the renewed certificate on a test node if you have one. If your workflow doesn’t include a test Connected Cache node, you can still safely import the renewed certificate on your production node - if import fails, Microsoft Connected Cache simply keeps using the existing certificate until a valid one is applied, so you won’t break your environment.
+If your certificate management system has automation capabilities, you can script Microsoft Connected Cache’s certificate renewal workflow as well - for example, by using Secure Shell (SSH) to remotely to run the generateCSR or importCert scripts on the host machine.
+For larger or distributed environments, testing the signing and import processes on a non-production node first can help confirm SAN correctness, trust behavior, and chain completeness before touching production.
+We are actively working to streamline certificate monitoring and renewal inside Microsoft Connected Cache.
+Summary
+HTTPS support for Microsoft Connected Cache will soon become a requirement for delivering Intune Win32 apps, and every Microsoft Connected Cache node must be configured for HTTPS by June 16, 2026. After the deadline, Intune Win32 apps will only be delivered via HTTPS. However, all other content – Windows updates, Office apps, etc – will continue to be served via HTTP after the June 16th enforcement date.
+This guide walked through the essentials: generating a CSR on your Microsoft Connected Cache node, submitting it to your CA, importing the signed certificate, and validating HTTPS from both the server and client devices. Along the way, you saw how to interpret the logs, verify Connected Cache is using your certificate correctly, and ensure that Teams and/or Intune content is &amp;nbsp;flowing over HTTPS instead of falling back to CDN.
+As you move forward, keep your workflow consistent - regenerate or reuse CSRs the same way each cycle, validate regularly, and renew certificates well before expiration. Even though improvements are coming soon, completing this setup now ensures your environment is ready long before Intune HTTPS enforcement begins. With your certificate in place, HTTPS validated, and a simple renewal process in hand, your Microsoft Connected Cache deployment is prepared for the June 16th, 2026 deadline and ready to deliver Intune content securely.
+FAQs
+
+ Do I really need HTTPS Support, and by when?Yes. All Microsoft Connected Cache nodes serving Intune Win32 apps must deliver over HTTPS by June 16, 2026. If HTTPS isn’t configured, devices will fall back to CDN when requesting Intune win32 apps —content delivery still works, but you’ll lose caching benefits.
+ Why do I have to generate the CSR on the Connected Cache node?Since Microsoft Connected Cache must generate and retain the private key itself. Certificates signed from any other machine, keypair, or CSR cannot be imported. The CSR you generate on the node produces the only key that Microsoft Connected Cache will accept.
+ Can I reuse an existing certificate?Only if it was originally issued from the CSR generated on the same Microsoft Connected Cache node. If the certificate was created elsewhere (different machine, tooling, or CSR), Microsoft Connected Cache won’t accept it.
+ Can I reuse my CSR when renewing the certificate?Yes. Many customers reuse the same CSR each cycle as long as the CA resigns it. Reusing the old certificate output is not supported.
+ Can I “bring my own certificate”?Not yet. Microsoft Connected Cache only supports certificates created from its own CSR. Support for bringing an external certificate is coming soon; stay up to date by viewing the latest Microsoft Connected Cache Release Notes
+ Can I use a wildcard certificate?Microsoft Connected Cache does not officially support them and they’re not recommended. Wildcards often involve shared private keys across systems, which creates operational and security risks.
+ What certificate formats does Microsoft Connected Cache support?Microsoft Connected Cache only supports unencrypted .crt files today. Password protected .pfx or .p12 formats cannot be imported.
+ What happens if I redeploy Microsoft Connected Cache or the hostname changes?If the hostname or connection path changes, you must request a new certificate that matches the new SAN parameters. If the hostname stays the same and the certificate came from the Connected Cache-generated CSR, you can continue using it.
+
+If you have any questions, leave a comment below or reach out to us on&amp;nbsp;X @IntuneSuppTeam!
+&amp;nbsp;
+Post Updates:04/08/26: Updated the “Known issues with HTTPS Support Configuration” section to reflect that previously identified issues have been fully resolved in the latest deployment application and container releases, along with updated guidance for affected cache nodes.</p><a href="https://techcommunity.microsoft.com/t5/intune-customer-success/how-to-enable-https-support-for-microsoft-connected-cache-for/ba-p/4496173" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a1670c8dc7b')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a6e666cdcf4">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi7wFBVV95cUxPNFlmWlVQOXA5UVZ0bmpxOVZ0ZWRYVFYycDdGOXFuV1dQWEhQMkxhbERZbkdORF9Pamc5UkpJdngxc1JBY0RUcFNHRDZUNU1Idy01WHlKQzhITWotcTI2SjVQZGZiZHVPMkpBVy1wa1hzekdtcmNGQ3hGeEFLR1BrVGNRMTc0cjBDWmhoTjhfTUw0TDZzRHBwOGJMNGVLMzJTdml3cVBTTnlvRWNtSC1UNjUzX1F6MVpONEN6Z2U5QVVucm5HYzdiM2JmUHhWSHA0Tl8xeEJGN0o1eDdQNDNvbm1hdDdlMzdLeVljVVhZQQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">EPC Group Launches Copilot &amp; Microsoft 365 Tenant Security Review as 80% of Tenants Found Misconfigured - Akron Beacon Journal</a>
+          <div class="article-meta">Akron Beacon Journal &bull; Jun 14, 2026</div>
+          <div class="article-summary snippet"><p>EPC Group Launches Copilot &amp; Microsoft 365 Tenant Security Review as 80% of Tenants Found Misconfigured&amp;nbsp;&amp;nbsp;Akron Beacon Journal</p><a href="https://news.google.com/rss/articles/CBMi7wFBVV95cUxPNFlmWlVQOXA5UVZ0bmpxOVZ0ZWRYVFYycDdGOXFuV1dQWEhQMkxhbERZbkdORF9Pamc5UkpJdngxc1JBY0RUcFNHRDZUNU1Idy01WHlKQzhITWotcTI2SjVQZGZiZHVPMkpBVy1wa1hzekdtcmNGQ3hGeEFLR1BrVGNRMTc0cjBDWmhoTjhfTUw0TDZzRHBwOGJMNGVLMzJTdml3cVBTTnlvRWNtSC1UNjUzX1F6MVpONEN6Z2U5QVVucm5HYzdiM2JmUHhWSHA0Tl8xeEJGN0o1eDdQNDNvbm1hdDdlMzdLeVljVVhZQQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a6e666cdcf4')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="entraid" class="topic-section">
+      <h2 class="topic-title" style="--c:#6B69D6">Entra ID <span class="count">(4)</span></h2>
+      <div class="article-card" data-id="a81b47fc1ea">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/06/crypto-clipper-campaign-abuses-fake.html" target="_blank" rel="noopener noreferrer" class="article-title">Crypto Clipper Campaign Abuses Fake Reviews, AI Narrators, and VirusTotal Comments</a>
+          <div class="article-meta">thehackernews.com &bull; Jun 17, 2026</div>
+          <div class="article-summary"><p>An unknown threat actor has been observed leveraging paid or promoted posts on legitimate news websites to drum up buzz for their warez, according to new findings from Check Point Research.
+The threat actor also has at their disposal a dedicated WordPress phishing page that acts as the central hub, alongside GitHub and SourceForge projects promoted by fake accounts, a YouTube channel, and a cluster of accounts that engage in coordinated activity on VirusTotal with the intent to misclassify malicious files as safe.
+&quot;To push a malicious 'tool,' a single threat actor borrowed the same playbook legitimate brands use to build buzz: inflated download counts, coordinated five-star reviews, influencer-style tutorial videos, and promotion on platforms people instinctively trust,&quot; Check Point said in a report shared with The Hacker News. &quot;The result is a fake reputation economy spanning every platform a curious victim might check before they click 'download.'&quot;
+The end goal of the campaign is to push a cryptocurrency clipboard hijacker that's concealed within Solana and Pump.fun sniper bots and crash-game predictors, suggesting that cryptocurrency asset holders and online gamblers on the hunt for shortcuts and quick profits are the targets.
+The Rust-based clipper targets both Windows and macOS systems, and continuously monitors the clipboard for content that matches a cryptocurrency wallet address pattern. When a match is found, the malware substitutes the wallet address with an attacker-controlled address pulled from a hard-coded list, effectively routing the digital assets to them.
+What's notable about the activity is the use of Ghost Networks to poison reputation-driven systems like VirusTotal, aiming to reduce suspicion and increase victims' trust in the malicious files through a combination of upvotes and highly positive comments.
+This behavior also extends to GitHub, where the threat actor operates at least six GitHub accounts to cross-promote and distribute their malware. These synthetically boosted signals are designed to lull users into a false sense of security and trust. One such repository has 146 stars and 62 forks.
+&quot;On SourceForge, the download counter reached 44,485, with a suspicious 37,460 supposedly originating from Android devices, despite the developer only offering Windows and macOS versions,&quot; Check Point explained. &quot;A plausible explanation is the use of an Android farm to artificially inflate the download count on SourceForge.&quot;
+Furthermore, the software solutions are promoted through a dedicated YouTube channel with over 91,000 subscribers. The channel was created in July 2020, with the operators claiming that it's &quot;strictly for educational purposes only.&quot; The tutorial-style videos feature AI‑generated narrators and positive comments to reinforce the illusion of popularity and trustworthiness.
+Perhaps the most unusual aspect of the campaign is the threat actor's use of a press release distribution service like EIN Presswire to market their tool's purported capabilities. The press release has since been syndicated across the service's partner news websites, primarily the USA TODAY Network.
+&quot;Manipulating sentiment and reputation across crowd-sourced platforms marks a meaningful shift in how attackers build trust,&quot; Check Point said. &quot;The same playbook of fake reputation and aggressive cross-platform promotion can easily distribute information stealers or ransomware to higher-value targets over time.&quot;</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a81b47fc1ea')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aab772e3a6a">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMioAFBVV95cUxPcXhST2NDQkFWTk9fZzJ6V19QTDdNdy02eFlldDY3VUZZM2VoaTJ2bXIySzRWSWp2MVdEYXNkaHZYQkNoYW1fRjBnSVNuVFRKeDBzb0FWYkxWNEtnV3FyTXFDckNGT2MwdWxnQXB4NDNLSzl4NnA4TW81ZjBsYXczMERRWXhzS2NJeWVmamhjdEtlSTdMeG14blVzWHV6NENR?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Acsense Expands Its Identity Control Plane with Microsoft Entra ID Support - Yahoo Finance</a>
+          <div class="article-meta">Yahoo Finance &bull; Jun 16, 2026</div>
+          <div class="article-summary snippet"><p>Acsense Expands Its Identity Control Plane with Microsoft Entra ID Support&amp;nbsp;&amp;nbsp;Yahoo Finance</p><a href="https://news.google.com/rss/articles/CBMioAFBVV95cUxPcXhST2NDQkFWTk9fZzJ6V19QTDdNdy02eFlldDY3VUZZM2VoaTJ2bXIySzRWSWp2MVdEYXNkaHZYQkNoYW1fRjBnSVNuVFRKeDBzb0FWYkxWNEtnV3FyTXFDckNGT2MwdWxnQXB4NDNLSzl4NnA4TW81ZjBsYXczMERRWXhzS2NJeWVmamhjdEtlSTdMeG14blVzWHV6NENR?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aab772e3a6a')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a4d8449c20d">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMihgFBVV95cUxPX29SRl9Kd2RiZEZWTzFCaEJ3OGl0elhTUVZQVE5rVDFuMUZyYWd2NGVOc3VuTzRKLVBJTmNlTlAxNTJXZUEtZHFib3RIdFRZMWdNa0UzZnNTcjFCdUhOY0Vsb1BMdGp0ZzY3MlZyUnZQajExTzlhdkJHZmxadVlCcUxfSUFpQQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">ShareGate adds Entra ID migration for Microsoft 365 - IT Brief UK</a>
+          <div class="article-meta">IT Brief UK &bull; Jun 19, 2026</div>
+          <div class="article-summary snippet"><p>ShareGate adds Entra ID migration for Microsoft 365&amp;nbsp;&amp;nbsp;IT Brief UK</p><a href="https://news.google.com/rss/articles/CBMihgFBVV95cUxPX29SRl9Kd2RiZEZWTzFCaEJ3OGl0elhTUVZQVE5rVDFuMUZyYWd2NGVOc3VuTzRKLVBJTmNlTlAxNTJXZUEtZHFib3RIdFRZMWdNa0UzZnNTcjFCdUhOY0Vsb1BMdGp0ZzY3MlZyUnZQajExTzlhdkJHZmxadVlCcUxfSUFpQQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a4d8449c20d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="af3448c2f8e">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMipgFBVV95cUxNa05YZnVQckluQkVoOWJxYUR4SERXSGRYU2t6d1UxcnVQNjhEbDRRTGhscHJ5WVl0SnkycFk5T0gwYjVONVhPdmg5NHFrVmhTV2l0VU1PeDFwMVV1RFl1M3FkTkdpUjQxeUZZVEY5NzN2Ukt0RW1hYWhHT3BPb2lSUk9GYk5RMnZUaWM0enpKbGxJdmIxSDZJODF5M2I5QkdMU1FweThR?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">ShareGate Launches Entra ID Migration, Giving IT Teams One Tool for a Full Microsoft 365 Tenant-to-tenant Migration - 富途牛牛</a>
+          <div class="article-meta">富途牛牛 &bull; Jun 16, 2026</div>
+          <div class="article-summary snippet"><p>ShareGate Launches Entra ID Migration, Giving IT Teams One Tool for a Full Microsoft 365 Tenant-to-tenant Migration&amp;nbsp;&amp;nbsp;富途牛牛</p><a href="https://news.google.com/rss/articles/CBMipgFBVV95cUxNa05YZnVQckluQkVoOWJxYUR4SERXSGRYU2t6d1UxcnVQNjhEbDRRTGhscHJ5WVl0SnkycFk5T0gwYjVONVhPdmg5NHFrVmhTV2l0VU1PeDFwMVV1RFl1M3FkTkdpUjQxeUZZVEY5NzN2Ukt0RW1hYWhHT3BPb2lSUk9GYk5RMnZUaWM0enpKbGxJdmIxSDZJODF5M2I5QkdMU1FweThR?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('af3448c2f8e')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="m365" class="topic-section">
+      <h2 class="topic-title" style="--c:#D83B01">Microsoft 365 <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a1b2a718723">
+        <div class="article-body">
+          <a href="https://www.microsoft.com/en-us/microsoft-365/blog/2026/06/16/copilot-cowork-is-now-generally-available/" target="_blank" rel="noopener noreferrer" class="article-title">Copilot Cowork is now generally available</a>
+          <div class="article-meta">microsoft.com &bull; Jun 16, 2026</div>
+          <div class="article-summary"><p>Today we’re announcing the general availability of Copilot Cowork worldwide.
+After three months of preview in Frontier, more than half of the Fortune 500 is using Copilot Cowork, along with companies like Accenture, Avanade, Advance Local, Capital Group, Koch, LTM, Ooredoo Qatar, and Zurich Insurance.
+We have been impressed by your creativity and what you have all built with it. One engineering team taught Cowork how to safely edit batch‑job spreadsheets and generate dependency flow charts after every change, automating work that previously required careful manual intervention. One team compared nearly four thousand files across two product versions, work that would have taken weeks. One sales lead pointed Cowork at a stalled pipeline and got back a ranked list of at-risk opportunities with the exact follow-up that had gone cold on each, collapsing a week of manual review into a single morning.
+Cowork is the fastest growing feature in the history of our Frontier program, and Cowork has among the highest user satisfaction of any Copilot or agent experience we have shipped. We learned from what we saw, engaged with you along the way, and used everything we heard to improve quality and add new features, including model choice, extensibility through plugins, and new cost management controls. Read more below and watch the full demo.
+What makes Copilot Cowork different
+Copilot Cowork executes complex, long-running, multi-tool tasks. You define the work and Cowork runs it end-to-end and returns a completed result, not just a draft or a recommendation. Cowork is designed to be more accurate, more secure, and lower cost than other offerings. Five things make that true:
+- Cloud hosting means files are not stored locally, security is strongly enforced, and your tasks keep running even when your laptop is off.
+- Native Work IQ support grounds every task in the systems your business already runs on, so the work reflects real context.
+- Enterprise-grade security and compliance ensure Cowork operates within your Microsoft 365 trust boundary, with protections that align to your organization’s existing policies and controls.
+- Multi-model design lets you run the models a task needs, so capability scales with the work as more models become available.
+- Lower cost from a runtime that efficiently finds the right information and tools, model choice that matches the right model to each task, and billing that charges you only for what you use.
+When comparing the cost per prompt between Copilot Cowork and Claude Cowork with their Microsoft 365 connector, testing showed that Copilot Cowork on average was 30-40% cheaper.1
+Our newest model, Cowork 1, will be a secure, fine-tuned model releasing in the coming weeks, post-trained to handle tasks at a substantially lower cost. You are not locked into one model with Copilot—you can use the most efficient model or frontier models.
+Pricing model
+Copilot Cowork requires the Microsoft 365 Copilot User Subscription License (USL). Users are then billed for Cowork on a usage-based basis, with charges determined by the tasks they run.
+The Microsoft 365 Copilot USL includes a complete AI productivity experience: Copilot Chat; Copilot in Word, Excel, PowerPoint, Outlook, and Teams, the Work IQ context engine; a multi-model system offering frontier intelligence; pre-built agents like Researcher and Analyst; and custom agents built with Agent Builder. All of that for a predictable per user per month fee.
+Copilot Cowork adds a whole new way of working: an agentic system designed for complex, long-running, multi-tool tasks. You are billed on a usage basis, denominated in Copilot Credits, and the price for each task is calculated from four inputs: model use, context retrieval, tool calls, and runtime.
+In my customer meetings over the last few months, the most frequent question I’ve heard is how to budget for Cowork given its variable pricing model.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a1b2a718723')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a13e41e9211">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-365-tenant-to-tenant-migration-without-data-loss-the-decisions-that-matter-most/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft 365 Tenant-to-Tenant Migration Without Data Loss: The Decisions That Matter Most</a>
+          <div class="article-meta">petri.com &bull; Jun 18, 2026</div>
+          <div class="article-summary"><p>Why do so many Microsoft 365 tenant-to-tenant migrations appear successful at cutover, only for missing permissions, broken sharing, and inaccessible data to surface afterward?
+Tenant-to-tenant migration is one of those projects that looks straightforward on paper and reveals its complexity about three weeks in. Migrations are often driven by mergers, acquisitions, divestitures, or rebranding initiatives, but the underlying technical complexities remain largely the same.
+Permissions do not cross tenant boundaries. Sharing links breaks, and guest access disappears. Teams channels lose their history. Identity conflicts surface at the worst possible moment. None of this is news to experienced migration engineers, and yet data loss from tenant-to-tenant moves remains a frequent post-project conversation.
+The success or failure of a tenant-to-tenant migration is rarely determined during cutover. It is usually shaped by the decisions made beforehand, the dependencies teams overlook, and the assumptions that remain untested until users begin working in the new environment.
+Standard Microsoft 365 migrations, such as moving from on-premises Exchange to M365, involve a relatively contained set of variables. This contrasts sharply with Microsoft 365 tenant-to-tenant migration overview, where both environments operate as external systems despite belonging to the same ecosystem.
+Tenant-to-tenant migration is a different ballgame altogether.
+The source and destination are both M365 environments, which somehow creates a false sense of compatibility. In practice, the two tenants treat each other as external organizations. What that means in operational terms:
+Most migration plans underestimate the operational impact these dependencies create.
+Many post-migration issues can be traced back to assumptions made early in the project, long before users experience the consequences after cutover.
+Identity conflict is the most daunting pre-migration problem and the one teams most frequently underestimate. Multiple domains, hybrid identities, guest users with legacy UPNs, and accounts that exist in both tenants under different names create mapping problems that are often underestimated until access issues begin appearing after migration.
+User identity alignment is one of the most consequential decisions in any tenant-to-tenant migration because every downstream permission, ownership assignment, and access relationship depends on it.
+Accounts without a clean match need to be resolved manually. Running this reconciliation work after migration begins is where silent data loss originates, and files land in the destination tenant with no owner, permissions break, and items that look migrated are inaccessible.
+What about old employee accounts, inactive Teams workspaces, unused shared mailboxes, and abandoned project sites? In many cases, they end up increasing operational complexity, extending migration timelines, and leaving behind additional post-migration remediation tasks.
+One of the most common migration assumptions is that everything should move. In practice, unnecessary data often increases complexity, extends validation efforts, and introduces dependencies that nobody realised still existed.
+Scope disagreements rarely emerge during planning sessions. They typically surface after migration, when stakeholders discover that their expectations of what was moving did not match reality.
+One of the most overlooked assumptions in tenant-to-tenant migration projects is that equivalent licensing automatically results in an equivalent user experience. Licensing differences between source and destination environments can affect access to features, retention policies, collaboration capabilities, and compliance controls in ways that are not immediately obvious.
+These issues rarely appear during planning discussions because the focus tends to remain on moving users and data.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a13e41e9211')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a9ea38601ca">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-365-copilot-license/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft 365 Copilot License: Pricing, Requirements, and What’s Actually Included</a>
+          <div class="article-meta">petri.com &bull; Jun 16, 2026</div>
+          <div class="article-summary"><p>What the Microsoft 365 Copilot User Subscription License includes, which plans qualify, and where extra costs can still appear.
+Microsoft 365 Copilot User Subscription License (USL) is a paid add-on license for users who want Copilot inside Word, Excel, PowerPoint, Outlook, and Teams. To buy it, you need a qualifying Microsoft 365 or Office 365 base plan. It isn’t included by default in Microsoft 365 E3 or E5, and smaller organizations on Microsoft 365 Business plans can buy Microsoft 365 Copilot Business instead.
+In this article, I look at which plans qualify, what the license actually includes, where Copilot Business fits, and when extra costs can appear beyond the base per-user fee.
+At its core, Microsoft 365 Copilot USL is a per-user add-on license layered on top of an existing Microsoft 365 subscription.
+What that license unlocks is straightforward:
+What most organizations think they’re buying is AI productivity per user but that’s only part of the story.
+Microsoft has split Copilot into two layers:
+The key difference is:
+In other words, not every user with “Copilot” has the same experience.
+Unlike Copilot Studio, Microsoft 365 Copilot looks like an “all you can eat” model.
+Microsoft 365 USL covers the full in-app Microsoft 365 Copilot experience for work accounts, while separate pay-as-you-go and extensibility cost models apply to services such as Copilot Chat, SharePoint agents, connectors, and some agent-driven scenarios.
+For example, if you have a Microsoft 365 USL and work with Copilot Chat, you could potentially incur extra costs in these scenarios:
+Note: Consumer Microsoft 365 Copilot plans (Personal, Family, and Premium) are governed more visibly through feature caps and credit buckets, while commercial Microsoft 365 Copilot USLs split the model between the per-user add-on and usage-based billing for specific services.
+Microsoft 365 Copilot Business is Microsoft’s SMB-focused option for organizations with eligible Microsoft 365 Business plans. Customers with Microsoft 365 Business Basic, Business Standard, or Business Premium can buy Copilot Business as an add-on, and the product supports up to 300 seats per tenant. Organizations with more than 300 users should look at Microsoft 365 Copilot instead.
+The important point is that Copilot Business is not a cut-down experience. Microsoft says it delivers the same capabilities as Microsoft 365 Copilot, but it is positioned as a more accessible option for small and mid-sized businesses already using Microsoft 365 for business plans.
+The biggest misconception about Microsoft 365 Copilot is that the $30/user/month covers everything.
+There are two scenarios where costs extend beyond the base license:
+Once you move beyond basic user interactions — for example:
+Once you move beyond basic user interactions, extra costs can appear in extensibility and agent scenarios. Your Copilot license type affects whether usage-based billing applies when you use connectors, agents, or other extensibility options.
+This is where Copilot Studio and wider Copilot services come into play.
+If users don’t have a Microsoft 365 Copilot add-on license and instead use pay-as-you-go services such as Microsoft 365 Copilot Chat or SharePoint agents, that usage can be billed separately through Microsoft’s pay-as-you-go model.
+This is an easy way to introduce unplanned cost.
+Microsoft positions the standard Microsoft 365 Copilot license as the predictable per-user monthly fee, while Copilot Cowork adds variable costs for agentic tasks. It starts with a Microsoft 365 USL, you can’t use Copilot Cowork without one. Each task consumes credits and the total cost depends on several factors, like the AI model selected, data transfer, the tools used, and how long tasks run.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a9ea38601ca')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a840a243073">
+        <div class="article-body">
+          <a href="https://petri.com/copilot-cowork-task-automation-microsoft-365/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Releases Copilot Cowork to Automate Enterprise Workflows Across Microsoft 365</a>
+          <div class="article-meta">petri.com &bull; Jun 16, 2026</div>
+          <div class="article-summary"><p>New capabilities include plugin integrations, web browsing, and usage-based cost controls.
+Key Takeaways:
+Microsoft’s Copilot Cowork, the AI-powered productivity agent first announced in March, is now generally available after completing its preview phase. The company has developed Copilot Cowork in “close collaboration” with the AI startup Anthropic.
+The Copilot Cowork feature works like an intelligent digital teammate that is designed to take on entire tasks from start to finish rather than just offering suggestions. Users describe what they need, and it handles the process on its own, which involves pulling in relevant data, using different tools, and producing a complete result.
+Over the past few months, Copilot Cowork has been widely adopted by over half of the Fortune 500 companies, including Accenture, Avanade, and Advance Local. Microsoft highlighted that early users reported major productivity gains by automating complex tasks that previously required significant manual effort.
+“Cowork is the fastest growing feature in the history of our Frontier program, and Cowork has among the highest user satisfaction of any Copilot or agent experience we have shipped. We learned from what we saw, engaged with you along the way, and used everything we heard to improve quality and add new features, including model choice, extensibility through plugins, and new cost management controls,” said Charles Lamanna, EVP, Copilot, Agents and Platform at Microsoft.
+With this release, Copilot Cowork is getting a new integration with the Microsoft 365 Copilot app for smoother workflow transitions. Moreover, Microsoft has introduced support for third-party plugins, including Miro, Monday.com, and financial data platforms. This update also introduces the ability to browse the web via Microsoft Edge within enterprise controls.
+At launch, Copilot Cowork uses advanced AI models from Anthropic (such as Opus 4.8 and Sonnet 4.6), and customers enrolled in the Frontier program can also access GPT‑5.5. Microsoft is also planning to launch a new model called Cowork 1, which is designed to improve performance while reducing costs.
+This model aims to handle business tasks more efficiently, offer enterprise‑level reliability, and minimize issues like bias. This makes it a cost-effective choice for organizations that need to manage expenses.
+Currently, Copilot Cowork is available to all commercial customers with a Microsoft 365 Copilot subscription. Copilot Cowork follows a usage-based pricing approach rather than a fixed-cost model. Each task consumes “Copilot Credits,” and the total cost depends on factors such as the AI model selected, how much data is retrieved, which tools are used, and how long the task runs.
+Check out this article on Petri.com for more information on Microsoft 365 Copilot licensing.
+Copilot Cowork includes several features to help IT admins control and manage their spending in enterprise environments. Administrators have the ability to decide when the tool is enabled, who can access it, and how much can be spent by setting budgets and limits.
+It also offers clear visibility into usage and provides detailed reports on costs at the user, group, and organizational levels. Enterprise admins can improve efficiency through options like selecting different AI models and choosing suitable payment plans, which allow businesses to optimize costs based on their needs.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a840a243073')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a3a170df2ba">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMipwFBVV95cUxNYl95X2hIN1lFYnFNM0EtVUtOWlJrQWp2Q25CWDFlR3VxdFF4dlZxY3FQX0V0emd5dFQ3UDZjWWRQNUpnR3VpNzRLUUpENXBvYVprQ1RhQkw0SkVwcmZDR0pHbFhQNVR5RHlhRjNuak5NWU9jclBXTkpVeXU0NUlMeHc0T3pMYXpuT1Z6azNNcjJlT294dzQyaUxFNHhTekNhQjNWOXppNA?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Copilot Cowork is now generally available - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; Jun 16, 2026</div>
+          <div class="article-summary snippet"><p>Copilot Cowork is now generally available&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMipwFBVV95cUxNYl95X2hIN1lFYnFNM0EtVUtOWlJrQWp2Q25CWDFlR3VxdFF4dlZxY3FQX0V0emd5dFQ3UDZjWWRQNUpnR3VpNzRLUUpENXBvYVprQ1RhQkw0SkVwcmZDR0pHbFhQNVR5RHlhRjNuak5NWU9jclBXTkpVeXU0NUlMeHc0T3pMYXpuT1Z6azNNcjJlT294dzQyaUxFNHhTekNhQjNWOXppNA?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a3a170df2ba')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a00afee9366">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMicEFVX3lxTE40TXZvcW13a0VjVmpEQTAyWkNfTFlzSW5FOVljbFFmUEw5TlZKa190NWowNno4R0ZNRlRfR3Q5NUhDb3BSbFpnMFAyNzFUc0VCR3VHeFByTjVrbDh5dW9nQ0lYV1dHVm9ZTG9DSU1SWUs?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">What’s New in Microsoft 365 – June 2026 - Seton Hall University</a>
+          <div class="article-meta">Seton Hall University &bull; Jun 15, 2026</div>
+          <div class="article-summary snippet"><p>What’s New in Microsoft 365 – June 2026&amp;nbsp;&amp;nbsp;Seton Hall University</p><a href="https://news.google.com/rss/articles/CBMicEFVX3lxTE40TXZvcW13a0VjVmpEQTAyWkNfTFlzSW5FOVljbFFmUEw5TlZKa190NWowNno4R0ZNRlRfR3Q5NUhDb3BSbFpnMFAyNzFUc0VCR3VHeFByTjVrbDh5dW9nQ0lYV1dHVm9ZTG9DSU1SWUs?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a00afee9366')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aef341dff35">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMivAFBVV95cUxOMlNsSVpnd1Zfajd6UXoxMWNESDFCT3JjdGVjUmZ6RkQwaW5SVmlWekFfSERCLTU5Y0g4V1ZKQWppUmVNaWRDM3hzU3k0UXhYMGVVVXFFdV8zYl9BenY1cWluMC1aMFhTRExzcjlkdFBBZ29jUzNVOVJQdkpXN3dEQTh5UXNid3R1QW9ZY1p2SnVBQ2hRdzhJYmsxRS1USEVZWGpCN1BIRUhZb3JlXzFmajRrMDh2WnYySi16bA?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Three Times Cheaper Than a MacBook, This 5-Star Laptop with Office 365 Is 60% Off on Amazon - Gizmodo</a>
+          <div class="article-meta">Gizmodo &bull; Jun 20, 2026</div>
+          <div class="article-summary snippet"><p>Three Times Cheaper Than a MacBook, This 5-Star Laptop with Office 365 Is 60% Off on Amazon&amp;nbsp;&amp;nbsp;Gizmodo</p><a href="https://news.google.com/rss/articles/CBMivAFBVV95cUxOMlNsSVpnd1Zfajd6UXoxMWNESDFCT3JjdGVjUmZ6RkQwaW5SVmlWekFfSERCLTU5Y0g4V1ZKQWppUmVNaWRDM3hzU3k0UXhYMGVVVXFFdV8zYl9BenY1cWluMC1aMFhTRExzcjlkdFBBZ29jUzNVOVJQdkpXN3dEQTh5UXNid3R1QW9ZY1p2SnVBQ2hRdzhJYmsxRS1USEVZWGpCN1BIRUhZb3JlXzFmajRrMDh2WnYySi16bA?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aef341dff35')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a3bb2bd69ad">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiiwFBVV95cUxPOWUyXzljRXZiZmhvQmYtNlFKNDVYY2dPaTZFWGpab3BDVzBJRjYzSmx4WFZkMEM0Y0VnSk12cTRHUExpRU81M0xsNVNSOFhPc0ZlVHlsLWJaampwLXNyYWNlNkExSUZlMW9yQXlhRE5EMXJ0MEc1Z2xJYllJVkZNOXVlUVdGQUJVYXA4?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Skip the Microsoft 365 subscription with Office 2024 for $105 - Mashable</a>
+          <div class="article-meta">Mashable &bull; Jun 19, 2026</div>
+          <div class="article-summary snippet"><p>Skip the Microsoft 365 subscription with Office 2024 for $105&amp;nbsp;&amp;nbsp;Mashable</p><a href="https://news.google.com/rss/articles/CBMiiwFBVV95cUxPOWUyXzljRXZiZmhvQmYtNlFKNDVYY2dPaTZFWGpab3BDVzBJRjYzSmx4WFZkMEM0Y0VnSk12cTRHUExpRU81M0xsNVNSOFhPc0ZlVHlsLWJaampwLXNyYWNlNkExSUZlMW9yQXlhRE5EMXJ0MEc1Z2xJYllJVkZNOXVlUVdGQUJVYXA4?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a3bb2bd69ad')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="iru" class="topic-section">
+      <h2 class="topic-title" style="--c:#7C3AED">Iru MDM (formerly Kandji) </h2>
+      <p class="no-news">No articles found this week.</p>
+    </section>
+    <section id="cato" class="topic-section">
+      <h2 class="topic-title" style="--c:#FF6B35">Cato Networks <span class="count">(1)</span></h2>
+      <div class="article-card" data-id="a0c2e0c49b1">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE5yUEN0RUNLaURiTFpZdnhtVjRKX2c0aHR0YXVtSm9YUGNPR0dmdTA0M0RGd3NBVkNGTXFtcFJ2VFFkWVd2MmI4b3BIQWZDcVVqcUd3ZWc3Umotdw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">&quot;Shekel makes Israeli engineers world’s most expensive&quot; - גלובס</a>
+          <div class="article-meta">גלובס &bull; Jun 17, 2026</div>
+          <div class="article-summary snippet"><p>&quot;Shekel makes Israeli engineers world’s most expensive&quot;&amp;nbsp;&amp;nbsp;גלובס</p><a href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE5yUEN0RUNLaURiTFpZdnhtVjRKX2c0aHR0YXVtSm9YUGNPR0dmdTA0M0RGd3NBVkNGTXFtcFJ2VFFkWVd2MmI4b3BIQWZDcVVqcUd3ZWc3Umotdw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a0c2e0c49b1')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+</main>
+
+<footer>
+  Generated every Sunday &mdash; Topics: Windows &bull; Azure &bull; SharePoint &bull; Intune &bull; Entra ID &bull; Microsoft 365 &bull; Iru MDM (formerly Kandji) &bull; Cato Networks
+</footer>
+
+<script>
+const KEY = 'it-news-hidden-v1';
+function getHidden() {
+  try { return new Set(JSON.parse(localStorage.getItem(KEY) || '[]')); }
+  catch { return new Set(); }
+}
+function saveHidden(s) { localStorage.setItem(KEY, JSON.stringify([...s])); }
+function toggleArticle(id) {
+  const h = getHidden();
+  h.has(id) ? h.delete(id) : h.add(id);
+  saveHidden(h); applyHidden(h);
+}
+function applyHidden(h) {
+  h = h || getHidden();
+  document.querySelectorAll('.article-card[data-id]').forEach(c => {
+    c.classList.toggle('is-hidden', h.has(c.dataset.id));
+  });
+}
+let revealing = false;
+function toggleReveal() {
+  revealing = !revealing;
+  document.body.classList.toggle('reveal-hidden', revealing);
+  document.getElementById('reveal-btn').textContent = revealing ? 'Hide hidden' : 'Show hidden';
+}
+fetch('weeks.json').then(r => r.json()).then(weeks => {
+  const sel = document.getElementById('week-sel');
+  weeks.forEach(w => {
+    const o = document.createElement('option');
+    o.value = w.file; o.textContent = w.label;
+    if (w.current) o.selected = true;
+    sel.appendChild(o);
+  });
+}).catch(() => {});
+applyHidden();
+</script>
+</body>
+</html>
