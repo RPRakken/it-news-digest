@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT News Digest — 2026-W26</title>
+  <style>
+    :root{--bg:#f8fafc;--surface:#fff;--border:#e2e8f0;--text:#1e293b;--muted:#64748b;--accent:#2563eb}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+    a{color:var(--accent)}
+
+    header{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+    .h-inner{max-width:1000px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .h-brand{font-size:1.1rem;font-weight:800;color:#1d4ed8}
+    .h-meta{font-size:.78rem;color:var(--muted)}
+    .h-controls{display:flex;gap:8px;align-items:center}
+    .btn{padding:5px 12px;border-radius:6px;font-size:.78rem;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);white-space:nowrap}
+    .btn:hover{background:#f1f5f9}
+    select.week-sel{padding:5px 10px;border-radius:6px;border:1px solid var(--border);background:var(--surface);font-size:.78rem;cursor:pointer;color:var(--text)}
+
+    .t-nav{background:var(--surface);border-bottom:1px solid var(--border);overflow-x:auto}
+    .t-nav-inner{max-width:1000px;margin:0 auto;padding:8px 20px;display:flex;gap:6px;min-width:max-content}
+    .nav-link{font-size:.72rem;padding:3px 10px;border-radius:20px;border:2px solid var(--c,#2563eb);color:var(--c,#2563eb);text-decoration:none;font-weight:600;white-space:nowrap}
+    .nav-link:hover{background:var(--c,#2563eb);color:#fff}
+
+    main{max-width:1000px;margin:0 auto;padding:24px 20px}
+
+    .week-hero{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin-bottom:28px;display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+    .hero-title{font-size:1.6rem;font-weight:900;color:#1d4ed8}
+    .hero-sub{font-size:.85rem;color:var(--muted);margin-top:2px}
+    .stat-box{text-align:center;min-width:60px}
+    .stat-num{font-size:2rem;font-weight:900;color:#1d4ed8;line-height:1}
+    .stat-lbl{font-size:.65rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+
+    .topic-section{margin-bottom:40px}
+    .topic-title{font-size:1.2rem;font-weight:800;color:var(--c,#2563eb);border-bottom:3px solid var(--c,#2563eb);padding-bottom:8px;margin-bottom:14px}
+    .count{font-size:.8rem;font-weight:400;color:var(--muted)}
+    .no-news{color:var(--muted);font-style:italic;font-size:.88rem}
+
+    .article-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:12px;display:flex;gap:12px;align-items:flex-start;transition:border-color .15s}
+    .article-card:hover{border-color:#94a3b8}
+    .article-body{flex:1;min-width:0}
+    .article-title{font-size:.98rem;font-weight:600;text-decoration:none;display:block;margin-bottom:4px;color:var(--accent)}
+    .article-title:hover{text-decoration:underline}
+    .article-meta{font-size:.72rem;color:var(--muted);margin-bottom:8px}
+
+    .article-summary{margin-top:6px;font-size:.875rem;color:#334155;line-height:1.75}
+    .article-summary p{margin-bottom:.6em}
+    .article-summary p:last-child{margin-bottom:0}
+    .gnews-badge{display:inline-block;font-size:.65rem;background:#fef3c7;color:#92400e;border-radius:4px;padding:1px 5px;margin-bottom:6px;vertical-align:middle}
+    .article-summary.snippet{color:var(--muted)}
+    .read-more{display:inline-block;margin-top:6px;font-size:.8rem;font-weight:600;color:var(--accent);text-decoration:none}
+    .read-more:hover{text-decoration:underline}
+
+    .hide-btn{flex-shrink:0;padding:5px 10px;border-radius:6px;font-size:.72rem;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--muted);white-space:nowrap;align-self:flex-start}
+    .hide-btn:hover{border-color:#ef4444;color:#ef4444;background:#fef2f2}
+    .lbl-show{display:none}
+
+    .article-card.is-hidden{display:none}
+    body.reveal-hidden .article-card.is-hidden{display:flex;opacity:.45;border-style:dashed}
+    .article-card.is-hidden .lbl-hide{display:none}
+    .article-card.is-hidden .lbl-show{display:inline}
+    body.reveal-hidden .article-card.is-hidden .hide-btn{border-color:#16a34a;color:#16a34a}
+    body.reveal-hidden .article-card.is-hidden .hide-btn:hover{background:#f0fdf4}
+
+    footer{text-align:center;padding:24px 20px;color:var(--muted);font-size:.75rem;border-top:1px solid var(--border);margin-top:40px}
+
+    @media(max-width:600px){
+      .h-inner,.main{padding-left:14px;padding-right:14px}
+      .hero-title{font-size:1.3rem}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="h-inner">
+    <div>
+      <div class="h-brand">IT News Digest</div>
+      <div class="h-meta">Week 2026-W26 &bull; Jun 22–28, 2026</div>
+    </div>
+    <div class="h-controls">
+      <button class="btn" id="reveal-btn" onclick="toggleReveal()">Show hidden</button>
+      <select class="week-sel" id="week-sel" onchange="if(this.value) location.href=this.value">
+        <option value="">&#128337; Archive&hellip;</option>
+      </select>
+    </div>
+  </div>
+</header>
+
+<nav class="t-nav"><div class="t-nav-inner"><a href="#windows" class="nav-link" style="--c:#0078D4">Microsoft Windows</a><a href="#azure" class="nav-link" style="--c:#00BCF2">Azure</a><a href="#sharepoint" class="nav-link" style="--c:#036C70">SharePoint</a><a href="#intune" class="nav-link" style="--c:#0F6CBD">Intune</a><a href="#entraid" class="nav-link" style="--c:#6B69D6">Entra ID</a><a href="#m365" class="nav-link" style="--c:#D83B01">Microsoft 365</a><a href="#iru" class="nav-link" style="--c:#7C3AED">Iru MDM (formerly Kandji)</a><a href="#cato" class="nav-link" style="--c:#FF6B35">Cato Networks</a></div></nav>
+
+<main>
+  <div class="week-hero">
+    <div>
+      <div class="hero-title">Week 2026-W26</div>
+      <div class="hero-sub">Jun 22–28, 2026</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">38</div>
+      <div class="stat-lbl">Articles</div>
+    </div>
+  </div>
+
+    <section id="windows" class="topic-section">
+      <h2 class="topic-title" style="--c:#0078D4">Microsoft Windows <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a32393622be">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windows-insider/2026/06/26/announcing-new-builds-for-26-june-2026-retail-launch-of-new-wip-improvements/" target="_blank" rel="noopener noreferrer" class="article-title">Announcing new builds for 26 June 2026, retail launch of new WIP improvements</a>
+          <div class="article-meta">blogs.windows.com &bull; Jun 26, 2026</div>
+          <div class="article-summary"><p>Announcing new builds for 26 June 2026, retail launch of new WIP improvements
+Hello Windows Insiders,
+We have new releases today with builds across Beta and Experimental, and are excited to begin rolling out the new Windows Insider experience to retail Windows 11 builds this week!
+New Windows Insider Program changes launching into retail
+After validating through the Windows Insider channels, and receiving much feedback from the Insider community, we are excited to begin rolling out the new program changes into retail. This means those on standard retail Windows 11 builds (i.e. non-Windows 11 Insider Preview Builds) will begin seeing the new channel experience in the WIP UI settings. This can be found under Settings &gt; Windows Update &gt; Windows Insider Program.
+Please note this will be a gradual roll out, so don’t worry if you are on a retail build and do not see the new channel options just yet – these will roll out to everyone over the coming weeks.
+For more information about the changes that the new WIP experiences bring, read the original announcement blog here. We have also updated the Windows Insider Program website, as well as the Windows Insider Program Documentation Hub to reflect the new program changes.
+If you are not currently running a Windows 11 Insider Preview Build, there has never been a better time to start flighting – you’ll get early access to new Windows 11 features, enhance your say in the development of Windows, and now in most cases, you will be able to switch channels or exit the program without having to do a full reinstall of Windows if you find it’s not working for you. See the WIP Documentation Hub for more information.
+Thank you to everyone who has provided feedback on the new WIP experiences – we continue to listen to your feedback and look forward to providing more resources and updates in the coming weeks!
+New builds this week
+Today we are releasing new Windows 11 Insider Preview Builds. See your channel release notes here:
+- Beta: Build 26220.8754
+- Experimental: Build 26300.8758
+For those on other specific build versions, here are today’s new builds and release notes:
+- Beta (26H1): Build 28020.2366
+- Experimental (26H1): Build 28120.2374
+- Experimental (Future Platforms) – Including Canary 29600 series: Build 29617.1000
+- Please note we have not yet launched the new Windows Insider program changes for those in Experimental (Future Platforms), currently Canary 29600 builds. We will be providing an update on this in the very near future.
+ 
+Notable new features:
+[Taskbar]
+New Taskbar size setting
+Release channel: Experimental
+- Taskbar customization just got easier. As we continue to make improvements to the Taskbar experience mentioned last month, we’ve introduced a dedicated Taskbar Size setting, making it simpler to find, understand, and personalize your ideal taskbar experience.
+Thanks,
+Stephen and the Windows Insider Program team</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a32393622be')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a9047837b94">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windowsexperience/2026/06/24/age-of-empires-mobile-pc-edition-now-available/" target="_blank" rel="noopener noreferrer" class="article-title">Age of Empires Mobile: PC Edition now available</a>
+          <div class="article-meta">blogs.windows.com &bull; Jun 24, 2026</div>
+          <div class="article-summary"><p>Gaming
+					
+				
+				June 24, 2026
+									Age of Empires Mobile: PC Edition now available
+Great news for players of Age of Empires Mobile! The game is now available on Steam and the Microsoft Store for PCs.
+Players who’ve started on mobile can continue to play between their phone, tablet and/or PC without losing progress. The PC Edition optimization includes mouse control and full keyboard navigation.
+Get all the details on Age of Empires.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a9047837b94')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a5bdc8d0797">
+        <div class="article-body">
+          <a href="https://petri.com/windows-11-point-in-time-restore-system-recovery/" target="_blank" rel="noopener noreferrer" class="article-title">Windows 11 Adds Point-In-Time Restore to Roll Back Systems After Failures</a>
+          <div class="article-meta">petri.com &bull; Jun 24, 2026</div>
+          <div class="article-summary"><p>New feature uses automatic restore points and built‑in recovery tools to help manage system issues.
+Key Takeaways:
+Recovering from Windows issues is about to become much easier. Microsoft has released point-in-time restore for Windows 11, a built-in feature that lets administrators quickly roll back systems to a working state with minimal effort.
+🎬 Watch This Week in IT.
+Microsoft mentioned that when a Windows device encounters issues (such as faulty updates, software conflicts, or configuration errors), recovering it can be slow and complicated. IT teams often have to spend hours troubleshooting or completely rebuilding systems, which leads to significant downtime and loss of productivity for customers.
+Point‑in‑time restore in Windows 11 is a built‑in recovery feature that lets a computer return to an earlier saved state when everything was working properly. It works by automatically creating restore points at regular intervals and storing them on the device. If a problem occurs (such as a faulty update, software issue, or configuration error), the system can quickly roll back to that previous condition.
+The restore points can include Windows, installed applications, system and app configurations, local user files, and settings. This feature captures restore points every 24 hours, retains them for up to 72 hours, and is limited to 2 percent of disk usage. However, it’s possible to change some settings on Enterprise systems.
+Under the hood, point-in-time restore and the traditional System Restore feature both use Volume Shadow Copy Service. However, point-in-time restore is a more advanced solution, as it automatically creates recovery points on a regular schedule instead of relying on manual actions. This feature includes user files in recovery and uses controlled storage and retention policies. It also offers better integration and future remote management capabilities.
+The point-in-time restore feature is currently available for Windows 11 PCs running version 24H2 and later across Windows Enterprise, Pro, and Home editions. This feature is enabled by default on many consumer devices, but may require activation in enterprise-managed environments.
+Currently, users can start the restore process through the Windows Recovery Environment (Windows RE). Users can head over to Troubleshoot, choose Point-in-time restore, enter the BitLocker recovery key (if required), select a restore point, and finally confirm the restore. However, keep in mind that all changes made after that restore point (such as apps, settings, and files) will be lost.
+Microsoft plans to add enhancements such as remote restore capabilities through Microsoft Intune. This feature is part of a broader push toward improving Windows reliability, intending to minimize disruption when devices run into serious issues or become unbootable.
+Microsoft is encouraging administrators to get ready for the upcoming release of Windows 11 version 26H2. This update will be delivered via an enablement package that enables the new features and updates the versioning on Windows machines.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a5bdc8d0797')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a6438c382ae">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-defender-configuration-drift-endpoints-exposed/" target="_blank" rel="noopener noreferrer" class="article-title">How Microsoft Defender Configuration Drift Leaves Endpoints Quietly Exposed</a>
+          <div class="article-meta">petri.com &bull; Jun 23, 2026</div>
+          <div class="article-summary"><p>Learn what your current toolchain can and cannot detect, and how IT administrators can choose from several approaches to build more durable endpoint security.
+Does your Microsoft Defender configuration still match what you deployed six months ago? If you manage endpoint security for a Windows environment, there is a reasonable chance the answer is no. And there is an even more uncomfortable chance that you have no reliable way to find out.
+This article examines why Microsoft Defender configurations drift after initial deployment, what the current management toolchain can and cannot detect, and how IT administrators can choose from several available approaches to build more durable endpoint security governance. There is no single right answer for every environment, and the goal here is to lay out the tradeoffs honestly.
+When an organization hardens Microsoft Defender for Endpoint, the process typically follows a recognizable pattern: apply a security baseline, configure Attack Surface Reduction (ASR) rules, enable tamper protection, and verify the configuration against a benchmark such as the CIS Microsoft Windows 11 benchmark. The endpoint passes the check. Documentation gets filed. The team moves on.
+What happens over the following months is where things get complicated. A helpdesk ticket comes in reporting that a business application is behaving unexpectedly. The vendor points to one of Defender’s ASR rules as the cause. A systems engineer flips the relevant rule from block mode to audit mode to resolve the immediate issue. That is a reasonable and sometimes necessary decision. The application stabilizes. The ticket closes. Three months later, that rule is still in audit mode, logging what it would have blocked rather than actually blocking it.
+This is configuration drift: the gradual divergence between the intended security state and the actual state of a live system. Multiply that single example across a fleet of thousands of endpoints, then add in real-time protection exclusions that propagated further than intended through Group Policy, tamper protection flags cleared during an antivirus migration that ran longer than planned, and co-management policy conflicts between Intune and Microsoft Endpoint Configuration Manager. The result is a Defender configuration that is partially hardened at best.
+What makes this particularly difficult to catch is that Defender does not generate telemetry when its own enforcement settings change. When an ASR rule shifts from block to audit mode, Microsoft Defender XDR produces no alert. The Security information and event management (SIEM) does not fire. The compliance dashboard continues reporting green. The endpoint looks protected by every available monitoring tool while its actual enforcement posture has quietly changed.
+The standard Defender management toolchain handles some of this well and misses other parts entirely. Understanding the distinction matters for choosing the right approach for your environment.
+Intune compliance policies are effective at flagging whether an enrolled device meets a defined compliance state at any given moment. They can trigger remediation actions and block access to resources through Conditional Access integration, which is a genuinely powerful enforcement mechanism in Entra ID-joined environments. Their core limitation is point in time assessment: Intune tells you whether an endpoint is compliant right now, not whether it has been consistently compliant over the past six months. For organizations in cloud-only or Intune-managed environments, this is often the right tool, particularly when paired with Microsoft Defender for Endpoint security recommendations.
+CIS-CAT Pro provides excellent benchmark-aligned reporting and is the right tool for structured compliance assessments against CIS baselines. It produces detailed HTML and CSV reports that map directly to audit requirements and is available in a free tier for smaller organizations.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a6438c382ae')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a2279667dbb">
+        <div class="article-body">
+          <a href="https://petri.com/windows-11-recycle-bin-filename-bug/" target="_blank" rel="noopener noreferrer" class="article-title">Windows 11 Bug Displays Internal Filenames in Recycle Bin</a>
+          <div class="article-meta">petri.com &bull; Jun 23, 2026</div>
+          <div class="article-summary"><p>This issue affects delete confirmation dialog while normal file display and restore functions remain unaffected.
+Key Takeaways:
+Microsoft is investigating a newly discovered Windows bug that causes the Recycle Bin to display incorrect file names when users attempt to permanently delete files. The company has confirmed that this issue affects all supported versions of Windows 11.
+According to Microsoft, when users try to permanently delete a file, the confirmation prompt shows an internal system filename (like $Rxxxxx) instead of the actual file name. This issue only affects the confirmation dialog box. The Recycle Bin itself displays correct file names, and restoring files works normally.
+“When permanently deleting a single item from the Recycle Bin, the confirmation dialog displays the internal Recycle Bin filename (for example, $Rxxxxx.ext) instead of the original filename. The Recycle Bin itself correctly displays the original filename, and restoring the item also restores it using the original filename,” Microsoft explained.
+Microsoft said the issue began appearing after users installed the latest Patch Tuesday updates released on June 9. It impacts Windows 11 versions 23H2 through 26H1, as well as Windows Server versions 2012 through 2025.
+Microsoft is currently working on a fix that is expected to be available in a future update. In the meantime, the company recommends that organizations contact Microsoft’s business support channels for a temporary workaround.
+This isn’t the only problem introduced by Microsoft’s June 2026 Patch Tuesday updates. The company has also confirmed issues affecting Office app launches when triggered through third-party integrations. Moreover, users are reporting broader stability concerns, including system crashes, unexpected BitLocker recovery prompts, and other post-update disruptions.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a2279667dbb')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a8ff2851c87">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-urges-it-admins-to-prepare-for-windows-11-version-26h2-rollout/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Urges IT Admins to Prepare for Windows 11 Version 26H2 Rollout</a>
+          <div class="article-meta">petri.com &bull; Jun 22, 2026</div>
+          <div class="article-summary"><p>New servicing approach focuses on smaller updates and predictable enterprise deployment.
+Key Takeaways:
+Microsoft is urging IT administrators to prepare for the release of Windows 11 version 26H2. The upcoming version focuses on reducing disruption while making upgrades faster and easier to deploy across organizations.
+Typically, Windows 11 follows an annual update cycle, but Microsoft slightly deviated from this pattern with the release of version 26H1 earlier this year. This release was a targeted update designed specifically for certain new silicon-based PCs. However, this update was not rolled out to users running Windows 11 versions 24H2 or 25H2.
+Microsoft says Windows 11 version 26H2 is the next annual update and is already available for testing through the Windows Insider Program. It uses the same servicing model as recent releases, which is delivered as a small enablement package instead of a full OS upgrade. Consequently, devices running supported versions like 24H2 and 25H2 can upgrade quickly, similar to a monthly update.
+This new model offers several benefits for organizations, including easier deployment since it eliminates the need for large, disruptive upgrade events. It also improves confidence in compatibility because applications and environments are already tested in advance to reduce unexpected issues. Moreover, smaller updates allow organizations to access new features more quickly.
+“Devices running Windows 11, version 26H1 won’t be able to update to version 26H2. Instead, they’ll have a path to update to a future Windows release. This is because Windows 11, version 26H1 is based on a different Windows core than Windows 11, versions 24H2, 25H2, and 26H2,” Microsoft explained.
+Microsoft notes that upgrading to Windows 11 version 26H2 restarts the support lifecycle for devices. Consumer and standard business versions (such as Home and Pro) receive 24 months of support, and enterprise and education editions benefit from an extended 36‑month support window.
+To prepare for Windows 11 version 26H2, organizations should begin by testing the update on existing devices to ensure compatibility with their systems and applications. They should also rely on deployment tools such as Microsoft Intune, Windows Autopatch, or WSUS, roll out the update gradually in stages (deployment rings), and keep systems regularly updated to ensure a smooth transition.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a8ff2851c87')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a5888f2d8af">
+        <div class="article-body">
+          <a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-quietly-extends-free-windows-10-esu-support-to-october-2027/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft quietly extends free Windows 10 ESU support to October 2027</a>
+          <div class="article-meta">bleepingcomputer.com &bull; Jun 25, 2026</div>
+          <div class="article-summary"><p>Update: Added Microsoft's statement to the article.
+Microsoft has quietly extended its free Windows 10 Extended Security Updates (ESU) program for consumers by an additional year, allowing enrolled devices to continue receiving security updates until October 12, 2027.
+The change was made without a formal announcement and instead appeared in updates to Microsoft's Windows 10 ESU documentation and as an &quot;Editor's note&quot; to a Windows Experience Blog post published yesterday.
+&quot;Editor's note – June 25, 2026 – This post has been updated to reflect that the Windows 10 Extended Security Updates (ESU) program for personal use devices is being provided for an additional year, with coverage now available through Oct. 12, 2027,&quot; reads the updated blog post.
+&quot;This extension provides customers with more time to transition to a new Windows 11 PC while continuing to receive critical security updates.&quot;
+On October 14, 2025, Windows 10 reached the end of support, and Microsoft no longer provides technical support, feature updates, or security updates for the operating system unless you are running a Windows LTSC version.
+For those who are unable to upgrade to Windows 11, Microsoft originally offered consumers an extra year of security updates if they enrolled in a free extended security updates (ESUs) program that would expire on October 12, 2026.
+Enterprise customers could also enroll in the ESU program for up to three years, bringing the total cost per device to $427 over that period.
+With today's quiet update, Microsoft has now extended the free consumer ESU program to October 12, 2027, giving users an additional year to upgrade to a newer operating system.
+When asked why the free ESU program was extended, Microsoft shared the following statement with BleepingComputer.
+&quot;We understand that moving to a new PC can take time. As part of our ongoing commitment to helping customers stay secure during the transition, the Windows 10 Extended Security Updates (ESU) program for personal devices is being provided for an additional year,&quot; explained Microsoft.
+&quot;Coverage will now be available through October 12, 2027. This gives customers more time and flexibility to find the best PC for their needs while keeping them protected.&quot;
+Consumers can continue to receive extended security for free using one of these methods:
+- Paying $30.
+- Backing up your Windows settings to your Microsoft account.
+- Redeeming 1,000 Microsoft reward points.
+- Users in the European Economic Area can receive ESU for free by logging in to Windows 10 with a Microsoft account.
+Microsoft says an ESU license can be used on up to 10 devices associated with the same Microsoft account, and users already enrolled will automatically remain covered until the new October 2027 end date.
+The company notes that the consumer ESU program is only for personal devices and is not available for systems joined to Active Directory domains, Microsoft Entra, or managed through Mobile Device Management (MDM). However, Microsoft Entra-registered devices are eligible.
+The extension gives Windows 10 users another year of security updates as Microsoft continues encouraging customers to upgrade to Windows 11 or purchase new Copilot+ PCs.
+Test every layer before attackers do
+Security teams log 54% of successful attacks and alert on just 14%. The rest move through your environment unseen.
+The Picus whitepaper shows how breach and attack simulation tests your SIEM and EDR rules so threats stop slipping by detection.
+Get the whitepaper</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a5888f2d8af')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a66256b371a">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiqgFBVV95cUxPR1RBQzBvY0g1M1d6UzlXNGNqZzFZQnk5WFRqcVB6VVBJZTVRZG5rcy15bnNyQ1dsd2dMY1JsTzFUZjRDeEV3aC03TVphOHJyNkVXQ2hDc2ZJVjJQbDhyN1E4UEhjVDVBRHZzTXhWT0RDYk5pZk85LWo5UUdCckxVQm1fNldQaUlLLU1tMUVld1RvU2dvdm5YYklHeDdzVEdicWFFVllPWnFEQQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft adds another year to Windows 10 extended update program - Ars Technica</a>
+          <div class="article-meta">Ars Technica &bull; Jun 25, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft adds another year to Windows 10 extended update program&amp;nbsp;&amp;nbsp;Ars TechnicaMicrosoft extends Windows 10 extended security updates program amid RAMpocalypse&amp;nbsp;&amp;nbsp;Windows CentralMicrosoft Quietly Gives Windows 10 Home Users an Extra Year of Free Security Updates&amp;nbsp;&amp;nbsp;extremetech.com</p><a href="https://news.google.com/rss/articles/CBMiqgFBVV95cUxPR1RBQzBvY0g1M1d6UzlXNGNqZzFZQnk5WFRqcVB6VVBJZTVRZG5rcy15bnNyQ1dsd2dMY1JsTzFUZjRDeEV3aC03TVphOHJyNkVXQ2hDc2ZJVjJQbDhyN1E4UEhjVDVBRHZzTXhWT0RDYk5pZk85LWo5UUdCckxVQm1fNldQaUlLLU1tMUVld1RvU2dvdm5YYklHeDdzVEdicWFFVllPWnFEQQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a66256b371a')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="azure" class="topic-section">
+      <h2 class="topic-title" style="--c:#00BCF2">Azure <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a288aa9f082">
+        <div class="article-body">
+          <a href="https://azure.microsoft.com/en-us/blog/from-insight-to-action-the-next-phase-of-agentic-cloud-operations/" target="_blank" rel="noopener noreferrer" class="article-title">From insight to action: The next phase of agentic cloud operations</a>
+          <div class="article-meta">azure.microsoft.com &bull; Jun 23, 2026</div>
+          <div class="article-summary"><p>What if your cloud environment could help you move from insight to action in real time, with systems already working through the next set of decisions?
+As applications scale across hybrid infrastructure, microservices, and AI workloads, leading organizations are moving toward operating models where insight flows directly into action as part of an ongoing, system-driven loop.
+This is where agentic cloud operations comes in. Agentic cloud operations is an approach in which AI-powered agents—guided by user intent—continuously observe, reason, and assist with actions across the cloud lifecycle. Signals are not treated as isolated events. They are input into coordinated workflows that evolve over time, helping improve performance, cost, and reliability as systems run.
+According to recent research conducted with Material, 79% of organizations are already deploying agentic AI in production, reflecting how quickly this model is becoming part of how cloud environments are operated.
+Governance connects insight to action
+To operate this model, governance needs to be built directly into how cloud operations run. Observability provides a continuous stream of signals and context, but those signals only become useful when they can drive action in a controlled and consistent way. As agents begin to take on more responsibility across detection, investigation, and remediation, every action should be designed to follow human-defined policies, respect access controls, and remain aligned with organizational intent.
+At Microsoft Build, this emerged as a key requirement. Developers and IT need governance embedded within the same workflows that connect observability to optimization. As insights trigger actions, those actions remain constrained, auditable, and repeatable across environments.
+Our vision for agentic operations includes a shared operating model that brings observability and optimization together, where insights lead directly to action and every action is governed by built‑in policy and control, with humans always in the loop. In Azure, we’re building a system in which observability, governance, and optimization work together. Signals are continuously interpreted, actions are applied within policy boundaries, and outcomes feed back into the system to guide the next decision.
+Observability is the intelligence layer
+As cloud environments expand, telemetry and alerts have outpaced what teams can manage through manual processes alone. Engineers often spend significant time correlating signals, validating issues, and understanding what changed.
+In an agentic model, observability aims to provide continuous intelligence. It gives AI agents the context they need to identify meaningful signals, understand dependencies across the environment, and surface relevant insights early. Observability helps answer what is happening and why, with greater clarity and timeliness.
+From signals to resolution
+Building on this foundation, the Azure Copilot observability agent, now generally available, brings this intelligence into day-to-day operations. The observability agent can continuously analyze telemetry across your environment, including application topology, dependencies, and baseline behavior. When an issue begins to emerge, it can identify patterns, begin investigation, and provide context before teams start their analysis.
+Agentic observability changes how incidents are handled in practice. Issues can be surfaced earlier, with related signals already grouped to reduce noise. Investigations can begin automatically, tracing dependencies across services to help identify likely root causes. Teams are provided with clear, contextual recommendations that support faster decision-making.
+Observability also extends to AI workloads, so agents, services, and infrastructure can be viewed together.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a288aa9f082')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a0fff3555bb">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-commvault-azure-data-resilience-platform/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft, Commvault Integrate Resilience Platform into Azure for Data Protection and Recovery</a>
+          <div class="article-meta">petri.com &bull; Jun 26, 2026</div>
+          <div class="article-summary"><p>Native integration simplifies backup, recovery, and cyber resilience across hybrid environments.
+Key Takeaways:
+Microsoft has teamed up with Commvault to keep data secure and recoverable in an increasingly complex threat landscape. This new multi-year partnership brings Commvault’s resilience platform directly into Microsoft Azure.
+With this new initiative, Commvault’s extensive AI and cyber resilience technologies will be offered as a native independent software vendor (ISV) service within Microsoft Azure. It will allow customers to easily access and use its tools directly from the cloud environment.
+This partnership will enable organizations to protect and quickly restore data, applications, and identities. It will also help recover from cyberattacks, system failures, or human errors, and manage resilience through a unified, integrated platform.
+This new partnership will allow customers to benefit from a streamlined process for procurement, onboarding, and operations, which eliminates the need for separate systems or complex integrations. This collaboration emphasizes secure and resilient AI adoption to ensure businesses can innovate with AI as well as maintain strong data protection and recovery mechanisms.
+“Customers rely on Azure as a resilient foundation for their cloud and AI workloads. Supporting Commvault natively gives them more choice in how they protect and recover their data, with a more seamless experience inside Azure,” explained Girish Bablani, President of Azure Core at Microsoft.
+According to Commvault, this new collaboration is aimed at supporting organizations managing complex hybrid and multi-cloud environments. It focuses on various areas, including backup and recovery, ransomware preparedness, and operational resilience.
+Commvault notes that its native ISV service on Microsoft Azure will be available in public preview this summer. Customers will be available through the Microsoft Marketplace, and spending can count toward Azure consumption commitments.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a0fff3555bb')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ae030bd9dcf">
+        <div class="article-body">
+          <a href="https://petri.com/azure-copilot-observability-agent-logs-metrics-traces/" target="_blank" rel="noopener noreferrer" class="article-title">Azure Copilot Observability Agent Combines Logs, Metrics, and Traces for Faster Incident Analysis</a>
+          <div class="article-meta">petri.com &bull; Jun 25, 2026</div>
+          <div class="article-summary"><p>New capability connects telemetry across systems to simplify troubleshooting and operational visibility.
+Key Takeaways:
+Microsoft has introduced the Azure Copilot Observability Agent for commercial customers. This new offering, which is built on Azure Monitor, brings together signals from across applications, infrastructure, and services to deliver a real-time understanding of complex systems.
+According to Microsoft, cloud environments have become so complex, fast-changing, and interconnected that traditional monitoring and management approaches can no longer keep up. Modern systems span multiple applications, services, and infrastructures that constantly evolve and influence each other, which makes it extremely difficult for human operators to quickly identify the root cause of issues or maintain a complete understanding of the situation.
+Consequently, organizations face slower incident resolution, higher operational strain, and increased risks in performance, cost, and security.
+“As telemetry spreads across systems, operators are often forced to piece together context across multiple tools. The Observability Agent addresses this fragmentation by reasoning across signals in real time and unifying that context into a single operational view. These agentic capabilities are integrated directly into existing workflows, helping teams move from investigation to resolution faster with clear, actionable insight,” Microsoft explained.
+The Azure Copilot Observability Agent offers several important advantages for organizations dealing with modern cloud environments. It brings together data from across applications, infrastructure, and services into a single, coherent view. Instead of teams having to manually piece together logs, metrics, and traces from different tools, the agent automatically correlates these signals and explains what is happening in understandable terms. This significantly reduces the time and effort needed to investigate issues and helps teams identify and resolve problems.
+This agent also offers improvement in operational efficiency and decision-making. It uses AI to analyze system behavior in real time, highlight potential root causes, and suggest next steps to help security teams respond faster. This reduces the reliance on manual troubleshooting and lowers operational overhead.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ae030bd9dcf')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ac9c0c955a6">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMinAFBVV95cUxQejNWTXEzT2p2TDlYRjRzNWdjUThqZUdlOHBZVnhXTHJnT2w3a1lBRFRnRUVfdHZOd3Q4ejRveUZ5UVQwemV0M0VGa0xxQ21rM3FkM1pIaUlVcHk5UmlUSWx6Q0xMVks0T2oyd3dnVVpOdEs3MXV6Smk1RHh0RndEVldjdU5QZnRFNm11OTJqZGlkM1BYVHVoODVpdWc?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Amazon, Microsoft’s Cloud Services Should Fall Under DMA, EU Says - WSJ</a>
+          <div class="article-meta">WSJ &bull; Jun 25, 2026</div>
+          <div class="article-summary snippet"><p>Amazon, Microsoft’s Cloud Services Should Fall Under DMA, EU Says&amp;nbsp;&amp;nbsp;WSJ</p><a href="https://news.google.com/rss/articles/CBMinAFBVV95cUxQejNWTXEzT2p2TDlYRjRzNWdjUThqZUdlOHBZVnhXTHJnT2w3a1lBRFRnRUVfdHZOd3Q4ejRveUZ5UVQwemV0M0VGa0xxQ21rM3FkM1pIaUlVcHk5UmlUSWx6Q0xMVks0T2oyd3dnVVpOdEs3MXV6Smk1RHh0RndEVldjdU5QZnRFNm11OTJqZGlkM1BYVHVoODVpdWc?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac9c0c955a6')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a105c437082">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi0wFBVV95cUxQR1BQRlVrQkliUkJJbW8xalpOR21kdkhzRG10cEh6cHZ6bkZ6WDk4WF9Ra1JuU1lva2MwR3VGLXNicWE4Y1lzaWRtbkFmeUtNUU40YkM0SUJTLU9BWVd6Q1FhOUtCSFI1MEdrbE8xVXpWT3h4cDhSa3E2aGFySUFJNVkxMHQ0TU9KQ1VIVUFuS29SQi0tbHZvYVVXdC1ldVRlV3Z2Q1ptdHVTb0lVdHJ5WXBqTHlZMldvcUFXUC1WRVlLWlc1OWhxTkpsZGRMMUtRQTU0?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">EU targets Amazon, Microsoft cloud units for Big Tech “gatekeeper” rules - Reuters</a>
+          <div class="article-meta">Reuters &bull; Jun 25, 2026</div>
+          <div class="article-summary snippet"><p>EU targets Amazon, Microsoft cloud units for Big Tech “gatekeeper” rules&amp;nbsp;&amp;nbsp;Reuters</p><a href="https://news.google.com/rss/articles/CBMi0wFBVV95cUxQR1BQRlVrQkliUkJJbW8xalpOR21kdkhzRG10cEh6cHZ6bkZ6WDk4WF9Ra1JuU1lva2MwR3VGLXNicWE4Y1lzaWRtbkFmeUtNUU40YkM0SUJTLU9BWVd6Q1FhOUtCSFI1MEdrbE8xVXpWT3h4cDhSa3E2aGFySUFJNVkxMHQ0TU9KQ1VIVUFuS29SQi0tbHZvYVVXdC1ldVRlV3Z2Q1ptdHVTb0lVdHJ5WXBqTHlZMldvcUFXUC1WRVlLWlc1OWhxTkpsZGRMMUtRQTU0?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a105c437082')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aa66b080591">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMitAFBVV95cUxNN3pKTHpKRU05SXk1MFIwRElhN012Z1o2Y1J5M0RxaDd2ZklaM0Z3NC13TlktZ1RaX0xQRjhFd195alJjdzVpazEycF9RNUZ4N211UWZpWDRkZzRzRXcweGpNN2prb1RQVEhzREVxZC00M3JoN2ZiNUZwSFFTelc2ZE04cGRqV18yMlBTdWNoU2xQWTlZbjBLRDBHbmI4NUtRdklpblVwWFJzX0RlZWt5RmstTXE?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">EU says Amazon, Microsoft cloud services should fall under digital dominance rules - politico.eu</a>
+          <div class="article-meta">politico.eu &bull; Jun 25, 2026</div>
+          <div class="article-summary snippet"><p>EU says Amazon, Microsoft cloud services should fall under digital dominance rules&amp;nbsp;&amp;nbsp;politico.eu</p><a href="https://news.google.com/rss/articles/CBMitAFBVV95cUxNN3pKTHpKRU05SXk1MFIwRElhN012Z1o2Y1J5M0RxaDd2ZklaM0Z3NC13TlktZ1RaX0xQRjhFd195alJjdzVpazEycF9RNUZ4N211UWZpWDRkZzRzRXcweGpNN2prb1RQVEhzREVxZC00M3JoN2ZiNUZwSFFTelc2ZE04cGRqV18yMlBTdWNoU2xQWTlZbjBLRDBHbmI4NUtRdklpblVwWFJzX0RlZWt5RmstTXE?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aa66b080591')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a02d4504dfb">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiekFVX3lxTE1fVG9pekFJTktKNUxMdUJ2S2p1ZGVZNUNNbGhRREFuSmtOcUpNOW5YUHNHM0RWcjJLc1Nnb01lbXF2T0FKOE1fcWJxZklNLVkxTUFUM2d2ZU5NVTFMSHRfVDN0ODNpNVhoTzhVWmtmVDRFelpRUzlRQzNB?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">EU plans stricter rules for Amazon and Microsoft cloud services over switching costs and market power - Cybernews</a>
+          <div class="article-meta">Cybernews &bull; Jun 25, 2026</div>
+          <div class="article-summary snippet"><p>EU plans stricter rules for Amazon and Microsoft cloud services over switching costs and market power&amp;nbsp;&amp;nbsp;Cybernews</p><a href="https://news.google.com/rss/articles/CBMiekFVX3lxTE1fVG9pekFJTktKNUxMdUJ2S2p1ZGVZNUNNbGhRREFuSmtOcUpNOW5YUHNHM0RWcjJLc1Nnb01lbXF2T0FKOE1fcWJxZklNLVkxTUFUM2d2ZU5NVTFMSHRfVDN0ODNpNVhoTzhVWmtmVDRFelpRUzlRQzNB?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a02d4504dfb')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a2b58b9abb6">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMisgFBVV95cUxNd1Y2Ykh1VGNvdWUzV3ppbVNNQnR3WklLbnNXcUNCYzN3VWxXaHhVZXFzMHZRdWpWZlB0cEpXWjlOT0RCVWdxOEZJMm5nS0xHTjd3aU1UZzcwSElCeW9TMDRtby1qaW53VldxeDBPMkxnWTBsWWl2UXRKRC1fVExfVUQ0QnpfSHdyVE12ZFpDSHhUQUJfVjhOenlUUU1ZYmczekJUUGVQakJldDIxT0swWWFB?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft, Amazon Cloud Units Face Tough EU Rules for Big Tech - Bloomberg.com</a>
+          <div class="article-meta">Bloomberg.com &bull; Jun 25, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft, Amazon Cloud Units Face Tough EU Rules for Big Tech&amp;nbsp;&amp;nbsp;Bloomberg.com</p><a href="https://news.google.com/rss/articles/CBMisgFBVV95cUxNd1Y2Ykh1VGNvdWUzV3ppbVNNQnR3WklLbnNXcUNCYzN3VWxXaHhVZXFzMHZRdWpWZlB0cEpXWjlOT0RCVWdxOEZJMm5nS0xHTjd3aU1UZzcwSElCeW9TMDRtby1qaW53VldxeDBPMkxnWTBsWWl2UXRKRC1fVExfVUQ0QnpfSHdyVE12ZFpDSHhUQUJfVjhOenlUUU1ZYmczekJUUGVQakJldDIxT0swWWFB?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a2b58b9abb6')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="sharepoint" class="topic-section">
+      <h2 class="topic-title" style="--c:#036C70">SharePoint <span class="count">(4)</span></h2>
+      <div class="article-card" data-id="a6620ad0ace">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMixAFBVV95cUxQQUk4S3dmY0d3d3lBMnRjbW1lVEMwNU54NmdkQ1FFTUkwbkUxX3F1VGNXUTBXSWRDeGVPLVNmZU5SaUlUelFvdEd3UzRETG1oc21OSGZqbmF3N25LeGJ3WUZIZEpUNGNvUVdhRWpnRWlRZHozSndyc19JU3pVeWNLOVc2V2xMU01Qb0hBeEc4d3VxaV8yblpra2NSU0l6QVA2OE5ZS2FSV0o1RnJQUXU0Yzg3NVhnWklMaFF0OUY1TzZYb2w1?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">One intrusion, two cyberattackers: Uncovering parallel threat activity - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; Jun 22, 2026</div>
+          <div class="article-summary snippet"><p>One intrusion, two cyberattackers: Uncovering parallel threat activity&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMixAFBVV95cUxQQUk4S3dmY0d3d3lBMnRjbW1lVEMwNU54NmdkQ1FFTUkwbkUxX3F1VGNXUTBXSWRDeGVPLVNmZU5SaUlUelFvdEd3UzRETG1oc21OSGZqbmF3N25LeGJ3WUZIZEpUNGNvUVdhRWpnRWlRZHozSndyc19JU3pVeWNLOVc2V2xMU01Qb0hBeEc4d3VxaV8yblpra2NSU0l6QVA2OE5ZS2FSV0o1RnJQUXU0Yzg3NVhnWklMaFF0OUY1TzZYb2w1?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a6620ad0ace')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a57fb82a7f5">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMijwFBVV95cUxPZUxrR2hwQVFFUkZyc291SGxsVnU1SmEtcElFdW9aYV9mYS1vYXRMYWRsMWJSR1UzdmF5WjNoRFdLQnB3UHVvMmNvN0hPOXhUc2wtNlJMcC1SSV9xei0wd0I2Yl9tZkczNlRzOHc3aGx2cFpUUTUxMGxLdUcyRTdXNFRTSWNZODRvb1E4djY1dw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft says two cyber gangs targeted SharePoint servers simultaneously - Cybernews</a>
+          <div class="article-meta">Cybernews &bull; Jun 25, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft says two cyber gangs targeted SharePoint servers simultaneously&amp;nbsp;&amp;nbsp;Cybernews</p><a href="https://news.google.com/rss/articles/CBMijwFBVV95cUxPZUxrR2hwQVFFUkZyc291SGxsVnU1SmEtcElFdW9aYV9mYS1vYXRMYWRsMWJSR1UzdmF5WjNoRFdLQnB3UHVvMmNvN0hPOXhUc2wtNlJMcC1SSV9xei0wd0I2Yl9tZkczNlRzOHc3aGx2cFpUUTUxMGxLdUcyRTdXNFRTSWNZODRvb1E4djY1dw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a57fb82a7f5')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ada3c8ac4e1">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMinAFBVV95cUxPUmVxZGFZeTltU3hJYjZFV21kQm9ROVM2SnQ2Qzc5bFd4MENBZkNYc0lpcE1ISU45VEZzOXBUVGtRTUNFWHVSMmloeUxfUGhQQWowNUE1VTB1N0FlbmstOHU2b1VGdllpNGUzZXVzWTlJMWhSaVNEdW0wQlFFWFhndlNvX2RDVnhlRTFJUTgyVXF4VWt1ZHNkaEctcDI?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Refreshes SharePoint Design to Improve Consistency Across Microsoft 365 - Redmondmag.com</a>
+          <div class="article-meta">Redmondmag.com &bull; Jun 23, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft Refreshes SharePoint Design to Improve Consistency Across Microsoft 365&amp;nbsp;&amp;nbsp;Redmondmag.com</p><a href="https://news.google.com/rss/articles/CBMinAFBVV95cUxPUmVxZGFZeTltU3hJYjZFV21kQm9ROVM2SnQ2Qzc5bFd4MENBZkNYc0lpcE1ISU45VEZzOXBUVGtRTUNFWHVSMmloeUxfUGhQQWowNUE1VTB1N0FlbmstOHU2b1VGdllpNGUzZXVzWTlJMWhSaVNEdW0wQlFFWFhndlNvX2RDVnhlRTFJUTgyVXF4VWt1ZHNkaEctcDI?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ada3c8ac4e1')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a876221c597">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiygFBVV95cUxOR25hb2FpOGxnc1M2ZDRBMExMdXB1RU5QVVRnU3JKUFg1RVU1aU0xQjRFQTdTZ0pXTUtwN09XYm1na2laTE9EZEpEbVFlNFVSMnduRnlPUTVfMDREYktQQkZoRWhtX243WXR0UWZYVHg2YUVweFdHbnhzMHdrY0dLYktKdWpOY3hEWU5ONEdITUY4MndYRzVHX0VpbTg4ZXc1em02R1FBQ2RIU21GcUVwMkRNQkM5VzNRY1p2SmN6ZDhRcXJ6M082UHpB?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft warns unpatched SharePoint Servers are vulnerable to sophisticated Cyber Attacks - Cybersecurity Insiders</a>
+          <div class="article-meta">Cybersecurity Insiders &bull; Jun 24, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft warns unpatched SharePoint Servers are vulnerable to sophisticated Cyber Attacks&amp;nbsp;&amp;nbsp;Cybersecurity Insiders</p><a href="https://news.google.com/rss/articles/CBMiygFBVV95cUxOR25hb2FpOGxnc1M2ZDRBMExMdXB1RU5QVVRnU3JKUFg1RVU1aU0xQjRFQTdTZ0pXTUtwN09XYm1na2laTE9EZEpEbVFlNFVSMnduRnlPUTVfMDREYktQQkZoRWhtX243WXR0UWZYVHg2YUVweFdHbnhzMHdrY0dLYktKdWpOY3hEWU5ONEdITUY4MndYRzVHX0VpbTg4ZXc1em02R1FBQ2RIU21GcUVwMkRNQkM5VzNRY1p2SmN6ZDhRcXJ6M082UHpB?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a876221c597')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="intune" class="topic-section">
+      <h2 class="topic-title" style="--c:#0F6CBD">Intune <span class="count">(5)</span></h2>
+      <div class="article-card" data-id="ae32f43666e">
+        <div class="article-body">
+          <a href="https://techcommunity.microsoft.com/t5/intune-customer-success/microsoft-intune-and-apple-platform-updates-what-to-expect-after/ba-p/4531058" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Intune and Apple platform updates: What to expect after WWDC 2026</a>
+          <div class="article-meta">techcommunity.microsoft.com &bull; Jun 25, 2026</div>
+          <div class="article-summary snippet"><p>By Benjamin Flamm | Product Manager, Iris Yuning Ye | Product Manager - Microsoft Intune
+Apple’s Worldwide Developers Conference (WWDC) is the annual starting point for the next wave of Apple platform changes. For Microsoft Intune customers, WWDC is also the moment when IT teams begin planning how new operating system capabilities will affect Apple device management, security, app deployment, and user readiness ahead of the fall OS releases. We’ve spent time watching and re-watching the sessions, sifting through new documentation with a magnifying glass, and philosophizing over the impact of what’s new this year. Just like every year, we’ll still have our day zero blog officially announcing what Intune supports for the new OS versions; however, this year we’ve heard your feedback that you’d like to know where Intune is prioritizing investments ahead of time so that you can prepare with confidence.
+What’s new in managing Apple devices
+Our team is absolutely thrilled by the latest WWDC announcements and what they mean for organizations using Intune to manage Apple devices at scale. Apple is executing their promise of a declarative future, and we’re excited to enable our customers to leverage the benefits of declarative device management (DDM) like efficient configurations and real time status reporting. Most importantly, Apple continues to provide new customer-delighting functionality that previously didn’t exist in the legacy protocol.
+Data-driven settings
+The Intune settings catalog is our data-driven experience that automatically generates UI based on a schema. Basically, Intune adds new settings very quickly. Our goal is to always provide new settings like restrictions and intelligence controls as fast as possible, but in a way that’s enterprise ready. Having to manually create policies in third party tools just to upload them into the Intune admin center is a thing of the past. That said, these are the configurations and settings announced at WWDC 2026 that will be available very soon in the settings catalog for testing on the OS 27 betas.
+Allow and deny binaries on macOS
+One of the biggest announcements for device management this year is the new App settings configuration which includes declarative binary management for Mac. Until now, admins have relied on third party tooling and scripting for controlling unwanted apps on macOS, which is a clunky and time-consuming process. This new configuration also brings privacy permission management to DDM, reducing the number of prompts that users see while ensuring that apps have the permissions they need.
+Content caching
+Content caching has been supported in mobile device management (MDM) and our settings catalog for years, but it’s becoming much more powerful as it moves to DDM in macOS 27. New status items provide richer information about the health, disk space, and usage of content cache services without requiring a separate monitoring agent. This will be especially useful for everyone who wants to significantly reduce network traffic due to large deployments such as multi-gigabyte app installations and OS updates.
+Platform Single Sign-on
+Platform Single Sign-on (Platform SSO) picked up a major set of upgrades this year as part of its transition to DDM: the option to require Touch ID as a built-in second factor for logging in and unlocking FileVault. Additionally, new web-based authentication that opens the door to customizable push notifications, one-time codes, and QR-code sign-in for shared-device environments.
+New skip keys for Automated Device Enrollment
+Our settings story wouldn’t be complete without mentioning skip keys, and we have so much to mention this year! You may have seen the news that we recently updated our Apple enrollment policies, but what you may have missed is that these use the same infrastructure as our settings catalog. Starting this year, you should now expect to see skip keys release as fast as the Apple settings catalog.
+Settings, settings, and more settings
+Everything we’ve talked about so far is only the tip of the iceberg for settings and what’s coming, so here’s the complete list of what you should expect to see in Intune this summer:
+
+App Settings
+
+Allow/deny macOS binaries
+App privacy
+
+
+Content caching
+DNS Settings
+DNS Proxy
+Extensible SSO
+Safari privacy
+Web Content Filter
+Apple Intelligence (Calendar)
+Device restrictions
+Skip keys
+
+Network configurations are now in DDM
+This is the announcement that we’ve been waiting for ever since Apple first showed us the power of DDM! While there isn’t Wi-Fi support yet, we’re thrilled to see this first step into DDM-based network configurations. The on-device user experience and admin configuration experience will see significant improvements in comparison to today’s profile model, especially when managing policies that depend on certificates for authentication. Our team is evaluating the new network configurations for our roadmap as we build support for these critical workloads in a declarative world.
+Fleet monitoring and MDM status
+The more device information that Apple moves to DDM, the faster Intune will become. The 15-minute check-in will soon be obsolete as MDM can solely rely on the device to detect drift or issues. This year, Apple has continued to add more device information to the DDM status channel, allowing admins to get a richer picture of the health of their device fleet. Device health reports that highlight whether a specific hardware component is operating normally, or experiencing an issue, will provide useful insights to organizations when planning their next device refresh cycle or monitoring for device issues before they affect productivity. Apple also added new status reports that show MDM-specific information for devices, such as if they’re enabled for return to service or shared iPad, and APNS-related information for MDMs to better stay in sync with devices.
+macOS package uninstall and the Managed App framework
+Over the past few years, Apple has been adding new features that are shifting traditional agent-based management to the DDM stack. The declarative package (.pkg) configuration introduced last year lets MDM send complex macOS packages and configurations without the constraints of the legacy install command. This year, they rounded out the story by adding package uninstall to remove data and files that were installed by a declarative package configuration as well as extending the Managed App framework to macOS. Just like with the new network configurations, our team is investigating what this means for Intune Mac management and re-evaluating our macOS roadmap.
+Streamlined log collection with AppleCare
+Apple introduced a new command to remotely trigger enhanced log collection which seems simple, but it has a lot packed into it. The old way involved lots of downloading and waiting and uploading and more waiting. With this latest announcement, Apple has streamlined this whole process by allowing MDMs to send a command to enable the device for logging with the correct logging state configured. The cherry on top is this new process will tell the device to directly upload its sysdiagnose to AppleCare without requiring physical access to the device or manual interaction from the device owner. It also wouldn’t be a new feature without DDM status, and devices will report their enhanced logging status every step of the way. This will reduce a lot of the friction, idle time, and “what’s actually happening?” that’s associated with getting a sysdiagnose file needed for engineering investigations. This new feature benefits IT teams, AppleCare, MDMs, and everyone in between, and our team is prioritizing this new workflow for the fall.
+Return to service (RTS) gets better and better
+Apple has continued to iterate on the return to service workflow since its introduction in 2023. Its first iterations showed how RTS can be useful for troubleshooting, quickly returning devices back to a fresh service state while also preserving apps across resets. This year, Apple announced 2 major improvements: the ability to trigger RTS directly from the device and the ability to configure an inactivity timeout. This makes RTS a must-have for shared device scenarios where you need to securely and quickly minimize downtime between user sessions.
+MDM software updates are no more
+DDM is now the only way to manage software updates, with the legacy MDM workload being fully removed from support in OS 27. We will be removing the legacy software update policies and settings from our UI in the coming months. Intune has supported DDM updates since they were first released in 2023, and we also have gold standard software update reports where you can see rich and fast OS update status every step of the way. More information is available on our Tech Community blog.
+How IT teams can prepare now
+
+Identify the Apple device populations that are most business-critical, including supervised iOS and iPadOS devices, shared devices, and managed Macs.
+Review enrollment, compliance, app deployment, and software update workflows that may be affected by major OS upgrades.
+Plan a beta validation ring with representative users, devices, apps, and different network conditions.
+Document known business-critical apps and confirm vendor readiness timelines for the fall OS releases.
+Test the available beta settings in the settings catalog and share your feedback with our team and Apple via Feedback Assistant.
+Watch for Intune documentation, Message center posts, and release notes as support details become available.
+
+Looking ahead
+Apple’s fall OS releases are an important planning milestone for every organization managing Apple devices, and Intune’s priority is to help our customers confidently adopt new capabilities securely and at scale. Keep an eye out for our yearly day zero blog to learn more about Intune updates and new feature support as we get closer to the OS 27 release this fall – happy beta testing!
+If you have any questions, leave a comment below or reach out to us on X&amp;nbsp;@IntuneSuppTeam.
+Join our community!&amp;nbsp;Discuss real-world scenarios, get expert guidance, connect with peers, and influence the future of Microsoft Security products. Learn more at&amp;nbsp;aka.ms/JoinIntuneCommunity.</p><a href="https://techcommunity.microsoft.com/t5/intune-customer-success/microsoft-intune-and-apple-platform-updates-what-to-expect-after/ba-p/4531058" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ae32f43666e')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a1d3cb3dce0">
+        <div class="article-body">
+          <a href="https://techcommunity.microsoft.com/t5/intune-customer-success/how-to-configure-macos-privacy-preferences-policy-control-pppc/ba-p/4530406" target="_blank" rel="noopener noreferrer" class="article-title">How to Configure macOS Privacy Preferences Policy Control (PPPC) Using the Intune Settings Catalog</a>
+          <div class="article-meta">techcommunity.microsoft.com &bull; Jun 24, 2026</div>
+          <div class="article-summary snippet"><p>By: Chris Kunze - Principal Product Manager | Microsoft Intune
+Privacy Preferences Policy Control (PPPC) settings on macOS are used to pre-approve privacy permissions for apps so users aren't repeatedly prompted by macOS for access requests. Common examples include Full Disk Access, Screen Recording, Camera, Microphone, Accessibility, Files and Folders, and Apple Events permissions.
+Organizations commonly deploy PPPC profiles to improve the user experience, reduce support calls, and ensure management and security tools have the permissions they require to function correctly. This is especially important for tools such as Microsoft Defender, remote support applications, compliance agents, and inventory tools. PPPC profiles also help standardize privacy settings across managed Macs and support zero-touch onboarding scenarios where users can begin working without manually approving a series of permission prompts.
+Intune’s settings catalog provides a straightforward way to deploy PPPC settings, but because macOS uses strict matching criteria, a few configuration details are important to get right. If these settings aren’t configured correctly, apps can either break - or worse, fail quietly. This article walks through the key configuration details that help ensure those settings are applied correctly.
+How macOS evaluates PPPC entries
+macOS evaluates PPPC entries using a combination of:
+
+App identifier (Bundle ID or Path)
+Code requirement (from the app’s signature)
+The specific permission being granted or denied.
+
+Apple requires each PPPC payload to use either Authorization or Allowed, but not both. If any of these values don’t align correctly, the policy won’t apply.
+Configure PPPC in Intune settings catalog
+
+Create a settings catalog profile.In the&amp;nbsp;Intune admin center, create a macOS configuration profile using Settings Catalog. Search for: Privacy Preferences Policy Control.Figure 1 - Settings picker showing Privacy Preferences Policy Control.This is where you'll configure the PPPC permissions required by your application.
+Use the Authorization field When configuring, select the Authorization setting instead of the legacy Allowed setting whenever supported, but never both.
+Get the correct code requirement
+On a Mac where the application is installed, open Terminal and run:
+codesign -dr - /Applications/YourApp.app
+Replace /Applications/YourApp.app with the path to the application you're configuring.The output will contain a string similar to:
+designated =&amp;gt; identifier &quot;com.example.app&quot; and ...
+Copy everything that appears after “designated =&amp;gt;” exactly as displayed. You'll use this value when configuring the PPPC entry in Intune.
+Note: Some applications return a multi-line code requirement. If that happens, paste the value into Intune as a single continuous string without line breaks. The content for the Identifier field can also be extracted from this command.
+Figure 2 - Screenshot of a terminal window showing Chrome/ChromeDriver startup errors, including “DevToolsActivePort file doesn’t exist” and certificate-related error messages.
+&amp;nbsp;
+
+Configure the PPPC entry
+After gathering the required information, configure the application entry.
+
+FieldValueIdentifier typeBundle ID or PathIdentifierApplication Bundle IDCode requirementFull output from the codesign command in Step 3.AuthorizationAllow
+
+Figure 3 - Screenshot of the Microsoft Intune admin center editing a OneDrive configuration profile. The main pane shows privacy and synchronization settings, while a right-side “Configure instance” panel displays Privacy Preferences Policy Control options, including an enabled setting for “Use System SSL.”
+Tip:  Use Bundle ID for apps whenever possible.  Bundle IDs are more reliable than file paths because they typically remain consistent when an app is updated or moved.  
+
+
+Why PPPC settings may not apply
+If these settings fail, they fail silently. Intune may report the policy as successfully applied, but macOS evaluates PPPC entries when the app requests access to the protected resource. Upon app launch, macOS skips any entry where the code requirement doesn’t match the app’s current binary signature without any indication that the setting is skipped. The three most common causes are:
+
+Incorrect code requirementThe code requirement must match the application's current signing information exactly. Even a small mismatch can prevent the PPPC setting from being applied.
+Mixing Authorization and AllowedApple’s documentation states PPPC entries should use either Authorization or Allowed, not both.
+Wrong identifier typeIf the PPPC entry is configured with the wrong identifier type, macOS won't match the application correctly.
+
+Try it in your environment
+If you’ve been avoiding the settings catalog for PPPC, try this approach. Pull the identifier and code requirement directly from the app using codesign, use Authorization when available, and validate the configuration with a pilot group before broader deployment. Most PPPC issues come down to matching. Once you understand how macOS evaluates these settings it becomes much more predictable. If you have any questions, leave a comment below or reach out to us on X @IntuneSuppTeam.
+&amp;nbsp;
+Join our community!&amp;nbsp;Discuss real-world scenarios, get expert guidance, connect with peers, and influence the future of Microsoft Security products. Learn more at&amp;nbsp;aka.ms/JoinIntuneCommunity.</p><a href="https://techcommunity.microsoft.com/t5/intune-customer-success/how-to-configure-macos-privacy-preferences-policy-control-pppc/ba-p/4530406" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a1d3cb3dce0')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aed191d4ad3">
+        <div class="article-body">
+          <a href="https://techcommunity.microsoft.com/t5/intune-customer-success/exporting-all-microsoft-intune-enterprise-app-management-catalog/ba-p/4529579" target="_blank" rel="noopener noreferrer" class="article-title">Exporting all Microsoft Intune Enterprise App Management catalog apps to CSV using Microsoft Graph</a>
+          <div class="article-meta">techcommunity.microsoft.com &bull; Jun 22, 2026</div>
+          <div class="article-summary snippet"><p>By: Joe Lurie, Sr. Product Manager | Microsoft Intune
+Managing applications at scale is one of the biggest time-consuming tasks for IT admins. Between packaging installers, writing detection rules, and keeping everything up to date - it adds up fast. That's exactly the problem Enterprise App Management in Microsoft Intune is designed to address.
+Enterprise App Management gives you access to a curated Enterprise App Catalog with hundreds of popular Win32 apps that are pre-packaged, pre-tested, and ready to deploy. Microsoft handles the install commands, detection logic, and update-ready packaging. Automatic updates for catalog apps are expected to roll out in mid-2026, making the experience even more hands-off. You just pick the app, assign it, and move on.
+But what if you want a full inventory of what's available in the catalog? Maybe you're evaluating which apps your organization can migrate from manual packaging, or you want to share the list with your app owners for review. In this post, I'll show you how to pull the complete catalog using Microsoft Graph PowerShell and export it to a CSV file.
+Prerequisites
+Before you start, make sure you have:
+
+Intune admin permissions: An account with Intune permissions to read app and catalog data (such as Intune Administrator or a custom role with app read access).
+
+You will also need Microsoft Graph delegated scope: DeviceManagementApps.Read.All (you'll consent to this when connecting).
+
+
+An Intune Suite or Enterprise App Management add-on license: Enterprise App Management is part of the Intune Suite or available as a standalone add-on. Note: Microsoft has announced that Enterprise App Management will also be included in Microsoft 365 E5 licensing starting July 1, 2026 - check current licensing guidance to confirm availability for your tenant.
+Microsoft Graph PowerShell SDK (Beta module) installed: Note that the catalog API is currently in the beta endpoint which means cmdlet names and properties may change before reaching v1.0.
+
+If you don't have the beta module installed yet, run:
+Install-Module Microsoft.Graph.Beta.Devices.CorporateManagement -Scope CurrentUser -Force
+Step 1: Connect to Microsoft Graph
+First, authenticate to Microsoft Graph with the required scope:
+Connect-MgGraph -Scopes &quot;DeviceManagementApps.Read.All&quot;
+You'll get a browser prompt to sign in and consent. Once connected, you're ready to query the catalog.
+Step 2: Retrieve all Catalog apps
+Microsoft Graph exposes the Enterprise App Catalog through the /beta/deviceAppManagement/mobileAppCatalogPackages collection. The PowerShell cmdlet for it is:
+$catalogApps = Get-MgBetaDeviceAppManagementMobileAppCatalogPackage -All
+The -All parameter is important as it handles pagination automatically so you get every catalog package, not just the first page of results.
+
+💡 Tip
+To see every property available on a catalog package object, pipe the first result to Format-List.
+$catalogApps | Select-Object -First 1 | Format-List *
+Step 3: Export to CSV
+Next, let's select the most useful fields and write them to a CSV file:
+$csvPath = &quot;C:\Temp\IntuneCatalogApps.csv&quot;
+New-Item -ItemType Directory -Path (Split-Path $csvPath) -Force | Out-Null$catalogApps | Select-Object ProductDisplayName, VersionDisplayName, PublisherDisplayName | Export-Csv -Path $csvPath -NoTypeInformation
+Open the CSV in Excel and you've got a clean, sortable list of every catalog package in the Intune Enterprise App Catalog.
+Putting it all together
+Here's the complete script you can save and run:
+# Connect to Microsoft Graph
+Connect-MgGraph -Scopes &quot;DeviceManagementApps.Read.All&quot;
+
+# Pull all Enterprise App Catalog packages
+$catalogApps = Get-MgBetaDeviceAppManagementMobileAppCatalogPackage -All
+
+# Export to CSV
+$csvPath = &quot;C:\Temp\IntuneCatalogApps.csv&quot;
+New-Item -ItemType Directory -Path (Split-Path $csvPath) -Force | Out-Null
+
+$catalogApps | Select-Object ProductDisplayName, VersionDisplayName, PublisherDisplayName | Export-Csv -Path $csvPath -NoTypeInformation
+
+Write-Host &quot;Exported $($catalogApps.Count) catalog apps to $csvPath&quot; -ForegroundColor Green
+
+# Disconnect when done
+Disconnect-MgGraph
+Sample output
+Your CSV will look something like this:
+
+ProductVersionPublisherMozilla Firefox137.0.1Mozilla CorporationGoogle Chrome135.0.6998.89Google LLCZoom Workplace6.4.6Zoom Video Communications, Inc.Adobe Acrobat Reader DC25.001.20467Adobe Inc.7-Zip24.09Igor Pavlov
+
+Why this matters
+Having a complete list of what's in the catalog is useful for a few scenarios:
+
+App rationalization - Share the list with app owners and identify which apps you can stop manually packaging and switch to the catalog instead.
+Gap analysis - Compare the catalog against your current app portfolio to see what's missing.
+Change management - Track what's available over time as Microsoft continues to add new apps.
+Compliance and auditing - Document which catalog apps are available for your tenant.
+
+Wrapping up
+Enterprise App Management is one of the most impactful features in the Intune Suite. It takes the most tedious parts of endpoint management - app packaging and updates - and just handles it for you. And with a short Graph script, you can get full visibility into what's available. And to see how Enterprise App Management secures your app catalog, check out the companion post here:&amp;nbsp;aka.ms/Intune/EAM-Security.
+Give the script a try and let us know what you think along with other Enterprise App Management topics you’d like to see by leaving a comment below or reaching out on X @IntuneSuppTeam.
+Want to learn more about Enterprise App Management? Check out the official documentation for the full details.
+Join our community!&amp;nbsp;Discuss real-world scenarios, get expert guidance, connect with peers, and influence the future of Microsoft Security products. Learn more at https://aka.ms/JoinIntuneCommunity.</p><a href="https://techcommunity.microsoft.com/t5/intune-customer-success/exporting-all-microsoft-intune-enterprise-app-management-catalog/ba-p/4529579" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aed191d4ad3')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a068f2b987a">
+        <div class="article-body">
+          <a href="https://techcommunity.microsoft.com/t5/intune-customer-success/new-platform-sso-with-registration-during-automated-device/ba-p/4519846" target="_blank" rel="noopener noreferrer" class="article-title">New Platform SSO with registration during Automated Device Enrollment on macOS</a>
+          <div class="article-meta">techcommunity.microsoft.com &bull; Jun 22, 2026</div>
+          <div class="article-summary snippet"><p>By Iris Yuning Ye, Product Manager – Microsoft Intune &amp;amp; Justin Ploegert, Principal Product Manager – Microsoft Entra
+A new setting ‘Enable Registration During Setup’ for Platform single sign-on (PSSO) during Automated Device Enrollment (ADE) is now generally available for macOS devices in Microsoft Intune. With this new setting and a compatible version of the Intune Company Portal (5.2604.0 and newer), this feature enables users sign in with their Microsoft Entra account during Setup Assistant, complete device registration before reaching the desktop, and get immediate access to work resources and ready to be productive sooner.
+Why this matters
+Previously, Platform SSO registration occurred only after users completed Setup Assistant and reached the desktop. They then had to notice and act on a separate notification to finish Platform SSO registration. When Platform SSO registration isn't completed, it can cause issues with app authentication or lead to noncompliance, delaying users from getting started on the device:
+
+Missed notifications - Users dismiss or ignore the post-enrollment PSSO prompt, leaving devices in an incomplete device registration state.
+Broken app authentication - Apps like Microsoft Outlook could fail to authenticate because SSO isn’t fully configured.
+Compliance gaps - Devices are flagged as noncompliant in the Intune Company Portal because Platform SSO registration isn’t completed.
+Helpdesk burden - IT teams field repeated tickets for issues that should have been handled automatically during provisioning.
+Migration blocker - Incomplete Platform SSO setup slows down migrating macOS devices to Intune.
+
+Platform SSO during ADE with EnableRegistrationDuringSetup key eliminates these issues. Device registration, identity bootstrap, and credential setup all happen inline during Setup Assistant before the user ever reaches the desktop.
+What the feature enables
+
+CapabilityDetailsMicrosoft Entra device registration during ADEThe device registers with Microsoft Entra ID before the user reaches the desktop. A hardware-bound Workplace Join certificate is issued and stored securely on the device.Early device identityDevice identity is established early in the provisioning process, enabling immediate access to apps and resources protected by Conditional Access.Platform SSO credentials during initial setupWhen configured with Secure Enclave, Platform SSO credentials are stored in the device’s Secure Enclave, providing hardware-bound, phishing-resistant protection aligned with Zero Trust principles.Minimized setup delaysUsers arrive at the desktop already signed in and ready to work, with fewer authentication prompts, less policy wait time, and fewer setup-related app access issues.
+
+How it works
+This feature requires three policies that work together. All three must be configured correctly before enrollment starts and assigned to the same static user groups:
+
+A Platform SSO settings catalog policy with “Enable Registration During Setup” configured to Enabled.
+Intune Company Portal (version 5.2604 or newer) deployed as a line-of-business (LOB) app, which provides the Microsoft Enterprise SSO extension.
+An ADE enrollment profile configured with Setup Assistant with modern authentication and Await final configuration = Yes.
+
+When a device enrolls with these three policies in place, here's what happens:
+
+The device powers on and begins the ADE enrollment flow.
+Intune delivers the Platform SSO settings catalog policy with Enable Registration During Setup enabled.
+Intune Company Portal is installed automatically as a LOB app, providing the Microsoft Enterprise SSO plug-in.
+During Setup Assistant, the user signs in with their Microsoft Entra credentials. This first sign-in starts the regular enrollment process.
+A second sign-in authenticates the identity in Intune Company Portal and fetches the SSO extension.
+The device registers with Microsoft Entra ID, and a Microsoft Entra device registration certificate is issued.
+The user arrives at the desktop fully authenticated, with SSO active and Conditional Access satisfied.
+
+Note: During enrollment, users are prompted to enter their Microsoft Entra credentials at least twice. We're working on improvements to reduce the number of sign-ins in a future update.
+Prerequisites
+
+RequirementDetailsmacOS versionmacOS 26 or later.Enrollment methodAutomated Device Enrollment (ADE) through Apple Business Manager.Intune Company PortalVersion 5.2604.0 or later, deployed as a line-of-business (LOB) app. Download it from  Microsoft Download Center .Intune role for configurationAn administrator account with, at minimum, the built-in Policy and Profile Manager role.Group typeAssigned (static) user groups only. Dynamic groups and device groups are not supported.
+
+&amp;nbsp;
+Important: Review the full Platform SSO prerequisites in the Platform SSO configuration guide before you begin.High level step-by-step configuration
+Step 1: Create or update the Platform SSO settings catalog policy
+
+In the Microsoft Intune admin center, go to Devices &amp;gt; Manage devices &amp;gt; Configuration. If this is your first time configuring Platform SSO, follow the full&amp;nbsp;Platform SSO configuration guide.
+Add and configure the following setting:
+
+SettingValueDescriptionAuthentication &amp;gt; Extensible Single Sign On &amp;gt; Platform SSO &amp;gt; Enable Registration During SetupEnabledEnables the Platform SSO registration process during Setup Assistant.
+
+
+
+If using the&amp;nbsp;Password authentication method, it’s recommended to add for password sync function:
+
+SettingValueDescriptionAuthentication &amp;gt; Extensible Single Sign On &amp;gt; Platform SSO &amp;gt; Enable Create First User During SetupEnabledEnables the password synchronization experience during Setup Assistant. This configuration is recommended when using the Password authentication method.
+
+
+
+
+Tip: Microsoft recommends using Secure Enclave as the authentication method for the strongest hardware-backed security.
+Assign the policy to your static user groups. Filter is also supported with correct static group setting.
+&amp;nbsp;
+Step 2: Install Intune Company Portal as a LOB app
+
+Download the Company Portal for macOS PKG from the&amp;nbsp;Microsoft Download Center.
+In the Intune admin center, go to Apps &amp;gt; All Apps &amp;gt; Create.
+Add Intune Company Portal as a macOS LOB app.
+Make it a required app and assign it to the same groups as the Platform SSO policy from Step 1.
+
+Important: Company Portal 5.2604.0 and newer is required. If you install an older version, Platform SSO fails. When Intune detects Company Portal as a deployed policy, it sends it with priority during enrollment.
+And clean up the App bundle ID that are not related to Company Portal, make sure only com.microsoft.CompanyPortalMac as the relevant App bundle ID is kept.
+Figure 1: Microsoft Intune admin center Add App screen for a macOS line-of-business app, showing CompanyPortal-Installer.pkg details, macOS Tahoe 26.0 minimum OS, ignore app version enabled, install as managed disabled, and included app bundle ID com.microsoft.CompanyPortalMac version 5.26040.
+Step 3: Set up the enrollment profile
+
+In the Intune admin center, go to Devices &amp;gt; Device onboarding &amp;gt; Enrollment &amp;gt; Apple tab.
+Create or edit an Automated Device Enrollment profile with these Management settings:
+
+SettingValueUser affinityEnroll with User AffinityAuthenticationSetup Assistant with modern authenticationAwait final configurationYesLocked enrollmentYes
+
+
+Assign the profile to the devices afflicated with the users targeted&amp;nbsp;as Steps 1 and 2.
+
+Critical: You must assign all three policies to the devices afflicated with the users targeted. If any policy is assigned to a different group, or if any step is misconfigured, enrollment will fail. In that case, wipe the device and re-enroll with all steps correctly configured.
+&amp;nbsp;
+Key things to remember
+
+✅ Three policies, one group: Settings catalog, Company Portal LOB app, and ADE enrollment profile, all assigned to the same static groups or devices/users affliated with the groups.
+✅ Static groups only: This feature does not work with device groups or dynamic groups.
+✅ One SSO policy per device: If you already have a Platform SSO policy assigned to enrolled devices, make sure device is wiped appropriately before kicking of enrollment with new PSSO flow.
+✅ Latest Intune Company Portal: Version 5.2604.0 or newer is required.
+✅ macOS 26 required: This feature is supported on macOS 26 and newer.
+✅ Secure Enclave recommended: For the strongest hardware-backed credential protection.
+
+For more details, refer to Configure Platform Single Sign-On (PSSO) during Automated Device Enrollment for macOS devices.
+Looking ahead: Reducing Platform SSO sign-in prompts
+Signing in multiple times during enrollment isn't the ideal experience, and we're actively working to streamline it with a new enrollment setting that enables users to complete both Intune enrollment and Platform SSO device registration with a single sign-in. This will further simplify the onboarding experience, reduce friction for users, and bring macOS enrollment closer to a truly seamless, zero-touch provisioning flow. Stay tuned to What’s new in Intune for the release.
+Related resources
+
+SSO in ADE profile (new article): Add Platform SSO policy to ADE Profile on macOS devices
+SSO scenarios: Platform SSO scenarios for macOS devices
+Platform SSO configuration guide for macOS devices using Microsoft Intune
+Common Platform SSO scenarios for macOS devices
+Install Company Portal for macOS as a macOS LOB app
+Set up automated device enrollment (ADE)
+Troubleshoot the Microsoft Enterprise SSO Extension plugin on Apple devices
+macOS Platform single sign-on known issues and troubleshooting
+
+&amp;nbsp;
+As always, we'd love your feedback. If you've piloted Platform SSO during Setup Assistant, share your tips and lessons learned in the comments below or reach out to us on&amp;nbsp;X&amp;nbsp;@IntuneSuppTeam.
+&amp;nbsp;
+Post Updates:6/8/26: Refreshed guidance recommending this configuration for the Password authentication method and clearer targeting language around devices and users affiliated with the groups targeted.</p><a href="https://techcommunity.microsoft.com/t5/intune-customer-success/new-platform-sso-with-registration-during-automated-device/ba-p/4519846" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a068f2b987a')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aa354a9bdaa">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMizAFBVV95cUxQcHpnWU0wYVFwbUNiWXZPbGphZWtjYXVJeTA2Y1hKdTluRUtkR25YOWFSVEVzVXZOS0JCUGJEZnYtcW1KMmdNTjRhRjM0UGRrX1NyT0lxamZ5azBBX3M3ZWp2QWhQWmVOeWZPSGM1VXNKcjdweFpYTTd1N1FMYmQ3WXppZDhEUFJMWTMwd2l6dkZCTE9TRlA4eEp5VXE0Y2FEQUhleGROTFJUTF9JRG15SFI4NTNlSGF6UHkzUlNaOWl0dkRJZzR0WUtxZnk?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft a Leader in The Forrester Wave™ for Endpoint Management Platforms - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; Jun 25, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft a Leader in The Forrester Wave™ for Endpoint Management Platforms&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMizAFBVV95cUxQcHpnWU0wYVFwbUNiWXZPbGphZWtjYXVJeTA2Y1hKdTluRUtkR25YOWFSVEVzVXZOS0JCUGJEZnYtcW1KMmdNTjRhRjM0UGRrX1NyT0lxamZ5azBBX3M3ZWp2QWhQWmVOeWZPSGM1VXNKcjdweFpYTTd1N1FMYmQ3WXppZDhEUFJMWTMwd2l6dkZCTE9TRlA4eEp5VXE0Y2FEQUhleGROTFJUTF9JRG15SFI4NTNlSGF6UHkzUlNaOWl0dkRJZzR0WUtxZnk?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aa354a9bdaa')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="entraid" class="topic-section">
+      <h2 class="topic-title" style="--c:#6B69D6">Entra ID </h2>
+      <p class="no-news">No articles found this week.</p>
+    </section>
+    <section id="m365" class="topic-section">
+      <h2 class="topic-title" style="--c:#D83B01">Microsoft 365 <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a86c119c56c">
+        <div class="article-body">
+          <a href="https://www.microsoft.com/en-us/microsoft-365/blog/2026/06/25/copilot-in-excel-built-for-the-era-of-frontier-finance/" target="_blank" rel="noopener noreferrer" class="article-title">Copilot in Excel: Built for the era of Frontier Finance</a>
+          <div class="article-meta">microsoft.com &bull; Jun 25, 2026</div>
+          <div class="article-summary"><p>There’s a pattern to how new technology reaches the world. Wave after wave, from the PC to the relational database to the cloud, new technology reaches developers first, and finance is often next. For finance professionals, a better tool is an edge and the job is to model reality a little more precisely than you could yesterday. For decades, that tool has been Excel: where the quarter gets closed and the forecast gets argued line by line, where every number traces back to a source.
+So when AI enters finance, it has to clear the same bar: showing its work, using trusted data and tracing every calculation. Plenty of AI tools claim to be built for finance; Microsoft 365 Copilot in Excel is proving it in practice.
+Across Financial Planning and Analysis (FP&amp;A), Accounting, Tax, Compliance, and Treasury, Microsoft Finance runs Copilot in Excel in real workflows, spending less time hunting for information and rebuilding analyses, and freeing teams to spend time applying judgement to decisions. They shape it as much as they use it, telling us where it falls short and pushing the product toward the standard their own work demands. By the time it reaches you, it has already been pressure-tested by a finance organization operating at the frontier.
+Today, we’re introducing new features built for financial professionals to continue doing that with skills for repeatable workflows, new financial connectors for trusted data, and improved capabilities for traceability.
+Built for the complexity of finance work
+Before new Copilot capabilities ship in Excel, we evaluate them across graded levels of task complexity and benchmarks that reflect the work finance teams do every day, ensuring it can deliver multi-step workflow with a trusted and verifiable result rather than just complete a single task. For more on how we test, get an inside look at our evaluation framework, benchmarks, and domain-specific approach for finance.
+Meeting the high bar of professional finance work isn’t something we’ve done alone. We’ve also partnered with Financial Modeling Institute (FMI), the global body that credentials the industry’s most demanding modelers. Its library of real-world financial modeling cases has become a foundational part of how we evaluate Copilot in Excel for finance work.
+Tuned to your standards
+Today, we’re introducing skills that let teams define how Copilot should complete common processes such as building a DCF, closing the books, refreshing a monthly reporting model, or preparing a variance analysis. Instead of starting from scratch each time, a skill guides Copilot through the steps, applying the right structure and formatting, and helping produce an output that is easier to review, reuse, and trust.
+A library of sample finance skills is now available, and you can build your own custom skills using an open-standard markdown file. Save a SKILL.md file in your OneDrive, and Copilot will pick it up to build a three-statement model or a board package using the process you define for it. Learn more on how to create, use, and manage skills here.
+Developers and partners can soon build and deploy skills through Microsoft Marketplace and Microsoft 365 Admin Center. We’ve already begun working with a first wave of partners, including finance and ERP solutions like LSEG, Ramp, Rogo, Samaya AI, Velixo, and Vena.
+Copilot can also adapt to how you like to work in Excel. With Personalization, you can set preferences once and have Copilot apply them consistently, while workbook rules capture structure, naming, and formula conventions as a sheet in the workbook that follows the file.
+Grounded in data you trust
+Copilot in Excel connects directly to the data financial professionals rely on, bringing market data, fundamentals, and research directly into the workbook so analysis starts from the latest sources instead of manual data pulls.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a86c119c56c')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a50feb972ca">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi5wFBVV95cUxOUkE5SGVONGpzVV9zdjJPdzlGWWhmaU9UNjJGdjZuY2R1VDcwWTdsMGg3RS02MDZCYlZjazJLbEQ5bTkyNVppMXdUM2xiMDg5RnZEdzBTUmtfM0NQR2MxUk9FcVIwQkdzdUg4bXVucURiRWs5M3lZUmxVR3c0TS1lOV90Q2k3TEplSmgtRjBDczVGZ21KU2pEbV9iSVIzeG5GRDd0SS0yRTh5dUdNeVk2aE1kbVRoekJ3S3lqbUgzc19kazFwYVBQeFd2cUY4MUw3dlBsVTdEZ1lJYzlCX3hQYXdnOEZpQkE?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft says it'll force install Microsoft 365 Copilot on Windows 11 with MS 365 Business in the next 30 days - Windows Latest</a>
+          <div class="article-meta">Windows Latest &bull; Jun 21, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft says it'll force install Microsoft 365 Copilot on Windows 11 with MS 365 Business in the next 30 days&amp;nbsp;&amp;nbsp;Windows Latest</p><a href="https://news.google.com/rss/articles/CBMi5wFBVV95cUxOUkE5SGVONGpzVV9zdjJPdzlGWWhmaU9UNjJGdjZuY2R1VDcwWTdsMGg3RS02MDZCYlZjazJLbEQ5bTkyNVppMXdUM2xiMDg5RnZEdzBTUmtfM0NQR2MxUk9FcVIwQkdzdUg4bXVucURiRWs5M3lZUmxVR3c0TS1lOV90Q2k3TEplSmgtRjBDczVGZ21KU2pEbV9iSVIzeG5GRDd0SS0yRTh5dUdNeVk2aE1kbVRoekJ3S3lqbUgzc19kazFwYVBQeFd2cUY4MUw3dlBsVTdEZ1lJYzlCX3hQYXdnOEZpQkE?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a50feb972ca')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a1e5cc805ca">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiowFBVV95cUxPNzNfUmNDbnJBRDlKUncwM1N0QU1tQWZibjJ6OUc4UnQwODlRT1daUEUwY2ViOGNJYTFrS2ZCeDNzb1NfYWZ2U29tbk1IMlRqdU9wbkxmT3U0QXVnWU5PVk83QjBqbU92Q3BONjF2TkQwMmgzZkQyc3ZNRnVEenBqOWFkV0VaSWdtZHpSNDdsNWZpMDcyblR5T1dBNWp1eDAzZWlB?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Should Wix’s Microsoft 365 Copilot Integration Shift How WIX Investors View Its AI Strategy? - Yahoo Finance</a>
+          <div class="article-meta">Yahoo Finance &bull; Jun 28, 2026</div>
+          <div class="article-summary snippet"><p>Should Wix’s Microsoft 365 Copilot Integration Shift How WIX Investors View Its AI Strategy?&amp;nbsp;&amp;nbsp;Yahoo Finance</p><a href="https://news.google.com/rss/articles/CBMiowFBVV95cUxPNzNfUmNDbnJBRDlKUncwM1N0QU1tQWZibjJ6OUc4UnQwODlRT1daUEUwY2ViOGNJYTFrS2ZCeDNzb1NfYWZ2U29tbk1IMlRqdU9wbkxmT3U0QXVnWU5PVk83QjBqbU92Q3BONjF2TkQwMmgzZkQyc3ZNRnVEenBqOWFkV0VaSWdtZHpSNDdsNWZpMDcyblR5T1dBNWp1eDAzZWlB?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a1e5cc805ca')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ae14cb4bf66">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiuAFBVV95cUxPU1cySGtaUU5Pc01ucVhnMTZjVVphc2NtdVQxbnBzQUplU2w2MWhrdE5OeDNLZ2NKTEtOeV9pVVFxc1Z0MmFDSzV6ZXBHUVJPdWpqR09TeFI1aXNZNGg0YXZKUnl3N1prNnF4ZW82bDdHXzhGdmpjb3BvdmNmZ18wUGVScTZoMFozRUExUV9DbzJseDc4cjc4ZUFJNjR6X2ZOQ1g0a2hnWDdKUnllN3l6dV81eGU5a0o3?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Copilot in Excel: Built for the era of Frontier Finance - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; Jun 25, 2026</div>
+          <div class="article-summary snippet"><p>Copilot in Excel: Built for the era of Frontier Finance&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMiuAFBVV95cUxPU1cySGtaUU5Pc01ucVhnMTZjVVphc2NtdVQxbnBzQUplU2w2MWhrdE5OeDNLZ2NKTEtOeV9pVVFxc1Z0MmFDSzV6ZXBHUVJPdWpqR09TeFI1aXNZNGg0YXZKUnl3N1prNnF4ZW82bDdHXzhGdmpjb3BvdmNmZ18wUGVScTZoMFozRUExUV9DbzJseDc4cjc4ZUFJNjR6X2ZOQ1g0a2hnWDdKUnllN3l6dV81eGU5a0o3?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ae14cb4bf66')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a217864ce94">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMimwFBVV95cUxNampHci12SWxFaHRLTGFlTkxmbl93UWdnd3FyS0xTTjZDbnc3Q2ExMURBNEpzSnlJY2ZqNmNET3h0VE1YdTVsQ3hncjF6aDhJNUhldGZZWjN3ejJBNlNtY0ZiTkszTVBZcjZKTzJEWk5teHZUa211SnI0UXhtV2lsSlVBdEFnQ3VTVjVSQi1CU2FucE1MSG5uOXcyMA?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Mirage2FA phishing kit uses HTML smuggling to steal Microsoft 365 credentials - Help Net Security</a>
+          <div class="article-meta">Help Net Security &bull; Jun 26, 2026</div>
+          <div class="article-summary snippet"><p>Mirage2FA phishing kit uses HTML smuggling to steal Microsoft 365 credentials&amp;nbsp;&amp;nbsp;Help Net Security</p><a href="https://news.google.com/rss/articles/CBMimwFBVV95cUxNampHci12SWxFaHRLTGFlTkxmbl93UWdnd3FyS0xTTjZDbnc3Q2ExMURBNEpzSnlJY2ZqNmNET3h0VE1YdTVsQ3hncjF6aDhJNUhldGZZWjN3ejJBNlNtY0ZiTkszTVBZcjZKTzJEWk5teHZUa211SnI0UXhtV2lsSlVBdEFnQ3VTVjVSQi1CU2FucE1MSG5uOXcyMA?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a217864ce94')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ae2d4f9a659">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMipwFBVV95cUxQcmR2NXI4RklGVFZIRXRlTC1Dcndyc1VaVWJLQlRmcmt3dTRDTHdqSTFLU2NNVmdxcXFPOHE4ckJGU2FDMnhsMFhMeEJBc2VIelBvYWZUdVVJdDB3Q3BUZER6aVVEbmNEcEVuM2Zycy1VbllhcU14MG9uYUtXRkd6NzNvVXJ3ZUF3YVVNUm1QUmtMMmp0ZW8xbVU5UGRsU0hfMHpWNlIydw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Italy regulator probes Microsoft over 'Microsoft 365' price hike - Reuters</a>
+          <div class="article-meta">Reuters &bull; Jun 27, 2026</div>
+          <div class="article-summary snippet"><p>Italy regulator probes Microsoft over 'Microsoft 365' price hike&amp;nbsp;&amp;nbsp;Reuters</p><a href="https://news.google.com/rss/articles/CBMipwFBVV95cUxQcmR2NXI4RklGVFZIRXRlTC1Dcndyc1VaVWJLQlRmcmt3dTRDTHdqSTFLU2NNVmdxcXFPOHE4ckJGU2FDMnhsMFhMeEJBc2VIelBvYWZUdVVJdDB3Q3BUZER6aVVEbmNEcEVuM2Zycy1VbllhcU14MG9uYUtXRkd6NzNvVXJ3ZUF3YVVNUm1QUmtMMmp0ZW8xbVU5UGRsU0hfMHpWNlIydw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ae2d4f9a659')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a0e8e88971f">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMif0FVX3lxTFA4TkhiMFE4X0tGTTA3ZEhlSVRtaUxJZ0Y1N3NZOEFHWl9haTJRNWhRbkJZR041VUFvc0daNG1CSXJKcTFhMlVVbFhFbEtkMFBNZkpDMUtmVksybXIzUlc1QXkxbjRkd1dEY1AzMDZENWl5UDZUazhnZ3ROSjdOSHc?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Ditch your Microsoft 365 sub: Get Word, Excel, PowerPoint, and more for life for $105 - Mashable</a>
+          <div class="article-meta">Mashable &bull; Jun 26, 2026</div>
+          <div class="article-summary snippet"><p>Ditch your Microsoft 365 sub: Get Word, Excel, PowerPoint, and more for life for $105&amp;nbsp;&amp;nbsp;Mashable</p><a href="https://news.google.com/rss/articles/CBMif0FVX3lxTFA4TkhiMFE4X0tGTTA3ZEhlSVRtaUxJZ0Y1N3NZOEFHWl9haTJRNWhRbkJZR041VUFvc0daNG1CSXJKcTFhMlVVbFhFbEtkMFBNZkpDMUtmVksybXIzUlc1QXkxbjRkd1dEY1AzMDZENWl5UDZUazhnZ3ROSjdOSHc?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a0e8e88971f')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a3fe26539ad">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi3wFBVV95cUxNcXpaeFJIUkt6cUQ5NzZRajNIbjBXNTkxWXNVendyTHJPT2xMc0k0NGV6VVgzTkJhMEJpLUhqcGRtOGNGWmpWQmRCVkxURHZIX0R6bTZUN2RZQnRQcU9xNUltbFJHbHpNRjFFOUFzRXB3TFZsdloyX3U3eXNMNGg1U0ktYTA4dnM2X09NdEhyVEJtR1lrbFZ6dXJmZW1Ld3pRSmppcV95dk1hcEFJQVBWX3kzXzJraFY1SS1BOGVTVWZQNnUzaERmX1YyVzh0OWlxRGJNLVlESEFYZXFYQ1M0?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">PitchBook Expands Premium AI Integrations with Microsoft 365 Copilot and Copilot in Excel - Business Wire</a>
+          <div class="article-meta">Business Wire &bull; Jun 25, 2026</div>
+          <div class="article-summary snippet"><p>PitchBook Expands Premium AI Integrations with Microsoft 365 Copilot and Copilot in Excel&amp;nbsp;&amp;nbsp;Business Wire</p><a href="https://news.google.com/rss/articles/CBMi3wFBVV95cUxNcXpaeFJIUkt6cUQ5NzZRajNIbjBXNTkxWXNVendyTHJPT2xMc0k0NGV6VVgzTkJhMEJpLUhqcGRtOGNGWmpWQmRCVkxURHZIX0R6bTZUN2RZQnRQcU9xNUltbFJHbHpNRjFFOUFzRXB3TFZsdloyX3U3eXNMNGg1U0ktYTA4dnM2X09NdEhyVEJtR1lrbFZ6dXJmZW1Ld3pRSmppcV95dk1hcEFJQVBWX3kzXzJraFY1SS1BOGVTVWZQNnUzaERmX1YyVzh0OWlxRGJNLVlESEFYZXFYQ1M0?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a3fe26539ad')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="iru" class="topic-section">
+      <h2 class="topic-title" style="--c:#7C3AED">Iru MDM (formerly Kandji) </h2>
+      <p class="no-news">No articles found this week.</p>
+    </section>
+    <section id="cato" class="topic-section">
+      <h2 class="topic-title" style="--c:#FF6B35">Cato Networks <span class="count">(5)</span></h2>
+      <div class="article-card" data-id="a0f23ef2d17">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9ZanFrcEcxU1FQTFYxS3lXcHRMa201MkdNTWVHTzVUX3pNMndBdDhzX3VCYVpkNzQtMnpvUFhrS29yekhIR203aFM4a2w1ZHM1S0N0QmIxRERjTjVoQ256ajNPSlpheW8?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cyber unicorn Cato cancels planned move into Fiverr's former Tel Aviv offices - CTech</a>
+          <div class="article-meta">CTech &bull; Jun 23, 2026</div>
+          <div class="article-summary snippet"><p>Cyber unicorn Cato cancels planned move into Fiverr's former Tel Aviv offices&amp;nbsp;&amp;nbsp;CTech</p><a href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9ZanFrcEcxU1FQTFYxS3lXcHRMa201MkdNTWVHTzVUX3pNMndBdDhzX3VCYVpkNzQtMnpvUFhrS29yekhIR203aFM4a2w1ZHM1S0N0QmIxRERjTjVoQ256ajNPSlpheW8?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a0f23ef2d17')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a7f679493ca">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE56LTVkand4TU9yWXJmcHJRa2NaSW5hNkJReXhJM3lhTzNfeHRfcmJ0ZmxraktuN2VqQWhhSExyMTlpZnBrOHdQZmNFdUZoZlROdmNTZGFmUFJUNnlaVXAtel81NFlhdWVFYUtWbQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato joins OpenAI Daybreak program to advance AI-powered cyber defense - Ynetnews</a>
+          <div class="article-meta">Ynetnews &bull; Jun 24, 2026</div>
+          <div class="article-summary snippet"><p>Cato joins OpenAI Daybreak program to advance AI-powered cyber defense&amp;nbsp;&amp;nbsp;Ynetnews</p><a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE56LTVkand4TU9yWXJmcHJRa2NaSW5hNkJReXhJM3lhTzNfeHRfcmJ0ZmxraktuN2VqQWhhSExyMTlpZnBrOHdQZmNFdUZoZlROdmNTZGFmUFJUNnlaVXAtel81NFlhdWVFYUtWbQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a7f679493ca')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a2c69b61778">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMie0FVX3lxTE9UeDJLbGFJVFBqeTFCc3hMUHlnc2dtRjJsMVJjT1NSM2FQbTdVZlhZYm91cGZ2Q2JmdlItUHlFUEw4S0ZqTEU0VFUyQ3p6SmdhV1RGSVFzajZKUzI0c2hSVF94eFpIQkgzNlctX0t6bndjek5kZUpiU2gzNA?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks joins OpenAI Daybreak program to enhance cyber defense - Crypto Briefing</a>
+          <div class="article-meta">Crypto Briefing &bull; Jun 24, 2026</div>
+          <div class="article-summary snippet"><p>Cato Networks joins OpenAI Daybreak program to enhance cyber defense&amp;nbsp;&amp;nbsp;Crypto Briefing</p><a href="https://news.google.com/rss/articles/CBMie0FVX3lxTE9UeDJLbGFJVFBqeTFCc3hMUHlnc2dtRjJsMVJjT1NSM2FQbTdVZlhZYm91cGZ2Q2JmdlItUHlFUEw4S0ZqTEU0VFUyQ3p6SmdhV1RGSVFzajZKUzI0c2hSVF94eFpIQkgzNlctX0t6bndjek5kZUpiU2gzNA?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a2c69b61778')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ab825b9df84">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMikwFBVV95cUxNbmM1NGVVUEZndm81SzZtMWxTMHV1aU5CQ19MVk9JejY1T0tkMVJLZlRTclVianlzMG1feWZCT2FueHAtNG03Z2VjQ2Z5emh0Z3gwZTdqU2dIUkhyWGJCbmNiQ1RUOEtMSnJxSlQ1LW54SFFyYUtSUXdvY1lHdVBMdjdQd1BBVTBiMGNtRlNMMV85RW8?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Advances Enterprise Defense, Joining the OpenAI Daybreak Cyber Partner Program - Yahoo Finance Singapore</a>
+          <div class="article-meta">Yahoo Finance Singapore &bull; Jun 22, 2026</div>
+          <div class="article-summary snippet"><p>Cato Advances Enterprise Defense, Joining the OpenAI Daybreak Cyber Partner Program&amp;nbsp;&amp;nbsp;Yahoo Finance Singapore</p><a href="https://news.google.com/rss/articles/CBMikwFBVV95cUxNbmM1NGVVUEZndm81SzZtMWxTMHV1aU5CQ19MVk9JejY1T0tkMVJLZlRTclVianlzMG1feWZCT2FueHAtNG03Z2VjQ2Z5emh0Z3gwZTdqU2dIUkhyWGJCbmNiQ1RUOEtMSnJxSlQ1LW54SFFyYUtSUXdvY1lHdVBMdjdQd1BBVTBiMGNtRlNMMV85RW8?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ab825b9df84')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a31e655a041">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi3AFBVV95cUxQT2w3ckFaSlNRcDBLYlY3VWNRU0hfaXVIQmozaFNfUlgwdk83RHdmVU1YQW9CeDBFMV9ydW5BTUxNY3BOWnU4akpNQ2pvSi1MNnJXOUJ2UmlLa2wtV2V0OEZVSHNCVm43ODllOFpnVmFkSF9qd2tDeEl4MGtMRmdhQmRDeFNqZ256cUlnQ3hPdFp2V3VFODBQZ1VhVHVwNTEyZ19YS0x6Tm5NTjBZdklYY0xScVphX19qTHA0UzZFYVZ4cU9VWGFlemN4MTJjZV9WSl8xTFdHTEZ2MmdC?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks Advances Enterprise Defense, Joining the OpenAI Daybreak Cyber Partner Program - marketscreener.com</a>
+          <div class="article-meta">marketscreener.com &bull; Jun 22, 2026</div>
+          <div class="article-summary snippet"><p>Cato Networks Advances Enterprise Defense, Joining the OpenAI Daybreak Cyber Partner Program&amp;nbsp;&amp;nbsp;marketscreener.com</p><a href="https://news.google.com/rss/articles/CBMi3AFBVV95cUxQT2w3ckFaSlNRcDBLYlY3VWNRU0hfaXVIQmozaFNfUlgwdk83RHdmVU1YQW9CeDBFMV9ydW5BTUxNY3BOWnU4akpNQ2pvSi1MNnJXOUJ2UmlLa2wtV2V0OEZVSHNCVm43ODllOFpnVmFkSF9qd2tDeEl4MGtMRmdhQmRDeFNqZ256cUlnQ3hPdFp2V3VFODBQZ1VhVHVwNTEyZ19YS0x6Tm5NTjBZdklYY0xScVphX19qTHA0UzZFYVZ4cU9VWGFlemN4MTJjZV9WSl8xTFdHTEZ2MmdC?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a31e655a041')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+</main>
+
+<footer>
+  Generated every Sunday &mdash; Topics: Windows &bull; Azure &bull; SharePoint &bull; Intune &bull; Entra ID &bull; Microsoft 365 &bull; Iru MDM (formerly Kandji) &bull; Cato Networks
+</footer>
+
+<script>
+const KEY = 'it-news-hidden-v1';
+function getHidden() {
+  try { return new Set(JSON.parse(localStorage.getItem(KEY) || '[]')); }
+  catch { return new Set(); }
+}
+function saveHidden(s) { localStorage.setItem(KEY, JSON.stringify([...s])); }
+function toggleArticle(id) {
+  const h = getHidden();
+  h.has(id) ? h.delete(id) : h.add(id);
+  saveHidden(h); applyHidden(h);
+}
+function applyHidden(h) {
+  h = h || getHidden();
+  document.querySelectorAll('.article-card[data-id]').forEach(c => {
+    c.classList.toggle('is-hidden', h.has(c.dataset.id));
+  });
+}
+let revealing = false;
+function toggleReveal() {
+  revealing = !revealing;
+  document.body.classList.toggle('reveal-hidden', revealing);
+  document.getElementById('reveal-btn').textContent = revealing ? 'Hide hidden' : 'Show hidden';
+}
+fetch('weeks.json').then(r => r.json()).then(weeks => {
+  const sel = document.getElementById('week-sel');
+  weeks.forEach(w => {
+    const o = document.createElement('option');
+    o.value = w.file; o.textContent = w.label;
+    if (w.current) o.selected = true;
+    sel.appendChild(o);
+  });
+}).catch(() => {});
+applyHidden();
+</script>
+</body>
+</html>
