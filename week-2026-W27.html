@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT News Digest — 2026-W27</title>
+  <style>
+    :root{--bg:#f8fafc;--surface:#fff;--border:#e2e8f0;--text:#1e293b;--muted:#64748b;--accent:#2563eb}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+    a{color:var(--accent)}
+
+    header{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+    .h-inner{max-width:1000px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .h-brand{font-size:1.1rem;font-weight:800;color:#1d4ed8}
+    .h-meta{font-size:.78rem;color:var(--muted)}
+    .h-controls{display:flex;gap:8px;align-items:center}
+    .btn{padding:5px 12px;border-radius:6px;font-size:.78rem;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);white-space:nowrap}
+    .btn:hover{background:#f1f5f9}
+    select.week-sel{padding:5px 10px;border-radius:6px;border:1px solid var(--border);background:var(--surface);font-size:.78rem;cursor:pointer;color:var(--text)}
+
+    .t-nav{background:var(--surface);border-bottom:1px solid var(--border);overflow-x:auto}
+    .t-nav-inner{max-width:1000px;margin:0 auto;padding:8px 20px;display:flex;gap:6px;min-width:max-content}
+    .nav-link{font-size:.72rem;padding:3px 10px;border-radius:20px;border:2px solid var(--c,#2563eb);color:var(--c,#2563eb);text-decoration:none;font-weight:600;white-space:nowrap}
+    .nav-link:hover{background:var(--c,#2563eb);color:#fff}
+
+    main{max-width:1000px;margin:0 auto;padding:24px 20px}
+
+    .week-hero{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin-bottom:28px;display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+    .hero-title{font-size:1.6rem;font-weight:900;color:#1d4ed8}
+    .hero-sub{font-size:.85rem;color:var(--muted);margin-top:2px}
+    .stat-box{text-align:center;min-width:60px}
+    .stat-num{font-size:2rem;font-weight:900;color:#1d4ed8;line-height:1}
+    .stat-lbl{font-size:.65rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+
+    .topic-section{margin-bottom:40px}
+    .topic-title{font-size:1.2rem;font-weight:800;color:var(--c,#2563eb);border-bottom:3px solid var(--c,#2563eb);padding-bottom:8px;margin-bottom:14px}
+    .count{font-size:.8rem;font-weight:400;color:var(--muted)}
+    .no-news{color:var(--muted);font-style:italic;font-size:.88rem}
+
+    .article-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:12px;display:flex;gap:12px;align-items:flex-start;transition:border-color .15s}
+    .article-card:hover{border-color:#94a3b8}
+    .article-body{flex:1;min-width:0}
+    .article-title{font-size:.98rem;font-weight:600;text-decoration:none;display:block;margin-bottom:4px;color:var(--accent)}
+    .article-title:hover{text-decoration:underline}
+    .article-meta{font-size:.72rem;color:var(--muted);margin-bottom:8px}
+
+    .article-summary{margin-top:6px;font-size:.875rem;color:#334155;line-height:1.75}
+    .article-summary p{margin-bottom:.6em}
+    .article-summary p:last-child{margin-bottom:0}
+    .gnews-badge{display:inline-block;font-size:.65rem;background:#fef3c7;color:#92400e;border-radius:4px;padding:1px 5px;margin-bottom:6px;vertical-align:middle}
+    .article-summary.snippet{color:var(--muted)}
+    .read-more{display:inline-block;margin-top:6px;font-size:.8rem;font-weight:600;color:var(--accent);text-decoration:none}
+    .read-more:hover{text-decoration:underline}
+
+    .hide-btn{flex-shrink:0;padding:5px 10px;border-radius:6px;font-size:.72rem;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--muted);white-space:nowrap;align-self:flex-start}
+    .hide-btn:hover{border-color:#ef4444;color:#ef4444;background:#fef2f2}
+    .lbl-show{display:none}
+
+    .article-card.is-hidden{display:none}
+    body.reveal-hidden .article-card.is-hidden{display:flex;opacity:.45;border-style:dashed}
+    .article-card.is-hidden .lbl-hide{display:none}
+    .article-card.is-hidden .lbl-show{display:inline}
+    body.reveal-hidden .article-card.is-hidden .hide-btn{border-color:#16a34a;color:#16a34a}
+    body.reveal-hidden .article-card.is-hidden .hide-btn:hover{background:#f0fdf4}
+
+    footer{text-align:center;padding:24px 20px;color:var(--muted);font-size:.75rem;border-top:1px solid var(--border);margin-top:40px}
+
+    @media(max-width:600px){
+      .h-inner,.main{padding-left:14px;padding-right:14px}
+      .hero-title{font-size:1.3rem}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="h-inner">
+    <div>
+      <div class="h-brand">IT News Digest</div>
+      <div class="h-meta">Week 2026-W27 &bull; Jun 29 – Jul 05, 2026</div>
+    </div>
+    <div class="h-controls">
+      <button class="btn" id="reveal-btn" onclick="toggleReveal()">Show hidden</button>
+      <select class="week-sel" id="week-sel" onchange="if(this.value) location.href=this.value">
+        <option value="">&#128337; Archive&hellip;</option>
+      </select>
+    </div>
+  </div>
+</header>
+
+<nav class="t-nav"><div class="t-nav-inner"><a href="#windows" class="nav-link" style="--c:#0078D4">Microsoft Windows</a><a href="#azure" class="nav-link" style="--c:#00BCF2">Azure</a><a href="#sharepoint" class="nav-link" style="--c:#036C70">SharePoint</a><a href="#intune" class="nav-link" style="--c:#0F6CBD">Intune</a><a href="#entraid" class="nav-link" style="--c:#6B69D6">Entra ID</a><a href="#m365" class="nav-link" style="--c:#D83B01">Microsoft 365</a><a href="#iru" class="nav-link" style="--c:#7C3AED">Iru MDM (formerly Kandji)</a><a href="#cato" class="nav-link" style="--c:#FF6B35">Cato Networks</a></div></nav>
+
+<main>
+  <div class="week-hero">
+    <div>
+      <div class="hero-title">Week 2026-W27</div>
+      <div class="hero-sub">Jun 29 – Jul 05, 2026</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">46</div>
+      <div class="stat-lbl">Articles</div>
+    </div>
+  </div>
+
+    <section id="windows" class="topic-section">
+      <h2 class="topic-title" style="--c:#0078D4">Microsoft Windows <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a8645769909">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windowsexperience/2026/06/29/elder-scrolls-online-introduces-new-in-game-event-high-seas-of-tamriel/" target="_blank" rel="noopener noreferrer" class="article-title">Elder Scrolls Online introduces new in-game event: High Seas of Tamriel</a>
+          <div class="article-meta">blogs.windows.com &bull; Jun 29, 2026</div>
+          <div class="article-summary"><p>Fans of PC favorite Elder Scrolls Online can look forward to a new in-game event: the High Seas of Tamriel, which XBOX Wire’s Mike Nelson framed as one of the franchise’s bigger experiments, especially with naval combat.
+Nelson caught up with Game Director Nick Giacomini and Associate Design Director Jason Barnes to learn more about it.
+“It is very different from any of the events that we’ve ever done in The Elder Scrolls Online,” Giacomini says. “It is a destination as opposed to amplifying the world…It involves underwater combat. It involves these kinds of scavenger-hunt collection-type things, like messages in a bottle.”
+Find out more at XBOX Wire.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a8645769909')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ac0b2c77951">
+        <div class="article-body">
+          <a href="https://petri.com/windows-server-2022-hotpatching-2027/" target="_blank" rel="noopener noreferrer" class="article-title">Windows Server 2022 Keeps Reboot-Free Security Updates Until 2027</a>
+          <div class="article-meta">petri.com &bull; Jun 30, 2026</div>
+          <div class="article-summary"><p>This extension gives Azure-hosted server environments additional time to plan future platform upgrades.
+Key Takeaways:
+Microsoft has extended hotpatching support for Windows Server 2022 Datacenter: Azure Edition through October 2027. This extension enables Azure-hosted servers to continue receiving monthly security updates without requiring routine reboots.
+Hotpatching is a software-update method that allows security fixes to be applied to a running system without requiring an immediate restart. Hotpatching updates parts of the software that are currently running in memory to help organizations reduce downtime. This approach can simplify maintenance, shorten patch deployment windows, and improve security by making it easier to install updates promptly.
+Microsoft plans to end mainstream support for Windows Server 2022 on October 13, 2026, but will continue to offer extended support until October 14, 2031. However, this extension applies only to Windows Server 2022 Datacenter: Azure Edition. It won’t be applicable to organizations running standard on-premises Windows Server 2022.
+“Hotpatch update support for Windows Server 2022 Datacenter: Azure Edition has been extended through October 2027. Devices enrolled in Hotpatch updates will continue to receive monthly security updates without requiring a restart. To learn more, see the Windows Server 2022 lifecycle page,” Microsoft explained on its Windows Release Health dashboard.
+For IT administrators, this extension provides greater flexibility to keep server environments secure while minimizing operational disruption. Organizations running Windows Server 2022 Datacenter: Azure Edition will also have more time to plan and execute upgrades at a pace that aligns with their business and infrastructure requirements.
+Microsoft is encouraging organizations to move to Windows Server 2025, which brings continued mainstream support, new security capabilities, and ongoing feature enhancements. The release includes enhanced Active Directory security, stronger SMB protections, improved hybrid-cloud integration through Azure Arc, and better storage performance.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac0b2c77951')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="adf6565aebf">
+        <div class="article-body">
+          <a href="https://petri.com/windows-365-context-based-redirections-preview/" target="_blank" rel="noopener noreferrer" class="article-title">Windows 365 Introduces Trust‑Based Controls for Clipboard, USB, and File Redirection</a>
+          <div class="article-meta">petri.com &bull; Jun 30, 2026</div>
+          <div class="article-summary"><p>New feature adjusts clipboard, storage, printer, and USB access based on session trust levels.
+Key Takeaways:
+Microsoft has introduced context-based redirections in public preview for Windows 365. The new capability enables administrators to dynamically control data redirection based on user identity, device posture, and session conditions.
+According to Microsoft, traditional data protection methods in cloud environments rely on fixed, one-size-fits-all rules that either allow or block data sharing. This approach makes it harder for organizations to securely support modern work practices because it can either over-restrict users and reduce productivity or fail to prevent data leakage when conditions are less secure.
+The context-based redirections feature allows organizations to control how data moves between a Cloud PC and a user’s local device based on context. Instead of permanently allowing or blocking features like copy-paste, USB access, or file transfers, this feature evaluates factors (such as the user’s identity, device security status, and network environment) to decide what should be permitted at that moment.
+“Context-based redirections are part of our broader secure bring-your-own-device (BYOD) strategy. Instead of relying only on a one-size-fits-all redirection policy, admins can use Microsoft Entra Conditional Access authentication context with Windows 365 and Azure Virtual Desktop redirection settings to make redirection decisions that better match the trust level of the session,” Microsoft explained.
+Microsoft notes that this feature specifically manages common data-transfer paths, including clipboard (copy/paste), local drives and storage, printers, and USB devices. It will be supported in the Windows App on Windows, macOS, web, Android, and iOS/iPadOS. This feature is currently only supported on Windows 365 Enterprise and Flex (dedicated).
+To get started with context-based redirections, IT admins will first create an Entra authentication context and create an Entra Conditional Access to issue the authentication context. They can then configure the Windows 365 Remote Connection Experience setting policy to require the specified authentication context for the targeted redirections.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('adf6565aebf')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="afdf9875285">
+        <div class="article-body">
+          <a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-fixes-bug-that-removed-copilot-button-in-outlook/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft fixes bug that removed Copilot buttons in Outlook</a>
+          <div class="article-meta">bleepingcomputer.com &bull; Jul 02, 2026</div>
+          <div class="article-summary"><p>Microsoft has fixed a known issue causing the Copilot Chat or Copilot buttons in Classic Outlook to disappear for Windows users with the Copilot Chat (Basic) license.
+As the company explains in a recent support document, affected users may no longer see Copilot buttons on the side navigation and above the ribbon.
+Those affected may also experience one or more of the following issues:
+- The Copilot button is missing from the top-right area above the ribbon.
+- The Copilot icon is missing from the left app bar or More Apps area in classic Outlook.
+- In Add Apps, Copilot may appear as an available app, but selecting Open does nothing.
+- Adding Copilot through ribbon customization may show the command as unavailable or grayed out.
+- Copilot remains available from other entry points, such as Outlook on the web or the Microsoft 365 Copilot standalone app or web experience.
+Microsoft says the Outlook Team has addressed this issue with a service change on June 29, 2026, and advised those who are still unable to see the Copilot buttons in Classic Outlook to restart their email client to get the change immediately.
+Affected customers are also recommended to update to the latest build by selecting File &gt; Office Account &gt; Update Options &gt; Update Now.
+Those who can't upgrade their client to fix the bug can also work around the issue by reverting to the previous Current Channel build (16.0.20026.20168) or using the new Outlook or Outlook Web Access (OWA).
+Microsoft is now also investigating a known issue that causes unexpected Outlook crashes on systems running Kaspersky Antivirus software, linked to the Kaspersky Mail Checker (mcou.dll).
+Affected Outlook for Microsoft 365 users are advised to check the Application log for &quot;Event 1000&quot; events with the OUTLOOK.EXE faulting app name and MCOU.DLL faulting module name to confirm that this issue triggers the crashes.
+&quot;If you are experiencing this crash, please contact Kaspersky support,&quot; the Outlook Team said.
+In recent months, Microsoft also resolved known issues that prevented some Classic Outlook users from sending emails via Outlook.com and rendered the client unusable for users who enabled the Microsoft Teams Meeting Add-in.
+Test every layer before attackers do
+Security teams log 54% of successful attacks and alert on just 14%. The rest move through your environment unseen.
+The Picus whitepaper shows how breach and attack simulation tests your SIEM and EDR rules so threats stop slipping by detection.
+Get the whitepaper</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('afdf9875285')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="acfbc187ccb">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiqAJBVV95cUxOM01fYjd1cjFmcGxOU3ZaYlZ3NWdxMEhIbHJKZ3JLMWZmQTJhM2RzaVMxZ2R5c2NyLTd2clVCSWVKT1BlckRKSnhsTjVfdXpIMDN6UHJhLVBoTTA2MlB1VHZPOHBEWHNHcTc4NTM0S2JSc2RhZ1o4YWF1NnE1eVFwa2trWXp1SzltcjFMYVNrbFdaRHIzc3J0MVlvd1hUTmJ3WWFqSURpbVYzVTRnd1FmX2ROQ1dyS0dtaFJoQkNsbVcxS3ZseXFxZ0pIUnVBU1JNMmYwMnVZVmFiZkRNYlFOd2xuV2VVZzktNVo1MnhKbDYtOXFoNmdrMEE3eXBia3U4M2tlWUhFa21Jb3k4RVdfVzJBWWNpOUFWUU5RTTR1dlYzeGkzeFIwRg?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Leaked video reveals Microsoft has explored building an AI-powered Copilot OS powered by Edge - Windows Central</a>
+          <div class="article-meta">Windows Central &bull; Jul 02, 2026</div>
+          <div class="article-summary snippet"><p>Leaked video reveals Microsoft has explored building an AI-powered Copilot OS powered by Edge&amp;nbsp;&amp;nbsp;Windows Central</p><a href="https://news.google.com/rss/articles/CBMiqAJBVV95cUxOM01fYjd1cjFmcGxOU3ZaYlZ3NWdxMEhIbHJKZ3JLMWZmQTJhM2RzaVMxZ2R5c2NyLTd2clVCSWVKT1BlckRKSnhsTjVfdXpIMDN6UHJhLVBoTTA2MlB1VHZPOHBEWHNHcTc4NTM0S2JSc2RhZ1o4YWF1NnE1eVFwa2trWXp1SzltcjFMYVNrbFdaRHIzc3J0MVlvd1hUTmJ3WWFqSURpbVYzVTRnd1FmX2ROQ1dyS0dtaFJoQkNsbVcxS3ZseXFxZ0pIUnVBU1JNMmYwMnVZVmFiZkRNYlFOd2xuV2VVZzktNVo1MnhKbDYtOXFoNmdrMEE3eXBia3U4M2tlWUhFa21Jb3k4RVdfVzJBWWNpOUFWUU5RTTR1dlYzeGkzeFIwRg?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('acfbc187ccb')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a3a20738e18">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMizwFBVV95cUxPUWxVWUhPV0VnZlB4N1ExZUp0S3JoZldpNV85NE5ncDU2MEVUWmdNWnpSR0NNaXhVRGc4Z3A2a3lmejViN0Z4bm13QmF4QmJ1eFRUdERnejVQSUhXY3FsVEpSNmlRdEtDZU15bnpmYlFIT2VTa0dzQlJmRVJiQ0VPem5wUjBPNWEwbldzUGRBT09feUlYaHRRVzRhekJER1dpdGRTU2xGNXYyVVd1N1RIYVl5V3JCUkhqMVc1MUJSdnFIbVVNanYwODVwc1pETG8?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">We've had 3 months of Microsoft fixing Windows 11 now — here's how it's going, and what else must be done - TechRadar</a>
+          <div class="article-meta">TechRadar &bull; Jul 04, 2026</div>
+          <div class="article-summary snippet"><p>We've had 3 months of Microsoft fixing Windows 11 now — here's how it's going, and what else must be done&amp;nbsp;&amp;nbsp;TechRadar</p><a href="https://news.google.com/rss/articles/CBMizwFBVV95cUxPUWxVWUhPV0VnZlB4N1ExZUp0S3JoZldpNV85NE5ncDU2MEVUWmdNWnpSR0NNaXhVRGc4Z3A2a3lmejViN0Z4bm13QmF4QmJ1eFRUdERnejVQSUhXY3FsVEpSNmlRdEtDZU15bnpmYlFIT2VTa0dzQlJmRVJiQ0VPem5wUjBPNWEwbldzUGRBT09feUlYaHRRVzRhekJER1dpdGRTU2xGNXYyVVd1N1RIYVl5V3JCUkhqMVc1MUJSdnFIbVVNanYwODVwc1pETG8?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a3a20738e18')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a814c77b36e">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiywFBVV95cUxOemMxOWxIM0ZPbldKWFVQczV1aUNfOGJ6bEd6VVEtb19wRGdGZzJoV3hObkF3Q09zdTV4RUdXRVhYR2drRkp1Q3BWc0ctMmEtZktDdV94c3F5Y2owTlBqQVBpSDJvS2lxdXdzM2hmQkY5enRhRUlrOGhvZ2wxbzQ2c3lncDlleWJnTGtMU0hBZUdnVW5WQXl3bWZwWnJrTHpDVXJjbllFZDQtQ1J1dkNtOUpXeFlCdGoyZFhyeU9Pelhrbmo4ZlVUSmRUQQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">WSL keeps getting better, and it's because Microsoft is finally admitting where developers want to be - XDA</a>
+          <div class="article-meta">XDA &bull; Jul 04, 2026</div>
+          <div class="article-summary snippet"><p>WSL keeps getting better, and it's because Microsoft is finally admitting where developers want to be&amp;nbsp;&amp;nbsp;XDA</p><a href="https://news.google.com/rss/articles/CBMiywFBVV95cUxOemMxOWxIM0ZPbldKWFVQczV1aUNfOGJ6bEd6VVEtb19wRGdGZzJoV3hObkF3Q09zdTV4RUdXRVhYR2drRkp1Q3BWc0ctMmEtZktDdV94c3F5Y2owTlBqQVBpSDJvS2lxdXdzM2hmQkY5enRhRUlrOGhvZ2wxbzQ2c3lncDlleWJnTGtMU0hBZUdnVW5WQXl3bWZwWnJrTHpDVXJjbllFZDQtQ1J1dkNtOUpXeFlCdGoyZFhyeU9Pelhrbmo4ZlVUSmRUQQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a814c77b36e')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a92eaccb49c">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMioAFBVV95cUxNVm1ZZEtzdHAtQjZKUUdsc2lKNXNnV1dtTk9NM0FfSlY4UVpUcFZwNnJBc1NqcEtDM08wdjN5TktOelpIMndHWGFqUUNNOVR6d2RRUEptU1M2cGdVSS1KUTZvczBacVFPYWFKMEg1MTRBTm5EYlFWNHp1YUZzZTE0TkNjdFFTdVJ1UGpscGRoT3BlRldXdlFFQjRRMnBEMGJF?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft's new Azure Linux 4.0 is here, and it could replace Windows Server in the enterprise - ZDNET</a>
+          <div class="article-meta">ZDNET &bull; Jul 02, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft's new Azure Linux 4.0 is here, and it could replace Windows Server in the enterprise&amp;nbsp;&amp;nbsp;ZDNET</p><a href="https://news.google.com/rss/articles/CBMioAFBVV95cUxNVm1ZZEtzdHAtQjZKUUdsc2lKNXNnV1dtTk9NM0FfSlY4UVpUcFZwNnJBc1NqcEtDM08wdjN5TktOelpIMndHWGFqUUNNOVR6d2RRUEptU1M2cGdVSS1KUTZvczBacVFPYWFKMEg1MTRBTm5EYlFWNHp1YUZzZTE0TkNjdFFTdVJ1UGpscGRoT3BlRldXdlFFQjRRMnBEMGJF?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a92eaccb49c')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="azure" class="topic-section">
+      <h2 class="topic-title" style="--c:#00BCF2">Azure <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="acb0c2561ca">
+        <div class="article-body">
+          <a href="https://azure.microsoft.com/en-us/blog/meet-brain-the-ai-system-behind-azure-reliability/" target="_blank" rel="noopener noreferrer" class="article-title">Meet Brain: The AI system behind Azure reliability</a>
+          <div class="article-meta">azure.microsoft.com &bull; Jul 02, 2026</div>
+          <div class="article-summary"><p>Takeaway: Brain is Azure’s AI-powered cloud reliability intelligence system: an AIOps system that sits as an intelligent layer on top of Azure Resource Graph and fuses platform telemetry, AI/ML models, service dependencies, and customer impact into a single, continuously updated view of how every service, region, and workload is performing. It already powers customer Azure resource health notifications, deployment safeguards, and outage declaration, and it is the foundation for agentic AI now reshaping how Azure operates. This post starts a multi-part series on what Brain is, how we built it, what we’ve learned operating it at scale, and where it goes next.
+How Azure’s AI-powered reliability intelligence system works
+Azure runs on a digital twin of its own health. Brain is an AIOps-powered cloud health intelligence system that operates as an intelligent layer on top of Azure Resource Graph (ARG); together, they form this digital twin. It integrates platform telemetry, AI/ML models, and data engineering to continuously maintain and enrich a real-time view of how services, regions, and customer workloads are performing across Azure. Over time, that shared picture is becoming the foundation for a more automated reliability surface: one that can turn insight into action.
+Today, Brain already powers important reliability workflows across Azure, such as health notifications for customer’s resources, deployment safeguards, and outage declaration. If you run on Azure, Brain is already changing three things you can notice:
+- How fast we tell you when something is wrong.
+- How accurately we scope it to your resources.
+- How quickly the right engineer gets on it.
+This post is about how and what it lets you do differently.
+We’re starting a multi-post series with this one to take you through what Brain is, how we built it, what it has learned operating Azure at scale, and where it goes next. Today, the foundation.
+Why Brain is needed
+Azure runs hundreds of services across more than 80 Azure regions, over 500 datacenters, and over 800,000 kilometers of fiber and subsea cable, representing one of the world’s largest global cloud footprints. And yet with the massive amount of activity these Azure services create, manage, and process worldwide, on a quietly degrading day, we will sometimes still learn about an issue from a customer before our own systems do. For customers, that gap is the worst kind of incident; the one where they are debugging their own application before they learn the fault was ours.
+That gap between what we measure and what we know is the limiting factor on cloud reliability today. It is not a tooling problem. We have plenty of tools. It is a comprehension problem. The amount of signal a hyperscale cloud produces has outgrown the human ability to read it, and the conventional answer: more dashboards, more alerts, more on-call rotations. It’s a treadmill, not an answer. Every additional dashboard gives an operator another window to look through; what’s missing is something that tells them what they’re looking at, in time to act.
+Closing that gap meant building something we hadn’t built yet: not better dashboards, not smarter alerts, but a continuously updated model of the platform’s health that reasons across every signal in real time, and acts on those conclusions automatically at the scale the platform demands.
+What is Brain? Azure’s centralized AIOps for cloud reliability
+Brain is Azure’s centralized AIOps-powered cloud health intelligence system that uses AI/ML, including agentic AI and data engineering, to continuously model Azure’s health and to automatically take reliability actions based on it.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('acb0c2561ca')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a29a1457fa1">
+        <div class="article-body">
+          <a href="https://azure.microsoft.com/en-us/blog/proving-application-resilience-on-azure-with-chaos-studio/" target="_blank" rel="noopener noreferrer" class="article-title">Proving application resilience on Azure with Chaos Studio</a>
+          <div class="article-meta">azure.microsoft.com &bull; Jul 01, 2026</div>
+          <div class="article-summary"><p>Takeaway: Azure Chaos Studio helps organizations validate application resilience by simulating outages, failovers, network disruptions, and infrastructure failures before they impact production.
+You don’t know with certainty that your application is resilient until that resilience is tested. Better to learn it isn’t by deliberately breaking it in a test environment and watching how it reacts, than by a failure in production. Azure Chaos Studio is our managed service for doing exactly that, safely and on purpose.
+Today, Azure Chaos Studio Workspaces is in public preview: a scenario-focused approach that lets you test the failure modes Azure customers actually see in production. We’ve been hard at work making Workspaces easy to use, with broad fault support and named scenarios that mirror real outages, instead of isolated faults.
+Why designing for resilience isn’t enough
+Azure customers have invested in resilient design: multi-zone deployments, geo-redundant storage, automatic database failover, retry logic, load-balanced front ends. However, the real question is when an incident begins: when the failure arrives, do those mechanisms recover your application in the time you assumed they would?
+Real outages don’t read the architecture diagram. A zone-redundant deployment can fail because a health probe was misconfigured years ago. A database with automatic failover can leave the application dead because a connection string is hard coded to a single region. Geo-redundant storage can briefly produce stale reads the application code never expected. These mistakes are common, and they only show up when the failure happens.
+Reliability and resiliency on Azure are a shared responsibility. Microsoft is responsible for the platform and the resilience built into Azure services. Customers are responsible for configuring that resilience and the code that uses it. No layer makes up for a gap in another. The only way to know whether your architecture, configuration, and application logic will hold up in production is to prove they hold under failure before an outage tests them for you.
+How Chaos Studio Workspaces changes resilience testing
+Chaos Studio is Azure’s managed chaos engineering service for validating how applications behave under failure. By simulating controlled disruptions across infrastructure, networking, databases, and application dependencies, it helps teams uncover resilience gaps before customers experience them. Chaos Studio Workspaces focuses on scenarios that match what happens in production, so you start from a real outage pattern instead of assembling individual faults. You begin with a named scenario like Zone Down, DNS Outage, or SQL failover, already sequenced against the resources in a Workspace.
+Most outages exercise two layers at once. There’s the platform layer: did the service come back, did failover complete within your Recovery Time Objective, did traffic reroute. And there’s the application layer: did your code maintain data integrity, pick up in-flight transactions, retry the right things, degrade gracefully. A chaos test that only stops a Virtual Machine (VM) tells you about the platform layer. The scenarios in Chaos Studio Workspaces are designed to validate the entire stack.
+Workspaces reduce the burden of getting started. The most common reason resilience testing stalls is that teams don’t know where to start. The Workspace is the new top-level resource: you point it at a subscription or resource group, and its managed identity discovers what’s in scope and recommends the scenarios that apply. Those scenarios show up inside the Workspace, ready to configure and run, and a refresh, updates the recommendations whenever your infrastructure changes.
+A library of real outage scenarios. Chaos Studio Workspaces ships with curated scenarios informed by patterns observed in real Azure incidents, so the patterns you test against are the patterns customers actually experience.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a29a1457fa1')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aa82c12c0ee">
+        <div class="article-body">
+          <a href="https://azure.microsoft.com/en-us/blog/azure-iaas-how-to-design-build-and-optimize-cloud-infrastructure-for-long-term-cost-optimization-efficiency/" target="_blank" rel="noopener noreferrer" class="article-title">Azure IaaS: How to design, build, and optimize cloud infrastructure for long-term cost efficiency</a>
+          <div class="article-meta">azure.microsoft.com &bull; Jun 30, 2026</div>
+          <div class="article-summary"><p>This blog post is the third part of a blog series called Azure IaaS which will share best practices and guidance to help you build a trusted infrastructure platform—from performance, resiliency, and security to scalability and cost efficiency.
+As organizations modernize infrastructure, migrate mission-critical workloads, build cloud-native applications, and scale AI—cost efficiency remains a foundational principle of cloud architectures.
+Yet cloud costs are rarely driven by a single decision. More often, across Azure Infrastructure-as-a-Service (IaaS) environments, they are the result of many compounded architectural choices across compute, storage, and networking.
+Common examples include overprovisioning infrastructure when selecting a larger virtual machine than a workload requires or keeping infrequently accessed data on premium storage, building resilient architectures that introduce unnecessary overhead, or collecting and retaining more operational data than is needed. Individually, these decisions may seem minor, but over time they can significantly impact both cost and operational efficiency.
+These challenges become even more important as organizations expand AI initiatives, modernize applications, and support growing performance and resiliency requirements.
+The opportunity lies in addressing these inefficiencies before they become entrenched. By making informed infrastructure decisions during planning, deployment, and ongoing operations, organizations can improve resource utilization, reduce total cost of ownership (TCO), and create a more scalable foundation for future growth.
+In this blog, we’ll explore some of the most common infrastructure cost challenges organizations face today and examine how Azure IaaS capabilities across compute, storage, and networking can help improve efficiency, reduce TCO, and highlight resources available in the Azure IaaS Resource Center to help you make more informed decisions.
+Many of the most impactful optimization opportunities originate long before a workload enters production. To better understand where these opportunities exist, let’s examine common efficiency challenges (and solutions) across compute, storage, and networking.
+Compute: Matching resources to workload requirements
+Compute inefficiencies are often the easiest to identify because they directly affect both performance and infrastructure spend.
+The goal is not simply to select the lowest-cost compute option, but rather to align infrastructure resources with workload requirements while preserving flexibility for future growth.
+Azure provides a broad portfolio of virtual machine options, enabling organizations to select the architecture, processor type, performance profile, and scale characteristics that best match workload needs; allowing organizations to align infrastructure investments with workload needs rather than paying for unused capacity.
+Equally important is taking advantage of Azure’s flexible pricing options. Depending on workload characteristics, organizations can combine Pay-As-You-Go pricing, Azure savings plans, Azure Reservations, and Azure Spot Virtual Machines to better align costs with actual usage patterns.
+For highly scalable environments, services such as Azure Virtual Machine Scale Sets automatically balance compute demand with available capacity by scaling resources up or down in real time, ensuring the environment is right-sized while optimizing cost efficiency.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aa82c12c0ee')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ac3d043dfaa">
+        <div class="article-body">
+          <a href="https://azure.microsoft.com/en-us/blog/claude-in-microsoft-foundry-is-now-generally-available/" target="_blank" rel="noopener noreferrer" class="article-title">Claude in Microsoft Foundry is now generally available</a>
+          <div class="article-meta">azure.microsoft.com &bull; Jun 29, 2026</div>
+          <div class="article-summary"><p>Claude in Microsoft Foundry is the production path enterprises have been asking for: true frontier model choice, Azure-native controls, simplified procurement, and faster time to value.
+Most enterprise AI projects do not stall because of model quality. They stall because of everything around the model: procurement, governance, networking, and data. Claude in Microsoft Foundry is now generally available, hosted on Azure, giving teams a faster path from agent experimentation to production.
+Enterprises can build with Claude through their existing Azure account, using the authentication, billing, networking, governance, and data controls their teams already trust. Instead of solving for infrastructure, teams can focus on building agentic applications that run their work with Claude, in the environment where they already operate.
+This is a real step forward for customers building agentic applications and want to move from AI experimentation to production. Claude brings leading capabilities for coding, agentic workflows, and complex reasoning. Microsoft Foundry brings the enterprise harness to build, evaluate, deploy, and scale those agents on Azure. Together, they give teams a trusted path to production AI with frontier model quality and the Azure controls they already trust.
+Today’s announcement builds on the strategic partnership Microsoft, NVIDIA, and Anthropic announced in November 2025 to expand enterprise access to Claude on NVIDIA accelerated computing. Claude runs on NVIDIA Blackwell Ultra systems, connected by InfiniBand networking, bringing the rack-scale AI infrastructure designed for inference performance and efficiency.
+Build with Claude through your Azure account
+Developers can access Claude through the Messages API and use core capabilities including prompt caching, extended thinking, and tool streaming. For teams building agents, Foundry Agent Service uses Claude as the reasoning core to orchestrate multi-step planning, tool use, and task execution across enterprise systems.
+Inference is processed in Azure, and customers can choose between Global and US data zones, for teams with data residency requirements. Anthropic operates the inference and is the data processor and SLA provider. Because Claude is available natively through Foundry, teams can work inside the Azure environment they already use. They can authenticate with Microsoft Entra ID, apply Azure role-based access controls, manage access through existing governance policies, and track usage through familiar Azure management experiences.
+For high-sensitivity workloads, zero data retention is also available, so prompts and completions are not retained by Anthropic after the API call completes. For commercial teams, it also simplifies how Claude is purchased and consumed. Claude usage is billed in Claude Consumption Units (CCU), a single, consolidated line on your Azure bill, with MACC drawdown and per-model detail in Foundry unchanged.
+For many enterprises, that matters as much as model capability. The barrier to production isn’t only whether a model is powerful enough, it’s whether teams can procure it, govern it, secure it, and operate it at scale inside their existing cloud. With Claude in Foundry, they get frontier capabilities in an Azure environment that aligns with enterprise requirements for security, compliance posture, governance, and data residency.
+Running Anthropic’s models on Azure has given us the sustained throughput and reliability our enterprise customers expect.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac3d043dfaa')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a0d21ecc5de">
+        <div class="article-body">
+          <a href="https://www.microsoft.com/en-us/microsoft-cloud/blog/2026/06/29/the-2026-agent-confidence-index-where-300-builders-see-real-momentum/" target="_blank" rel="noopener noreferrer" class="article-title">The 2026 Agent Confidence Index: Where 300 builders see real momentum</a>
+          <div class="article-meta">microsoft.com &bull; Jun 29, 2026</div>
+          <div class="article-summary"><p>A couple of months ago, I sat across from my nine-year-old daughter’s teachers at a parent-teacher conference. They were kind but concerned. She takes her time on assignments, they said, she’s often deep in thought. How would she do on timed tests next year? I told them I wasn’t worried. What they described as a problem is, to me, one of the most important things she can learn: the ability to take a hard problem and reason through it from beginning to end. In a world optimized for efficiency, qualities like patience, perseverance, and attention to detail are not deficiencies. They are the foundation of sound judgment, and this is the most valuable skill set.
+The more time I spend working with AI, the more convinced I become that what matters most for her future isn’t how quickly she can answer. It’s whether she has the judgment to know when an answer can be trusted.
+I’ve spent decades at Microsoft watching this tension play out: first building tools for other developers, then working across AI as models moved from research curiosities to systems deployed at scale. Now we’re building Microsoft IQ, where we’re exploring how an organization’s collective intelligence can become its greatest advantage. Through every one of those chapters, one thing has remained true: it’s never enough for a system to be powerful; it must also be trustworthy.
+Trust is what turns assistance into delegation. When we can trust an agent to do what we intend, within the limits we set, we can hand off the work we never wanted to spend our lives on: the repetitive tasks that drain attention, the mundane work that fills a day without moving anything meaningful forward, the dangerous work humans should not have to do, the work too vast for any individual or team. Agents should take on that toil, extend our reach, and give us back our time for the work that calls for something only humans bring.
+My daughter doesn’t know any of this yet. But by the time she’s grown, most of the work that rewards speed and repetition will be work we delegate. What will matter then is exactly what gave her teachers pause: the patience to stay with a hard problem, reason through it, and decide when she’s reached a conclusion she can trust. The very thing they feared might hold her back could be exactly what the next era prizes most.
+So no, I’m not worried about the timed test. I hope she grows up in a world where software carries the toil and people are freed for the work that is unmistakably ours—to think, to judge, to create, to care for one another. That is the future I want agents to make real. But my hope is not evidence it will happen. The future I just described depends on a single question: can we trust agents to do the work? Trust is earned one task at a time. So, I went looking for evidence of where it’s been earned, and where it hasn’t.
+We partnered with MIT Technology Review Insights on new research that draws directly from the technical leaders building this frontier: not the people talking about it, but the people doing it. We surveyed 300 technical experts across AI, data, and cloud domains, spanning 12 industries and 4 regions of the world, asking them to rank their confidence across 101 of the top tasks. What we got back is the 2026 Agent Confidence Index, an honest map of where agents are delivering real value, so our community can see what’s working and move forward together with conviction.
+Learn from where confidence is highest
+Across the 101 tasks measured, average confidence already lands at 64 out of 100, and thirty tasks clear 70. The highest scores cluster on work that is both predictable and draining: the late nights, the interruptions, the low-value repetition. Automated report generation leads at 83.5. Boilerplate code generation for new features sits at 82.5—the hours a developer no longer spends rewriting the same patterns, freed for the work that challenges them.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a0d21ecc5de')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="addba270403">
+        <div class="article-body">
+          <a href="https://azure.microsoft.com/en-us/blog/accelerate-modern-linux-workloads-with-azure-files/" target="_blank" rel="noopener noreferrer" class="article-title">Accelerate modern Linux workloads with Azure Files</a>
+          <div class="article-meta">azure.microsoft.com &bull; Jun 29, 2026</div>
+          <div class="article-summary"><p>Linux workloads are evolving quickly as organizations modernize on-premises Linux applications, adopt cloud-native architectures, and build new AI and data-intensive pipelines in the cloud. As this shift accelerates, teams need a managed file platform that delivers the performance, resilience, security, and flexibility required to support these workloads in Azure.
+Azure Files helps teams make that transition with fully managed file storage for Linux workloads. It combines familiar file access with built-in performance, data protection, security, and Azure service integration, making it easier to run shared file storage in the cloud without managing file infrastructure directly.
+In this blog, we explore how Azure Files NFS supports modern Linux workloads across AI, cloud-native, enterprise modernization, and partner or ISV scenarios.
+Speed up AI and data-intensive workloads
+AI inferencing is where a trained model is loaded and serves predictions. Before any request is answered, the model’s weights, which capture what the model learned during training, must be read from storage into the serving instance. As models have grown to tens or hundreds of gigabytes, that loading step heavily influences how quickly an endpoint starts and scales. It happens every time a replica spins up, and because GPUs are among the most expensive resources in the stack, every minute they sit idle waiting on weights is money wasted.
+Traditionally, teams embed model weights directly in the container image or have each replica download its own copy—producing bloated images, duplicated data, and cold starts that stretch to minutes just when an inference fleet needs to scale fast. With Azure Files, the weights live once on a file share that every replica mounts and reads simultaneously: images stay lean, there’s a single copy to manage, and new replicas come online in seconds for small and mid-sized models. Support for the Linux NFS nconnect mount option allows a client to establish multiple parallel TCP connections to the same file share, which can improve throughput at scale.
+The new Zonal placement lets you co-locate file shares in the same availability zone as your GPU virtual machines, reducing round-trip latency for the data-intensive reads these workloads depend on. The provisioned v2 billing model lets you size IOPS and throughput independently to keep GPUs fed. The result is faster scaling, higher GPU utilization, lower cost per inference, and a more responsive experience for your customers.
+Scale cloud-native applications with shared storage
+Cloud-native applications often need shared storage that works directly with Kubernetes-based deployment models. This is especially important for workloads that need ReadWriteMany (RWX) access, persistent shared state, or storage that evolves with the application.
+Azure Files integrates with Azure Kubernetes Service through the Azure Files CSI driver, enabling Kubernetes-native workflows such as dynamic provisioning through StorageClasses, expandable persistent volumes, and shared storage across multiple pods with ReadWriteMany access.
+The cloud-native story is also about scale and speed. The new file share experience supports up to 10,000 file shares per subscription per region, helping teams support large multi-tenant or high-density environments. It also provisions about 2.5 times faster, with even greater gains in batch deployments, making it easier to scale shared storage quickly as application demand grows.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('addba270403')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ac0b2c77951">
+        <div class="article-body">
+          <a href="https://petri.com/windows-server-2022-hotpatching-2027/" target="_blank" rel="noopener noreferrer" class="article-title">Windows Server 2022 Keeps Reboot-Free Security Updates Until 2027</a>
+          <div class="article-meta">petri.com &bull; Jun 30, 2026</div>
+          <div class="article-summary"><p>This extension gives Azure-hosted server environments additional time to plan future platform upgrades.
+Key Takeaways:
+Microsoft has extended hotpatching support for Windows Server 2022 Datacenter: Azure Edition through October 2027. This extension enables Azure-hosted servers to continue receiving monthly security updates without requiring routine reboots.
+Hotpatching is a software-update method that allows security fixes to be applied to a running system without requiring an immediate restart. Hotpatching updates parts of the software that are currently running in memory to help organizations reduce downtime. This approach can simplify maintenance, shorten patch deployment windows, and improve security by making it easier to install updates promptly.
+Microsoft plans to end mainstream support for Windows Server 2022 on October 13, 2026, but will continue to offer extended support until October 14, 2031. However, this extension applies only to Windows Server 2022 Datacenter: Azure Edition. It won’t be applicable to organizations running standard on-premises Windows Server 2022.
+“Hotpatch update support for Windows Server 2022 Datacenter: Azure Edition has been extended through October 2027. Devices enrolled in Hotpatch updates will continue to receive monthly security updates without requiring a restart. To learn more, see the Windows Server 2022 lifecycle page,” Microsoft explained on its Windows Release Health dashboard.
+For IT administrators, this extension provides greater flexibility to keep server environments secure while minimizing operational disruption. Organizations running Windows Server 2022 Datacenter: Azure Edition will also have more time to plan and execute upgrades at a pace that aligns with their business and infrastructure requirements.
+Microsoft is encouraging organizations to move to Windows Server 2025, which brings continued mainstream support, new security capabilities, and ongoing feature enhancements. The release includes enhanced Active Directory security, stronger SMB protections, improved hybrid-cloud integration through Azure Arc, and better storage performance.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac0b2c77951')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a2ee9269dc6">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiwwFBVV95cUxQWkV1TVJQM1hMaDhmUHVaT251eHVwR1B1Y2dlYXN6MWJNcXVEOURrNE5fMnc3UnF3YUhYUHN5MzY2ZHMtYXJhTEw4YW00d1ppZy1uQ3pMMjNJcFVhY3RsakUzcGZrRnY5SjNRQWdmN3EzV0x5NTEtaWdpZGc1MFZiMGFtcnlTZmc2cUFGeFo5M29QOEdHSUZONEZJZFpvcXJkMFljRnB1a0I1VEluQnU0TFRGblJ6RkdyYzh5RXBpLXRUUk0?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Meta's cloud ambitions emerge as EU tightens rules on AWS and Azure - MarketScale</a>
+          <div class="article-meta">MarketScale &bull; Jul 04, 2026</div>
+          <div class="article-summary snippet"><p>Meta's cloud ambitions emerge as EU tightens rules on AWS and Azure&amp;nbsp;&amp;nbsp;MarketScale</p><a href="https://news.google.com/rss/articles/CBMiwwFBVV95cUxQWkV1TVJQM1hMaDhmUHVaT251eHVwR1B1Y2dlYXN6MWJNcXVEOURrNE5fMnc3UnF3YUhYUHN5MzY2ZHMtYXJhTEw4YW00d1ppZy1uQ3pMMjNJcFVhY3RsakUzcGZrRnY5SjNRQWdmN3EzV0x5NTEtaWdpZGc1MFZiMGFtcnlTZmc2cUFGeFo5M29QOEdHSUZONEZJZFpvcXJkMFljRnB1a0I1VEluQnU0TFRGblJ6RkdyYzh5RXBpLXRUUk0?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a2ee9269dc6')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="sharepoint" class="topic-section">
+      <h2 class="topic-title" style="--c:#036C70">SharePoint <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a8779710239">
+        <div class="article-body">
+          <a href="https://www.bleepingcomputer.com/news/security/cisa-microsoft-sharepoint-rce-flaw-now-actively-exploited/" target="_blank" rel="noopener noreferrer" class="article-title">CISA: Microsoft SharePoint RCE flaw now actively exploited</a>
+          <div class="article-meta">bleepingcomputer.com &bull; Jul 02, 2026</div>
+          <div class="article-summary"><p>The U.S. Cybersecurity and Infrastructure Security Agency (CISA) warned on Wednesday that attackers have begun exploiting a high-severity Microsoft SharePoint remote code execution vulnerability.
+Tracked as CVE-2026-45659, this security flaw stems from a deserialization of untrusted data weakness, and it allows attackers with low privileges to execute arbitrary code on unpatched SharePoint servers in low-complexity attacks that don't require user interaction.
+&quot;Any authenticated attacker could trigger this vulnerability. It does not require admin or other elevated privileges. In a network-based attack, an authenticated attacker, who has a minimum of Site Member permissions (PR:L), could execute code remotely on the SharePoint Server,&quot; Microsoft explains.
+&quot;The attack vector is Network (AV:N) because this vulnerability is remotely exploitable and can be exploited from the internet. The attack complexity is Low (AC:L) because an attacker does not require significant prior knowledge of the system and can achieve repeatable success with the payload against the vulnerable component.&quot;
+Microsoft released security updates for SharePoint Enterprise Server 2016, SharePoint Server 2019, and SharePoint Server Subscription Edition to address this vulnerability on May 21, saying that the CVE had been accidentally omitted from the May 2026 Security Updates.
+Internet security watchdog group Shadowserver is currently tracking over 10,000 SharePoint servers exposed online. However, there is no information regarding how many of these devices have already been secured against ongoing CVE-2026-45659 attacks.
+With the April 2026 Patch Tuesday, Microsoft addressed another SharePoint vulnerability that was exploited in zero-day attacks.
+On Wednesday, CISA added the vulnerability to its Known Exploited Vulnerabilities Catalog (KEV), ordering Federal Civilian Executive Branch (FCEB) agencies to secure their servers by Saturday, as required by Binding Operational Directive (BOD) 26-04.
+BOD 26-04 was issued last month and requires U.S. federal agencies to prioritize patching based on whether the security flaw is included in CISA's KEV catalog, whether exploitation can be automated for large-scale attacks, whether the asset is publicly exposed online, and whether successful exploitation grants attackers partial or total control of the targeted device.
+&quot;This type of vulnerability is a frequent attack vector for malicious cyber actors and poses significant risks to the federal enterprise,&quot; the cybersecurity agency warned yesterday. &quot;Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.&quot;
+Since 2021, CISA has tagged 11 Microsoft SharePoint vulnerabilities that have been abused in the wild, with seven of them also exploited in ransomware attacks.
+Test every layer before attackers do
+Security teams log 54% of successful attacks and alert on just 14%. The rest move through your environment unseen.
+The Picus whitepaper shows how breach and attack simulation tests your SIEM and EDR rules so threats stop slipping by detection.
+Get the whitepaper</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a8779710239')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a594dcb702b">
+        <div class="article-body">
+          <a href="https://www.theregister.com/security/2026/07/02/microsoft-said-exploitation-was-less-likely-but-cisa-just-added-sharepoint-rce-to-kev-list/5265886" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft said exploitation was 'less likely' ... but CISA just added SharePoint RCE to KEV list</a>
+          <div class="article-meta">theregister.com &bull; Jul 02, 2026</div>
+          <div class="article-summary"><p>MOST POPULAR
+AI
+- 
+                        
+                            AI and ML Nvidia floats double-dipping datacenter financing schemeWhat's better than getting paid once? Getting paid twice of course 
+- 
+                        
+                            AI and ML Companies that add more AI also add more peopleBut doing so doesn't necessarily meet business needs 
+- 
+                        
+                            ai and ml SoftBank enters the rent-a-GPU race as America looks for support for AI trainingJapanese giant needs to find some use for that 10 GW US server farm it is building 
+- 
+                        
+                            ai and ml UN warns of need for global governance to avoid an AI-pocalypseCapabilities are racing ahead of rules to ensure tech is used safely and responsibly, Scientific Panel argues 
+- 
+                        
+                            ai and ml Oracle outlines all the ways it could lose the farm it bet on AIRisk factors galore 
+Infosec
+- 
+                        
+                            Security Russians are posing as Signal support to launch phishing attacksPLUS: US takes down Iranian propaganda sites; Marketing company asks 'Why Do We Have Your Information?' And more! 
+- 
+                        
+                            Security Microsoft patches failed to fix on-prem SharePoint, which is now under zero-day attackPLUS: China upgrades smartphone surveillance tools; Ring eases anti-snooping stance; and more 
+- 
+                        
+                            Black Hat and DEF CON DEF CON Franklin project enlists hackers to harden critical infrastructureVoting village reports have been so successful, says Jeff Moss, that the whole of DEF CON will now be included 
+- 
+                        
+                            Security EQT buys majority share in Swiss cybersecurity biz AcronisWent at equivalent of $3.5B+ valuation for entire firm, though portion sold not specified 
+- 
+                        
+                            Malware Month Ten years since the first corp ransomware, Mikko Hyppönen sees no end in sightOn the plus side, infosec's a good bet for a long, stable career 
+FOSS
+- 
+                        
+                            Collabora releases CODE 26.04 as rivalry between FOSS cloudy office suites heats upNow with Markdown support and smarter formula error handling – plus integrated AI, though it's off by default 
+- 
+                        
+                            Blast from the past as GIMP 0.54 is revived in Flatpak formRetro-computing fun for the nostalgic with first (and last) release to use Motif instead of GTK 
+- 
+                        
+                            Bcachefs exits experimental status in new 'performance release'More Rust, but more trouble with AI slop, too 
+- 
+                        
+                            France's digital sovereignty push is struggling to escape the Microsoft gravity wellNextcloud rollout shows locally controlled storage is one thing; getting users off Office is quite another 
+- 
+                        
+                            History of CentOS: How a biochemist's Linux hobby project became the enterprise world's default operating systemWhen a community came together after Red Hat said Windows was 'probably the right product' 
+- 
+                        
+                            Netflix wiz creates app to slash AI bills, then open sources itProject Headroom could save you big money, too</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a594dcb702b')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a9add4ab34e">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/07/sharepoint-rce-cve-2026-45659-added-to.html" target="_blank" rel="noopener noreferrer" class="article-title">SharePoint RCE CVE-2026-45659 Added to CISA KEV After Active Exploitation</a>
+          <div class="article-meta">thehackernews.com &bull; Jul 02, 2026</div>
+          <div class="article-summary"><p>The U.S. Cybersecurity and Infrastructure Security Agency (CISA) on Wednesday added a high-severity flaw impacting Microsoft SharePoint Server to its Known Exploited Vulnerabilities (KEV) catalog, citing evidence of active exploitation.
+The vulnerability, tracked as CVE-2026-45659 (CVSS score: 8.8), is a case of remote code execution arising from the deserialization of untrusted data. The issue was addressed by Microsoft in May 2026 for SharePoint Server Subscription Edition, SharePoint Server 2019, and SharePoint Enterprise Server 2016.
+Microsoft noted that any authenticated attacker could trigger the vulnerability, and that it does not require admin or other elevated privileges. In a network-based attack, an authenticated attacker with a minimum of Site Member permissions (PR:L) could leverage it to execute code remotely on the SharePoint Server.
+&quot;Microsoft SharePoint Server contains a deserialization of untrusted data vulnerability which allows an authorized attacker to execute code over a network,&quot; CISA said.
+According to the Windows maker's advisory, the flaw has been tagged with an &quot;Exploitation Less Likely&quot; assessment. It's currently not known how the vulnerability is being exploited, who is behind the activity, and what the end goals of these efforts are.
+In light of active exploitation, Federal Civilian Executive Branch (FCEB) agencies are advised to apply the fixes by July 4, 2026.
+Microsoft Uncovers Parallel Threat Activity from 2 Clusters
+Late last month, Microsoft revealed that a routine ransomware investigation uncovered two unrelated attackers operating simultaneously within the same network, while adopting deliberate techniques to establish persistent access and complicate incident response efforts.
+One set of attacks has been attributed to Storm-2603, a threat actor known for deploying Warlock ransomware often by exploiting known vulnerabilities in on-premises SharePoint servers since mid-2025.
+&quot;In this case, initial access was likely attempted through a separate vulnerability, with requests for files like win.ini and web.config, indicating probing for local file inclusion,&quot; Microsoft said. Evidence points to it being CVE-2025-11371 (CVSS score: 9.1), a critical flaw impacting Gladinet Triofox.
+Upon gaining initial access, the threat actor is said to have deployed tools like Velociraptor to blend malicious activity with trusted administrative behavior, as well as established multiple remote access channels through Cloudflare tunneling, Zoho Assist, and Secure Shell (SSH) connections configured through Visual Studio Code.
+The attack also escalated privileges by creating new local and domain administrator accounts, while a vulnerable driver (&quot;NSecKrnl.sys&quot;) acted as a conduit for tampering with endpoint security protections to help reduce their visibility.
+In tandem, Microsoft said it uncovered signs of a second, unrelated threat actor co-existing in the same environment using DLL side-loading and custom backdoors, thereby making attribution more challenging.
+Further investigation uncovered that the attackers had moved laterally beyond the first network and into a second organization, which confirmed they had been compromised by the same ransomware activity attributed to Storm-2603.
+&quot;Together, these overlapping activity streams enabled sustained access while masking the full scope of the intrusion,&quot; the Microsoft Incident Response team said. &quot;The blend of known ransomware tactics and hidden techniques allowed the threat actors to establish deep and lasting access.&quot;
+&quot;What may appear to be a single ransomware incident can quickly expand into something more complex-spanning organizations, blending tactics, and even involving multiple threat actors operating in parallel. For security teams, the implication is clear: isolated signals rarely tell the full story.&quot;</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a9add4ab34e')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a32cf80dc70">
+        <div class="article-body">
+          <a href="https://www.bleepingcomputer.com/news/security/cisa-microsoft-sharepoint-rce-flaw-now-actively-exploited/" target="_blank" rel="noopener noreferrer" class="article-title">CISA: Microsoft SharePoint RCE flaw now actively exploited - BleepingComputer</a>
+          <div class="article-meta">BleepingComputer &bull; Jul 02, 2026</div>
+          <div class="article-summary"><p>The U.S. Cybersecurity and Infrastructure Security Agency (CISA) warned on Wednesday that attackers have begun exploiting a high-severity Microsoft SharePoint remote code execution vulnerability.
+Tracked as CVE-2026-45659, this security flaw stems from a deserialization of untrusted data weakness, and it allows attackers with low privileges to execute arbitrary code on unpatched SharePoint servers in low-complexity attacks that don't require user interaction.
+&quot;Any authenticated attacker could trigger this vulnerability. It does not require admin or other elevated privileges. In a network-based attack, an authenticated attacker, who has a minimum of Site Member permissions (PR:L), could execute code remotely on the SharePoint Server,&quot; Microsoft explains.
+&quot;The attack vector is Network (AV:N) because this vulnerability is remotely exploitable and can be exploited from the internet. The attack complexity is Low (AC:L) because an attacker does not require significant prior knowledge of the system and can achieve repeatable success with the payload against the vulnerable component.&quot;
+Microsoft released security updates for SharePoint Enterprise Server 2016, SharePoint Server 2019, and SharePoint Server Subscription Edition to address this vulnerability on May 21, saying that the CVE had been accidentally omitted from the May 2026 Security Updates.
+Internet security watchdog group Shadowserver is currently tracking over 10,000 SharePoint servers exposed online. However, there is no information regarding how many of these devices have already been secured against ongoing CVE-2026-45659 attacks.
+With the April 2026 Patch Tuesday, Microsoft addressed another SharePoint vulnerability that was exploited in zero-day attacks.
+On Wednesday, CISA added the vulnerability to its Known Exploited Vulnerabilities Catalog (KEV), ordering Federal Civilian Executive Branch (FCEB) agencies to secure their servers by Saturday, as required by Binding Operational Directive (BOD) 26-04.
+BOD 26-04 was issued last month and requires U.S. federal agencies to prioritize patching based on whether the security flaw is included in CISA's KEV catalog, whether exploitation can be automated for large-scale attacks, whether the asset is publicly exposed online, and whether successful exploitation grants attackers partial or total control of the targeted device.
+&quot;This type of vulnerability is a frequent attack vector for malicious cyber actors and poses significant risks to the federal enterprise,&quot; the cybersecurity agency warned yesterday. &quot;Follow applicable BOD 26-04 guidance for cloud services or discontinue use of the product if mitigations are unavailable. Stakeholders are responsible for evaluating each asset's internet exposure and ensuring adherence to BOD 26-04 patching guidelines.&quot;
+Since 2021, CISA has tagged 11 Microsoft SharePoint vulnerabilities that have been abused in the wild, with seven of them also exploited in ransomware attacks.
+Test every layer before attackers do
+Security teams log 54% of successful attacks and alert on just 14%. The rest move through your environment unseen.
+The Picus whitepaper shows how breach and attack simulation tests your SIEM and EDR rules so threats stop slipping by detection.
+Get the whitepaper</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a32cf80dc70')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a0e88eb7439">
+        <div class="article-body">
+          <a href="https://www.theregister.com/security/2026/07/02/microsoft-said-exploitation-was-less-likely-but-cisa-just-added-sharepoint-rce-to-kev-list/5265886" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft said exploitation was 'less likely' ... but CISA just added SharePoint RCE to KEV list - The Register</a>
+          <div class="article-meta">The Register &bull; Jul 02, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft said exploitation was 'less likely' ... but CISA just added SharePoint RCE to KEV list&amp;nbsp;&amp;nbsp;The Register</p><a href="https://www.theregister.com/security/2026/07/02/microsoft-said-exploitation-was-less-likely-but-cisa-just-added-sharepoint-rce-to-kev-list/5265886" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a0e88eb7439')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ab28be49ff3">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/07/sharepoint-rce-cve-2026-45659-added-to.html" target="_blank" rel="noopener noreferrer" class="article-title">SharePoint RCE CVE-2026-45659 Added to CISA KEV After Active Exploitation - The Hacker News</a>
+          <div class="article-meta">The Hacker News &bull; Jul 02, 2026</div>
+          <div class="article-summary"><p>The U.S. Cybersecurity and Infrastructure Security Agency (CISA) on Wednesday added a high-severity flaw impacting Microsoft SharePoint Server to its Known Exploited Vulnerabilities (KEV) catalog, citing evidence of active exploitation.
+The vulnerability, tracked as CVE-2026-45659 (CVSS score: 8.8), is a case of remote code execution arising from the deserialization of untrusted data. The issue was addressed by Microsoft in May 2026 for SharePoint Server Subscription Edition, SharePoint Server 2019, and SharePoint Enterprise Server 2016.
+Microsoft noted that any authenticated attacker could trigger the vulnerability, and that it does not require admin or other elevated privileges. In a network-based attack, an authenticated attacker with a minimum of Site Member permissions (PR:L) could leverage it to execute code remotely on the SharePoint Server.
+&quot;Microsoft SharePoint Server contains a deserialization of untrusted data vulnerability which allows an authorized attacker to execute code over a network,&quot; CISA said.
+According to the Windows maker's advisory, the flaw has been tagged with an &quot;Exploitation Less Likely&quot; assessment. It's currently not known how the vulnerability is being exploited, who is behind the activity, and what the end goals of these efforts are.
+In light of active exploitation, Federal Civilian Executive Branch (FCEB) agencies are advised to apply the fixes by July 4, 2026.
+Microsoft Uncovers Parallel Threat Activity from 2 Clusters
+Late last month, Microsoft revealed that a routine ransomware investigation uncovered two unrelated attackers operating simultaneously within the same network, while adopting deliberate techniques to establish persistent access and complicate incident response efforts.
+One set of attacks has been attributed to Storm-2603, a threat actor known for deploying Warlock ransomware often by exploiting known vulnerabilities in on-premises SharePoint servers since mid-2025.
+&quot;In this case, initial access was likely attempted through a separate vulnerability, with requests for files like win.ini and web.config, indicating probing for local file inclusion,&quot; Microsoft said. Evidence points to it being CVE-2025-11371 (CVSS score: 9.1), a critical flaw impacting Gladinet Triofox.
+Upon gaining initial access, the threat actor is said to have deployed tools like Velociraptor to blend malicious activity with trusted administrative behavior, as well as established multiple remote access channels through Cloudflare tunneling, Zoho Assist, and Secure Shell (SSH) connections configured through Visual Studio Code.
+The attack also escalated privileges by creating new local and domain administrator accounts, while a vulnerable driver (&quot;NSecKrnl.sys&quot;) acted as a conduit for tampering with endpoint security protections to help reduce their visibility.
+In tandem, Microsoft said it uncovered signs of a second, unrelated threat actor co-existing in the same environment using DLL side-loading and custom backdoors, thereby making attribution more challenging.
+Further investigation uncovered that the attackers had moved laterally beyond the first network and into a second organization, which confirmed they had been compromised by the same ransomware activity attributed to Storm-2603.
+&quot;Together, these overlapping activity streams enabled sustained access while masking the full scope of the intrusion,&quot; the Microsoft Incident Response team said. &quot;The blend of known ransomware tactics and hidden techniques allowed the threat actors to establish deep and lasting access.&quot;
+&quot;What may appear to be a single ransomware incident can quickly expand into something more complex-spanning organizations, blending tactics, and even involving multiple threat actors operating in parallel. For security teams, the implication is clear: isolated signals rarely tell the full story.&quot;</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ab28be49ff3')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aa661ab3ebc">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMingFBVV95cUxNa1E1emE1UXNRakZsMnVpNTFTazBMNXhJQUt3aWp1QldHbG1xMUdNTHRvVkxWV21SWjJUaWxrME1oNnBYUHJHd0xOaXpHUWtWMEdyVEhrTnFTLW5OejBoY29QcmJvaXMwcGZxR3ZTb3pNWGpFQVN5V2QtWmg1NkxaSnR5MjRubzB5Y1hLNGFNR0l3MERWcHpURDJHV0F5UdIBowFBVV95cUxPc19Ed1BNWmEtNWJDVFpCT0h2RVA0RjNnRTVkdFEzalZhRzloWW9nbUxIYTJTVVJmblVyQmxkaXpOR3J5VHJNRVVreG1fTUtyZ1JtNEJNQjc5blhlbWRiMWNkSmg3aE11eGhTLU9vY2t5NXNlTHFuQ19xOXVHS01fY1VaVnY0OC1TcUxqd0o0R1hwbVI2ZTRVMnJoUmVLZjA1MUlr?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">CISA Warns of Actively Exploited Microsoft SharePoint Vulnerability - SecurityWeek</a>
+          <div class="article-meta">SecurityWeek &bull; Jul 02, 2026</div>
+          <div class="article-summary snippet"><p>CISA Warns of Actively Exploited Microsoft SharePoint Vulnerability&amp;nbsp;&amp;nbsp;SecurityWeek</p><a href="https://news.google.com/rss/articles/CBMingFBVV95cUxNa1E1emE1UXNRakZsMnVpNTFTazBMNXhJQUt3aWp1QldHbG1xMUdNTHRvVkxWV21SWjJUaWxrME1oNnBYUHJHd0xOaXpHUWtWMEdyVEhrTnFTLW5OejBoY29QcmJvaXMwcGZxR3ZTb3pNWGpFQVN5V2QtWmg1NkxaSnR5MjRubzB5Y1hLNGFNR0l3MERWcHpURDJHV0F5UdIBowFBVV95cUxPc19Ed1BNWmEtNWJDVFpCT0h2RVA0RjNnRTVkdFEzalZhRzloWW9nbUxIYTJTVVJmblVyQmxkaXpOR3J5VHJNRVVreG1fTUtyZ1JtNEJNQjc5blhlbWRiMWNkSmg3aE11eGhTLU9vY2t5NXNlTHFuQ19xOXVHS01fY1VaVnY0OC1TcUxqd0o0R1hwbVI2ZTRVMnJoUmVLZjA1MUlr?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aa661ab3ebc')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a2ee0195bc0">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi2AFBVV95cUxOcUpmc2t2SHkxemFVc2pZZ2NfZWN5SlF2WW9OUWtCWTZPSmNqTlhjd1lBQlpUR290b2VHdzZNQlVXOHlmb1U4MVlHOWRGT0MzcXZSeHp3ZktuZGRDTzNfVG50MU9WcWp5TV9QY3J2dnBtcUcxOEJYc1NPQndwVzlSbW1qVjBUdFkwMWpiUFA3T0dBVHFHdWZBUll0MU9sMDFIdUpodnV2VGRtSU5DQzM0SDhOYXpjMDlrNU5rUHhTa3VTdGgxTUdhZnlIUTNkdWJiVUFDYUwycks?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">SharePoint Server Actively Exploited: CISA Orders Patch Before Ransomware Actors Strike - Tech Times</a>
+          <div class="article-meta">Tech Times &bull; Jul 05, 2026</div>
+          <div class="article-summary snippet"><p>SharePoint Server Actively Exploited: CISA Orders Patch Before Ransomware Actors Strike&amp;nbsp;&amp;nbsp;Tech Times</p><a href="https://news.google.com/rss/articles/CBMi2AFBVV95cUxOcUpmc2t2SHkxemFVc2pZZ2NfZWN5SlF2WW9OUWtCWTZPSmNqTlhjd1lBQlpUR290b2VHdzZNQlVXOHlmb1U4MVlHOWRGT0MzcXZSeHp3ZktuZGRDTzNfVG50MU9WcWp5TV9QY3J2dnBtcUcxOEJYc1NPQndwVzlSbW1qVjBUdFkwMWpiUFA3T0dBVHFHdWZBUll0MU9sMDFIdUpodnV2VGRtSU5DQzM0SDhOYXpjMDlrNU5rUHhTa3VTdGgxTUdhZnlIUTNkdWJiVUFDYUwycks?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a2ee0195bc0')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="intune" class="topic-section">
+      <h2 class="topic-title" style="--c:#0F6CBD">Intune <span class="count">(4)</span></h2>
+      <div class="article-card" data-id="a32eb7dca00">
+        <div class="article-body">
+          <a href="https://techcommunity.microsoft.com/t5/intune-customer-success/migrating-frontline-mobile-devices-identity-considerations-for/ba-p/4532671" target="_blank" rel="noopener noreferrer" class="article-title">Migrating frontline mobile devices: Identity considerations for assigned and shared devices</a>
+          <div class="article-meta">techcommunity.microsoft.com &bull; Jul 01, 2026</div>
+          <div class="article-summary snippet"><p>By: Carol Burns - Principal Product Manager | Microsoft Intune and Sucheta Gawade, Microsoft MVP (Azure &amp;amp; Security / Intune)
+Practitioner perspective from Sucheta Gawade, Microsoft MVP (Azure &amp;amp; Security / Intune), with deep experience in secure frontline mobility, including regulated healthcare environments.
+In previous articles in this series, we focused on understanding the reality of your frontline device estate and preparing for real-world testing through stakeholder alignment. One of the most critical areas to get right during the testing phase is identity and security, particularly given the often fast-paced, shift-based nature of frontline work, where organizations must account for the distinct requirements and challenges of devices assigned to a single individual versus devices shared across multiple users or shifts.
+Identity decisions directly affect security posture, sign‑in experience, operational support overhead, and worker productivity. Getting them wrong is one of the most common reasons pilots stall or fail.
+This article explores how to think about identity on frontline devices by distinguishing between assigned and shared usage models, clarifying when individual sign-in is required, and highlighting patterns to avoid such as shared accounts and passwords.
+Start by distinguishing device usage models
+Frontline mobile devices generally fall into one of two broad categories.
+Assigned devices
+Assigned devices are issued to a specific individual, often for the duration of their role. These devices:
+
+Typically require persistent access to user‑specific data
+Align with user‑based identity, Microsoft Entra ID Conditional Access, and audit controls.
+Enable greater accountability and traceability by associating activity with an individual user rather than a shared credential.
+
+Common examples include:
+
+A doctor using an individually assigned clinical tablet, where uninterrupted access to patient data and clinical systems is essential and actions must always be attributable to a named identity
+A field engineer assigned a single device that retains configuration, credentials, and offline content across jobs and locations
+An inspector or supervisor using an assigned device for approvals, reporting, and decision‑making that requires traceability
+
+Shared devices
+Shared devices are used by multiple people across shifts or tasks. These scenarios introduce additional identity complexity and generally fall into two distinct models.
+Shared devices without user sign-in (task or kiosk-based)
+Some frontline devices exist to perform a narrow, often repetitive task and don’t require sign in with a user account.
+Typical examples include:
+
+Retail price-check devices used on the shop floor to scan an item and display its current price or stock availability, with no need for access to personal or user-specific information
+Environmental monitoring devices used to read and record temperature or humidity in a storage area, ward, or vehicle, where the task is simple, repetitive, and not tied to an individual user identity
+Warehouse or facility scanning devices used for a narrow operational task such as scanning an asset, bin, or location code to confirm status, location, or completion of a step in a process
+
+In these cases:
+
+Devices are locked down to a specific task
+No user-specific data is stored, and access is limited to the minimum required for the task
+
+“When a device is truly task-only, removing sign-in friction is a huge win, but only if we’re aware what data the device can access. When things like patient context or personalized tasks enter the picture, identity becomes required” - Sucheta Gawade, Microsoft MVP
+Shared devices with individual user sign-in
+Organizations are increasingly digitizing and modernizing frontline workflows end-to-end. Paper processes and simple apps give way to connected systems, manual handovers are replaced with digital task lists, and workers begin to rely on mobile devices as their primary interface from completing tasks.
+As roles evolve, workers are expected to:
+
+Receive tasks, schedules, and updates digitally
+Communicate with supervisors and peers using collaboration tools such as Microsoft Teams
+Capture information at the point of work rather than transcribing later
+Interact with workflows that are increasingly automated or assisted by AI, such as guided steps, data validation, or suggested actions
+
+This shift delivers clear productivity and quality benefits, but it also means access must now be tied to individual identity to protect sensitive data, support auditability, and prevent information from being carried over between users.
+Common scenarios include:
+
+Retail store associates rotating across shifts, moving from paper schedules and verbal handovers to digital task lists, real-time communications, and collaboration tools such as Microsoft Teams
+Nurses sharing mobile devices in a hospital ward, where paper notes and whiteboards are replaced with secure access to patient-linked applications, care coordination tools, and role-based alerts
+Logistics workers signing in to shared devices to complete role-based tasks, capture data at the point of work, and interact with AI-assisted workflows.
+
+Don’t use shared credentials, always prefer individual sign-in
+Shared credentials may seem like a shortcut in frontline environments, but they undermine accountability and make policy enforcement and incident response significantly harder.
+“Shared credentials feel ‘efficient’ until your first incident. You lose auditability, Conditional Access becomes meaningless, and investigations turn into guesswork. Individual identity is the only scalable model.” -Sucheta Gawade, Microsoft MVP
+If access involves corporate systems or sensitive data, each worker should use their individual credentials to sign in, even on a shared device.
+Identity decision checklist for frontline devices
+Use the checklist to validate identity choices and confirm that the overall security posture matches the way the device is used.
+
+Decision areaIndicatorsUse individual sign-in
+
+Users access personal or role-specific data.
+Auditability or compliance is required.
+Conditional Access or multifactor authentication (MFA) must be enforced.
+Applications rely on user identity.
+
+Use kiosk-style or device-only identity
+
+Devices perform a single task.
+No user-specific or sensitive organizational data is accessed.
+Workflows are entirely device-centric.
+Speed and simplicity outweigh personalization.
+
+Avoid entirely
+
+Shared usernames or passwords.
+Reused local accounts across shifts.
+MFA exclusions that weaken security without compensating controls.
+
+
+
+Choosing the right sign‑in experience
+The challenge in frontline environments is balancing:
+
+Security requirements
+Speed of access
+Ease of use across shifts
+
+“Frontline setups may fail because the sign-in flow doesn’t match reality. If authentication takes 60 seconds and the worker has to do it 30 times a shift, they’ll find a workaround.” -Sucheta Gawade, Microsoft MVP
+&amp;nbsp;
+Typing complex usernames and passwords repeatedly during a shift is often impractical on mobile devices. QR code authentication is one effective option for shared frontline devices, but it’s not the only supported approach. For other supported methods, see Microsoft Entra authentication methods overview.
+QR code authentication
+Microsoft Entra QR code authentication is designed for frontline workers to sign-in efficiently on shared Android and iOS/iPadOS devices without repeatedly entering usernames and passwords.
+Note:&amp;nbsp;For individually assigned devices, phishing-resistant, passwordless authentication methods are the recommended approach, such as Passkeys.
+QR code authentication enables workers to sign in using a unique QR code and a personal numeric PIN.
+This approach:
+
+Eliminates typed usernames and passwords
+Preserves individual identity
+Works well for shared devices with frequent user turnover
+Integration with Microsoft Intune, Managed Home Screen and Conditional Access
+
+QR code authentication should always be:
+
+Scoped to specific users and devices
+Combined with Conditional Access policies
+Evaluated during real‑world testing to ensure the right balance of usability and security
+
+Security posture and Conditional Access for frontline devices
+Individual identity is a critical foundation for stronger security posture, but it’s not enough on its own. Frontline device security also depends on management, data and app protection, session handling, and access policies that reflect the actual usage model.
+Conditional Access is an important part of securing frontline environments, but its effectiveness depends on aligning policies to the actual device and identity model in use.
+To ensure that the QR code authentication method can only be used by the frontline workers it’s intended for, create a custom authentication methods policy, which you can use in a dedicated Conditional Access policy. That Conditional Access policy should then be scoped to the group of users (frontline workers) who should log on using the QR code authentication method, and have the Require authentication strength control configured, which targets the custom authentication strength for &quot;QR Code&quot; which was previously created.
+During real‑world testing:
+
+Validate that design and controls support the intended usage model
+Ensure policies don’t block legitimate workflows
+Confirm sessions, access, and user targeting behave as expected
+
+These decisions should also be validated in practice: can users sign in and out reliably across shifts, is personal data cleared between sessions, and does the chosen experience match the pace of frontline work?
+Summary
+This article walks through how identity choices shape security, usability, and day-to-day success for frontline mobile devices. It explains the difference between assigned and shared devices, when individual sign-in is needed, and why shared credentials can create risk. It also highlights QR code authentication and Conditional Access as practical ways to keep each worker’s identity protected while making sign-in simple enough for fast-paced frontline workflows.
+What’s next in the series
+In the next article, we’ll focus on Microsoft Intune enrollment models, exploring how different enrollment approaches support—or constrain—the identity and usage patterns discussed here, including their role in protecting session identity, enforcing the intended sign-in model, and preventing one user’s access or data from carrying over to the next.
+As always, we welcome your feedback and experience. If you’ve navigated identity decisions for shared or frontline devices, share your advice and lessons learned in the comments, &amp;nbsp;or reach out to us on X @IntuneSuppTeam.
+For more guidance across frontline scenarios, explore our broader From the Frontlines series on frontline worker management with Microsoft Intune.
+Join our community!&amp;nbsp;Discuss real-world scenarios, get expert guidance, connect with peers, and influence the future of Microsoft Security products. Learn more at&amp;nbsp;aka.ms/JoinIntuneCommunity.</p><a href="https://techcommunity.microsoft.com/t5/intune-customer-success/migrating-frontline-mobile-devices-identity-considerations-for/ba-p/4532671" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a32eb7dca00')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a2db85b417a">
+        <div class="article-body">
+          <a href="https://techcommunity.microsoft.com/t5/intune-customer-success/streamlining-macos-security-automatically-enable-autofill-after/ba-p/4531908" target="_blank" rel="noopener noreferrer" class="article-title">Streamlining macOS security: Automatically enable AutoFill after Platform SSO registration</a>
+          <div class="article-meta">techcommunity.microsoft.com &bull; Jun 29, 2026</div>
+          <div class="article-summary snippet"><p>By: Chris Kunze - Principal Product Manager | Microsoft Intune
+Platform single sign-on (SSO) improves how macOS devices establish identity with Microsoft Entra ID, enabling a more secure and streamlined authentication experience. However, completing Platform SSO registration isn’t enough to deliver a fully passwordless workflow. To enable passwordless authentication in Safari, Microsoft Edge, and Google Chrome, the Company Portal AutoFill extension must also be enabled. In many deployments, this step still depends on the user.
+Devices may be fully enrolled, and Platform SSO may be successfully registered, yet users can still fall back to entering credentials manually if Company Portal AutoFill is not enabled. At scale, even small manual configuration steps can lead to inconsistent results. The goal of this post is to remove that dependency by automatically enabling AutoFill after Platform SSO registration, so users receive a complete passwordless experience without any additional steps.
+The challenge
+After Platform SSO is deployed to a macOS device, two conditions must be met before users receive the intended passwordless experience:
+
+Platform SSO registration must be completed&amp;nbsp;The device must complete Platform SSO registration with Microsoft Entra ID.
+Company Portal AutoFill must be enabledThe Company Portal AutoFill extension must be enabled for supported browsers so credentials can be supplied automatically.
+
+When Platform SSO registration happens after Setup Assistant, the user is prompted through the registration flow and receives a reminder to enable Company Portal AutoFill. However, enabling AutoFill is still a separate manual step that the user must complete. If the user skips or overlooks that step, the device can be successfully registered for Platform SSO while still requiring credentials to be entered manually. The result is a deployment that appears complete but does not consistently deliver the intended passwordless experience or security posture. Authentication should not depend on user action after enrollment.
+Especially valuable with the “Enable Registration During Setup” setting
+This approach becomes especially impactful when combined with the Enable Registration During Setup setting for Platform SSO. When used with Automated Device Enrollment (ADE), Platform SSO registration can be completed automatically during Setup Assistant before the user reaches the desktop. This helps ensure identity registration completes as part of the provisioning experience rather than requiring additional post-enrollment actions.
+Automating AutoFill after Platform SSO registration
+After registration has completed, AutoFill often becomes the final remaining step that still depends on user action. To close this gap, you can use a custom script to enable the Company Portal AutoFill extension after Platform SSO registration is complete.
+The sample script, Check-PSSO.zsh, available in the GitHub repository, was written by the Intune Customer Experience Engineering team. The script detects when Platform SSO registration has completed on a device and then enables AutoFill automatically.
+Important:  Microsoft supports Intune’s ability to deploy scripts, but not the scripts themselves. &amp;nbsp;Microsoft fully supports Intune and its script deployment capabilities. However, Microsoft does not provide support for individual scripts, including scripts published in Microsoft GitHub repositories. These scripts are provided as examples only. You are responsible for reviewing, validating, and testing their behavior in your environment before deploying them broadly.
+The script essentially performs four key actions:
+
+Wait for a user session - The script detects when a user session is active to ensure the device is ready for configuration.
+Verify Platform SSO registration - It confirms that Platform SSO registration has completed successfully before proceeding.
+Detect the AutoFill extension - The script waits until the Company Portal AutoFill extension becomes available on the device.
+Enable AutoFill automatically - Once detected, the script enables AutoFill programmatically, eliminating the need for users to manually configure the setting in System Settings.
+
+All activities are logged locally, providing visibility for auditing and troubleshooting.
+Supported browsers
+The Company Portal AutoFill extension works with:
+
+Safari (native support)
+Microsoft Edge (native support)
+Google Chrome (requires Microsoft Single Sign On extension)
+
+Once AutoFill is enabled, users can authenticate across all supported browsers on their macOS device without manually entering passwords.
+System requirements
+
+macOS 15 or later
+Company Portal version 5.2604.0 or later installed on the device
+Platform SSO configured via an Intune SSO extension profile
+
+Deployment via Intune
+The Check-PSSO script is deployed using a lightweight, scalable approach aligned with modern macOS management practices.
+The recommended method is to package the script as a payloadless PKG with a pre-install script.
+High-level steps:
+
+Build an empty PKG
+Attach the Check-PSSO script as a pre-install script
+Upload the package to Intune
+Assign it as Required
+Verify successful deployment through script logs
+
+Detailed instructions are available in the GitHub repository.
+Key Features
+Polling with timeouts
+The script waits for the required conditions to be met before continuing, including an active user session and completed Platform SSO registration. To avoid indefinite loops in edge-case scenarios, it uses timeouts while polling for those conditions.
+&amp;nbsp;
+Diagnostic logging and auditing
+Optional verbose logging provides detailed troubleshooting information and an audit trail confirming AutoFill was enabled. Each run is logged locally under:
+/Library/Logs/Microsoft/IntuneScripts/checkPSSO
+&amp;nbsp;
+Clear exit codes
+
+Exit 0: Success
+Exit 1: Failure
+
+
+Benefits of automating AutoFill
+Automating AutoFill helps ensure users can take advantage of passwordless authentication without additional configuration steps. It reduces reliance on user action, improves deployment consistency, improves security posture, and supports zero-touch provisioning. It also provides admins with verification through centralized logging and reporting.
+Get started
+If you’ve already deployed Platform SSO, automating AutoFill is a natural next step toward delivering a complete passwordless experience. By removing a manual configuration step that often depends on user action, you can improve consistency and user experience across devices. When combined with the Enable Registration During Setup setting, this helps create a true zero-touch experience from enrollment through authentication.
+Learn more
+
+Platform SSO for macOS
+Company Portal for macOS
+Payloadless Packages in Intune (Tech Community)
+Microsoft shell-intune-samples Repository
+
+Let us know if you have questions by leaving a comment below or reaching out on X @IntuneSuppteam.
+Join our community!&amp;nbsp;Discuss real-world scenarios, get expert guidance, connect with peers, and influence the future of Microsoft Security products. Learn more at&amp;nbsp;aka.ms/JoinIntuneCommunity.</p><a href="https://techcommunity.microsoft.com/t5/intune-customer-success/streamlining-macos-security-automatically-enable-autofill-after/ba-p/4531908" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a2db85b417a')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="acab54be7e3">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-intune-app-auto-updates-privilege-controls/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Intune Adds App Auto-Updates, Privilege Controls, Improved Enrollment</a>
+          <div class="article-meta">petri.com &bull; Jun 29, 2026</div>
+          <div class="article-summary"><p>Latest updates streamline app lifecycle management and strengthen endpoint security across platforms.
+Key Takeaways:
+Microsoft has rolled out a new wave of Microsoft Intune enhancements for June, introducing Enterprise Application Management (EAM) auto-updates, expanded Endpoint Privilege Management capabilities, and improved device enrollment across multiple platforms. These updates are designed to strengthen security, streamline IT administration, and simplify endpoint management at scale.
+🎬 Watch This Week in IT.
+The new Microsoft Intune Enterprise Application Management (EAM) auto-updates feature is hitting general availability this month. The EAM helps organizations manage the full lifecycle of enterprise apps, including deployment, updates, and version control across devices. It simplifies the process of keeping applications secure and up to date while reducing manual effort for IT administrators.
+The EAM auto-updates feature enables IT admins to keep managed apps on the latest versions automatically. It helps to reduce the need for manual updates and lowers the risk of known security issues between major releases. However, Microsoft has warned that new threats can still appear between these update cycles.
+Microsoft has introduced the Vulnerability Remediation Agent to help address emerging risks more effectively. This agent uses data from Defender Vulnerability Management to prioritize the most critical security issues across Intune-managed devices. It offers recommendations in the Intune admin center, along with impact summaries, affected systems, and suggested fixes.
+Microsoft has introduced updates to Endpoint Privilege Management to support approval requests for non-primary users and system-level network configuration. This release lets IT admins extend file elevation requests to any user on a device.
+The system-level network configuration support enables IT admins to configure rules-based policies that allow standard users to change network settings without local admin privileges. Previously, it required users to contact the IT support team or temporarily request administrative privileges. This release allows administrators to use policy for pre-authorizing specific network changes.
+Last but not least, Apple automated device enrollment for iOS, iPadOS, and macOS is moving to a redesigned system that improves how enrollment policies are structured and delivered. This change streamlines authentication steps, removes outdated options, and introduces more detailed policy controls, which makes it easier for IT admins to manage Apple devices.
+Additionally, Microsoft Intune now extends enrollment time grouping to these Apple platforms, which allows apps and policies assigned to specific groups to be applied immediately during device setup. This means these devices are configured and secured as soon as employees begin using them to reduce delays and enable a smoother onboarding experience.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('acab54be7e3')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a7025901822">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-intune-app-auto-updates-privilege-controls/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Intune Adds App Auto-Updates, Privilege Controls, Improved Enrollment - Petri IT Knowledgebase</a>
+          <div class="article-meta">Petri IT Knowledgebase &bull; Jun 29, 2026</div>
+          <div class="article-summary"><p>Latest updates streamline app lifecycle management and strengthen endpoint security across platforms.
+Key Takeaways:
+Microsoft has rolled out a new wave of Microsoft Intune enhancements for June, introducing Enterprise Application Management (EAM) auto-updates, expanded Endpoint Privilege Management capabilities, and improved device enrollment across multiple platforms. These updates are designed to strengthen security, streamline IT administration, and simplify endpoint management at scale.
+🎬 Watch This Week in IT.
+The new Microsoft Intune Enterprise Application Management (EAM) auto-updates feature is hitting general availability this month. The EAM helps organizations manage the full lifecycle of enterprise apps, including deployment, updates, and version control across devices. It simplifies the process of keeping applications secure and up to date while reducing manual effort for IT administrators.
+The EAM auto-updates feature enables IT admins to keep managed apps on the latest versions automatically. It helps to reduce the need for manual updates and lowers the risk of known security issues between major releases. However, Microsoft has warned that new threats can still appear between these update cycles.
+Microsoft has introduced the Vulnerability Remediation Agent to help address emerging risks more effectively. This agent uses data from Defender Vulnerability Management to prioritize the most critical security issues across Intune-managed devices. It offers recommendations in the Intune admin center, along with impact summaries, affected systems, and suggested fixes.
+Microsoft has introduced updates to Endpoint Privilege Management to support approval requests for non-primary users and system-level network configuration. This release lets IT admins extend file elevation requests to any user on a device.
+The system-level network configuration support enables IT admins to configure rules-based policies that allow standard users to change network settings without local admin privileges. Previously, it required users to contact the IT support team or temporarily request administrative privileges. This release allows administrators to use policy for pre-authorizing specific network changes.
+Last but not least, Apple automated device enrollment for iOS, iPadOS, and macOS is moving to a redesigned system that improves how enrollment policies are structured and delivered. This change streamlines authentication steps, removes outdated options, and introduces more detailed policy controls, which makes it easier for IT admins to manage Apple devices.
+Additionally, Microsoft Intune now extends enrollment time grouping to these Apple platforms, which allows apps and policies assigned to specific groups to be applied immediately during device setup. This means these devices are configured and secured as soon as employees begin using them to reduce delays and enable a smoother onboarding experience.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a7025901822')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="entraid" class="topic-section">
+      <h2 class="topic-title" style="--c:#6B69D6">Entra ID <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="afe8385f569">
+        <div class="article-body">
+          <a href="https://petri.com/the-agents-entra-cant-see-detecting-and-preventing-rogue-ai/" target="_blank" rel="noopener noreferrer" class="article-title">The Agents Entra Can’t See: Detecting and Preventing Rogue AI</a>
+          <div class="article-meta">petri.com &bull; Jun 30, 2026</div>
+          <div class="article-summary"><p>Most organizations are focusing on AI governance in the wrong place.
+Talk about AI and agents has swept the tech industry for the better part of a year, and organizations have shifted from “how can we leverage AI” to “how can we control it.” Microsoft now steers agent integration through Entra Agent ID and Copilot Studio, and vendors like Anthropic are moving the same way with M365 connector applications. But your tenant may have already onboarded agents before that flow existed. Worse, a few paths let rogue AI show up unnoticed.
+The biggest risk isn’t registered agents in Entra but agents operating through legitimate user identities and trusted devices. Start by fixing identity hygiene and endpoint visibility before investing in AI-specific controls. This article walks through three examples of how unmanaged agents are possible and how to detect and prevent each.
+Microsoft has spent the last year securing the user consent workflow, requiring admin consent for the most dangerous permissions. By default it uses a deny list of mostly read-write scopes, but users can still consent to read-only scopes like User.Read, openid, profile, and email. The most dangerous user-consentable scope for AI is offline_access, which hands the agent a refresh token, and with it persistent background access.
+This path registers a discoverable service principal and consent record giving opportunity for detection. Review application consent history and end-user consent logs for past misuse. Prevention of this path is even simpler. Lock down user consent entirely and route everything through the admin consent workflow.
+The next path is a user-led, programmatic flow that yields a token. In plain terms, the user hands the agent a username and password. The key difference from the user consent path is the agent borrows a built-in first-party application so no service principal or consent record is created at all. Entra just sees a normal user sign-in.
+A few variants matter. OAuth 2.0 Resource Owner Password Credentials (ROPC) is a legacy single-factor flow. The defense is multifactor authentication (MFA). Always MFA, all the time.
+The device-code flow is closed with a simple Conditional Access policy.
+Last is the Family of Client IDs (FOCI): a token issued for one family client is reusable across all of them, and there’s no toggle to disable it. Per-app Conditional Access is trivially bypassed, so mitigation shifts to detection: revoke tokens on suspected misuse and lean on Continuous Access Evaluation, though its coverage isn’t universal.
+The most interesting scenario is a workstation dedicated to AI: the brand-new Mac Mini on someone’s expense report. The employee adds it to the tenant via hybrid join or as a compliant device, and once joined it obtains a TPM-bound Primary Refresh Token(PRT). The agent runs as that user and silently asks the Web Account Manager (WAM) broker for tokens, a persistent, always-on connection.
+This is the hardest of the three to close. The agent passes every Conditional Access check because it genuinely is the user, on a trusted device. Token Protection binds tokens to the device, but it can’t separate “the user” from “an agent process running as the user” on that same machine.
+Prevention starts with not letting users join their own devices, backed by strong compliance Conditional Access Policies (CAPs). Detection must move to the endpoint. Defender for Endpoint advanced hunting over DeviceProcessEvents (headless-browser flags, unexpected child processes) and DeviceNetworkEvents (a local process reaching an external AI API), plus blocking unsanctioned apps through Defender for Cloud Apps.
+The whole point here is to cut through the AI noise and get back to basics. Entra hygiene that’s years old already closes most of these scenarios:
+Basic configuration can’t catch everything. Some scenarios slip through, and what can’t be mitigated must be detected. That means moving beyond the identity plane toward device-based detection.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('afe8385f569')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ad3eaabc6d9">
+        <div class="article-body">
+          <a href="https://www.theregister.com/security/2026/06/30/indias-central-bank-mandated-use-of-bank-domains-to-enhance-trust-but-its-registry-leaked-sensitive-info/5264152" target="_blank" rel="noopener noreferrer" class="article-title">India’s central bank mandated use of .bank domains to enhance trust – but its registry leaked sensitive info</a>
+          <div class="article-meta">theregister.com &bull; Jun 30, 2026</div>
+          <div class="article-summary snippet"><p>Open API could reveal everything an attacker needs to impersonate bank officials</p><a href="https://www.theregister.com/security/2026/06/30/indias-central-bank-mandated-use-of-bank-domains-to-enhance-trust-but-its-registry-leaked-sensitive-info/5264152" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ad3eaabc6d9')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ab0145b0fa1">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMivgFBVV95cUxQZjVKSHU5ZHp0Qk9GeDU5bFBTTGJ2RnM2ZkdmajFfQ0p2V0VlOWNMa05CUndfLUpkWXAyeUpqOXplMVZoT3hoVU9LTFpFd2tGU1p0Wjlkc3RfUjQ4Vzc1ZGMyWlFSU0o0SGdMZVRubWN2T1hadUNmTmEzd2hVVFpKd0k4QU1wRVNvMmxNZi1udmFSM0lER0NrUlYtR1BlZ0M1bVhCamNpSk8xT1FrQ0tZdHRZWlhEdENNekpHYkxB?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">authID joins Microsoft’s identity verification ecosystem, reaching enterprise buyers - Stock Titan</a>
+          <div class="article-meta">Stock Titan &bull; Jul 02, 2026</div>
+          <div class="article-summary snippet"><p>authID joins Microsoft’s identity verification ecosystem, reaching enterprise buyers&amp;nbsp;&amp;nbsp;Stock Titan</p><a href="https://news.google.com/rss/articles/CBMivgFBVV95cUxQZjVKSHU5ZHp0Qk9GeDU5bFBTTGJ2RnM2ZkdmajFfQ0p2V0VlOWNMa05CUndfLUpkWXAyeUpqOXplMVZoT3hoVU9LTFpFd2tGU1p0Wjlkc3RfUjQ4Vzc1ZGMyWlFSU0o0SGdMZVRubWN2T1hadUNmTmEzd2hVVFpKd0k4QU1wRVNvMmxNZi1udmFSM0lER0NrUlYtR1BlZ0M1bVhCamNpSk8xT1FrQ0tZdHRZWlhEdENNekpHYkxB?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ab0145b0fa1')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="af2c3d246ef">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi8AFBVV95cUxQaGdLdFNCU3lTdVBiMmVzQjZEb1FQNEliNzl3aEZjQ0JXT1FQUEpuXzJfSjZCOEEwSE9qUk5tTERfU1U4clFDdWZjSlYwSmRxWV8zWDdDbF9idWVGMDNFazd5S3M2cHN5RFJKVkpKMlg2UVVlVFoweWl2LXFDc2wzUGdKbzdPRElNdV9aaGp6X0hNR2paY1NSMmphX3VzNjYwdWdzcndzNExVRUZhWVA3T2VGbGRnQjJjSV84U0k4ODZLcElIN0Y4R1RKbnh2aG9RNjZXM0JFQjNZa2cxX25rV0lSWXdWZnA0OVFXSENZMGg?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">authID Achieves Microsoft Entra Verified ID Identity Verification Partner Certification - GlobeNewswire</a>
+          <div class="article-meta">GlobeNewswire &bull; Jul 02, 2026</div>
+          <div class="article-summary snippet"><p>authID Achieves Microsoft Entra Verified ID Identity Verification Partner Certification&amp;nbsp;&amp;nbsp;GlobeNewswire</p><a href="https://news.google.com/rss/articles/CBMi8AFBVV95cUxQaGdLdFNCU3lTdVBiMmVzQjZEb1FQNEliNzl3aEZjQ0JXT1FQUEpuXzJfSjZCOEEwSE9qUk5tTERfU1U4clFDdWZjSlYwSmRxWV8zWDdDbF9idWVGMDNFazd5S3M2cHN5RFJKVkpKMlg2UVVlVFoweWl2LXFDc2wzUGdKbzdPRElNdV9aaGp6X0hNR2paY1NSMmphX3VzNjYwdWdzcndzNExVRUZhWVA3T2VGbGRnQjJjSV84U0k4ODZLcElIN0Y4R1RKbnh2aG9RNjZXM0JFQjNZa2cxX25rV0lSWXdWZnA0OVFXSENZMGg?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('af2c3d246ef')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ad234a670eb">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMingFBVV95cUxOSU5oZDB6WkZLYjZEQUpkQ3cyajNfbEpRdDRKMUxZTlkzTHlWMDVGcjZjekpGLWFPa3pLWU9NRmtfN1otLWt5d3J0SngyckxRaWRoSlg3dWQ5THloRVFicmNBSVhNTXdFYTYwSXRlMUZkek90YV9idkhGenBGcnhPSDZEOGI2ZUY2RGRVTV9RRTRXVWtuRjBTaE5pcnI1UQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">BlackBerry (TSX:BB) Launches AtHoc Upgrade With Microsoft Teams And Entra ID - Yahoo Finance</a>
+          <div class="article-meta">Yahoo Finance &bull; Jul 01, 2026</div>
+          <div class="article-summary snippet"><p>BlackBerry (TSX:BB) Launches AtHoc Upgrade With Microsoft Teams And Entra ID&amp;nbsp;&amp;nbsp;Yahoo Finance</p><a href="https://news.google.com/rss/articles/CBMingFBVV95cUxOSU5oZDB6WkZLYjZEQUpkQ3cyajNfbEpRdDRKMUxZTlkzTHlWMDVGcjZjekpGLWFPa3pLWU9NRmtfN1otLWt5d3J0SngyckxRaWRoSlg3dWQ5THloRVFicmNBSVhNTXdFYTYwSXRlMUZkek90YV9idkhGenBGcnhPSDZEOGI2ZUY2RGRVTV9RRTRXVWtuRjBTaE5pcnI1UQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ad234a670eb')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a76ed184adf">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMimwFBVV95cUxNejFVVmc2R01FVVRjU0tOVEtvRjY1X1M5dzhQdkJUTnpQWGxZV3Z0bW93OE1JcVhsRHBKUHRnZVo1eThsdzR6Y3dPejkzYnJQSXFvWWtIRUxRaHNtY05YdEpxSmdoeGd0WTBOZm96OTlqMzdIR21QRUpnWVFOT1lXTDlfbFJjclVGODUxZ193TGFSbmVQRmE3clZIZw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">BlackBerry AtHoc Update: Microsoft Entra ID Sync, Alert Response Comments, and More - BlackBerry</a>
+          <div class="article-meta">BlackBerry &bull; Jun 30, 2026</div>
+          <div class="article-summary snippet"><p>BlackBerry AtHoc Update: Microsoft Entra ID Sync, Alert Response Comments, and More&amp;nbsp;&amp;nbsp;BlackBerry</p><a href="https://news.google.com/rss/articles/CBMimwFBVV95cUxNejFVVmc2R01FVVRjU0tOVEtvRjY1X1M5dzhQdkJUTnpQWGxZV3Z0bW93OE1JcVhsRHBKUHRnZVo1eThsdzR6Y3dPejkzYnJQSXFvWWtIRUxRaHNtY05YdEpxSmdoeGd0WTBOZm96OTlqMzdIR21QRUpnWVFOT1lXTDlfbFJjclVGODUxZ193TGFSbmVQRmE3clZIZw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a76ed184adf')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a9302ded23f">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMizgFBVV95cUxQcnlsUzY0ZDVURlRFOVhnQlJMNlRSMWNoMm5wSGVfc1hTYS1DZVZJNTctSHFfbHMwZWVLdXNBZ0hPWkFaX1hMbXJ0YXhpMHYwcXhldXJCM3RNVEJMTUNEeFhBLUdUdy1nZ3FqVGxmWC1XNXpvNmJ5RDJ2RHgtUWNRUkxCRk9NWFRzTzZIaDM1bnVVZ3JWMHh5UFppU3dmOThlNzRDWElIRmw4MkJWcWxXSFhVSmpBc3BYVmRGWXoxV1RZY3FGQWNXNnBGYUcydw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Entra ID: New updates include external MFA integrations, credential registration, and password reset - identityweek.net</a>
+          <div class="article-meta">identityweek.net &bull; Jul 02, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft Entra ID: New updates include external MFA integrations, credential registration, and password reset&amp;nbsp;&amp;nbsp;identityweek.net</p><a href="https://news.google.com/rss/articles/CBMizgFBVV95cUxQcnlsUzY0ZDVURlRFOVhnQlJMNlRSMWNoMm5wSGVfc1hTYS1DZVZJNTctSHFfbHMwZWVLdXNBZ0hPWkFaX1hMbXJ0YXhpMHYwcXhldXJCM3RNVEJMTUNEeFhBLUdUdy1nZ3FqVGxmWC1XNXpvNmJ5RDJ2RHgtUWNRUkxCRk9NWFRzTzZIaDM1bnVVZ3JWMHh5UFppU3dmOThlNzRDWElIRmw4MkJWcWxXSFhVSmpBc3BYVmRGWXoxV1RZY3FGQWNXNnBGYUcydw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a9302ded23f')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a6d100d7329">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMioAFBVV95cUxPajhUMjlud0hRTWJTQjlpTk94TG5rTUNlTDd6a2xUNWV5c01BREJjT25LSHhNOWtSdVM0WEQ3cEdCUjNMVU9PZHZha3pSek0yMkVIaHo1c2pvV3VhZ0E5czdaWjVKaXNUSUJLNFV4UHBYX1pEajc4SXpsNFFVeDYtejJqcW5ZWDdkVk41SUpEQ0E5R3B5bkV4SGtUMG1mLU5s?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Designing Zero Trust architectures with Entra ID for UK SMEs - Security Boulevard</a>
+          <div class="article-meta">Security Boulevard &bull; Jul 04, 2026</div>
+          <div class="article-summary snippet"><p>Designing Zero Trust architectures with Entra ID for UK SMEs&amp;nbsp;&amp;nbsp;Security Boulevard</p><a href="https://news.google.com/rss/articles/CBMioAFBVV95cUxPajhUMjlud0hRTWJTQjlpTk94TG5rTUNlTDd6a2xUNWV5c01BREJjT25LSHhNOWtSdVM0WEQ3cEdCUjNMVU9PZHZha3pSek0yMkVIaHo1c2pvV3VhZ0E5czdaWjVKaXNUSUJLNFV4UHBYX1pEajc4SXpsNFFVeDYtejJqcW5ZWDdkVk41SUpEQ0E5R3B5bkV4SGtUMG1mLU5s?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a6d100d7329')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="m365" class="topic-section">
+      <h2 class="topic-title" style="--c:#D83B01">Microsoft 365 <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a5d7781981e">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-copilot-cowork-compliance-controls/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Brings Copilot Cowork to General Availability with New Compliance Controls</a>
+          <div class="article-meta">petri.com &bull; Jul 02, 2026</div>
+          <div class="article-summary"><p>The latest updates enhance organizational insights, spending management, and governance across AI-powered workflows.
+Key Takeaways:
+Microsoft rolled out new Microsoft 365 Copilot capabilities in June to improve AI-powered productivity across enterprise environments. The updates make business data more accessible, actionable, and trustworthy while adding stronger management and compliance controls for IT teams.
+🎬 Watch This Week in IT.
+Microsoft has announced the general availability of Copilot Cowork for commercial customers. This new AI productivity agent is designed in collaboration with Anthropic and completes multi-step tasks on its own. Users can switch between Copilot Chat and Cowork via a toggle, and Cowork now supports multiple AI models, additional business-system plugins, custom skills, image creation, branded PowerPoint templates, browser-based actions, and push notifications for long-running tasks.
+Administrators can enable Copilot Cowork through usage-based billing, monitor credit usage, manage budgets, and control spending via the new Cost Management Dashboard in the Microsoft 365 admin center. Moreover, Microsoft 365 Copilot now uses Work IQ to provide more meaningful answers from organizational data sources. Users can ask questions in natural language and receive insights directly from Power BI reports and semantic models.
+Additionally, Copilot can now retrieve and analyze data stored in Dataverse, which allows employees to interact with business records via Copilot Chat without switching applications. This feature is expected to hit general availability in September.
+The new “deep citations” feature links Copilot responses directly to specific sections of source files, which makes it easier to verify information. It currently supports PowerPoint and Word files, with support for meetings, web, and PDF references coming soon. Moreover, users can regenerate responses with different approaches or models, and receive editing suggestions for Copilot Pages. Users can also regenerate responses with different approaches or models and receive editing suggestions for Copilot Pages.
+Microsoft has introduced a new feature that lets IT admins create/publish organizational prompts in the Microsoft 365 admin center. Moreover, the new Cost Management Dashboard in the Microsoft 365 admin center allows administrators to activate, manage, and optimize spending on AI experiences (such as Copilot Cowork). They can manage Copilot spending by allocating credits, creating spending policies and usage limits for specific groups, and selecting between prepaid credits and pay-as-you-go billing models.
+In Insights, a new dashboard provides additional cost reporting at the group or team level, which gives managers a view into the usage of Copilot Credits. With agent metrics for cost reporting, analysts can explore and combine granular agent usage data with organizational context to identify adoption trends.
+The organizational messages feature has added support for hybrid-joined devices, which enables IT admins to provide in-product communications to users on devices connected to both on‑premises Active Directory and Microsoft Entra ID. Moreover, IT admins can now control access to Vision features in Microsoft 365.
+Last but not least, Microsoft Purview Data Loss Prevention enables administrators to restrict external emails from being referenced in Microsoft 365 Copilot and Copilot Chat. Moreover, Administrators can configure Copilot to prevent emails from external sources from being included in summaries, cited as references, or used as context when generating AI responses.
+Microsoft has added new Purview controls to Copilot Cowork to help IT admins manage security and compliance.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a5d7781981e')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a95adcf3eb6">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiwgFBVV95cUxQNFVPZFhvSEFBNFZtWkVEYWR5ZHlRRUZMVWhFRE1LQTBORzVWTWJmTkxMb1lBWHgzdGZxSUFTaEhBWDhsVGhIWDN1c0FCYU4ybHJWWHBmek5mUjJaWmkzc1AwVnMyci14LVdTQVhoZXlBLXh2enBRYjJuZGV2WmhHaGRIT2poSktadGt2eXNJUUZPMEpKOFp4ZFpmaEtTVXMzcUpzb1FXT0lmWkxrUFBROEpZQm9xWWFsVUQzYlZjbWhFZw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Build agentic apps in minutes with Rayfin and Microsoft Fabric - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; Jul 04, 2026</div>
+          <div class="article-summary snippet"><p>Build agentic apps in minutes with Rayfin and Microsoft Fabric&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMiwgFBVV95cUxQNFVPZFhvSEFBNFZtWkVEYWR5ZHlRRUZMVWhFRE1LQTBORzVWTWJmTkxMb1lBWHgzdGZxSUFTaEhBWDhsVGhIWDN1c0FCYU4ybHJWWHBmek5mUjJaWmkzc1AwVnMyci14LVdTQVhoZXlBLXh2enBRYjJuZGV2WmhHaGRIT2poSktadGt2eXNJUUZPMEpKOFp4ZFpmaEtTVXMzcUpzb1FXT0lmWkxrUFBROEpZQm9xWWFsVUQzYlZjbWhFZw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a95adcf3eb6')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="af360c9dbe2">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMipAFBVV95cUxOdGExZDgzR2d3ZndqVC1EZWw2N3dQSGtjNzM0YzQ5Tmh6b25GNldEU1lZX0FjdkpLOVdsVmN5VVFVbjVtSmZRRDlqeHQtQ05TeHdBNU5JSDkzeWtPazBnNF9jdHB4bWlOTzFxLW5YQ0VzUVJFUVFhMWpEVklhazlFYTUwRk5TTDJJMUYzTWQtc21ybzM2TmJxMWtCcXZxZHRBanlDNA?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Raises Microsoft 365 Commercial Subscription Prices - Let's Data Science</a>
+          <div class="article-meta">Let's Data Science &bull; Jul 05, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft Raises Microsoft 365 Commercial Subscription Prices&amp;nbsp;&amp;nbsp;Let's Data Science</p><a href="https://news.google.com/rss/articles/CBMipAFBVV95cUxOdGExZDgzR2d3ZndqVC1EZWw2N3dQSGtjNzM0YzQ5Tmh6b25GNldEU1lZX0FjdkpLOVdsVmN5VVFVbjVtSmZRRDlqeHQtQ05TeHdBNU5JSDkzeWtPazBnNF9jdHB4bWlOTzFxLW5YQ0VzUVJFUVFhMWpEVklhazlFYTUwRk5TTDJJMUYzTWQtc21ybzM2TmJxMWtCcXZxZHRBanlDNA?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('af360c9dbe2')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ac1060035bb">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi3AFBVV95cUxORGUyS1lGQUpId0MwNWRFMFQ0WlhCNlJIZURaS3g2WVNGdnZDa3N2YXYzdWRSZVNMYnNkbDQyUXJpNGEwb3dOYUJNX21rZDcta1lwMTFlVU9FMS1CUS1kS1dCWE9EZWg3Y0FVeWQ1THNibGdnb1Ribm4zWkZ5WU1lQkF1RVFIVllmejZWOV9VellTdEF4VUdteTcwWFZNc2pWQ1Z6aXBXSDhQYUIxbEQ1MGgwMXhlRlVaTEp2WTVycmpMS1VMVGprUmw3X1VQTTQ1cGF4XzZGcE02YnNR?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft 365 just got a price hike over continuous innovation, but Copilot is the AI tax on businesses - Windows Latest</a>
+          <div class="article-meta">Windows Latest &bull; Jul 05, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft 365 just got a price hike over continuous innovation, but Copilot is the AI tax on businesses&amp;nbsp;&amp;nbsp;Windows Latest</p><a href="https://news.google.com/rss/articles/CBMi3AFBVV95cUxORGUyS1lGQUpId0MwNWRFMFQ0WlhCNlJIZURaS3g2WVNGdnZDa3N2YXYzdWRSZVNMYnNkbDQyUXJpNGEwb3dOYUJNX21rZDcta1lwMTFlVU9FMS1CUS1kS1dCWE9EZWg3Y0FVeWQ1THNibGdnb1Ribm4zWkZ5WU1lQkF1RVFIVllmejZWOV9VellTdEF4VUdteTcwWFZNc2pWQ1Z6aXBXSDhQYUIxbEQ1MGgwMXhlRlVaTEp2WTVycmpMS1VMVGprUmw3X1VQTTQ1cGF4XzZGcE02YnNR?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac1060035bb')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a0554f48614">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMipwFBVV95cUxNRFlTSUhlMV9sSXZBOE1jcmNMU1oxT0xIa1pnVlQ3aXJlZ25OMHpvMFQ4SlNlWHhpUVJSOEJ5UUtNQk5oUEF5Q0h5SmV2blo1NFpGQWJleXRpVGhwYkc2WFpfRUV5V3NlSm41UzNTZDlQLXBEUlZjd0I5OHl5MkVfZ3JhSmc3OTBIakRZU1l4SXlIbWwxOG9VS3psSnlDUkIzUk0xUk9tdw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">ARToken: Inside an EvilTokens affiliate panel targeting Microsoft 365 - Cisco Talos Blog</a>
+          <div class="article-meta">Cisco Talos Blog &bull; Jul 01, 2026</div>
+          <div class="article-summary snippet"><p>ARToken: Inside an EvilTokens affiliate panel targeting Microsoft 365&amp;nbsp;&amp;nbsp;Cisco Talos Blog</p><a href="https://news.google.com/rss/articles/CBMipwFBVV95cUxNRFlTSUhlMV9sSXZBOE1jcmNMU1oxT0xIa1pnVlQ3aXJlZ25OMHpvMFQ4SlNlWHhpUVJSOEJ5UUtNQk5oUEF5Q0h5SmV2blo1NFpGQWJleXRpVGhwYkc2WFpfRUV5V3NlSm41UzNTZDlQLXBEUlZjd0I5OHl5MkVfZ3JhSmc3OTBIakRZU1l4SXlIbWwxOG9VS3psSnlDUkIzUk0xUk9tdw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a0554f48614')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a6cfe7c8dc3">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMivAFBVV95cUxOOFpicHk4QzUyaF9OY2NZampoQXVNTVdfTmJPeWZrUmVacng3R1kyMDVjZjBIT1VsVUVNNE1WelJVYmFwZUszSkl5eC1tazl6M1dnZGdYQ2Zra2ZZMi02OU93U0NTZFFjanZueWFhcG1kVTdORzF5Ynk5REVfZlFuY1pOYVZPSC03UmcyeEtEV1BSQXpkRzlrOENvaVhkeHV3LThUVDdGaWxod201dkpiNTl3ZUI5OVY2NzJLMA?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft 365 users fall victim to one-in-a-million password spray attack - csoonline.com</a>
+          <div class="article-meta">csoonline.com &bull; Jul 03, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft 365 users fall victim to one-in-a-million password spray attack&amp;nbsp;&amp;nbsp;csoonline.com</p><a href="https://news.google.com/rss/articles/CBMivAFBVV95cUxOOFpicHk4QzUyaF9OY2NZampoQXVNTVdfTmJPeWZrUmVacng3R1kyMDVjZjBIT1VsVUVNNE1WelJVYmFwZUszSkl5eC1tazl6M1dnZGdYQ2Zra2ZZMi02OU93U0NTZFFjanZueWFhcG1kVTdORzF5Ynk5REVfZlFuY1pOYVZPSC03UmcyeEtEV1BSQXpkRzlrOENvaVhkeHV3LThUVDdGaWxod201dkpiNTl3ZUI5OVY2NzJLMA?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a6cfe7c8dc3')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a7f39d56c28">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMikwFBVV95cUxPT0ZNNW1FSXJmbFZ2NGxEcmZpS0k3ZWtQcWJ2X0JZREktaERHZW5fdUJiSmp0QXRhV0V1bGJlT0pkazExR29hbWxBNzh0NTBoMlFsXzZDSlc2V1BDVHZ4Nzl1TWFCelRPRTlrNHhlQU5tR3ZycjJ5RGhubFFsRlVxeG0wQU1QNDlfNnc5NDRaWjQxYkE?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">The ARToken phishing panel targets Microsoft 365 accounts - Help Net Security</a>
+          <div class="article-meta">Help Net Security &bull; Jul 01, 2026</div>
+          <div class="article-summary snippet"><p>The ARToken phishing panel targets Microsoft 365 accounts&amp;nbsp;&amp;nbsp;Help Net Security</p><a href="https://news.google.com/rss/articles/CBMikwFBVV95cUxPT0ZNNW1FSXJmbFZ2NGxEcmZpS0k3ZWtQcWJ2X0JZREktaERHZW5fdUJiSmp0QXRhV0V1bGJlT0pkazExR29hbWxBNzh0NTBoMlFsXzZDSlc2V1BDVHZ4Nzl1TWFCelRPRTlrNHhlQU5tR3ZycjJ5RGhubFFsRlVxeG0wQU1QNDlfNnc5NDRaWjQxYkE?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a7f39d56c28')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a8ec5d2fedf">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMitgFBVV95cUxOeWwtQ2lyZ2IzTkJ1aG1XT1kyQlprTFJkZDl0aWNPWWloNjh0ODZHX2hiXzVZTlBlT0R6OVBJU0d1YzJRR3pXY2NNeWtyUF9nUElRd1QzZ1dQT3FFV0xYX1FTWVd2RlR5ZlRadjRMUklWMlo5dlVqeENWU2prY1RabWtoWXBfbm04MEhGalJqNDNhdURIeVN4bXdMSllKUmhSRDRZaDc0dXBYNG0tdllRTjhuVnA2UQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft 365 Business Premium Boosts SMB Security With Defender and Purview - BizTech Magazine</a>
+          <div class="article-meta">BizTech Magazine &bull; Jun 30, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft 365 Business Premium Boosts SMB Security With Defender and Purview&amp;nbsp;&amp;nbsp;BizTech Magazine</p><a href="https://news.google.com/rss/articles/CBMitgFBVV95cUxOeWwtQ2lyZ2IzTkJ1aG1XT1kyQlprTFJkZDl0aWNPWWloNjh0ODZHX2hiXzVZTlBlT0R6OVBJU0d1YzJRR3pXY2NNeWtyUF9nUElRd1QzZ1dQT3FFV0xYX1FTWVd2RlR5ZlRadjRMUklWMlo5dlVqeENWU2prY1RabWtoWXBfbm04MEhGalJqNDNhdURIeVN4bXdMSllKUmhSRDRZaDc0dXBYNG0tdllRTjhuVnA2UQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a8ec5d2fedf')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="iru" class="topic-section">
+      <h2 class="topic-title" style="--c:#7C3AED">Iru MDM (formerly Kandji) </h2>
+      <p class="no-news">No articles found this week.</p>
+    </section>
+    <section id="cato" class="topic-section">
+      <h2 class="topic-title" style="--c:#FF6B35">Cato Networks <span class="count">(2)</span></h2>
+      <div class="article-card" data-id="a95f6d52329">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/07/critical-cursor-flaws-could-let-prompt.html" target="_blank" rel="noopener noreferrer" class="article-title">Critical Cursor Flaws Could Let Prompt Injection Escape Sandbox and Run Commands</a>
+          <div class="article-meta">thehackernews.com &bull; Jul 01, 2026</div>
+          <div class="article-summary"><p>Two flaws in Cursor, an AI code editor, could let a single, ordinary-looking prompt break out of the editor's safety sandbox and run any command on a developer's computer. There is no click to fall for and no approval box to ignore.
+Cato AI Labs found the pair and named them DuneSlide. They are tracked as CVE-2026-50548 and CVE-2026-50549, both rated 9.8 out of 10 (or 9.3 under the newer CVSS 4.0 scale).
+The fix is already out. Both bugs are patched in Cursor 3.0, released April 2, and every version before 3.0 is affected. Cursor's maker says more than half the Fortune 500 use the tool, so if you run it, update now.
+What the sandbox was for, and how it broke
+Starting in the 2.x line, Cursor runs the terminal commands its AI agent issues inside a sandbox by default: a locked box that limits what those commands can touch, so a stray instruction cannot wreck the machine.
+DuneSlide is about getting out of that box. The way in is prompt injection. The attacker never types into your Cursor. They plant instructions inside something your agent reads on your behalf, such as a connected service through the Model Context Protocol (MCP) or a page returned by a web search.
+You ask a normal question, the hidden instructions come along for the ride, and because it needs no click or approval from you, the attack is &quot;zero-click.&quot;
+Both flaws use the same trick: get the agent to write one file it should not be allowed to write, then use that write to turn the sandbox off.
+- CVE-2026-50548 abuses a setting. The sandbox permits writes into a command's working folder, and that folder is an optional parameter, working_directory, on Cursor's run_terminal_cmd tool. When the agent sets it to a non-default path, Cursor adds that path to the allowed-write list without question. Injected instructions point it at a system file instead of the project. Overwrite the sandbox helper itself (on macOS, /Applications/Cursor.app/Contents/Resources/app/resources/helpers/cursorsandbox), and later commands run with no sandbox at all. Startup files like ~/.zshrc work as targets too.
+- CVE-2026-50549 abuses a safety check. Before writing, Cursor resolves shortcuts (symlinks) to confirm the real destination sits inside your project. The bug is the fallback: when that check fails, because the target does not exist or the attacker removes read access from a folder in the path, Cursor gives up and trusts the shortcut's in-project path instead. An attacker creates a shortcut that points outside the project, forces the check to fail, and Cursor writes straight through it to the same sandbox helper. Same escape, different door.
+Once the sandbox is neutralized, the next command runs as you. That means control of the developer's machine, plus any cloud or SaaS workspaces the editor is signed into. It all follows from one harmless-looking prompt.
+There is no sign this has been used in real attacks. Cato presents it as research, not an active campaign, and the public vulnerability record shows no known exploitation as of publication.
+Cato reported both issues on February 19. By Cato's account, Cursor rejected them four days later, saying its threat model did not cover misuse of MCP servers, even standard ones like the official Linear workspace.
+Cato escalated on February 26; Cursor reopened the reports, triaged them, and shipped both fixes in 3.0. The CVE IDs were assigned on June 5.
+Cursor published its own advisory for the symlink bug, and its NVD record is live.
+Not the first, and probably not the last
+DuneSlide is the latest in a run of Cursor bugs that start with a poisoned prompt and end in code execution, each one defeating a different guardrail. The Hacker News covered the earlier rounds:
+- CurXecute (CVE-2025-54135, August 2025) came from the same team, then operating as Aim Security. A planted Slack message rewrote Cursor's ~/.cursor/mcp.json config and ran commands even after the user rejected the edit.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a95f6d52329')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ab3013f4e46">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiYkFVX3lxTE1aUWF1TkFMOE5oenhTM2RzWDhyNHhjMUVoUVlveENJek8xRlRUWnd3cE5mcnV4M3piTzVydHhORG5HOUNpZEgzcnpGVkJfc1FpU3huLTR5d3lHWkIwRENxNjJ3?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks marks $4.8B valuation with Tel Aviv summer event - Ynetnews</a>
+          <div class="article-meta">Ynetnews &bull; Jul 02, 2026</div>
+          <div class="article-summary snippet"><p>Cato Networks marks $4.8B valuation with Tel Aviv summer event&amp;nbsp;&amp;nbsp;Ynetnews</p><a href="https://news.google.com/rss/articles/CBMiYkFVX3lxTE1aUWF1TkFMOE5oenhTM2RzWDhyNHhjMUVoUVlveENJek8xRlRUWnd3cE5mcnV4M3piTzVydHhORG5HOUNpZEgzcnpGVkJfc1FpU3huLTR5d3lHWkIwRENxNjJ3?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ab3013f4e46')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+</main>
+
+<footer>
+  Generated every Sunday &mdash; Topics: Windows &bull; Azure &bull; SharePoint &bull; Intune &bull; Entra ID &bull; Microsoft 365 &bull; Iru MDM (formerly Kandji) &bull; Cato Networks
+</footer>
+
+<script>
+const KEY = 'it-news-hidden-v1';
+function getHidden() {
+  try { return new Set(JSON.parse(localStorage.getItem(KEY) || '[]')); }
+  catch { return new Set(); }
+}
+function saveHidden(s) { localStorage.setItem(KEY, JSON.stringify([...s])); }
+function toggleArticle(id) {
+  const h = getHidden();
+  h.has(id) ? h.delete(id) : h.add(id);
+  saveHidden(h); applyHidden(h);
+}
+function applyHidden(h) {
+  h = h || getHidden();
+  document.querySelectorAll('.article-card[data-id]').forEach(c => {
+    c.classList.toggle('is-hidden', h.has(c.dataset.id));
+  });
+}
+let revealing = false;
+function toggleReveal() {
+  revealing = !revealing;
+  document.body.classList.toggle('reveal-hidden', revealing);
+  document.getElementById('reveal-btn').textContent = revealing ? 'Hide hidden' : 'Show hidden';
+}
+fetch('weeks.json').then(r => r.json()).then(weeks => {
+  const sel = document.getElementById('week-sel');
+  weeks.forEach(w => {
+    const o = document.createElement('option');
+    o.value = w.file; o.textContent = w.label;
+    if (w.current) o.selected = true;
+    sel.appendChild(o);
+  });
+}).catch(() => {});
+applyHidden();
+</script>
+</body>
+</html>
