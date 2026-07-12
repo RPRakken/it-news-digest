@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT News Digest — 2026-W28</title>
+  <style>
+    :root{--bg:#f8fafc;--surface:#fff;--border:#e2e8f0;--text:#1e293b;--muted:#64748b;--accent:#2563eb}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+    a{color:var(--accent)}
+
+    header{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+    .h-inner{max-width:1000px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .h-brand{font-size:1.1rem;font-weight:800;color:#1d4ed8}
+    .h-meta{font-size:.78rem;color:var(--muted)}
+    .h-controls{display:flex;gap:8px;align-items:center}
+    .btn{padding:5px 12px;border-radius:6px;font-size:.78rem;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);white-space:nowrap}
+    .btn:hover{background:#f1f5f9}
+    select.week-sel{padding:5px 10px;border-radius:6px;border:1px solid var(--border);background:var(--surface);font-size:.78rem;cursor:pointer;color:var(--text)}
+
+    .t-nav{background:var(--surface);border-bottom:1px solid var(--border);overflow-x:auto}
+    .t-nav-inner{max-width:1000px;margin:0 auto;padding:8px 20px;display:flex;gap:6px;min-width:max-content}
+    .nav-link{font-size:.72rem;padding:3px 10px;border-radius:20px;border:2px solid var(--c,#2563eb);color:var(--c,#2563eb);text-decoration:none;font-weight:600;white-space:nowrap}
+    .nav-link:hover{background:var(--c,#2563eb);color:#fff}
+
+    main{max-width:1000px;margin:0 auto;padding:24px 20px}
+
+    .week-hero{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin-bottom:28px;display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+    .hero-title{font-size:1.6rem;font-weight:900;color:#1d4ed8}
+    .hero-sub{font-size:.85rem;color:var(--muted);margin-top:2px}
+    .stat-box{text-align:center;min-width:60px}
+    .stat-num{font-size:2rem;font-weight:900;color:#1d4ed8;line-height:1}
+    .stat-lbl{font-size:.65rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+
+    .topic-section{margin-bottom:40px}
+    .topic-title{font-size:1.2rem;font-weight:800;color:var(--c,#2563eb);border-bottom:3px solid var(--c,#2563eb);padding-bottom:8px;margin-bottom:14px}
+    .count{font-size:.8rem;font-weight:400;color:var(--muted)}
+    .no-news{color:var(--muted);font-style:italic;font-size:.88rem}
+
+    .article-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:12px;display:flex;gap:12px;align-items:flex-start;transition:border-color .15s}
+    .article-card:hover{border-color:#94a3b8}
+    .article-body{flex:1;min-width:0}
+    .article-title{font-size:.98rem;font-weight:600;text-decoration:none;display:block;margin-bottom:4px;color:var(--accent)}
+    .article-title:hover{text-decoration:underline}
+    .article-meta{font-size:.72rem;color:var(--muted);margin-bottom:8px}
+
+    .article-summary{margin-top:6px;font-size:.875rem;color:#334155;line-height:1.75}
+    .article-summary p{margin-bottom:.6em}
+    .article-summary p:last-child{margin-bottom:0}
+    .gnews-badge{display:inline-block;font-size:.65rem;background:#fef3c7;color:#92400e;border-radius:4px;padding:1px 5px;margin-bottom:6px;vertical-align:middle}
+    .article-summary.snippet{color:var(--muted)}
+    .read-more{display:inline-block;margin-top:6px;font-size:.8rem;font-weight:600;color:var(--accent);text-decoration:none}
+    .read-more:hover{text-decoration:underline}
+
+    .hide-btn{flex-shrink:0;padding:5px 10px;border-radius:6px;font-size:.72rem;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--muted);white-space:nowrap;align-self:flex-start}
+    .hide-btn:hover{border-color:#ef4444;color:#ef4444;background:#fef2f2}
+    .lbl-show{display:none}
+
+    .article-card.is-hidden{display:none}
+    body.reveal-hidden .article-card.is-hidden{display:flex;opacity:.45;border-style:dashed}
+    .article-card.is-hidden .lbl-hide{display:none}
+    .article-card.is-hidden .lbl-show{display:inline}
+    body.reveal-hidden .article-card.is-hidden .hide-btn{border-color:#16a34a;color:#16a34a}
+    body.reveal-hidden .article-card.is-hidden .hide-btn:hover{background:#f0fdf4}
+
+    footer{text-align:center;padding:24px 20px;color:var(--muted);font-size:.75rem;border-top:1px solid var(--border);margin-top:40px}
+
+    @media(max-width:600px){
+      .h-inner,.main{padding-left:14px;padding-right:14px}
+      .hero-title{font-size:1.3rem}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="h-inner">
+    <div>
+      <div class="h-brand">IT News Digest</div>
+      <div class="h-meta">Week 2026-W28 &bull; Jul 06–12, 2026</div>
+    </div>
+    <div class="h-controls">
+      <button class="btn" id="reveal-btn" onclick="toggleReveal()">Show hidden</button>
+      <select class="week-sel" id="week-sel" onchange="if(this.value) location.href=this.value">
+        <option value="">&#128337; Archive&hellip;</option>
+      </select>
+    </div>
+  </div>
+</header>
+
+<nav class="t-nav"><div class="t-nav-inner"><a href="#windows" class="nav-link" style="--c:#0078D4">Microsoft Windows</a><a href="#azure" class="nav-link" style="--c:#00BCF2">Azure</a><a href="#sharepoint" class="nav-link" style="--c:#036C70">SharePoint</a><a href="#intune" class="nav-link" style="--c:#0F6CBD">Intune</a><a href="#entraid" class="nav-link" style="--c:#6B69D6">Entra ID</a><a href="#m365" class="nav-link" style="--c:#D83B01">Microsoft 365</a><a href="#iru" class="nav-link" style="--c:#7C3AED">Iru MDM (formerly Kandji)</a><a href="#cato" class="nav-link" style="--c:#FF6B35">Cato Networks</a></div></nav>
+
+<main>
+  <div class="week-hero">
+    <div>
+      <div class="hero-title">Week 2026-W28</div>
+      <div class="hero-sub">Jul 06–12, 2026</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">48</div>
+      <div class="stat-lbl">Articles</div>
+    </div>
+  </div>
+
+    <section id="windows" class="topic-section">
+      <h2 class="topic-title" style="--c:#0078D4">Microsoft Windows <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a6428004aed">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-ai-vulnerability-detection-windows/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Uses AI to Accelerate Windows Vulnerability Detection and Patch Development</a>
+          <div class="article-meta">petri.com &bull; Jul 09, 2026</div>
+          <div class="article-summary"><p>New engineering practices integrate automated analysis, validation, and testing into the Windows security lifecycle.
+Key Takeaways:
+As AI reshapes the cybersecurity landscape, Microsoft is strengthening its Windows vulnerability management strategy to detect security flaws earlier, accelerate remediation, and better protect customers. The company is expanding its use of AI-powered tools and engineering innovations to deliver faster, higher-quality security updates without compromising reliability.
+Microsoft explained today how it’s adapting Windows security practices as AI increases the speed and scale of vulnerability detection. The company’s goal is to detect and fix security flaws before attackers can exploit them while maintaining update quality and system reliability.
+Microsoft is leveraging AI-powered security tools (including the multi-model scanning system (MDASH)) to detect vulnerabilities across the Windows codebase quickly. The company highlighted that automated scanning, validation, and prioritization help to reduce the time between discovering a flaw and protecting customers.
+Additionally, Microsoft is making vulnerability discovery a core part of its Windows development lifecycle rather than a separate activity. The company is updating its Secure Development Lifecycle (SDL) to address AI-enabled attack methods and emerging exploit techniques. However, human experts will be responsible for evaluating risks and approving fixes.
+As AI helps discover more vulnerabilities, the number of issues addressed in security releases is expected to increase. Microsoft considers this a positive sign that defenders are more proactively identifying and fixing weaknesses.
+Microsoft mentioned that Windows engineers leverage AI to analyze failures, suggest fixes, detect related issues, and recommend relevant tests. The company has extensive validation and testing processes in place to ensure that speed doesn’t affect the quality. Moreover, Windows security updates undergo broad validation through internal testing and programs, including the Security Update Validation Program (SUVP).
+Additionally, Microsoft is leveraging Windows-specific tools, agentic harnesses, and other new technologies for end-to-end generation and validation of security fixes, while humans remain responsible for code review. If a problem arises after release, technologies like Known Issue Rollback (KIR) can reverse problematic changes without removing important security protections.
+Microsoft emphasizes the importance of timely patches to keep Windows machines protected against cyber threats. The company provides CVE information, risk guidance, and optional preview releases to help IT admins test updates before deployment in enterprise environments.
+Windows 11 comes with built-in protections such as Windows Hello, reduced dependence on administrator privileges, trusted application experiences, and hardware-based security capabilities to reduce exposure to cyber threats. Moreover, Microsoft Defender and security industry partners provide additional protection during the period between vulnerability disclosure and update deployment.
+Last but not least, Microsoft recommends tools (such as Windows Autopatch, Microsoft Intune, Azure Arc, Azure Update Manager, and Defender Vulnerability Management) that help administrators automate patches, analyze risk, enforce compliance, and prioritize remediation. The company urges organizations to move from traditional scheduled patching toward a continuous, risk-driven approach.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a6428004aed')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a45a880e647">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-faster-windows-updates-ai-attacks/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Urges Faster Windows Update Deployment As AI Accelerates Cyberattacks</a>
+          <div class="article-meta">petri.com &bull; Jul 09, 2026</div>
+          <div class="article-summary"><p>Updated guidance emphasizes automation, phased rollouts, and continuous visibility into vulnerable systems.
+Key Takeaways:
+As AI enables cybercriminals to identify and exploit vulnerabilities faster than ever, traditional patching timelines are becoming increasingly risky. Microsoft is urging IT administrators to accelerate update deployment and adopt more proactive patch management practices to reduce exposure to emerging threats.
+According to Microsoft, artificial intelligence is accelerating the pace at which cybercriminals can find and exploit software vulnerabilities, which leaves organizations with much less time to respond. Security teams that follow traditional update schedules may leave systems exposed while attackers take advantage of newly discovered weaknesses. Organizations need faster and more automated patching processes and better visibility into unpatched devices to reduce their risk of compromise.
+To address this issue, Microsoft recommends that organizations shorten the time between the release of a security update and its deployment, particularly for devices that can support faster update cycles. Companies should use automated patch management tools, monitor update compliance closely, and identify systems that remain vulnerable due to missing patches.
+“If you’re not delivering critical quality updates with security fixes until a couple of weeks after they’ve been issued, that’s ample time for attackers using AI to find and exploit known security gaps. To address this, we’ve updated our recommendations for deploying Windows updates to less than three days as the deferral period for quality updates, setting deadlines for those updates to zero or one day, and the update grace period to a maximum of two days,” said Jeremy Chapman, Microsoft 365 Director.
+Microsoft also advises adopting a phased deployment model in which updates are first tested on a small group of devices and then gradually rolled out across the organization. Moreover, administrators should take advantage of capabilities such as Hotpatch and Conditional Access policies that can restrict access from non-compliant devices. These measures help organizations deploy updates more quickly and strengthen their overall security posture.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a45a880e647')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a6d039d653b">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-intune-defender-security-unenrolled-devices/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Intune Extends Defender Security Policy Management to Unenrolled Devices</a>
+          <div class="article-meta">petri.com &bull; Jul 07, 2026</div>
+          <div class="article-summary"><p>New capability allows organizations to enforce endpoint security policies through Defender and Entra identities.
+Key Takeaways:
+Microsoft Intune has released a new update that enables IT admins to manage security settings for Microsoft Defender for Endpoint on devices that are not enrolled in Microsoft Intune. This feature extends security management to Windows, Windows Server, macOS, and Linux.
+Microsoft highlighted that this update allows organizations to centrally manage endpoint security policies through either the Microsoft Intune admin center or the Microsoft Defender portal. Devices receive security configurations through their Microsoft Entra ID identities, and Defender for Endpoint enforces those settings directly on the device. Administrators can track policy deployment, monitor compliance, and review device status from both Intune and Defender management consoles.
+“This scenario extends the Microsoft Intune Endpoint Security surface to devices that aren’t capable of enrolling in Intune. When a device is managed by Intune (enrolled to Intune) the device doesn’t process policies for Defender for Endpoint security settings management. Instead, use Intune to deploy policy for Defender for Endpoint to your devices,” Microsoft explained.
+To use this feature, administrators must enable the enforcement scope in the Microsoft Defender portal and configure Intune to enforce endpoint security settings. Once enabled, supported devices can receive and report on security policies (such as Antivirus, Firewall, and Attack Surface Reduction (ASR) rules) even when they are not enrolled in Microsoft Intune.
+Microsoft notes that this feature requires organizations to have Defender for Endpoint licensing (through Microsoft 365 or standalone MDE licenses). Customers should also have appropriate connectivity to Microsoft cloud endpoints and required Defender agent versions on supported operating systems.
+Administrators can use device inventory and management dashboards to review enrollment status and gain visibility into the security posture of managed endpoints. Moreover, role-based access control (RBAC) allows organizations to assign administrative permissions based on job responsibilities. It helps maintain governance while securely delegating management tasks.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a6d039d653b')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a09e25743e2">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-cloud-rebuild-windows-11-recovery/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Previews Cloud Rebuild for Windows 11 Recovery from Boot Failures</a>
+          <div class="article-meta">petri.com &bull; Jul 07, 2026</div>
+          <div class="article-summary"><p>New recovery capabilities aim to simplify device restoration and preserve user settings after system failures.
+Key Takeaways:
+Recovering a broken Windows 11 PC could soon become much easier. Microsoft is testing a new Cloud rebuild feature with Windows Insiders that reinstalls the operating system directly from the cloud.
+🎬 Watch This Week in IT.
+According to Microsoft, the Cloud rebuild feature lets users restore a PC to a clean and reliable state even when the operating system fails to boot. It reinstalls Windows by downloading the required operating system files and device drivers directly from Windows Update.
+“Unlike Reset your PC, Cloud rebuild downloads both the target Windows image and the device’s drivers from Windows Update, so the device comes back fully functional, without USB media, without a custom image, and without depending on the integrity of the installed operating system,” Microsoft explained.
+Windows 11 users can start the Windows Recovery Environment (WinRE) by clicking Troubleshoot &gt; Recovery and uninstall &gt; Cloud rebuild. Now, connect over a Wi-Fi network or wired Ethernet from within WinRE. Finally, review the specific Windows build, edition, and language, and confirm the data-loss warning before rebuild begins.
+The Reset this PC feature also offers a cloud download option, but it still relies on the device’s existing recovery environment and is designed for systems that can still boot into Windows. In contrast, the new Cloud rebuild feature downloads a complete Windows image and the required device drivers directly from Windows Update. It allows users to recover even when the operating system fails to start.
+Microsoft has announced that Windows settings backup and restore will be enabled by default for Microsoft Entra-joined or Microsoft Entra hybrid-joined enterprise devices running Windows 11 version 26H2. Up until now, administrators had to enable this feature (previously called Windows Backup for Organizations) manually. This new default backup option will automatically save users’ settings and list of Microsoft Store apps, which makes it easier to restore a familiar working environment after a device reset or reinstallation.
+Microsoft notes that administrators will continue to have full control over mobile device management (MDM) solutions. Any administrator-defined settings will take precedence, and restoring backed-up settings will remain an optional, admin-managed action.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a09e25743e2')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a4f60ab3e4f">
+        <div class="article-body">
+          <a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-expects-more-windows-security-updates-from-ai-discovered-flaws/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft expects more Windows security updates from AI-discovered flaws</a>
+          <div class="article-meta">bleepingcomputer.com &bull; Jul 09, 2026</div>
+          <div class="article-summary"><p>Microsoft says Windows users should expect to see an increase in security updates as the company increasingly relies on artificial intelligence to discover vulnerabilities in its codebase.
+In a blog post published today, Microsoft said advances in AI have significantly accelerated vulnerability discovery, allowing engineers to identify more security issues before they can be exploited in zero-day attacks.
+&quot;The pace of vulnerability discovery is changing with advances in AI making it possible to find more issues, faster, across more code, with new mechanisms that can accelerate both discovery and analysis,&quot; Microsoft said.
+As part of this approach, the company is using Microsoft Security's multi-model agentic scanning harness (MDASH), an AI-powered vulnerability discovery system previously detailed by Microsoft, which scans critical binaries and validates potential vulnerabilities using multiple AI models.
+Microsoft says the system scans critical Windows binaries for vulnerabilities and then validates the findings using multiple AI models. Vulnerability candidates are then passed through a second Windows-specific validation pipeline designed to eliminate false positives before engineers investigate the issues.
+The company says it is also using AI to help engineers understand failures more quickly, suggest possible bug fixes, and identify similar bugs elsewhere in the Windows source code. However, Microsoft says human engineers will still oversee and review all proposed code and validate fixes before they are released into production.
+Microsoft says the increased use of AI for vulnerability discovery means customers are likely to see more security updates to address newly discovered vulnerabilities in each monthly Patch Tuesday release.
+&quot;As AI helps defenders discover more issues, customers will see a higher volume of security updates included in each security release,&quot; says Microsoft.
+Artificial intelligence is used not only to find and fix vulnerabilities but also by threat actors to power their attacks and exploit zero-day flaws before they are fixed.
+Due to this, Microsoft also announced today that it is updating its Secure Development Lifecycle (SDL) practices to account for AI-enabled attack techniques and to use AI earlier in the software development process to identify security issues before features are released.
+This announcement comes two days after Reuters reported that the U.S. Cybersecurity and Infrastructure Security Agency (CISA) has begun using Anthropic's Fable AI model to scan government software for vulnerabilities that cybercriminals or foreign intelligence services could exploit.
+According to the report, the AI-assisted code audits have already uncovered numerous vulnerabilities, though officials did not disclose how many or provide details on their severity.
+Test every layer before attackers do
+Security teams log 54% of successful attacks and alert on just 14%. The rest move through your environment unseen.
+The Picus whitepaper shows how breach and attack simulation tests your SIEM and EDR rules so threats stop slipping by detection.
+Get the whitepaper</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a4f60ab3e4f')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a4e5d659e65">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi1gFBVV95cUxNek0xUjdrT1VERFFIYXZjYWZhVFdNY1pNX3lEVERSbkdORlUzc0ZoLXNCeHRTT0k5N2U5WF9vWmpzYk0wU2N1T3ZTZ3gydXdvVEdRZlh6eWpLVnJXUnNUYjczNDBiY2lUNVBOVThORl9kS1A5b2tpam9NLUJycU5zSXZ0SEFFc1VlN1l0eDN4Ni1sc1RnY0g5MVFLQzR6Y201aUt1bmdzelRFQkVTWHNkN3UwYVQ4c09jTDJrTUp1RlpKb2tSMmpKaGd3Z29HVWpJeHF4cHB3?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Evolving Windows vulnerability management to meet the speed of AI-powered discovery - blogs.windows.com</a>
+          <div class="article-meta">blogs.windows.com &bull; Jul 09, 2026</div>
+          <div class="article-summary snippet"><p>Evolving Windows vulnerability management to meet the speed of AI-powered discovery&amp;nbsp;&amp;nbsp;blogs.windows.com</p><a href="https://news.google.com/rss/articles/CBMi1gFBVV95cUxNek0xUjdrT1VERFFIYXZjYWZhVFdNY1pNX3lEVERSbkdORlUzc0ZoLXNCeHRTT0k5N2U5WF9vWmpzYk0wU2N1T3ZTZ3gydXdvVEdRZlh6eWpLVnJXUnNUYjczNDBiY2lUNVBOVThORl9kS1A5b2tpam9NLUJycU5zSXZ0SEFFc1VlN1l0eDN4Ni1sc1RnY0g5MVFLQzR6Y201aUt1bmdzelRFQkVTWHNkN3UwYVQ4c09jTDJrTUp1RlpKb2tSMmpKaGd3Z29HVWpJeHF4cHB3?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a4e5d659e65')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aa5a2a89cad">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMikwFBVV95cUxOcTc1NldEX3d3bHBwWWotNERhaml5a2FvNkwyOWt1UDhqaHp6ZlQ5TUxrb0lGb2RTR0s2MHNqcXJCUkt6SnVwdjdnSTVIeHp1bWRhVkRVX3Bac0EyQkR4dEs4UVM0X1M3UVV3c3pLaHBvMGVmVEZka2owX0dLVjZLUnRTb3FjT1JVZFdNRmFnVWtDa2s?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft is rewriting Windows patch guidance because of AI - Help Net Security</a>
+          <div class="article-meta">Help Net Security &bull; Jul 10, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft is rewriting Windows patch guidance because of AI&amp;nbsp;&amp;nbsp;Help Net Security</p><a href="https://news.google.com/rss/articles/CBMikwFBVV95cUxOcTc1NldEX3d3bHBwWWotNERhaml5a2FvNkwyOWt1UDhqaHp6ZlQ5TUxrb0lGb2RTR0s2MHNqcXJCUkt6SnVwdjdnSTVIeHp1bWRhVkRVX3Bac0EyQkR4dEs4UVM0X1M3UVV3c3pLaHBvMGVmVEZka2owX0dLVjZLUnRTb3FjT1JVZFdNRmFnVWtDa2s?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aa5a2a89cad')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a68bf7a6e45">
+        <div class="article-body">
+          <a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-expects-more-windows-security-updates-from-ai-discovered-flaws/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft expects more Windows security updates from AI-discovered flaws - BleepingComputer</a>
+          <div class="article-meta">BleepingComputer &bull; Jul 09, 2026</div>
+          <div class="article-summary"><p>Microsoft says Windows users should expect to see an increase in security updates as the company increasingly relies on artificial intelligence to discover vulnerabilities in its codebase.
+In a blog post published today, Microsoft said advances in AI have significantly accelerated vulnerability discovery, allowing engineers to identify more security issues before they can be exploited in zero-day attacks.
+&quot;The pace of vulnerability discovery is changing with advances in AI making it possible to find more issues, faster, across more code, with new mechanisms that can accelerate both discovery and analysis,&quot; Microsoft said.
+As part of this approach, the company is using Microsoft Security's multi-model agentic scanning harness (MDASH), an AI-powered vulnerability discovery system previously detailed by Microsoft, which scans critical binaries and validates potential vulnerabilities using multiple AI models.
+Microsoft says the system scans critical Windows binaries for vulnerabilities and then validates the findings using multiple AI models. Vulnerability candidates are then passed through a second Windows-specific validation pipeline designed to eliminate false positives before engineers investigate the issues.
+The company says it is also using AI to help engineers understand failures more quickly, suggest possible bug fixes, and identify similar bugs elsewhere in the Windows source code. However, Microsoft says human engineers will still oversee and review all proposed code and validate fixes before they are released into production.
+Microsoft says the increased use of AI for vulnerability discovery means customers are likely to see more security updates to address newly discovered vulnerabilities in each monthly Patch Tuesday release.
+&quot;As AI helps defenders discover more issues, customers will see a higher volume of security updates included in each security release,&quot; says Microsoft.
+Artificial intelligence is used not only to find and fix vulnerabilities but also by threat actors to power their attacks and exploit zero-day flaws before they are fixed.
+Due to this, Microsoft also announced today that it is updating its Secure Development Lifecycle (SDL) practices to account for AI-enabled attack techniques and to use AI earlier in the software development process to identify security issues before features are released.
+This announcement comes two days after Reuters reported that the U.S. Cybersecurity and Infrastructure Security Agency (CISA) has begun using Anthropic's Fable AI model to scan government software for vulnerabilities that cybercriminals or foreign intelligence services could exploit.
+According to the report, the AI-assisted code audits have already uncovered numerous vulnerabilities, though officials did not disclose how many or provide details on their severity.
+Test every layer before attackers do
+Security teams log 54% of successful attacks and alert on just 14%. The rest move through your environment unseen.
+The Picus whitepaper shows how breach and attack simulation tests your SIEM and EDR rules so threats stop slipping by detection.
+Get the whitepaper</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a68bf7a6e45')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="azure" class="topic-section">
+      <h2 class="topic-title" style="--c:#00BCF2">Azure <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a02a13688a9">
+        <div class="article-body">
+          <a href="https://azure.microsoft.com/en-us/blog/frontier-models-and-production-agents-advancing-microsoft-foundry-for-the-agentic-era/" target="_blank" rel="noopener noreferrer" class="article-title">Frontier models and production agents: Advancing Microsoft Foundry for the agentic era</a>
+          <div class="article-meta">azure.microsoft.com &bull; Jul 09, 2026</div>
+          <div class="article-summary"><p>What’s new today
+GPT‑5.6 is generally available in Microsoft Foundry, alongside the Asia-Pacific Data Zone, and hosted agents in Foundry Agent Service.
+AI only creates value when it shows up in real systems—systems that are reliable, observable, and aligned to business outcomes. More than 100,000 organizations are already building on Microsoft Foundry, and companies like Adobe, Telefónica, and Tata Consultancy Services are running agents in production today.
+At Microsoft Build, we laid out a simple promise for the agentic era: developers should be able to build an agent where they already work, run it on infrastructure they can trust, and put it in front of the people who need it— without stitching together disconnected platforms. Today, that vision moves from roadmap to reality with three sets of updates now generally available in Microsoft Foundry:
+- OpenAI’s latest frontier model series: GPT-5.6 Sol, GPT-5.6 Terra, and GPT-5.6—each tuned to a different workload, available in Standard Global and Standard Data Zones.
+- Asia-Pacific Data Zone, giving APAC customers a regional option to run frontier OpenAI models while keeping data processing within the region.
+- Production agents in Foundry Agent Service, with hosted agents, toolboxes, and publishing to Microsoft 365 Copilot and Microsoft Teams.
+Together, these capabilities bring frontier models, production agent runtime, enterprise-grade identity, security, and compliance controls, and distribution across Microsoft 365 into a single platform—helping organizations move from experimentation to production without assembling disconnected tools and services.
+Why Foundry is the best agent platform
+Microsoft Foundry is Microsoft’s end-to-end platform for building, running, governing, and distributing AI agents. Foundry brings together the capabilities organizations need to move agents into production across three pillars:
+- Build: Open and flexible across models and frameworks.
+- Generate: Connected to enterprise data, tools, and users.
+- Govern: Secured, managed, and optimized for long-term value.
+These pillars come together in the latest Foundry updates, helping organizations build, run, and scale production agents on a single platform.
+Build with any framework and model on the industry’s end-to-end AI platform
+Agent development starts where developers already work—in GitHub Copilot and Microsoft Visual Studio (VS) Code—with the Foundry Toolkit for VS Code and the Foundry skill handling deployment to Foundry. Whether teams build with Microsoft Agent Framework, GitHub Copilot SDK (generally available), or Claude Agent SDK, Foundry is the production destination—and it all starts with the right model.
+Start with the right model for the right job
+An agent is only as capable as the model reasoning behind it. Microsoft Foundry gives organizations access to industry-leading frontier, open-source, and task-specific models through a single platform, allowing teams to choose the right model for every workload.
+Today, we’re making OpenAI’s GPT-5.6 series generally available in Microsoft Foundry Models and Microsoft Foundry Agent Service:
+- GPT-5.6 Sol delivers the most advanced reasoning capabilities yet, supporting extended reasoning, agentic workflows, and code-focused scenarios, for the most demanding enterprise workloads.
+- GPT-5.6 Terra is a balanced model for everyday work, delivering performance competitive with GPT-5.5 at a lower cost, making it ideal for scaling intelligent applications across the enterprise.
+- GPT-5.6 Luna is the fastest and most affordable model in the family, making it well suited to high-volume, latency-sensitive workloads.
+Together, the GPT-5.6 series gives organizations the flexibility to match model capability, cost, and performance requirements to specific business scenarios, rather than forcing every workload onto a single model.
+Customers consistently tell us that access to new models matters as much as model quality.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a02a13688a9')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a1cf7dae582">
+        <div class="article-body">
+          <a href="https://azure.microsoft.com/en-us/blog/built-to-bounce-back-how-azure-resiliency-evolved/" target="_blank" rel="noopener noreferrer" class="article-title">Built to bounce back: How Azure resiliency evolved</a>
+          <div class="article-meta">azure.microsoft.com &bull; Jul 08, 2026</div>
+          <div class="article-summary"><p>Resiliency in the cloud is often described in terms of availability, such as how quickly a system fails over, how many replicas exist, or what a service-level agreement guarantees. But for most organizations today, especially those operating in regulated, sovereign, or geopolitically sensitive environments, resiliency is something far more fundamental. It is the ability to continue operating under pressure, protect what matters most, and recover safely when the unexpected happens.
+A useful way to think about this is not a system problem, but a city problem. A modern city does not depend on a single power source, a single road, or a single control system. It is designed to withstand disruptions, whether from infrastructure failures, natural events, or security incidents. It has redundancy—but more importantly—it has governance, control, and recovery mechanisms that reflect local realities. Cloud resiliency operates in much the same way. It is not just about avoiding outages; it is about ensuring systems can adapt, recover, and keep functioning within real-world constraints.
+On Azure, resiliency is not something Microsoft delivers to customers. It is something Microsoft builds with them. The platform provides deeply resilient infrastructure and increasingly intelligent capabilities, but resiliency outcomes only emerge when those are intentionally designed, aligned with sovereignty constraints, and continuously validated against real-world conditions. Last year, we explained how at its core, Azure approaches resiliency across three interconnected pillars: infrastructure resiliency, data resiliency, and cyber recovery.
+- Infrastructure resiliency: ensuring applications remain available through failure conditions.
+- Data resiliency: ensuring data remains protected, durable, and recoverable.
+- Cyber recovery: ensuring organizations can recover safely from compromised states.
+Together, they ensure not only that systems remain available, but that they remain recoverable and trustworthy—even when failure modes are unpredictable. These pillars are operationalized through a lifecycle approach that helps organizations design, improve, and continuously validate their resiliency posture.
+What differentiates Azure is how these elements come together. Azure provides not just resilient infrastructure, but a unified approach that spans platform capabilities, observability, validation, and intelligent remediation, allowing organizations to move from designing for resiliency to continuously operating and improving it.
+Resiliency as a shared responsibility, not a handoff
+In any city, infrastructure providers ensure that roads, utilities, and foundational systems are reliable. But how buildings are designed, how emergency plans are executed, and how critical services are protected; those remain the responsibility of the city and its operators.
+Azure’s shared responsibility model follows the same principle. Microsoft is responsible for delivering a resilient cloud platform foundation like regions, physical datacenters, networking, isolation boundaries, and engineering systems that reduce blast radius and improve durability at scale. This includes capabilities such as Availability Zones, regional isolation, and services like Azure Backup and Azure Site Recovery. Customers then build on Azure enabled experiences to configure the right capabilities and achieve their desired resiliency outcomes. This includes how applications are architected, how dependencies are managed, how recovery objectives are defined, and how backup and disaster recovery are configured and tested.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a1cf7dae582')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="abb84f75cd7">
+        <div class="article-body">
+          <a href="https://azure.microsoft.com/en-us/blog/external-key-management-for-azure-managed-hsm-is-now-in-public-preview/" target="_blank" rel="noopener noreferrer" class="article-title">External key management for Azure Managed HSM is now in public preview</a>
+          <div class="article-meta">azure.microsoft.com &bull; Jul 07, 2026</div>
+          <div class="article-summary"><p>Azure Key Vault Managed Hardware Security Module (HSM) provides strong sovereignty over your encryption keys. Keys are generated and stored in a single-tenant, FIPS 140-3 Level 3 HSM that only you control: Microsoft has no access to your key material, and you govern who can use each key. For most organizations, including those with stringent regulatory requirements, this level of control is sufficient.
+Some organizations have a further requirement: the hardware that holds their key must reside physically outside Azure datacenters. External key management for Azure Key Vault Managed HSM is now in public preview to address that requirement, delivering on a commitment made a year ago.
+How Managed HSM delivers sovereignty today
+Before looking at external key management, it’s worth being precise about the sovereignty Managed HSM already provides. Managed HSM is a single-tenant service: each instance is a dedicated cluster of FIPS 140-3 Level 3 validated HSM partitions for each customer—built on Marvell LiquidSecurity adapters. Keys are generated inside that hardware and never leave it in plaintext, making the keys inaccessible to Microsoft operators.
+Control rests with you, not Microsoft:
+- Customer-specific security domain. Each HSM cluster is cryptographically isolated by a security domain that you generate and own. Microsoft can’t decrypt your key material or recover your HSM cluster without it. You are in full control of the security domain as it’s protection and safeguarding is outside of Microsoft.
+- Multiperson control. The security domain is protected by a quorum of RSA key pairs that you hold offline. Recovery requires your quorum, so no single person—and no Microsoft operator—can act alone.
+- Local role-based access control (RBAC). A data-plane authorization model, independent of Azure RBAC, governs who can perform each cryptographic operation.
+- Key attestation. You can obtain cryptographic proof that a key was generated and is used within the FIPS 140-3 Level 3 hardware boundary.
+Managed HSM is built on FIPS 140-3 Level 3 HSMs and confidential computing technology based on Intel SGX, so request handling, access control, and key material are isolated in hardware enclaves and HSMs that no Microsoft operator—even one with administrative or physical access to the host—can read. Managed HSM provides redundancy, isolation, and protection—giving organizations the sovereignty assurances they need without compromising on key security, operational overhead or availability.
+What external key management adds
+Managed HSM already provides full customer control over your keys, with enterprise-grade availability, security, and operational simplicity. External key management adds one capability: the option to keep your key material on an HSM that you own and operate, either on-premises or with a trusted third party, completely outside Microsoft infrastructure.
+External key management is designed for scenarios where regulation or contractual obligations mandate the cryptographic keys must reside outside the cloud provider’s environment. These requirements are sometimes found in highly regulated sectors such as government, financial services, and critical infrastructure, and in jurisdictions with strict data-sovereignty rules. External key management ensures the root of trust and key material remain on hardware you own and operate, outside Microsoft infrastructure, and under your direct physical control.
+However, this model should only be adopted deliberately and only when required. For most workloads, Managed HSM keys remain the recommended approach, delivering higher native availability, reduced operational complexity, and a security posture that meets or exceeds sovereignty requirements without introducing additional risk or overhead. External key management is about meeting specific regulatory constraints, not increasing baseline security.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('abb84f75cd7')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a8336651944">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-mbv4-vms-sap-workloads-azure/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Launches Mbv4 VM Series for SAP Workloads on Azure</a>
+          <div class="article-meta">petri.com &bull; Jul 06, 2026</div>
+          <div class="article-summary"><p>New virtual machines combine expanded memory options, higher storage throughput, and Azure Boost enhancements.
+Key Takeaways:
+Microsoft has announced the public preview of the new Mbv4 virtual machine series for Azure. The new generation expands on the earlier MBv3 family by offering improved storage capabilities, stronger performance, and enhanced reliability.
+According to Microsoft, existing infrastructure can struggle to keep up with growing memory demands, large data volumes, and increasing performance expectations. As databases expand and business processes become more complex, companies often encounter storage bottlenecks, slower data access, and limitations in scaling critical workloads.
+“This new release delivers both storage-optimized and memory-optimized configurations, combined with enhanced security features, and powered by the latest Azure Boost technologies for improved performance efficiency, enabling customers to run data-intensive and mission-critical workloads with greater confidence, scalability, and cost effectiveness,” Microsoft explained.
+The new Mbv4 virtual machines are designed for organizations running large-scale SAP environments and other memory-intensive business applications. Microsoft has introduced two variants, including Mbsv4 and Mbdsv4. Specifically, Mbsv4 focuses on maximizing memory performance, and Mbdsv4 adds substantial local storage capacity for data-heavy workloads.
+These VMs are built on the latest Intel Xeon Scalable processors and enhanced with Azure Boost technology. They provide faster processing, improved efficiency, and greater scalability for applications such as enterprise databases, analytics platforms, and mission-critical systems. The Mbv4 series brings significant improvement in storage and reliability capabilities. The platform delivers higher remote storage throughput and I/O performance than previous generations and accelerates local NVMe storage access.
+Microsoft has also incorporated advanced security features (such as memory protection and trusted boot capabilities) as well as infrastructure enhancements to reduce the impact of hardware or network failures. These improvements give organizations a more secure, resilient, and flexible foundation for modernizing and scaling their SAP workloads in Azure.
+Microsoft notes that the new Mbv4 VMs are currently available in public preview in East US 2 and East US. They are available in both disk-based and diskless configurations, which allows organizations to choose the model that best fits their workload and cost requirements.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a8336651944')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a20d46843d8">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMivgFBVV95cUxOVDFaV1RySEVOeEJNbDZ2bkdQVXM2YjktcHRuVVhyUml6c193WXdFUzJQcGVTX09DSE55Rmp3dkp1dEJ3UGZlRXQ5by1lZHJZeXkyc1pzc3RVOUZEbGhuNkpESkJMOWVsb19ZaDRheU0xQnV6M1kzMllnZVlIMHBnd2VUOFFMN3N1NjRKYXRJc1EwUjFNVFVIU2ViZEtDQ183d3lzQTg3YXl3NnVrU2phV1ZpcldRYXBLNjRkUDNR?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Azure Linux 4.0 Released: Microsoft Expands Its Enterprise Linux Platform Beyond the Cloud - Linux Journal</a>
+          <div class="article-meta">Linux Journal &bull; Jul 09, 2026</div>
+          <div class="article-summary snippet"><p>Azure Linux 4.0 Released: Microsoft Expands Its Enterprise Linux Platform Beyond the Cloud&amp;nbsp;&amp;nbsp;Linux Journal</p><a href="https://news.google.com/rss/articles/CBMivgFBVV95cUxOVDFaV1RySEVOeEJNbDZ2bkdQVXM2YjktcHRuVVhyUml6c193WXdFUzJQcGVTX09DSE55Rmp3dkp1dEJ3UGZlRXQ5by1lZHJZeXkyc1pzc3RVOUZEbGhuNkpESkJMOWVsb19ZaDRheU0xQnV6M1kzMllnZVlIMHBnd2VUOFFMN3N1NjRKYXRJc1EwUjFNVFVIU2ViZEtDQ183d3lzQTg3YXl3NnVrU2phV1ZpcldRYXBLNjRkUDNR?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a20d46843d8')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ad7f65a23b1">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi9gFBVV95cUxQNUFZcnNEUWxXbjRjdVdvN3ZlWU43NndUcVF5V1hxQkExYlltN0h1dEJXeXRhXzd0RHJGVHpqU295TzBlWGdSdy1CTEhJc1FBeFF4YUlySlJkVDM1cEtoNmxocmhIbFBocXBjMWFnSHRTQjBpN3R2czdRSXMxVFJBa3JEeDVlcHRMb1BnRnRYQXJ2T0V2eTJadWljTlFNZEYwUGlkeUhjWEc5NnFEbEJreENmRVFhZEZKM2JlTWc4QXhWaWprWjk2dGtNWFllLXhDRHQ5MkxlVXZLWWRWYi1xLVRiU0tSa0RsU3lMMnlwS0trcWZjVEE?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Jefferies Says Microsoft Stands Out in Strong Cloud Spending as Azure Gains Market Share. What This Means for MSFT Stock. - Barchart.com</a>
+          <div class="article-meta">Barchart.com &bull; Jul 06, 2026</div>
+          <div class="article-summary snippet"><p>Jefferies Says Microsoft Stands Out in Strong Cloud Spending as Azure Gains Market Share. What This Means for MSFT Stock.&amp;nbsp;&amp;nbsp;Barchart.com</p><a href="https://news.google.com/rss/articles/CBMi9gFBVV95cUxQNUFZcnNEUWxXbjRjdVdvN3ZlWU43NndUcVF5V1hxQkExYlltN0h1dEJXeXRhXzd0RHJGVHpqU295TzBlWGdSdy1CTEhJc1FBeFF4YUlySlJkVDM1cEtoNmxocmhIbFBocXBjMWFnSHRTQjBpN3R2czdRSXMxVFJBa3JEeDVlcHRMb1BnRnRYQXJ2T0V2eTJadWljTlFNZEYwUGlkeUhjWEc5NnFEbEJreENmRVFhZEZKM2JlTWc4QXhWaWprWjk2dGtNWFllLXhDRHQ5MkxlVXZLWWRWYi1xLVRiU0tSa0RsU3lMMnlwS0trcWZjVEE?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ad7f65a23b1')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="af1a034a665">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMimAFBVV95cUxPTlNWcDUyanJPSmJBSG5zQmhxZVFZcnZIenFCRXVvUUJpSk1iV3lsZm9NajF2V01oUno3LUtkcmVzaGhkWUNVZmQteE1yZkR1VndVSmNnYTRpNFdoc0gtU29aMWl1ZlFxMHBSODhCRFhNVkpybXQ1TUp5MXRXdVMzTThEcUdkTnplR05ZRXljaEgyYWZSRjdhVA?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Trades at Rare Discount - TradingView</a>
+          <div class="article-meta">TradingView &bull; Jul 08, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft Trades at Rare Discount&amp;nbsp;&amp;nbsp;TradingView</p><a href="https://news.google.com/rss/articles/CBMimAFBVV95cUxPTlNWcDUyanJPSmJBSG5zQmhxZVFZcnZIenFCRXVvUUJpSk1iV3lsZm9NajF2V01oUno3LUtkcmVzaGhkWUNVZmQteE1yZkR1VndVSmNnYTRpNFdoc0gtU29aMWl1ZlFxMHBSODhCRFhNVkpybXQ1TUp5MXRXdVMzTThEcUdkTnplR05ZRXljaEgyYWZSRjdhVA?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('af1a034a665')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a5136c0b884">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMidkFVX3lxTFBCTVI2ZGhWbHhuMkFFSXZwUmM4Qzg2SlVsVGF6WDVIYU5mYk9CZWxHNGV5VTB2ejFNaHBQZUV6N3JvWnJ5dXktbExHeWtBMkhodnBlZnJJOGcySGJfUEhGMDBoNWZhQmRtekJuU1lPRUtKbHBSaWc?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Top 10: AI Cloud Companies - Data Centre Magazine</a>
+          <div class="article-meta">Data Centre Magazine &bull; Jul 08, 2026</div>
+          <div class="article-summary snippet"><p>Top 10: AI Cloud Companies&amp;nbsp;&amp;nbsp;Data Centre Magazine</p><a href="https://news.google.com/rss/articles/CBMidkFVX3lxTFBCTVI2ZGhWbHhuMkFFSXZwUmM4Qzg2SlVsVGF6WDVIYU5mYk9CZWxHNGV5VTB2ejFNaHBQZUV6N3JvWnJ5dXktbExHeWtBMkhodnBlZnJJOGcySGJfUEhGMDBoNWZhQmRtekJuU1lPRUtKbHBSaWc?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a5136c0b884')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="sharepoint" class="topic-section">
+      <h2 class="topic-title" style="--c:#036C70">SharePoint <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="aa868e02f94">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-purview-dlp-file-quarantine-sharepoint-onedrive/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Purview DLP Gains File Quarantine for SharePoint and OneDrive</a>
+          <div class="article-meta">petri.com &bull; Jul 08, 2026</div>
+          <div class="article-summary"><p>New capability moves non-compliant content to a secure review location while preserving investigation context.
+Key Takeaways:
+Microsoft has introduced a new File Quarantine action for Microsoft Purview Data Loss Prevention (DLP) policies in SharePoint Online and OneDrive for Business. The feature automatically isolates files that violate DLP policies, which helps organizations prevent sensitive data from being exposed or shared.
+Microsoft mentioned that sensitive files stored in SharePoint and OneDrive can remain accessible or continue to be shared even after a Data Loss Prevention (DLP) policy detects a violation. This creates a risk of unintended data exposure and makes it harder for organizations to contain sensitive information quickly.
+To address this issue, Microsoft is adding a quarantine capability that automatically moves non-compliant files to a secure administrator-controlled location. A placeholder (“tombstone”) file remains in the original location to maintain workflow continuity and inform users about what happened. This placeholder can display a customized message defined by administrators. It lets users know that the file has been quarantined and preserves the collaborative context around the document.
+“When a DLP policy is triggered, the File Quarantine action automatically moves the file to a restricted, admin‑controlled &amp; defined quarantine location—instantly removing access for all users while preserving the file for review and investigation. This capability helps organizations contain data‑exposure risks, prevents further sharing or misuse, and delivers a powerful new layer of enforcement,” Microsoft explained.
+Administrators will have visibility into quarantined files through existing monitoring and investigation tools, including audit logs, DLP alerts, and Activity Explorer. It allows them to track policy violations and review related activities. If a quarantined file needs to be reinstated, an administrator must manually restore it. Moreover, any sharing permissions that existed before the file was quarantined are not automatically reapplied after restoration.
+To prepare for this capability, organizations should establish a dedicated SharePoint location to store quarantined files and configure the required settings, including the destination folder and user notification message. It is also important to review and limit access to the quarantine site so that only authorized personnel can manage the content.
+Organizations are encouraged to test this feature using DLP policy simulation before enforcement to ensure it works as expected. It’s also important to update operational procedures and to notify support, security, and compliance teams of the new workflow and their respective responsibilities.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aa868e02f94')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a2b957c0b35">
+        <div class="article-body">
+          <a href="https://petri.com/cisa-flags-sharepoint-rce-vulnerability/" target="_blank" rel="noopener noreferrer" class="article-title">CISA Warns of Active Exploitation of SharePoint RCE Vulnerability</a>
+          <div class="article-meta">petri.com &bull; Jul 06, 2026</div>
+          <div class="article-summary"><p>Security agencies urge organizations to apply Microsoft's fixes for an exploited on-premises SharePoint server vulnerability.
+Key Takeaways:
+The US Cybersecurity and Infrastructure Security Agency (CISA) has warned that threat actors are actively exploiting a high-severity vulnerability in Microsoft SharePoint. Organizations running affected SharePoint deployments should prioritize applying Microsoft’s security updates as soon as possible to prevent potential server compromise.
+CVE-2026-45659 is a high-severity remote code execution (RCE) vulnerability affecting on-premises Microsoft SharePoint Server. The flaw is caused by the insecure deserialization of untrusted data, which means SharePoint can improperly process specially crafted data supplied by an authenticated user. An attacker with only basic SharePoint permissions (such as a standard Site Member account) can exploit this weakness to run arbitrary code on the target server without requiring administrator privileges.
+“The attack vector is Network (AV:N) because this vulnerability is remotely exploitable and can be exploited from the internet. The attack complexity is Low (AC:L) because an attacker does not require significant prior knowledge of the system and can achieve repeatable success with the payload against the vulnerable component,” Microsoft explained.
+This critical vulnerability carries a CVSS score of 8.8, and it affects SharePoint Server Subscription Edition, SharePoint Server 2019, and SharePoint Enterprise Server 2016. Microsoft released security updates to address this SharePoint flaw on May 21.
+CISA has recently added this vulnerability to its Known Exploited Vulnerabilities Catalog (KEV). The agency has been ordered to follow Binding Operational Directive 26-04 by applying Microsoft’s fixes until July 4.
+Earlier this year, Microsoft warned that more than 1,300 internet-facing SharePoint servers remain exposed to the CVE-2026-32201 vulnerability. The flaw allows remote threat actors to impersonate trusted users or services, which potentially leads to unauthorized access and manipulation of sensitive business data.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a2b957c0b35')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a04d3c302f5">
+        <div class="article-body">
+          <a href="https://www.bleepingcomputer.com/news/security/new-helix-vishing-group-emerges-in-sharepoint-data-theft-attacks/" target="_blank" rel="noopener noreferrer" class="article-title">New Helix vishing group emerges in SharePoint data theft attacks</a>
+          <div class="article-meta">bleepingcomputer.com &bull; Jul 09, 2026</div>
+          <div class="article-summary"><p>A new data-extortion group called Helix is using identity-focused tactics such as voice phishing (vishing), device code phishing, and multi-factor authentication (MFA) abuse to steal data from SharePoint environments.
+Initial contact is made through vishing. In some cases, the threat actor called employees while impersonating their manager, using either the manager's name or caller ID spoofing to appear legitimate.
+The purpose is to trick the target into device-code phishing schemes to gain access to their accounts.
+Once inside, Helix operators quickly register a new multi-factor authenticator app for persistence, then browse and enumerate SharePoint before exfiltrating files.
+According to researchers at cybersecurity firm ReliaQuest, the stolen data is typically used to extort victim organizations by threatening to publish it unless a ransom is paid, or it is sold to other cybercriminals.
+The SharePoint exfiltration behavior is Helix’s strongest technical fingerprint.
+&quot;Automated enumeration and collection were identical across incidents and represent the most reliable fingerprint. Enumeration ran from 179.43.185[.]230 using the python-requests/2.28.1 user-agent,&quot; the researchers note.
+“The operator issued contentclass:STS_Site and wildcard (*) SharePoint searches to inventory all reachable content, then bulk-downloaded from the same IP and user-agent.”
+Links to ShinyHunters and BlackFile
+ReliaQuest believes that Helix emerged from the ShinyHunters and BlackFile data extortion groups based on the techniques and infrastructure used, although the researchers did not find a definitive connection.
+Over the past month, Medtronic, Nissan, NAIC, Kodak, Infinite Campus, and Nottingham University confirmed data breaches previously claimed by ShinyHunters.
+The now defunct BlackFile data extortion group targeted organizations using identity-based attacks and social engineering before ceasing operations in April.
+ReliaQuest's research found that one Helix attack used an exfiltration IP address in the same autonomous system (AS 51852) that hosted a confirmed BlackFile IP address, suggesting shared resources.
+Additionally, Helix emerging shortly after BlackFile shut down may indicate a potential continuation of the extinct operation. ReliaQuest also mentions Pink and Redact as potential successors.
+Concerning the link to ShinyHunters, Helix demonstrates a very similar social engineering playbook, including vishing, employee impersonation, targeting Microsoft 365, and stealing SharePoint data.
+A second clue is the use of the NICENIC registrar, which has also been seen in past ShinyHunters campaigns.
+As a highest-impact defensive measure against Helix attacks, the researchers recommend that device code authentication be disabled where possible.
+Other recommendations include restricting SharePoint access to only managed devices and blocking exchanges with newly registered domains, which Helix typically uses in its attacks.
+Test every layer before attackers do
+Security teams log 54% of successful attacks and alert on just 14%. The rest move through your environment unseen.
+The Picus whitepaper shows how breach and attack simulation tests your SIEM and EDR rules so threats stop slipping by detection.
+Get the whitepaper</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a04d3c302f5')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a3798738235">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMivAFBVV95cUxNeWs0UTJ3N2k1bEFsRGd0eG5CRVRLQXNFYVRjdmYzQ2tEV2ptVDVsdEktampoSnJpNWlWNzdoT2MwODFnNTYweFNibWZpZHdfa3N3dHZmQzllU1Nac0ZONjE4YTlXWTRSWGpzZHZrUF9TUG9fS0stMkNPTTZWUVlUSHV5X2dHdkhOMTNXWXZrdFdHMzluVXJsVk5mSFd5SndIaWFqaXFaY0dVaUtNdzJOZElpOEJWb2pDWnI3Ug?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Another German state heads down the open source sovereignty road - The Register</a>
+          <div class="article-meta">The Register &bull; Jul 08, 2026</div>
+          <div class="article-summary snippet"><p>Another German state heads down the open source sovereignty road&amp;nbsp;&amp;nbsp;The Register</p><a href="https://news.google.com/rss/articles/CBMivAFBVV95cUxNeWs0UTJ3N2k1bEFsRGd0eG5CRVRLQXNFYVRjdmYzQ2tEV2ptVDVsdEktampoSnJpNWlWNzdoT2MwODFnNTYweFNibWZpZHdfa3N3dHZmQzllU1Nac0ZONjE4YTlXWTRSWGpzZHZrUF9TUG9fS0stMkNPTTZWUVlUSHV5X2dHdkhOMTNXWXZrdFdHMzluVXJsVk5mSFd5SndIaWFqaXFaY0dVaUtNdzJOZElpOEJWb2pDWnI3Ug?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a3798738235')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aeaa64a0f29">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-purview-dlp-file-quarantine-sharepoint-onedrive/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Purview DLP Gains File Quarantine for SharePoint and OneDrive - Petri IT Knowledgebase</a>
+          <div class="article-meta">Petri IT Knowledgebase &bull; Jul 08, 2026</div>
+          <div class="article-summary"><p>New capability moves non-compliant content to a secure review location while preserving investigation context.
+Key Takeaways:
+Microsoft has introduced a new File Quarantine action for Microsoft Purview Data Loss Prevention (DLP) policies in SharePoint Online and OneDrive for Business. The feature automatically isolates files that violate DLP policies, which helps organizations prevent sensitive data from being exposed or shared.
+Microsoft mentioned that sensitive files stored in SharePoint and OneDrive can remain accessible or continue to be shared even after a Data Loss Prevention (DLP) policy detects a violation. This creates a risk of unintended data exposure and makes it harder for organizations to contain sensitive information quickly.
+To address this issue, Microsoft is adding a quarantine capability that automatically moves non-compliant files to a secure administrator-controlled location. A placeholder (“tombstone”) file remains in the original location to maintain workflow continuity and inform users about what happened. This placeholder can display a customized message defined by administrators. It lets users know that the file has been quarantined and preserves the collaborative context around the document.
+“When a DLP policy is triggered, the File Quarantine action automatically moves the file to a restricted, admin‑controlled &amp; defined quarantine location—instantly removing access for all users while preserving the file for review and investigation. This capability helps organizations contain data‑exposure risks, prevents further sharing or misuse, and delivers a powerful new layer of enforcement,” Microsoft explained.
+Administrators will have visibility into quarantined files through existing monitoring and investigation tools, including audit logs, DLP alerts, and Activity Explorer. It allows them to track policy violations and review related activities. If a quarantined file needs to be reinstated, an administrator must manually restore it. Moreover, any sharing permissions that existed before the file was quarantined are not automatically reapplied after restoration.
+To prepare for this capability, organizations should establish a dedicated SharePoint location to store quarantined files and configure the required settings, including the destination folder and user notification message. It is also important to review and limit access to the quarantine site so that only authorized personnel can manage the content.
+Organizations are encouraged to test this feature using DLP policy simulation before enforcement to ensure it works as expected. It’s also important to update operational procedures and to notify support, security, and compliance teams of the new workflow and their respective responsibilities.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aeaa64a0f29')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aa789eeb918">
+        <div class="article-body">
+          <a href="https://www.bleepingcomputer.com/news/security/new-helix-vishing-group-emerges-in-sharepoint-data-theft-attacks/" target="_blank" rel="noopener noreferrer" class="article-title">New Helix vishing group emerges in SharePoint data theft attacks - BleepingComputer</a>
+          <div class="article-meta">BleepingComputer &bull; Jul 09, 2026</div>
+          <div class="article-summary"><p>A new data-extortion group called Helix is using identity-focused tactics such as voice phishing (vishing), device code phishing, and multi-factor authentication (MFA) abuse to steal data from SharePoint environments.
+Initial contact is made through vishing. In some cases, the threat actor called employees while impersonating their manager, using either the manager's name or caller ID spoofing to appear legitimate.
+The purpose is to trick the target into device-code phishing schemes to gain access to their accounts.
+Once inside, Helix operators quickly register a new multi-factor authenticator app for persistence, then browse and enumerate SharePoint before exfiltrating files.
+According to researchers at cybersecurity firm ReliaQuest, the stolen data is typically used to extort victim organizations by threatening to publish it unless a ransom is paid, or it is sold to other cybercriminals.
+The SharePoint exfiltration behavior is Helix’s strongest technical fingerprint.
+&quot;Automated enumeration and collection were identical across incidents and represent the most reliable fingerprint. Enumeration ran from 179.43.185[.]230 using the python-requests/2.28.1 user-agent,&quot; the researchers note.
+“The operator issued contentclass:STS_Site and wildcard (*) SharePoint searches to inventory all reachable content, then bulk-downloaded from the same IP and user-agent.”
+Links to ShinyHunters and BlackFile
+ReliaQuest believes that Helix emerged from the ShinyHunters and BlackFile data extortion groups based on the techniques and infrastructure used, although the researchers did not find a definitive connection.
+Over the past month, Medtronic, Nissan, NAIC, Kodak, Infinite Campus, and Nottingham University confirmed data breaches previously claimed by ShinyHunters.
+The now defunct BlackFile data extortion group targeted organizations using identity-based attacks and social engineering before ceasing operations in April.
+ReliaQuest's research found that one Helix attack used an exfiltration IP address in the same autonomous system (AS 51852) that hosted a confirmed BlackFile IP address, suggesting shared resources.
+Additionally, Helix emerging shortly after BlackFile shut down may indicate a potential continuation of the extinct operation. ReliaQuest also mentions Pink and Redact as potential successors.
+Concerning the link to ShinyHunters, Helix demonstrates a very similar social engineering playbook, including vishing, employee impersonation, targeting Microsoft 365, and stealing SharePoint data.
+A second clue is the use of the NICENIC registrar, which has also been seen in past ShinyHunters campaigns.
+As a highest-impact defensive measure against Helix attacks, the researchers recommend that device code authentication be disabled where possible.
+Other recommendations include restricting SharePoint access to only managed devices and blocking exchanges with newly registered domains, which Helix typically uses in its attacks.
+Test every layer before attackers do
+Security teams log 54% of successful attacks and alert on just 14%. The rest move through your environment unseen.
+The Picus whitepaper shows how breach and attack simulation tests your SIEM and EDR rules so threats stop slipping by detection.
+Get the whitepaper</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aa789eeb918')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="afae070af14">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE1LY3lTb3AwOGo2OU5BTzFVV2JqbFcxYU5VN3ZLLVI2cFk1am5SaFRobU9nU2Z2Z3YwcXBaY20wQ2RjcFBwcVQ4VE9Wck5vNzdoRVFnUERhbmg1UzItLUh3eTBPNDM5Sm4y?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Another German State Just Kicked Out Microsoft... Kind Of - It's FOSS</a>
+          <div class="article-meta">It's FOSS &bull; Jul 10, 2026</div>
+          <div class="article-summary snippet"><p>Another German State Just Kicked Out Microsoft... Kind Of&amp;nbsp;&amp;nbsp;It's FOSS</p><a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE1LY3lTb3AwOGo2OU5BTzFVV2JqbFcxYU5VN3ZLLVI2cFk1am5SaFRobU9nU2Z2Z3YwcXBaY20wQ2RjcFBwcVQ4VE9Wck5vNzdoRVFnUERhbmg1UzItLUh3eTBPNDM5Sm4y?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('afae070af14')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a287d2369f8">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi6AFBVV95cUxOWDMzdkxtdHNPbm9NaHFpR3ZoS1gyWTBCSlFGbEo1ZUh2cGZDaUhzSkhnd1Rpekt6d2hRX3VnZzhxd2pqSVpfUFVwWUFCT0JEbm1QcHh3dUlzNHd4Wlp4QWZjaEJaT2t4aURPNGNMaVd0b0pNVUpHbnA5NEtBamRHTVVrLUFaVE85eXBHazg4SUtsM1dHUDVXdWJ1clpEbnV1SWVqbTJhd0hIUDFXcmdQMEpiTFgxU2VnaXhwVDBXdDFZXzdxM3BaRFlid1BYWGplTGx3X0o0UHU4cmZFWVg2RmVtV1dTNWJ5?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Fixes 165 Vulnerabilities, Including Exploited SharePoint Zero-Day CVE-2026-32201 - NewsCord</a>
+          <div class="article-meta">NewsCord &bull; Jul 09, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft Fixes 165 Vulnerabilities, Including Exploited SharePoint Zero-Day CVE-2026-32201&amp;nbsp;&amp;nbsp;NewsCord</p><a href="https://news.google.com/rss/articles/CBMi6AFBVV95cUxOWDMzdkxtdHNPbm9NaHFpR3ZoS1gyWTBCSlFGbEo1ZUh2cGZDaUhzSkhnd1Rpekt6d2hRX3VnZzhxd2pqSVpfUFVwWUFCT0JEbm1QcHh3dUlzNHd4Wlp4QWZjaEJaT2t4aURPNGNMaVd0b0pNVUpHbnA5NEtBamRHTVVrLUFaVE85eXBHazg4SUtsM1dHUDVXdWJ1clpEbnV1SWVqbTJhd0hIUDFXcmdQMEpiTFgxU2VnaXhwVDBXdDFZXzdxM3BaRFlid1BYWGplTGx3X0o0UHU4cmZFWVg2RmVtV1dTNWJ5?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a287d2369f8')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="intune" class="topic-section">
+      <h2 class="topic-title" style="--c:#0F6CBD">Intune <span class="count">(7)</span></h2>
+      <div class="article-card" data-id="afb0ae44b26">
+        <div class="article-body">
+          <a href="https://techcommunity.microsoft.com/t5/intune-customer-success/build-a-patch-strategy-for-today-s-threat-pace-with-microsoft/ba-p/4535115" target="_blank" rel="noopener noreferrer" class="article-title">Build a patch strategy for today’s threat pace with Microsoft</a>
+          <div class="article-meta">techcommunity.microsoft.com &bull; Jul 10, 2026</div>
+          <div class="article-summary snippet"><p>AI-accelerated vulnerability discovery and remediation are changing how organizations manage risk. As discussed in Pavan Davuluri’s recent blog, Microsoft is investing across the vulnerability lifecycle to help organizations identify, validate, and respond faster.
+For IT and security teams, one challenge lies downstream: deploying fixes quickly across endpoints to reduce exposure. Each update needs to be evaluated, piloted, monitored, and enforced across a mixed fleet of devices and apps. Some parts of the estate can move quickly; others cannot because of compliance requirements, approved change windows, and business-critical dependencies.
+As organizations adopt AI tools and agents across their environment, maintaining a current and hardened endpoint estate becomes increasingly important. In this context, patching becomes an ongoing operational discipline that combines OS, app, and driver updates with compliance enforcement, access control, and security baseline hardening.
+To keep pace, organizations need a patch strategy that helps in 3 stages:
+
+Mitigate: automate updates that can move quickly
+Assess: prioritize risk based on exposure and severity
+Contain: enforce compliance and limit exposure
+
+Operationalizing a patch strategy requires coordinated capabilities across endpoint management and security tools. Microsoft Intune brings these capabilities together in a single admin center, alongside the broader Microsoft security ecosystem, and is available with qualifying Microsoft 365 subscriptions1.
+In this post, we show how organizations can use these capabilities to build a patch strategy that helps reduce the time between update release and deployment across their endpoint estate.
+1. Mitigate: automate updates that can move quickly
+A patch strategy is not about pushing every update everywhere at once. It’s about identifying the parts of your estate that can move quickly, then using automation, rings, monitoring, and enforcement to help those updates move with confidence. Regulations, approved change windows, validation needs, and business dependencies will shape what’s possible, but the strategy starts by separating repeatable update work from the exceptions that need deeper review.
+For OS, app, and driver updates that can move quickly, modern tools can help shorten the time between update release and deployment; without manual rollouts, ticket-driven packaging, or reboot disruption.
+&amp;nbsp;
+Operationalize in Intune
+
+Windows Autopatch orchestrates ring-based update rollouts to reduce manual effort and keep Windows devices current. To help monitor risk, the Autopatch report visualizes how quickly devices apply updates based on the configured deployment cadence. In this report, devices are categorized as current within three days of update release, at risk between three and seven days, and at critical risk beyond seven days, based on the reporting model used by Windows Autopatch. Learn more about ring-based rollout updates or how to reassess Windows OS updates using this report.
+Hotpatch (enabled by default for 24H2+ in Intune) applies critical updates without requiring a reboot, helping reduce security gaps while keeping users productive.
+Figure 1: Watch the latest Microsoft Mechanics episode to see how Windows Autopatch and Hotpatch help organizations accelerate update deployment, reduce operational overhead, and keep devices secure.
+
+Intune Enterprise App Management (EAM) supports keeping Windows apps current through auto-updates, including the guided upgrade supersedence reporting, which surfaces outdated versions or version changes. EAM auto-updates are now generally available; details are included in the June Intune What’s new blog.
+Figure 2: Watch how Intune helps you move from update release to deployment to accelerate responses to vulnerabilities with Windows app management.
+
+&amp;nbsp;
+
+The enhanced application inventory in the All apps page shows the app version installed on each managed Windows device, refreshed multiple times per day on most active devices, helping teams target app-specific vulnerabilities and confirming when fixes have been applied.
+The Vulnerability Remediation Agent in Security Copilot uses data from Defender Vulnerability Management to prioritize Common Vulnerabilities and Exposures (CVEs) across Intune-managed Windows devices and apps, and provides recommended remediation actions within Intune. The Vulnerability Remediation Agent is currently in public preview, read the blog to learn more.
+Figure 3: Watch this video to see how the Vulnerability Remediation Agent in Security Copilot, within Microsoft Intune, helps make agentic security easier to adopt and use.
+
+&amp;nbsp;
+
+
+Extend across your endpoint estate
+
+Apple devices can be configured for automatic OS updates on managed devices, including enforcing updates to the latest version and deploying Background Security Improvement patches through the settings catalog. App updates can be managed by configuring volume-purchased App Store apps to update automatically and deploy updated app packages to keep apps current across macOS, iPhone, and iPad devices.
+Android devices can be managed using built-in update policies in Intune, including configuring install windows and freeze periods. For corporate Android fleets, Intune also integrates with OEM firmware management solutions - including&amp;nbsp;Zebra LifeGuard Over-the-Air and Samsung E-FOTA - to enable more granular update control. Managed Google Play also supports configurable app auto-update modes, allowing admins to define whether updates install automatically, on Wi-Fi only, or manually.
+
+2. Assess: prioritize risk based on exposure and severity
+The first step is reducing exposure across the parts of your estate that can move quickly. But not every system, application, or vulnerability can be addressed through broad update deployment. Teams also need a way to determine which risks require immediate action and which ones can be addressed over time.
+A calendar-based approach can treat every CVE equally. However, it doesn’t account for severity, exposure, or business impact. As AI accelerates vulnerability discovery, this can lead to effort being spent on lower-risk updates while higher-risk updates remain unaddressed.
+Risk-based service level objectives (SLOs) help bring prioritization to address this challenge. Instead of patching on a fixed schedule, IT and security teams can align response timeframes by severity, moving quickly on actively exploited or critical vulnerabilities, and applying a more measured approach where risk or impact is lower.
+This stage creates a clearer prioritization of remediation and helps bridge the view between the security teams that identify threats and the IT teams that act on them.
+&amp;nbsp;
+Operationalize in Intune and Microsoft Defender
+
+The security update status dashboard in Intune provides an aggregated view of update compliance across Windows clients, Windows servers, and Microsoft 365 Apps. It shows overall counts of devices in different states across Intune-endpoints and helps teams identify where remediation should be focused. These status categories reflect how quickly devices apply updates based on a configured deployment cadence and internal SLOs.
+Figure 4: Security update dashboard showing patch status for Windows clients, servers, and Microsoft 365 apps.
+
+Microsoft Defender Vulnerability Management surfaces CVEs, affected devices, vulnerable software, and recommended remediation actions, offering a shared view of risk and progress across IT and security teams.
+Translate Defender recommendations into targeted Intune actions described in the mitigate section, such as updating software or moving devices through expedited remediation workflows so teams can focus on vulnerabilities that are actively exploited or most likely to affect an organization.
+
+Extend across your endpoint estate
+
+For Apple devices, use the Apple software update report in Intune to monitor update status across macOS, iOS, and iPadOS.
+For Android, compliance reporting surfaces devices that fall behind on OS version or security patch level.
+
+3. Contain: enforce patch compliance and limit exposure
+Even with automated deployments and prioritized triage, gaps can remain. Some devices are unsupported, fall behind, operate on slower deployment rings, and others can’t be patched quickly. A patch strategy needs to focus on including containment for those surfaces.
+Compliance controls, conditional access, and device hardening act as an always-on safety net that limits risks that can fall through gaps. Compliance policies and Conditional Access can use a patch state as a signal for resource access, preventing non-compliant devices from accessing corporate resources. Security baselines reduce the attack surface by limiting risky defaults and common attack patterns. Together, these controls shift enforcement from a periodic activity to a continuous condition across a fleet.
+&amp;nbsp;
+Operationalize in Intune and Defender
+
+Use compliance policies in Intune to define what &quot;current&quot; means, including minimum OS build, required update levels, risk status, and encryption state.
+Use Conditional Access (managed in Microsoft Entra, accessible from the Intune admin center) to control access to company resources based on user and device health. Combined with threat signals from Microsoft Defender, these policies help prevent non-compliant devices from accessing corporate resources.
+Use Microsoft Defender Vulnerability Management and Microsoft Security Exposure Management insights to identify exposed assets, prioritize remediation, and apply recommended protections where patching must move more slowly.
+Apply Intune security baselines to establish Microsoft-recommended configurations on Windows devices, such as disabling risky defaults, blocking common attack techniques, and reducing configuration drift. Watch this demo on security baselines being applied in the Zero Trust workshop.
+Use attack surface reduction policies in Intune to deploy Microsoft Defender for Endpoint protections, such as ASR rules and network protection, that help block common attack techniques on devices that can't be patched right away.
+Figure 5: Watch this Demo on how you can manage devices and implement Conditional Access with Intune.
+
+
+&amp;nbsp;
+Extend across your endpoint estate
+
+Compliance policies and Conditional Access controls apply across Windows, macOS, iOS/iPadOS, and Android.
+Intune app protection policies extend compliance requirements and data protections to managed apps used for work on personal devices and add an additional layer of data protection on corporate devices.
+Use the settings catalog and configuration profiles to apply the same hardening intent on macOS, iOS/iPadOS, and Android, reducing configuration drift across platforms.
+
+Stay ahead with a patch strategy
+As vulnerability discovery and response continue to accelerate, organizations need an operational strategy that balances speed, risk, and resilience. By automating updates where possible, prioritizing remediation based on exposure, and limiting exposure through compliance and security controls, teams can reduce risk across their endpoint estate.
+Intune helps simplify this approach by bringing these capabilities together alongside the rest of your Microsoft security tools and ecosystem.
+
+Get started with Microsoft Secure Now to assess risk across your digital estate.
+Explore the new security update status dashboard in Intune.
+Harden the admin plane and review the best practices for securing Microsoft Intune.
+
+
+
+1 Licensing and requirements
+Feature availability and included capabilities vary by Microsoft 365 subscription plan and feature. Some Microsoft capabilities referenced in this post may require specific licenses or additional enablement.
+Advanced Microsoft Intune capabilities are now included in Microsoft 365 E5, with select capabilities available in Microsoft 365 E3 as part of updates effective July 1, 2026. Existing customers will receive a 30-day notice in the Microsoft Admin Center prior to availability, with access beginning by August 2026.
+Microsoft Security Copilot and related AI capabilities may require separate licensing, learn more here.
+
+&amp;nbsp;
+Stay up to date! Bookmark the Microsoft Intune Blog and follow us on LinkedIn or&amp;nbsp;@MSIntune and @IntuneSuppTeam on X to continue the conversation.</p><a href="https://techcommunity.microsoft.com/t5/intune-customer-success/build-a-patch-strategy-for-today-s-threat-pace-with-microsoft/ba-p/4535115" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('afb0ae44b26')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a6d039d653b">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-intune-defender-security-unenrolled-devices/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Intune Extends Defender Security Policy Management to Unenrolled Devices</a>
+          <div class="article-meta">petri.com &bull; Jul 07, 2026</div>
+          <div class="article-summary"><p>New capability allows organizations to enforce endpoint security policies through Defender and Entra identities.
+Key Takeaways:
+Microsoft Intune has released a new update that enables IT admins to manage security settings for Microsoft Defender for Endpoint on devices that are not enrolled in Microsoft Intune. This feature extends security management to Windows, Windows Server, macOS, and Linux.
+Microsoft highlighted that this update allows organizations to centrally manage endpoint security policies through either the Microsoft Intune admin center or the Microsoft Defender portal. Devices receive security configurations through their Microsoft Entra ID identities, and Defender for Endpoint enforces those settings directly on the device. Administrators can track policy deployment, monitor compliance, and review device status from both Intune and Defender management consoles.
+“This scenario extends the Microsoft Intune Endpoint Security surface to devices that aren’t capable of enrolling in Intune. When a device is managed by Intune (enrolled to Intune) the device doesn’t process policies for Defender for Endpoint security settings management. Instead, use Intune to deploy policy for Defender for Endpoint to your devices,” Microsoft explained.
+To use this feature, administrators must enable the enforcement scope in the Microsoft Defender portal and configure Intune to enforce endpoint security settings. Once enabled, supported devices can receive and report on security policies (such as Antivirus, Firewall, and Attack Surface Reduction (ASR) rules) even when they are not enrolled in Microsoft Intune.
+Microsoft notes that this feature requires organizations to have Defender for Endpoint licensing (through Microsoft 365 or standalone MDE licenses). Customers should also have appropriate connectivity to Microsoft cloud endpoints and required Defender agent versions on supported operating systems.
+Administrators can use device inventory and management dashboards to review enrollment status and gain visibility into the security posture of managed endpoints. Moreover, role-based access control (RBAC) allows organizations to assign administrative permissions based on job responsibilities. It helps maintain governance while securely delegating management tasks.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a6d039d653b')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a0b942f2c3d">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMizgFBVV95cUxPOWpmRllfMkw4NENyUGFNU2NRV3NScG01WnYwaUcwb0tsd0NvalN0cjhwUU1JQWVfMm5feTduTFVVM0NrUGVDUnM3T29WSjJLTFlyelZfSU5YRVV4emt1RkVqczkwNUhka0ozOGJNaHVkU2VsMTVNWGRrZk1FdVA3bEZnd3AySHA2aUEyZVhpVUpYT3F1YW9wekluazBwWlMyc202TU1DNDJXWlZEc3V3SGNSU3lYel9TRHNKd0gwc2JCMkxqUFE5YmlvRjVBQQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">GigaWiper: Anatomy of a destructive backdoor assembled from multiple malware - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; Jul 09, 2026</div>
+          <div class="article-summary snippet"><p>GigaWiper: Anatomy of a destructive backdoor assembled from multiple malware&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMizgFBVV95cUxPOWpmRllfMkw4NENyUGFNU2NRV3NScG01WnYwaUcwb0tsd0NvalN0cjhwUU1JQWVfMm5feTduTFVVM0NrUGVDUnM3T29WSjJLTFlyelZfSU5YRVV4emt1RkVqczkwNUhka0ozOGJNaHVkU2VsMTVNWGRrZk1FdVA3bEZnd3AySHA2aUEyZVhpVUpYT3F1YW9wekluazBwWlMyc202TU1DNDJXWlZEc3V3SGNSU3lYel9TRHNKd0gwc2JCMkxqUFE5YmlvRjVBQQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a0b942f2c3d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ad6b96bafd8">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-intune-defender-security-unenrolled-devices/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Intune Extends Defender Security Policy Management to Unenrolled Devices - Petri IT Knowledgebase</a>
+          <div class="article-meta">Petri IT Knowledgebase &bull; Jul 07, 2026</div>
+          <div class="article-summary"><p>New capability allows organizations to enforce endpoint security policies through Defender and Entra identities.
+Key Takeaways:
+Microsoft Intune has released a new update that enables IT admins to manage security settings for Microsoft Defender for Endpoint on devices that are not enrolled in Microsoft Intune. This feature extends security management to Windows, Windows Server, macOS, and Linux.
+Microsoft highlighted that this update allows organizations to centrally manage endpoint security policies through either the Microsoft Intune admin center or the Microsoft Defender portal. Devices receive security configurations through their Microsoft Entra ID identities, and Defender for Endpoint enforces those settings directly on the device. Administrators can track policy deployment, monitor compliance, and review device status from both Intune and Defender management consoles.
+“This scenario extends the Microsoft Intune Endpoint Security surface to devices that aren’t capable of enrolling in Intune. When a device is managed by Intune (enrolled to Intune) the device doesn’t process policies for Defender for Endpoint security settings management. Instead, use Intune to deploy policy for Defender for Endpoint to your devices,” Microsoft explained.
+To use this feature, administrators must enable the enforcement scope in the Microsoft Defender portal and configure Intune to enforce endpoint security settings. Once enabled, supported devices can receive and report on security policies (such as Antivirus, Firewall, and Attack Surface Reduction (ASR) rules) even when they are not enrolled in Microsoft Intune.
+Microsoft notes that this feature requires organizations to have Defender for Endpoint licensing (through Microsoft 365 or standalone MDE licenses). Customers should also have appropriate connectivity to Microsoft cloud endpoints and required Defender agent versions on supported operating systems.
+Administrators can use device inventory and management dashboards to review enrollment status and gain visibility into the security posture of managed endpoints. Moreover, role-based access control (RBAC) allows organizations to assign administrative permissions based on job responsibilities. It helps maintain governance while securely delegating management tasks.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ad6b96bafd8')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a4e5d659e65">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi1gFBVV95cUxNek0xUjdrT1VERFFIYXZjYWZhVFdNY1pNX3lEVERSbkdORlUzc0ZoLXNCeHRTT0k5N2U5WF9vWmpzYk0wU2N1T3ZTZ3gydXdvVEdRZlh6eWpLVnJXUnNUYjczNDBiY2lUNVBOVThORl9kS1A5b2tpam9NLUJycU5zSXZ0SEFFc1VlN1l0eDN4Ni1sc1RnY0g5MVFLQzR6Y201aUt1bmdzelRFQkVTWHNkN3UwYVQ4c09jTDJrTUp1RlpKb2tSMmpKaGd3Z29HVWpJeHF4cHB3?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Evolving Windows vulnerability management to meet the speed of AI-powered discovery - blogs.windows.com</a>
+          <div class="article-meta">blogs.windows.com &bull; Jul 09, 2026</div>
+          <div class="article-summary snippet"><p>Evolving Windows vulnerability management to meet the speed of AI-powered discovery&amp;nbsp;&amp;nbsp;blogs.windows.com</p><a href="https://news.google.com/rss/articles/CBMi1gFBVV95cUxNek0xUjdrT1VERFFIYXZjYWZhVFdNY1pNX3lEVERSbkdORlUzc0ZoLXNCeHRTT0k5N2U5WF9vWmpzYk0wU2N1T3ZTZ3gydXdvVEdRZlh6eWpLVnJXUnNUYjczNDBiY2lUNVBOVThORl9kS1A5b2tpam9NLUJycU5zSXZ0SEFFc1VlN1l0eDN4Ni1sc1RnY0g5MVFLQzR6Y201aUt1bmdzelRFQkVTWHNkN3UwYVQ4c09jTDJrTUp1RlpKb2tSMmpKaGd3Z29HVWpJeHF4cHB3?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a4e5d659e65')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aa5a2a89cad">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMikwFBVV95cUxOcTc1NldEX3d3bHBwWWotNERhaml5a2FvNkwyOWt1UDhqaHp6ZlQ5TUxrb0lGb2RTR0s2MHNqcXJCUkt6SnVwdjdnSTVIeHp1bWRhVkRVX3Bac0EyQkR4dEs4UVM0X1M3UVV3c3pLaHBvMGVmVEZka2owX0dLVjZLUnRTb3FjT1JVZFdNRmFnVWtDa2s?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft is rewriting Windows patch guidance because of AI - Help Net Security</a>
+          <div class="article-meta">Help Net Security &bull; Jul 10, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft is rewriting Windows patch guidance because of AI&amp;nbsp;&amp;nbsp;Help Net Security</p><a href="https://news.google.com/rss/articles/CBMikwFBVV95cUxOcTc1NldEX3d3bHBwWWotNERhaml5a2FvNkwyOWt1UDhqaHp6ZlQ5TUxrb0lGb2RTR0s2MHNqcXJCUkt6SnVwdjdnSTVIeHp1bWRhVkRVX3Bac0EyQkR4dEs4UVM0X1M3UVV3c3pLaHBvMGVmVEZka2owX0dLVjZLUnRTb3FjT1JVZFdNRmFnVWtDa2s?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aa5a2a89cad')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a8d78beda10">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi3wFBVV95cUxPRHh6ZHBmNjdPdWZzMmpQR0FTQjlnV1FDTzF2N09EbGVpQkJKSzY3dVFlaXpxalJTTEJjWjVEWkd1TEF0ZmRac3F2TFYtRzNiVmtGdF93WTg2eHNFNTlidzcwcGtsN0hydjkzQ1AxZWk1UDgxbXdNWVFqVlZRMkZzcm5mNC03T3ROWm1KUDNOd0Q0cW1DemgyOTRJejJyb3p4Y1Vkc2M1bmdTQi03ZzhfVTJoWWJBS1IxaXN4RHVlUHFOOGxEdXdVTENNR1phYlRzYVRTSWhKbWRhTUlWZ2NZ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft intros tech that rebuilds dead PCs without requiring local copies of Windows - The Register</a>
+          <div class="article-meta">The Register &bull; Jul 08, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft intros tech that rebuilds dead PCs without requiring local copies of Windows&amp;nbsp;&amp;nbsp;The Register</p><a href="https://news.google.com/rss/articles/CBMi3wFBVV95cUxPRHh6ZHBmNjdPdWZzMmpQR0FTQjlnV1FDTzF2N09EbGVpQkJKSzY3dVFlaXpxalJTTEJjWjVEWkd1TEF0ZmRac3F2TFYtRzNiVmtGdF93WTg2eHNFNTlidzcwcGtsN0hydjkzQ1AxZWk1UDgxbXdNWVFqVlZRMkZzcm5mNC03T3ROWm1KUDNOd0Q0cW1DemgyOTRJejJyb3p4Y1Vkc2M1bmdTQi03ZzhfVTJoWWJBS1IxaXN4RHVlUHFOOGxEdXdVTENNR1phYlRzYVRTSWhKbWRhTUlWZ2NZ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a8d78beda10')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="entraid" class="topic-section">
+      <h2 class="topic-title" style="--c:#6B69D6">Entra ID <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="afd084ada61">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-entra-backup-and-recovery-goes-out-preview/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Entra Backup and Recovery Helps Organizations Restore Critical Identity Data</a>
+          <div class="article-meta">petri.com &bull; Jul 10, 2026</div>
+          <div class="article-summary"><p>New capabilities provide greater visibility into changes and simplify recovery from configuration issues.
+Key Takeaways:
+Microsoft has announced the general availability of Microsoft Entra Backup and Recovery for commercial customers following its public preview launch in March. This new service is designed to protect critical data from accidental errors and cyber threats.
+Organisations rely heavily on identity systems like Microsoft Entra ID to manage access and security. However, they often lack a reliable way to recover when critical identity data is accidentally changed, deleted, or compromised. Without a dedicated backup and recovery solution, even small configuration errors or malicious actions can lead to widespread access issues, security gaps, and operational disruption. It forces IT teams to spend significant time manually rebuilding settings or restoring environments.
+Microsoft Entra Backup and Recovery helps organizations protect critical identity data in Entra ID (formerly Azure AD), such as users and groups, application registrations and service principals, as well as authentication and access configurations. This data is important for security and access control, and losing or misconfiguring it can cause major disruption.
+Microsoft emphasized that this solution helps organizations recover from various types of disruptions. These include accidental deletions or misconfigurations and malicious actions such as those carried out through compromised admin accounts. It also addresses issues like configuration drift that breaks access controls and security policies. This tool allows organizations to restore previous states quickly and minimizes downtime and potential risks.
+“Based on feedback from the Backup and Recovery public preview, we’ve increased the retention period for supported directory objects from 5 days to 7 days to provide extended protection. Identity admins now have more flexibility when viewing available snapshots, generating difference reports to understand what changed, and running recovery jobs to restore objects to a prior state. These capabilities help teams quickly assess what changed and take action to return to a known good state,” Microsoft explained.
+Microsoft Entra Backup and Recovery provides fine-grained recovery, the ability to restore individual attributes or configurations, and comparison between current and previous states before restoring. This solution also helps administrators avoid overwriting valid newer changes while fixing issues.
+According to Microsoft, this service strengthens resilience by maintaining point-in-time backups and enables auditability and traceability of changes, as well as supports regulatory and disaster recovery requirements. Administrators can also get an intuitive interface to browse backups, tools to compare differences between versions, and guided recovery workflows.
+This launch reflects Microsoft’s broader commitment to strengthening identity security by making systems more resilient and easier to recover from potential issues. It aligns with Zero Trust principles and focuses on protection against identity-based threats to help organizations build a recovery-ready security strategy that can adapt to evolving risks.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('afd084ada61')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a6d039d653b">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-intune-defender-security-unenrolled-devices/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Intune Extends Defender Security Policy Management to Unenrolled Devices</a>
+          <div class="article-meta">petri.com &bull; Jul 07, 2026</div>
+          <div class="article-summary"><p>New capability allows organizations to enforce endpoint security policies through Defender and Entra identities.
+Key Takeaways:
+Microsoft Intune has released a new update that enables IT admins to manage security settings for Microsoft Defender for Endpoint on devices that are not enrolled in Microsoft Intune. This feature extends security management to Windows, Windows Server, macOS, and Linux.
+Microsoft highlighted that this update allows organizations to centrally manage endpoint security policies through either the Microsoft Intune admin center or the Microsoft Defender portal. Devices receive security configurations through their Microsoft Entra ID identities, and Defender for Endpoint enforces those settings directly on the device. Administrators can track policy deployment, monitor compliance, and review device status from both Intune and Defender management consoles.
+“This scenario extends the Microsoft Intune Endpoint Security surface to devices that aren’t capable of enrolling in Intune. When a device is managed by Intune (enrolled to Intune) the device doesn’t process policies for Defender for Endpoint security settings management. Instead, use Intune to deploy policy for Defender for Endpoint to your devices,” Microsoft explained.
+To use this feature, administrators must enable the enforcement scope in the Microsoft Defender portal and configure Intune to enforce endpoint security settings. Once enabled, supported devices can receive and report on security policies (such as Antivirus, Firewall, and Attack Surface Reduction (ASR) rules) even when they are not enrolled in Microsoft Intune.
+Microsoft notes that this feature requires organizations to have Defender for Endpoint licensing (through Microsoft 365 or standalone MDE licenses). Customers should also have appropriate connectivity to Microsoft cloud endpoints and required Defender agent versions on supported operating systems.
+Administrators can use device inventory and management dashboards to review enrollment status and gain visibility into the security posture of managed endpoints. Moreover, role-based access control (RBAC) allows organizations to assign administrative permissions based on job responsibilities. It helps maintain governance while securely delegating management tasks.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a6d039d653b')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a989a2177f3">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/07/hackers-use-fake-microsoft-entra.html" target="_blank" rel="noopener noreferrer" class="article-title">Hackers Use Fake Microsoft Entra Passkey Enrollment to Gain Microsoft 365 Access</a>
+          <div class="article-meta">thehackernews.com &bull; Jul 10, 2026</div>
+          <div class="article-summary"><p>A threat actor has been targeting organizations spanning multiple sectors with voice-based fake security requests that prompt Microsoft 365 users to enroll a new Entra passkey with an aim to carry out data extortion attacks.
+The threat actor, tracked by Okta under the moniker O-UNC-066, has deployed a panel-controlled phishing kit that's capable of targeting the passkey enrollment process. The activity has singled out food and beverage, technology, healthcare, automotive, construction, and aviation industries.
+&quot;The threat actor registers domains that incorporate the word passkey as part of a voice-enabled phishing ('vishing') scheme,&quot; Okta researcher Houssem Eddine Bordjiba said. &quot;The threat actor then calls targeted users on the phone in an attempt to persuade them that they need to register a new passkey.&quot;
+Users are then directed to a phishing kit that's identical to the Microsoft passkey enrollment process, giving the impression that they are adding a passkey with Microsoft, when, in reality, the threat actor registers their own passkey against their Microsoft account, granting them unauthorized access.
+The development coincides with Microsoft allowing administrators to configure registration campaigns to nudge users to register passkeys during sign-in in an attempt to help organizations drive passkey adoption at scale. In other words, threat actors are abusing the phishing-resistant security upgrade process as a lure to enroll their own passkeys within victims' accounts and facilitate follow-on activities.
+Unlike adversary-in-the-middle (AitM) landing pages that are prevalent in phishing campaigns designed to steal credentials and multi-factor authentication (MFA) tokens, the phishing kit used in these attacks is an operator-controlled PHP panel in which a victim is guided through the passkey enrollment process in almost real-time.
+&quot;The operator can use the kit to adapt the user experience to each victim's MFA requirements (TOTP, push notification with number matching, SMS OTP) during the session,&quot; the identity security company said. &quot;The caller can control and adjust in real time what phishing pages and notifications a targeted user sees.&quot;
+It's suspected that the threat actor is leveraging the kit to take over the victim account and trick the user into approving an attacker-initiated registration of a passkey. There is no indication at this stage to suggest that the kit is redirecting users to third-party identity providers like Okta.
+The entire sequence of actions is below -
+- The first page of the phishing kit (/gate) displays a page loading icon while the phishing kit performs anti-analysis checks in the background.
+- The second page (/identify) requests a username.
+- The next page (/password) challenges the user for a password.
+- The harvested credentials are sent in a POST request to an operator panel at &quot;/backend.php.&quot;
+- The phishing kit operator (likely different from the individual calling the victim) enters the stolen credentials on the legitimate Microsoft sign-in page for the targeted tenant.
+- The victim sees a &quot;/processing&quot; page that serves another loading screen as it awaits the operator's instruction based on the observed MFA challenges presented to them in the legitimate flow.
+- The next page of the phishing kit is presented to the user: &quot;/submit-otp&quot; for an SMS-based one-time password (OTP) challenge, &quot;/submit-authenticator&quot; for time-based OTP challenge, or &quot;/approve-authenticator&quot; for a push MFA challenge.
+- The captured OTP is sent in a POST request to &quot;/backend.php.&quot;
+At this point, the victim has been deceived over the phone into approving the attacker's access to their Microsoft 365 account.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a989a2177f3')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a0f8f27204f">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiqwFBVV95cUxNbVJJWmdwU010dVpUMVpwWTBLc2dVdVZSVDlGand2eUN0VnBFNndmVEFnR1ROV2RHMHJJbWZETnRfYy1BUV9lczItSi1iazJDQXdHbEtYWFJaVWw3eXdRTWhUVUVReGVmQ3VLUk5yMjRWaVA0OXBxWThGRnZBakI0ZnVXVll3bHFsRlNxamZfNTVaOGhuNGJ5MHIzSW51SHUxZ0RIT3pmM0d0RDA?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">1Kosmos Recognized by Microsoft as Entra Verified ID Partner for Delivering Secure Remote Onboarding and Enhanced Digital Trust - Yahoo Finance</a>
+          <div class="article-meta">Yahoo Finance &bull; Jul 09, 2026</div>
+          <div class="article-summary snippet"><p>1Kosmos Recognized by Microsoft as Entra Verified ID Partner for Delivering Secure Remote Onboarding and Enhanced Digital Trust&amp;nbsp;&amp;nbsp;Yahoo Finance</p><a href="https://news.google.com/rss/articles/CBMiqwFBVV95cUxNbVJJWmdwU010dVpUMVpwWTBLc2dVdVZSVDlGand2eUN0VnBFNndmVEFnR1ROV2RHMHJJbWZETnRfYy1BUV9lczItSi1iazJDQXdHbEtYWFJaVWw3eXdRTWhUVUVReGVmQ3VLUk5yMjRWaVA0OXBxWThGRnZBakI0ZnVXVll3bHFsRlNxamZfNTVaOGhuNGJ5MHIzSW51SHUxZ0RIT3pmM0d0RDA?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a0f8f27204f')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a1e0493849d">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiogFBVV95cUxOcDM4dWdGSnhocnVnOUhwQ0xwcTNtZTd4ODNQVUlQazVUZ1ZUVkx2MjJHUnBLU1NwTnNZVHVuSnkyNVlzeFVTcDd6VkV2X0ZKelFNbFZLbnYtcmxXelAzdkpqd2d4azhJNkZfXzRldmx2Wl9UcGNPaTZqQ1ZJSkNrZWxsTmVSOXJJLXZHZWlIX1FNVEVPd1huelZlYzl5T2cxVlE?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Acronis extends Microsoft 365 protection with Entra ID Backup - Security Boulevard</a>
+          <div class="article-meta">Security Boulevard &bull; Jul 08, 2026</div>
+          <div class="article-summary snippet"><p>Acronis extends Microsoft 365 protection with Entra ID Backup&amp;nbsp;&amp;nbsp;Security Boulevard</p><a href="https://news.google.com/rss/articles/CBMiogFBVV95cUxOcDM4dWdGSnhocnVnOUhwQ0xwcTNtZTd4ODNQVUlQazVUZ1ZUVkx2MjJHUnBLU1NwTnNZVHVuSnkyNVlzeFVTcDd6VkV2X0ZKelFNbFZLbnYtcmxXelAzdkpqd2d4azhJNkZfXzRldmx2Wl9UcGNPaTZqQ1ZJSkNrZWxsTmVSOXJJLXZHZWlIX1FNVEVPd1huelZlYzl5T2cxVlE?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a1e0493849d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a00ee8a93c7">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMikAFBVV95cUxPX0lZWXBlQklHY0dPQzhkTHF6YkE3dlBuT2RHbXpULXVCRGtpTlN2aFZTeWxQM3c1T2FlcC1CT0lFREFXWGh6a1oybG05aEZNVEVRanN5ekJsY3QyTVpFZzBaZjlIRHpYSGxCRGdpQl84dnp2Xzk2VzBORHhjU2ZFVUoyV3dMNTNyamFNVXpsYVU?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Extortion crew hijacks Microsoft 365 accounts via fake passkey setup - Help Net Security</a>
+          <div class="article-meta">Help Net Security &bull; Jul 09, 2026</div>
+          <div class="article-summary snippet"><p>Extortion crew hijacks Microsoft 365 accounts via fake passkey setup&amp;nbsp;&amp;nbsp;Help Net Security</p><a href="https://news.google.com/rss/articles/CBMikAFBVV95cUxPX0lZWXBlQklHY0dPQzhkTHF6YkE3dlBuT2RHbXpULXVCRGtpTlN2aFZTeWxQM3c1T2FlcC1CT0lFREFXWGh6a1oybG05aEZNVEVRanN5ekJsY3QyTVpFZzBaZjlIRHpYSGxCRGdpQl84dnp2Xzk2VzBORHhjU2ZFVUoyV3dMNTNyamFNVXpsYVU?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a00ee8a93c7')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="af2464ad89a">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi6gFBVV95cUxPdE5tOFhXNy1RWWZHemRscVZEOGJOMHpwUW9pZ2sxMUJQYThVLTRuSGc4QnFZSDR6bWVSR3NGSGVOM0F4ek90LVJ6OUI1dmZMWEdidVk1STFWVzFIS0RIZW5nazFvVXg4YWhRMk4wMkljeC16eVlRNllIVUZMU0V2d3BsekdRSGhDZmlUNmRaVTRvWVdLVktrM0h1OHdyYWZMTTJxT0x6aFY0ZHNaam5zamVyLVNsS0o1MFpuM2E2RXF4RzFpazJWRkZmYlVrblZsY1pfdm5nQkFxNTRLU283bVF3QlBZNjhxVEE?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">1Kosmos Recognized by Microsoft as Entra Verified ID Partner for Delivering Secure Remote Onboarding and Enhanced Digital Trust - Investing News Network</a>
+          <div class="article-meta">Investing News Network &bull; Jul 09, 2026</div>
+          <div class="article-summary snippet"><p>1Kosmos Recognized by Microsoft as Entra Verified ID Partner for Delivering Secure Remote Onboarding and Enhanced Digital Trust&amp;nbsp;&amp;nbsp;Investing News Network</p><a href="https://news.google.com/rss/articles/CBMi6gFBVV95cUxPdE5tOFhXNy1RWWZHemRscVZEOGJOMHpwUW9pZ2sxMUJQYThVLTRuSGc4QnFZSDR6bWVSR3NGSGVOM0F4ek90LVJ6OUI1dmZMWEdidVk1STFWVzFIS0RIZW5nazFvVXg4YWhRMk4wMkljeC16eVlRNllIVUZMU0V2d3BsekdRSGhDZmlUNmRaVTRvWVdLVktrM0h1OHdyYWZMTTJxT0x6aFY0ZHNaam5zamVyLVNsS0o1MFpuM2E2RXF4RzFpazJWRkZmYlVrblZsY1pfdm5nQkFxNTRLU283bVF3QlBZNjhxVEE?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('af2464ad89a')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ac2670d4112">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE5fVzdxSFZHZHZ5Q1E4bmsxZmY4azBJWmUwb2pRSVVaNXJiQmx2TlpTTHIyVlp6MjM0SUx0allBT3JPeTVKN241N1BuSnFyQ1RTVWpZVU5WbmJ0WEc5Qm56M3NkeWJabGhH?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Entra Passkey Enrollment Abused in Operator-Controlled Vishing Campaign - gbhackers.com</a>
+          <div class="article-meta">gbhackers.com &bull; Jul 09, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft Entra Passkey Enrollment Abused in Operator-Controlled Vishing Campaign&amp;nbsp;&amp;nbsp;gbhackers.com</p><a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE5fVzdxSFZHZHZ5Q1E4bmsxZmY4azBJWmUwb2pRSVVaNXJiQmx2TlpTTHIyVlp6MjM0SUx0allBT3JPeTVKN241N1BuSnFyQ1RTVWpZVU5WbmJ0WEc5Qm56M3NkeWJabGhH?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac2670d4112')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="m365" class="topic-section">
+      <h2 class="topic-title" style="--c:#D83B01">Microsoft 365 <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a7684c34bee">
+        <div class="article-body">
+          <a href="https://petri.com/copilot-didnt-overshare-your-data-your-permissions-did/" target="_blank" rel="noopener noreferrer" class="article-title">Copilot Didn’t Overshare Your Data. Your Permissions Did</a>
+          <div class="article-meta">petri.com &bull; Jul 07, 2026</div>
+          <div class="article-summary"><p>What happens when you give everyone a search engine for everything they technically have access to?
+That’s Microsoft 365 Copilot, and it’s working exactly as designed and exposing IT’s dirty little secret: We haven’t spent enough time managing data.
+The practical answer is not to delay Microsoft 365 Copilot rollout forever or pretend permissions can be fixed manually across a mature tenant. IT should first restrict Copilot discovery from the obvious high-risk areas, then use Purview and SharePoint Advanced Management to identify the less obvious oversharing patterns. The mistake is treating this as an AI governance project. It is really a permissions, ownership, and data lifecycle project that Copilot finally made impossible to ignore.
+Copilot surfaces documents, emails, Teams chats, and SharePoint content based on a user’s existing permissions. Microsoft is explicit about this. Copilot does not bypass security; it reflects it. The problem where Copilot is surfacing confidential data isn’t a bug; it’s a data management failure and we are all guilty of it.
+Permission sprawl that accumulated over years is now discoverable in seconds through plain-language prompts. A finance analyst who technically had access to a payroll bonus spreadsheet but never looked for it now gets that data surfaced when she asks Copilot to summarize compensation trends.
+When Copilot hit the market, nobody wanted to pump the brakes until their data could be restructured. We knew about it. You may have mentioned it to your boss, or the client, but nobody scheduled time to fix it before the rollout. Probably because it’s an expensive fix and it’s one of those “things” that they thought IT was already handling. They have a point. Data management is basic security.
+Concentric AI’s 2025 data risk research found that 16% of business-critical data in the average Microsoft 365 tenant is overshared. 16% sounds like something that we could easily get our hands around and fix. The problem is identifying where those files are.
+The common culprits are well-known to any tenant admin who has done a permissions audit: the Everyone except external users (EEEU) group applied to SharePoint sites that were never intended to be company-wide; broken permission inheritance where a folder within a restricted library somehow has a broader audience than the library itself; and anonymous sharing links that never expired because nobody created an auto-expire policy.
+It’s also job changes resulting in new permissions being granted. That person still needs access to the data from their previous position in the company, “for a while”, the next ticket comes into the helpdesk, and IT loses the plot. Individually, none of these felt catastrophic when access required a deliberate search. Collectively, they represent a surface area that Copilot queries in milliseconds.
+Security researchers disclosed CVE-2025-32711 (dubbed EchoLeak) a zero-click prompt injection vulnerability in Microsoft 365 Copilot. An attacker could embed a malicious payload in an ordinary email or document. When the recipient invoked Copilot to summarize it, with no other action required, Copilot could silently exfiltrate sensitive data from the user’s context to an attacker-controlled URL. No macro. No link to click. Just an AI assistant doing what it was asked to do with content it trusted.
+This flaw has now been patched but the existence of this flaw should have sent up the warning flags that data management needs to become job one.
+The good news is that Microsoft included the tools to address this in your tenant already. Every tenant with even a single Microsoft 365 Copilot license now has SharePoint Advanced Management (SAM) included at no extra cost. SAM includes a Content Management Assessment that flags oversharing, EEEU usage, broken inheritance, and ownerless sites.
+Restricted Content Discovery lets admins exclude high-risk SharePoint sites from Copilot indexing entirely while remediation is underway.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a7684c34bee')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a58d36f2cc6">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi-gFBVV95cUxPZV9EQ2x1M1MxYmhKX1dhVTNQRDA5RkNKTWdqSHE3SDNTem1NX3dNREtnU0REVi1IZUdULTJBa0k0Q1Nua1ZFZ3U4bTNYU3VCY3JuMThQQ0JxVm9Nc2NrRGlsSGtkTnI5MllSWXpIOThMT3ZlTGxHR21FcllBYWNKM19sendQUnVpUmc2TXRsamlDMVV1OU5QNE1mTlgwdnZNYVlCbk8yeUNZT1NaeG56TzB5aF9yTmpKbENBRndYR2lrSmlYT0hMOGxRNGw0TFF3eTZlVDlvbVk3cm8tMXRUQTNUV19HdUlrWHZCWFBLaDBfRmRlYlZFNVhn?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Moving sales and service organizations forward with agentic CX and Microsoft 365 Copilot - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; Jul 07, 2026</div>
+          <div class="article-summary snippet"><p>Moving sales and service organizations forward with agentic CX and Microsoft 365 Copilot&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMi-gFBVV95cUxPZV9EQ2x1M1MxYmhKX1dhVTNQRDA5RkNKTWdqSHE3SDNTem1NX3dNREtnU0REVi1IZUdULTJBa0k0Q1Nua1ZFZ3U4bTNYU3VCY3JuMThQQ0JxVm9Nc2NrRGlsSGtkTnI5MllSWXpIOThMT3ZlTGxHR21FcllBYWNKM19sendQUnVpUmc2TXRsamlDMVV1OU5QNE1mTlgwdnZNYVlCbk8yeUNZT1NaeG56TzB5aF9yTmpKbENBRndYR2lrSmlYT0hMOGxRNGw0TFF3eTZlVDlvbVk3cm8tMXRUQTNUV19HdUlrWHZCWFBLaDBfRmRlYlZFNVhn?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a58d36f2cc6')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a18cf068ecf">
+        <div class="article-body">
+          <a href="https://www.neowin.net/news/openais-gpt-56-becomes-the-preferred-model-in-microsoft-365-copilot/?utm_source=rss" target="_blank" rel="noopener noreferrer" class="article-title">GPT-5.6 is now the preferred model in Microsoft 365 Copilot - OpenAI</a>
+          <div class="article-meta">OpenAI &bull; Jul 09, 2026</div>
+          <div class="article-summary"><p>Yesterday, OpenAI announced the public rollout of its GPT-5.6 model series, which includes GPT-5.6 Sol, GPT-5.6 Terra, and GPT-5.6 Luna. GPT-5.6 Sol is the flagship model, GPT-5.6 Terra offers a balance between performance and cost, and GPT-5.6 Luna is the smallest and most cost-efficient model in the series. As with several previous OpenAI model launches, Microsoft also announced day-one availability of the GPT-5.6 models in Microsoft 365 Copilot.
+While OpenAI models have been powering Microsoft 365 Copilot since its launch, over the past 12 months, Microsoft started using Anthropic's models for several scenarios. In addition to making Anthropic's models available on the Microsoft 365 Copilot model selector, the Opus series models were made the default in certain scenarios that required more complex work inside Copilot Cowork and inside Office apps. This was because Anthropic's models were performing significantly better than OpenAI's models in knowledge-work scenarios for a few months.
+With the GPT-5.5 launch, OpenAI caught up with Anthropic's models in terms of knowledge-work capabilities. Thanks to significant improvements and high cost-efficiency, Microsoft has now selected the new GPT-5.6 series models as the preferred models for Microsoft 365 Copilot. The GPT-5.6 family of models is available now in Microsoft 365 Copilot inside Word, Excel, PowerPoint, Chat, and Cowork. The company highlighted that it worked with OpenAI to optimize GPT-5.6 for knowledge work across Microsoft 365 apps.
+Nitin Agrawal, President, Copilot &amp; Agents Core, Microsoft, said the following regarding GPT-5.6 series availability inside Microsoft 365 Copilot:
+“We can’t wait for customers to see what GPT‑5.6 in Microsoft 365 will do, enabling them to work even more effectively with AI in the tools they use every day. Using Copilot powered by OpenAI’s latest model, customers will be able to produce more polished outputs in Word, Excel, PowerPoint, Cowork, and Copilot Chat, whether they are drafting documents, analyzing data, creating presentations, or collaborating across teams. We’re excited to continue building with OpenAI to bring more powerful AI experiences to people and organizations around the world.”
+Microsoft will also access these OpenAI models directly through the API to bring GPT-5.6 to Microsoft 365 customers. Once the rollout is complete, Microsoft 365 Copilot may automatically use GPT-5.6 depending on the task. If the model selector is available, users can also choose GPT-5.6 explicitly.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a18cf068ecf')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a00ee8a93c7">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMikAFBVV95cUxPX0lZWXBlQklHY0dPQzhkTHF6YkE3dlBuT2RHbXpULXVCRGtpTlN2aFZTeWxQM3c1T2FlcC1CT0lFREFXWGh6a1oybG05aEZNVEVRanN5ekJsY3QyTVpFZzBaZjlIRHpYSGxCRGdpQl84dnp2Xzk2VzBORHhjU2ZFVUoyV3dMNTNyamFNVXpsYVU?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Extortion crew hijacks Microsoft 365 accounts via fake passkey setup - Help Net Security</a>
+          <div class="article-meta">Help Net Security &bull; Jul 09, 2026</div>
+          <div class="article-summary snippet"><p>Extortion crew hijacks Microsoft 365 accounts via fake passkey setup&amp;nbsp;&amp;nbsp;Help Net Security</p><a href="https://news.google.com/rss/articles/CBMikAFBVV95cUxPX0lZWXBlQklHY0dPQzhkTHF6YkE3dlBuT2RHbXpULXVCRGtpTlN2aFZTeWxQM3c1T2FlcC1CT0lFREFXWGh6a1oybG05aEZNVEVRanN5ekJsY3QyTVpFZzBaZjlIRHpYSGxCRGdpQl84dnp2Xzk2VzBORHhjU2ZFVUoyV3dMNTNyamFNVXpsYVU?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a00ee8a93c7')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aa815653d75">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiggFBVV95cUxQclFLN1J0VUJxQUFCRmNOc2YxbFJWOHl5OGJUdkpEZmpzWnZKVFJyUU5QblhtdXhOaUN1djZaNmtWc0lMMnhlcUIzUC13RmJnMnZncS0yMzVLZC00MnpxWDdta1dZZzZkTWJVVEwxZXhKY2pkZW5OUmFCZWhQS1JVenF3?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Stop paying for Microsoft 365 with this $40 lifetime Office license - Mashable</a>
+          <div class="article-meta">Mashable &bull; Jul 08, 2026</div>
+          <div class="article-summary snippet"><p>Stop paying for Microsoft 365 with this $40 lifetime Office license&amp;nbsp;&amp;nbsp;Mashable</p><a href="https://news.google.com/rss/articles/CBMiggFBVV95cUxQclFLN1J0VUJxQUFCRmNOc2YxbFJWOHl5OGJUdkpEZmpzWnZKVFJyUU5QblhtdXhOaUN1djZaNmtWc0lMMnhlcUIzUC13RmJnMnZncS0yMzVLZC00MnpxWDdta1dZZzZkTWJVVEwxZXhKY2pkZW5OUmFCZWhQS1JVenF3?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aa815653d75')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a15df5b9a66">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi1AFBVV95cUxNdVlxdXlDZUxXUXZvS1JFVEZ6X3JMcE1SeENvNU1QUHVMMTZkeUZwLUZWYkpZTVlCUU1LRFZaNEpRRGtXQ1d3Vi1FMlBpdV94MVE1cmhDTWFTbm1KMFpPM3VoR1pVRzhySzFuOGVJdTNuNUFmM19wQXdjWnFxTVkyQ0J4OWZPYzBqc0RlUmswSmEyeDhsYzBVMXNHbzgweXpZaGtWdjdXTEpyRmVrckdSU1N6UWpqeXpmdTMwT3VZLVBjQW5RWldWYVNPeElhd3d4S2pEMA?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Trade your expensive Microsoft 365 subscription for a $30 lifetime license of Microsoft Office - PCWorld</a>
+          <div class="article-meta">PCWorld &bull; Jul 08, 2026</div>
+          <div class="article-summary snippet"><p>Trade your expensive Microsoft 365 subscription for a $30 lifetime license of Microsoft Office&amp;nbsp;&amp;nbsp;PCWorld</p><a href="https://news.google.com/rss/articles/CBMi1AFBVV95cUxNdVlxdXlDZUxXUXZvS1JFVEZ6X3JMcE1SeENvNU1QUHVMMTZkeUZwLUZWYkpZTVlCUU1LRFZaNEpRRGtXQ1d3Vi1FMlBpdV94MVE1cmhDTWFTbm1KMFpPM3VoR1pVRzhySzFuOGVJdTNuNUFmM19wQXdjWnFxTVkyQ0J4OWZPYzBqc0RlUmswSmEyeDhsYzBVMXNHbzgweXpZaGtWdjdXTEpyRmVrckdSU1N6UWpqeXpmdTMwT3VZLVBjQW5RWldWYVNPeElhd3d4S2pEMA?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a15df5b9a66')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a48f1a6da20">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/07/hackers-use-fake-microsoft-entra.html" target="_blank" rel="noopener noreferrer" class="article-title">Hackers Use Fake Microsoft Entra Passkey Enrollment to Gain Microsoft 365 Access - The Hacker News</a>
+          <div class="article-meta">The Hacker News &bull; Jul 10, 2026</div>
+          <div class="article-summary"><p>A threat actor has been targeting organizations spanning multiple sectors with voice-based fake security requests that prompt Microsoft 365 users to enroll a new Entra passkey with an aim to carry out data extortion attacks.
+The threat actor, tracked by Okta under the moniker O-UNC-066, has deployed a panel-controlled phishing kit that's capable of targeting the passkey enrollment process. The activity has singled out food and beverage, technology, healthcare, automotive, construction, and aviation industries.
+&quot;The threat actor registers domains that incorporate the word passkey as part of a voice-enabled phishing ('vishing') scheme,&quot; Okta researcher Houssem Eddine Bordjiba said. &quot;The threat actor then calls targeted users on the phone in an attempt to persuade them that they need to register a new passkey.&quot;
+Users are then directed to a phishing kit that's identical to the Microsoft passkey enrollment process, giving the impression that they are adding a passkey with Microsoft, when, in reality, the threat actor registers their own passkey against their Microsoft account, granting them unauthorized access.
+The development coincides with Microsoft allowing administrators to configure registration campaigns to nudge users to register passkeys during sign-in in an attempt to help organizations drive passkey adoption at scale. In other words, threat actors are abusing the phishing-resistant security upgrade process as a lure to enroll their own passkeys within victims' accounts and facilitate follow-on activities.
+Unlike adversary-in-the-middle (AitM) landing pages that are prevalent in phishing campaigns designed to steal credentials and multi-factor authentication (MFA) tokens, the phishing kit used in these attacks is an operator-controlled PHP panel in which a victim is guided through the passkey enrollment process in almost real-time.
+&quot;The operator can use the kit to adapt the user experience to each victim's MFA requirements (TOTP, push notification with number matching, SMS OTP) during the session,&quot; the identity security company said. &quot;The caller can control and adjust in real time what phishing pages and notifications a targeted user sees.&quot;
+It's suspected that the threat actor is leveraging the kit to take over the victim account and trick the user into approving an attacker-initiated registration of a passkey. There is no indication at this stage to suggest that the kit is redirecting users to third-party identity providers like Okta.
+The entire sequence of actions is below -
+- The first page of the phishing kit (/gate) displays a page loading icon while the phishing kit performs anti-analysis checks in the background.
+- The second page (/identify) requests a username.
+- The next page (/password) challenges the user for a password.
+- The harvested credentials are sent in a POST request to an operator panel at &quot;/backend.php.&quot;
+- The phishing kit operator (likely different from the individual calling the victim) enters the stolen credentials on the legitimate Microsoft sign-in page for the targeted tenant.
+- The victim sees a &quot;/processing&quot; page that serves another loading screen as it awaits the operator's instruction based on the observed MFA challenges presented to them in the legitimate flow.
+- The next page of the phishing kit is presented to the user: &quot;/submit-otp&quot; for an SMS-based one-time password (OTP) challenge, &quot;/submit-authenticator&quot; for time-based OTP challenge, or &quot;/approve-authenticator&quot; for a push MFA challenge.
+- The captured OTP is sent in a POST request to &quot;/backend.php.&quot;
+At this point, the victim has been deceived over the phone into approving the attacker's access to their Microsoft 365 account.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a48f1a6da20')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="af51da634ff">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiswFBVV95cUxNTjlQc00tTkNlOC1zRXlnblQwa3N5bFIwYThNVHl3QV90NW1GcHBLeHVJN1M5b2dVQ004QS1kU3RqZDRia0Q1OGpBZF9BSURRSm1penFIYlVNbWtVcC15V01LVXdaYnFUejBjV0YxbjJ5OVAxMjdXTFBFSGJZaXlMOFFrZ19KVGs3Mkp4UGp3TFZlS19WQ0dTWE1vQTBhT2Y2SlptQWNQOWhqZkdTYXJNbm1Law?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">As Businesses Cancel Their Microsoft 365 Subscriptions, You Can Get a Microsoft Office Lifetime License for Only $30 - Entrepreneur</a>
+          <div class="article-meta">Entrepreneur &bull; Jul 09, 2026</div>
+          <div class="article-summary snippet"><p>As Businesses Cancel Their Microsoft 365 Subscriptions, You Can Get a Microsoft Office Lifetime License for Only $30&amp;nbsp;&amp;nbsp;Entrepreneur</p><a href="https://news.google.com/rss/articles/CBMiswFBVV95cUxNTjlQc00tTkNlOC1zRXlnblQwa3N5bFIwYThNVHl3QV90NW1GcHBLeHVJN1M5b2dVQ004QS1kU3RqZDRia0Q1OGpBZF9BSURRSm1penFIYlVNbWtVcC15V01LVXdaYnFUejBjV0YxbjJ5OVAxMjdXTFBFSGJZaXlMOFFrZ19KVGs3Mkp4UGp3TFZlS19WQ0dTWE1vQTBhT2Y2SlptQWNQOWhqZkdTYXJNbm1Law?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('af51da634ff')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="iru" class="topic-section">
+      <h2 class="topic-title" style="--c:#7C3AED">Iru MDM (formerly Kandji) </h2>
+      <p class="no-news">No articles found this week.</p>
+    </section>
+    <section id="cato" class="topic-section">
+      <h2 class="topic-title" style="--c:#FF6B35">Cato Networks <span class="count">(1)</span></h2>
+      <div class="article-card" data-id="aaa79c293cc">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiowFBVV95cUxONnBkTTY5UTRrV0l2bGo0WGtScUh5VE1NRHhNTW9yTk1MZy1zbGkxZmNraEJ3VF8yQ2F4WWNKVDZMWUE0STBmY24tVzFsc2dmZGlaVmpyVU9Jd1BQWF9IVTNBZnZoOG1wTHZISWhFZkdxeUdXek5HRk9GaGF2aFprb3dxSG9VSkN3Yl8wNDkyTDBKZlFqSF9FUEI2bFhrdW4yMXhV?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks Announces Partner Award Winners at 2026 APJ Partner Summit - Yahoo Finance</a>
+          <div class="article-meta">Yahoo Finance &bull; Jul 09, 2026</div>
+          <div class="article-summary snippet"><p>Cato Networks Announces Partner Award Winners at 2026 APJ Partner Summit&amp;nbsp;&amp;nbsp;Yahoo Finance</p><a href="https://news.google.com/rss/articles/CBMiowFBVV95cUxONnBkTTY5UTRrV0l2bGo0WGtScUh5VE1NRHhNTW9yTk1MZy1zbGkxZmNraEJ3VF8yQ2F4WWNKVDZMWUE0STBmY24tVzFsc2dmZGlaVmpyVU9Jd1BQWF9IVTNBZnZoOG1wTHZISWhFZkdxeUdXek5HRk9GaGF2aFprb3dxSG9VSkN3Yl8wNDkyTDBKZlFqSF9FUEI2bFhrdW4yMXhV?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aaa79c293cc')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+</main>
+
+<footer>
+  Generated every Sunday &mdash; Topics: Windows &bull; Azure &bull; SharePoint &bull; Intune &bull; Entra ID &bull; Microsoft 365 &bull; Iru MDM (formerly Kandji) &bull; Cato Networks
+</footer>
+
+<script>
+const KEY = 'it-news-hidden-v1';
+function getHidden() {
+  try { return new Set(JSON.parse(localStorage.getItem(KEY) || '[]')); }
+  catch { return new Set(); }
+}
+function saveHidden(s) { localStorage.setItem(KEY, JSON.stringify([...s])); }
+function toggleArticle(id) {
+  const h = getHidden();
+  h.has(id) ? h.delete(id) : h.add(id);
+  saveHidden(h); applyHidden(h);
+}
+function applyHidden(h) {
+  h = h || getHidden();
+  document.querySelectorAll('.article-card[data-id]').forEach(c => {
+    c.classList.toggle('is-hidden', h.has(c.dataset.id));
+  });
+}
+let revealing = false;
+function toggleReveal() {
+  revealing = !revealing;
+  document.body.classList.toggle('reveal-hidden', revealing);
+  document.getElementById('reveal-btn').textContent = revealing ? 'Hide hidden' : 'Show hidden';
+}
+fetch('weeks.json').then(r => r.json()).then(weeks => {
+  const sel = document.getElementById('week-sel');
+  weeks.forEach(w => {
+    const o = document.createElement('option');
+    o.value = w.file; o.textContent = w.label;
+    if (w.current) o.selected = true;
+    sel.appendChild(o);
+  });
+}).catch(() => {});
+applyHidden();
+</script>
+</body>
+</html>
