@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT News Digest — 2026-W29</title>
+  <style>
+    :root{--bg:#f8fafc;--surface:#fff;--border:#e2e8f0;--text:#1e293b;--muted:#64748b;--accent:#2563eb}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+    a{color:var(--accent)}
+
+    header{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+    .h-inner{max-width:1000px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .h-brand{font-size:1.1rem;font-weight:800;color:#1d4ed8}
+    .h-meta{font-size:.78rem;color:var(--muted)}
+    .h-controls{display:flex;gap:8px;align-items:center}
+    .btn{padding:5px 12px;border-radius:6px;font-size:.78rem;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);white-space:nowrap}
+    .btn:hover{background:#f1f5f9}
+    select.week-sel{padding:5px 10px;border-radius:6px;border:1px solid var(--border);background:var(--surface);font-size:.78rem;cursor:pointer;color:var(--text)}
+
+    .t-nav{background:var(--surface);border-bottom:1px solid var(--border);overflow-x:auto}
+    .t-nav-inner{max-width:1000px;margin:0 auto;padding:8px 20px;display:flex;gap:6px;min-width:max-content}
+    .nav-link{font-size:.72rem;padding:3px 10px;border-radius:20px;border:2px solid var(--c,#2563eb);color:var(--c,#2563eb);text-decoration:none;font-weight:600;white-space:nowrap}
+    .nav-link:hover{background:var(--c,#2563eb);color:#fff}
+
+    main{max-width:1000px;margin:0 auto;padding:24px 20px}
+
+    .week-hero{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin-bottom:28px;display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+    .hero-title{font-size:1.6rem;font-weight:900;color:#1d4ed8}
+    .hero-sub{font-size:.85rem;color:var(--muted);margin-top:2px}
+    .stat-box{text-align:center;min-width:60px}
+    .stat-num{font-size:2rem;font-weight:900;color:#1d4ed8;line-height:1}
+    .stat-lbl{font-size:.65rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+
+    .topic-section{margin-bottom:40px}
+    .topic-title{font-size:1.2rem;font-weight:800;color:var(--c,#2563eb);border-bottom:3px solid var(--c,#2563eb);padding-bottom:8px;margin-bottom:14px}
+    .count{font-size:.8rem;font-weight:400;color:var(--muted)}
+    .no-news{color:var(--muted);font-style:italic;font-size:.88rem}
+
+    .article-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:12px;display:flex;gap:12px;align-items:flex-start;transition:border-color .15s}
+    .article-card:hover{border-color:#94a3b8}
+    .article-body{flex:1;min-width:0}
+    .article-title{font-size:.98rem;font-weight:600;text-decoration:none;display:block;margin-bottom:4px;color:var(--accent)}
+    .article-title:hover{text-decoration:underline}
+    .article-meta{font-size:.72rem;color:var(--muted);margin-bottom:8px}
+
+    .article-summary{margin-top:6px;font-size:.875rem;color:#334155;line-height:1.75}
+    .article-summary p{margin-bottom:.6em}
+    .article-summary p:last-child{margin-bottom:0}
+    .gnews-badge{display:inline-block;font-size:.65rem;background:#fef3c7;color:#92400e;border-radius:4px;padding:1px 5px;margin-bottom:6px;vertical-align:middle}
+    .article-summary.snippet{color:var(--muted)}
+    .read-more{display:inline-block;margin-top:6px;font-size:.8rem;font-weight:600;color:var(--accent);text-decoration:none}
+    .read-more:hover{text-decoration:underline}
+
+    .hide-btn{flex-shrink:0;padding:5px 10px;border-radius:6px;font-size:.72rem;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--muted);white-space:nowrap;align-self:flex-start}
+    .hide-btn:hover{border-color:#ef4444;color:#ef4444;background:#fef2f2}
+    .lbl-show{display:none}
+
+    .article-card.is-hidden{display:none}
+    body.reveal-hidden .article-card.is-hidden{display:flex;opacity:.45;border-style:dashed}
+    .article-card.is-hidden .lbl-hide{display:none}
+    .article-card.is-hidden .lbl-show{display:inline}
+    body.reveal-hidden .article-card.is-hidden .hide-btn{border-color:#16a34a;color:#16a34a}
+    body.reveal-hidden .article-card.is-hidden .hide-btn:hover{background:#f0fdf4}
+
+    footer{text-align:center;padding:24px 20px;color:var(--muted);font-size:.75rem;border-top:1px solid var(--border);margin-top:40px}
+
+    @media(max-width:600px){
+      .h-inner,.main{padding-left:14px;padding-right:14px}
+      .hero-title{font-size:1.3rem}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="h-inner">
+    <div>
+      <div class="h-brand">IT News Digest</div>
+      <div class="h-meta">Week 2026-W29 &bull; Jul 13–19, 2026</div>
+    </div>
+    <div class="h-controls">
+      <button class="btn" id="reveal-btn" onclick="toggleReveal()">Show hidden</button>
+      <select class="week-sel" id="week-sel" onchange="if(this.value) location.href=this.value">
+        <option value="">&#128337; Archive&hellip;</option>
+      </select>
+    </div>
+  </div>
+</header>
+
+<nav class="t-nav"><div class="t-nav-inner"><a href="#windows" class="nav-link" style="--c:#0078D4">Microsoft Windows</a><a href="#azure" class="nav-link" style="--c:#00BCF2">Azure</a><a href="#sharepoint" class="nav-link" style="--c:#036C70">SharePoint</a><a href="#intune" class="nav-link" style="--c:#0F6CBD">Intune</a><a href="#entraid" class="nav-link" style="--c:#6B69D6">Entra ID</a><a href="#m365" class="nav-link" style="--c:#D83B01">Microsoft 365</a><a href="#iru" class="nav-link" style="--c:#7C3AED">Iru MDM (formerly Kandji)</a><a href="#cato" class="nav-link" style="--c:#FF6B35">Cato Networks</a></div></nav>
+
+<main>
+  <div class="week-hero">
+    <div>
+      <div class="hero-title">Week 2026-W29</div>
+      <div class="hero-sub">Jul 13–19, 2026</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">43</div>
+      <div class="stat-lbl">Articles</div>
+    </div>
+  </div>
+
+    <section id="windows" class="topic-section">
+      <h2 class="topic-title" style="--c:#0078D4">Microsoft Windows <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a80340a7cc4">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windows-insider/2026/07/13/improving-windows-search-box-with-less-clutter-and-more-control/" target="_blank" rel="noopener noreferrer" class="article-title">Improving Windows Search Box, with less clutter and more control</a>
+          <div class="article-meta">blogs.windows.com &bull; Jul 13, 2026</div>
+          <div class="article-summary"><p>Improving Windows Search Box, with less clutter and more control
+Hello Windows Insiders,
+You’ve been asking for search that is faster, more relevant, and easier to use—whether you’re opening an app, finding a file, or changing a setting.
+Because the Windows Search Box is where many people start, we focused first on making results more dependable, easier to scan, and clearer before you click.
+Windows Search Box improvements gradually rolling out today to Windows Insiders
+Today, we’re rolling out several improvements to Windows Search Box available to Windows Insiders in the Experimental channel. These improvements are gradually rolling out via Controlled Feature Rollout so not all Insiders will see them right away. You can reboot to see if you receive them today. They are also available via feature flags.
+- A calmer home screen. Search home has been simplified to reduce visual clutter and make it easier to get back to recent searches quickly.
+- Clearer results. Search does a better job showing where a result comes from—app, setting, file, web result, or Store suggestion—so it’s easier to tell what you’re looking at and where you will go before you click.
+- Promotional content has been removed from web results. Web results show the most relevant answer, instead of first showing related products and promotions, helping search feel more focused and less distracting.
+- You’re in control of web and Microsoft Store results. A new setting in Settings &gt; Privacy &amp; Security &gt; Search lets you choose whether web and Microsoft Store suggestions appear alongside local results.
+- Local results prioritized when they’re the better match. Apps, settings, and files more reliably appear ahead of web and Store suggestions when your content is the stronger match. System items like This PC and Recycle Bin are easier to discover.
+- Finding apps is more forgiving. Search is better at handling typos, dropped letters, extra letters, and partial words for apps. Queries like “utlook” can still find Outlook.
+- Settings results are improving. We’ve made a first round of ranking improvements to help more relevant settings appear higher in results, with more tuning planned in the coming months.
+- Finding files is improving. Search is better at surfacing the right local files with added support for two-character file searches. We’ve also made improvements to show cloud and connected files in results when they’re the stronger match. These changes help you get to the document, download, or folder you are looking for faster.
+- Reliability is improving. Improved search reliability, including reducing likelihood of crashing and loading issue, with more work underway.
+Try the changes and give us feedback
+These improvements become available to Windows Insiders today in the Experimental channel.
+The changes in this post reflect the feedback you’ve shared, and we’ll keep refining them as they roll out to more Insiders. Share your thoughts in Feedback Hub (WIN + F) under Desktop Environment &gt; Search.
+Jeff &amp; Anderson
+NOTE: Experiences vary by region.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a80340a7cc4')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="abe0914bedd">
+        <div class="article-body">
+          <a href="https://petri.com/windows-11-auto-approve-sso-permissions/" target="_blank" rel="noopener noreferrer" class="article-title">Windows 11 Now Lets IT Admins Automatically Approve SSO Permissions on Managed Devices</a>
+          <div class="article-meta">petri.com &bull; Jul 17, 2026</div>
+          <div class="article-summary"><p>New registry-based control reduces sign-in prompts for users on organization-managed devices.
+Key Takeaways:
+Microsoft is giving IT administrators greater control over the Windows sign-in experience with a new policy that automatically approves Single Sign-On (SSO) permissions on managed devices. This feature is rolling out as part of the July 2026 security update for Windows 11 versions 24H2 and 25H2.
+Microsoft mentioned that recent changes in the European Economic Area (EEA) require Windows users to explicitly choose whether their Windows sign-in credentials can be used to access other Microsoft apps and services. Users now see prompts asking for consent instead of being automatically signed in. Many enterprise customers requested a way to streamline this experience on managed devices where the organization already governs authentication policies.
+With this release, administrators can configure a registry setting to automatically grant SSO permissions to eligible managed devices. It allows users to access Microsoft apps and services with their existing Windows credentials without seeing additional prompts.
+Registry Path: HKLM\SOFTWARE\Policies\Microsoft\Windows\AAD
+Value: AutoAcceptSsoPermission (DWORD) = 1“For managed enterprise environments, some organizations wanted additional flexibility to manage the SSO prompt experience on devices where their organizations already manage sign-in policies and trust relationships. To support those scenarios, we’ve developed a registry-based control that lets IT administrators automatically accept SSO permissions on eligible managed Windows devices,” Microsoft explained.
+Administrators can configure this policy through the Windows registry under the Microsoft Entra ID settings. It can be deployed using enterprise management tools such as Group Policy, Microsoft Intune, Configuration Manager, or other solutions that support registry deployment.
+This feature is designed specifically for managed enterprise devices that are connected to Microsoft Entra ID. It does not affect personal Microsoft accounts or unmanaged devices, which will continue to display consent prompts. The capability is available only on Windows 11 versions 24H2 and 25H2 and requires installation of the July 2026 security update.
+Organizations first need to ensure their devices are running Windows 11 versions 24H2 or 25H2 and have the July 2026 security update installed. Once the update is in place, IT administrators can deploy the required registry policy through any management platform and then verify the configuration to confirm that the Single Sign-On experience works as expected across managed devices.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('abe0914bedd')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aaf941e8475">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-blocks-windows-11-update-dell-devices/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Blocks Windows 11 Update on Select Dell Devices Due to Unexpected Shutdowns, Overheating Issues</a>
+          <div class="article-meta">petri.com &bull; Jul 16, 2026</div>
+          <div class="article-summary"><p>Affected systems may experience instability, battery drain, and reduced performance until a fix becomes available.
+Key Takeaways:
+Microsoft has identified a compatibility issue affecting some Dell PCs after the installation of the July 2026 Windows 11 Patch Tuesday updates. This issue impacts devices with certain Intel processors, prompting Microsoft to block the update on affected systems.
+Microsoft began rolling out the KB5101650 update on July 14 for Windows 11 version 25H2 and 24H2 devices. This update combines July security fixes with enhancements previously released in June preview updates, including a new recovery feature as well as better Bluetooth reliability and audio device support. It also includes security-related improvements such as expanded Secure Boot certificate deployment and fixes for Office integration issues affecting some third-party applications.
+Microsoft has warned that this update could cause unexpected shutdowns, poor performance, and overheating. This bug was first reported in the optional preview update KB5095093 that rolled out on June 23.
+“A limited number of Dell devices might display a yellow exclamation point in Device Manager next to the Intel Innovation Platform Framework Processor Participant driver. These devices can potentially experience unexpected shutdowns, poor performance, increased heat, and battery drain,” Microsoft explained on the Windows release health dashboard.
+Microsoft has determined that the root cause of this issue is an incompatibility between the Intel Innovation Platform Framework Processor Participant driver and the new Windows USB‑C Connection Manager interface. It’s recommended that users who have already installed this patch roll back to the previous update.
+Microsoft is currently working with Dell to address the underlying incompatibility issues, and a fix is expected to be available in the coming days. In the meantime, the company has blocked the KB5101650 update on some affected devices. Microsoft has advised that users shouldn’t manually install this update from the Microsoft Update Catalog.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aaf941e8475')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a01d677b2ef">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-july-2026-patch-tuesday-63-critical-flaws/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft’s July 2026 Patch Tuesday Addresses 63 Critical Flaws and Two Actively Exploited Bugs</a>
+          <div class="article-meta">petri.com &bull; Jul 15, 2026</div>
+          <div class="article-summary"><p>Security updates cover Windows, Copilot, Exchange, Defender, Azure, and other enterprise platforms.
+Key Takeaways:
+Microsoft has released the July 2026 Patch Tuesday updates for Windows 11 versions 26H1, 26H2, and 24H2. This month, the company has fixed 621 vulnerabilities in Windows, Office, Microsoft Edge, Azure, Github Copilot, Defender, Exchange Server, and Hyper-V.
+As pointed out by the Zero Day Initiative, Microsoft’s July 2026 Patch Tuesday is “The Mother of All Releases. To call this record-breaking is an understatement. I looked at the last 20 years of Microsoft releases. The CVE count year-to-date exceeds all other years’ totals.”
+Microsoft’s latest Patch Tuesday updates bring fixes for several flaws, including 63 rated Critical, six rated Moderate, one rated Low, with the rest rated Important in severity. Two of these vulnerabilities are already being exploited by attackers. Here’s what you need to know about the critical vulnerabilities Microsoft fixed this month:
+You can find below the full list of security patches Microsoft released this month:
+On Windows 11, this month’s Patch Tuesday update also marks the release of a new feature that allows users to roll back their PCs to a recent automatic restore point. This update also brings another feature that lets users pause updates for up to 35 days and re‑pause them as needed.
+For Windows 11 versions 25H2 and 24H2, the KB5101650 update fixes an issue that affects certain third-party apps that use OLE Automation to interact with Microsoft Office. Moreover, this release introduces a security hardening change, which could cause apps that use sockets over unregistered third-party TDI transports to stop working.
+Microsoft says RDP security has been enhanced with support for SHA-2 certificate thumbprints for trusted publishers. Organizations are encouraged to adopt SHA-256 or stronger algorithms and use the new Group Policy guidance to control .rdp file access, which helps reduce phishing and security risks.
+Organizations looking to deploy this month’s patches should conduct thorough testing before deploying them widely on production systems. That said, applying the patches widely shouldn’t be delayed longer than necessary as hackers start to work out how to weaponize newly reported vulnerabilities.
+A best practice is to make sure you have backed up systems before applying updates. Every month, users experience issues with Windows updates that lead to systems not booting, application and hardware compatibility issues, or even data loss in extreme cases.
+There are backup tools built into Windows and Windows Server that you can use to restore systems in the event a patch causes a problem. The backup features in Windows can be used to restore an entire system, or files and folders on a granular basis.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a01d677b2ef')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ad2a66bb330">
+        <div class="article-body">
+          <a href="https://petri.com/how-to-use-windows-memory-diagnostic-tool/" target="_blank" rel="noopener noreferrer" class="article-title">How to Use Windows Memory Diagnostic Tool and How Much You Can Trust the Result</a>
+          <div class="article-meta">petri.com &bull; Jul 14, 2026</div>
+          <div class="article-summary"><p>Windows Memory Diagnostic is worth running as a first-pass RAM check after crashes, blue screens, freezes, or instability. But a clean result should not be treated as proof that memory is healthy.
+Quick answer: the Windows Memory Diagnostic Tool is a built-in Windows tool for checking RAM for possible memory errors. Run it if a PC is repeatedly crashing, freezing, restarting unexpectedly, or showing blue screen errors. If it reports memory errors, treat the result seriously. If it reports no errors, do not assume RAM is definitely healthy. Continue troubleshooting if the symptoms persist.
+If a Windows PC is crashing, freezing, or producing unexplained blue screens, Windows Memory Diagnostic is a reasonable first test because it is built in, easy to run, and can catch obvious RAM faults. But it is not the final word on memory health. Treat it as a quick triage tool: useful when it finds errors, less conclusive when it does not.
+Although Microsoft’s Windows operating system is normally stable and reliable, it is still possible for a system to exhibit issues such as application crashes, freezing, file corruption, random reboots, or even the Blue Screen of Death (BSOD). When these types of problems occur, it is best to begin the troubleshooting process by scanning for malware and installing any available updates. If that fails to resolve the problem however, then the issue could be related to the system’s memory.
+Fortunately, Windows 10 and Windows 11 contain a native tool that can help you to test for memory problems.
+The Windows Memory Diagnostic Tool is similar to third party memory checking tools such as Memtest86, but is native to the Windows operating system. It’s designed to run various diagnostic tests against a system’s memory in order to determine whether a problem exists.
+There are a few two main ways that you can open Windows memory diagnostic tool. The easiest option is:
+‘mdsched’ is name of the executable file used by the tool.
+Another option is to:
+When you launch the Memory Diagnostic Tool, you will be greeted with a splash screen, similar to the one that is shown in Figure 2. This screen appears because the tool cannot perform a memory test with the Windows operating system running. As such, the system must reboot.
+The startup screen gives you a choice between rebooting now and waiting to check for problems the next time that you restart the computer. If you do choose to restart now, then be sure to save your work and close any open programs prior to rebooting.
+When the computer reboots, Windows will immediately begin running the memory diagnostic test, as shown in Figure 3. During the test, a progress bar will help you to track the test’s progress.
+If you have initiated the test by accident, you can abort the testing process by pressing the Escape key. Generally speaking however, it is usually best to let the test complete.
+When you run Windows Memory Diagnostics Tool, it will check your system for RAM issues and then reboot once the tests have been completed. Sometimes, the test will automatically display the test results after you login, but more often, you will have to open the Event Viewer. The results are displayed within the Windows Logs | System log. You can see an example of the Memory Diagnostics Tool results shown in Figure 3. If you want to see the results in a dedicated window, right click on the log entry and select the Event Properties command from the shortcut menu.
+Although the Windows Memory Diagnostic Tool generally does a good job of detecting memory problems, there may be situations in which problems exist, but are not immediately detected by the tool. In such situations, you may see a result stating, “No errors were detected”.
+If you suspect that the machine contains memory issues that are not being reported, then you might consider running a more comprehensive memory test.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ad2a66bb330')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a8501477a4a">
+        <div class="article-body">
+          <a href="https://www.bleepingcomputer.com/news/security/new-windows-legacyhive-zero-day-exploit-grants-hackers-admin-access/" target="_blank" rel="noopener noreferrer" class="article-title">New Windows LegacyHive zero-day gives hackers admin privileges</a>
+          <div class="article-meta">bleepingcomputer.com &bull; Jul 17, 2026</div>
+          <div class="article-summary"><p>A security researcher using the &quot;Nightmare Eclipse&quot; handle has released a Windows zero-day exploit dubbed LegacyHive that allows attackers to escalate privileges on up-to-date Windows systems.
+Nightmare Eclipse published a proof-of-concept (PoC) exploit hours after Microsoft released its July 2026 Patch Tuesday updates, saying that it abuses a security vulnerability in the Windows User Profile Service, which has yet to receive a CVE ID for easier tracking.
+However, unlike previous exploits released by NightmwareEclipse, the LegacyHive PoC has been modified to require additional credentials, making it harder for attackers to weaponize the vulnerability.
+&quot;The PoC requires another standard user credentials and a third username (which can be an administrator account), if the PoC is successful, it will end up mounting the target user hive in current user classes root,&quot; the researcher said.
+&quot;The PoC was stripped down as an attempt to prevent public exploitation, the original PoC did not require additional user credential and was not limited to usrclass.dat hive, any hive could be loaded using this vulnerability but you would need some brain cells to make the PoC do it.&quot;
+As Will Dormann, principal vulnerability analyst at Tharros, explained after testing the LegacyHive exploit, successful exploitation would allow non-admin users to modify the classes registry hive and gain automatic code execution when the admin account logs into a compromised system.
+&quot;For example, as a novelty, we can associate .txt files to open with calc.exe,&quot; Dormann noted. &quot;Clever attackers or people who want to accomplish something will easily be able to figure out how to do things that are more interesting and/or don't even require user interaction.
+One day after the PoC was released, cybersecurity expert Kevin Beaumont also confirmed that the exploit works and published LegacyHive exploitation detection queries for the Microsoft Defender for Endpoint (MDE) enterprise-grade endpoint security platform.
+&quot;Microsoft is aware of the reported vulnerability and is actively investigating the validity and potential applicability of these claims. Microsoft is committed to investigating security issues and updating impacted products to protect customers as soon as possible,&quot; a Microsoft spokesperson told BleepingComputer today when asked for a statement regarding the LegacyHive exploit.
+&quot;Importantly, we support coordinated vulnerability disclosure, an industry standard that protects customers and supports the research community by ensuring their findings are thoroughly investigated and addressed before being made public.&quot;
+In recent months, Nightmare Eclipse has disclosed zero-day exploits for multiple Windows vulnerabilities in Microsoft Defender, BitLocker, and various Windows components, including RoguePlanet, BlueHammer, RedSun, YellowKey, GreenPlasma, MiniPlasma, and UnDefend.
+Microsoft fixed the GreenPlasma, MiniPlasma, and YellowKey flaws last month as part of the June 2026 Patch Tuesday updates and the RoguePlanet vulnerability in the July security updates.
+Microsoft responded to Nightmare Eclipse's disclosures with warnings of legal action against people engaging in &quot;malicious activity causing real harm to our customers,&quot; prompting cybersecurity experts to believe the company was directly threatening the security researcher.
+Update July 17, 10:05 EDT: Added Microsoft statement.
+Test every layer before attackers do
+Security teams log 54% of successful attacks and alert on just 14%. The rest move through your environment unseen.
+The Picus whitepaper shows how breach and attack simulation tests your SIEM and EDR rules so threats stop slipping by detection.
+Get the whitepaper</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a8501477a4a')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a26fa925ff2">
+        <div class="article-body">
+          <a href="https://www.bleepingcomputer.com/news/microsoft/windows-server-2022-reach-end-of-mainstream-support-in-90-days/" target="_blank" rel="noopener noreferrer" class="article-title">Windows Server 2022 reach end of mainstream support in 90 days</a>
+          <div class="article-meta">bleepingcomputer.com &bull; Jul 17, 2026</div>
+          <div class="article-summary"><p>Microsoft announced that Windows Server 2022 will reach the mainstream end date in October 2026, but will switch to extended support and continue receiving security updates for five more years.
+Windows Server 2022 was first announced in March 2021 and became generally available in September 2021 as the Long-Term Servicing Channel (LTSC) release, with 10 years of support.
+&quot;On October 13, 2026, Windows Server 2022 will reach end of mainstream support. The October 2026 security update will be the last mainstream support update available for this version,&quot; Microsoft said in a message center update on Thursday.
+&quot;After this date, Windows Server 2022 will transition to extended support, which includes security updates at no additional cost, and will continue to receive monthly security updates through October 14, 2031.&quot;
+Customers are now advised to upgrade to Windows Server 2025 (the latest version of Microsoft's server operating system), which became generally available in November 2024 after first rolling out to Windows Insiders in January 2024.
+Windows Server 2025 will reach the end of support on November 13, 2029, with extended support ending five years later, on November 14, 2034. Those who want to test Windows Server 2025 before deployment can use the free 180-day trial available through the Microsoft Evaluation Center.
+&quot;Windows Server 2025 is now the latest Long-Term Servicing Channel (LTSC) release for Windows Server. To help keep your environment protected and supported, plan to upgrade to Windows Server 2025 for full mainstream support,&quot; Microsoft noted.&quot;Evaluate upgrade options and begin deployment testing early to help ensure a smooth transition.&quot;
+You can find more information about Windows servicing dates using the Lifecycle Policy search tool or on the Windows Lifecycle FAQ page. Microsoft has also shared a list of products that will reach the end of support or will be retired in 2025.
+Last month, Microsoft also announced that it has extended Windows Server 2022 hotpatching until October 2027, one year after its mainstream end date of October 2026, for systems running the Datacenter: Azure Edition, and quietly extended the free Windows 10 Extended Security Updates (ESU) program for consumers by an additional year.
+More recently, on Wednesday, Microsoft reminded customers that Windows 10 Enterprise LTSB 2016 and the Home and Pro editions of Windows 11 24H2 will stop receiving updates 3 months after reaching end of support.
+Test every layer before attackers do
+Security teams log 54% of successful attacks and alert on just 14%. The rest move through your environment unseen.
+The Picus whitepaper shows how breach and attack simulation tests your SIEM and EDR rules so threats stop slipping by detection.
+Get the whitepaper</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a26fa925ff2')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ae73faf9396">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMixgFBVV95cUxQTDZmdlFXN05hcjBDOXJjWXlIZWZMeURXVkhJRjN0Ty05eThNMDRib2x3TGFpcWVQTHF6X0dDQnRsWlIxMVdVdnVHdmd3TUdfdDd1WTNJNWZvNE1YQVZjRUMwemxSaEFtZ3B3dUNSdVlqM3VTZXh1ekY3UjF2UEpNdUtFMkM1YmZoQ2VRZ0IxNTdMZjI3VGFaOTh3V09odTBnamE3dXozRFVVYUNjVTgyWEtEOE1McTNTcHlNM0dvd2R1SlE3dUE?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Windows 11’s July 2026 update is packed with AI‑driven improvements that redefine what Patch Tuesday means - Windows Central</a>
+          <div class="article-meta">Windows Central &bull; Jul 18, 2026</div>
+          <div class="article-summary snippet"><p>Windows 11’s July 2026 update is packed with AI‑driven improvements that redefine what Patch Tuesday means&amp;nbsp;&amp;nbsp;Windows Central</p><a href="https://news.google.com/rss/articles/CBMixgFBVV95cUxQTDZmdlFXN05hcjBDOXJjWXlIZWZMeURXVkhJRjN0Ty05eThNMDRib2x3TGFpcWVQTHF6X0dDQnRsWlIxMVdVdnVHdmd3TUdfdDd1WTNJNWZvNE1YQVZjRUMwemxSaEFtZ3B3dUNSdVlqM3VTZXh1ekY3UjF2UEpNdUtFMkM1YmZoQ2VRZ0IxNTdMZjI3VGFaOTh3V09odTBnamE3dXozRFVVYUNjVTgyWEtEOE1McTNTcHlNM0dvd2R1SlE3dUE?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ae73faf9396')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="azure" class="topic-section">
+      <h2 class="topic-title" style="--c:#00BCF2">Azure <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="add60ea506f">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-sql-server-migration-azure-vms-azure-arc/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Makes SQL Server Migration to Azure VMs Generally Available in Azure Arc</a>
+          <div class="article-meta">petri.com &bull; Jul 15, 2026</div>
+          <div class="article-summary"><p>New capability brings assessment, migration, monitoring, and cutover workflows into a single Azure experience.
+Key Takeaways:
+Microsoft has announced the general availability of SQL Server migrations to Azure Virtual Machines through Azure Arc. This new feature simplifies the migration of on-premises SQL Server workloads to Microsoft Azure by bringing the entire migration process into a single, integrated experience.
+Many organizations want to move their SQL Server workloads to Microsoft Azure. However, the migration process is often complicated by mixed environments, legacy dependencies, and the need to use multiple tools for assessment, migration, monitoring, and management. This approach can increase operational effort, create inconsistencies, and slow down modernization projects. This issue makes it harder for IT teams to choose the right cloud destination while maintaining a smooth and predictable migration experience.
+SQL Server migration enabled by Azure Arc is designed to simplify this process by bringing together migration activities into a single experience in the Azure portal. This service allows administrators to manage the entire migration lifecycle through a single tool in the Azure portal. They can perform discovery, readiness assessments, migration planning, configuration, monitoring, validation, and cutover from a single interface.
+“Migration to SQL Server on Azure Virtual Machines follows the same operational model already available for Azure SQL Managed Instance migration scenarios. Customers use the same migration dashboard, monitoring experience, and guided workflow regardless of the destination. This consistency reduces learning curves, simplifies operational processes, and enables teams to select the most appropriate Azure SQL platform without changing migration methodology,” Microsoft explained.
+The migration process is designed to be managed from a single experience in the Azure portal. After a source SQL Server instance is connected through Azure Arc, IT admins can assess readiness, choose SQL Server on Azure Virtual Machines as the target, configure migration settings, and track progress through a guided workflow.
+Azure Migrate and Azure Database Migration Service use Azure storage as an intermediate staging area when required to handle the movement of data. There are also built-in monitoring and validation tools that help ensure a smooth transition before the final cutover to production.
+This new solution helps organizations simplify modernization projects while reducing migration complexity and downtime. Keep in mind that the Azure Blob Storage account and the target SQL Server on Azure Virtual Machines should be within the same Azure region. Azure Arc will apply the most recent uploaded backup and bring the target database online to complete the final synchronization.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('add60ea506f')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a01d677b2ef">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-july-2026-patch-tuesday-63-critical-flaws/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft’s July 2026 Patch Tuesday Addresses 63 Critical Flaws and Two Actively Exploited Bugs</a>
+          <div class="article-meta">petri.com &bull; Jul 15, 2026</div>
+          <div class="article-summary"><p>Security updates cover Windows, Copilot, Exchange, Defender, Azure, and other enterprise platforms.
+Key Takeaways:
+Microsoft has released the July 2026 Patch Tuesday updates for Windows 11 versions 26H1, 26H2, and 24H2. This month, the company has fixed 621 vulnerabilities in Windows, Office, Microsoft Edge, Azure, Github Copilot, Defender, Exchange Server, and Hyper-V.
+As pointed out by the Zero Day Initiative, Microsoft’s July 2026 Patch Tuesday is “The Mother of All Releases. To call this record-breaking is an understatement. I looked at the last 20 years of Microsoft releases. The CVE count year-to-date exceeds all other years’ totals.”
+Microsoft’s latest Patch Tuesday updates bring fixes for several flaws, including 63 rated Critical, six rated Moderate, one rated Low, with the rest rated Important in severity. Two of these vulnerabilities are already being exploited by attackers. Here’s what you need to know about the critical vulnerabilities Microsoft fixed this month:
+You can find below the full list of security patches Microsoft released this month:
+On Windows 11, this month’s Patch Tuesday update also marks the release of a new feature that allows users to roll back their PCs to a recent automatic restore point. This update also brings another feature that lets users pause updates for up to 35 days and re‑pause them as needed.
+For Windows 11 versions 25H2 and 24H2, the KB5101650 update fixes an issue that affects certain third-party apps that use OLE Automation to interact with Microsoft Office. Moreover, this release introduces a security hardening change, which could cause apps that use sockets over unregistered third-party TDI transports to stop working.
+Microsoft says RDP security has been enhanced with support for SHA-2 certificate thumbprints for trusted publishers. Organizations are encouraged to adopt SHA-256 or stronger algorithms and use the new Group Policy guidance to control .rdp file access, which helps reduce phishing and security risks.
+Organizations looking to deploy this month’s patches should conduct thorough testing before deploying them widely on production systems. That said, applying the patches widely shouldn’t be delayed longer than necessary as hackers start to work out how to weaponize newly reported vulnerabilities.
+A best practice is to make sure you have backed up systems before applying updates. Every month, users experience issues with Windows updates that lead to systems not booting, application and hardware compatibility issues, or even data loss in extreme cases.
+There are backup tools built into Windows and Windows Server that you can use to restore systems in the event a patch causes a problem. The backup features in Windows can be used to restore an entire system, or files and folders on a granular basis.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a01d677b2ef')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a985d827c5d">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMirwFBVV95cUxNZEJBVm54UzYtdTd0UlhBMks1RXBBemVNakFFdXRaMmNheVZIR2s1amxBWnNwdTRnUlJPbm1rYXZ3cXNtalhoaDBkamQ2YjRGUnoxOERzZzgxMy1PNFRxRTNuOE5tWEFlQ0Y3VzRrU2hNTDliakJBUngzZF90Y0xDU1g0UmtvVGdpaXYwQU5BRDdpMGhpNnRmaFNlQXlidWxqNnRwRUxHMVNtZkxKc2ww?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Why Is Microsoft (NASDAQ:MSFT) Strengthening Azure Services? - Kalkine Media</a>
+          <div class="article-meta">Kalkine Media &bull; Jul 17, 2026</div>
+          <div class="article-summary snippet"><p>Why Is Microsoft (NASDAQ:MSFT) Strengthening Azure Services?&amp;nbsp;&amp;nbsp;Kalkine Media</p><a href="https://news.google.com/rss/articles/CBMirwFBVV95cUxNZEJBVm54UzYtdTd0UlhBMks1RXBBemVNakFFdXRaMmNheVZIR2s1amxBWnNwdTRnUlJPbm1rYXZ3cXNtalhoaDBkamQ2YjRGUnoxOERzZzgxMy1PNFRxRTNuOE5tWEFlQ0Y3VzRrU2hNTDliakJBUngzZF90Y0xDU1g0UmtvVGdpaXYwQU5BRDdpMGhpNnRmaFNlQXlidWxqNnRwRUxHMVNtZkxKc2ww?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a985d827c5d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aa078035ec9">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiygFBVV95cUxQeHpyTXYxQ0ZYOF8xV09RTFc0a1JhTWRtRkdwRDd2WHBGRURNWHJwUkNENXNQc0RJT2xjYlBJR3Q2ODBSVXdmRDVKUGdKZkJ4aXdZWkxrMWd4bWdQVFpBYmJrYmpGd3o1RnNhQzk3WVFtNWF3UWRCa2RpWE5oT3JWRndickstMzlNTFFwdzYwSThZOGtoemZ3LV9xVXllVk5MWnpxRlFiTmEtbDVmdEZaVVRPZ2c3b2d3SXdfTkYzY2tHeGc0N0g3aUVn?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Dust Contamination Slows AI Clusters: Azure Deploys Expanded Beam Optics Fix - Tech Times</a>
+          <div class="article-meta">Tech Times &bull; Jul 18, 2026</div>
+          <div class="article-summary snippet"><p>Dust Contamination Slows AI Clusters: Azure Deploys Expanded Beam Optics Fix&amp;nbsp;&amp;nbsp;Tech Times</p><a href="https://news.google.com/rss/articles/CBMiygFBVV95cUxQeHpyTXYxQ0ZYOF8xV09RTFc0a1JhTWRtRkdwRDd2WHBGRURNWHJwUkNENXNQc0RJT2xjYlBJR3Q2ODBSVXdmRDVKUGdKZkJ4aXdZWkxrMWd4bWdQVFpBYmJrYmpGd3o1RnNhQzk3WVFtNWF3UWRCa2RpWE5oT3JWRndickstMzlNTFFwdzYwSThZOGtoemZ3LV9xVXllVk5MWnpxRlFiTmEtbDVmdEZaVVRPZ2c3b2d3SXdfTkYzY2tHeGc0N0g3aUVn?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aa078035ec9')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="afc1c584212">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi9wFBVV95cUxPdkpKZnFhMTNSaXZPNXBwOWdoUTctc1RrTFJKbzhBVlNtRmNyYThSRi1ocFkzYnJLNkF3Nkl6eTRKUFFqVE43N3BRS0xWYzY1SWN1Vm1MRy1MMHhiU0RNVWlrRURTcFFkYnNta0NCblZycDFabGdKQUthcnBQWDFpWWtJTkpQemJWbjlGdTlvSDhXWUFJWjg0RWNrOUlXWDVRaTJybHJTNVNVLWtVX0YzUEtBTmdOa25aNkk1cTd0VkV6a2RVdXpfSnlyNG41Znh3eU45dThCOUhYaGRmd2lzUlFkNWQ4QWpsQS1KT2JUV0NZUnNwdEJ3?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">3M and Microsoft announce strategic partnership to advance AI data center infrastructure and enterprise transformation - Microsoft Source</a>
+          <div class="article-meta">Microsoft Source &bull; Jul 15, 2026</div>
+          <div class="article-summary snippet"><p>3M and Microsoft announce strategic partnership to advance AI data center infrastructure and enterprise transformation&amp;nbsp;&amp;nbsp;Microsoft Source</p><a href="https://news.google.com/rss/articles/CBMi9wFBVV95cUxPdkpKZnFhMTNSaXZPNXBwOWdoUTctc1RrTFJKbzhBVlNtRmNyYThSRi1ocFkzYnJLNkF3Nkl6eTRKUFFqVE43N3BRS0xWYzY1SWN1Vm1MRy1MMHhiU0RNVWlrRURTcFFkYnNta0NCblZycDFabGdKQUthcnBQWDFpWWtJTkpQemJWbjlGdTlvSDhXWUFJWjg0RWNrOUlXWDVRaTJybHJTNVNVLWtVX0YzUEtBTmdOa25aNkk1cTd0VkV6a2RVdXpfSnlyNG41Znh3eU45dThCOUhYaGRmd2lzUlFkNWQ4QWpsQS1KT2JUV0NZUnNwdEJ3?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('afc1c584212')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a73f6dfa628">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMivwFBVV95cUxQMEdqMTZJTTNRTDFzWWJERVRyUTZ5cW9jYVota2xoNnhWU0VKeW95VVg3Ym5pbDRkNmduYm5lN1lLbVZ0dUt4V3FFZV9iTFI3akpqSHVTTDF4STNGMkhqSDVoZXBJR2htdTh6YXVLYnFoT3BOWEZKcGk5enVnU3FtMXBrb19fSFRrTzZNTTVTTlhEM1J3M2ZaOHpNN29MbHFsckNRNlB1Q0JCUEZtN0ZqUmR4RHlfQjI2MVBUTXZDdw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Security Hub adds AI workload protection and multicloud support for Microsoft Azure - Amazon Web Services (AWS)</a>
+          <div class="article-meta">Amazon Web Services (AWS) &bull; Jul 14, 2026</div>
+          <div class="article-summary snippet"><p>Security Hub adds AI workload protection and multicloud support for Microsoft Azure&amp;nbsp;&amp;nbsp;Amazon Web Services (AWS)</p><a href="https://news.google.com/rss/articles/CBMivwFBVV95cUxQMEdqMTZJTTNRTDFzWWJERVRyUTZ5cW9jYVota2xoNnhWU0VKeW95VVg3Ym5pbDRkNmduYm5lN1lLbVZ0dUt4V3FFZV9iTFI3akpqSHVTTDF4STNGMkhqSDVoZXBJR2htdTh6YXVLYnFoT3BOWEZKcGk5enVnU3FtMXBrb19fSFRrTzZNTTVTTlhEM1J3M2ZaOHpNN29MbHFsckNRNlB1Q0JCUEZtN0ZqUmR4RHlfQjI2MVBUTXZDdw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a73f6dfa628')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aed48e2fe3c">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMixwFBVV95cUxPVEtYSUt6bVdMWlRzb2ZDSG1mYkZ5WENjRUc0bGxMbF8tY1p2blpQVTRuMlp1ZmZlMnBaYWVBR0J2TGxPaG1ZV1kwcW53VE5hb1U4bnVzWTdxVHFVUmN6XzFxbVRCSmd2VkdENmZUSl84M3ZFYVQ4S3NzWklVZnJ1RkdWMU5TclJQSTdKelZuT1hvX1JoWUFQUWY4cTdhbkFSUEpXaUlHX0NsZ1JYTTc1Vmxnb1BYTG9CTGVQVEZpV25tekhDdlFF?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Reportedly Pauses Fresh Hiring For Azure Cloud Segment Amid Broader Tech Layoffs Trend - Stocktwits</a>
+          <div class="article-meta">Stocktwits &bull; Jul 17, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft Reportedly Pauses Fresh Hiring For Azure Cloud Segment Amid Broader Tech Layoffs Trend&amp;nbsp;&amp;nbsp;Stocktwits</p><a href="https://news.google.com/rss/articles/CBMixwFBVV95cUxPVEtYSUt6bVdMWlRzb2ZDSG1mYkZ5WENjRUc0bGxMbF8tY1p2blpQVTRuMlp1ZmZlMnBaYWVBR0J2TGxPaG1ZV1kwcW53VE5hb1U4bnVzWTdxVHFVUmN6XzFxbVRCSmd2VkdENmZUSl84M3ZFYVQ4S3NzWklVZnJ1RkdWMU5TclJQSTdKelZuT1hvX1JoWUFQUWY4cTdhbkFSUEpXaUlHX0NsZ1JYTTc1Vmxnb1BYTG9CTGVQVEZpV25tekhDdlFF?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aed48e2fe3c')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a84a0b087e7">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMioAFBVV95cUxQQXZzTnp5UDNDekRYalgzUzRoRGxoRU9RcjZZdVk5Q09oODNsX3pmNzVGVGhGbnZpTHNKcDFNdUhISng2Q292aEJ4UkU4NThxSEFNTnFvVGxwbUtNeFJDRWZqV0lXckJQR1UzTnp3aWZFdzB0YmRtNFJlOTRrZG9lMkJyQnNLN21UWGw1cXd6QkZXdEpvRGVoSFBXOHlSZV8t?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">UpperEdge Delivers Tens of Millions in Cloud Savings Across AWS, Microsoft Azure, and Google Cloud Negotiations - Yahoo Finance</a>
+          <div class="article-meta">Yahoo Finance &bull; Jul 15, 2026</div>
+          <div class="article-summary snippet"><p>UpperEdge Delivers Tens of Millions in Cloud Savings Across AWS, Microsoft Azure, and Google Cloud Negotiations&amp;nbsp;&amp;nbsp;Yahoo Finance</p><a href="https://news.google.com/rss/articles/CBMioAFBVV95cUxQQXZzTnp5UDNDekRYalgzUzRoRGxoRU9RcjZZdVk5Q09oODNsX3pmNzVGVGhGbnZpTHNKcDFNdUhISng2Q292aEJ4UkU4NThxSEFNTnFvVGxwbUtNeFJDRWZqV0lXckJQR1UzTnp3aWZFdzB0YmRtNFJlOTRrZG9lMkJyQnNLN21UWGw1cXd6QkZXdEpvRGVoSFBXOHlSZV8t?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a84a0b087e7')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="sharepoint" class="topic-section">
+      <h2 class="topic-title" style="--c:#036C70">SharePoint <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="acac47f2985">
+        <div class="article-body">
+          <a href="https://www.theregister.com/security/2026/07/15/cisa-sounds-alarm-over-trio-of-exploited-sharepoint-flaws/5271814" target="_blank" rel="noopener noreferrer" class="article-title">CISA sounds alarm over trio of exploited SharePoint flaws</a>
+          <div class="article-meta">theregister.com &bull; Jul 15, 2026</div>
+          <div class="article-summary snippet"><p>Three bugs are under active attack, and two more critical holes could add to the pain</p><a href="https://www.theregister.com/security/2026/07/15/cisa-sounds-alarm-over-trio-of-exploited-sharepoint-flaws/5271814" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('acac47f2985')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a654d0124a4">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/07/acr-stealer-uses-clickfix-lures-to.html" target="_blank" rel="noopener noreferrer" class="article-title">ACR Stealer Uses ClickFix Lures to Steal Browser Tokens and Microsoft 365 Files</a>
+          <div class="article-meta">thehackernews.com &bull; Jul 17, 2026</div>
+          <div class="article-summary"><p>ACR Stealer, an infostealer in circulation since 2024, is walking out of enterprise networks with saved browser passwords, live session tokens, PDFs, Microsoft 365 documents, and files from synced OneDrive and SharePoint folders.
+It gets in because someone pasted a command into a Run box and pressed Enter. Microsoft laid out two of the delivery chains on Thursday. Its Defender Experts team, the company's managed detection arm, had watched ACR Stealer activity climb across customer environments from late April to mid-June, and says the campaigns are &quot;successfully using ClickFix lures to steal browser credentials, authentication tokens, and sensitive documents.&quot;
+Both chains open with the same prompt, then split: one leaves traces on disk, the other runs almost entirely in memory. Microsoft's remediation guidance tells victims to revoke tokens, not just rotate passwords.
+A payload in the pixels
+The prompt likely arrives through malvertising or SEO-manipulated search results, the report says. The fileless chain starts when the pasted command spawns mshta.exe to pull remote HTA content. An embedded VBScript loader leans on COM objects to decode and fire PowerShell; that stage mints a victim ID, disables certificate validation, and runs what it retrieves in memory.
+What it retrieves is a JPEG from an image host, with the payload sitting in the pixels. Custom routines carve it out, decrypt it, decompress it, and execute it reflectively. Then it goes for Chrome and Edge, reading the Login Data and Web Data databases and invoking DPAPI to decrypt the passwords, cookies, and tokens they hold. The PDFs on the Desktop and in Downloads go too.
+On May 26, SANS Internet Storm Center handler Brad Duncan documented a Windows infection he traced to a page impersonating Claude, Anthropic's AI assistant, reached through malicious Google ads and often hidden behind sites.google.com URLs. The page served macOS instructions when opened on a Mac and Windows instructions when opened on Windows.
+Microsoft never names the lure. Two of the indicators in its Campaign 2 table, creativecommunityinfo[.]art and enhanceblabber[.]cc, are listed as a payload host and a C2. The Hacker News matched both to Duncan's chain, which ran through subdomains of each seven weeks earlier, and Microsoft's report cites his diary among the references.
+That chain also pulled a 628 KB JPEG from ImgBB, an image-hosting service. He flagged it as part of the infection and got nothing out of it: &quot;nor could I find any obvious signs of embedded data.&quot;
+Red Canary had logged Claude-branded lures a month earlier, delivering ACR Stealer through fake Claude Code pages on GitLab such as claude-desktop[.]gitlab[.]io.
+The other chain leaves fingerprints
+Microsoft's first chain writes to disk, which leaves defenders more to work with. The pasted command pulls a DLL straight off a WebDAV share over HTTPS, using a GUID directory and a filename built to pass as something else; the report's example is google.ct.
+Red Canary published the same shape in its May report, from April telemetry, weeks before Microsoft's writeup:
+&quot;C:\Windows\system32\rundll32.exe&quot; \\sphere-api.dialectosphere.in[.]net\05fe317c-0981-4de2-bc8a-930d369db441\ck-3d80df5d12cdfe6450a782fc87bf66b444.google,#1
+Two of the three variants Defender Experts saw use pushd to mount the remote share as a temporary local drive first, so the payload runs through what looks like a local path. The stealthiest wraps that in conhost.exe --headless to kill the console window and hides the strings for pushd, rundll32, and the remote host behind delayed environment-variable expansion.
+What follows is obfuscated PowerShell. It drops a ZIP into a folder under %LocalAppData%\Temp with an innocuous name; Microsoft's example is LogiOptionsPlus. A bundled pythonw.exe then launches the Python script, so nothing flashes on screen.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a654d0124a4')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a348dfccf59">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/07/cisa-adds-exploited-sharepoint-rce-zero.html" target="_blank" rel="noopener noreferrer" class="article-title">CISA Adds Exploited SharePoint RCE Zero-Day CVE-2026-58644 to KEV</a>
+          <div class="article-meta">thehackernews.com &bull; Jul 17, 2026</div>
+          <div class="article-summary"><p>The U.S. Cybersecurity and Infrastructure Security Agency (CISA) on Thursday added a newly patched security flaw impacting Microsoft SharePoint Server to its Known Exploited Vulnerabilities (KEV) catalog, requiring Federal Civilian Executive Branch (FCEB) agencies to apply the fixes by July 19, 2026.
+The vulnerability in question is CVE-2026-58644 (CVSS score: 9.8), a critical deserialization of untrusted data vulnerability that allows an unauthorized attacker to execute arbitrary code.
+&quot;In a network-based attack, an attacker authenticated as at least a Site Owner, could write arbitrary code to inject and execute code remotely on the SharePoint Server,&quot; Microsoft said in an advisory released earlier this week.
+Redmond noted that the vulnerability is remotely exploitable over the internet, warning that the attack complexity is low for two reasons -
+- An attacker does not require significant prior knowledge of the system
+- An attacker can achieve repeatable success with the payload against the vulnerable component
+The vulnerability impacts the following versions -
+- Microsoft SharePoint Server Subscription Edition
+- Microsoft SharePoint Server 2019
+- Microsoft SharePoint Enterprise Server 2016
+Patches for the flaw have been released as part of the Patch Tuesday updates released on July 14, 2026. Microsoft has since revised its bulletin to clarify that CVE-2026-58644 has been exploited in the wild, meaning the shortcoming was weaponized as a zero-day prior to the fixes becoming available.
+The development comes as CISA warned of active exploitation of multiple SharePoint Server vulnerabilities, including CVE-2026-32201, CVE-2026-45659, CVE-2026-56164, and CVE-2026-58644, that could enable threat actors to gain unauthorized access to on-premises instances.
+&quot;These vulnerabilities affect all supported on-premises SharePoint Server versions (Subscription Edition, 2019, and 2016) and involve establishing remote code execution (RCE) and post-exploitation activities, such as stealing Internet Information Services (IIS) machine keys and performing deserialization techniques, to gain persistence and deploy malware,&quot; the federal cybersecurity watchdog noted.
+CISA has outlined the following hardening measures to contain the threat -
+- Apply the latest patches and security updates from Microsoft, verify they have been installed successfully, and shorten patching cycles when possible.
+- Verify that Antimalware Scan Interface (AMSI) integration is enabled for each SharePoint web application.
+- Scan for and remove intrusion artifacts, including machine key harvesting tools, before rotating IIS machine keys to avoid the theft of the keys.
+- Establish tailored logging mechanisms to detect and monitor exploitation activities.
+- Avoid exposing SharePoint Servers directly to the internet unless necessary.
+- Block external access to SharePoint Central Administration, restrict farm and database communications to required systems, and review Microsoft's SharePoint Server security-hardening guidance for role-specific ports, services, and Web.config settings.
+On Thursday, the agency also added two critical security flaws impacting Fortinet FortiSandbox (CVE-2026-25089 and CVE-2026-39808) to the KEV catalog, following reports of active exploitation. Federal agencies have until July 19, 2026, to update their instances to the latest supported versions.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a348dfccf59')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="acafdc7a02f">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiwgFBVV95cUxPWkd4ZXV3RkFIRlRVak94T0lqWW5WSHozX1ZBY2gxTTk2SmE0MWY1RzY1U21sbHVDcWsxVXB5LWNxX0g0UWJsRHZRRE5KN2d6UEl5eGtHNWY2TTc3Sk42TVFpVFkteF8tMmhVVVRBYm9IRk5KM0tBdG51REJoWHBfODFkOWN3QXpIbEE2ZVUxcDdhZkhMVXQzMU5tZ2w2MmxlTm9SN2hoeHBoTFYzbUVjZDRfUU5wWWRRTVdUZlI0bjhXdw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">From Web Request to Domain Compromise: Understanding the July 2026 SharePoint Attacks - Resecurity</a>
+          <div class="article-meta">Resecurity &bull; Jul 19, 2026</div>
+          <div class="article-summary snippet"><p>From Web Request to Domain Compromise: Understanding the July 2026 SharePoint Attacks&amp;nbsp;&amp;nbsp;Resecurity</p><a href="https://news.google.com/rss/articles/CBMiwgFBVV95cUxPWkd4ZXV3RkFIRlRVak94T0lqWW5WSHozX1ZBY2gxTTk2SmE0MWY1RzY1U21sbHVDcWsxVXB5LWNxX0g0UWJsRHZRRE5KN2d6UEl5eGtHNWY2TTc3Sk42TVFpVFkteF8tMmhVVVRBYm9IRk5KM0tBdG51REJoWHBfODFkOWN3QXpIbEE2ZVUxcDdhZkhMVXQzMU5tZ2w2MmxlTm9SN2hoeHBoTFYzbUVjZDRfUU5wWWRRTVdUZlI0bjhXdw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('acafdc7a02f')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="adf14b35f37">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiogFBVV95cUxNN2FpemlRdTdDZ2Z0dnF6ZUZxX3VqTVZ1ZzVuODhrd1ZfdzlGUkk0eExIYXpnYW5fME9PUGhNSmRZT1Z3bmdIeDRSbnFRUVFmQjBzYzJmXzEtcWQ5Ry1uMUlac1RPRVJiYnZ6ajBPWHpWNDlXR0dlUkFMckdZZkhKLWRmTXQyZkd0dzNOeWh1ajFVR2d4bXhGLU5FZmxoS1Fvenc?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">CISA warns that multiple vulnerabilities in SharePoint are under exploitation - Cybersecurity Dive</a>
+          <div class="article-meta">Cybersecurity Dive &bull; Jul 15, 2026</div>
+          <div class="article-summary snippet"><p>CISA warns that multiple vulnerabilities in SharePoint are under exploitation&amp;nbsp;&amp;nbsp;Cybersecurity Dive</p><a href="https://news.google.com/rss/articles/CBMiogFBVV95cUxNN2FpemlRdTdDZ2Z0dnF6ZUZxX3VqTVZ1ZzVuODhrd1ZfdzlGUkk0eExIYXpnYW5fME9PUGhNSmRZT1Z3bmdIeDRSbnFRUVFmQjBzYzJmXzEtcWQ5Ry1uMUlac1RPRVJiYnZ6ajBPWHpWNDlXR0dlUkFMckdZZkhKLWRmTXQyZkd0dzNOeWh1ajFVR2d4bXhGLU5FZmxoS1Fvenc?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('adf14b35f37')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ac451e6716c">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMirwFBVV95cUxNdWdyV0sxN2psN0cyQW44M1llNWFwOVVhLW1fZ0pVUElERjN4R09vUlhMbEw4aTlYM3lsa1JRejVfNVNnalY0SFQ1eUYxYUNvVXlsWWVsSDVOcDltak04Y0dJOVhobXpwU3V6MHU1SUx1V0FFOW5LR2pxTHpncEdVbWxhblRVS1BtX09zWjl6UkZ1bGRmMTVHQmN1STVrdWZwVFNvTXg0VDRTaUstdUpv?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">CVE-2026-55040: Microsoft SharePoint JWT Token Authentication Bypass (FIXED) - Rapid7</a>
+          <div class="article-meta">Rapid7 &bull; Jul 14, 2026</div>
+          <div class="article-summary snippet"><p>CVE-2026-55040: Microsoft SharePoint JWT Token Authentication Bypass (FIXED)&amp;nbsp;&amp;nbsp;Rapid7</p><a href="https://news.google.com/rss/articles/CBMirwFBVV95cUxNdWdyV0sxN2psN0cyQW44M1llNWFwOVVhLW1fZ0pVUElERjN4R09vUlhMbEw4aTlYM3lsa1JRejVfNVNnalY0SFQ1eUYxYUNvVXlsWWVsSDVOcDltak04Y0dJOVhobXpwU3V6MHU1SUx1V0FFOW5LR2pxTHpncEdVbWxhblRVS1BtX09zWjl6UkZ1bGRmMTVHQmN1STVrdWZwVFNvTXg0VDRTaUstdUpv?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac451e6716c')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a1c971769ad">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/07/cisa-adds-exploited-sharepoint-rce-zero.html" target="_blank" rel="noopener noreferrer" class="article-title">CISA Adds Exploited SharePoint RCE Zero-Day CVE-2026-58644 to KEV - The Hacker News</a>
+          <div class="article-meta">The Hacker News &bull; Jul 17, 2026</div>
+          <div class="article-summary"><p>The U.S. Cybersecurity and Infrastructure Security Agency (CISA) on Thursday added a newly patched security flaw impacting Microsoft SharePoint Server to its Known Exploited Vulnerabilities (KEV) catalog, requiring Federal Civilian Executive Branch (FCEB) agencies to apply the fixes by July 19, 2026.
+The vulnerability in question is CVE-2026-58644 (CVSS score: 9.8), a critical deserialization of untrusted data vulnerability that allows an unauthorized attacker to execute arbitrary code.
+&quot;In a network-based attack, an attacker authenticated as at least a Site Owner, could write arbitrary code to inject and execute code remotely on the SharePoint Server,&quot; Microsoft said in an advisory released earlier this week.
+Redmond noted that the vulnerability is remotely exploitable over the internet, warning that the attack complexity is low for two reasons -
+- An attacker does not require significant prior knowledge of the system
+- An attacker can achieve repeatable success with the payload against the vulnerable component
+The vulnerability impacts the following versions -
+- Microsoft SharePoint Server Subscription Edition
+- Microsoft SharePoint Server 2019
+- Microsoft SharePoint Enterprise Server 2016
+Patches for the flaw have been released as part of the Patch Tuesday updates released on July 14, 2026. Microsoft has since revised its bulletin to clarify that CVE-2026-58644 has been exploited in the wild, meaning the shortcoming was weaponized as a zero-day prior to the fixes becoming available.
+The development comes as CISA warned of active exploitation of multiple SharePoint Server vulnerabilities, including CVE-2026-32201, CVE-2026-45659, CVE-2026-56164, and CVE-2026-58644, that could enable threat actors to gain unauthorized access to on-premises instances.
+&quot;These vulnerabilities affect all supported on-premises SharePoint Server versions (Subscription Edition, 2019, and 2016) and involve establishing remote code execution (RCE) and post-exploitation activities, such as stealing Internet Information Services (IIS) machine keys and performing deserialization techniques, to gain persistence and deploy malware,&quot; the federal cybersecurity watchdog noted.
+CISA has outlined the following hardening measures to contain the threat -
+- Apply the latest patches and security updates from Microsoft, verify they have been installed successfully, and shorten patching cycles when possible.
+- Verify that Antimalware Scan Interface (AMSI) integration is enabled for each SharePoint web application.
+- Scan for and remove intrusion artifacts, including machine key harvesting tools, before rotating IIS machine keys to avoid the theft of the keys.
+- Establish tailored logging mechanisms to detect and monitor exploitation activities.
+- Avoid exposing SharePoint Servers directly to the internet unless necessary.
+- Block external access to SharePoint Central Administration, restrict farm and database communications to required systems, and review Microsoft's SharePoint Server security-hardening guidance for role-specific ports, services, and Web.config settings.
+On Thursday, the agency also added two critical security flaws impacting Fortinet FortiSandbox (CVE-2026-25089 and CVE-2026-39808) to the KEV catalog, following reports of active exploitation. Federal agencies have until July 19, 2026, to update their instances to the latest supported versions.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a1c971769ad')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a41bfb528cf">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiogFBVV95cUxQeDI4bWdXUFdBN25iYlRYN1lOY3ZJSWhpNDBzcUE1dngyNS1aOHg5Y05ETTlJRFJvaUMta0w3bjRvb0I0M1lkOTNtUmxZeUhxc3prSkhDMDlMYUNLc2t1eHFOQWdVRXZXOWVJQzR3WG81Rks1cE9zRi1jVnd6Tk14WGlYQmtETkJxQmx1QUNLQy1UZTluU1JCU19aVUx2MU5fZ0E?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">CISA warns of SharePoint vulnerabilities exploited by hackers - American Hospital Association</a>
+          <div class="article-meta">American Hospital Association &bull; Jul 17, 2026</div>
+          <div class="article-summary snippet"><p>CISA warns of SharePoint vulnerabilities exploited by hackers&amp;nbsp;&amp;nbsp;American Hospital Association</p><a href="https://news.google.com/rss/articles/CBMiogFBVV95cUxQeDI4bWdXUFdBN25iYlRYN1lOY3ZJSWhpNDBzcUE1dngyNS1aOHg5Y05ETTlJRFJvaUMta0w3bjRvb0I0M1lkOTNtUmxZeUhxc3prSkhDMDlMYUNLc2t1eHFOQWdVRXZXOWVJQzR3WG81Rks1cE9zRi1jVnd6Tk14WGlYQmtETkJxQmx1QUNLQy1UZTluU1JCU19aVUx2MU5fZ0E?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a41bfb528cf')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="intune" class="topic-section">
+      <h2 class="topic-title" style="--c:#0F6CBD">Intune <span class="count">(1)</span></h2>
+      <div class="article-card" data-id="a8b230d5457">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi5wFBVV95cUxNWk9GNHR5TG1tTWRxdUJkazdPbnhvd295cGh4aUdOTHJjOWRMTHg5My14SkY3TkdmWkNQaWVUS2VhcWlGNlRqTFBRaVRQVmFZR05WdmdJZWIzdThNckNPTU92Zk1oaGlMLXlBRGM4a3RSVEIta2xyRFpyRXoyVE1WenVEYWxEZndwQ284aHMwb3JGeDdEa1MtS0FXSzZWY2lqbkZVZGY0ZExSTHlnaVJXeGZ0WE5BcE1QSnZnZUhvMHlUS2pjcXVqUGYzd0ZkTEprMnJfUG9NTHFOZk85dGhfeHA1ZjRranM?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Entra ID security updates: Passkeys are the default authentication method in Entra ID - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; Jul 13, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft Entra ID security updates: Passkeys are the default authentication method in Entra ID&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMi5wFBVV95cUxNWk9GNHR5TG1tTWRxdUJkazdPbnhvd295cGh4aUdOTHJjOWRMTHg5My14SkY3TkdmWkNQaWVUS2VhcWlGNlRqTFBRaVRQVmFZR05WdmdJZWIzdThNckNPTU92Zk1oaGlMLXlBRGM4a3RSVEIta2xyRFpyRXoyVE1WenVEYWxEZndwQ284aHMwb3JGeDdEa1MtS0FXSzZWY2lqbkZVZGY0ZExSTHlnaVJXeGZ0WE5BcE1QSnZnZUhvMHlUS2pjcXVqUGYzd0ZkTEprMnJfUG9NTHFOZk85dGhfeHA1ZjRranM?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a8b230d5457')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="entraid" class="topic-section">
+      <h2 class="topic-title" style="--c:#6B69D6">Entra ID <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="ae051f36008">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-entra-id-passkeys-default-authentication/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Entra ID to Default to Passkeys Ahead of SMS and Voice Authentication Retirement</a>
+          <div class="article-meta">petri.com &bull; Jul 14, 2026</div>
+          <div class="article-summary"><p>Organizations are being urged to prepare users for phishing-resistant authentication and upcoming provider changes.
+Key Takeaways:
+Microsoft is making a major change to Microsoft Entra ID authentication by introducing passkeys as the default sign-in method for customers starting in September. The move marks another step toward passwordless authentication to help organizations strengthen defenses against modern credential theft and phishing attacks.
+Passkeys have become increasingly important because cybercriminals are using more sophisticated techniques to steal credentials, including AI-assisted phishing campaigns, social engineering, and multifactor authentication bypass attacks. Traditional methods such as passwords, SMS codes, and phone-based verification depend on information that can potentially be intercepted, tricked out of users, or reused by attackers. Passkeys eliminate many of these risks and help organizations better protect accounts, sensitive data, and digital resources.
+Microsoft has confirmed that passkeys will begin rolling out as the default authentication experience in Entra ID. Customers currently enabled for SMS or voice authentication will be automatically enrolled for passkeys and prompted to register one during their next multifactor authentication (MFA) sign-in.
+Microsoft will share details about supported telecom providers and pricing on September 18. Starting on October 30, administrators will be able to configure approved third-party telecom providers through the Microsoft Security Store. Microsoft will retire its native SMS and voice authentication service on February 1, 2027. After that date, organizations that still require SMS or voice authentication will need to obtain these services from approved third-party telecom providers through the Microsoft Security Store.
+Microsoft will discontinue its native SMS and voice authentication services for Microsoft Entra ID on February 1, 2027. It will require organizations that still need these methods to use approved third-party telecom providers instead. After that date, users who continue to rely on SMS or voice-based authentication will be required to register a passkey before signing in, and this change will be enforced across all tenants without an opt-out option.
+Organizations are advised to begin preparing for the transition to passkeys as early as possible by identifying users who still depend on SMS or voice-based authentication and developing a plan to move them to phishing-resistant alternatives. Microsoft recommends enabling passkeys across the organization, selecting the passkey types that best fit employee devices and work scenarios, and using Entra ID registration campaigns to encourage user adoption during routine sign-in processes.
+Additionally, organizations should proactively communicate upcoming changes to employees so they understand when passkey registration prompts will appear and how to complete the setup process. For businesses that must continue using SMS or voice authentication due to regulatory or technical requirements, Microsoft advises identifying affected user groups, evaluating supported telecom providers, and testing the configuration with a pilot group before broader deployment.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ae051f36008')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a189850f386">
+        <div class="article-body">
+          <a href="https://www.bleepingcomputer.com/news/security/abbott-laboratories-probes-two-cyber-incidents-amid-extortion-claims/" target="_blank" rel="noopener noreferrer" class="article-title">Abbott probes two cyber incidents amid extortion claims</a>
+          <div class="article-meta">bleepingcomputer.com &bull; Jul 17, 2026</div>
+          <div class="article-summary"><p>Abbott Laboratories is investigating two separate cybersecurity incidents after confirming unauthorized access to internal legacy Exact Sciences systems in its Cancer Diagnostics business, while also investigating a separate claim that attackers breached its LabCentral portal and stole company data.
+The company confirmed the Cancer Diagnostics incident after the ShinyHunters extortion gang added Abbott to its data leak site, initially threatening to publish allegedly stolen data after July 18 unless the company negotiated with the group, before later extending the deadline to July 21.
+When BleepingComputer asked Abbott about the alleged ShinyHunters incident, Abbott directed BleepingComputer to a statement published on its website.
+&quot;Abbott is investigating a cyber incident in which there was unauthorized access to a limited number of internal systems in our Cancer Diagnostics business only,&quot; the company said.
+&quot;This does not impact any business operations, product or product availability, manufacturing or lab operations, or our ability to serve patients.&quot;
+Abbott added that the security incident has not impacted any other Abbott businesses or systems, and said the legacy Exact Sciences systems are separate from Abbott's.
+The company said it activated its incident response procedures after it learned of the incident, engaged cybersecurity experts, and notified law enforcement.
+Abbott also stated that it does not expect the incident to have a material impact on its business or financial results.
+ShinyHunters claimed to BleepingComputer that it gained access through a vishing attack targeting several Abbott employees in mid-June. According to the threat actor, the attack allowed it to compromise a Microsoft Entra single sign-on (SSO) account and gain access to internal systems.
+Since last year, the extortion group has been conducting social engineering campaigns that target employees' Microsoft Entra, Okta, and Google SSO accounts.
+After gaining access to a corporate SSO account, the threat actors steal data from connected SaaS applications such as Salesforce, Microsoft 365, Google Workspace, SAP, Slack, Adobe, Atlassian, Zendesk, Dropbox, and many others.
+The extortion gang has been increasingly targeting medtech companies, including Medtronic, OneMedical, and AdaptHealth.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a189850f386')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ab3a79e11e6">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/07/oauth-client-id-spoofing-lets-attackers.html" target="_blank" rel="noopener noreferrer" class="article-title">OAuth Client ID Spoofing Lets Attackers Validate Stolen Microsoft Entra Credentials</a>
+          <div class="article-meta">thehackernews.com &bull; Jul 14, 2026</div>
+          <div class="article-summary"><p>At least two distinct threat actors are weaponizing a novel evasion technique called OAuth client ID spoofing in cloud campaigns, while slipping past telemetry.
+The activity allows users to enumerate user accounts and validate stolen credentials in Microsoft Entra ID environments, without ever generating a successful sign-in event that would otherwise alert defenders. And bad actors have begun to exploit this gap to obtain unauthorized access to an organization's cloud services.
+&quot;A blind spot in cloud sign-in telemetry: Entra ID returns different error responses depending on whether a supplied OAuth client ID is valid,&quot; Proofpoint said in a statement. &quot;Attackers exploit this to infer valid usernames and correct passwords at scale, effectively checking stolen credential lists without logging a successful login.&quot;
+In other words, the attacks leverage the OAuth client ID, a globally unique identifier (GUID) assigned to applications when requesting access to user data, and is passed as &quot;client_id&quot; in authentication requests. By providing spoofed client IDs, it enables account enumeration without a registered OAuth application and permits attackers to infer both password and account validity without generating a successful sign-in event.
+&quot;The Entra sign‑in logs are a primary telemetry source for identifying malicious authentication activity, including user enumeration, password spraying, and initial access attempts,&quot; Proofpoint researcher Rachel Rabin said.
+Threat clusters like UNK_CustomCloak have been observed spoofing User-Agent strings to orchestrate brute-force campaigns targeting Microsoft Entra ID environments by exploiting a legacy, discontinued first-party application called Windows Live Custom Domains to bypass standard sign-in restrictions and probe user passwords across over 4,000 tenants.
+But the latest efforts mark an evolution of this tradecraft by spoofing the OAuth client IDs via HTTP POST requests to Microsoft's OAuth 2.0 token endpoint using the Resource Owner Password Credentials (ROPC) flow. Specifically, this involves supplying a syntactically valid client ID but one that does not correspond to a real application.
+In such scenarios, only the application ID is recorded in the Entra sign-in log without a corresponding application name. The response, which contains an Azure Active Directory Security Token Service (AADSTS) error code, can then be used to infer whether the account exists and whether the password is correct without a registered application.
+&quot;If the spoofed client ID is not a proper UUIDv4, Entra does not reject the request outright,&quot; Proofpoint explained. &quot;Attackers can therefore analyze this error response to identify valid accounts and passwords, despite using malformed client IDs.&quot;
+&quot;When a spoofed client ID is used, no corresponding application name is recorded in the sign-in log.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ab3a79e11e6')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a24aba9d123">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiowFBVV95cUxObkZHQ2VSYTVfNUdNV3FucTJHbUUyZkQ0SmlhcEk1bENwR0tJeUNBLWhmZVV2ZTVDS2FmV19DdnB3ZjVEakd1OTA3T081OXZxdHdmNDhyUXVmZU90WHpUOVI5alhlSklKWThuTWlpYTlhX2llZ1BkbW1sY25PNHdzaTh3N1A1dUp2NHFrcGRRdl9ORXZhangwdlRWQWV4ZkIwbkV3?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Azure AD JIT Provisioning: How Just-in-Time User Creation Works - Security Boulevard</a>
+          <div class="article-meta">Security Boulevard &bull; Jul 18, 2026</div>
+          <div class="article-summary snippet"><p>Azure AD JIT Provisioning: How Just-in-Time User Creation Works&amp;nbsp;&amp;nbsp;Security Boulevard</p><a href="https://news.google.com/rss/articles/CBMiowFBVV95cUxObkZHQ2VSYTVfNUdNV3FucTJHbUUyZkQ0SmlhcEk1bENwR0tJeUNBLWhmZVV2ZTVDS2FmV19DdnB3ZjVEakd1OTA3T081OXZxdHdmNDhyUXVmZU90WHpUOVI5alhlSklKWThuTWlpYTlhX2llZ1BkbW1sY25PNHdzaTh3N1A1dUp2NHFrcGRRdl9ORXZhangwdlRWQWV4ZkIwbkV3?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a24aba9d123')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aa7f8d420fa">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMipgFBVV95cUxOU3p4ZVpKWnFWWEZfbm9MQ0FXODRYMGlqQW1QSDNHOTdxdUN6SWtnamlxeDJJRXNMLW51RHI2d3RsZk9KbkJUdDV3UVoxcndlS3Z2QXhNSl9VTXBJcF9teC1OM1JJSG12TGhkaUwtVks2Z1ZkY1A0MVJzVXFrNS1KWEwteTJ5bVNSUDVBc3VxQVlGMmxJZ2hNbXdZdzVOcDgwVVBKdlJn?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Passkeys will soon be the default authentication method in Microsoft Entra ID – here's what it means for users and when the changes come into effect - IT Pro</a>
+          <div class="article-meta">IT Pro &bull; Jul 16, 2026</div>
+          <div class="article-summary snippet"><p>Passkeys will soon be the default authentication method in Microsoft Entra ID – here's what it means for users and when the changes come into effect&amp;nbsp;&amp;nbsp;IT Pro</p><a href="https://news.google.com/rss/articles/CBMipgFBVV95cUxOU3p4ZVpKWnFWWEZfbm9MQ0FXODRYMGlqQW1QSDNHOTdxdUN6SWtnamlxeDJJRXNMLW51RHI2d3RsZk9KbkJUdDV3UVoxcndlS3Z2QXhNSl9VTXBJcF9teC1OM1JJSG12TGhkaUwtVks2Z1ZkY1A0MVJzVXFrNS1KWEwteTJ5bVNSUDVBc3VxQVlGMmxJZ2hNbXdZdzVOcDgwVVBKdlJn?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aa7f8d420fa')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ad69636b16e">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/07/oauth-client-id-spoofing-lets-attackers.html" target="_blank" rel="noopener noreferrer" class="article-title">OAuth Client ID Spoofing Lets Attackers Validate Stolen Microsoft Entra Credentials - The Hacker News</a>
+          <div class="article-meta">The Hacker News &bull; Jul 14, 2026</div>
+          <div class="article-summary"><p>At least two distinct threat actors are weaponizing a novel evasion technique called OAuth client ID spoofing in cloud campaigns, while slipping past telemetry.
+The activity allows users to enumerate user accounts and validate stolen credentials in Microsoft Entra ID environments, without ever generating a successful sign-in event that would otherwise alert defenders. And bad actors have begun to exploit this gap to obtain unauthorized access to an organization's cloud services.
+&quot;A blind spot in cloud sign-in telemetry: Entra ID returns different error responses depending on whether a supplied OAuth client ID is valid,&quot; Proofpoint said in a statement. &quot;Attackers exploit this to infer valid usernames and correct passwords at scale, effectively checking stolen credential lists without logging a successful login.&quot;
+In other words, the attacks leverage the OAuth client ID, a globally unique identifier (GUID) assigned to applications when requesting access to user data, and is passed as &quot;client_id&quot; in authentication requests. By providing spoofed client IDs, it enables account enumeration without a registered OAuth application and permits attackers to infer both password and account validity without generating a successful sign-in event.
+&quot;The Entra sign‑in logs are a primary telemetry source for identifying malicious authentication activity, including user enumeration, password spraying, and initial access attempts,&quot; Proofpoint researcher Rachel Rabin said.
+Threat clusters like UNK_CustomCloak have been observed spoofing User-Agent strings to orchestrate brute-force campaigns targeting Microsoft Entra ID environments by exploiting a legacy, discontinued first-party application called Windows Live Custom Domains to bypass standard sign-in restrictions and probe user passwords across over 4,000 tenants.
+But the latest efforts mark an evolution of this tradecraft by spoofing the OAuth client IDs via HTTP POST requests to Microsoft's OAuth 2.0 token endpoint using the Resource Owner Password Credentials (ROPC) flow. Specifically, this involves supplying a syntactically valid client ID but one that does not correspond to a real application.
+In such scenarios, only the application ID is recorded in the Entra sign-in log without a corresponding application name. The response, which contains an Azure Active Directory Security Token Service (AADSTS) error code, can then be used to infer whether the account exists and whether the password is correct without a registered application.
+&quot;If the spoofed client ID is not a proper UUIDv4, Entra does not reject the request outright,&quot; Proofpoint explained. &quot;Attackers can therefore analyze this error response to identify valid accounts and passwords, despite using malformed client IDs.&quot;
+&quot;When a spoofed client ID is used, no corresponding application name is recorded in the sign-in log.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ad69636b16e')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a35ebf4af8b">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiwAFBVV95cUxOaDZNTHpHandxSElsdU9oaDN2anJQano5UDBBeWw5WDAxdmo3VE5sWHdJa1VzQnBuNVYwY2tkbldjOGdaVl9tYkdiYmhramozVVpFMENVYlVpdW4wU09ESTAwX0l4a1NXaVJnN0FTdkRjWngwQUlSMlFRdDltM1Rka2gxYkJNVzBHMG4xZG9CdGxCNWJJN2xWWHdWS2haeE9SSGNBNXZINXl6V2dmRmZydWczck1hOXJXaFZ6RUJERGbSAcYBQVVfeXFMUGZCYmFKMnBwZHhVUUJSRUlKTHAtWVhNNmNQLWx5YlpnMFpVQ3hKeHdVdGNOSXNJYUZpdDVxUndlYTBVTERpQ0VNd0t5cWNjZUw4WERZTi1UX0Z0YzhDWXRuZy1hRjQ0NUNwblR3OXQ0bXlGY3ZwWmtmNjlVNWh5S2ZURXZBNHhXWHg4cDFyS1ljWEoxXzFxck0zMG0xR0EtaGdmWmNvNTY1Tm13N3RpMXZRZFZfdlNHV3phMWVQeXR5RklHZU9n?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Entra ID gets passkeys default authentication starting September - BleepingComputer</a>
+          <div class="article-meta">BleepingComputer &bull; Jul 14, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft Entra ID gets passkeys default authentication starting September&amp;nbsp;&amp;nbsp;BleepingComputer</p><a href="https://news.google.com/rss/articles/CBMiwAFBVV95cUxOaDZNTHpHandxSElsdU9oaDN2anJQano5UDBBeWw5WDAxdmo3VE5sWHdJa1VzQnBuNVYwY2tkbldjOGdaVl9tYkdiYmhramozVVpFMENVYlVpdW4wU09ESTAwX0l4a1NXaVJnN0FTdkRjWngwQUlSMlFRdDltM1Rka2gxYkJNVzBHMG4xZG9CdGxCNWJJN2xWWHdWS2haeE9SSGNBNXZINXl6V2dmRmZydWczck1hOXJXaFZ6RUJERGbSAcYBQVVfeXFMUGZCYmFKMnBwZHhVUUJSRUlKTHAtWVhNNmNQLWx5YlpnMFpVQ3hKeHdVdGNOSXNJYUZpdDVxUndlYTBVTERpQ0VNd0t5cWNjZUw4WERZTi1UX0Z0YzhDWXRuZy1hRjQ0NUNwblR3OXQ0bXlGY3ZwWmtmNjlVNWh5S2ZURXZBNHhXWHg4cDFyS1ljWEoxXzFxck0zMG0xR0EtaGdmWmNvNTY1Tm13N3RpMXZRZFZfdlNHV3phMWVQeXR5RklHZU9n?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a35ebf4af8b')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a8b230d5457">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi5wFBVV95cUxNWk9GNHR5TG1tTWRxdUJkazdPbnhvd295cGh4aUdOTHJjOWRMTHg5My14SkY3TkdmWkNQaWVUS2VhcWlGNlRqTFBRaVRQVmFZR05WdmdJZWIzdThNckNPTU92Zk1oaGlMLXlBRGM4a3RSVEIta2xyRFpyRXoyVE1WenVEYWxEZndwQ284aHMwb3JGeDdEa1MtS0FXSzZWY2lqbkZVZGY0ZExSTHlnaVJXeGZ0WE5BcE1QSnZnZUhvMHlUS2pjcXVqUGYzd0ZkTEprMnJfUG9NTHFOZk85dGhfeHA1ZjRranM?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Entra ID security updates: Passkeys are the default authentication method in Entra ID - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; Jul 13, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft Entra ID security updates: Passkeys are the default authentication method in Entra ID&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMi5wFBVV95cUxNWk9GNHR5TG1tTWRxdUJkazdPbnhvd295cGh4aUdOTHJjOWRMTHg5My14SkY3TkdmWkNQaWVUS2VhcWlGNlRqTFBRaVRQVmFZR05WdmdJZWIzdThNckNPTU92Zk1oaGlMLXlBRGM4a3RSVEIta2xyRFpyRXoyVE1WenVEYWxEZndwQ284aHMwb3JGeDdEa1MtS0FXSzZWY2lqbkZVZGY0ZExSTHlnaVJXeGZ0WE5BcE1QSnZnZUhvMHlUS2pjcXVqUGYzd0ZkTEprMnJfUG9NTHFOZk85dGhfeHA1ZjRranM?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a8b230d5457')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="m365" class="topic-section">
+      <h2 class="topic-title" style="--c:#D83B01">Microsoft 365 <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="acba06eb033">
+        <div class="article-body">
+          <a href="https://petri.com/exchange-online-cross-tenant-message-recall/" target="_blank" rel="noopener noreferrer" class="article-title">Exchange Online to Add Cross-Tenant Message Recall with Admin-Controlled Trust</a>
+          <div class="article-meta">petri.com &bull; Jul 13, 2026</div>
+          <div class="article-summary"><p>New allow-list model lets organizations control which external partners can participate in email recall requests.
+Key Takeaways:
+Microsoft is adding Cross-Tenant Message Recall to Exchange Online, allowing organizations to recall mistakenly sent emails across trusted Microsoft 365 tenants. The new capability extends one of Exchange Online’s most requested features while giving IT administrators full control over which external organizations can participate.
+In 2023, Microsoft released the cloud-based Message Recall feature for Exchange Online. Previously, message recall only worked when both sender and recipient belonged to the same organization. If an employee accidentally sent an email to someone in a different Microsoft 365 tenant, the message could not be recalled. This limitation created frustration for businesses that regularly work across multiple tenants.
+With this release, organizations will be able to allow message recalls from trusted external Microsoft 365 tenants, such as partners, subsidiaries, or affiliated companies. The receiving organization will maintain full control through an allow list. A recall request from another tenant will succeed only if the recipient’s tenant administrator has explicitly approved the sender’s tenant.
+“A cross-tenant recall is only honored when the receiving tenant’s admin has explicitly allow-listed the sender’s tenant. This keeps the receiving organization in full control of which external tenants are permitted to recall messages from its users’ mailboxes. The feature is disabled by default; no cross-tenant recall occurs until an admin adds at least one tenant to the allow list,” the Exchange team explained.
+The Cross-Tenant Message Recall feature will work through an administrator-controlled trust model. The recipient organization’s IT admin will first add a trusted Microsoft 365 tenant to an allow list. Once that trust relationship is established, users from the approved tenant will be able to initiate a message recall for emails sent to recipients in the other organization. Exchange Online will then handle the recall request similarly to how it does for messages exchanged within a single tenant.
+If the sender’s organization has not been added to the recipient tenant’s allow list, the recall request will not be processed, and the sender will receive a notification indicating that cross-organization message recall is not permitted. When a recall is allowed, recipients will experience it just as they would a standard internal recall.
+Microsoft notes that administrators will be able to manage this feature through Exchange Online PowerShell. It will allow IT admins to enable/disable cross-tenant recall and manage trusted tenant IDs.
+Microsoft plans to roll out the Cross-Tenant Message Recall feature in mid-August 2026. The company expects to make this capability generally available for commercial and government customers by mid-September 2026.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('acba06eb033')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="abcef30d9e2">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/07/acr-stealer-uses-clickfix-lures-to.html" target="_blank" rel="noopener noreferrer" class="article-title">ACR Stealer Uses ClickFix Lures to Steal Browser Tokens and Microsoft 365 Files - The Hacker News</a>
+          <div class="article-meta">The Hacker News &bull; Jul 17, 2026</div>
+          <div class="article-summary"><p>ACR Stealer, an infostealer in circulation since 2024, is walking out of enterprise networks with saved browser passwords, live session tokens, PDFs, Microsoft 365 documents, and files from synced OneDrive and SharePoint folders.
+It gets in because someone pasted a command into a Run box and pressed Enter. Microsoft laid out two of the delivery chains on Thursday. Its Defender Experts team, the company's managed detection arm, had watched ACR Stealer activity climb across customer environments from late April to mid-June, and says the campaigns are &quot;successfully using ClickFix lures to steal browser credentials, authentication tokens, and sensitive documents.&quot;
+Both chains open with the same prompt, then split: one leaves traces on disk, the other runs almost entirely in memory. Microsoft's remediation guidance tells victims to revoke tokens, not just rotate passwords.
+A payload in the pixels
+The prompt likely arrives through malvertising or SEO-manipulated search results, the report says. The fileless chain starts when the pasted command spawns mshta.exe to pull remote HTA content. An embedded VBScript loader leans on COM objects to decode and fire PowerShell; that stage mints a victim ID, disables certificate validation, and runs what it retrieves in memory.
+What it retrieves is a JPEG from an image host, with the payload sitting in the pixels. Custom routines carve it out, decrypt it, decompress it, and execute it reflectively. Then it goes for Chrome and Edge, reading the Login Data and Web Data databases and invoking DPAPI to decrypt the passwords, cookies, and tokens they hold. The PDFs on the Desktop and in Downloads go too.
+On May 26, SANS Internet Storm Center handler Brad Duncan documented a Windows infection he traced to a page impersonating Claude, Anthropic's AI assistant, reached through malicious Google ads and often hidden behind sites.google.com URLs. The page served macOS instructions when opened on a Mac and Windows instructions when opened on Windows.
+Microsoft never names the lure. Two of the indicators in its Campaign 2 table, creativecommunityinfo[.]art and enhanceblabber[.]cc, are listed as a payload host and a C2. The Hacker News matched both to Duncan's chain, which ran through subdomains of each seven weeks earlier, and Microsoft's report cites his diary among the references.
+That chain also pulled a 628 KB JPEG from ImgBB, an image-hosting service. He flagged it as part of the infection and got nothing out of it: &quot;nor could I find any obvious signs of embedded data.&quot;
+Red Canary had logged Claude-branded lures a month earlier, delivering ACR Stealer through fake Claude Code pages on GitLab such as claude-desktop[.]gitlab[.]io.
+The other chain leaves fingerprints
+Microsoft's first chain writes to disk, which leaves defenders more to work with. The pasted command pulls a DLL straight off a WebDAV share over HTTPS, using a GUID directory and a filename built to pass as something else; the report's example is google.ct.
+Red Canary published the same shape in its May report, from April telemetry, weeks before Microsoft's writeup:
+&quot;C:\Windows\system32\rundll32.exe&quot; \\sphere-api.dialectosphere.in[.]net\05fe317c-0981-4de2-bc8a-930d369db441\ck-3d80df5d12cdfe6450a782fc87bf66b444.google,#1
+Two of the three variants Defender Experts saw use pushd to mount the remote share as a temporary local drive first, so the payload runs through what looks like a local path. The stealthiest wraps that in conhost.exe --headless to kill the console window and hides the strings for pushd, rundll32, and the remote host behind delayed environment-variable expansion.
+What follows is obfuscated PowerShell. It drops a ZIP into a folder under %LocalAppData%\Temp with an innocuous name; Microsoft's example is LogiOptionsPlus. A bundled pythonw.exe then launches the Python script, so nothing flashes on screen.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('abcef30d9e2')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="acf36d008d7">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi4AFBVV95cUxNaFBlQk8taEdKLUhlTVFDU1lPdFIzUEFycGczWXgyeUtkdGwzVm4tRURQLWdyVktzZDRIVXhGQXh5Ty1rdHh6R0tWTS1NVkFTcVFuMXpnOVN6a01LcHlUeXNMVHJLQ3gzSU1jUEpQWU9oNm56WWdqOFZobVdXUkRZcWk4b19YMFdNLVRvSFA2VHdzcVlwdkhMdHRQc2Noc3FHQmVOcV93YUcwa0ZHSlhPQ09pT0hQNEwxSnNEbm1zMDZKdEhCNXJsYU5BTnNiUXpaWkdMdEZDNzBZSGJZODFQWA?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft at Black Hat USA 2026: Defending trust in the age of AI and supply chain attacks - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; Jul 17, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft at Black Hat USA 2026: Defending trust in the age of AI and supply chain attacks&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMi4AFBVV95cUxNaFBlQk8taEdKLUhlTVFDU1lPdFIzUEFycGczWXgyeUtkdGwzVm4tRURQLWdyVktzZDRIVXhGQXh5Ty1rdHh6R0tWTS1NVkFTcVFuMXpnOVN6a01LcHlUeXNMVHJLQ3gzSU1jUEpQWU9oNm56WWdqOFZobVdXUkRZcWk4b19YMFdNLVRvSFA2VHdzcVlwdkhMdHRQc2Noc3FHQmVOcV93YUcwa0ZHSlhPQ09pT0hQNEwxSnNEbm1zMDZKdEhCNXJsYU5BTnNiUXpaWkdMdEZDNzBZSGJZODFQWA?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('acf36d008d7')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a897b0b2a18">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMivAFBVV95cUxOVHlkWFNUaTJubHA4ZEhMbmdkY2tIbzJnYnhwMjctai1seVBGQV9qQ2Q5XzVYTk9QVllSNHZPSE42YVhiY0lOUlNMSU9JRXI0NUw3bEFZM0NIdGtwem5qd2hHZEhwZ1VES2k0LTRwdnhrbm5KU0ZYa0ppUnUxMnBlSGhsRm9DUGFfUm1XeGE1dUptTklnNlQ2NnZERklBVlZpdFNhVzJSejFIWXJFdjhoNk5GVkZqOVFILVJvSw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Forg365 industrializes Microsoft 365 phishing with AI-generated lures - Computerworld</a>
+          <div class="article-meta">Computerworld &bull; Jul 14, 2026</div>
+          <div class="article-summary snippet"><p>Forg365 industrializes Microsoft 365 phishing with AI-generated lures&amp;nbsp;&amp;nbsp;Computerworld</p><a href="https://news.google.com/rss/articles/CBMivAFBVV95cUxOVHlkWFNUaTJubHA4ZEhMbmdkY2tIbzJnYnhwMjctai1seVBGQV9qQ2Q5XzVYTk9QVllSNHZPSE42YVhiY0lOUlNMSU9JRXI0NUw3bEFZM0NIdGtwem5qd2hHZEhwZ1VES2k0LTRwdnhrbm5KU0ZYa0ppUnUxMnBlSGhsRm9DUGFfUm1XeGE1dUptTklnNlQ2NnZERklBVlZpdFNhVzJSejFIWXJFdjhoNk5GVkZqOVFILVJvSw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a897b0b2a18')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a75133f7718">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMipwFBVV95cUxNT3Y4VFFPY2tQVDJRelF2dW5BT1ZmclhLeEFwSDI4dExmbHMyQ1lYNnhSTmNUc0FTNTcwOWQ0T085YVFWWlZENDhNejFtMzIxNjVZYjI4Z3Npazl2dXNBUG9xV3hQbDJSUS1iRkk0WU5zbnl5OXBwX3NxVFdNRkE2UzRrWHZYWE5ObmQ4c1hnUGw2NGd5NmYyaWZfSlJjdDYteUpUZGtIYw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Attackers Find a New Way Into Microsoft 365 - The National CIO Review</a>
+          <div class="article-meta">The National CIO Review &bull; Jul 15, 2026</div>
+          <div class="article-summary snippet"><p>Attackers Find a New Way Into Microsoft 365&amp;nbsp;&amp;nbsp;The National CIO Review</p><a href="https://news.google.com/rss/articles/CBMipwFBVV95cUxNT3Y4VFFPY2tQVDJRelF2dW5BT1ZmclhLeEFwSDI4dExmbHMyQ1lYNnhSTmNUc0FTNTcwOWQ0T085YVFWWlZENDhNejFtMzIxNjVZYjI4Z3Npazl2dXNBUG9xV3hQbDJSUS1iRkk0WU5zbnl5OXBwX3NxVFdNRkE2UzRrWHZYWE5ObmQ4c1hnUGw2NGd5NmYyaWZfSlJjdDYteUpUZGtIYw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a75133f7718')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a5c4512cc8d">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMizAFBVV95cUxOZlFMMDNCcUpiLUVsN1ZRWTVLTlZtXzJDd1A5Rm9menFQQ1JFbk5EZWwzQzB0cEl6cmNoMEE3VVEwYS1LLU1xWHo4ZzQxTGNRbDlaTERpZi1HQzdkWV8yR3d4UkdkVFFzaTlWMHNUSkRoeFVveTdDdkFQSkZzekdPdEMySGYyRzlGNlItTGgyd0V1UWJJNUpmcHhkb2txd1cwMVNZT1ZvLWhvRXd4N3lxWllnV19jNF9fMWhtc0JzYUNsejUzTk5xSWpWbVo?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Misconfigured Server Exposes Evilginx Phishing Campaigns Bypassing MFA to Target Microsoft 365 Accounts - Rescana</a>
+          <div class="article-meta">Rescana &bull; Jul 14, 2026</div>
+          <div class="article-summary snippet"><p>Misconfigured Server Exposes Evilginx Phishing Campaigns Bypassing MFA to Target Microsoft 365 Accounts&amp;nbsp;&amp;nbsp;Rescana</p><a href="https://news.google.com/rss/articles/CBMizAFBVV95cUxOZlFMMDNCcUpiLUVsN1ZRWTVLTlZtXzJDd1A5Rm9menFQQ1JFbk5EZWwzQzB0cEl6cmNoMEE3VVEwYS1LLU1xWHo4ZzQxTGNRbDlaTERpZi1HQzdkWV8yR3d4UkdkVFFzaTlWMHNUSkRoeFVveTdDdkFQSkZzekdPdEMySGYyRzlGNlItTGgyd0V1UWJJNUpmcHhkb2txd1cwMVNZT1ZvLWhvRXd4N3lxWllnV19jNF9fMWhtc0JzYUNsejUzTk5xSWpWbVo?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a5c4512cc8d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a7fdebcf75b">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi6wFBVV95cUxPNnNBd3dPc1dBc0hNWkFLdVh2Tk1RUG1xM21YcnZyd29BQnBhekd6ZzZSYzhFLVRYbFB4QjFKNHhaS3MwMVhFRGs3bXZPZkxEU21MbWJBWEZPVndFTFFwM2theTVjOFRYVEtobDJqVHBJdEY4R2NGb3JSemFzMnB5bWl6QnRmM2o5cUM4RzN6RFh2dWdOZTZyNWotRnQ4d0hOOHNWMkZLRTZWV0JKRXVCcmlxbUdsUElRM0lYOEF3TzgxaFZNY1Q1SDZkV3VjLXZCOE5KZEs1eDUtVlVTcW5HODMyV2wxbC16VXlR?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">FBI warns Kali365 phishing platform is targeting Microsoft 365 users; Floridians report $12 million in losses - News4JAX</a>
+          <div class="article-meta">News4JAX &bull; Jul 15, 2026</div>
+          <div class="article-summary snippet"><p>FBI warns Kali365 phishing platform is targeting Microsoft 365 users; Floridians report $12 million in losses&amp;nbsp;&amp;nbsp;News4JAX</p><a href="https://news.google.com/rss/articles/CBMi6wFBVV95cUxPNnNBd3dPc1dBc0hNWkFLdVh2Tk1RUG1xM21YcnZyd29BQnBhekd6ZzZSYzhFLVRYbFB4QjFKNHhaS3MwMVhFRGs3bXZPZkxEU21MbWJBWEZPVndFTFFwM2theTVjOFRYVEtobDJqVHBJdEY4R2NGb3JSemFzMnB5bWl6QnRmM2o5cUM4RzN6RFh2dWdOZTZyNWotRnQ4d0hOOHNWMkZLRTZWV0JKRXVCcmlxbUdsUElRM0lYOEF3TzgxaFZNY1Q1SDZkV3VjLXZCOE5KZEs1eDUtVlVTcW5HODMyV2wxbC16VXlR?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a7fdebcf75b')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a5d53ead050">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiiwFBVV95cUxNcEFrSUNORGktMU9YSmNSTXdXdzROYmFQT0ZiOVZ0MUxiX01WUFVGc29JaTdWX24yOEhIM2pOSE80bzQ2aW1FaEZUaWFhcVVtVDVqM0RIYUt3RjNtMzRBM2F1b0ZWV2k1THRMb1Jra0NNc2JEVW5sNTJfTXJLY29Vd2ZsUmIwTGNqNDZN?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">4 Disadvantages Of Using Microsoft Word Instead Of Google Docs - bgr.com</a>
+          <div class="article-meta">bgr.com &bull; Jul 18, 2026</div>
+          <div class="article-summary snippet"><p>4 Disadvantages Of Using Microsoft Word Instead Of Google Docs&amp;nbsp;&amp;nbsp;bgr.com</p><a href="https://news.google.com/rss/articles/CBMiiwFBVV95cUxNcEFrSUNORGktMU9YSmNSTXdXdzROYmFQT0ZiOVZ0MUxiX01WUFVGc29JaTdWX24yOEhIM2pOSE80bzQ2aW1FaEZUaWFhcVVtVDVqM0RIYUt3RjNtMzRBM2F1b0ZWV2k1THRMb1Jra0NNc2JEVW5sNTJfTXJLY29Vd2ZsUmIwTGNqNDZN?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a5d53ead050')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="iru" class="topic-section">
+      <h2 class="topic-title" style="--c:#7C3AED">Iru MDM (formerly Kandji) </h2>
+      <p class="no-news">No articles found this week.</p>
+    </section>
+    <section id="cato" class="topic-section">
+      <h2 class="topic-title" style="--c:#FF6B35">Cato Networks <span class="count">(2)</span></h2>
+      <div class="article-card" data-id="a2de102f2c4">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMic0FVX3lxTE5LWXNQSlNHc2pjZTZTTGVxaDRxbWo4ZG85RS1Gek1FNndaeFdiRmlMRzRBX1ZlRVg5WVdVWmZWV3dkTVJvUkZsS0hNZEZBbGk0SHJzelhIeXBqaklOOGtGWDVPY2hHUzNubDJxN0RTZlMycFk?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Top 10: Network Security Companies - Cyber Magazine</a>
+          <div class="article-meta">Cyber Magazine &bull; Jul 15, 2026</div>
+          <div class="article-summary snippet"><p>Top 10: Network Security Companies&amp;nbsp;&amp;nbsp;Cyber Magazine</p><a href="https://news.google.com/rss/articles/CBMic0FVX3lxTE5LWXNQSlNHc2pjZTZTTGVxaDRxbWo4ZG85RS1Gek1FNndaeFdiRmlMRzRBX1ZlRVg5WVdVWmZWV3dkTVJvUkZsS0hNZEZBbGk0SHJzelhIeXBqaklOOGtGWDVPY2hHUzNubDJxN0RTZlMycFk?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a2de102f2c4')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a792a94a1f1">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMieEFVX3lxTE5zX2Z6bnlqcEgzQ2ZZczJzYTlEVGN0VXk2NkU1bk5aR0Q2aW9pY1VELUtjdnpCejlzTG9ZRlV1eVNmNG5FQVhsNmRBV29BTmhsWmk3dTNTcFZkRzFGMHNpOHI4TnBrYzFWZGt1WGV0S0RtN2VOQkRCMg?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Single Prompt Enables ChatGPT to Execute Full Cyber-Attack Chain, Researchers Claim - Infosecurity Magazine</a>
+          <div class="article-meta">Infosecurity Magazine &bull; Jul 15, 2026</div>
+          <div class="article-summary snippet"><p>Single Prompt Enables ChatGPT to Execute Full Cyber-Attack Chain, Researchers Claim&amp;nbsp;&amp;nbsp;Infosecurity Magazine</p><a href="https://news.google.com/rss/articles/CBMieEFVX3lxTE5zX2Z6bnlqcEgzQ2ZZczJzYTlEVGN0VXk2NkU1bk5aR0Q2aW9pY1VELUtjdnpCejlzTG9ZRlV1eVNmNG5FQVhsNmRBV29BTmhsWmk3dTNTcFZkRzFGMHNpOHI4TnBrYzFWZGt1WGV0S0RtN2VOQkRCMg?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a792a94a1f1')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+</main>
+
+<footer>
+  Generated every Sunday &mdash; Topics: Windows &bull; Azure &bull; SharePoint &bull; Intune &bull; Entra ID &bull; Microsoft 365 &bull; Iru MDM (formerly Kandji) &bull; Cato Networks
+</footer>
+
+<script>
+const KEY = 'it-news-hidden-v1';
+function getHidden() {
+  try { return new Set(JSON.parse(localStorage.getItem(KEY) || '[]')); }
+  catch { return new Set(); }
+}
+function saveHidden(s) { localStorage.setItem(KEY, JSON.stringify([...s])); }
+function toggleArticle(id) {
+  const h = getHidden();
+  h.has(id) ? h.delete(id) : h.add(id);
+  saveHidden(h); applyHidden(h);
+}
+function applyHidden(h) {
+  h = h || getHidden();
+  document.querySelectorAll('.article-card[data-id]').forEach(c => {
+    c.classList.toggle('is-hidden', h.has(c.dataset.id));
+  });
+}
+let revealing = false;
+function toggleReveal() {
+  revealing = !revealing;
+  document.body.classList.toggle('reveal-hidden', revealing);
+  document.getElementById('reveal-btn').textContent = revealing ? 'Hide hidden' : 'Show hidden';
+}
+fetch('weeks.json').then(r => r.json()).then(weeks => {
+  const sel = document.getElementById('week-sel');
+  weeks.forEach(w => {
+    const o = document.createElement('option');
+    o.value = w.file; o.textContent = w.label;
+    if (w.current) o.selected = true;
+    sel.appendChild(o);
+  });
+}).catch(() => {});
+applyHidden();
+</script>
+</body>
+</html>
