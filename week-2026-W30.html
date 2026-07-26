@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT News Digest — 2026-W30</title>
+  <style>
+    :root{--bg:#f8fafc;--surface:#fff;--border:#e2e8f0;--text:#1e293b;--muted:#64748b;--accent:#2563eb}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+    a{color:var(--accent)}
+
+    header{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+    .h-inner{max-width:1000px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .h-brand{font-size:1.1rem;font-weight:800;color:#1d4ed8}
+    .h-meta{font-size:.78rem;color:var(--muted)}
+    .h-controls{display:flex;gap:8px;align-items:center}
+    .btn{padding:5px 12px;border-radius:6px;font-size:.78rem;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);white-space:nowrap}
+    .btn:hover{background:#f1f5f9}
+    select.week-sel{padding:5px 10px;border-radius:6px;border:1px solid var(--border);background:var(--surface);font-size:.78rem;cursor:pointer;color:var(--text)}
+
+    .t-nav{background:var(--surface);border-bottom:1px solid var(--border);overflow-x:auto}
+    .t-nav-inner{max-width:1000px;margin:0 auto;padding:8px 20px;display:flex;gap:6px;min-width:max-content}
+    .nav-link{font-size:.72rem;padding:3px 10px;border-radius:20px;border:2px solid var(--c,#2563eb);color:var(--c,#2563eb);text-decoration:none;font-weight:600;white-space:nowrap}
+    .nav-link:hover{background:var(--c,#2563eb);color:#fff}
+
+    main{max-width:1000px;margin:0 auto;padding:24px 20px}
+
+    .week-hero{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin-bottom:28px;display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+    .hero-title{font-size:1.6rem;font-weight:900;color:#1d4ed8}
+    .hero-sub{font-size:.85rem;color:var(--muted);margin-top:2px}
+    .stat-box{text-align:center;min-width:60px}
+    .stat-num{font-size:2rem;font-weight:900;color:#1d4ed8;line-height:1}
+    .stat-lbl{font-size:.65rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+
+    .topic-section{margin-bottom:40px}
+    .topic-title{font-size:1.2rem;font-weight:800;color:var(--c,#2563eb);border-bottom:3px solid var(--c,#2563eb);padding-bottom:8px;margin-bottom:14px}
+    .count{font-size:.8rem;font-weight:400;color:var(--muted)}
+    .no-news{color:var(--muted);font-style:italic;font-size:.88rem}
+
+    .article-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:12px;display:flex;gap:12px;align-items:flex-start;transition:border-color .15s}
+    .article-card:hover{border-color:#94a3b8}
+    .article-body{flex:1;min-width:0}
+    .article-title{font-size:.98rem;font-weight:600;text-decoration:none;display:block;margin-bottom:4px;color:var(--accent)}
+    .article-title:hover{text-decoration:underline}
+    .article-meta{font-size:.72rem;color:var(--muted);margin-bottom:8px}
+
+    .article-summary{margin-top:6px;font-size:.875rem;color:#334155;line-height:1.75}
+    .article-summary p{margin-bottom:.6em}
+    .article-summary p:last-child{margin-bottom:0}
+    .gnews-badge{display:inline-block;font-size:.65rem;background:#fef3c7;color:#92400e;border-radius:4px;padding:1px 5px;margin-bottom:6px;vertical-align:middle}
+    .article-summary.snippet{color:var(--muted)}
+    .read-more{display:inline-block;margin-top:6px;font-size:.8rem;font-weight:600;color:var(--accent);text-decoration:none}
+    .read-more:hover{text-decoration:underline}
+
+    .hide-btn{flex-shrink:0;padding:5px 10px;border-radius:6px;font-size:.72rem;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--muted);white-space:nowrap;align-self:flex-start}
+    .hide-btn:hover{border-color:#ef4444;color:#ef4444;background:#fef2f2}
+    .lbl-show{display:none}
+
+    .article-card.is-hidden{display:none}
+    body.reveal-hidden .article-card.is-hidden{display:flex;opacity:.45;border-style:dashed}
+    .article-card.is-hidden .lbl-hide{display:none}
+    .article-card.is-hidden .lbl-show{display:inline}
+    body.reveal-hidden .article-card.is-hidden .hide-btn{border-color:#16a34a;color:#16a34a}
+    body.reveal-hidden .article-card.is-hidden .hide-btn:hover{background:#f0fdf4}
+
+    footer{text-align:center;padding:24px 20px;color:var(--muted);font-size:.75rem;border-top:1px solid var(--border);margin-top:40px}
+
+    @media(max-width:600px){
+      .h-inner,.main{padding-left:14px;padding-right:14px}
+      .hero-title{font-size:1.3rem}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="h-inner">
+    <div>
+      <div class="h-brand">IT News Digest</div>
+      <div class="h-meta">Week 2026-W30 &bull; Jul 20–26, 2026</div>
+    </div>
+    <div class="h-controls">
+      <button class="btn" id="reveal-btn" onclick="toggleReveal()">Show hidden</button>
+      <select class="week-sel" id="week-sel" onchange="if(this.value) location.href=this.value">
+        <option value="">&#128337; Archive&hellip;</option>
+      </select>
+    </div>
+  </div>
+</header>
+
+<nav class="t-nav"><div class="t-nav-inner"><a href="#windows" class="nav-link" style="--c:#0078D4">Microsoft Windows</a><a href="#azure" class="nav-link" style="--c:#00BCF2">Azure</a><a href="#sharepoint" class="nav-link" style="--c:#036C70">SharePoint</a><a href="#intune" class="nav-link" style="--c:#0F6CBD">Intune</a><a href="#entraid" class="nav-link" style="--c:#6B69D6">Entra ID</a><a href="#m365" class="nav-link" style="--c:#D83B01">Microsoft 365</a><a href="#iru" class="nav-link" style="--c:#7C3AED">Iru MDM (formerly Kandji)</a><a href="#cato" class="nav-link" style="--c:#FF6B35">Cato Networks</a></div></nav>
+
+<main>
+  <div class="week-hero">
+    <div>
+      <div class="hero-title">Week 2026-W30</div>
+      <div class="hero-sub">Jul 20–26, 2026</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">49</div>
+      <div class="stat-lbl">Articles</div>
+    </div>
+  </div>
+
+    <section id="windows" class="topic-section">
+      <h2 class="topic-title" style="--c:#0078D4">Microsoft Windows <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a7c89d40cfa">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windows-insider/2026/07/21/announcing-windows-11-insider-preview-build-28120-2546-for-experimental-26h1/" target="_blank" rel="noopener noreferrer" class="article-title">Announcing Windows 11 Insider Preview Build 28120.2546 for Experimental (26H1)</a>
+          <div class="article-meta">blogs.windows.com &bull; Jul 21, 2026</div>
+          <div class="article-summary"><p>Announcing Windows 11 Insider Preview Build 28120.2546 for Experimental (26H1)
+Hello Windows Insiders,
+Today we’re releasing build 28120.2546 for the Experimental (26H1) channel. Release notes can be found over in the Windows Insider Documentation Hub as usual, as well as below:
+Changes and improvements gradually being rolled out
+– This update includes a small set of general improvements and fixes that improve the overall experience for Insiders running this build on their PCs.
+[Smart card removal policy]
+– Administrators can now configure Azure Virtual Desktop (AVD) and Windows 365 sessions that use Microsoft Entra ID (RDS AAD Auth) authentication to automatically disconnect when a redirected smart card is removed. This extends smart card removal policy enforcement to Microsoft Entra authenticated remote sessions, helping organizations meet security and compliance requirements.
+[Narrator]
+– Braille displays now connect instantly with Narrator.
+– We’re making refreshable braille displays easier to use in Windows. Narrator now supports displays that use the HID standard, an open industry standard for braille displays. If your display supports HID, simply connect it via USB and start reading with no additional setup required.
+– For Bluetooth, pair your HID braille display in **Settings &gt; Bluetooth &amp; devices** just like any other accessory, and you can work wirelessly without being tethered to your PC.
+– Compatible HID displays include Orbit Reader 20, Orbit Slate 340, Freedom Scientific Focus 40, and APH Mantis Q40.
+– HID braille displays now work during the initial Windows setup experience (OOBE) over USB, meaning users who are deaf-blind can set up their PC independently right from the first screen.
+– You can customize braille input and output options anytime in **Settings &gt; Accessibility &gt; Narrator &gt; Braille**.
+[Voice Access]
+– Voice Access now supports Portuguese (Portugal), Portuguese (Brazil), and Korean (South Korea).
+[Settings]
+– The Bluetooth quick settings page is now navigable using gamepad input.
+– Fixed an issue causing the Graphics page in Settings to crash for Insiders after the latest updates.
+[Sounds]
+– Improved system sounds when using Windows in dark mode.
+Thanks!
+Stephen and the Windows Insider Program team</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a7c89d40cfa')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aaeb8df791b">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windows-insider/2026/07/20/announcing-new-builds-for-20-july-2026/" target="_blank" rel="noopener noreferrer" class="article-title">Announcing new builds for 20 July 2026</a>
+          <div class="article-meta">blogs.windows.com &bull; Jul 20, 2026</div>
+          <div class="article-summary"><p>Announcing new builds for 20 July 2026
+Hello Windows Insiders,
+Today we are releasing new Windows 11 Insider Preview Builds across Beta, Experimental and Release Preview. See your channel release notes here:
+- Beta: Build 26220.8925
+- Experimental: Build 26300.8935
+For those on other specific build versions, here are today’s new builds and release notes:
+- Beta (26H1): Build 28020.2539
+- Experimental (26H1): No new build today, please keep an eye out for future blog updates
+- Experimental (Future Platforms): No new build today, please keep an eye out for future blog updates
+We also have Release Preview builds today for 24H2/25H2 and 26H1: [Update: Corrected build numbers]
+- Release Preview 24H2/25H2: Build 26100.8968/26200.8968
+- Release Preview 26H1: Build 28000.2605
+Thanks,
+Stephen and the Windows Insider Program team
+					Tags:</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aaeb8df791b')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="abf14dbc79e">
+        <div class="article-body">
+          <a href="https://petri.com/first-ring-daily-more-next-week/" target="_blank" rel="noopener noreferrer" class="article-title">First Ring Daily: More Next Week</a>
+          <div class="article-meta">petri.com &bull; Jul 24, 2026</div>
+          <div class="article-summary"><p>In this episode of First Ring Daily, Brad Sams and Paul Thurrott discuss Intel’s latest earnings report and LG using Windows driver updates for its monitors to install adware on Windows PCs.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('abf14dbc79e')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="afb4974e991">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-secure-windows-kms-tpm-attestation/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft to Add TPM-Based Attestation to Secure Windows KMS Activation</a>
+          <div class="article-meta">petri.com &bull; Jul 23, 2026</div>
+          <div class="article-summary"><p>New hardware-backed verification aims to reduce risks from spoofed activation servers and compromised infrastructure.
+Key Takeaways:
+As cyber threats continue to evolve, Microsoft is strengthening Windows activation security by extending protection beyond software and into the hardware layer. The new KMS Hardware-Secured feature uses TPM-based attestation to ensure that activation servers are running on trusted, uncompromised hardware before they can activate Windows devices.
+Key Management Service (KMS) is a volume activation technology that allows organizations to activate Windows and other Microsoft products across multiple devices using a centralized activation server instead of activating each device individually. Devices on the organization’s network periodically connect to the KMS host to validate their licenses and remain activated.
+Microsoft mentioned that traditional KMS deployments have been vulnerable to spoofed or cloned KMS servers, which creates compliance, licensing, and security risks. Microsoft is addressing these risks by requiring stronger verification of KMS hosts.
+KMS Hardware-Secured is an enhanced activation model that adds a hardware layer of trust to the Key Management Service. It uses TPM (Trusted Platform Module) attestation to confirm that a KMS host is running on genuine, uncompromised hardware before it can activate Windows devices.
+“The cornerstone of this modernization is TPM-based attestation. Starting with upcoming Windows Server releases, KMS hosts must prove they are running on verified, uncompromised hardware before activating clients. This is achieved through TPM – a hardware root of trust that provides cryptographic proof of integrity,” Microsoft explained.
+TPM attestation strengthens Windows activation security by ensuring that only trusted and verified KMS servers are allowed to activate devices. It becomes much harder for attackers to tamper with activation systems, steal activation credentials, or create fake KMS hosts. Moreover, this hardware-based approach helps organizations align with Microsoft’s evolving security standards and prepares their activation infrastructure for future compliance and security requirements.
+TPM attestation works by allowing a KMS host to prove its identity using the security capabilities built into its Trusted Platform Module (TPM). Microsoft verifies this hardware-backed evidence and checks that the host platform has not been altered. Once verified, the server can securely provide activation services to Windows devices within the organization.
+Microsoft advises organizations to begin preparing for the transition to hardware-secured KMS by reviewing their existing KMS infrastructure and confirming that their servers support TPM. Administrators should verify TPM attestation capabilities, identify any systems that may require hardware upgrades, and start planning for the upcoming security requirements.
+Microsoft is also rolling out changes to help organizations prepare for hardware-secured KMS activation. Starting in August 2026, Windows Server 2025 will display readiness notifications that indicate whether a KMS host meets the new TPM-based security requirements. Going forward, TPM attestation will become a mandatory part of KMS Hardware-Secured activation in the next Windows Server Long-Term Servicing Channel (LTSC) release.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('afb4974e991')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a2b1fb7b6c8">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-wsus-sync-issue-update-delays-timeouts/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Confirms WSUS Sync Issue Causing Update Delays and Timeouts</a>
+          <div class="article-meta">petri.com &bull; Jul 21, 2026</div>
+          <div class="article-summary"><p>Microsoft has released a partial fix while continuing to investigate synchronization failures affecting existing deployments.
+Key Takeaways:
+Microsoft has confirmed a new issue affecting Windows Server Update Services (WSUS) that is slowing synchronization and causing timeout errors on some servers. This problem could delay the delivery of Windows updates, with Microsoft only partially resolving it for newly deployed WSUS servers.
+Windows Server Update Services (WSUS) is a management tool that allows organizations to control how Windows updates are distributed across their networks. Administrators can download update information to a central server, review and approve updates, and then deploy them to selected devices.
+Microsoft officially deprecated WSUS (Windows Server Update Services) in September 2024. The company is no longer investing in new features or enhancements for WSUS, but the product remains supported and continues to receive security fixes, reliability updates, and update content through the WSUS channel.
+According to Microsoft, this issue causes synchronization to fail or be unusually long, and affected organizations may be unable to download the latest update metadata. Consequently, administrators could face difficulties deploying current Windows updates through WSUS or Configuration Manager. This bug affects Windows 11 version 23H2 and later, Windows 10 version 1607, and Windows Server 2012 and later versions.
+“Organizations might experience increased synchronization times or sync operation timeouts on WSUS servers. This issue began in recent days, with heightened impact observed starting July 13, 2026, and service-side mitigation on Saturday July 18, 2026. After this day, synchronization times and sync operations are expected to be restored to normal,” Microsoft explained on the Windows Release Health dashboard.
+Microsoft has already deployed a fix that helps newly installed or rebuilt WSUS servers operate normally. However, the company has warned that existing affected WSUS servers may still experience synchronization problems. Microsoft is currently working on additional fixes and guidance to help organizations remove the problematic metadata that appears to be contributing to the problem.
+In recent years, Microsoft dealt with several WSUS-related issues affecting enterprise customers. In 2025, the company confirmed a synchronization problem that prevented update deployments, and another issue that blocked delivery of a security update through WSUS. Microsoft also fixed an update-related error affecting some Windows 11 deployments in enterprise environments.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a2b1fb7b6c8')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a88183e4e9a">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiqwFBVV95cUxPT0VLMFU5M0I4cF9Tb25aNDlPWWJQT2JNRUdvckxYMnhGdTZjSFpqVllzWFhKUjJ6SnUtTVZONG8xaTFHdjZXbkZQZ0M4ZjFDVFdfSlJNeUFQdG05d3g0WlVCMnExNFNQakUxYmQ4WWI1QkY5S1ZSTDAtYVlkSk5BZnRRd0djUTBkMDdFYXJBT040dl9yb3JMTVRFVGJueVJwMmhtVi1KVDBWS1E?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft responds to LG monitors installing McAfee ads on Windows - Ars Technica</a>
+          <div class="article-meta">Ars Technica &bull; Jul 23, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft responds to LG monitors installing McAfee ads on Windows&amp;nbsp;&amp;nbsp;Ars Technica</p><a href="https://news.google.com/rss/articles/CBMiqwFBVV95cUxPT0VLMFU5M0I4cF9Tb25aNDlPWWJQT2JNRUdvckxYMnhGdTZjSFpqVllzWFhKUjJ6SnUtTVZONG8xaTFHdjZXbkZQZ0M4ZjFDVFdfSlJNeUFQdG05d3g0WlVCMnExNFNQakUxYmQ4WWI1QkY5S1ZSTDAtYVlkSk5BZnRRd0djUTBkMDdFYXJBT040dl9yb3JMTVRFVGJueVJwMmhtVi1KVDBWS1E?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a88183e4e9a')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a676b40b47c">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi7gFBVV95cUxNcHFOR2QwYVhhbC1NT09DbkZrQUdPVExRYVJhZm9YaGVDWEZBSWZKZmNnQ0IwTzUwZHllbG00NEU3M2IzZ3h0dzJESEFVMHlTazh1ZmtCQTVPVUljSGhYVnZxZktmNmh6VkViZVJRZmVsNEppUmlIQk9iQWVsRDV6azhkSy14SnFpSllJY2ZqcXhibjlRX3RWcl9PeHF5T3dadlk0LU5hclYzTHk0aGMtVU81enF4WldMaE93ZUFzWFRzT2ZLNEFPdmRhMjRUb1dKUHVDUlVNOVFQUGhibWRTXzhvT2N1RXF2N1o0OTJB?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft addresses concerns over LG monitors installing McAfee adware - Windows Central</a>
+          <div class="article-meta">Windows Central &bull; Jul 24, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft addresses concerns over LG monitors installing McAfee adware&amp;nbsp;&amp;nbsp;Windows Central</p><a href="https://news.google.com/rss/articles/CBMi7gFBVV95cUxNcHFOR2QwYVhhbC1NT09DbkZrQUdPVExRYVJhZm9YaGVDWEZBSWZKZmNnQ0IwTzUwZHllbG00NEU3M2IzZ3h0dzJESEFVMHlTazh1ZmtCQTVPVUljSGhYVnZxZktmNmh6VkViZVJRZmVsNEppUmlIQk9iQWVsRDV6azhkSy14SnFpSllJY2ZqcXhibjlRX3RWcl9PeHF5T3dadlk0LU5hclYzTHk0aGMtVU81enF4WldMaE93ZUFzWFRzT2ZLNEFPdmRhMjRUb1dKUHVDUlVNOVFQUGhibWRTXzhvT2N1RXF2N1o0OTJB?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a676b40b47c')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="afa3722befc">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMinAFBVV95cUxQeVhBYTlXQjZpUkFzMTVzUmNJenVTallQQmxPNTBkQThNM1BRbXVUeDF5ZTllM09VNDhRaXVTQmNmLWlfSlp3bTBTeF85NEJOdEZBbUh3M1NHYnA3YmFxelBTcTVvV0IwdXdxVklRRWlkVHB3VDJ3WGhyZzZxWWM4VTRLSHZ6YmYzUUw0Z1RWSG1GZXNDa2hYWElpODA?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft finally found a Windows ad it doesn’t like - PCWorld</a>
+          <div class="article-meta">PCWorld &bull; Jul 24, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft finally found a Windows ad it doesn’t like&amp;nbsp;&amp;nbsp;PCWorld</p><a href="https://news.google.com/rss/articles/CBMinAFBVV95cUxQeVhBYTlXQjZpUkFzMTVzUmNJenVTallQQmxPNTBkQThNM1BRbXVUeDF5ZTllM09VNDhRaXVTQmNmLWlfSlp3bTBTeF85NEJOdEZBbUh3M1NHYnA3YmFxelBTcTVvV0IwdXdxVklRRWlkVHB3VDJ3WGhyZzZxWWM4VTRLSHZ6YmYzUUw0Z1RWSG1GZXNDa2hYWElpODA?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('afa3722befc')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="azure" class="topic-section">
+      <h2 class="topic-title" style="--c:#00BCF2">Azure <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a1617dc4ca5">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-azure-amd-vms-ai-hpc-chip-design/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft, AMD Introduce New Azure VMs for AI, HPC, and Chip Design</a>
+          <div class="article-meta">petri.com &bull; Jul 21, 2026</div>
+          <div class="article-summary"><p>New AMD-powered services target AI data processing, scientific computing, and production-scale inference workloads.
+Key Takeaways:
+Microsoft has expanded its Azure AI and high-performance computing (HPC) infrastructure through a deeper partnership with AMD to meet the growing demand for AI workloads. The expanded collaboration introduces new AMD-powered Azure services designed to accelerate large-scale AI inference, agentic AI, data processing, and semiconductor design while improving performance and scalability.
+Microsoft is continuing to build a diverse Azure infrastructure that combines technologies from partners such as AMD alongside Microsoft’s own custom silicon. This approach aims to improve performance, cost efficiency, and energy usage for different AI workloads.
+Specifically, Microsoft has introduced three new Azure offerings powered by AMD’s latest AI and datacenter technologies to support a wide range of advanced computing workloads. These include Azure HDv2 virtual machines, Azure HXv2 virtual machines, and Azure ND MI455X v7 virtual machines. The new offerings give customers purpose-built infrastructure tailored to different stages of the AI development and deployment lifecycle.
+Azure HDv2 is designed to handle the data-intensive tasks that are essential for modern AI systems. These virtual machines provide the processing power required for activities such as data preparation, search, reinforcement learning, and AI agent orchestration. Azure HDv2 comes with around 500 physical 6th Gen AMD EPYC CPU cores, up to 4 TB of memory, 32 TB of local NVMe storage, and high-speed Azure networking to keep large AI workloads running efficiently while reducing data bottlenecks.
+Azure HXv2 is aimed at organizations running complex engineering and computing workloads that demand both speed and scalability. This new generation delivers enhanced single-threaded performance, larger memory options, and increased cache capacity to help accelerate electronic design automation (EDA) tasks such as chip verification and simulation. It is also useful for scientific research, engineering analysis, and other high-performance computing apps that require large-scale processing across multiple systems.
+Lastly, Azure ND MI455X v7 is designed for organizations that need to run AI models at production scale, particularly for applications involving reasoning, search, and AI agents. These virtual machines, which are powered by AMD’s Helios AI platform, are built to deliver the performance and efficiency required for demanding inference workloads.
+Microsoft is also strengthening the underlying network infrastructure that supports Microsoft Azure. The company plans to deploy AMD Pensando data processing units (DPUs) across its cloud platform and integrate AMD’s networking technology with Azure Boost. This combination is intended to enhance the way network traffic is managed, which improves performance, efficiency, and scalability while reducing processing overhead.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a1617dc4ca5')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a1ab5e2e5fd">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiqgFBVV95cUxQUXYtUzVreG5NUnBQeFJGRkg2MW1HTVZ2andnQUFacHZQdTRzaXdKNEdTVHVoekJNS3JjN1Fvc0k2QkVDVmN1dmJvREpnMXp0M3VtXzgycVllNEd5d3A0QzJtUTNvc01rNHNhY3lvaGRrTktJYlNvemNldUZmYWVyRDJuMWdjTzctNVp5MGRrVHlrUnRxQnhMVUY0dS14M3hMenhERVowR21oZw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Default Azure Automation Setting Enables Cross-Tenant Identity Takeover - Dark Reading</a>
+          <div class="article-meta">Dark Reading &bull; Jul 24, 2026</div>
+          <div class="article-summary snippet"><p>Default Azure Automation Setting Enables Cross-Tenant Identity Takeover&amp;nbsp;&amp;nbsp;Dark Reading</p><a href="https://news.google.com/rss/articles/CBMiqgFBVV95cUxQUXYtUzVreG5NUnBQeFJGRkg2MW1HTVZ2andnQUFacHZQdTRzaXdKNEdTVHVoekJNS3JjN1Fvc0k2QkVDVmN1dmJvREpnMXp0M3VtXzgycVllNEd5d3A0QzJtUTNvc01rNHNhY3lvaGRrTktJYlNvemNldUZmYWVyRDJuMWdjTzctNVp5MGRrVHlrUnRxQnhMVUY0dS14M3hMenhERVowR21oZw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a1ab5e2e5fd')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aa58b9f684a">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE9NWUVLZWZZYU14dFF1NVFYakN6V2VsUnV1cDViYmN4eUNONFl4Z25lYjVRZkFzQktqZnJWSVBRSWNzU0tySFVDdExKcmpVb0p6b3FoX2preTlsUjg3a0tj?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">AWS, Google Cloud, Microsoft Azure, and Cloudflare now all offer agent sandboxes. None built them the same way. - The New Stack</a>
+          <div class="article-meta">The New Stack &bull; Jul 24, 2026</div>
+          <div class="article-summary snippet"><p>AWS, Google Cloud, Microsoft Azure, and Cloudflare now all offer agent sandboxes. None built them the same way.&amp;nbsp;&amp;nbsp;The New Stack</p><a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE9NWUVLZWZZYU14dFF1NVFYakN6V2VsUnV1cDViYmN4eUNONFl4Z25lYjVRZkFzQktqZnJWSVBRSWNzU0tySFVDdExKcmpVb0p6b3FoX2preTlsUjg3a0tj?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aa58b9f684a')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a11d9df683b">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiswFBVV95cUxNREF5U0N2TUhPNzdSVTlFcEd3Zmg2UUx2Y09Ob1EzZGU2b3hDY3l3U0tua29zZXYwMXNRRU9SZk9lY0xnSkkyYTZEMzF3UVNIVUIzTzVwdWxmZ2VZV0poN0VoQjR4MjVzR1pxcGNTS0REX1cxN3Q0WXEyY1dFOW1ZcDEteHJ6cHd5dDRwZ2k1M0d5WVlDQ3JPeTJIaWNTemRKTGNJdWpHdlIxWll4RFJRUTlNaw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Databricks expands Microsoft Azure partnership, to use more custom chips - Reuters</a>
+          <div class="article-meta">Reuters &bull; Jul 23, 2026</div>
+          <div class="article-summary snippet"><p>Databricks expands Microsoft Azure partnership, to use more custom chips&amp;nbsp;&amp;nbsp;Reuters</p><a href="https://news.google.com/rss/articles/CBMiswFBVV95cUxNREF5U0N2TUhPNzdSVTlFcEd3Zmg2UUx2Y09Ob1EzZGU2b3hDY3l3U0tua29zZXYwMXNRRU9SZk9lY0xnSkkyYTZEMzF3UVNIVUIzTzVwdWxmZ2VZV0poN0VoQjR4MjVzR1pxcGNTS0REX1cxN3Q0WXEyY1dFOW1ZcDEteHJ6cHd5dDRwZ2k1M0d5WVlDQ3JPeTJIaWNTemRKTGNJdWpHdlIxWll4RFJRUTlNaw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a11d9df683b')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a98267a4c36">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMixAFBVV95cUxPc2dsNXJnNkdUNUtVWElmVEhsTnZzVWhMRXhuakw3eDRzU0dKaXlZV3M2TmpYdnFIVFJRNDBXZUpaQ3l0Q1I4aTExbFJzZWdPLXhHRVptQ3UtNVEzdm5KeFB5UW5ueHFCenJJb2FNa1FTOW1tT3JqRFJOeXhVQS1feklsQVZmM0kzNjRCcnNjdkF6eWV2UDdJY3ZaYzV1QzNSUFhhbUtPWnduUE5IQjR5OFRkVlRCMUduS01KR0prV2Y2eHFI?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft fiber foul-up cut off Azure California for almost five hours - The Register</a>
+          <div class="article-meta">The Register &bull; Jul 24, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft fiber foul-up cut off Azure California for almost five hours&amp;nbsp;&amp;nbsp;The Register</p><a href="https://news.google.com/rss/articles/CBMixAFBVV95cUxPc2dsNXJnNkdUNUtVWElmVEhsTnZzVWhMRXhuakw3eDRzU0dKaXlZV3M2TmpYdnFIVFJRNDBXZUpaQ3l0Q1I4aTExbFJzZWdPLXhHRVptQ3UtNVEzdm5KeFB5UW5ueHFCenJJb2FNa1FTOW1tT3JqRFJOeXhVQS1feklsQVZmM0kzNjRCcnNjdkF6eWV2UDdJY3ZaYzV1QzNSUFhhbUtPWnduUE5IQjR5OFRkVlRCMUduS01KR0prV2Y2eHFI?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a98267a4c36')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a0a80876f0a">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMixAFBVV95cUxQX0VYTHpGV09PZDM4RG5TTWRtYlNrTFQ4ck9KQ3dzNEVtTjNDV0JDQXVTMWlhdXF3SVFIa3VvaWo1TTlhTEdmVHlPMUZOZmUyVjJtaEU5STc1MG53UGFCRTV5c2Mya29TNG9tbnV6R2kzMUp2NFJoa1VjTjl3bmVfLURNUUR0dFo5VGIwZjVBTk9FUnRheW1IeEtnNFBlRzBMbXhMSzYydFdFd05xSkhRc1B3anB0eVpMRVZ2dlhGVXQ4ajF2?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Azure outage at West US region causes intermittent connectivity failures - Data Center Dynamics</a>
+          <div class="article-meta">Data Center Dynamics &bull; Jul 23, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft Azure outage at West US region causes intermittent connectivity failures&amp;nbsp;&amp;nbsp;Data Center Dynamics</p><a href="https://news.google.com/rss/articles/CBMixAFBVV95cUxQX0VYTHpGV09PZDM4RG5TTWRtYlNrTFQ4ck9KQ3dzNEVtTjNDV0JDQXVTMWlhdXF3SVFIa3VvaWo1TTlhTEdmVHlPMUZOZmUyVjJtaEU5STc1MG53UGFCRTV5c2Mya29TNG9tbnV6R2kzMUp2NFJoa1VjTjl3bmVfLURNUUR0dFo5VGIwZjVBTk9FUnRheW1IeEtnNFBlRzBMbXhMSzYydFdFd05xSkhRc1B3anB0eVpMRVZ2dlhGVXQ4ajF2?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a0a80876f0a')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a0bf35d4d44">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMijAFBVV95cUxNbkJmbDFTbkN3eGtzeTlTaHZaODk3ME8yMUxLTU1VUGl5UUZ5YVNFUXJ1Tk5WNzFVcDYzVzlyZDBhZ3M2Y1Ffdk15RnNCa2JRRHdHcXVlaXZvLWl0MmJ3SjJua2FDcnpiS1VwcmowaEZRMjNFSWU5cDRHN1JqZFdjdldEQzVZX1VXU2d6Yg?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Azure in outage after routine fiber check - SDxCentral</a>
+          <div class="article-meta">SDxCentral &bull; Jul 24, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft Azure in outage after routine fiber check&amp;nbsp;&amp;nbsp;SDxCentral</p><a href="https://news.google.com/rss/articles/CBMijAFBVV95cUxNbkJmbDFTbkN3eGtzeTlTaHZaODk3ME8yMUxLTU1VUGl5UUZ5YVNFUXJ1Tk5WNzFVcDYzVzlyZDBhZ3M2Y1Ffdk15RnNCa2JRRHdHcXVlaXZvLWl0MmJ3SjJua2FDcnpiS1VwcmowaEZRMjNFSWU5cDRHN1JqZFdjdldEQzVZX1VXU2d6Yg?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a0bf35d4d44')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a09e546762f">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMipgFBVV95cUxPbG5XdmVxY090czBnTEhIVU54OFVFeUQ5SmxhVDdka3NBb0tEMzRHNjllRDdwdUJ4OUdndzBlMkotWW4yc2paTU9qWDVsTndIRVU3NnBlRG0wVnB3cWpOR21rd2JKY1hCWGxQSl9fM1hLcHVHTE1UcDVEZV9rT01hVTI0MWxWTVdyTy1ISjFKOFZydVZtVnYtSHlGVlRHM3h0VmRPUkFn?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft expands Azure AI and HPC infrastructure with AMD - The Official Microsoft Blog</a>
+          <div class="article-meta">The Official Microsoft Blog &bull; Jul 20, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft expands Azure AI and HPC infrastructure with AMD&amp;nbsp;&amp;nbsp;The Official Microsoft Blog</p><a href="https://news.google.com/rss/articles/CBMipgFBVV95cUxPbG5XdmVxY090czBnTEhIVU54OFVFeUQ5SmxhVDdka3NBb0tEMzRHNjllRDdwdUJ4OUdndzBlMkotWW4yc2paTU9qWDVsTndIRVU3NnBlRG0wVnB3cWpOR21rd2JKY1hCWGxQSl9fM1hLcHVHTE1UcDVEZV9rT01hVTI0MWxWTVdyTy1ISjFKOFZydVZtVnYtSHlGVlRHM3h0VmRPUkFn?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a09e546762f')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="sharepoint" class="topic-section">
+      <h2 class="topic-title" style="--c:#036C70">SharePoint <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="ac115990e50">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/07/critical-sharepoint-rce-cve-2026-50522.html" target="_blank" rel="noopener noreferrer" class="article-title">Critical SharePoint RCE CVE-2026-50522 Under Active Exploitation After Public PoC</a>
+          <div class="article-meta">thehackernews.com &bull; Jul 21, 2026</div>
+          <div class="article-summary"><p>A third SharePoint Server flaw patched by Microsoft as part of its Patch Tuesday update for July 2026 has come under active exploitation, per watchTowr.
+The vulnerability in question is CVE-2026-50522 (CVSS score: 9.8), a critical deserialization of untrusted data in Microsoft Office SharePoint that could allow an unauthorized attacker to execute code over a network. Microsoft credited DEVCORE researcher &quot;splitline&quot; with discovering and reporting the flaw.
+&quot;In a network-based attack, an attacker authenticated as at least a Site Owner, could write arbitrary code to inject and execute code remotely on the SharePoint Server,&quot; Redmond said in an advisory released last week.
+&quot;The attack vector is Network (AV:N) because this vulnerability is remotely exploitable and can be exploited from the internet. The attack complexity is Low (AC:L) because an attacker does not require significant prior knowledge of the system and can achieve repeatable success with the payload against the vulnerable component.&quot;
+The tech giant also tagged CVE-2026-50522 with an exploitability assessment of &quot;Exploitation More Likely.&quot;
+In a post shared on LinkedIn, watchTowr said it has detected active exploitation of the shortcoming against on-premises Microsoft SharePoint deployments following the release of a public proof-of-concept (PoC) exploit, allowing attackers to steal machine keys to maintain persistent access.
+&quot;Attackers are pulling SharePoint machine keys via a single request,&quot; the security vendor said. &quot;Patching is not enough; defenders should rotate credentials on any assets that may have been exposed.&quot;
+Defused Cyber has also disclosed that threat actors are likely exploiting CVE-2026-50522 to deliver a .NET deserialization payload to a SharePoint sign-in endpoint. &quot;The captured requests carry no authentication material, matching 50522's unauthenticated profile,&quot; it said.
+CVE-2026-50522 is the third vulnerability in SharePoint Server after CVE-2026-56164 (CVSS score: 5.3) and CVE-2026-58644 (CVSS score: 9.8) to witness active exploitation efforts, with the latter two weaponized as zero-days prior to them being fixed in July 2026.
+The U.S. Cybersecurity and Infrastructure Security Agency (CISA) has since warned that threat actors are exploiting multiple SharePoint Server vulnerabilities, including CVE-2026-32201, CVE-2026-45659, CVE-2026-56164, and CVE-2026-58644, to gain unauthorized access to on-premises instances.
+&quot;These vulnerabilities affect all supported on-premises SharePoint Server versions (Subscription Edition, 2019, and 2016) and involve establishing remote code execution (RCE) and post-exploitation activities, such as stealing Internet Information Services (IIS) machine keys and performing deserialization techniques, to gain persistence and deploy malware,&quot; the agency said.
+Update
+CISA, on July 22, 2026, added CVE-2026-50522 to its Known Exploited Vulnerabilities (KEV) catalog, requiring Federal Civilian Executive Branch (FCEB) agencies to apply the fixes by July 25.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac115990e50')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a3a02584d5d">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMijwFBVV95cUxOQ09qMWhabGFtT05pek1CeEVjeXZ4S21QalpqOXNmTXdFODJDSTB0ZzdBb29IVjlYYk1Bc2FyMThJOE5VSVVZRDRuaGRQRU81UXZNX2V4WEYyUllKdW5UcHhjRHJLS0tzUjItZ0loRFRJa01OZTQwY1Q3b3dZN0FVMG94UzdLOExOdGZiY3oxTQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft SharePoint under attack via new exploit - Cybersecurity Dive</a>
+          <div class="article-meta">Cybersecurity Dive &bull; Jul 21, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft SharePoint under attack via new exploit&amp;nbsp;&amp;nbsp;Cybersecurity Dive</p><a href="https://news.google.com/rss/articles/CBMijwFBVV95cUxOQ09qMWhabGFtT05pek1CeEVjeXZ4S21QalpqOXNmTXdFODJDSTB0ZzdBb29IVjlYYk1Bc2FyMThJOE5VSVVZRDRuaGRQRU81UXZNX2V4WEYyUllKdW5UcHhjRHJLS0tzUjItZ0loRFRJa01OZTQwY1Q3b3dZN0FVMG94UzdLOExOdGZiY3oxTQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a3a02584d5d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ac3a0697eaa">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMikAFBVV95cUxNRmE0ZUNVVVNPbF81czJ3TVpyRlV1d1RDRldjc1B0c29pNDMweGRyeWgyYXBYdGpJQkZ1VWRYTkluTHVDTDJfRlFmU1RJQVZBazFqejg4YlhXNDZlTnBQdV9WbEFGSGdGTDZ4aDByUlZmZ2NjMjMwbkQzWlNQVnI1dUhvYlBrWmY5T1ctc1RnWEw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Is Microsoft down? Outages reported for 365, Teams, Outlook, XBox Live - Daytona Beach News-Journal</a>
+          <div class="article-meta">Daytona Beach News-Journal &bull; Jul 24, 2026</div>
+          <div class="article-summary snippet"><p>Is Microsoft down? Outages reported for 365, Teams, Outlook, XBox Live&amp;nbsp;&amp;nbsp;Daytona Beach News-Journal</p><a href="https://news.google.com/rss/articles/CBMikAFBVV95cUxNRmE0ZUNVVVNPbF81czJ3TVpyRlV1d1RDRldjc1B0c29pNDMweGRyeWgyYXBYdGpJQkZ1VWRYTkluTHVDTDJfRlFmU1RJQVZBazFqejg4YlhXNDZlTnBQdV9WbEFGSGdGTDZ4aDByUlZmZ2NjMjMwbkQzWlNQVnI1dUhvYlBrWmY5T1ctc1RnWEw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac3a0697eaa')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a9ee8ccff5f">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/07/critical-sharepoint-rce-cve-2026-50522.html" target="_blank" rel="noopener noreferrer" class="article-title">Critical SharePoint RCE CVE-2026-50522 Under Active Exploitation After Public PoC - The Hacker News</a>
+          <div class="article-meta">The Hacker News &bull; Jul 21, 2026</div>
+          <div class="article-summary"><p>A third SharePoint Server flaw patched by Microsoft as part of its Patch Tuesday update for July 2026 has come under active exploitation, per watchTowr.
+The vulnerability in question is CVE-2026-50522 (CVSS score: 9.8), a critical deserialization of untrusted data in Microsoft Office SharePoint that could allow an unauthorized attacker to execute code over a network. Microsoft credited DEVCORE researcher &quot;splitline&quot; with discovering and reporting the flaw.
+&quot;In a network-based attack, an attacker authenticated as at least a Site Owner, could write arbitrary code to inject and execute code remotely on the SharePoint Server,&quot; Redmond said in an advisory released last week.
+&quot;The attack vector is Network (AV:N) because this vulnerability is remotely exploitable and can be exploited from the internet. The attack complexity is Low (AC:L) because an attacker does not require significant prior knowledge of the system and can achieve repeatable success with the payload against the vulnerable component.&quot;
+The tech giant also tagged CVE-2026-50522 with an exploitability assessment of &quot;Exploitation More Likely.&quot;
+In a post shared on LinkedIn, watchTowr said it has detected active exploitation of the shortcoming against on-premises Microsoft SharePoint deployments following the release of a public proof-of-concept (PoC) exploit, allowing attackers to steal machine keys to maintain persistent access.
+&quot;Attackers are pulling SharePoint machine keys via a single request,&quot; the security vendor said. &quot;Patching is not enough; defenders should rotate credentials on any assets that may have been exposed.&quot;
+Defused Cyber has also disclosed that threat actors are likely exploiting CVE-2026-50522 to deliver a .NET deserialization payload to a SharePoint sign-in endpoint. &quot;The captured requests carry no authentication material, matching 50522's unauthenticated profile,&quot; it said.
+CVE-2026-50522 is the third vulnerability in SharePoint Server after CVE-2026-56164 (CVSS score: 5.3) and CVE-2026-58644 (CVSS score: 9.8) to witness active exploitation efforts, with the latter two weaponized as zero-days prior to them being fixed in July 2026.
+The U.S. Cybersecurity and Infrastructure Security Agency (CISA) has since warned that threat actors are exploiting multiple SharePoint Server vulnerabilities, including CVE-2026-32201, CVE-2026-45659, CVE-2026-56164, and CVE-2026-58644, to gain unauthorized access to on-premises instances.
+&quot;These vulnerabilities affect all supported on-premises SharePoint Server versions (Subscription Edition, 2019, and 2016) and involve establishing remote code execution (RCE) and post-exploitation activities, such as stealing Internet Information Services (IIS) machine keys and performing deserialization techniques, to gain persistence and deploy malware,&quot; the agency said.
+Update
+CISA, on July 22, 2026, added CVE-2026-50522 to its Known Exploited Vulnerabilities (KEV) catalog, requiring Federal Civilian Executive Branch (FCEB) agencies to apply the fixes by July 25.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a9ee8ccff5f')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a934bcedfa7">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiggFBVV95cUxOQUptZ3RlVWNyY0FteVFpTXh3WGItOUo1VWdLQ0N1YlNaZERJajFjNnZwUTQza1MyQjdLQ3ZYUDdtTHNWOFJ0UVZMU0Z5WlJfSTlEeUtqTnNGS2lpb0hMWnZkcTZTR1FYTDhvZWRBc3B2UlhiT0hWcG5PY205MDBEZ0pB?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">What’s New in Microsoft 365 – July 2026 - Seton Hall University</a>
+          <div class="article-meta">Seton Hall University &bull; Jul 23, 2026</div>
+          <div class="article-summary snippet"><p>What’s New in Microsoft 365 – July 2026&amp;nbsp;&amp;nbsp;Seton Hall University</p><a href="https://news.google.com/rss/articles/CBMiggFBVV95cUxOQUptZ3RlVWNyY0FteVFpTXh3WGItOUo1VWdLQ0N1YlNaZERJajFjNnZwUTQza1MyQjdLQ3ZYUDdtTHNWOFJ0UVZMU0Z5WlJfSTlEeUtqTnNGS2lpb0hMWnZkcTZTR1FYTDhvZWRBc3B2UlhiT0hWcG5PY205MDBEZ0pB?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a934bcedfa7')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aa9f2e0a6ec">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiswFBVV95cUxQTHNzeHpvV2t4ejVzNjY1RmZ4anJfVVpWYVdRTGc0VVdoMnFOVzBNOUJnb3VoUlljSFg2SFpFLUFILTBCQjhrZy1WdV9jckc4SWVLUlMtVHM3Y0JZcjNmMFo0eW91b1Y1SDE0VFdCMDhaeFc2Q0ZVVVZ4Z3hmYXlpMjAzZVlTSTFUcDdxQ2plOVA3V2ZDNmwtc0p4VHFhQmFYOHJ3bzR0cDhDRGlCd2xjeWtrc9IBuAFBVV95cUxPc0k5QVdhWUFTTEdQX0p5ZWwyaW5rUkN3OXJMM3ZOLWFqRnRzdTZrZTRSNHA1YUNiT0d0VzdRNXI0dVZCRklJREtyWHA0eFBiVXFpYzRQZ1pCV2FYN28wWWJQTDJGMXB5SXdUeVk1dTFoN0tVT0NqMlNMcnMwRUtVdk5zZW0yRmtJaWJUR2gtMEtOckI3SEZhdGtGZTBlV0E1XzhBV0RRcmRYNjZvRWJwUDMwR0VqZ2lf?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft 365 outage affects Teams, SharePoint and other services - BleepingComputer</a>
+          <div class="article-meta">BleepingComputer &bull; Jul 23, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft 365 outage affects Teams, SharePoint and other services&amp;nbsp;&amp;nbsp;BleepingComputer</p><a href="https://news.google.com/rss/articles/CBMiswFBVV95cUxQTHNzeHpvV2t4ejVzNjY1RmZ4anJfVVpWYVdRTGc0VVdoMnFOVzBNOUJnb3VoUlljSFg2SFpFLUFILTBCQjhrZy1WdV9jckc4SWVLUlMtVHM3Y0JZcjNmMFo0eW91b1Y1SDE0VFdCMDhaeFc2Q0ZVVVZ4Z3hmYXlpMjAzZVlTSTFUcDdxQ2plOVA3V2ZDNmwtc0p4VHFhQmFYOHJ3bzR0cDhDRGlCd2xjeWtrc9IBuAFBVV95cUxPc0k5QVdhWUFTTEdQX0p5ZWwyaW5rUkN3OXJMM3ZOLWFqRnRzdTZrZTRSNHA1YUNiT0d0VzdRNXI0dVZCRklJREtyWHA0eFBiVXFpYzRQZ1pCV2FYN28wWWJQTDJGMXB5SXdUeVk1dTFoN0tVT0NqMlNMcnMwRUtVdk5zZW0yRmtJaWJUR2gtMEtOckI3SEZhdGtGZTBlV0E1XzhBV0RRcmRYNjZvRWJwUDMwR0VqZ2lf?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aa9f2e0a6ec')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="abf952a4d2d">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMipAFBVV95cUxPWWZ5RG9jWHRSMmpfcG5uX2RwZTM3Y2hQUXgwVFVjWGtlcVd6dWV2ejl3RnNqbW5IVDB6dnhESFVTejlaUFB6X0NpV3BQYUVveGtPaWV5VG5sWGQ1S1c0b1VRYkRNM21JZ1htQlc4SjZKcjJwVkx2TTVHSG5vc05WallJWlhLZHNQY0UxX1Y4R3ZXTDFwdHkzS1JsQmZ0MWNMQUhia9IBqgFBVV95cUxPbHZkVTduNUhMZTg0N2Y1dmsyUGZEQk50N19FNk1aeFZWdWx5U1dfWFZpLW1KcHl4MmoyVnhILV8xSk5LMHo5Qnl4dmIzVXB6QmhwTzctZlpRWDFaRmVGckhWdlRzV1JCOW1aeW9uYTFacUNwenRadUNTbDAtdFpYd19HbHVjeFZRbEtOOFdyMWp3V2RtOVNHOWZQRmxxMDdvWFZBSC1mVUtXUQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Fourth SharePoint Vulnerability Exploited in Past Month’s Wave of Attacks - SecurityWeek</a>
+          <div class="article-meta">SecurityWeek &bull; Jul 22, 2026</div>
+          <div class="article-summary snippet"><p>Fourth SharePoint Vulnerability Exploited in Past Month’s Wave of Attacks&amp;nbsp;&amp;nbsp;SecurityWeek</p><a href="https://news.google.com/rss/articles/CBMipAFBVV95cUxPWWZ5RG9jWHRSMmpfcG5uX2RwZTM3Y2hQUXgwVFVjWGtlcVd6dWV2ejl3RnNqbW5IVDB6dnhESFVTejlaUFB6X0NpV3BQYUVveGtPaWV5VG5sWGQ1S1c0b1VRYkRNM21JZ1htQlc4SjZKcjJwVkx2TTVHSG5vc05WallJWlhLZHNQY0UxX1Y4R3ZXTDFwdHkzS1JsQmZ0MWNMQUhia9IBqgFBVV95cUxPbHZkVTduNUhMZTg0N2Y1dmsyUGZEQk50N19FNk1aeFZWdWx5U1dfWFZpLW1KcHl4MmoyVnhILV8xSk5LMHo5Qnl4dmIzVXB6QmhwTzctZlpRWDFaRmVGckhWdlRzV1JCOW1aeW9uYTFacUNwenRadUNTbDAtdFpYd19HbHVjeFZRbEtOOFdyMWp3V2RtOVNHOWZQRmxxMDdvWFZBSC1mVUtXUQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('abf952a4d2d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="af6646df386">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMilwFBVV95cUxQam9NM3NpcFRYa283UlpNZTNNUDRLVDA3eEhWdDlTLXZfcjRlQXhLQzlXd2xmUlJVLXNVN2NrWjJfSGZDVF9GLUxEQ0kzQW1ub3Rrc3BaTldRV3JmeWY0bEs3ZkxzcnNTUVRGWUNYaXJlb1NveVRldEZ5d0xZczZaZ25IYnFPUGludU1jSjh2OEpCaV9CZHZR?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Warns Critical SharePoint Flaw Is Under Active Attack - HotHardware</a>
+          <div class="article-meta">HotHardware &bull; Jul 23, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft Warns Critical SharePoint Flaw Is Under Active Attack&amp;nbsp;&amp;nbsp;HotHardware</p><a href="https://news.google.com/rss/articles/CBMilwFBVV95cUxQam9NM3NpcFRYa283UlpNZTNNUDRLVDA3eEhWdDlTLXZfcjRlQXhLQzlXd2xmUlJVLXNVN2NrWjJfSGZDVF9GLUxEQ0kzQW1ub3Rrc3BaTldRV3JmeWY0bEs3ZkxzcnNTUVRGWUNYaXJlb1NveVRldEZ5d0xZczZaZ25IYnFPUGludU1jSjh2OEpCaV9CZHZR?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('af6646df386')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="intune" class="topic-section">
+      <h2 class="topic-title" style="--c:#0F6CBD">Intune <span class="count">(4)</span></h2>
+      <div class="article-card" data-id="aa4862b7c0e">
+        <div class="article-body">
+          <a href="https://techcommunity.microsoft.com/t5/intune-customer-success/from-hours-to-minutes-rethinking-microsoft-intune-compliance/ba-p/4540554" target="_blank" rel="noopener noreferrer" class="article-title">From hours to minutes: Rethinking Microsoft Intune compliance reporting with the Export API</a>
+          <div class="article-meta">techcommunity.microsoft.com &bull; Jul 24, 2026</div>
+          <div class="article-summary snippet"><p>By: Daniel Gerrity – Principal Product Manager | Microsoft Intune
+If you manage a large device fleet with Microsoft Intune, you’ve almost certainly needed to get reporting data out of the service at scale — compliance state, device inventory, app status, endpoint analytics, or one of the many other reports admins rely on for operations and audit evidence. Intune supports this pattern through the export API, which generates supported reports as asynchronous export jobs instead of requiring you to retrieve the same data through thousands of operational Graph calls.
+You can see the full list of reports available through the export API in Intune reports and properties available using Graph API documentation. In the illustrative scenario below, moving one nightly job from operational Graph reporting endpoints to the Intune export API (exportJobs) cuts the work from roughly 100,000 API calls to about 15 while producing the same report data. The runtime drops from ~2.5 hours to ~15 minutes. Here’s how, and why the pattern holds up as your fleet grows.
+
+Note on the numbers
+The figures below are a representative example for a hypothetical 50,000-device enterprise, “Contoso,” and are rounded for clarity. Your results may vary based on fleet size, policy count, and how many compliance settings you evaluate.
+
+The scenario
+Contoso runs a nightly job that answers a deceptively simple question:
+
+For each device, across every compliance policy assigned to it, what is the state of each individual setting?
+
+This is a classic per-device, per-compliance-policy, per-setting state export. It’s the raw material behind compliance dashboards, audit evidence, remediation targeting, and “why is this device noncompliant” investigations. In Intune’s reporting catalog, this is the DeviceStatusSummaryByCompliancePolicySettingsReportV3 report.
+Contoso has ~50,000 managed devices, and the job runs once a day.
+The old way: Operational Graph APIs
+The intuitive approach treats compliance data as something you fetch, per device, right now. The script:
+
+Enumerates the fleet (managedDevices).
+Loops over every device, and for each one calls the operational reporting or setting-state endpoints (such as managedDevices detail and settingStates) to pull that device’s per-policy, per-setting results.
+Pages through the results in small JSON pages (often 50 rows at a time), reassembling everything client-side.
+
+It works. It just doesn’t scale because the number of calls is a function of the number of devices.
+At roughly two operational calls per device, 50,000 devices is on the order of ~100,000 Graph calls per run. That volume brings its own tax:
+
+Throttling. You hit service protection limits and have to implement retry/back-off logic.
+Threading. To finish inside the window at all, you parallelize which means concurrency bugs, partial failures, and harder debugging.
+Fragility. A run that makes 100,000 calls has 100,000 chances to fail, and a mid-run failure often means starting over.
+Time. End=to-end, the job lands around ~2.5 hours.
+
+Every time Contoso onboards more devices, this job gets slower and more expensive - the worst possible scaling direction for something that runs every night.
+The new way: Export API (exportJobs)
+The export API flips the model. Instead of asking Graph to compute results device-by-device in real time, you ask Intune to generate the entire report once, server-side, and hand you back a single file.
+The flow is a short, asynchronous handshake:
+1. POST  /deviceManagement/reports/exportJobs
+         { &quot;reportName&quot;: &quot;DeviceStatusSummaryByCompliancePolicySettingsReportV3&quot;,
+           &quot;format&quot;: &quot;csv&quot;, ...optional filter/select... }
+         → returns a jobId, status: &quot;notStarted&quot;
+
+2. GET   /deviceManagement/reports/exportJobs('{jobId}')
+         → poll until status: &quot;completed&quot;     (a handful of polls while it builds)
+         → response includes a short-lived download URL
+
+3. GET   {download URL}
+         → one zipped CSV containing every device × policy × setting row
+That’s the whole pattern: request → poll → download → unzip → load. One report, one file, the entire fleet inside it.
+Count the calls: one POST to start the job, a handful of GET polls while Intune builds the file, and one GET to download it - call it&amp;nbsp;~15 calls total. Not ~15 per device. ~15 for the whole 50,000-device run. And that number barely moves whether Contoso has 50,000 devices or 150,000.
+Runtime drops to about ~15 minutes, most of which is simply waiting for the export to finish - cheap poll calls, not active compute.
+Most importantly, the output schema is identical. The CSV columns match what the old per-device loop assembled, so nothing downstream; dashboards, warehouse tables, alerting, has to change. You swap the acquisition layer and leave everything else alone.
+Side by side
+
+ComparisonOperational Graph APIs Recommended  Export API (exportJobs)PatternPer-device loop plus pagingAsync export → download one fileAPI calls per run~100,000~15Calls scale withNumber of devicesNothing. The handshake remains fixed.Runtime~2.5 hours~15 minutesConcurrencyThreading requiredNone neededOutput schema—Unchanged and drop-in compatibleNet result—~6,000× fewer API calls~10× faster runtime
+
+Why it scales: Roundtrips, not bytes
+Here’s the subtlety worth internalizing, because it’s easy to get wrong. There are two different costs in this job, and they scale on different axes:
+
+The number of API calls - round-trips across the wire.
+The volume of data - the actual compliance rows you move.
+
+The data volume is the same either way. 50,000 devices × N settings is 50,000 × N rows, whether you assemble them from 100,000 little paged responses or receive them in one CSV. The export doesn’t move less data - it moves the&amp;nbsp;same data. And yes, that file grows with both device count and setting count. More devices, bigger file; more settings, bigger file.
+So the win isn’t fewer bytes. The win is fewer round-trips.
+Every one of those 100,000 operational calls relies on authentication, TLS setup, network latency, and service-protection (throttling) accounting regardless of how much data it returns. Multiply that fixed overhead by 100,000 and it dominates everything. The export only pays that tax twice: once to start the job, once to download the file. Intune does the assembly server-side and streams you the result in a single bulk transfer.
+That reframes the scaling story:
+
+Call count is essentially constant - it doesn’t grow with devices or settings. It’s one job and one download.
+Data volume grows with devices and settings but a bigger CSV is a bigger single download, not more calls. Bulk transfer is exactly what HTTP is good at.
+Runtime has a mild data dependency: a larger fleet takes Intune a little longer to build the file. But you absorb that as a few extra seconds of poll-waiting, not as thousands of extra calls you have to orchestrate, retry, and throttle-manage.
+
+What the IT admin actually gets
+Beyond the raw speed, here’s the value that shows up in day-to-day operations:
+
+Your maintenance window comes back. A 15-minute job leaves room for everything else.
+Fewer moving parts to maintain. No custom throttling handler, no thread pool, no resumability logic. Less code is less to break at 2 a.m.
+Reliability by design. Two roundtrips means two failure points, and the server does the heavy lifting of assembling a consistent snapshot.
+Lower cost and lower service impact. Eliminating ~100,000 calls is easier on your tenant’s throttling limits and a better citizen for the Intune service overall.
+Room to grow. Because call count is decoupled from device count, doubling the fleet doesn’t double the job, you just download a somewhat larger file.
+No downstream disruption. Same schema for the output means the migration is contained to the ingestion step which is a low-risk swap, not a re-platforming.
+
+When to use which
+The export API isn’t a universal replacement, it’s best used for bulk, point-in-time snapshots:
+
+Reach for exportJobs when you need the whole fleet’s state (or a large, filtered slice) on a schedule such as nightly compliance loads, audit exports, warehouse hydration.
+Stick with the operational endpoints when you need a single device right now, an interactive “check this one device” lookup, or a real-time remediation trigger where waiting on an async job doesn’t make sense.
+
+The two are complementary. The mistake isn’t using the operational APIs, it’s using them in a loop to reconstruct something the export API will hand you in one file.
+The takeaway
+The per-device loop feels natural because it mirrors how we think about devices, one at a time. But at fleet scale, the question isn’t “what’s the state of this device?” a hundred thousand times over. It’s “give me the state of everything,” once. The export API is built for exactly that question, and answering it the right way turned a multi-hour nightly grind into a coffee break - from ~100,000 calls to about 15, ~10× faster, with zero downstream changes.
+If you have any questions, leave a comment below or reach out to us on X: @IntuneSuppTeam!</p><a href="https://techcommunity.microsoft.com/t5/intune-customer-success/from-hours-to-minutes-rethinking-microsoft-intune-compliance/ba-p/4540554" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aa4862b7c0e')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a50373c5f3c">
+        <div class="article-body">
+          <a href="https://techcommunity.microsoft.com/t5/intune-customer-success/designing-intune-enrollment-for-frontline-workers-choosing-the/ba-p/4540144" target="_blank" rel="noopener noreferrer" class="article-title">Designing Intune enrollment for frontline workers: Choosing the right path for real-world devices</a>
+          <div class="article-meta">techcommunity.microsoft.com &bull; Jul 23, 2026</div>
+          <div class="article-summary snippet"><p>By: Shawn Catlin – Senior Product Manager | Microsoft Intune and Sucheta Gawade, Microsoft MVP (Azure &amp;amp; Security / Intune)
+Practitioner perspective from Sucheta Gawade, Microsoft MVP (Azure &amp;amp; Security / Intune), with deep experience in secure frontline mobility, including regulated healthcare environments.
+Enrollment methodology&amp;nbsp;is one of the most consequential design decisions teams make for frontline environments. It shapes how devices are used, how identity is handled, how failures are recovered from, and how much friction workers experience before they can do their jobs.
+Frontline use cases aren’t limited to shared devices. They can span nearly every enrollment type available in Microsoft Intune, including user-assigned, shared, dedicated, kiosk, corporate-owned, BYOD, and zero-touch deployment models. The right choice is often influenced by business need, operational workflow, budget, support model, and security requirements. But it must also account for platform and operating system design. Android, iOS, and iPadOS may offer similar enrollment concepts, but they don’t always behave the same way or support the same management patterns.
+That distinction matters. A kiosk or dedicated-device model, for example, is intentionally designed for a locked-down, task-focused experience. It manages the device around a specific function, not around a personalized user workspace. In that model, broad app availability, persistent personalization, and user-driven app installation are not the primary management paradigm. Similarly, a shared-device model should not be selected simply because an organization cannot provide a dedicated device to every worker. If identity, app access, compliance, or user context are required, those needs must be part of the enrollment decision from the beginning.
+There is no copy-and-paste frontline enrollment strategy that works across every industry, business unit, or device scenario. Some frontline devices are shared across shifts and must remain reliable where connectivity, identity, and support are not guaranteed. Others are assigned to supervisors, clinicians, field workers, or shift leads who need persistent access to apps, settings, and data. When enrollment choices are made without accounting for these realities, especially platform differences and OS-level limitations, friction surfaces quickly during pilots and scales painfully during rollout.
+This article explains how to approach Intune enrollment for frontline devices through a practical, reality-first lens: start with how the device is used, align the management model to the workflow, and then plan how the device will be enrolled, replaced, and reprovisioned at scale.
+
+“In a hospital environment, frontline does not mean one type of device or one type of worker. A shared clinical workstation, a nurse’s mobile device, a patient check-in kiosk, a barcode scanner, and a supervisor’s assigned device may all be considered frontline, but they each have very different identity, security, app, and recovery requirements. That is why enrollment decisions have to start with the workflow.
+Sucheta GawadePractitioner
+
+Enrollment Is a Design Decision, not a Checkbox
+Enrollment does more than bring a device under management. It defines how the device is expected to work, where the security boundary sits, how identity is applied, and what recovery looks like when something fails in the field.
+There is no single “best” enrollment model for frontline. There is only the model that best fits how the device is actually used. The right choice depends on whether the device follows a person, a shift, a task, or a business process. It also depends on how much identity matters to the experience, whether apps need to be personalized, whether Conditional Access or compliance is required, and how quickly the device must be replaced or recovered.
+This is why many problems that look like policy, app, or configuration failures are actually enrollment design problems in disguise. A device can be successfully enrolled and still be poorly designed for the job it needs to do.
+
+“A device can be successfully enrolled and still fail the workflow. If a shift worker cannot access the right app quickly, if a shared device retains the wrong user context, or if a replacement device cannot be brought online during a shift, the issue may look like an app or support problem. In reality, it often traces back to an enrollment model that did not match the workflow.
+Sucheta GawadePractitioner
+
+Separate Two Decisions: Management Model and Provisioning Method
+Frontline enrollment planning becomes easier when teams separate two related but different decisions.
+The first decision is the management model. This is the architectural choice. It answers questions such as:
+
+Does the device need to represent a specific person?
+Is the device shared across multiple workers?
+Is it dedicated to a narrow task or workflow?
+Does the device require personal apps, persistent settings, or user-specific data?
+Does the workflow require Conditional Access, compliance, auditability, or individual identity?
+
+This decision determines whether the device should be user-associated, shared, dedicated, kiosk-style, personally owned, or corporate-owned with a work profile.
+The second decision is the provisioning and reprovisioning method. This is the lifecycle choice. It answers questions such as:
+
+How will the device get into management the first time?
+Will it be staged by IT, a depot, a partner, or the site?
+What happens after a wipe, repair, refresh, or reassignment?
+Can the device recover without a specific user’s credentials?
+Will Wi-Fi, certificates, tokens, apps, and policies be available at first boot?
+
+Zero-touch, pre-staging, depot workflows, and reprovisioning plans support the selected management model. They should not replace the decision about which model is right for the scenario.
+Start With How the Device Is Used
+In the previous article, Migrating Frontline Mobile Devices: Understanding the Reality of Your Estate, we discussed why successful frontline migrations begin with understanding how devices are actually used in the field. That discovery work should now feed directly into enrollment design.
+The most reliable starting point is not the department, license, or ownership model. It is the device’s behavior in the field.
+Ask:
+
+Does this device follow a person?
+Does it follow a shift?
+Does it follow a task?
+Does it need to know who the user is?
+Does it need persistent user context?
+Does it need to be quickly replaced with minimal IT involvement?
+Does the platform support the experience you expect?
+
+The answers help map real-world requirements to the right Intune enrollment approach. Before selecting an enrollment model, organizations should also understand how identity is expected to function on the device. If you have not yet reviewed assigned versus shared identity patterns, see our previous article, Migrating frontline mobile devices: Identity considerations for assigned and shared devices, which explores how user identity, authentication, auditability, and device ownership assumptions can influence frontline management decisions.
+
+Decision indicatorUsually points towardValidate before choosingOne person regularly uses the device and needs persistent apps, settings, approvals, or dataUser-driven or user-associated enrollmentWhether identity and personalization are truly required for the workflowMultiple workers use the same device across shifts and need individual sign-inShared or device-first enrollment with identity supportHow sign-in, sign-out, session cleanup, and auditability will workThe device performs a narrow, repeatable taskDedicated or kiosk-style enrollmentWhether the workflow can operate with a locked-down app set and minimal user choiceThe device needs corporate control but may allow limited personal useCorporate-owned work profile where supportedWhether the OS supports the expected separation between work and personal dataThe device is personally owned and only work data needs to be protectedBYOD / personally owned work profile / user enrollmentWhether the workflow can tolerate limited organizational controlThe device must be replaced quickly with minimal IT involvementPre-staged, zero-touch, or easily reprovisioned device-first modelReset behavior, network readiness, certificate delivery, and replacement speedThe environment has inconsistent connectivity or limited supportSimpler enrollment paths with fewer live dependenciesWhat the device needs at first boot, during sign-in, and after wipe or reset
+
+Map Frontline Scenarios to Enrollment Models
+A practical Intune strategy starts by accepting that frontline is not one scenario. It is a collection of scenarios. Standardization is important, but standardizing on one enrollment method for every frontline use case is rarely the right goal. Mature organizations standardize the decision framework, not necessarily the deployment model.
+
+Device usage patternTypical characteristicsiOS/iPadOS enrollmentAndroid enrollmentUser-assigned deviceOne person regularly uses the device and needs personalized apps, settings, and dataAutomated Device Enrollment with user affinityAndroid Enterprise Fully Managed or Corporate-Owned Work Profile if personal use is permittedShared device with individual sign-inMultiple workers share the device and sign in with their own identitiesAutomated Device Enrollment with Microsoft Entra Shared Device Mode; Shared iPad when multi-user iPad support is requiredAndroid Enterprise Dedicated Device with Microsoft Entra Shared Device ModeDedicated or task-based deviceDevice performs a specific function and does not require a personalized user experienceAutomated Device Enrollment without user affinity, with supervised device and app restrictionsAndroid Enterprise Dedicated DeviceAndroid device without Google Mobile ServicesCorporate-owned specialty device, often shared or task-focusedNot applicableAndroid AOSP userless or AOSP user-associated enrollmentPersonally owned deviceEmployee-owned device used for workBYOD User EnrollmentAndroid Enterprise Personally Owned Work ProfileZero-touch or pre-staged deploymentCorporate-owned device that needs scalable provisioning or replacementAutomated Device Enrollment through Apple Business Manager or Apple School ManagerAndroid Zero-touch Enrollment, Samsung Knox Mobile Enrollment, or equivalent supported provisioning path
+
+If the device follows a person, choose a model optimized for identity and personalized access. If the device follows a shift, workflow, or task, choose a model optimized for simplicity, consistency, and easy replacement.
+If you’re looking for more platform-specific guidance please see frontline enrollment resources for both Android and iOS/iPadOS:
+
+Get started with Android frontline worker devices
+Get started with iOS/iPadOS frontline worker devices
+
+These resources provide detailed implementation guidance, recommended enrollment approaches, and platform-specific considerations for frontline deployments.
+Platform and OS Differences Matter
+Teams often assume that similar enrollment concepts behave the same way across platforms. They do not.
+On Android, a shared frontline device that needs a locked-down experience and individual worker sign-in often maps to Android Enterprise Dedicated Device with Microsoft Entra Shared Device Mode. Android Enterprise Dedicated Device provides the task-focused management model. Entra Shared Device Mode adds the identity layer so workers can sign in as themselves. Intune Managed Home Screen then helps present a consistent launcher experience and enforce the sign-in flow between shifts.
+On iPadOS, a shared device with individual sign-in may be designed using Shared iPad for Business or Automated Device Enrollment with Microsoft Entra Shared Device Mode. The distinction becomes important when security requirements are involved. Shared iPad can support multi-user scenarios, but organizations should review its limitations carefully, especially if Conditional Access or device compliance enforcement is required. Where Conditional Access, compliance, and security-driven access controls are mandatory, ADE with Entra Shared Device Mode may be the better fit, although it introduces additional configuration considerations and dependency on compatible apps. See Shared iOS and iPadOS devices for more information.
+Platform differences also matter for corporate-owned devices that allow personal use. Android Corporate-Owned Work Profile provides a native work profile boundary between corporate and personal data. iOS and iPadOS do not provide that same OS-level separation for corporate-owned personally enabled devices, so organizations often rely more heavily on app-level controls and MAM policies.
+The practical point is simple: choose the enrollment model that fits the workflow, but confirm that the platform supports the management pattern you expect.
+
+“One of the most common mistakes I have seen is designing for the cleanest administrative model instead of the messiest operational reality. In FLW cases, the real test is not whether the device enrolls successfully on day one. It is whether the device can keep supporting the workflow after shift changes, network changes, app issues, wipes, repairs, and urgent replacements.
+Sucheta GawadePractitioner
+
+When User-Driven Enrollment Makes Sense
+User-driven enrollment still has a place in frontline, but the use cases are narrower than many teams expect. It makes sense when the device needs to reflect a specific person, not just a task.
+This can work well for shift managers, supervisors, clinicians, field workers, or frontline leads who need persistent access to apps, approvals, notifications, data, and settings. In these cases, user-driven or user-associated enrollment can provide cleaner app targeting, stronger identity context, and a more familiar experience for the person carrying the device.
+Common indicators include:
+
+The worker keeps the device for most of its working life.
+The user needs email, Teams, approvals, or real-time app badges.
+The workflow depends on user-specific apps, settings, or data.
+The device may support some personal enablement where the platform supports separation.
+The worker is responsible for keeping the device available, charged, and ready for use.
+
+But personalization comes with operational cost. User-driven enrollment increases dependency on credentials, adds friction when sign-in steps fail, and makes recovery more complex when a device must be replaced quickly. It is usually a poor fit for shared workflows, high-turnover roles, or task-based devices where speed and predictability matter more than personalization.
+Designing for Shared and Shift-Based Devices
+Shared and shift-based devices are passed from one worker to the next. They are expected to stay productive across handoffs and often operate in environments where there is little time for sign-in friction or troubleshooting.
+For these scenarios, device-first enrollment usually aligns better with reality because the device is treated as a managed tool for a shared workflow, not as a personal endpoint tied to one individual. The goal is consistency: the next worker should be able to pick up the device, authenticate if required, and get to work without recovering from leftover state or complex setup steps.
+If shared devices require individual sign-in, identity must be designed into the enrollment model. Microsoft Entra Shared Device Mode and QR code authentication can help preserve individual identity without forcing workers through a full username and password flow at every handoff. This is especially relevant in environments such as retail, healthcare, warehousing, and field operations where shared devices still need auditability, Conditional Access, app access, or user-specific sessions.
+Shared-device success does not come from default settings alone. Teams should define:
+
+How sign-in and sign-out should work.
+What user context should persist.
+What should be cleared between sessions.
+Which apps need to support shared-device behavior.
+How quickly a device can be swapped or reprovisioned.
+Whether access depends on the user, the device, the app session, or a combination.
+
+
+“Especially in healthcare and clinical settings, shared devices have to be absolutely ready for the next worker, the next patient, and the next task. There is rarely time for complex recovery steps, unclear ownership, or leftover user state from the previous shift. A good shared-device design should support quick handoff, clean session behavior, and predictable recovery under pressure.
+Sucheta GawadePractitioner
+
+Dedicated and Kiosk Devices: Avoid Personalization Drift
+Dedicated and kiosk-style enrollment is ideal when the device performs a narrow, repeatable function and individual identity is secondary or unnecessary. Examples include scanners, point-of-sale systems, check-in kiosks, digital signage, inventory devices, and task-specific handhelds.
+The strength of kiosk-style design is that it limits choice. That is also the boundary teams must respect. A kiosk is not intended to behave like a general-purpose device where users browse a catalog of available apps, personalize settings, or install what their business unit needs on demand.
+A common friction point occurs when organizations try to simplify IT support with one shared kiosk configuration for multiple businesses or personas, and then expect users to install the apps they need. That creates a mismatch. User-installed available apps are not the kiosk paradigm. If each business unit needs a different set of apps, the better design is usually to do the work upfront: segment the device scenarios, define the required app sets, and deploy the right configuration to the right devices.
+This is also important for identity and certificates. User certificates, persistent user sessions, and shared secrets can conflict with the assumptions of a device-first or kiosk model. If the workflow requires user identity, auditability, or user-specific access, that requirement should be addressed through the right shared-device identity pattern, not bolted onto a kiosk design after the fact.
+Enrollment at Scale: Plan for Provisioning and Replacement
+Once the right management model is selected, teams should plan how devices will be enrolled and reprovisioned at scale.
+At scale, enrollment becomes a lifecycle capability. The question is not only how a device gets into management the first time. Instead, it is how quickly that same device can be staged, replaced, wiped, repaired, reassigned, or reintroduced into service.
+Some organizations ship devices directly to frontline locations and complete setup during out-of-box experience. Others rely on depot, partner, or white-glove processes to front-load setup before the device reaches the site. Neither model is automatically better. The right choice depends on network readiness, site support, variability at first boot, app dependencies, certificate delivery, and replacement expectations.
+Replacement velocity is a real design constraint. In many frontline settings, a broken device cannot wait for a full troubleshooting cycle. A worker may need to drop one device at a charging bay and pick up another with minimal disruption. The more the enrollment and reprovisioning model supports a known-good state, the less productivity depends on one specific device surviving the shift.
+Common Friction Points in Frontline Enrollment
+Frontline enrollment problems are rarely caused by one dramatic failure. More often, they come from reasonable decisions made in the wrong order or optimized for the wrong thing.
+
+Friction pointWhy it happensBetter design approachTreating frontline as only sharedThe organization assumes all frontline workers use devices the same waySegment by workflow: person, shift, task, or business processChoosing shared because dedicated devices are too expensiveBudget drives the model before identity and workflow are understoodValidate identity, app, compliance, and recovery needs before choosing sharedUsing kiosk for personalized workflowsKiosk seems simple and locked downUse kiosk only when the workflow is task-focused and does not require broad personalizationWanting available apps on kiosk devicesOne configuration is used for too many personasBuild scenario-specific app sets and configurations instead of relying on user installationUsing shared credentialsEnrollment was not designed for individual identityUse Entra Shared Device Mode, QR code authentication, or another supported identity patternRequiring user certificates on device-first or kiosk scenariosSecurity assumptions are copied from knowledge-worker designsValidate whether access can be controlled through device, app, or session designOver-securing setup at the expense of recoveryControls are designed for ideal conditions, not shift pressureDesign security that holds up during replacement, poor connectivity, and limited supportTreating enrollment as a one-time eventSuccess is measured by initial provisioning onlyDesign for wipe, repair, reassignment, refresh, and reprovisioning
+&amp;nbsp;
+A deployment path that saves time on day one can create years of friction if it does not match how the device is used. In frontline scenarios, the best enrollment model is not always the fastest one to provision. It is the one that is easiest to sustain.
+
+
+“One of the most common mistakes I have seen is designing for the cleanest administrative model instead of the messiest operational reality. In FLW cases, the real test is not whether the device enrolls successfully on day one. It is whether the device can keep supporting the workflow after shift changes, network changes, app issues, wipes, repairs, and urgent replacements.
+Sucheta GawadePractitioner
+
+Closing
+Successful frontline deployments are rarely defined by the sophistication of their policies alone. They are defined by how well design choices hold up under real-world pressure. Enrollment is one of the earliest and most visible signals to frontline teams about whether the technology is there to support their work or get in the way.
+By treating enrollment as a deliberate design decision and grounding it in how devices are actually used, organizations can reduce friction, improve resilience, and create a foundation that scales as frontline operations evolve. Getting enrollment right does not guarantee success, but getting it wrong sets a ceiling that no amount of policy refinement can overcome.
+For more frontline examples and implementation guidance, see related Microsoft frontline worker management resources, including the blog, From the frontlines: Frontline worker management with Microsoft Intune, and the earlier article, Migrating Frontline Mobile Devices: Understanding the Reality of Your Estate.
+
+“When enrollment, identity, security, and recovery are designed well, frontline teams can stay focused on the people they serve - customers, patients, guests, employees, students, and communities - instead of the device in their hands. That is the standard a frontline enrollment strategy should be measured against.
+Sucheta GawadePractitioner
+
+As always, we welcome your feedback and experience. If you’ve navigated identity decisions for shared or frontline devices, share your advice and lessons learned in the comments, or reach out to us on X @IntuneSuppTeam.</p><a href="https://techcommunity.microsoft.com/t5/intune-customer-success/designing-intune-enrollment-for-frontline-workers-choosing-the/ba-p/4540144" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a50373c5f3c')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aaf4f883aca">
+        <div class="article-body">
+          <a href="https://techcommunity.microsoft.com/t5/intune-customer-success/unpacking-endpoint-management-is-back-and-we-ve-got-a-lot-to/ba-p/4514599" target="_blank" rel="noopener noreferrer" class="article-title">Unpacking Endpoint Management is back - and we’ve got a lot to talk about</a>
+          <div class="article-meta">techcommunity.microsoft.com &bull; Jul 21, 2026</div>
+          <div class="article-summary snippet"><p>If you've been missing real, candid conversations about endpoint management, good news! Unpacking Endpoint Management is officially back.
+This series is all about what actually works. No fluff, just practical tips, proven strategies, and honest discussions to help you optimize and simplify the way you manage and secure endpoints today (and prepare for what's next).
+We're bringing together people from across Microsoft Intune, Security, and Customer Experience engineering and product teams, along with guest practitioners, to share what's worked, what hasn't, and what we've learned along the way. And yes…we're absolutely here for the tough questions.
+A quick update on the hosts
+Danny Guillory, a familiar face to the community and a Product Manager for Intune and Configuration Manager, will continue to host the series. He's joined this season by Rachelle Blanchard as co‑host, bringing a strong community and discovery lens to the series. Rachelle focuses on surfacing real customer questions and guiding conversations toward practical outcomes, helping ensure each episode reflects how endpoint management works in the real world.
+Up next
+
+
+What should we cover? Drop ideas below in the comments.
+
+
+Sign in to the Tech Community and follow this post for the latest updates on upcoming episodes.
+Catch up on demand
+You may have missed them, but you don't have to miss out on the learnings. Watch and learn when it's convenient for you.
+
+Policy: from hybrid to cloud-native
+Device security with Microsoft Intune
+Trends in endpoint management (live from Tech Takeoff 2026)
+
+Not sure where to start? Watch our most recent episode, App management at scale with Intune, now on demand!
+
+What's the format?
+This web series is streamed live on Tech Community, LinkedIn, YouTube, and X. In addition to open discussion, we answer your questions so sign in (or sign up for) the Tech Community and RSVP to submit questions early and throughout the live show.
+How do I join?
+There's no call or meeting to join. Simply head to aka.ms/JoinUEM. Show up at start time, watch live, and jump into the discussion with us.
+Help shape the series
+This series is for you - so tell us what you want to hear. Drop a comment below with:
+
+Topics you'd like us to cover
+Tough questions you want answered
+Speakers you'd love to hear from
+
+We can't wait to get started - and even more excited to hear from you along the way.
+Join the Community to get early insight into what's coming for Intune, connect with experts, and share real-world feedback that helps shape the product. 👉 aka.ms/JoinIntuneCommunity</p><a href="https://techcommunity.microsoft.com/t5/intune-customer-success/unpacking-endpoint-management-is-back-and-we-ve-got-a-lot-to/ba-p/4514599" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aaf4f883aca')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a02a675fb5a">
+        <div class="article-body">
+          <a href="https://petri.com/why-hybrid-identity-becomes-technical-debt/" target="_blank" rel="noopener noreferrer" class="article-title">Why Hybrid Identity Becomes Technical Debt and How to Move to Cloud-Only</a>
+          <div class="article-meta">petri.com &bull; Jul 21, 2026</div>
+          <div class="article-summary"><p>Cloud-only simplifies IT only after you uncover the identity and legacy app dependencies keeping hybrid alive. Learn how to move to cloud-only identity.
+Moving from a hybrid IT environment to a fully cloud-based architecture is a transformative journey for many organizations. This shift, driven by evolving business requirements and technological advancements, can unlock new levels of agility, scalability, and efficiency.
+Most organizations running Microsoft Entra ID, Microsoft 365, Intune, and modern Windows clients should be working towards a cloud-only identity model. Maintaining hybrid identity purely because “that’s how we’ve always done it” creates operational complexity that rarely delivers enough value to justify the ongoing cost.
+Transitioning to cloud-only centralizes IT operations, simplifies management, and accelerates access to new features and innovations.
+Key factors motivating this change include:
+Effectively transitioning to a cloud-only environment requires a thoughtful, phased approach:
+The biggest mistake organizations make is focusing on infrastructure migration before validating identity dependencies and legacy applications.
+Begin with a comprehensive audit of current infrastructure, applications, data, and dependencies. Identify workloads suitable for immediate migration and those requiring redesign.
+Establish clear goals for cloud architecture, considering organizational needs for performance, availability, security, and compliance. Decide on single-cloud or multi-cloud strategies based on risk tolerance and vendor capabilities.
+Shifting to cloud-only requires reworking IAM strategies to ensure robust user authentication, least privilege access, and strong identity protection. Modern cloud platforms provide advanced IAM tools that can unify user management across services.
+In practice, this means looking for the dependencies that rarely appear in high-level migration plans: applications that still require LDAP, legacy service accounts, NTLM authentication, Group Policy settings, certificate services, and server workloads that assume Active Directory (AD) is always available. These are the dependencies that often keep Entra Connect, domain controllers, or hybrid identity infrastructure running long after the rest of the environment has moved to Microsoft 365 and Intune.
+Migrate network dependencies with minimal disruption. Ensure secure, reliable connectivity for all users, whether on-premises, remote, or mobile. Redesign network topology as necessary to leverage cloud provider backbones and integrated security services.
+Prioritize mission-critical applications and data sets. Choose appropriate migration methods (lift-and-shift, refactoring, rebuild) depending on complexity, integration needs, and future goals.
+File shares, print services, line-of-business applications, and integrations with older third-party platforms are common blockers. A finance application that expects Windows authentication, a warehouse system that depends on LDAP queries, or a departmental file share with years of inherited permissions can slow a cloud-only project more than the migration of virtual machines or storage.
+Update policies to reflect a cloud-first posture. Automate compliance reporting and use cloud-native security tools—such as encryption, threat detection, and incident response—to protect data and workloads.
+Invest in staff training to equip teams with cloud-specific skills. Communicate changes clearly across the organization, emphasizing benefits and new opportunities. Establish support channels and feedback mechanisms to address issues proactively.
+Many organizations have successfully eliminated hybrid complexity by embracing cloud-only strategies. They report improvements in operational efficiency, security posture, user experience, and innovation capabilities.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a02a675fb5a')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="entraid" class="topic-section">
+      <h2 class="topic-title" style="--c:#6B69D6">Entra ID <span class="count">(5)</span></h2>
+      <div class="article-card" data-id="a02a675fb5a">
+        <div class="article-body">
+          <a href="https://petri.com/why-hybrid-identity-becomes-technical-debt/" target="_blank" rel="noopener noreferrer" class="article-title">Why Hybrid Identity Becomes Technical Debt and How to Move to Cloud-Only</a>
+          <div class="article-meta">petri.com &bull; Jul 21, 2026</div>
+          <div class="article-summary"><p>Cloud-only simplifies IT only after you uncover the identity and legacy app dependencies keeping hybrid alive. Learn how to move to cloud-only identity.
+Moving from a hybrid IT environment to a fully cloud-based architecture is a transformative journey for many organizations. This shift, driven by evolving business requirements and technological advancements, can unlock new levels of agility, scalability, and efficiency.
+Most organizations running Microsoft Entra ID, Microsoft 365, Intune, and modern Windows clients should be working towards a cloud-only identity model. Maintaining hybrid identity purely because “that’s how we’ve always done it” creates operational complexity that rarely delivers enough value to justify the ongoing cost.
+Transitioning to cloud-only centralizes IT operations, simplifies management, and accelerates access to new features and innovations.
+Key factors motivating this change include:
+Effectively transitioning to a cloud-only environment requires a thoughtful, phased approach:
+The biggest mistake organizations make is focusing on infrastructure migration before validating identity dependencies and legacy applications.
+Begin with a comprehensive audit of current infrastructure, applications, data, and dependencies. Identify workloads suitable for immediate migration and those requiring redesign.
+Establish clear goals for cloud architecture, considering organizational needs for performance, availability, security, and compliance. Decide on single-cloud or multi-cloud strategies based on risk tolerance and vendor capabilities.
+Shifting to cloud-only requires reworking IAM strategies to ensure robust user authentication, least privilege access, and strong identity protection. Modern cloud platforms provide advanced IAM tools that can unify user management across services.
+In practice, this means looking for the dependencies that rarely appear in high-level migration plans: applications that still require LDAP, legacy service accounts, NTLM authentication, Group Policy settings, certificate services, and server workloads that assume Active Directory (AD) is always available. These are the dependencies that often keep Entra Connect, domain controllers, or hybrid identity infrastructure running long after the rest of the environment has moved to Microsoft 365 and Intune.
+Migrate network dependencies with minimal disruption. Ensure secure, reliable connectivity for all users, whether on-premises, remote, or mobile. Redesign network topology as necessary to leverage cloud provider backbones and integrated security services.
+Prioritize mission-critical applications and data sets. Choose appropriate migration methods (lift-and-shift, refactoring, rebuild) depending on complexity, integration needs, and future goals.
+File shares, print services, line-of-business applications, and integrations with older third-party platforms are common blockers. A finance application that expects Windows authentication, a warehouse system that depends on LDAP queries, or a departmental file share with years of inherited permissions can slow a cloud-only project more than the migration of virtual machines or storage.
+Update policies to reflect a cloud-first posture. Automate compliance reporting and use cloud-native security tools—such as encryption, threat detection, and incident response—to protect data and workloads.
+Invest in staff training to equip teams with cloud-specific skills. Communicate changes clearly across the organization, emphasizing benefits and new opportunities. Establish support channels and feedback mechanisms to address issues proactively.
+Many organizations have successfully eliminated hybrid complexity by embracing cloud-only strategies. They report improvements in operational efficiency, security posture, user experience, and innovation capabilities.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a02a675fb5a')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ac945cc64ab">
+        <div class="article-body">
+          <a href="https://petri.com/best-microsoft-entra-id-management-tools/" target="_blank" rel="noopener noreferrer" class="article-title">9 Best Microsoft Entra ID Management Tools for Enterprise Identity and Governance</a>
+          <div class="article-meta">petri.com &bull; Jul 20, 2026</div>
+          <div class="article-summary"><p>Compare the best third-party Microsoft Entra ID management tools for identity administration, governance, privileged access, tenant control, and identity threat detection.
+Microsoft Entra ID is now the identity control plane for many organizations, but managing Entra ID well is no longer just about creating users, assigning groups, or enabling multifactor authentication (MFA). Identity teams are dealing with hybrid Active Directory (AD), Microsoft 365, SaaS apps, privileged access, contractors, lifecycle automation, audit evidence, service accounts, and identity-based attacks at the same time.
+Microsoft positions Entra ID as a platform for managing user identities, access to apps and resources, Conditional Access, role-based access control, hybrid identity, application provisioning, and monitoring, which shows just how broad the operational surface has become.
+Native Microsoft tools are essential, but they are not always enough on their own. Microsoft Entra ID Governance includes hundreds of integrations and supports identity lifecycle automation, application access governance, periodic access reviews, and other controls. But enterprises usually need more than native controls: they need delegated administration across hybrid AD and Entra ID, deeper identity governance, privileged access management, automated provisioning and deprovisioning, tenant-level reporting, configuration recovery, and identity threat detection. That is where third-party Microsoft Entra ID management tools earn their place.
+This list focuses on the best third-party tools that help IT and security teams manage Microsoft Entra ID in the real world. Some are identity governance platforms. Some are access management or Privileged Access Management (PAM) products. Others are operational administration, Microsoft 365 governance, or identity threat detection tools. The point is not to crown one universal winner, but to help readers quickly identify the right tool for their identity problem.
+A good Microsoft Entra ID management tool should help solve one of the hard problems Microsoft-centric organizations face every day: lifecycle automation, access governance, privileged access, delegated administration, security monitoring, compliance reporting, or hybrid AD-to-Entra visibility.
+For enterprise buyers, the strongest products usually map to one or more of these categories:
+The best choice depends on whether your biggest pain is governance, admin efficiency, privilege sprawl, audit readiness, or identity security.
+Best for: Microsoft-focused hybrid identity administration, monitoring, and recovery
+Cayosoft Administrator and Cayosoft Guardian are purpose-built for Microsoft hybrid identity environments, which makes it especially relevant for organizations managing Active Directory, Microsoft Entra ID, Microsoft 365, Exchange Online, Teams, and related services.
+Cayosoft Guardian is a unified identity resilience platform for monitoring and recovery across the Microsoft hybrid identity stack, with capabilities for tracking identity changes and rolling back unwanted or malicious modifications.
+Key strengths
+Differentiator
+Cayosoft’s differentiation is its Microsoft-specific operational depth. It is not a general-purpose IGA platform like SailPoint or Saviynt, and it is not a PAM vault like CyberArk. It is better understood as a Microsoft hybrid identity operations and resilience platform that combines delegated administration, monitoring, rollback, and recovery.
+Ideal use case
+Cayosoft fits organizations that are heavily invested in Microsoft and need better control over hybrid identity changes, delegated administration, audit readiness, and recovery from mistakes or attacks.
+Best for: Microsoft 365 and Entra tenant administration
+CoreView is a Microsoft 365 tenant management and resilience platform with strong relevance to Entra ID administration.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac945cc64ab')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a69885a0e11">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/07/devman-raas-portal-centralizes-payload.html" target="_blank" rel="noopener noreferrer" class="article-title">DevMan RaaS Portal Centralizes Payload Builds, Victim Management, and Affiliate Payouts</a>
+          <div class="article-meta">thehackernews.com &bull; Jul 25, 2026</div>
+          <div class="article-summary"><p>The operators of the DevMan ransomware-as-a-service (RaaS) scheme are maintaining a dedicated web platform that offers affiliates the ability to build payloads, oversee earnings, and manage various aspects related to victims.
+Swiss cybersecurity company PRODAFT is tracking the centrally administered RaaS operation under the name Funky Mantis.
+&quot;The portal combined build generation, finance, victim chat, support, victim records, teams, and payout functions,&quot; the company said in an extensive report shared with The Hacker News.
+&quot;The service integrated access brokerage or access distribution with ransomware deployment. Administrators offered country-specific 'networks,' asked whether an affiliate would use personal or program-supplied access, and imposed two-to-three-day completion windows.&quot;
+Various analyses show that DevMan first emerged on the scene in April 2025 as an affiliate for Qilin, DragonForce, Apos, and RansomHub, before shifting to their own RaaS operation. The locker's DNA is &quot;unmistakably DragonForce,&quot; Vectra AI noted back in October 2025, highlighting the ransomware's shared lineage.
+In an interview with security researcher Jon DiMaggio published in October 2025, DevMan acknowledged that they worked with Conti and claimed they had developed a &quot;specialized SCADA locker&quot; to target an unnamed gas company that was designed to inflict progressive physical damage beyond encryption.
+Per the threat actor, the malware would &quot;push industrial control systems beyond their operating parameters, processors, memory, and thermal limits, forcing systems to ramp up and run hot until hardware failed.&quot;
+&quot;The threat actor is operating with a high-profile online presence and updating about developments, updates and general statements mainly in English and sometimes in Russian as well,&quot; the Israel National Cyber Directorate (INCD) said in a bulletin released last year. &quot;They often 'brag' about their achievements, to the point where they post write-ups that describe the way they gained access and performed the attack.&quot;
+DevMan's operations suffered a hit in June 2025 after a mysterious whistleblower calling themselves GangExposed publicly doxxed operator identities, causing a few affiliates to abandon the operation. DevMan also alleged that GangExposed attempted to extort them for 0.3 to 1 Bitcoin during their Telegram interactions.
+According to statistics on Ransomware.Live, the group has claimed 184 victims to date, with no new victims reported after February 4, 2026. Nearly 50 victims are located in the U.S., with technology, healthcare, financial services, professional services, and government sectors accounting for the most targeted.
+The affiliate portal associated with the operation, which originally revolved around builders, finance, victim chat, and help desk functions, has since received an upgrade. The third version (&quot;v3) of the platform released in January 2026 comes with support for structured victim records, life cycle states, team creation, invitation controls, per-victim build options, deadline tracking, revenue fields, and shared operational access.
+&quot;This progression indicates an effort to formalize affiliate workflows and manage multiple intrusions through a common platform rather than relying only on chat-based coordination,&quot; PRODAFT said.
+The cybersecurity company has identified five distinct roles within the DevMan operations -
+- LARVA-367 - Administrator/owner and central coordinator
+- LARVA-546 - Access coordinator named as an alternative point of contact for network access
+- LARVA-547 - Senior operator
+- LARVA-548 - Senior operator or coordinator
+- LARVA-550 - Affiliate/operator who was credited for an installation in an actor-controlled group message
+&quot;Affiliates were added to corporate chat after producing a first victim and were assigned an experienced curator,&quot; PRODAFT said. &quot;They could be removed after one month without a new victim.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a69885a0e11')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a19d994b147">
+        <div class="article-body">
+          <a href="https://petri.com/best-microsoft-entra-id-management-tools/" target="_blank" rel="noopener noreferrer" class="article-title">9 Best Microsoft Entra ID Management Tools - Petri IT Knowledgebase</a>
+          <div class="article-meta">Petri IT Knowledgebase &bull; Jul 20, 2026</div>
+          <div class="article-summary"><p>Compare the best third-party Microsoft Entra ID management tools for identity administration, governance, privileged access, tenant control, and identity threat detection.
+Microsoft Entra ID is now the identity control plane for many organizations, but managing Entra ID well is no longer just about creating users, assigning groups, or enabling multifactor authentication (MFA). Identity teams are dealing with hybrid Active Directory (AD), Microsoft 365, SaaS apps, privileged access, contractors, lifecycle automation, audit evidence, service accounts, and identity-based attacks at the same time.
+Microsoft positions Entra ID as a platform for managing user identities, access to apps and resources, Conditional Access, role-based access control, hybrid identity, application provisioning, and monitoring, which shows just how broad the operational surface has become.
+Native Microsoft tools are essential, but they are not always enough on their own. Microsoft Entra ID Governance includes hundreds of integrations and supports identity lifecycle automation, application access governance, periodic access reviews, and other controls. But enterprises usually need more than native controls: they need delegated administration across hybrid AD and Entra ID, deeper identity governance, privileged access management, automated provisioning and deprovisioning, tenant-level reporting, configuration recovery, and identity threat detection. That is where third-party Microsoft Entra ID management tools earn their place.
+This list focuses on the best third-party tools that help IT and security teams manage Microsoft Entra ID in the real world. Some are identity governance platforms. Some are access management or Privileged Access Management (PAM) products. Others are operational administration, Microsoft 365 governance, or identity threat detection tools. The point is not to crown one universal winner, but to help readers quickly identify the right tool for their identity problem.
+A good Microsoft Entra ID management tool should help solve one of the hard problems Microsoft-centric organizations face every day: lifecycle automation, access governance, privileged access, delegated administration, security monitoring, compliance reporting, or hybrid AD-to-Entra visibility.
+For enterprise buyers, the strongest products usually map to one or more of these categories:
+The best choice depends on whether your biggest pain is governance, admin efficiency, privilege sprawl, audit readiness, or identity security.
+Best for: Microsoft-focused hybrid identity administration, monitoring, and recovery
+Cayosoft Administrator and Cayosoft Guardian are purpose-built for Microsoft hybrid identity environments, which makes it especially relevant for organizations managing Active Directory, Microsoft Entra ID, Microsoft 365, Exchange Online, Teams, and related services.
+Cayosoft Guardian is a unified identity resilience platform for monitoring and recovery across the Microsoft hybrid identity stack, with capabilities for tracking identity changes and rolling back unwanted or malicious modifications.
+Key strengths
+Differentiator
+Cayosoft’s differentiation is its Microsoft-specific operational depth. It is not a general-purpose IGA platform like SailPoint or Saviynt, and it is not a PAM vault like CyberArk. It is better understood as a Microsoft hybrid identity operations and resilience platform that combines delegated administration, monitoring, rollback, and recovery.
+Ideal use case
+Cayosoft fits organizations that are heavily invested in Microsoft and need better control over hybrid identity changes, delegated administration, audit readiness, and recovery from mistakes or attacks.
+Best for: Microsoft 365 and Entra tenant administration
+CoreView is a Microsoft 365 tenant management and resilience platform with strong relevance to Entra ID administration.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a19d994b147')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a9cc5b3c683">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi0wFBVV95cUxPUUJEWldtaC1yekx1OWprOXE2WHRlb3VhNkhXOWlwMmN5SVdBbGRjTGV6WWNIUmFpM0QycTZ1aG5kNFhmNkZsUkFHM1lialR1Z3JfSEkxN0JzRmdYc1ZfTjRib3VUTW5vSms5ZERybkpiRENaVjd4YlJPMGIyeGVUUW03aVlrVzhrdjNla1JFZUl3TGNGcGJXUFBjUk1pRGRoWDlHRFdJcVFZS3FWYlVVRmJFeVpreUxxUGpjaktKazFwVGN6U3U4NmNLVC1QYl9FTUtB?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Redmond's reaper cometh: October 2026 set to bury a graveyard of Microsoft products - The Register</a>
+          <div class="article-meta">The Register &bull; Jul 22, 2026</div>
+          <div class="article-summary snippet"><p>Redmond's reaper cometh: October 2026 set to bury a graveyard of Microsoft products&amp;nbsp;&amp;nbsp;The Register</p><a href="https://news.google.com/rss/articles/CBMi0wFBVV95cUxPUUJEWldtaC1yekx1OWprOXE2WHRlb3VhNkhXOWlwMmN5SVdBbGRjTGV6WWNIUmFpM0QycTZ1aG5kNFhmNkZsUkFHM1lialR1Z3JfSEkxN0JzRmdYc1ZfTjRib3VUTW5vSms5ZERybkpiRENaVjd4YlJPMGIyeGVUUW03aVlrVzhrdjNla1JFZUl3TGNGcGJXUFBjUk1pRGRoWDlHRFdJcVFZS3FWYlVVRmJFeVpreUxxUGpjaktKazFwVGN6U3U4NmNLVC1QYl9FTUtB?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a9cc5b3c683')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="m365" class="topic-section">
+      <h2 class="topic-title" style="--c:#D83B01">Microsoft 365 <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="af7173b3f99">
+        <div class="article-body">
+          <a href="https://petri.com/hollowgraph-malware-microsoft-365-graph-api/" target="_blank" rel="noopener noreferrer" class="article-title">Researchers Discover HOLLOWGRAPH Malware Abusing Microsoft 365, Graph API</a>
+          <div class="article-meta">petri.com &bull; Jul 23, 2026</div>
+          <div class="article-summary"><p>New malware uses calendar events, DNS tunneling, and encrypted communications to conceal cyber-espionage activity.
+Key Takeaways:
+Group-IB researchers have discovered HOLLOWGRAPH, a sophisticated malware linked with high confidence to the Cavern cyber-espionage framework. The malware abuses legitimate Microsoft 365 services to conceal its command-and-control (C2) communications.
+According to Group-IB researchers, HOLLOWGRAPH leverages the Microsoft Graph API to interact with a compromised Microsoft 365 mailbox. Attackers place commands inside calendar events, and the malware sends stolen data back by creating its own calendar events with encrypted attachments. These events are scheduled for future (May 13, 2050) to avoid attracting attention from the mailbox owner.
+Specifically, HOLLOWGRAPH is designed with two primary capabilities, including retrieving commands and exfiltrating data. The get function allows the malware to collect instructions hidden within attacker-created Microsoft 365 calendar events, and its send function uploads stolen information as encrypted attachments to new calendar events.
+HOLLOWGRAPH relies entirely on legitimate Microsoft cloud services and the Microsoft Graph API for these operations to disguise its malicious activity within normal organizational traffic. This makes it significantly more difficult for security teams to identify and detect.
+HOLLOWGRAPH uses DNS tunneling to obtain and refresh credentials required for accessing Microsoft Entra ID (formerly Azure AD). This secondary channel queries an attacker-controlled domain to receive updated authentication information.
+“File payloads are protected with hybrid RSA-OAEP + AES-256-GCM encryption, using separate keys for the inbound (decrypt tasking) and outbound (encrypt exfil) directions,” Group-IB researchers explained.
+Group-IB identified 12 compromised systems carrying the HOLLOWGRAPH malware, but only about three victims were actively communicating with the attackers’ infrastructure. The analysis of the compromised Microsoft 365 mailbox and other telemetry data indicates that the operation was primarily focused on Israeli organizations. It suggests a targeted cyber-espionage campaign aimed at specific entities rather than a large-scale cybercrime effort.
+Security teams should closely monitor Microsoft 365 environments for unusual activity, including unexpected calendar events, suspicious use of the Microsoft Graph API, and abnormal access patterns involving service accounts or mailboxes. They must also implement multi-factor authentication, regularly review application permissions, and enforce the principle of least privilege to prevent attackers from gaining or maintaining access to cloud resources.
+Additionally, security teams should ensure that endpoint detection and response (EDR) solutions are deployed to identify malicious processes attempting to interact with cloud services. They should also strengthen visibility into DNS traffic and cloud authentication activity.
+It’s highly recommended to conduct regular threat hunting, log analysis, and monitoring for unusual communications with cloud services to identify stealthy attacks that bypass traditional network-based detection methods. Organizations should also ensure security awareness training, timely patch management, and incident response planning.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('af7173b3f99')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a02a675fb5a">
+        <div class="article-body">
+          <a href="https://petri.com/why-hybrid-identity-becomes-technical-debt/" target="_blank" rel="noopener noreferrer" class="article-title">Why Hybrid Identity Becomes Technical Debt and How to Move to Cloud-Only</a>
+          <div class="article-meta">petri.com &bull; Jul 21, 2026</div>
+          <div class="article-summary"><p>Cloud-only simplifies IT only after you uncover the identity and legacy app dependencies keeping hybrid alive. Learn how to move to cloud-only identity.
+Moving from a hybrid IT environment to a fully cloud-based architecture is a transformative journey for many organizations. This shift, driven by evolving business requirements and technological advancements, can unlock new levels of agility, scalability, and efficiency.
+Most organizations running Microsoft Entra ID, Microsoft 365, Intune, and modern Windows clients should be working towards a cloud-only identity model. Maintaining hybrid identity purely because “that’s how we’ve always done it” creates operational complexity that rarely delivers enough value to justify the ongoing cost.
+Transitioning to cloud-only centralizes IT operations, simplifies management, and accelerates access to new features and innovations.
+Key factors motivating this change include:
+Effectively transitioning to a cloud-only environment requires a thoughtful, phased approach:
+The biggest mistake organizations make is focusing on infrastructure migration before validating identity dependencies and legacy applications.
+Begin with a comprehensive audit of current infrastructure, applications, data, and dependencies. Identify workloads suitable for immediate migration and those requiring redesign.
+Establish clear goals for cloud architecture, considering organizational needs for performance, availability, security, and compliance. Decide on single-cloud or multi-cloud strategies based on risk tolerance and vendor capabilities.
+Shifting to cloud-only requires reworking IAM strategies to ensure robust user authentication, least privilege access, and strong identity protection. Modern cloud platforms provide advanced IAM tools that can unify user management across services.
+In practice, this means looking for the dependencies that rarely appear in high-level migration plans: applications that still require LDAP, legacy service accounts, NTLM authentication, Group Policy settings, certificate services, and server workloads that assume Active Directory (AD) is always available. These are the dependencies that often keep Entra Connect, domain controllers, or hybrid identity infrastructure running long after the rest of the environment has moved to Microsoft 365 and Intune.
+Migrate network dependencies with minimal disruption. Ensure secure, reliable connectivity for all users, whether on-premises, remote, or mobile. Redesign network topology as necessary to leverage cloud provider backbones and integrated security services.
+Prioritize mission-critical applications and data sets. Choose appropriate migration methods (lift-and-shift, refactoring, rebuild) depending on complexity, integration needs, and future goals.
+File shares, print services, line-of-business applications, and integrations with older third-party platforms are common blockers. A finance application that expects Windows authentication, a warehouse system that depends on LDAP queries, or a departmental file share with years of inherited permissions can slow a cloud-only project more than the migration of virtual machines or storage.
+Update policies to reflect a cloud-first posture. Automate compliance reporting and use cloud-native security tools—such as encryption, threat detection, and incident response—to protect data and workloads.
+Invest in staff training to equip teams with cloud-specific skills. Communicate changes clearly across the organization, emphasizing benefits and new opportunities. Establish support channels and feedback mechanisms to address issues proactively.
+Many organizations have successfully eliminated hybrid complexity by embracing cloud-only strategies. They report improvements in operational efficiency, security posture, user experience, and innovation capabilities.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a02a675fb5a')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ac945cc64ab">
+        <div class="article-body">
+          <a href="https://petri.com/best-microsoft-entra-id-management-tools/" target="_blank" rel="noopener noreferrer" class="article-title">9 Best Microsoft Entra ID Management Tools for Enterprise Identity and Governance</a>
+          <div class="article-meta">petri.com &bull; Jul 20, 2026</div>
+          <div class="article-summary"><p>Compare the best third-party Microsoft Entra ID management tools for identity administration, governance, privileged access, tenant control, and identity threat detection.
+Microsoft Entra ID is now the identity control plane for many organizations, but managing Entra ID well is no longer just about creating users, assigning groups, or enabling multifactor authentication (MFA). Identity teams are dealing with hybrid Active Directory (AD), Microsoft 365, SaaS apps, privileged access, contractors, lifecycle automation, audit evidence, service accounts, and identity-based attacks at the same time.
+Microsoft positions Entra ID as a platform for managing user identities, access to apps and resources, Conditional Access, role-based access control, hybrid identity, application provisioning, and monitoring, which shows just how broad the operational surface has become.
+Native Microsoft tools are essential, but they are not always enough on their own. Microsoft Entra ID Governance includes hundreds of integrations and supports identity lifecycle automation, application access governance, periodic access reviews, and other controls. But enterprises usually need more than native controls: they need delegated administration across hybrid AD and Entra ID, deeper identity governance, privileged access management, automated provisioning and deprovisioning, tenant-level reporting, configuration recovery, and identity threat detection. That is where third-party Microsoft Entra ID management tools earn their place.
+This list focuses on the best third-party tools that help IT and security teams manage Microsoft Entra ID in the real world. Some are identity governance platforms. Some are access management or Privileged Access Management (PAM) products. Others are operational administration, Microsoft 365 governance, or identity threat detection tools. The point is not to crown one universal winner, but to help readers quickly identify the right tool for their identity problem.
+A good Microsoft Entra ID management tool should help solve one of the hard problems Microsoft-centric organizations face every day: lifecycle automation, access governance, privileged access, delegated administration, security monitoring, compliance reporting, or hybrid AD-to-Entra visibility.
+For enterprise buyers, the strongest products usually map to one or more of these categories:
+The best choice depends on whether your biggest pain is governance, admin efficiency, privilege sprawl, audit readiness, or identity security.
+Best for: Microsoft-focused hybrid identity administration, monitoring, and recovery
+Cayosoft Administrator and Cayosoft Guardian are purpose-built for Microsoft hybrid identity environments, which makes it especially relevant for organizations managing Active Directory, Microsoft Entra ID, Microsoft 365, Exchange Online, Teams, and related services.
+Cayosoft Guardian is a unified identity resilience platform for monitoring and recovery across the Microsoft hybrid identity stack, with capabilities for tracking identity changes and rolling back unwanted or malicious modifications.
+Key strengths
+Differentiator
+Cayosoft’s differentiation is its Microsoft-specific operational depth. It is not a general-purpose IGA platform like SailPoint or Saviynt, and it is not a PAM vault like CyberArk. It is better understood as a Microsoft hybrid identity operations and resilience platform that combines delegated administration, monitoring, rollback, and recovery.
+Ideal use case
+Cayosoft fits organizations that are heavily invested in Microsoft and need better control over hybrid identity changes, delegated administration, audit readiness, and recovery from mistakes or attacks.
+Best for: Microsoft 365 and Entra tenant administration
+CoreView is a Microsoft 365 tenant management and resilience platform with strong relevance to Entra ID administration.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac945cc64ab')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a934bcedfa7">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiggFBVV95cUxOQUptZ3RlVWNyY0FteVFpTXh3WGItOUo1VWdLQ0N1YlNaZERJajFjNnZwUTQza1MyQjdLQ3ZYUDdtTHNWOFJ0UVZMU0Z5WlJfSTlEeUtqTnNGS2lpb0hMWnZkcTZTR1FYTDhvZWRBc3B2UlhiT0hWcG5PY205MDBEZ0pB?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">What’s New in Microsoft 365 – July 2026 - Seton Hall University</a>
+          <div class="article-meta">Seton Hall University &bull; Jul 23, 2026</div>
+          <div class="article-summary snippet"><p>What’s New in Microsoft 365 – July 2026&amp;nbsp;&amp;nbsp;Seton Hall University</p><a href="https://news.google.com/rss/articles/CBMiggFBVV95cUxOQUptZ3RlVWNyY0FteVFpTXh3WGItOUo1VWdLQ0N1YlNaZERJajFjNnZwUTQza1MyQjdLQ3ZYUDdtTHNWOFJ0UVZMU0Z5WlJfSTlEeUtqTnNGS2lpb0hMWnZkcTZTR1FYTDhvZWRBc3B2UlhiT0hWcG5PY205MDBEZ0pB?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a934bcedfa7')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ac8a817e90b">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiygFBVV95cUxOcVZMamtuNmlfdXpiSVJpZUJOcm9hVExlRDNYSmZQQnVOMGhPQThzaDBDQXhWdUhRTGIxbHFMWFVDaEREdzQzOVJMT0NiMGVkeHU2US1HZFdYZzl5NjFEalRGdzA2b2ZwYmlGMEE0MnQxSEY2RGN4VnlFYVRrQm9PLW5JazFFWDlZdWswYW1LYXk4ZXJhcEFfLUhEeVB6MXB5bFNkVERzUUxEZWtlYnFKa1BybTFBUkxGZlpDMW1PWGFuZ1BDU1QzVzBn?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Three everyday ways Microsoft 365 Copilot can support journalists in the newsroom - Microsoft Source</a>
+          <div class="article-meta">Microsoft Source &bull; Jul 24, 2026</div>
+          <div class="article-summary snippet"><p>Three everyday ways Microsoft 365 Copilot can support journalists in the newsroom&amp;nbsp;&amp;nbsp;Microsoft Source</p><a href="https://news.google.com/rss/articles/CBMiygFBVV95cUxOcVZMamtuNmlfdXpiSVJpZUJOcm9hVExlRDNYSmZQQnVOMGhPQThzaDBDQXhWdUhRTGIxbHFMWFVDaEREdzQzOVJMT0NiMGVkeHU2US1HZFdYZzl5NjFEalRGdzA2b2ZwYmlGMEE0MnQxSEY2RGN4VnlFYVRrQm9PLW5JazFFWDlZdWswYW1LYXk4ZXJhcEFfLUhEeVB6MXB5bFNkVERzUUxEZWtlYnFKa1BybTFBUkxGZlpDMW1PWGFuZ1BDU1QzVzBn?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac8a817e90b')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a4f56b58b43">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMilgFBVV95cUxNazAzc0pWbWViRENXMlFVclJ5RGt6NFFuT1FXaGt1Tzl0d0F0cXlTZjRlOHI5eXUxSmgzOHRucF9HRWFLa3E5dmZ4WHpLY3d5NFZEQTF3bVNCa3V6dDNTdXpjOVdDandvMTBlVmYyM0NiMUhFV1lOM2d5alA2ZW1GdWR3Q2kydFQyUlBfdGRReFY2dmFiLWc?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Access the Same Microsoft 365 Apps Forever for Only $55 Up-Front - PCMag</a>
+          <div class="article-meta">PCMag &bull; Jul 25, 2026</div>
+          <div class="article-summary snippet"><p>Access the Same Microsoft 365 Apps Forever for Only $55 Up-Front&amp;nbsp;&amp;nbsp;PCMag</p><a href="https://news.google.com/rss/articles/CBMilgFBVV95cUxNazAzc0pWbWViRENXMlFVclJ5RGt6NFFuT1FXaGt1Tzl0d0F0cXlTZjRlOHI5eXUxSmgzOHRucF9HRWFLa3E5dmZ4WHpLY3d5NFZEQTF3bVNCa3V6dDNTdXpjOVdDandvMTBlVmYyM0NiMUhFV1lOM2d5alA2ZW1GdWR3Q2kydFQyUlBfdGRReFY2dmFiLWc?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a4f56b58b43')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a3345930340">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi0wFBVV95cUxQWkNGa1FUaDVQWHVUdmVMQ0M4VEQtYjBwUlJ4b0hncmJ1eVlJSVdJeVNUY25qNWxGVURxZDhvNVpIRGRobHU1VVRkb0hieHFzYUJ3Y3VhY0Z3SkJlNFU4VVFyTEtrcjdvWWFXVHZHOFBkU0ZOZ0pISDlRN1dUQlZpM0FlczdqSURHUjlYUlk5ZzhWemxjeGRXX2FNVzhxVzQtMHhMeUp1WHpKcmFQVkNFdi13TFhfenB5Z1RjYW1tZEdkOEcxR2ZEN1g4YXk0MnZ0bkVN?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft 365 Outage: Azure Maintenance Bug Wiped IP Routes, Taking Down Teams for Hours - Tech Times</a>
+          <div class="article-meta">Tech Times &bull; Jul 25, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft 365 Outage: Azure Maintenance Bug Wiped IP Routes, Taking Down Teams for Hours&amp;nbsp;&amp;nbsp;Tech Times</p><a href="https://news.google.com/rss/articles/CBMi0wFBVV95cUxQWkNGa1FUaDVQWHVUdmVMQ0M4VEQtYjBwUlJ4b0hncmJ1eVlJSVdJeVNUY25qNWxGVURxZDhvNVpIRGRobHU1VVRkb0hieHFzYUJ3Y3VhY0Z3SkJlNFU4VVFyTEtrcjdvWWFXVHZHOFBkU0ZOZ0pISDlRN1dUQlZpM0FlczdqSURHUjlYUlk5ZzhWemxjeGRXX2FNVzhxVzQtMHhMeUp1WHpKcmFQVkNFdi13TFhfenB5Z1RjYW1tZEdkOEcxR2ZEN1g4YXk0MnZ0bkVN?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a3345930340')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a5236c8c1ac">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMirwFBVV95cUxNcXQ1SzJkbWFfN2tLdGR2UmFHYlA1X2lEeFNnWDB1cEZZQUxMd2RsOF9JRk0zVEtIQ3JlTmhRTVZpSjNaRG9fT2lvUkhWeWExMzNjVDBqM2xxaWtCNDJMMmVuYlE5WHZXNTdEQy1KdXlFRnF1QXFzR3RGVnpKUzBxVFl4RUVGSU0wSHc0OFFDNWY5TlByQllXajJkUzUybzJNYVJsREZWTkhhZnV5MEUw0gG0AUFVX3lxTFBhR3RBSDMyMGJCZENZT3FWTzBoSGc5cWl0UWJvQy1jZmJZbUpRZDd2bHdiTzQtQ2VVX1kxUWdIbkJ6YktuLTh1MjI0N1o0VUlFY0N5YmtHakpMWU5Hd0JsZUYxY3E0YVp2OVFTaUhCOXBuTUliQS1iSHBOTFpKZ2RmRDE4RlhmMm9JQXBRS1VoWFdBSzgyME1aWmVMSG92RTFoYVQ2Z3lteEc0TWl6ZUcxay1LOQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Hackers hijack hotel Wi-Fi DNS to steal Microsoft 365 accounts - BleepingComputer</a>
+          <div class="article-meta">BleepingComputer &bull; Jul 24, 2026</div>
+          <div class="article-summary snippet"><p>Hackers hijack hotel Wi-Fi DNS to steal Microsoft 365 accounts&amp;nbsp;&amp;nbsp;BleepingComputer</p><a href="https://news.google.com/rss/articles/CBMirwFBVV95cUxNcXQ1SzJkbWFfN2tLdGR2UmFHYlA1X2lEeFNnWDB1cEZZQUxMd2RsOF9JRk0zVEtIQ3JlTmhRTVZpSjNaRG9fT2lvUkhWeWExMzNjVDBqM2xxaWtCNDJMMmVuYlE5WHZXNTdEQy1KdXlFRnF1QXFzR3RGVnpKUzBxVFl4RUVGSU0wSHc0OFFDNWY5TlByQllXajJkUzUybzJNYVJsREZWTkhhZnV5MEUw0gG0AUFVX3lxTFBhR3RBSDMyMGJCZENZT3FWTzBoSGc5cWl0UWJvQy1jZmJZbUpRZDd2bHdiTzQtQ2VVX1kxUWdIbkJ6YktuLTh1MjI0N1o0VUlFY0N5YmtHakpMWU5Hd0JsZUYxY3E0YVp2OVFTaUhCOXBuTUliQS1iSHBOTFpKZ2RmRDE4RlhmMm9JQXBRS1VoWFdBSzgyME1aWmVMSG92RTFoYVQ2Z3lteEc0TWl6ZUcxay1LOQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a5236c8c1ac')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="iru" class="topic-section">
+      <h2 class="topic-title" style="--c:#7C3AED">Iru MDM (formerly Kandji) </h2>
+      <p class="no-news">No articles found this week.</p>
+    </section>
+    <section id="cato" class="topic-section">
+      <h2 class="topic-title" style="--c:#FF6B35">Cato Networks <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="afdc8ab2fb7">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMipAFBVV95cUxObklvb3JTbi1oNlpZdnBMYjFGUFRPel94aFloZFRlMnZYY2dXX2o4WkUxVmE1c1BaaVBHTGJORmZKV3lvdm1uN0lmMGpjUjhWLUxES05JX3E4SV9sNTdQUHZyOURwd0FwQW9Vek1sUFRyWTRvd3BmWERHWEFOMkRVMWk1YnhCbDRnMktadFVjcE54b0JBN2ItQ1pyTkFJY0hpdVpMUQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks and CrowdStrike partner to unify network and endpoint security - SiliconANGLE</a>
+          <div class="article-meta">SiliconANGLE &bull; Jul 23, 2026</div>
+          <div class="article-summary snippet"><p>Cato Networks and CrowdStrike partner to unify network and endpoint security&amp;nbsp;&amp;nbsp;SiliconANGLE</p><a href="https://news.google.com/rss/articles/CBMipAFBVV95cUxObklvb3JTbi1oNlpZdnBMYjFGUFRPel94aFloZFRlMnZYY2dXX2o4WkUxVmE1c1BaaVBHTGJORmZKV3lvdm1uN0lmMGpjUjhWLUxES05JX3E4SV9sNTdQUHZyOURwd0FwQW9Vek1sUFRyWTRvd3BmWERHWEFOMkRVMWk1YnhCbDRnMktadFVjcE54b0JBN2ItQ1pyTkFJY0hpdVpMUQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('afdc8ab2fb7')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aec91e6a9c5">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiwAFBVV95cUxPalJ5dm90T091YUYwalgxdWhteEs2bkNZQWdSTnotX1hNbnB6UGh1c1dZNS1yLTAzUm45UzJJWEViMnE2UVZpdFlPak43bXVlWjkxTFpvVm1ZN1NhTl9KVVJJcFFJQXMya0ZfWGZ1YlNHNDJqWGh4VlZhTGVVS0FiRVRwVjFZaU9PNGVFMnlrU3BCRS1rV3RuaVhsMmRYZGUycHZkT0VTOUc3OW91bDREdlNmdFZ5MFdoamZBX3loa3A?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks integrates SASE with CrowdStrike Falcon - Channel Insider</a>
+          <div class="article-meta">Channel Insider &bull; Jul 23, 2026</div>
+          <div class="article-summary snippet"><p>Cato Networks integrates SASE with CrowdStrike Falcon&amp;nbsp;&amp;nbsp;Channel Insider</p><a href="https://news.google.com/rss/articles/CBMiwAFBVV95cUxPalJ5dm90T091YUYwalgxdWhteEs2bkNZQWdSTnotX1hNbnB6UGh1c1dZNS1yLTAzUm45UzJJWEViMnE2UVZpdFlPak43bXVlWjkxTFpvVm1ZN1NhTl9KVVJJcFFJQXMya0ZfWGZ1YlNHNDJqWGh4VlZhTGVVS0FiRVRwVjFZaU9PNGVFMnlrU3BCRS1rV3RuaVhsMmRYZGUycHZkT0VTOUc3OW91bDREdlNmdFZ5MFdoamZBX3loa3A?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aec91e6a9c5')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a5a485c1a3c">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMioAFBVV95cUxQNV9sUWtLSElGSUFsYzR4eGxSVnItTzZWYlZQVnQ0UG5Yb2gwZ3ZGaE00SWE3d3pWOFVsNC1MUGNRN2FiVDdrN1h1bjhYQWNPcEROWXNRenlXdGtHb1UxQmFSLUtDUnZxNGhXcG9oOGdxemVidzJOazdnWFdMdmZJNlBZYlY0TWducjZNSVNUc3cwbHlHZmxuVm9yLTBaNHIw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato integrates SASE platform with CrowdStrike Falcon - Techzine Global</a>
+          <div class="article-meta">Techzine Global &bull; Jul 24, 2026</div>
+          <div class="article-summary snippet"><p>Cato integrates SASE platform with CrowdStrike Falcon&amp;nbsp;&amp;nbsp;Techzine Global</p><a href="https://news.google.com/rss/articles/CBMioAFBVV95cUxQNV9sUWtLSElGSUFsYzR4eGxSVnItTzZWYlZQVnQ0UG5Yb2gwZ3ZGaE00SWE3d3pWOFVsNC1MUGNRN2FiVDdrN1h1bjhYQWNPcEROWXNRenlXdGtHb1UxQmFSLUtDUnZxNGhXcG9oOGdxemVidzJOazdnWFdMdmZJNlBZYlY0TWducjZNSVNUc3cwbHlHZmxuVm9yLTBaNHIw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a5a485c1a3c')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a7d4f8da412">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMimgFBVV95cUxPSXhOYjBSb0FTdkpLLXJPMmhnMnN4SGJpcEttbm80UWl5dm95aDZ4b0wwaUQ2OXVmQzdoamxpVUluMDNBSFNHR2FaVXpLaVhoREpIVGRYZ09uWWtTbjY3RTU5TWVoYThiejZsMDJhNHVYR1hhZjNuTE4wTjRQYmJFRUJMVjJyaVZjVEZHdUZKY1dMX040dE1oek1B?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">11:11 Systems Announces Strategic Partnership with Cato Networks to Deliver SASE Solution for Distributed Enterprises - Yahoo Finance</a>
+          <div class="article-meta">Yahoo Finance &bull; Jul 21, 2026</div>
+          <div class="article-summary snippet"><p>11:11 Systems Announces Strategic Partnership with Cato Networks to Deliver SASE Solution for Distributed Enterprises&amp;nbsp;&amp;nbsp;Yahoo Finance</p><a href="https://news.google.com/rss/articles/CBMimgFBVV95cUxPSXhOYjBSb0FTdkpLLXJPMmhnMnN4SGJpcEttbm80UWl5dm95aDZ4b0wwaUQ2OXVmQzdoamxpVUluMDNBSFNHR2FaVXpLaVhoREpIVGRYZ09uWWtTbjY3RTU5TWVoYThiejZsMDJhNHVYR1hhZjNuTE4wTjRQYmJFRUJMVjJyaVZjVEZHdUZKY1dMX040dE1oek1B?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a7d4f8da412')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ac721d6f1a3">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiugFBVV95cUxNVVByY1c3YUFRSjMyQ3piREMxU3Q1Sjd3VGd5Tnlfc2ZlVElvWU8xSGwxWW9aaW5vMWZYMHRVci05Zk5mbjlGbHNsTUNuNHFNdXRrOVBTZWZKcHpIdVpfRFprR01oQ3JsNzFJR0VJdFlsWTlkODlqUUdtMU5FWU83LTVwY3B6VjVpOHM3QXo5cGItWDU5Q1l0S2llMk9LbXZwUjNaclBoTjN2bXlXQU00SEc4NVBsRzk5MUE?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Endpoint Security and Network Monitoring News for the Week of July 24th: ExtraHop, Ivanti, Cato Networks, and More - Solutions Review</a>
+          <div class="article-meta">Solutions Review &bull; Jul 24, 2026</div>
+          <div class="article-summary snippet"><p>Endpoint Security and Network Monitoring News for the Week of July 24th: ExtraHop, Ivanti, Cato Networks, and More&amp;nbsp;&amp;nbsp;Solutions Review</p><a href="https://news.google.com/rss/articles/CBMiugFBVV95cUxNVVByY1c3YUFRSjMyQ3piREMxU3Q1Sjd3VGd5Tnlfc2ZlVElvWU8xSGwxWW9aaW5vMWZYMHRVci05Zk5mbjlGbHNsTUNuNHFNdXRrOVBTZWZKcHpIdVpfRFprR01oQ3JsNzFJR0VJdFlsWTlkODlqUUdtMU5FWU83LTVwY3B6VjVpOHM3QXo5cGItWDU5Q1l0S2llMk9LbXZwUjNaclBoTjN2bXlXQU00SEc4NVBsRzk5MUE?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac721d6f1a3')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ace5f89191b">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiugFBVV95cUxNdDFpSnI2NUd4YU1VcE91aEI0cjlWSjU2SHVpUEtSVVF3aWstMkc5ck5RMTUxMl9rRXpTX01CR3VaRDV5cnhuVGxCTXY1MldQR2J4Y0R3R0J1QXdyYVgyRlUwR0NkUURUaHgwdTVpOWNtS1lpbm9qX2xPMEFCREw3NFV3YU5ndEZiTXpmWHI1dVAxNWJQZmtzVHpxVGNIMW1LaV8zem5icWZLZVpsLWQyaG1adUlWVWFFbWc?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks and CrowdStrike Partner to Deliver Unified Security Operations Across the Network and Endpoint - Moomoo</a>
+          <div class="article-meta">Moomoo &bull; Jul 23, 2026</div>
+          <div class="article-summary snippet"><p>Cato Networks and CrowdStrike Partner to Deliver Unified Security Operations Across the Network and Endpoint&amp;nbsp;&amp;nbsp;Moomoo</p><a href="https://news.google.com/rss/articles/CBMiugFBVV95cUxNdDFpSnI2NUd4YU1VcE91aEI0cjlWSjU2SHVpUEtSVVF3aWstMkc5ck5RMTUxMl9rRXpTX01CR3VaRDV5cnhuVGxCTXY1MldQR2J4Y0R3R0J1QXdyYVgyRlUwR0NkUURUaHgwdTVpOWNtS1lpbm9qX2xPMEFCREw3NFV3YU5ndEZiTXpmWHI1dVAxNWJQZmtzVHpxVGNIMW1LaV8zem5icWZLZVpsLWQyaG1adUlWVWFFbWc?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ace5f89191b')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ab8fe2035ee">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMinwFBVV95cUxNSzBzQThUQVZscXd1dGh1b0Y1T1NMQ2JYQWpvNHM3b1k5aGhOd20tWkJ2OWExRFNLSjd6aHd2ZXFnQ0dPNWlFUUlZdW9mTE5RUTExUVJrYzlfTERseG14SWk4Tl9IbEk0ZzJkTUR6Wl9lVHJqMjBoZHRuRmNUX0pGbFJ3U1RNaHpFZ3Noc1BQSXgtUkNXR0FXd1hkRm50Ums?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">VMware channel partner 11:11 Systems selects Cato for managed SASE - SDxCentral</a>
+          <div class="article-meta">SDxCentral &bull; Jul 21, 2026</div>
+          <div class="article-summary snippet"><p>VMware channel partner 11:11 Systems selects Cato for managed SASE&amp;nbsp;&amp;nbsp;SDxCentral</p><a href="https://news.google.com/rss/articles/CBMinwFBVV95cUxNSzBzQThUQVZscXd1dGh1b0Y1T1NMQ2JYQWpvNHM3b1k5aGhOd20tWkJ2OWExRFNLSjd6aHd2ZXFnQ0dPNWlFUUlZdW9mTE5RUTExUVJrYzlfTERseG14SWk4Tl9IbEk0ZzJkTUR6Wl9lVHJqMjBoZHRuRmNUX0pGbFJ3U1RNaHpFZ3Noc1BQSXgtUkNXR0FXd1hkRm50Ums?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ab8fe2035ee')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ad97dc7cb4c">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiogFBVV95cUxOQ3BqN3pLMkhjcGdGTU5rcllNVFh0R2JXdG1wQkIxR3JUdmp3amZmb1A4SUV3QmI5QTlzSDNfVXRFT05ldGdILVhRRGY4REZJb1hwa3h5blFEaVBGRXk3b0NoZ0hPWEhBYU9XOXpLVWh3Vm9zRGtNd0doMkMzN0FxeHR3aXBfd1ZoOHlBWE1pckJNRFY4aXIwZWpiSDdzNFlCOGc?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato and CrowdStrike Link Endpoint Alerts to Network Activity - Security Boulevard</a>
+          <div class="article-meta">Security Boulevard &bull; Jul 24, 2026</div>
+          <div class="article-summary snippet"><p>Cato and CrowdStrike Link Endpoint Alerts to Network Activity&amp;nbsp;&amp;nbsp;Security Boulevard</p><a href="https://news.google.com/rss/articles/CBMiogFBVV95cUxOQ3BqN3pLMkhjcGdGTU5rcllNVFh0R2JXdG1wQkIxR3JUdmp3amZmb1A4SUV3QmI5QTlzSDNfVXRFT05ldGdILVhRRGY4REZJb1hwa3h5blFEaVBGRXk3b0NoZ0hPWEhBYU9XOXpLVWh3Vm9zRGtNd0doMkMzN0FxeHR3aXBfd1ZoOHlBWE1pckJNRFY4aXIwZWpiSDdzNFlCOGc?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ad97dc7cb4c')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+</main>
+
+<footer>
+  Generated every Sunday &mdash; Topics: Windows &bull; Azure &bull; SharePoint &bull; Intune &bull; Entra ID &bull; Microsoft 365 &bull; Iru MDM (formerly Kandji) &bull; Cato Networks
+</footer>
+
+<script>
+const KEY = 'it-news-hidden-v1';
+function getHidden() {
+  try { return new Set(JSON.parse(localStorage.getItem(KEY) || '[]')); }
+  catch { return new Set(); }
+}
+function saveHidden(s) { localStorage.setItem(KEY, JSON.stringify([...s])); }
+function toggleArticle(id) {
+  const h = getHidden();
+  h.has(id) ? h.delete(id) : h.add(id);
+  saveHidden(h); applyHidden(h);
+}
+function applyHidden(h) {
+  h = h || getHidden();
+  document.querySelectorAll('.article-card[data-id]').forEach(c => {
+    c.classList.toggle('is-hidden', h.has(c.dataset.id));
+  });
+}
+let revealing = false;
+function toggleReveal() {
+  revealing = !revealing;
+  document.body.classList.toggle('reveal-hidden', revealing);
+  document.getElementById('reveal-btn').textContent = revealing ? 'Hide hidden' : 'Show hidden';
+}
+fetch('weeks.json').then(r => r.json()).then(weeks => {
+  const sel = document.getElementById('week-sel');
+  weeks.forEach(w => {
+    const o = document.createElement('option');
+    o.value = w.file; o.textContent = w.label;
+    if (w.current) o.selected = true;
+    sel.appendChild(o);
+  });
+}).catch(() => {});
+applyHidden();
+</script>
+</body>
+</html>
