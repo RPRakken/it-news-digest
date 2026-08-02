@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT News Digest — 2026-W31</title>
+  <style>
+    :root{--bg:#f8fafc;--surface:#fff;--border:#e2e8f0;--text:#1e293b;--muted:#64748b;--accent:#2563eb}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+    a{color:var(--accent)}
+
+    header{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+    .h-inner{max-width:1000px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .h-brand{font-size:1.1rem;font-weight:800;color:#1d4ed8}
+    .h-meta{font-size:.78rem;color:var(--muted)}
+    .h-controls{display:flex;gap:8px;align-items:center}
+    .btn{padding:5px 12px;border-radius:6px;font-size:.78rem;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);white-space:nowrap}
+    .btn:hover{background:#f1f5f9}
+    select.week-sel{padding:5px 10px;border-radius:6px;border:1px solid var(--border);background:var(--surface);font-size:.78rem;cursor:pointer;color:var(--text)}
+
+    .t-nav{background:var(--surface);border-bottom:1px solid var(--border);overflow-x:auto}
+    .t-nav-inner{max-width:1000px;margin:0 auto;padding:8px 20px;display:flex;gap:6px;min-width:max-content}
+    .nav-link{font-size:.72rem;padding:3px 10px;border-radius:20px;border:2px solid var(--c,#2563eb);color:var(--c,#2563eb);text-decoration:none;font-weight:600;white-space:nowrap}
+    .nav-link:hover{background:var(--c,#2563eb);color:#fff}
+
+    main{max-width:1000px;margin:0 auto;padding:24px 20px}
+
+    .week-hero{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin-bottom:28px;display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+    .hero-title{font-size:1.6rem;font-weight:900;color:#1d4ed8}
+    .hero-sub{font-size:.85rem;color:var(--muted);margin-top:2px}
+    .stat-box{text-align:center;min-width:60px}
+    .stat-num{font-size:2rem;font-weight:900;color:#1d4ed8;line-height:1}
+    .stat-lbl{font-size:.65rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+
+    .topic-section{margin-bottom:40px}
+    .topic-title{font-size:1.2rem;font-weight:800;color:var(--c,#2563eb);border-bottom:3px solid var(--c,#2563eb);padding-bottom:8px;margin-bottom:14px}
+    .count{font-size:.8rem;font-weight:400;color:var(--muted)}
+    .no-news{color:var(--muted);font-style:italic;font-size:.88rem}
+
+    .article-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:12px;display:flex;gap:12px;align-items:flex-start;transition:border-color .15s}
+    .article-card:hover{border-color:#94a3b8}
+    .article-body{flex:1;min-width:0}
+    .article-title{font-size:.98rem;font-weight:600;text-decoration:none;display:block;margin-bottom:4px;color:var(--accent)}
+    .article-title:hover{text-decoration:underline}
+    .article-meta{font-size:.72rem;color:var(--muted);margin-bottom:8px}
+
+    .article-summary{margin-top:6px;font-size:.875rem;color:#334155;line-height:1.75}
+    .article-summary p{margin-bottom:.6em}
+    .article-summary p:last-child{margin-bottom:0}
+    .gnews-badge{display:inline-block;font-size:.65rem;background:#fef3c7;color:#92400e;border-radius:4px;padding:1px 5px;margin-bottom:6px;vertical-align:middle}
+    .article-summary.snippet{color:var(--muted)}
+    .read-more{display:inline-block;margin-top:6px;font-size:.8rem;font-weight:600;color:var(--accent);text-decoration:none}
+    .read-more:hover{text-decoration:underline}
+
+    .hide-btn{flex-shrink:0;padding:5px 10px;border-radius:6px;font-size:.72rem;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--muted);white-space:nowrap;align-self:flex-start}
+    .hide-btn:hover{border-color:#ef4444;color:#ef4444;background:#fef2f2}
+    .lbl-show{display:none}
+
+    .article-card.is-hidden{display:none}
+    body.reveal-hidden .article-card.is-hidden{display:flex;opacity:.45;border-style:dashed}
+    .article-card.is-hidden .lbl-hide{display:none}
+    .article-card.is-hidden .lbl-show{display:inline}
+    body.reveal-hidden .article-card.is-hidden .hide-btn{border-color:#16a34a;color:#16a34a}
+    body.reveal-hidden .article-card.is-hidden .hide-btn:hover{background:#f0fdf4}
+
+    footer{text-align:center;padding:24px 20px;color:var(--muted);font-size:.75rem;border-top:1px solid var(--border);margin-top:40px}
+
+    @media(max-width:600px){
+      .h-inner,.main{padding-left:14px;padding-right:14px}
+      .hero-title{font-size:1.3rem}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="h-inner">
+    <div>
+      <div class="h-brand">IT News Digest</div>
+      <div class="h-meta">Week 2026-W31 &bull; Jul 27 – Aug 02, 2026</div>
+    </div>
+    <div class="h-controls">
+      <button class="btn" id="reveal-btn" onclick="toggleReveal()">Show hidden</button>
+      <select class="week-sel" id="week-sel" onchange="if(this.value) location.href=this.value">
+        <option value="">&#128337; Archive&hellip;</option>
+      </select>
+    </div>
+  </div>
+</header>
+
+<nav class="t-nav"><div class="t-nav-inner"><a href="#windows" class="nav-link" style="--c:#0078D4">Microsoft Windows</a><a href="#azure" class="nav-link" style="--c:#00BCF2">Azure</a><a href="#sharepoint" class="nav-link" style="--c:#036C70">SharePoint</a><a href="#intune" class="nav-link" style="--c:#0F6CBD">Intune</a><a href="#entraid" class="nav-link" style="--c:#6B69D6">Entra ID</a><a href="#m365" class="nav-link" style="--c:#D83B01">Microsoft 365</a><a href="#iru" class="nav-link" style="--c:#7C3AED">Iru MDM (formerly Kandji)</a><a href="#cato" class="nav-link" style="--c:#FF6B35">Cato Networks</a></div></nav>
+
+<main>
+  <div class="week-hero">
+    <div>
+      <div class="hero-title">Week 2026-W31</div>
+      <div class="hero-sub">Jul 27 – Aug 02, 2026</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">48</div>
+      <div class="stat-lbl">Articles</div>
+    </div>
+  </div>
+
+    <section id="windows" class="topic-section">
+      <h2 class="topic-title" style="--c:#0078D4">Microsoft Windows <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a15470469a2">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windows-insider/2026/07/31/windows-quality-an-update-on-the-commitment-we-made-in-march/" target="_blank" rel="noopener noreferrer" class="article-title">Windows quality: an update on the commitment we made in March</a>
+          <div class="article-meta">blogs.windows.com &bull; Jul 31, 2026</div>
+          <div class="article-summary"><p>Windows quality: an update on the commitment we made in March
+In March I wrote to you about our commitment to Windows quality. Four months in, the team and I have been reflecting on our progress and wanted to share an update. We know there is more to do, especially in getting these improvements to all customers. We’re not slowing down.
+What we said we’d focus on
+In my letter, there was a list of immediate changes we committed to making. This included:
+- More taskbar customization
+- Integrating AI where it’s most meaningful
+- Reducing disruption from Windows Updates
+- Faster and more dependable File Explorer
+- More control over widgets and feed experiences
+- A simpler, more transparent Windows Insider Program
+- Improving the Feedback Hub experience
+We also named three areas of focus at the start: performance, reliability, and well-crafted experiences.
+Since then, the team has been deeply focused on these priorities. Many of these improvements have been rolling out to Windows Insiders over the last few months, and they’ll start rolling out more broadly across Windows 11 PCs beginning this fall.
+Here’s what our work so far looks like
+- Earlier this month, we began previewing improvements to Windows Search Box, including a calmer home screen, clearer results, removing promotional content from web results and more.
+- At Build 2026 in June, we introduced a number of improvements to the developer experience on Windows including a developer-optimized Windows 11 experience to build and ship faster, announcing and later delivering a public preview of WSL containers, Windows 365 with developer configuration, Microsoft Execution Containers and much more.
+- We’ve strengthened the fundamentals of WinUI 3 and extended it into more of the Windows shell, including Widgets and the new Run experience, with Autoplay dialog and more File/Folder Properties dialogs coming soon to Windows Insider Preview Experimental builds. And with substantial improvements in memory efficiency and latency, these investments are strengthening the platform foundation needed to accelerate the modernization of Windows 11 and the broader application ecosystem.
+- In May, we began previewing changes to Taskbar and Start, which included the ability to move your taskbar positions as well as provide more personalization of Start.
+- In May, we shared updates on how we’ve been simplifying AI throughout the OS, starting with inbox apps, part of a broader shift to make AI in Windows more intentional and focused on the experiences that provide the most value to customers.
+- We have previewed several improvements to File Explorer, including foundational architecture enhancements designed to improve responsiveness and reliability across launch and navigation. We’ve addressed long-standing feedback about Home, including unstable transitions and blurry thumbnails. We also made updates to address File Explorer reliability, readability, and usability across the Address Bar, file size formatting, keyboard navigation, and renaming, and there’s more to come soon.
+- In May, we previewed updates to the widgets and feed experience, giving you more control over and making them quieter by default.
+- In May, we introduced the Driver Quality Initiative (DQI), a comprehensive, ecosystem-wide effort designed to fundamentally raise the bar on driver quality, reliability, and security across Windows. Since March, we’ve improved reliability across some of Windows’ most common connectivity experiences, including improved USB4 docking performance, improved compatibility with Bluetooth devices like AirPods, as well as major gains in printer connectivity, including reducing in-network printer discovery failures.
+- We’re continuing to invest across the full stack, from the kernel and shell to the apps and developer tools built on Windows, so performance improvements benefit the broad range of ways people use Windows.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a15470469a2')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a58136e766a">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windows-insider/2026/07/31/announcing-new-builds-for-31-july-2026/" target="_blank" rel="noopener noreferrer" class="article-title">Announcing new builds for 31 July 2026</a>
+          <div class="article-meta">blogs.windows.com &bull; Jul 31, 2026</div>
+          <div class="article-summary"><p>Announcing new builds for 31 July 2026
+Hello Windows Insiders,
+We have new releases today with builds across Beta and Experimental, including refreshed security certificates across all new builds.
+Renewed Windows Insider flight certificates
+All builds this week contain renewed Windows Insider flight certificates (Note: Experimental (Future Platforms) has already contained the renewed flight certificate since the build released earlier this week). Windows Insider Preview builds use flight certificates that are renewed periodically to help ensure Insider devices remain on supported builds and continue receiving future Insider Preview updates. The current flight certificate expires on August 11, 2026, so please update your device to a build containing the renewed flight certificate before that date.
+For more information, please visit the certificate renewal FAQ.
+New builds this week
+Today we are releasing new Windows 11 Insider Preview Builds. See your channel release notes here:
+- Beta: Build 26220.9022
+- Experimental: Build 26300.9032
+For those on other specific build versions, here are today’s new builds and release notes:
+- Beta (26H1): Build 28020.2623
+- Experimental (26H1): Build 28120.2630
+- Experimental (Future Platforms): Build 29639.1000
+Notable new features:
+[Adaptive Hibernate Policy]
+Release channel: Experimental
+Updates to the adaptive hibernate policy to increase instances of instant-on resumes from Modern Standby and increased battery preservation at the low end of the battery. Noticeable changes include less hibernation while the battery is above 80% and hibernating sooner when the battery is below 10%.
+[Taskbar]
+Release channel: Experimental, new to Beta
+Alternate Taskbar Position
+- You can now change the position of taskbar on your screen. In Settings &gt; Personalization &gt; Taskbar &gt; Taskbar Behaviors, you can select the side of the screen you want your taskbar on: bottom, top, left, or right. In these other positions, tooltips, flyouts, and animations will still come from the taskbar, and most customization settings like never combine taskbar icons will work with all locations.
+- Support for touch gestures, Search box, and Ask Copilot in alternate locations is in progress. Auto-hidden taskbar and touch optimized taskbar are not currently supported. Smaller taskbar is currently supported only for top and bottom positions.
+Smaller Taskbar
+- We’re introducing a smaller taskbar for users who want to maximize screen space, especially on smaller devices. While the default taskbar remains unchanged, this setting provides a more compact experience with smaller icons and a reduced taskbar height, giving you more room for your apps. Core elements like Start, Search, and the system tray scale appropriately to stay aligned and consistent.
+- To change your taskbar size, go to Settings &gt; Personalization &gt; Taskbar &gt; Taskbar behaviors &gt; Taskbar size. When set to Small, both the icons and the taskbar height become smaller.
+Thanks,
+Stephen and the Windows Insider Program team</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a58136e766a')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a186b3def2b">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windows-insider/2026/07/27/announcing-windows-11-insider-preview-build-29634-1000-for-experimental-future-platforms/" target="_blank" rel="noopener noreferrer" class="article-title">Announcing Windows 11 Insider Preview Build 29634.1000 for Experimental (Future Platforms)</a>
+          <div class="article-meta">blogs.windows.com &bull; Jul 27, 2026</div>
+          <div class="article-summary"><p>Announcing Windows 11 Insider Preview Build 29634.1000 for Experimental (Future Platforms)
+Hello Windows Insiders,
+Today we’re releasing build 29634.1000 for the Experimental (Future Platforms) channel. Release notes can be found over in the Windows Insider Documentation Hub as usual, as well as below.
+Renewed Windows Insider flight certificate
+Today’s Experimental (Future Platforms) build contains a renewed Windows Insider flight certificate. Windows Insider Preview builds use flight certificates that are renewed periodically to help ensure Insider devices remain on supported builds and continue receiving future Insider Preview updates. The current flight certificate expires on August 11, 2026, so please update your device to a build containing the renewed flight certificate before that date.
+For more information, please visit the certificate renewal FAQ.
+Experimental (Future Platforms) moves to updated WIP UI
+We conclude the full transition of all Windows Insider builds to the updated WIP channel UI, with those on the 29600 Preview Builds now seeing Experimental (Future Platforms) in the Windows Insider channel settings.
+Release notes for Windows 11 Insider Preview Build 29634.1000 for Experimental (Future Platforms)
+Changes and improvements gradually being rolled out
+[Voice Isolation in Voice Access]
+- We’re introducing Voice Isolation, a new option in Voice Access that helps it focus on your voice, even when others are speaking nearby. Whether you’re in a shared office, an open floor plan, or at home with family around, Voice Isolation filters out other voices and background noise so Voice Access can better understand you. All processing happens privately on your device.
+- Getting started
+ Voice Access now offers three speech recognition modes under Voice Access settings &gt; Improve speech recognition:
+  - Voice Isolation — Filters out other speakers and background noise (one-time voice setup required).
+  - Remove background noise only — Filters out non-speech sounds like typing or door slams. No additional setup needed.
+  - No filtering — Default microphone input with no additional processing.
+- To set up Voice Isolation, select it from the menu and follow the short, guided setup where you’ll read a brief paragraph aloud so Voice Access can learn your voice. It only takes a minute, and your voice data never leaves your device
+[Narrator]
+Braille displays now connect instantly with Narrator
+- We’re making refreshable braille displays easier to use in Windows. Narrator now supports displays that use the HID standard — an open industry standard for braille displays. If your display supports HID, simply connect it via USB and start reading — true plug-and-play with no additional setup required. For Bluetooth, pair your HID braille display in Settings &gt; Bluetooth &amp; devices just like any other accessory, and you can work wirelessly without being tethered to your PC.
+- Compatible HID displays include models like the Orbit Reader 20, Orbit Slate 340, Freedom Scientific Focus 40, and APH Mantis Q40.
+- HID braille displays now work during the initial Windows setup experience (OOBE) over USB — meaning users who are deaf-blind can set up their PC independently, right from the first screen. You can customize braille input and output options anytime in Settings &gt; Accessibility &gt; Narrator &gt; Braille.
+[Account Control]
+- The Windows 11 Account Control flyout has a refreshed, modern design and a clear subscription badge to make the user’s account status instantly visible.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a186b3def2b')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a1bc6748618">
+        <div class="article-body">
+          <a href="https://petri.com/windows-troubleshooting-tools/" target="_blank" rel="noopener noreferrer" class="article-title">Critical Windows Troubleshooting Tools: Stop Wasting Time on the Wrong Fixes</a>
+          <div class="article-meta">petri.com &bull; Jul 30, 2026</div>
+          <div class="article-summary"><p>A practical guide to choosing the right Windows diagnostic tool before you start running repair commands.
+This guide focuses on when admins should use Windows troubleshooting tools like Event Viewer, Reliability Monitor, System File Checker, SFC/DISM, Windows Update logs, and core network commands.
+Most Windows troubleshooting failures happen because administrators start with repair commands instead of evidence. Running SFC, DISM, or a Windows Update reset before identifying the failing subsystem wastes time, destroys diagnostic data, and often leaves the root cause unresolved.
+Windows includes more diagnostic utilities than most administrators will ever use. The challenge is not remembering every switch for every tool; it is choosing the first tool that gives you useful evidence. When a workstation fails to install an update, a server service stops unexpectedly, or users suddenly cannot reach the fileserver, the fastest path to resolution starts with matching the symptom to the right diagnostic source.
+Most troubleshooting sessions fail before the first command is run. An administrator sees an error, tries a familiar repair command, reboots, and then discovers the original issue is still present. A better approach is to slow down long enough to establish a baseline.
+For example, if Windows Update fails with a generic error, do not immediately reset every update component. First, check whether the failure happened during scan, download, staging, installation, or reboot. That distinction determines whether you should look at Windows Update logs, servicing logs, disk health, policy configuration, or network access.
+Let’s look at the three most helpful troubleshooting tools: Event Viewer, SFC, and DISM.
+Event Viewer is usually the first stop when the symptom has a timestamp: an application crash, an unexpected reboot, a service failure, a driver problem, or a failed installation.
+Start with Windows Logs and check the Application, System, and Setup logs. Filter for Critical, Error, and Warning events around the time the issue occurred. Then look for the event source, event ID, faulting module, service name, driver name, or update package referenced in the details.
+To separate the signal from the noise, begin with the time the problem was reported and examine what changed or failed at that moment. Ignore isolated warnings and focus on events that are both time-correlated and repeatable. Ask yourself: Does this occur every time the issue happens? A single warning from yesterday is usually noise. An error that appears every time a specific application is opened is a signal. The most valuable troubleshooting clues are the ones that consistently reproduce alongside the problem.
+System File Checker is a targeted repair tool for protected Windows system files. Use it when Windows features behave unexpectedly, a built-in component will not start, or Event Viewer points to missing or corrupted operating system files. Run it from an elevated command prompt or terminal:
+sfc /scannow
+SFC is useful because it can verify and replace protected files without reinstalling Windows (a BIG time saver). Its limitation is that it depends on the local component store as the repair source. If that store is damaged, SFC may report that it found corruption but could not repair all files. When that happens, move to DISM rather than repeating SFC indefinitely.
+Deployment Image Servicing and Management (DISM) operates at the Windows image and component-store level. Use DISM when SFC cannot complete repairs, when Windows Update or feature installation repeatedly fails, or when servicing health is the likely issue. The most common online repair command is:
+DISM /Online /Cleanup-Image /RestoreHealth
+In many enterprise environments, DISM may need a known-good repair source, especially when endpoints cannot download repair content from Windows Update. That source might be installation media, a mounted image, or a managed content location.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a1bc6748618')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="af49ed92889">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-intune-macos-compliance-samsung-update/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Intune Adds Windows Sync Visibility, macOS Compliance, Samsung Update Controls</a>
+          <div class="article-meta">petri.com &bull; Jul 29, 2026</div>
+          <div class="article-summary"><p>Latest improvements provide greater visibility into device synchronization and more flexibility in compliance and update management.
+Key Takeaways:
+Microsoft’s July Intune update introduces several improvements to simplify day-to-day device management. This release includes enhanced Windows sync visibility, custom compliance settings for macOS, and improved control over Samsung firmware updates.
+The Microsoft Intune admin center now provides a more transparent sync process for individual Windows devices. This update allows administrators to monitor sync progress in real time without feedback. A single sync action now triggers device management, compliance, policy, application, and script updates simultaneously, which makes troubleshooting faster and more efficient.
+Microsoft has announced the general availability of custom compliance settings for macOS devices. Organizations can define their own compliance requirements beyond the standard built-in checks. It allows IT admins to align compliance and Conditional Access requirements with the Microsoft Intune security policies to reduce risk and unblock macOS deployments.
+Administrators can use scripts and JSON-based rules to evaluate device-specific conditions such as installed applications, running processes, software versions, and security configurations. This creates a more consistent compliance management experience across Windows, Linux, and macOS devices.
+“Think about installed software, running processes, app versions, or security posture that no Apple built-in setting captures. Now macOS devices report compliance the same way Windows and Linux devices do, giving you one consistent view instead of three different ones,” the Microsoft Intune team explained.
+Microsoft Intune now offers enhanced management of Samsung Galaxy firmware and operating system updates through Samsung Knox Enterprise Firmware-Over-The-Air (E-FOTA). It allows IT admins to control which device groups receive specific firmware versions. Administrators can gain enhanced control over deployment timing, maintenance windows, battery requirements, and update postponement to maintain security and compliance.
+Lastly, Microsoft’s latest update addresses a common misconception that all Windows Autopilot deployments require device registration. Traditional Autopilot scenarios may still use registration, but newer options such as Windows Autopilot Device Preparation can provision Windows 11 devices without it.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('af49ed92889')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ae2da3aaf64">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMitAFBVV95cUxQcnFTLVlrMXJBV0oxamwzcGprdEJGcGY5d0RNUzlxWDJzT1VoNXVpc1NSaUNJekdKcG9fZkc5dDBiWXpfc3NmVnJOM3lKUG1xZzBNNDdfUjNtMGlfN05vQXhZS1U0U3EyOS0xZ0ZLQVBYQlowU09BVEstblFkNnliODdBNWpYOWlnWU9reHJVd2JZNmlPelEtWllPM1diVjMxOC0yRktyTUlvanlJX1hDOXN6bDM?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Windows quality: an update on the commitment we made in March - Windows Blog</a>
+          <div class="article-meta">Windows Blog &bull; Aug 01, 2026</div>
+          <div class="article-summary snippet"><p>Windows quality: an update on the commitment we made in March&amp;nbsp;&amp;nbsp;Windows BlogMicrosoft vows to make Windows 11 fly on 8GB RAM amid memory shortage — optimizations to reduce OS memory footprint have begun&amp;nbsp;&amp;nbsp;Tom's HardwareMicrosoft improves Windows 11 optimization for PCs with 8GB RAM&amp;nbsp;&amp;nbsp;TweakTown</p><a href="https://news.google.com/rss/articles/CBMitAFBVV95cUxQcnFTLVlrMXJBV0oxamwzcGprdEJGcGY5d0RNUzlxWDJzT1VoNXVpc1NSaUNJekdKcG9fZkc5dDBiWXpfc3NmVnJOM3lKUG1xZzBNNDdfUjNtMGlfN05vQXhZS1U0U3EyOS0xZ0ZLQVBYQlowU09BVEstblFkNnliODdBNWpYOWlnWU9reHJVd2JZNmlPelEtWllPM1diVjMxOC0yRktyTUlvanlJX1hDOXN6bDM?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ae2da3aaf64')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a27058b75db">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi1AFBVV95cUxPVVhxRTZ6OFdQSUVIdkxCS1BGMXNfOWY0OEowYjNPTGVLNjlnVVdSRlBvNW9RZGgtWDd6aVI0dDVLeVFlT0Y4enBmcE80elZUSGtjNkpnLTd6dk1ya1B5V0ZiN3NGLTVuaDF6bm53ejMtWnlYVnFsdmNNcHNwbkNSMjdwV3lEMVI3NXRvNmc4UGdoMmRqY1drNGdtRzVKUjJPd1JFZlpuWFpCa1doalpxQnZicFBQLXBYRmgtQXBwNTEzLXJjaUlzdnVwWEVlNHB4OHAyWg?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Unexpected item in the bagging area as Windows Activation error pops up at check-in - The Register</a>
+          <div class="article-meta">The Register &bull; Aug 01, 2026</div>
+          <div class="article-summary snippet"><p>Unexpected item in the bagging area as Windows Activation error pops up at check-in&amp;nbsp;&amp;nbsp;The Register</p><a href="https://news.google.com/rss/articles/CBMi1AFBVV95cUxPVVhxRTZ6OFdQSUVIdkxCS1BGMXNfOWY0OEowYjNPTGVLNjlnVVdSRlBvNW9RZGgtWDd6aVI0dDVLeVFlT0Y4enBmcE80elZUSGtjNkpnLTd6dk1ya1B5V0ZiN3NGLTVuaDF6bm53ejMtWnlYVnFsdmNNcHNwbkNSMjdwV3lEMVI3NXRvNmc4UGdoMmRqY1drNGdtRzVKUjJPd1JFZlpuWFpCa1doalpxQnZicFBQLXBYRmgtQXBwNTEzLXJjaUlzdnVwWEVlNHB4OHAyWg?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a27058b75db')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a6864e5b289">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMirgFBVV95cUxPT2hQaWV0eXZJOWdQeGw1R0xhdlRQWDR6b0t6N2lXYTVBemNDLUc1TERQMFBhOU1kaWppWWg0TWxvMzRsdW1QRmMtdjNkbGNQSlJaX0d1WGQ3aUR6TW5rNzljZ3JIS1dDZEZDQ1VHaElGQ1V2VU1nUXdXS0NJNmZ1V3lGQkUyTUdjX1ZvZHJyc01uWVN1NFphSlVzUXdPV1NvRHlKckluQWZUUjJmLWc?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Issues Hotel Wi-Fi Warning For Windows PC Users - Forbes</a>
+          <div class="article-meta">Forbes &bull; Aug 01, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft Issues Hotel Wi-Fi Warning For Windows PC Users&amp;nbsp;&amp;nbsp;Forbes</p><a href="https://news.google.com/rss/articles/CBMirgFBVV95cUxPT2hQaWV0eXZJOWdQeGw1R0xhdlRQWDR6b0t6N2lXYTVBemNDLUc1TERQMFBhOU1kaWppWWg0TWxvMzRsdW1QRmMtdjNkbGNQSlJaX0d1WGQ3aUR6TW5rNzljZ3JIS1dDZEZDQ1VHaElGQ1V2VU1nUXdXS0NJNmZ1V3lGQkUyTUdjX1ZvZHJyc01uWVN1NFphSlVzUXdPV1NvRHlKckluQWZUUjJmLWc?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a6864e5b289')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="azure" class="topic-section">
+      <h2 class="topic-title" style="--c:#00BCF2">Azure <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a46bd496276">
+        <div class="article-body">
+          <a href="https://azure.microsoft.com/en-us/blog/what-customers-value-most-in-microsoft-databases-from-reliability-to-ai-readiness/" target="_blank" rel="noopener noreferrer" class="article-title">What customers value most in Microsoft Databases—from reliability to AI readiness</a>
+          <div class="article-meta">azure.microsoft.com &bull; Jul 27, 2026</div>
+          <div class="article-summary"><p>Every day, customers trust Microsoft Databases to power their most critical applications, business processes, and AI-powered experiences. Continuous customer feedback provides valuable insights into how these technologies perform in production and where we should continue investing.
+I’m honored to share that Microsoft Databases have received multiple 2026 PeerSpot Customer Choice / Tech Leader recognitions based on feedback from real practitioners using these technologies in production environments.
+This year, PeerSpot recognized:
+- SQL Server as a Tech Leader in Database Management Systems (DBMS) (#1) and Relational Database Tools (#1)
+- Azure SQL Database as a Tech Leader in Database as a Service (DBaaS) (#2)
+- Azure Database for PostgreSQL as a Tech Leader in Open Source Databases (#1)
+- Azure Cosmos DB as a Tech Leader in Managed NoSQL Databases (#1), NoSQL Databases (#1), and Vector Databases (#1)
+Customer feedback across Microsoft Databases consistently highlights five themes: reliability, scalability, operational simplicity, developer productivity, and AI readiness. These are the same priorities shaping our investments across SQL Server, Azure SQL Database, Azure Cosmos DB, and Azure Database for PostgreSQL. The PeerSpot recognition reinforces that customers see value not only in the performance of our databases today, but also in how they are helping organizations prepare for the next generation of AI-powered applications.
+What customers consistently value
+SQL Server: Trusted reliability for mission-critical workloads
+For SQL Server customers, reliability, stability, and long-term data stewardship remain foundational requirements. Organizations continue to rely on SQL Server to support business-critical applications, analytics, and increasingly AI-enabled workflows.
+Hemanth Reddy Vakiti, a data engineer at Cognizant, wrote that “The backup and recovery allow us to easily access previous 10 to 15 years of data”, citing SQL Server’s ability to handle large datasets and support secure role-based access.
+Another SQL Server reviewer, Isseo Martinez from eGlobal, called out availability and stability, saying “We never have concerns about the database.” For many organizations, that confidence is the foundation for business-critical applications and long-term modernization strategies.
+Azure SQL Database: Simplifying modernization with cloud-scale SQL
+Customers regularly tell us they want the reliability and familiarity of SQL Server with the operational simplicity of a fully managed cloud service.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a46bd496276')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="af9fcd95ba2">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-azure-linux-cis-benchmark-auditing/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Simplifies Linux CIS Compliance Monitoring with Azure Machine Configuration</a>
+          <div class="article-meta">petri.com &bull; Jul 31, 2026</div>
+          <div class="article-summary"><p>Built-in auditing provides continuous visibility into Linux security baselines across cloud and hybrid environments.
+Key Takeaways:
+Microsoft is making Linux security compliance significantly easier by bringing CIS Benchmark auditing directly into Microsoft Azure. This new feature gives organizations a built-in way to continuously assess and track security posture across cloud and hybrid environments.
+CIS Security Benchmarks are a set of globally recognized security best practices designed to help organizations securely configure operating systems, cloud platforms, applications, and network devices. They provide detailed, consensus-based recommendations for reducing vulnerabilities, strengthening system defenses, and maintaining consistent security standards, which makes them widely used for regulatory compliance, risk management, and cybersecurity audits across both cloud and on-premises environments.
+Previously, organizations often had to rely on separate tools, custom scripts, or manual processes to verify whether Linux systems complied with CIS security standards, which made compliance monitoring time-consuming and difficult to manage at scale.
+According to Microsoft, native CIS compliance auditing is now available for Linux virtual machines in both Azure and Azure Arc-enabled environments. This feature is built into Azure Machine Configuration and powered by the azure-osconfig compliance engine, which continuously evaluates Linux systems against official CIS security benchmarks.
+“The audit experience is now ready for production use. You can continuously assess your Linux workloads against official, CIS-certified benchmarks – at scale, across Azure and hybrid environments through Azure Arc – and get clear, CIS-style compliance reporting directly in Azure Policy and Azure Resource Graph,” Microsoft explained.
+This feature provides automated compliance assessments, detailed reporting, and visibility into configuration drift, which helps identify systems that do not meet recommended security baselines. It supports hybrid and multi-cloud environments through Azure Arc, providing consistent security audits across infrastructure regardless of location.
+Since its launch in preview, Microsoft has enhanced this feature by exposing more customizable rule parameters and exception handling options. It allows organizations to tailor benchmarks to their operational requirements.
+Microsoft notes that the supported benchmarks are CIS Benchmark Assessment Certifiensuresich ensure that compliance evaluations are performed against recognized CIS security standards and provide organizations with confidence in the accuracy and reliability of their audit results. This release is focused on security auditing and compliance assessment, allowing security teams to identify configuration gaps, prioritize remediation efforts, and demonstrate compliance with internal security policies as well as regulatory requirements.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('af9fcd95ba2')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a62a645c179">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMigAFBVV95cUxNaDkyU1ptM2xGN2M5QUJtclpSMFJtQVd4VlZJeTJKbXJPb2Q4cW1VUlZubjVoQ291MnB3T3AwT1RQcENGTmtEVHB3bUNsTzBRRjlHTjQ0dGpabWpZM3pZTGlIcjNGcGRTdDlDc2tCc01QYUxtaXpHREFvSWV6VC1Nbw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Profit Jumps 31% as Azure Cloud Sales Surpass $100 Billion - wsj.com</a>
+          <div class="article-meta">wsj.com &bull; Jul 29, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft Profit Jumps 31% as Azure Cloud Sales Surpass $100 Billion&amp;nbsp;&amp;nbsp;wsj.com</p><a href="https://news.google.com/rss/articles/CBMigAFBVV95cUxNaDkyU1ptM2xGN2M5QUJtclpSMFJtQVd4VlZJeTJKbXJPb2Q4cW1VUlZubjVoQ291MnB3T3AwT1RQcENGTmtEVHB3bUNsTzBRRjlHTjQ0dGpabWpZM3pZTGlIcjNGcGRTdDlDc2tCc01QYUxtaXpHREFvSWV6VC1Nbw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a62a645c179')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a21ccec978f">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMic0FVX3lxTE91RF92QzVwYVBnaG1vRzRpVVF3QnNoN1NncmVCeFFJcl82ak5EbXpoRFRLVXFWSGZySVk1TnpBS3IyUzFoQ1htS2tMSG5MaHF0UnVVVVlvVEI0OTUza0FhVldzR1Q1SlpSMGt6MWF6a3J2VzA?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft's $450 billion jump - Axios</a>
+          <div class="article-meta">Axios &bull; Jul 31, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft's $450 billion jump&amp;nbsp;&amp;nbsp;Axios</p><a href="https://news.google.com/rss/articles/CBMic0FVX3lxTE91RF92QzVwYVBnaG1vRzRpVVF3QnNoN1NncmVCeFFJcl82ak5EbXpoRFRLVXFWSGZySVk1TnpBS3IyUzFoQ1htS2tMSG5MaHF0UnVVVVlvVEI0OTUza0FhVldzR1Q1SlpSMGt6MWF6a3J2VzA?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a21ccec978f')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a612b8409a8">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMisgFBVV95cUxQcmFqQlQ5OFVRNWtwUDRGMm5RR2tFcTJTOVBrVU9UVmtjVlB1ODY4VTZDTFBJN2dTZkRUTl9CN1ItZ2ptY212WGhKTEV3UDZoV2gyNDJxdGVMY0lWcWhfZEh2REhoMVhwQU5zUTV6LTZZOVlSelpUcUVlME1SdlhwX2IwZG1zTklTX3RlMi1LcjV1VzVPVUlmdnQ4ZVpqbXVMeWFmSmRmSnd0YllmV2FWV21R?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft’s Shares Surge on Fastest Cloud Growth Since 2022 - Bloomberg.com</a>
+          <div class="article-meta">Bloomberg.com &bull; Jul 29, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft’s Shares Surge on Fastest Cloud Growth Since 2022&amp;nbsp;&amp;nbsp;Bloomberg.com</p><a href="https://news.google.com/rss/articles/CBMisgFBVV95cUxQcmFqQlQ5OFVRNWtwUDRGMm5RR2tFcTJTOVBrVU9UVmtjVlB1ODY4VTZDTFBJN2dTZkRUTl9CN1ItZ2ptY212WGhKTEV3UDZoV2gyNDJxdGVMY0lWcWhfZEh2REhoMVhwQU5zUTV6LTZZOVlSelpUcUVlME1SdlhwX2IwZG1zTklTX3RlMi1LcjV1VzVPVUlmdnQ4ZVpqbXVMeWFmSmRmSnd0YllmV2FWV21R?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a612b8409a8')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a40020675b4">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMimwFBVV95cUxOWVFDbzVfT29LcHBPMS1DTnpoVm9nRm9BdWswQTRGTFBzNEJ4eDRQSDdyWFZjVTdZUWl0c3FVZHBlN2c2Uy1sZktxbDJ6X0lETExneXlIRXJuV2NaUWV3NXVUOGcwOHdmZFZFSF9wNV9KWVA4WFpzeEptWlctV1EydFBUbnU5N3pzWGRGa2xvOG5ablRMeXhXMjhYNA?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft's $450 billion one-day surge tops Turkey's entire stock market as Azure hits $100B milestone - Yahoo Finance</a>
+          <div class="article-meta">Yahoo Finance &bull; Jul 31, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft's $450 billion one-day surge tops Turkey's entire stock market as Azure hits $100B milestone&amp;nbsp;&amp;nbsp;Yahoo Finance</p><a href="https://news.google.com/rss/articles/CBMimwFBVV95cUxOWVFDbzVfT29LcHBPMS1DTnpoVm9nRm9BdWswQTRGTFBzNEJ4eDRQSDdyWFZjVTdZUWl0c3FVZHBlN2c2Uy1sZktxbDJ6X0lETExneXlIRXJuV2NaUWV3NXVUOGcwOHdmZFZFSF9wNV9KWVA4WFpzeEptWlctV1EydFBUbnU5N3pzWGRGa2xvOG5ablRMeXhXMjhYNA?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a40020675b4')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ab46f315a0d">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMieEFVX3lxTE56eHVsSTRMRzJ1UDhhWEptUWdrb1J1bEJZOVBQdV93NGY2R2k4QW5Gb0JkNVhIR1pVTU1TTVByYTJLQzh4N2ZfbWIxVkhsTTFQdE9IY1liSUd1YkpHV0VUTEdQMjZYRGVYWllHZFFQaWNWNWdjWV9UUA?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft posts record one-day market cap gain after earnings - qz.com</a>
+          <div class="article-meta">qz.com &bull; Jul 31, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft posts record one-day market cap gain after earnings&amp;nbsp;&amp;nbsp;qz.com</p><a href="https://news.google.com/rss/articles/CBMieEFVX3lxTE56eHVsSTRMRzJ1UDhhWEptUWdrb1J1bEJZOVBQdV93NGY2R2k4QW5Gb0JkNVhIR1pVTU1TTVByYTJLQzh4N2ZfbWIxVkhsTTFQdE9IY1liSUd1YkpHV0VUTEdQMjZYRGVYWllHZFFQaWNWNWdjWV9UUA?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ab46f315a0d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a8a4b3d1217">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMirAFBVV95cUxNOGduWWtVTDNKbC1BS2VVd25nODZmVEZWblNWeS1FLVFuZ3hwN1pKcXFDa3V0aVdpSjBPWnVrMk9sSUUyUE1va3dzdWhLX2RWeVI4TWhGelA5dEExSWtHUTRJZU5aT0djby1SbnE2SU03RFVBLTFRblNxUkt4R0VNaTVIVDQ5Z2ROSGF0dzNHNjZjVmFaR0tyWUpUa2NsVUlTMzJQZWktN0Etd0Ry?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Cloud and AI strength fuels fourth quarter results - Microsoft Source</a>
+          <div class="article-meta">Microsoft Source &bull; Jul 29, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft Cloud and AI strength fuels fourth quarter results&amp;nbsp;&amp;nbsp;Microsoft Source</p><a href="https://news.google.com/rss/articles/CBMirAFBVV95cUxNOGduWWtVTDNKbC1BS2VVd25nODZmVEZWblNWeS1FLVFuZ3hwN1pKcXFDa3V0aVdpSjBPWnVrMk9sSUUyUE1va3dzdWhLX2RWeVI4TWhGelA5dEExSWtHUTRJZU5aT0djby1SbnE2SU03RFVBLTFRblNxUkt4R0VNaTVIVDQ5Z2ROSGF0dzNHNjZjVmFaR0tyWUpUa2NsVUlTMzJQZWktN0Etd0Ry?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a8a4b3d1217')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="sharepoint" class="topic-section">
+      <h2 class="topic-title" style="--c:#036C70">SharePoint <span class="count">(5)</span></h2>
+      <div class="article-card" data-id="a68f4674436">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMivAFBVV95cUxPZEhxb195a3cyS01QYjNUbms5c1c3YlZZZTVNRERxMklZWFNPVkNna2k5S2ZpbGh6RnR5SGZ4Mm9fd3hzWVFQVFZZcUZyLVlJbWtFTzRPa3d4NXRTajJZUGFiTzU4UUVRSVFJdHl4Y3dOMUY2QUtzU3Vpc0hSd2hrM0E5OGoyYVczVElRdjFPekFqLVU3S3dLSlc1YlBqZHM0TXpWa1BOVUxSMXlMZmMyUmU2Z2lSak5sVnc3WA?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Turn knowledge in Google Drive and Microsoft SharePoint into connected context - Atlassian</a>
+          <div class="article-meta">Atlassian &bull; Jul 30, 2026</div>
+          <div class="article-summary snippet"><p>Turn knowledge in Google Drive and Microsoft SharePoint into connected context&amp;nbsp;&amp;nbsp;Atlassian</p><a href="https://news.google.com/rss/articles/CBMivAFBVV95cUxPZEhxb195a3cyS01QYjNUbms5c1c3YlZZZTVNRERxMklZWFNPVkNna2k5S2ZpbGh6RnR5SGZ4Mm9fd3hzWVFQVFZZcUZyLVlJbWtFTzRPa3d4NXRTajJZUGFiTzU4UUVRSVFJdHl4Y3dOMUY2QUtzU3Vpc0hSd2hrM0E5OGoyYVczVElRdjFPekFqLVU3S3dLSlc1YlBqZHM0TXpWa1BOVUxSMXlMZmMyUmU2Z2lSak5sVnc3WA?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a68f4674436')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a41627c07cf">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMitwFBVV95cUxQTTN6ZVE2WThXVUdCdDl0ZldpdjVvWkRiaFRmMGVJVlV5TmJLZWNzUUp5UmF2T09MTzkxeW5nZG1pa2VDTEdmYlota2ZzLW5jWTMzWEhDMjNoTmlMUnRadFFRczF6RVppbUxKMFE1OVUxaEU5TWh0ejlGbGx6WEI4WmNoYzhWWnl3NDc2ZERhTml6eGtQYnpLRzFiM3U3Ry1GS2xWUngycGcyOTZkdWFuSFVRdlh5eWs?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Spotlights Apps 365 AI at SharePoint Showcase: Future of Intelligent Apps - The National Law Review</a>
+          <div class="article-meta">The National Law Review &bull; Jul 27, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft Spotlights Apps 365 AI at SharePoint Showcase: Future of Intelligent Apps&amp;nbsp;&amp;nbsp;The National Law Review</p><a href="https://news.google.com/rss/articles/CBMitwFBVV95cUxQTTN6ZVE2WThXVUdCdDl0ZldpdjVvWkRiaFRmMGVJVlV5TmJLZWNzUUp5UmF2T09MTzkxeW5nZG1pa2VDTEdmYlota2ZzLW5jWTMzWEhDMjNoTmlMUnRadFFRczF6RVppbUxKMFE1OVUxaEU5TWh0ejlGbGx6WEI4WmNoYzhWWnl3NDc2ZERhTml6eGtQYnpLRzFiM3U3Ry1GS2xWUngycGcyOTZkdWFuSFVRdlh5eWs?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a41627c07cf')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a05c0871484">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiogFBVV95cUxNOXU2eW45RVJ2anQzaGVfRFpmcUxrLXB0RTJpb1ZWRDNIemxJRzJ4MGhhWF9nTjFpa1dsRkFXQ1RpWkhMNGphSGdWZGVqLTF4M2cwSFZ3NEtoY3h1dEM5RmhKZlVoUUNuOFZ0MkVfczhiQmI1QWdTcUtEaEhSWmxMVlN1dGlXM2JYVHNkX2d0ZGRsTzZoUXJoaTI3R1ZjV1dJZFE?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">SharePoint zero-day grants Farm Admin rights, CISA warns - Notebookcheck</a>
+          <div class="article-meta">Notebookcheck &bull; Jul 31, 2026</div>
+          <div class="article-summary snippet"><p>SharePoint zero-day grants Farm Admin rights, CISA warns&amp;nbsp;&amp;nbsp;Notebookcheck</p><a href="https://news.google.com/rss/articles/CBMiogFBVV95cUxNOXU2eW45RVJ2anQzaGVfRFpmcUxrLXB0RTJpb1ZWRDNIemxJRzJ4MGhhWF9nTjFpa1dsRkFXQ1RpWkhMNGphSGdWZGVqLTF4M2cwSFZ3NEtoY3h1dEM5RmhKZlVoUUNuOFZ0MkVfczhiQmI1QWdTcUtEaEhSWmxMVlN1dGlXM2JYVHNkX2d0ZGRsTzZoUXJoaTI3R1ZjV1dJZFE?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a05c0871484')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a029b4c168f">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiZEFVX3lxTE1CWXdqckd5S2hOTXZfZGhDQm1QMGV4T0k0dXR1akk4MTJhTU5mcGNxclBFSi1NUzRqcFJsWG5ydHJwMmMzVkpUOWdiRFFRbm1LMlU0QkpjbkZrXzhycmZPd0JBd1k?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Quick picks: the best Microsoft 365 backup solutions - Petri IT Knowledgebase</a>
+          <div class="article-meta">Petri IT Knowledgebase &bull; Jul 27, 2026</div>
+          <div class="article-summary snippet"><p>Quick picks: the best Microsoft 365 backup solutions&amp;nbsp;&amp;nbsp;Petri IT Knowledgebase</p><a href="https://news.google.com/rss/articles/CBMiZEFVX3lxTE1CWXdqckd5S2hOTXZfZGhDQm1QMGV4T0k0dXR1akk4MTJhTU5mcGNxclBFSi1NUzRqcFJsWG5ydHJwMmMzVkpUOWdiRFFRbm1LMlU0QkpjbkZrXzhycmZPd0JBd1k?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a029b4c168f')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a9f760719bb">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiigFBVV95cUxPQ2YtME1sOU1GUmpxaTVKRlJMWFB6LU5tRzVDMURzUVlMZ1Q1bk9VZ1d1N3FjdWd6bzdpUjlqTWRZNXFGZHdNT3pvU3Vmc09vbDBWV3piMDNLMVhERU9JamFyT21GRVRCTUloS1pST2JRYjRpV2pENFp3U0dhbUdzU1pDVG1LTUpxY0E?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Used China-Based Engineers to Maintain Vulnerable SharePoint - TechRepublic</a>
+          <div class="article-meta">TechRepublic &bull; Jul 27, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft Used China-Based Engineers to Maintain Vulnerable SharePoint&amp;nbsp;&amp;nbsp;TechRepublic</p><a href="https://news.google.com/rss/articles/CBMiigFBVV95cUxPQ2YtME1sOU1GUmpxaTVKRlJMWFB6LU5tRzVDMURzUVlMZ1Q1bk9VZ1d1N3FjdWd6bzdpUjlqTWRZNXFGZHdNT3pvU3Vmc09vbDBWV3piMDNLMVhERU9JamFyT21GRVRCTUloS1pST2JRYjRpV2pENFp3U0dhbUdzU1pDVG1LTUpxY0E?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a9f760719bb')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="intune" class="topic-section">
+      <h2 class="topic-title" style="--c:#0F6CBD">Intune <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a73fc5edbb3">
+        <div class="article-body">
+          <a href="https://techcommunity.microsoft.com/t5/intune-customer-success/registry-inventory-in-microsoft-intune-verifying-what-s-on-your/ba-p/4541312" target="_blank" rel="noopener noreferrer" class="article-title">Registry Inventory in Microsoft Intune: Verifying What’s on Your Devices</a>
+          <div class="article-meta">techcommunity.microsoft.com &bull; Jul 28, 2026</div>
+          <div class="article-summary snippet"><p>By: Madison Cooks, Product Manager | Microsoft Intune
+IT admins need a reliable way to confirm how Windows devices are configured, especially when troubleshooting, validating compliance, or investigating security posture. Policy assignment alone doesn’t always show what’s present on the device and getting registry visibility at scale has often required custom discovery or remediation scripts that take time to build, test, and maintain.
+With Microsoft Intune’s July (2607) release, device inventory will include Windows registry data, helping IT admins verify a device’s actual configuration, not just the policy assigned. With a new Device inventory property for registry keys, you define the keys you care about in the properties catalog, and Intune collects them for you. There’s no collection logic to build or keep running.
+This makes registry-based configuration checks easier to operationalize across managed Windows devices, so teams can spend less time maintaining scripts and more time acting on the data.
+
+Figure 1: Microsoft Intune device inventory profile creation screen showing the Properties picker with the Registry category selected for inventory data collection.
+
+What registry data you collect
+Registry data collection is configured through the existing properties catalog. For each entry, provide a registry key path and, when needed, a value name. For every targeted device, the device agent attempts collection and reports:
+
+Registry key path
+Value name
+Value type
+Value data
+
+Figure 2: Microsoft Intune device inventory profile configuration page showing registry key collection settings, including registry path, collection pattern options, and value name fields.
+The initial release supports the following collection patterns designed for common admin scenarios that use HKEY_LOCAL_MACHINE (HKLM) paths.
+Single value
+Specify a registry path and value name to collect one value from that path. For example, collect Secure Boot certificate servicing status from HKLM\SYSTEM\CurrentControlSet\Control\SecureBoot by using values such as UEFICA2023Status, UEFICA2023Error, or UEFICA2023ErrorEvent.
+All values under a path, non-recursive
+Specify a registry path to collect all values directly under that path. This pattern doesn't include subkeys. For example, collect values directly under a Windows Update configuration path to help validate expected settings.
+Same value across subkeys
+Specify a base registry key path and a value name to collect that value from each immediate subkey. For example, collect DHCP status across network interface subkeys under HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces.
+Where registry inventory data appears
+After collection, registry inventory data will be available in Device inventory at initial release. We’ll expand access to registry data in the coming months, including support in additional reporting and exploration experiences.
+&amp;nbsp;
+Figure 3: Microsoft Intune Device Inventory page displaying collected Windows registry data for a device, including registry key paths, values, collection status, and timestamps.
+This makes registry data available alongside other inventory signals, so admins can use familiar tools to investigate configuration, validate device state, and support troubleshooting without building separate collection scripts.
+How admins use this
+You can collect registry data and view it per device in Device inventory - a verified record of each endpoint’s actual configuration and a key source of settings data on each endpoint. This helps answer questions like: Is a setting actually enabled on the device? Which app, version, or configuration is installed? Did a policy apply correctly? Why is this device behaving differently from the rest?
+Registry data collection in Device inventory is included with Microsoft Intune Plan 1.
+Collection results and limits
+If a registry value exists but doesn’t contain data, collection succeeds and the value appears as empty. If the registry path or value name doesn’t exist on a device, that device reports Not found for the collection result. Collection continues for all other devices, so one missing value won’t block results from devices where the value exists.
+Registry inventory includes safeguards to keep collection focused and manageable. Each collected registry value is capped at 6 KB, and each device can collect up to 100 registry keys. If a value or device exceeds these limits, collection skips the excess data and reports the applicable result for that device. These limits help manage data volume, maintain service performance, and reduce the risk of over-collection.
+Registry inventory is designed for configuration visibility and troubleshooting, not for collecting sensitive or confidential data. Built-in heuristic detection helps identify and prevent ingestion of values that may contain secrets, credentials, authentication tokens, certificates, private keys, connection strings, or other data that could grant access if exposed. If a value is flagged as potentially sensitive, it isn’t collected.
+Collection is limited to HKEY_LOCAL_MACHINE (HKLM) paths. This keeps inventory focused on device-level configuration and avoids user-specific registry contexts.
+Summary
+Registry inventory in Microsoft Intune helps admins collect Windows registry data in a native, declarative way. Instead of maintaining custom scripts for common inventory scenarios, admins can configure registry collection in the properties catalog and query the results through familiar Intune reporting experiences.
+Use registry inventory for configuration visibility and troubleshooting across managed Windows devices. As you plan your collection strategy, focus on device-level HKLM data, avoid sensitive values, and remember collection limits to keep inventory targeted and manageable.
+If you have any feedback or questions, leave a comment below or reach out to us on X @IntuneSuppTeam.</p><a href="https://techcommunity.microsoft.com/t5/intune-customer-success/registry-inventory-in-microsoft-intune-verifying-what-s-on-your/ba-p/4541312" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a73fc5edbb3')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="af49ed92889">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-intune-macos-compliance-samsung-update/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Intune Adds Windows Sync Visibility, macOS Compliance, Samsung Update Controls</a>
+          <div class="article-meta">petri.com &bull; Jul 29, 2026</div>
+          <div class="article-summary"><p>Latest improvements provide greater visibility into device synchronization and more flexibility in compliance and update management.
+Key Takeaways:
+Microsoft’s July Intune update introduces several improvements to simplify day-to-day device management. This release includes enhanced Windows sync visibility, custom compliance settings for macOS, and improved control over Samsung firmware updates.
+The Microsoft Intune admin center now provides a more transparent sync process for individual Windows devices. This update allows administrators to monitor sync progress in real time without feedback. A single sync action now triggers device management, compliance, policy, application, and script updates simultaneously, which makes troubleshooting faster and more efficient.
+Microsoft has announced the general availability of custom compliance settings for macOS devices. Organizations can define their own compliance requirements beyond the standard built-in checks. It allows IT admins to align compliance and Conditional Access requirements with the Microsoft Intune security policies to reduce risk and unblock macOS deployments.
+Administrators can use scripts and JSON-based rules to evaluate device-specific conditions such as installed applications, running processes, software versions, and security configurations. This creates a more consistent compliance management experience across Windows, Linux, and macOS devices.
+“Think about installed software, running processes, app versions, or security posture that no Apple built-in setting captures. Now macOS devices report compliance the same way Windows and Linux devices do, giving you one consistent view instead of three different ones,” the Microsoft Intune team explained.
+Microsoft Intune now offers enhanced management of Samsung Galaxy firmware and operating system updates through Samsung Knox Enterprise Firmware-Over-The-Air (E-FOTA). It allows IT admins to control which device groups receive specific firmware versions. Administrators can gain enhanced control over deployment timing, maintenance windows, battery requirements, and update postponement to maintain security and compliance.
+Lastly, Microsoft’s latest update addresses a common misconception that all Windows Autopilot deployments require device registration. Traditional Autopilot scenarios may still use registration, but newer options such as Windows Autopilot Device Preparation can provision Windows 11 devices without it.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('af49ed92889')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a581c0fb679">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMioAFBVV95cUxPZTlQLWV2bkdrMTM1OEZJYXJZRDR0SjRuNXJlMHRVLTRMWFJ3RjBMMGM1dGRXWGtKV1EtcWVwWjlhcWJjcHpsSEJHZVBZSm5kTEFlY1NtcDFyNFY3RVVBRkR3VjNWSDVBSnVfbU5HZnRuUGFtOEwwNGtQZ0ljN3FUOEpWcFluLWh3ek13MTlMNUdab0xPRUluTXdzOUQzSExM?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">​​​​What’s new in Microsoft Security: July 2026 - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; Jul 30, 2026</div>
+          <div class="article-summary snippet"><p>​​​​What’s new in Microsoft Security: July 2026&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMioAFBVV95cUxPZTlQLWV2bkdrMTM1OEZJYXJZRDR0SjRuNXJlMHRVLTRMWFJ3RjBMMGM1dGRXWGtKV1EtcWVwWjlhcWJjcHpsSEJHZVBZSm5kTEFlY1NtcDFyNFY3RVVBRkR3VjNWSDVBSnVfbU5HZnRuUGFtOEwwNGtQZ0ljN3FUOEpWcFluLWh3ek13MTlMNUdab0xPRUluTXdzOUQzSExM?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a581c0fb679')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a62743c6cd1">
+        <div class="article-body">
+          <a href="https://www.neowin.net/news/microsoft-brings-a-long-awaited-game-changer-windows-11-tool-for-it-admins/?utm_source=rss" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft brings a long awaited &quot;game changer&quot; Windows 11 tool for IT admins - Neowin</a>
+          <div class="article-meta">Neowin &bull; Aug 01, 2026</div>
+          <div class="article-summary"><p>Earlier today, Microsoft made a major announcement regarding the performance and resource usage on Windows 11. The company confirmed upcoming improvements that suggest Redmond might have realized that the minimum system requirements of the OS could need an overhaul.
+Regardless, it is good to see enhancements as this is something users will appreciate. Another area where Microsoft recently announced an upgrade is in the case of managed PCs, as the company has confirmed a new tool for IT admins.
+The company has announced the native support for Registry Inventory with its recent July Intune update (Service Release 2607). Basically admins can now more reliably confirm how systems in their environment are configured, and this can be especially helpful for troubleshooting, validating compliance, and investigating security issues.
+The community seems quite happy with it too, as a user wrote that &quot;this is going to be a game-changer for many&quot; highlighting how system admins such as themselves will find it very useful. The thread had been heavily upvoted by others, and many of them feel that this was long overdue; earlier this was more complicated since it meant running custom scripts or Remediations.
+The feature works through Intune's existing Properties catalog, where administrators can define the registry keys they want to monitor by specifying a registry path and, where required, a value name. Once deployed, managed Windows devices should automatically collect and report the requested information without the need for custom discovery or remediation scripts that previously had to be built, tested, and maintained in such scenarios.
+For each configured entry, Intune can report the registry key path, value name, value type, and value data, giving admins a verified record of a device's actual configuration. This should make it easier to find out whether a particular setting is really enabled, or if an app or configuration is present, whether a policy has applied correctly, or why one particular machine could be behaving differently from the rest.
+The collected data is available from the Device inventory page alongside other inventory information. Microsoft notes that the initial release supports common collection patterns for HKEY_LOCAL_MACHINE (HKLM) registry paths. If a registry value exists but contains no data, the collection still succeeds and the value is reported as empty. Finally, the company has also confirmed that Registry Inventory is included with Microsoft Intune Plan 1.
+Aside from this, the new Intune update also brings other features like Samsung Firmware update management and more.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a62743c6cd1')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a24fb2766bd">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMijwFBVV95cUxPajVRcy0wSGlhQ3VBa1I2R3plY3R4V0ZLN3psRHBpT1dncWQyX2NsdUVISFp3WW5STExIUTM1dWFzbWo2bjhaOUVsek90Mmt1dW41UVFsN1F5NzU0Yl9vbVFTMXFXX2wxZHZjS25wYkxBa2RVZlJnTkhZU2VqbUZjeUZJQkc2UFFOV1BROHF3NA?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Last call to switch to Intune Company Portal - University of Nebraska Medical Center</a>
+          <div class="article-meta">University of Nebraska Medical Center &bull; Jul 30, 2026</div>
+          <div class="article-summary snippet"><p>Last call to switch to Intune Company Portal&amp;nbsp;&amp;nbsp;University of Nebraska Medical Center</p><a href="https://news.google.com/rss/articles/CBMijwFBVV95cUxPajVRcy0wSGlhQ3VBa1I2R3plY3R4V0ZLN3psRHBpT1dncWQyX2NsdUVISFp3WW5STExIUTM1dWFzbWo2bjhaOUVsek90Mmt1dW41UVFsN1F5NzU0Yl9vbVFTMXFXX2wxZHZjS25wYkxBa2RVZlJnTkhZU2VqbUZjeUZJQkc2UFFOV1BROHF3NA?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a24fb2766bd')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a13cd07174d">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-intune-macos-compliance-samsung-update/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Intune Adds Windows Sync Visibility, macOS Compliance, Samsung Update Controls - Petri IT Knowledgebase</a>
+          <div class="article-meta">Petri IT Knowledgebase &bull; Jul 29, 2026</div>
+          <div class="article-summary"><p>Latest improvements provide greater visibility into device synchronization and more flexibility in compliance and update management.
+Key Takeaways:
+Microsoft’s July Intune update introduces several improvements to simplify day-to-day device management. This release includes enhanced Windows sync visibility, custom compliance settings for macOS, and improved control over Samsung firmware updates.
+The Microsoft Intune admin center now provides a more transparent sync process for individual Windows devices. This update allows administrators to monitor sync progress in real time without feedback. A single sync action now triggers device management, compliance, policy, application, and script updates simultaneously, which makes troubleshooting faster and more efficient.
+Microsoft has announced the general availability of custom compliance settings for macOS devices. Organizations can define their own compliance requirements beyond the standard built-in checks. It allows IT admins to align compliance and Conditional Access requirements with the Microsoft Intune security policies to reduce risk and unblock macOS deployments.
+Administrators can use scripts and JSON-based rules to evaluate device-specific conditions such as installed applications, running processes, software versions, and security configurations. This creates a more consistent compliance management experience across Windows, Linux, and macOS devices.
+“Think about installed software, running processes, app versions, or security posture that no Apple built-in setting captures. Now macOS devices report compliance the same way Windows and Linux devices do, giving you one consistent view instead of three different ones,” the Microsoft Intune team explained.
+Microsoft Intune now offers enhanced management of Samsung Galaxy firmware and operating system updates through Samsung Knox Enterprise Firmware-Over-The-Air (E-FOTA). It allows IT admins to control which device groups receive specific firmware versions. Administrators can gain enhanced control over deployment timing, maintenance windows, battery requirements, and update postponement to maintain security and compliance.
+Lastly, Microsoft’s latest update addresses a common misconception that all Windows Autopilot deployments require device registration. Traditional Autopilot scenarios may still use registration, but newer options such as Windows Autopilot Device Preparation can provision Windows 11 devices without it.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a13cd07174d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a9d5ead0e59">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMihAFBVV95cUxObzBxcjNwNWNXdF9QbTNteUluY2xyQVBFVmxlbzRWNFMxZjdVb25henFEdDZGc3A0d1hfcy1uM0R6VVYwU2hHYWwtQXpyUzB4NWlHZ2dPWk80QnphZEo3Wk45YkpJRVBIUGJoelhtYzh5YjcwM0dXLUVrajJkVkJxZGZySFg?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Windows 11 KB5101684 Preview Update Delivers 42 Fixes for Intune, SMB, and File Explorer - TechRepublic</a>
+          <div class="article-meta">TechRepublic &bull; Jul 30, 2026</div>
+          <div class="article-summary snippet"><p>Windows 11 KB5101684 Preview Update Delivers 42 Fixes for Intune, SMB, and File Explorer&amp;nbsp;&amp;nbsp;TechRepublic</p><a href="https://news.google.com/rss/articles/CBMihAFBVV95cUxObzBxcjNwNWNXdF9QbTNteUluY2xyQVBFVmxlbzRWNFMxZjdVb25henFEdDZGc3A0d1hfcy1uM0R6VVYwU2hHYWwtQXpyUzB4NWlHZ2dPWk80QnphZEo3Wk45YkpJRVBIUGJoelhtYzh5YjcwM0dXLUVrajJkVkJxZGZySFg?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a9d5ead0e59')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a29fcf0c14b">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi2AFBVV95cUxPakJOcndocDFNLUhaWndyekxmMzNEWGdtQzF1elM3c1ZIRzlBZXMtY3ktdzhuSWV3bXZqbF9tSVo0a185ZFhGQVhxUU1CQUxseVVGQmFkZzJxenFBM0FZZDhiWGJNWUtaX0UzSU5UcGtZVXNrVVI0cW9icFpkTVBzYTF1SXc3Q3lpS0p6eVFIRFVQYlluZDNra0lycFMtZUxkMXNrbld2THFnanN5SWVBaDg0VENWelRrUEdxMFhTcjhnS1AxRG1rdHBEOU5Fc25zM0lITkZpUU4?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">OneDrive Photos Silently Installs on Windows 11 With Biometric Scan Capability, No Removal Path - Tech Times</a>
+          <div class="article-meta">Tech Times &bull; Jul 30, 2026</div>
+          <div class="article-summary snippet"><p>OneDrive Photos Silently Installs on Windows 11 With Biometric Scan Capability, No Removal Path&amp;nbsp;&amp;nbsp;Tech Times</p><a href="https://news.google.com/rss/articles/CBMi2AFBVV95cUxPakJOcndocDFNLUhaWndyekxmMzNEWGdtQzF1elM3c1ZIRzlBZXMtY3ktdzhuSWV3bXZqbF9tSVo0a185ZFhGQVhxUU1CQUxseVVGQmFkZzJxenFBM0FZZDhiWGJNWUtaX0UzSU5UcGtZVXNrVVI0cW9icFpkTVBzYTF1SXc3Q3lpS0p6eVFIRFVQYlluZDNra0lycFMtZUxkMXNrbld2THFnanN5SWVBaDg0VENWelRrUEdxMFhTcjhnS1AxRG1rdHBEOU5Fc25zM0lITkZpUU4?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a29fcf0c14b')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="entraid" class="topic-section">
+      <h2 class="topic-title" style="--c:#6B69D6">Entra ID <span class="count">(3)</span></h2>
+      <div class="article-card" data-id="a084a1dca31">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/08/suspected-chinese-speaking-hackers.html" target="_blank" rel="noopener noreferrer" class="article-title">Suspected Chinese-Speaking Hackers Target Central Asian Governments With OctLurk and SilkLurk</a>
+          <div class="article-meta">thehackernews.com &bull; Aug 01, 2026</div>
+          <div class="article-summary"><p>A Chinese-speaking threat actor is suspected to be behind a fresh wave of cyber attacks targeting government organizations mainly located in Central Asia, including Afghanistan, Kyrgyzstan, Tajikistan, Uzbekistan, Kazakhstan, and the Syrian Arab Republic, since January 2025.
+These targeted organizations operate across several sectors, such as healthcare, research, government offices, ministries of foreign affairs, logistics, law-enforcement agencies, urban planning and facilities management, and public educational establishments, per Kaspersky. The activity has not been linked to any known adversary or group.
+The attacks are characterized by the use of two new obfuscated backdoors the Russian cybersecurity company is tracking as OctLurk and SilkLurk, as well as a specialized utility codenamed LurkProxy to proxy network traffic.
+&quot;OctLurk and SilkLurk can download and inject additional plugins to perform further malicious actions, including launching command shells, performing file system activity, synthesizing keyboard and mouse events, network scanning, credential dumping, keylogging, password theft from browsers, email collection, and remote access,&quot; researchers Saurabh Sharma and Yaroslav Kikel said.
+The initial access vector used in these attacks is currently unknown. However, Kaspersky's analysis has found that OctLurk is injected into memory and deployed by means of a loader, with the attackers also checking internet connectivity to the domain &quot;dns.ssentialserv[.]xyz&quot; before executing a batch script responsible for launching LurkProxy. The tool then establishes contact with a remote server (&quot;154.196.162[.]76&quot;) for command-and-control (C2).
+Once run, OctoLurk first collects system information, encrypts it, and sends it to a hard-coded C2 server (&quot;dns.multitoconference[.]com&quot;) over a stream socket connection. It's equipped to load plugins received from the server directly into memory to enable command execution, file operations, clipboard content gathering and modification, screenshot capture, and mouse movements.
+The threat actors have been found to leverage the backdoor's command shell plugin to perform the following series of actions -
+- Fingerprint the host and harvest extensive data about the compromised system.
+- Run commands to export successful logon events for remote interactive logons and to query those events for specific users.
+- Harvest password hashes from domain controllers using Impacket's &quot;secretsdump.py&quot; tool.
+- Drop and execute a keylogger that masquerades as AnyDesk to sidestep detection.
+- Decrypt and extract passwords from Google Chrome and Mozilla Firefox.
+- Establish remote access to the victim machine using Pandora RC agent.
+- Scan internal and public networks using Fscan to identify services running on specific ports, such as Secure Shell (SSH) on port 22 and MySQL on port 3306, and then attempt to access these services using credentials from a password file named &quot;pp.txt.&quot;
+- Connect to an email server, authenticate with a username and password, and issue commands to collect or manipulate emails.
+LurkProxy, for its part, can function as a reverse proxy in two distinct modes, either as a SOCKS5 proxy or a transparent proxy. At any given time, the malware can operate in only one mode to route network traffic through a target address.
+The third tool in the threat actor's arsenal is SilkLurk, which is launched by means of a DLL that, in turn, is executed using a DLL side-loading sequence. The backdoor then creates a TCP socket and connects to a C2 server specified in its configuration, followed by collecting victim information and transmitting it to the server.
+In response, the server sends a command that's to be executed on the infected endpoint.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a084a1dca31')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="acc7de8b709">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMijgFBVV95cUxOVzNsQWo4bDkyRGNSQWFjQUpHNGZGdHFzSnRKc3hlbmRNSnVBYy1iakVibUdEcGxwaGRZY3dPN3YtbVZOZVJhaHNOdXFzZzZ5cE5PcXVlRFdLYXgwRU54dXc5OVVZcVRPeGVxZjBoS2Z4d044dl9XeUtJOUdCa2p1blBCLTE0WXJkYWZodnZ3?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cyber Resilience Playbook for Microsoft 365 + Entra ID - IT Pro</a>
+          <div class="article-meta">IT Pro &bull; Jul 26, 2026</div>
+          <div class="article-summary snippet"><p>Cyber Resilience Playbook for Microsoft 365 + Entra ID&amp;nbsp;&amp;nbsp;IT Pro</p><a href="https://news.google.com/rss/articles/CBMijgFBVV95cUxOVzNsQWo4bDkyRGNSQWFjQUpHNGZGdHFzSnRKc3hlbmRNSnVBYy1iakVibUdEcGxwaGRZY3dPN3YtbVZOZVJhaHNOdXFzZzZ5cE5PcXVlRFdLYXgwRU54dXc5OVVZcVRPeGVxZjBoS2Z4d044dl9XeUtJOUdCa2p1blBCLTE0WXJkYWZodnZ3?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('acc7de8b709')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a0e3c0d42b1">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi8AFBVV95cUxPNkF5Q3paNUJPY1RlRXNjcHJjdjBFNjhpTUs1RjRVOWhNckJ3cERFXzJ5b3JGekRlUEJPa0lGMGZKYzMtazdmcEVoeGFoRTNPbGkwOUtPOGdicDRWWGRaYkFlUDNqV0FsZGpzYVJIZkZtbHY5WHpKamJQMHNiTkE2UDJIaEhoWnBxWnVRaVJKaW9uOHFVa3AwdmZ6UHlUSEtLZDhXTS1iVDQ0dlg1MnBqWm9pU19BQjd5UjZrejNwQXZqMGVPLUQ1WEhFUzdJN0tWMGhRUTNfdmxQSjRzQlI2aWxScE5xQmRSR0lPN3J0NHU?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">CaptiveCrunch: Midnight Blizzard targets travelers worldwide for malware delivery and credential theft - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; Jul 31, 2026</div>
+          <div class="article-summary snippet"><p>CaptiveCrunch: Midnight Blizzard targets travelers worldwide for malware delivery and credential theft&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMi8AFBVV95cUxPNkF5Q3paNUJPY1RlRXNjcHJjdjBFNjhpTUs1RjRVOWhNckJ3cERFXzJ5b3JGekRlUEJPa0lGMGZKYzMtazdmcEVoeGFoRTNPbGkwOUtPOGdicDRWWGRaYkFlUDNqV0FsZGpzYVJIZkZtbHY5WHpKamJQMHNiTkE2UDJIaEhoWnBxWnVRaVJKaW9uOHFVa3AwdmZ6UHlUSEtLZDhXTS1iVDQ0dlg1MnBqWm9pU19BQjd5UjZrejNwQXZqMGVPLUQ1WEhFUzdJN0tWMGhRUTNfdmxQSjRzQlI2aWxScE5xQmRSR0lPN3J0NHU?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a0e3c0d42b1')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="m365" class="topic-section">
+      <h2 class="topic-title" style="--c:#D83B01">Microsoft 365 <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a6de20727a6">
+        <div class="article-body">
+          <a href="https://www.microsoft.com/en-us/microsoft-365/blog/2026/07/30/the-next-measure-of-ai-momentum-is-work-transformed/" target="_blank" rel="noopener noreferrer" class="article-title">The next measure of AI momentum is work transformed</a>
+          <div class="article-meta">microsoft.com &bull; Jul 30, 2026</div>
+          <div class="article-summary"><p>In yesterday’s earnings call, we shared that Microsoft 365 Copilot has surpassed 30 million paid seats, with net seat adds more than doubling quarter over quarter.1 This is an important milestone, but it’s also a signal that points to a much broader shift: Across every industry, AI is moving from assistant to active participant, becoming an essential part of how work gets done, rather than just a tool people use. Organizations are redesigning workflows around it. And employees are directing agents to take on tasks, projects, and processes, expanding their agency and increasing their impact.
+The first phase of enterprise AI was defined by adoption—deployments, licenses, and hours saved—real gains that will continue to compound. The next phase will be defined by transformation. At Microsoft, it is our mission to empower every person and every organization on the planet to achieve more, and we are excited by the growing opportunity to fulfill that mission as humans and agents collaborate to build what was previously impossible.
+New data from Microsoft 365 Copilot telemetry signals, along with examples from our customers around the world and teams inside Microsoft, demonstrate this transformation in action. It shows up in three ways: in how deeply and broadly people now use AI, in what AI makes possible—from faster work to net-new capabilities—and in how organizations tailor it to specific roles. Let’s take a closer look, starting with the technology itself.
+A step change in innovation
+In the past few months, a new kind of AI product has emerged: a model wrapped in an agentic harness that can close its own feedback loop—planning, executing, testing, and correcting its work to deliver a finished result. This approach enabled Copilot Cowork, which became generally available in June. Cowork can take on multi-step work: you define the task, and it runs it end to end and returns a completed result. Its multi-model design lets you run the models a task needs, so capability scales with the work as more models become available. And testing shows that Cowork was 30% to 40% cheaper2 compared to a single model option. We also introduced our first autopilot agent, Microsoft Scout, which stays active in the background, with its own identity and permissions, to keep work moving even when your attention is elsewhere. All of the outputs are grounded in Work IQ to understand the context that shapes work inside your organization, including people’s roles, projects, priorities, and institutional knowledge—so they are uniquely relevant to your business. 
+ 
+ We’ve seen a step change not just in the products we deliver to customers, but also in the way our engineering teams build them. While many employees have contributed to Cowork, the core team remains intentionally small—growing from three engineers at the start to just nine when the product became generally available. And yet the speed-to-market was remarkable, with Cowork moving from inception to preview to being used by half the Fortune 500 all within the space of six months. The breakthrough came from rebuilding the software development process around agents, allowing a tiny team to achieve levels of speed, scale, and automation that would have been impossible with traditional engineering workflows.
+Microsoft Scout also started with a small group of people working alongside autonomous agents with shared context, evaluations, and clear specifications, and again moved from an initial concept to a working product in a matter of weeks rather than months. “In the past, I spent a lot of time helping teams scale: aligning large groups, coordinating work, and making sure everything moved forward together,” says Omar Shahine, Corporate Vice President of Microsoft Scout.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a6de20727a6')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a306ca0f8b0">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiowFBVV95cUxOM1czQnQ0X3dIQ1ROSFhwSFBWRjFIN19TcWc0djVLX0M0LWZmNzg3RXRzYW1NSWN4NkMyeEtjQXE3MnBDVzBSbWlZNHIyUHhNOFN2OWQzcWVHNnE3VW1IZ2V3cGNSOHF5RDNyYVMybUdSU1FENS10aWpHY2dENDk4T2tBS2pabDZGS1VacHhVZ1pBdGtvdk0xVHJsbkJERnNNcEhr?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft (MSFT) Faces Consumer Probes Over Microsoft 365 And Copilot Changes - Yahoo Finance</a>
+          <div class="article-meta">Yahoo Finance &bull; Aug 01, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft (MSFT) Faces Consumer Probes Over Microsoft 365 And Copilot Changes&amp;nbsp;&amp;nbsp;Yahoo Finance</p><a href="https://news.google.com/rss/articles/CBMiowFBVV95cUxOM1czQnQ0X3dIQ1ROSFhwSFBWRjFIN19TcWc0djVLX0M0LWZmNzg3RXRzYW1NSWN4NkMyeEtjQXE3MnBDVzBSbWlZNHIyUHhNOFN2OWQzcWVHNnE3VW1IZ2V3cGNSOHF5RDNyYVMybUdSU1FENS10aWpHY2dENDk4T2tBS2pabDZGS1VacHhVZ1pBdGtvdk0xVHJsbkJERnNNcEhr?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a306ca0f8b0')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a981c883d27">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMijwFBVV95cUxQa1l5ODhILVN6aGV2b1BZT0V6ajNrUDFRVF9mLXlTdnJZVzVQbWU2ZTRSN09qRm1IckRBd3IydWZRMkJvTDh5dlUzMFdyNjdRdXJjaWdDZWFUOFhyQWFFY2dqLWJkNjFocmxBM1lNWDhVTjlvX3hxUTAxNkxWcmRuN25pMnltRGdjc1JrZUV2OA?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">What Is OneDrive and How Does It Work With Microsoft 365 - HP</a>
+          <div class="article-meta">HP &bull; Aug 01, 2026</div>
+          <div class="article-summary snippet"><p>What Is OneDrive and How Does It Work With Microsoft 365&amp;nbsp;&amp;nbsp;HP</p><a href="https://news.google.com/rss/articles/CBMijwFBVV95cUxQa1l5ODhILVN6aGV2b1BZT0V6ajNrUDFRVF9mLXlTdnJZVzVQbWU2ZTRSN09qRm1IckRBd3IydWZRMkJvTDh5dlUzMFdyNjdRdXJjaWdDZWFUOFhyQWFFY2dqLWJkNjFocmxBM1lNWDhVTjlvX3hxUTAxNkxWcmRuN25pMnltRGdjc1JrZUV2OA?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a981c883d27')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="adbeb1211d4">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMisgFBVV95cUxNZ1l5WVdIMUhMNGJtaFhxMXFvc1NaYldNTWlDeEx0STU4TkI5ZW1GLVZ3NTkxV2NNQkN5OWhzc2dBc2tNdUVZaGU5TjhKZ2xrYUE4cFZreEl2OEI3VkZkNEEyUEZ3Q0dRWFN3M1NZX2FiVzExUjhQdHd1MHFwOGQ5YTNWNmdqZ0loTHV6SXRkMkJqVWZoQnBreUc4SmxvdzNrNi1pWEtQQTBheUZRSlpMaWF3?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Unlocking the value of Microsoft 365 Copilot and agents at Microsoft - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; Jul 30, 2026</div>
+          <div class="article-summary snippet"><p>Unlocking the value of Microsoft 365 Copilot and agents at Microsoft&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMisgFBVV95cUxNZ1l5WVdIMUhMNGJtaFhxMXFvc1NaYldNTWlDeEx0STU4TkI5ZW1GLVZ3NTkxV2NNQkN5OWhzc2dBc2tNdUVZaGU5TjhKZ2xrYUE4cFZreEl2OEI3VkZkNEEyUEZ3Q0dRWFN3M1NZX2FiVzExUjhQdHd1MHFwOGQ5YTNWNmdqZ0loTHV6SXRkMkJqVWZoQnBreUc4SmxvdzNrNi1pWEtQQTBheUZRSlpMaWF3?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('adbeb1211d4')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aa0ec0b6090">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMirAFBVV95cUxOTnUyekQ4R001SDdBREZvM1FGSERaZ19KMmY3TzVQU2JKQ1pqWlFZN3VteGptdF80MURTQVRONUZMOExrQ0h0c0dOX204LTRZTjE2R3VsNHlWQ2lkbjJLV0NWWU5HS0pQRVhZVDRZTndDNnJid2lTQ19paTZlSDdOMUxnQnJzeVpObEhNdmhxQjVnUnB3THRlQk9WVFNBX1FTb2xIcnlSSk1jdjNV0gGyAUFVX3lxTFAtQ0xTdjktcUJ6QjNKN05zMDRoQ0dqQmtHT0tqOVE4NGV3RHhWeHR4OWoyNGM1SjhZS1ppT3pKOFdhbG0tMVB4eTdJYXA3VjdHYUNsRFpLNGF2anB3OUQ5QnJxZVhDcXpxY0dXZVpUektMNV9SeF9OUy1SVU1zck5xWWxJUlFPOUgxdmU4bWQ4azJaeFlnOUFXWHk1RmNjTi1qeG13aERES3NvVnVXQURlRUE?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Russian Hackers Hijack Hotel Wi-Fi to Steal Microsoft 365 Tokens - Security Affairs</a>
+          <div class="article-meta">Security Affairs &bull; Aug 01, 2026</div>
+          <div class="article-summary snippet"><p>Russian Hackers Hijack Hotel Wi-Fi to Steal Microsoft 365 Tokens&amp;nbsp;&amp;nbsp;Security Affairs</p><a href="https://news.google.com/rss/articles/CBMirAFBVV95cUxOTnUyekQ4R001SDdBREZvM1FGSERaZ19KMmY3TzVQU2JKQ1pqWlFZN3VteGptdF80MURTQVRONUZMOExrQ0h0c0dOX204LTRZTjE2R3VsNHlWQ2lkbjJLV0NWWU5HS0pQRVhZVDRZTndDNnJid2lTQ19paTZlSDdOMUxnQnJzeVpObEhNdmhxQjVnUnB3THRlQk9WVFNBX1FTb2xIcnlSSk1jdjNV0gGyAUFVX3lxTFAtQ0xTdjktcUJ6QjNKN05zMDRoQ0dqQmtHT0tqOVE4NGV3RHhWeHR4OWoyNGM1SjhZS1ppT3pKOFdhbG0tMVB4eTdJYXA3VjdHYUNsRFpLNGF2anB3OUQ5QnJxZVhDcXpxY0dXZVpUektMNV9SeF9OUy1SVU1zck5xWWxJUlFPOUgxdmU4bWQ4azJaeFlnOUFXWHk1RmNjTi1qeG13aERES3NvVnVXQURlRUE?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aa0ec0b6090')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="af1503cd8e7">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMid0FVX3lxTE4tUHNYUlJNcm5pN3VlSDZyM0NLT0VPUlR2RVAyVGNocGU3V0ZDSmZOeUlaaGotMDhJVHVYa2p4bE9FblNBRmF4aFhDRmZiZ3lPU29aa2trSmlxTlpXNDNQSkxWVzBwb0ZFcV8wT2gzNXVKdkZtaE04?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft 365 AI Price Hike Mass Arbitration - ClassAction.org</a>
+          <div class="article-meta">ClassAction.org &bull; Jul 29, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft 365 AI Price Hike Mass Arbitration&amp;nbsp;&amp;nbsp;ClassAction.org</p><a href="https://news.google.com/rss/articles/CBMid0FVX3lxTE4tUHNYUlJNcm5pN3VlSDZyM0NLT0VPUlR2RVAyVGNocGU3V0ZDSmZOeUlaaGotMDhJVHVYa2p4bE9FblNBRmF4aFhDRmZiZ3lPU29aa2trSmlxTlpXNDNQSkxWVzBwb0ZFcV8wT2gzNXVKdkZtaE04?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('af1503cd8e7')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ae82b24b26c">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMirgFBVV95cUxOOFRIVk5Nb1Z0Q1RrY1pWUUdrSUlyQXVSb1NuU0o0eTFDSm9ORkZhRmRHU3BYd05TMVZvaXJ1M0N1OWUtMDJDazBHTVNKX3lPMThYbENsQXFyanJJbEtVLThYT19yNjNBNzI0RU51R2hWakRkVnlUQjJpTS1zSEZ1MkdXbkZqQUx3czU3R0FqWFFiNWRFcW11MXNfMmEzWXZoWktBdk15WkhYaEFhQWc?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft 365 Copilot adoption jumps 50% over prior quarter - No Jitter</a>
+          <div class="article-meta">No Jitter &bull; Jul 31, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft 365 Copilot adoption jumps 50% over prior quarter&amp;nbsp;&amp;nbsp;No Jitter</p><a href="https://news.google.com/rss/articles/CBMirgFBVV95cUxOOFRIVk5Nb1Z0Q1RrY1pWUUdrSUlyQXVSb1NuU0o0eTFDSm9ORkZhRmRHU3BYd05TMVZvaXJ1M0N1OWUtMDJDazBHTVNKX3lPMThYbENsQXFyanJJbEtVLThYT19yNjNBNzI0RU51R2hWakRkVnlUQjJpTS1zSEZ1MkdXbkZqQUx3czU3R0FqWFFiNWRFcW11MXNfMmEzWXZoWktBdk15WkhYaEFhQWc?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ae82b24b26c')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ab252867d5a">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiiAFBVV95cUxNbDZUQzlJVmFpejhIYlE0NVo5RWZmREdpUWRSUGhBanRmdnBLUlJ6aVRhY0pBSUZTa2cwdGczVlc4MjRfR0huVFdOcldCXzBXQ25ZR25MN2NIUDFOUl9FU3dhU2poTTFCYmhjelQ1WGlkTHVJcU5ldzNOeXMzRUZOZDR2UUpaaWtp?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">What Is Microsoft 365? Apps, Features, and Plans Explained - HP</a>
+          <div class="article-meta">HP &bull; Jul 31, 2026</div>
+          <div class="article-summary snippet"><p>What Is Microsoft 365? Apps, Features, and Plans Explained&amp;nbsp;&amp;nbsp;HP</p><a href="https://news.google.com/rss/articles/CBMiiAFBVV95cUxNbDZUQzlJVmFpejhIYlE0NVo5RWZmREdpUWRSUGhBanRmdnBLUlJ6aVRhY0pBSUZTa2cwdGczVlc4MjRfR0huVFdOcldCXzBXQ25ZR25MN2NIUDFOUl9FU3dhU2poTTFCYmhjelQ1WGlkTHVJcU5ldzNOeXMzRUZOZDR2UUpaaWtp?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ab252867d5a')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="iru" class="topic-section">
+      <h2 class="topic-title" style="--c:#7C3AED">Iru MDM (formerly Kandji) </h2>
+      <p class="no-news">No articles found this week.</p>
+    </section>
+    <section id="cato" class="topic-section">
+      <h2 class="topic-title" style="--c:#FF6B35">Cato Networks <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a2a467486b8">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE5VVmpwdXV2dGJqempscnI4Z0N2Rld0QnJBUHdHLU5ZUzRzaXl4bmRzR2drNVh6SXQ2SHJlMzRtdmllQjJrRWE2ejhKaGlqVG0tdkZrRVduMlZuUTllTFJoVktQYmhralZJ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks tops $415 million in ARR, still planning IPO - calcalistech.com</a>
+          <div class="article-meta">calcalistech.com &bull; Jul 27, 2026</div>
+          <div class="article-summary snippet"><p>Cato Networks tops $415 million in ARR, still planning IPO&amp;nbsp;&amp;nbsp;calcalistech.com</p><a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE5VVmpwdXV2dGJqempscnI4Z0N2Rld0QnJBUHdHLU5ZUzRzaXl4bmRzR2drNVh6SXQ2SHJlMzRtdmllQjJrRWE2ejhKaGlqVG0tdkZrRVduMlZuUTllTFJoVktQYmhralZJ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a2a467486b8')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ac5390be38e">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi_gFBVV95cUxOTWJLYjhWYV90THFnY1M3S290MWlWUmszQ25FOW5McEp5aFZ1MTgwcDFWaG9XVDhlMFZlYW41NmZrUnRRR2hIN1FLTWNXMm40Y0NlNkV3X2hJNWlrcnR5NWZLTE8wMVBkN1psVHUwMlNCZnVtcHpjNWR3dS1OY3pEblhQLWtwYU02NFZqUW1VeTFFOHFJaFdvcjNoaE5mRXFlTEhfSnZoQkpLemxZWXdCbkZIUGU4MkItcEtHa1RkR1FPNHhsTmJDZlh0WWpjTG5yMmNjZEZGWGFhRkR5OWE2YmRlSG0yRlZjZ2FlSm85MDZ0ZnJ0V1FVcEhGLTV6dw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks Named a Leader in the 2026 Gartner® Magic Quadrant™ for SASE Platforms for the Third Consecutive Year - PR Newswire</a>
+          <div class="article-meta">PR Newswire &bull; Jul 31, 2026</div>
+          <div class="article-summary snippet"><p>Cato Networks Named a Leader in the 2026 Gartner® Magic Quadrant™ for SASE Platforms for the Third Consecutive Year&amp;nbsp;&amp;nbsp;PR Newswire</p><a href="https://news.google.com/rss/articles/CBMi_gFBVV95cUxOTWJLYjhWYV90THFnY1M3S290MWlWUmszQ25FOW5McEp5aFZ1MTgwcDFWaG9XVDhlMFZlYW41NmZrUnRRR2hIN1FLTWNXMm40Y0NlNkV3X2hJNWlrcnR5NWZLTE8wMVBkN1psVHUwMlNCZnVtcHpjNWR3dS1OY3pEblhQLWtwYU02NFZqUW1VeTFFOHFJaFdvcjNoaE5mRXFlTEhfSnZoQkpLemxZWXdCbkZIUGU4MkItcEtHa1RkR1FPNHhsTmJDZlh0WWpjTG5yMmNjZEZGWGFhRkR5OWE2YmRlSG0yRlZjZ2FlSm85MDZ0ZnJ0V1FVcEhGLTV6dw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac5390be38e')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a6e300c9b01">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMibkFVX3lxTFA2SW9DNWdzUWdtaGNfMmxXWUpPMkphb3JCdDNTbzVneVFsRFBRUmNXQ2k1Yk82NzVEREtHWjlBaGo3MkRBLUZYWVJseGRPLTA1YWNtYWZCa3J4NFFDa1AzRlZDUlY2OGFzQlZIX3hn?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks Number of Employees 2026 | Employee Count &amp; Headcount Data - Revelio Labs</a>
+          <div class="article-meta">Revelio Labs &bull; Jul 28, 2026</div>
+          <div class="article-summary snippet"><p>Cato Networks Number of Employees 2026 | Employee Count &amp; Headcount Data&amp;nbsp;&amp;nbsp;Revelio Labs</p><a href="https://news.google.com/rss/articles/CBMibkFVX3lxTFA2SW9DNWdzUWdtaGNfMmxXWUpPMkphb3JCdDNTbzVneVFsRFBRUmNXQ2k1Yk82NzVEREtHWjlBaGo3MkRBLUZYWVJseGRPLTA1YWNtYWZCa3J4NFFDa1AzRlZDUlY2OGFzQlZIX3hn?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a6e300c9b01')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a7201e8525c">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMilAFBVV95cUxNYVNfdXZVQWNqel8yRzV2NWpnSG5PSmxxR2xPY0VMZG02UUU5WERqUmdZYzdlT1ZSWERlZlpGUzZfeWFwQ19OMGxTWi1QQjlhbE1ndTkxWGFjenpYalFXX2hhTXRPTTJtUUZsb3dSQ1pBMzBQMy1CYTJ6bUpKQ3RRUVBjUExSSTZNYTFyUkRwS3NIR1lC0gGaAUFVX3lxTE9TbU5nNHRIUU1SQkJRTVBXNmhSd1RQUkoydDJkWHNEdll0dDRmUU1DNUlNNFVuNVdVYURSTFRJWG13b1BHeEVMS3hQbm5hWUhST2tPaG9tQ01tb3NoLTJCWkFZelZFMW94TnFZYVVjUEw3YUtSVHJoOEZMMWk3UjlyMzFXd2cwVzJGZzhpU2U5ZDZUUkR2ZUxTY2c?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks Exceeds $415 Million In ARR With 42% Year-Over-Year Growth - Pulse 2.0</a>
+          <div class="article-meta">Pulse 2.0 &bull; Jul 29, 2026</div>
+          <div class="article-summary snippet"><p>Cato Networks Exceeds $415 Million In ARR With 42% Year-Over-Year Growth&amp;nbsp;&amp;nbsp;Pulse 2.0</p><a href="https://news.google.com/rss/articles/CBMilAFBVV95cUxNYVNfdXZVQWNqel8yRzV2NWpnSG5PSmxxR2xPY0VMZG02UUU5WERqUmdZYzdlT1ZSWERlZlpGUzZfeWFwQ19OMGxTWi1QQjlhbE1ndTkxWGFjenpYalFXX2hhTXRPTTJtUUZsb3dSQ1pBMzBQMy1CYTJ6bUpKQ3RRUVBjUExSSTZNYTFyUkRwS3NIR1lC0gGaAUFVX3lxTE9TbU5nNHRIUU1SQkJRTVBXNmhSd1RQUkoydDJkWHNEdll0dDRmUU1DNUlNNFVuNVdVYURSTFRJWG13b1BHeEVMS3hQbm5hWUhST2tPaG9tQ01tb3NoLTJCWkFZelZFMW94TnFZYVVjUEw3YUtSVHJoOEZMMWk3UjlyMzFXd2cwVzJGZzhpU2U5ZDZUUkR2ZUxTY2c?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a7201e8525c')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a798f75115d">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMimgFBVV95cUxQeTU3VDZLT3FtZm5jSXRFMUpzeWdqMHFKVWpUM1E0YzU1UWs4Z0tqVHJGNTlwLWZrbkNaems4YzJETlZEcXZWWTlyRDFSN3VjTmNVaVA1VERKdVV5UWRhR3RqTW1QaHhhSUJqTGIzTHBaM29EbS1nWGVRcjBtMWZNNWYyV2k4MkdRRVdFODN5cTljU0UteFNoM2pR?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks Exceeds $415M in ARR Fueled by 42% YoY Growth and Enterprise Demand - Yahoo Finance</a>
+          <div class="article-meta">Yahoo Finance &bull; Jul 27, 2026</div>
+          <div class="article-summary snippet"><p>Cato Networks Exceeds $415M in ARR Fueled by 42% YoY Growth and Enterprise Demand&amp;nbsp;&amp;nbsp;Yahoo Finance</p><a href="https://news.google.com/rss/articles/CBMimgFBVV95cUxQeTU3VDZLT3FtZm5jSXRFMUpzeWdqMHFKVWpUM1E0YzU1UWs4Z0tqVHJGNTlwLWZrbkNaems4YzJETlZEcXZWWTlyRDFSN3VjTmNVaVA1VERKdVV5UWRhR3RqTW1QaHhhSUJqTGIzTHBaM29EbS1nWGVRcjBtMWZNNWYyV2k4MkdRRVdFODN5cTljU0UteFNoM2pR?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a798f75115d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ad7fb5eb411">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiYkFVX3lxTFBVdUJJUE5HVDNweF9jZGlQdU5wZ0lpRUpoZHFPQU10cmJCSjR6WEtsT3U4Z043d2pLYW5tUVlwZmpCZU11UUpNbmdxNVVsVmlEMHVoRFBwbjdFRGFtWXgwVGRR?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks tops $415M in annual recurring revenue as enterprise AI security demand surges - Ynetnews</a>
+          <div class="article-meta">Ynetnews &bull; Jul 27, 2026</div>
+          <div class="article-summary snippet"><p>Cato Networks tops $415M in annual recurring revenue as enterprise AI security demand surges&amp;nbsp;&amp;nbsp;Ynetnews</p><a href="https://news.google.com/rss/articles/CBMiYkFVX3lxTFBVdUJJUE5HVDNweF9jZGlQdU5wZ0lpRUpoZHFPQU10cmJCSjR6WEtsT3U4Z043d2pLYW5tUVlwZmpCZU11UUpNbmdxNVVsVmlEMHVoRFBwbjdFRGFtWXgwVGRR?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ad7fb5eb411')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a87505469d0">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMixgFBVV95cUxNUlZyTTFMVjRaelBWcWtmUVpEcjVVOV80RHl1SE1Bc1R0b1NLT3pIM2ZoU3pDbUpSOUY2NmxubVJ0eGVoZmRwdUJsUFhMT0dmVXVld2U5a2hmS0NaOXY5cHNJZDZPanlyVDRGOWZXYU4yTjQ0VmpjaFAwUlF2RG92VjJ4QnlaalduTU1Iay1fV25tTjd2Y25WZ0hmMjctdEFuenJYTkwyaGVDdnZ1ZzFmaDZmZ2ItZW5KNE9fNFl6YkppelJxbHc?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks Exceeds $415M ARR as Enterprise Demand Drives 42% YoY Growth - The Fast Mode</a>
+          <div class="article-meta">The Fast Mode &bull; Jul 27, 2026</div>
+          <div class="article-summary snippet"><p>Cato Networks Exceeds $415M ARR as Enterprise Demand Drives 42% YoY Growth&amp;nbsp;&amp;nbsp;The Fast Mode</p><a href="https://news.google.com/rss/articles/CBMixgFBVV95cUxNUlZyTTFMVjRaelBWcWtmUVpEcjVVOV80RHl1SE1Bc1R0b1NLT3pIM2ZoU3pDbUpSOUY2NmxubVJ0eGVoZmRwdUJsUFhMT0dmVXVld2U5a2hmS0NaOXY5cHNJZDZPanlyVDRGOWZXYU4yTjQ0VmpjaFAwUlF2RG92VjJ4QnlaalduTU1Iay1fV25tTjd2Y25WZ0hmMjctdEFuenJYTkwyaGVDdnZ1ZzFmaDZmZ2ItZW5KNE9fNFl6YkppelJxbHc?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a87505469d0')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a75e853ed46">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMibkFVX3lxTFA5eWpjZW55clJiUkFTQ2lOVFpqb0p6TzljZHVOeHVXSW5COEVuU3FPWU1SVThZdGRQYTVFMjFzVzY5c2dOam5JTF9CQWVBQ2xOaU9Zc09tU3VCbjBTNzNfbHpyY0FyQ0tzQUM5NmJn?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks tops $415m ARR amid Q2 momentum - CRN UK</a>
+          <div class="article-meta">CRN UK &bull; Jul 28, 2026</div>
+          <div class="article-summary snippet"><p>Cato Networks tops $415m ARR amid Q2 momentum&amp;nbsp;&amp;nbsp;CRN UK</p><a href="https://news.google.com/rss/articles/CBMibkFVX3lxTFA5eWpjZW55clJiUkFTQ2lOVFpqb0p6TzljZHVOeHVXSW5COEVuU3FPWU1SVThZdGRQYTVFMjFzVzY5c2dOam5JTF9CQWVBQ2xOaU9Zc09tU3VCbjBTNzNfbHpyY0FyQ0tzQUM5NmJn?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a75e853ed46')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+</main>
+
+<footer>
+  Generated every Sunday &mdash; Topics: Windows &bull; Azure &bull; SharePoint &bull; Intune &bull; Entra ID &bull; Microsoft 365 &bull; Iru MDM (formerly Kandji) &bull; Cato Networks
+</footer>
+
+<script>
+const KEY = 'it-news-hidden-v1';
+function getHidden() {
+  try { return new Set(JSON.parse(localStorage.getItem(KEY) || '[]')); }
+  catch { return new Set(); }
+}
+function saveHidden(s) { localStorage.setItem(KEY, JSON.stringify([...s])); }
+function toggleArticle(id) {
+  const h = getHidden();
+  h.has(id) ? h.delete(id) : h.add(id);
+  saveHidden(h); applyHidden(h);
+}
+function applyHidden(h) {
+  h = h || getHidden();
+  document.querySelectorAll('.article-card[data-id]').forEach(c => {
+    c.classList.toggle('is-hidden', h.has(c.dataset.id));
+  });
+}
+let revealing = false;
+function toggleReveal() {
+  revealing = !revealing;
+  document.body.classList.toggle('reveal-hidden', revealing);
+  document.getElementById('reveal-btn').textContent = revealing ? 'Hide hidden' : 'Show hidden';
+}
+fetch('weeks.json').then(r => r.json()).then(weeks => {
+  const sel = document.getElementById('week-sel');
+  weeks.forEach(w => {
+    const o = document.createElement('option');
+    o.value = w.file; o.textContent = w.label;
+    if (w.current) o.selected = true;
+    sel.appendChild(o);
+  });
+}).catch(() => {});
+applyHidden();
+</script>
+</body>
+</html>
