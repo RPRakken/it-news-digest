@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT News Digest — 2026-W32</title>
+  <style>
+    :root{--bg:#f8fafc;--surface:#fff;--border:#e2e8f0;--text:#1e293b;--muted:#64748b;--accent:#2563eb}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+    a{color:var(--accent)}
+
+    header{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+    .h-inner{max-width:1000px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .h-brand{font-size:1.1rem;font-weight:800;color:#1d4ed8}
+    .h-meta{font-size:.78rem;color:var(--muted)}
+    .h-controls{display:flex;gap:8px;align-items:center}
+    .btn{padding:5px 12px;border-radius:6px;font-size:.78rem;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);white-space:nowrap}
+    .btn:hover{background:#f1f5f9}
+    select.week-sel{padding:5px 10px;border-radius:6px;border:1px solid var(--border);background:var(--surface);font-size:.78rem;cursor:pointer;color:var(--text)}
+
+    .t-nav{background:var(--surface);border-bottom:1px solid var(--border);overflow-x:auto}
+    .t-nav-inner{max-width:1000px;margin:0 auto;padding:8px 20px;display:flex;gap:6px;min-width:max-content}
+    .nav-link{font-size:.72rem;padding:3px 10px;border-radius:20px;border:2px solid var(--c,#2563eb);color:var(--c,#2563eb);text-decoration:none;font-weight:600;white-space:nowrap}
+    .nav-link:hover{background:var(--c,#2563eb);color:#fff}
+
+    main{max-width:1000px;margin:0 auto;padding:24px 20px}
+
+    .week-hero{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin-bottom:28px;display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+    .hero-title{font-size:1.6rem;font-weight:900;color:#1d4ed8}
+    .hero-sub{font-size:.85rem;color:var(--muted);margin-top:2px}
+    .stat-box{text-align:center;min-width:60px}
+    .stat-num{font-size:2rem;font-weight:900;color:#1d4ed8;line-height:1}
+    .stat-lbl{font-size:.65rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+
+    .topic-section{margin-bottom:40px}
+    .topic-title{font-size:1.2rem;font-weight:800;color:var(--c,#2563eb);border-bottom:3px solid var(--c,#2563eb);padding-bottom:8px;margin-bottom:14px}
+    .count{font-size:.8rem;font-weight:400;color:var(--muted)}
+    .no-news{color:var(--muted);font-style:italic;font-size:.88rem}
+
+    .article-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:12px;display:flex;gap:12px;align-items:flex-start;transition:border-color .15s}
+    .article-card:hover{border-color:#94a3b8}
+    .article-body{flex:1;min-width:0}
+    .article-title{font-size:.98rem;font-weight:600;text-decoration:none;display:block;margin-bottom:4px;color:var(--accent)}
+    .article-title:hover{text-decoration:underline}
+    .article-meta{font-size:.72rem;color:var(--muted);margin-bottom:8px}
+
+    .article-summary{margin-top:6px;font-size:.875rem;color:#334155;line-height:1.75}
+    .article-summary p{margin-bottom:.6em}
+    .article-summary p:last-child{margin-bottom:0}
+    .gnews-badge{display:inline-block;font-size:.65rem;background:#fef3c7;color:#92400e;border-radius:4px;padding:1px 5px;margin-bottom:6px;vertical-align:middle}
+    .article-summary.snippet{color:var(--muted)}
+    .read-more{display:inline-block;margin-top:6px;font-size:.8rem;font-weight:600;color:var(--accent);text-decoration:none}
+    .read-more:hover{text-decoration:underline}
+
+    .hide-btn{flex-shrink:0;padding:5px 10px;border-radius:6px;font-size:.72rem;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--muted);white-space:nowrap;align-self:flex-start}
+    .hide-btn:hover{border-color:#ef4444;color:#ef4444;background:#fef2f2}
+    .lbl-show{display:none}
+
+    .article-card.is-hidden{display:none}
+    body.reveal-hidden .article-card.is-hidden{display:flex;opacity:.45;border-style:dashed}
+    .article-card.is-hidden .lbl-hide{display:none}
+    .article-card.is-hidden .lbl-show{display:inline}
+    body.reveal-hidden .article-card.is-hidden .hide-btn{border-color:#16a34a;color:#16a34a}
+    body.reveal-hidden .article-card.is-hidden .hide-btn:hover{background:#f0fdf4}
+
+    footer{text-align:center;padding:24px 20px;color:var(--muted);font-size:.75rem;border-top:1px solid var(--border);margin-top:40px}
+
+    @media(max-width:600px){
+      .h-inner,.main{padding-left:14px;padding-right:14px}
+      .hero-title{font-size:1.3rem}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="h-inner">
+    <div>
+      <div class="h-brand">IT News Digest</div>
+      <div class="h-meta">Week 2026-W32 &bull; Aug 03–09, 2026</div>
+    </div>
+    <div class="h-controls">
+      <button class="btn" id="reveal-btn" onclick="toggleReveal()">Show hidden</button>
+      <select class="week-sel" id="week-sel" onchange="if(this.value) location.href=this.value">
+        <option value="">&#128337; Archive&hellip;</option>
+      </select>
+    </div>
+  </div>
+</header>
+
+<nav class="t-nav"><div class="t-nav-inner"><a href="#windows" class="nav-link" style="--c:#0078D4">Microsoft Windows</a><a href="#azure" class="nav-link" style="--c:#00BCF2">Azure</a><a href="#sharepoint" class="nav-link" style="--c:#036C70">SharePoint</a><a href="#intune" class="nav-link" style="--c:#0F6CBD">Intune</a><a href="#entraid" class="nav-link" style="--c:#6B69D6">Entra ID</a><a href="#m365" class="nav-link" style="--c:#D83B01">Microsoft 365</a><a href="#iru" class="nav-link" style="--c:#7C3AED">Iru MDM (formerly Kandji)</a><a href="#cato" class="nav-link" style="--c:#FF6B35">Cato Networks</a></div></nav>
+
+<main>
+  <div class="week-hero">
+    <div>
+      <div class="hero-title">Week 2026-W32</div>
+      <div class="hero-sub">Aug 03–09, 2026</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">51</div>
+      <div class="stat-lbl">Articles</div>
+    </div>
+  </div>
+
+    <section id="windows" class="topic-section">
+      <h2 class="topic-title" style="--c:#0078D4">Microsoft Windows <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="ae5899a93b9">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/msedgedev/2026/08/07/moving-the-microsoft-edge-extensions-ecosystem-forward-with-manifest-version-3/" target="_blank" rel="noopener noreferrer" class="article-title">Moving the Microsoft Edge extensions ecosystem forward with Manifest Version 3</a>
+          <div class="article-meta">blogs.windows.com &bull; Aug 07, 2026</div>
+          <div class="article-summary"><p>Moving the Microsoft Edge extensions ecosystem forward with Manifest Version 3
+Back in 2020, we committed to Manifest Version 3 (MV3) as the future direction of the Chromium extensions platform. Since then, we’ve worked with developers, listened to feedback, and continued evolving Microsoft Edge toward a more secure and performant extensions foundation.
+Today, we’re announcing the next phase of that journey. With 95% of the top MV2 extensions on the Edge Add-ons store already moved to MV3, the ecosystem has made meaningful progress. Beginning in August 2026, Microsoft Edge will start the consumer transition away from Manifest Version 2 (MV2) extensions and toward MV3. Our goal is to complete the consumer transition by the end of 2026, with enterprise deprecation following in early 2027.
+The ecosystem is ready for the next step
+This is a significant milestone for the extensions community, and one we have approached deliberately. Microsoft Edge continued to support MV2 extensions so developers, enterprises, and users who depend on specific extensions had more time to adapt.
+The move to MV3 has come a long way. MV3 offers security and performance improvements over MV2, and developers across the ecosystem have done the work to modernize their extensions.
+To put some numbers around the progress the ecosystem has made, there are only 58 MV2-based extensions in the Edge Add-on Store with any meaningful usage. Of these, only three don’t have a publicly available MV3-based extension already available. Developers and users have spoken: the vast majority of extensions of all types—from password managers to VPNs to ad-blockers—have successfully transitioned to MV3 with no loss of customer functionality. We’re committed to working with all developers with MV2-based extensions to smoothly move their users to MV3 extensions.
+What to expect next
+Starting in August 2026, a subset of users with MV2 extensions installed will begin to see notices on the Manage Extensions page (edge://extensions) and on Microsoft Edge Add-ons product detail pages. The very few developers with an MV2 extension will see a similar notice in Microsoft Partner Center, along with a direct outreach from our team to help them complete the migration.
+Over the next few months, MV2 extensions will be gradually turned off by default. Users will be notified in advance and directed to recommended MV3 versions where available.
+These changes will start in the Canary, Dev, and Beta channels and gradually broaden to Stable in the following months, with the goal of completing the consumer transition by the end of 2026. Managed devices will not be affected during the consumer rollout. Enterprise deprecation will follow in early 2027.
+We will keep the community updated on the status of the rollout on a regular cadence.
+What developers should do now
+For developers who still maintain MV2 extensions, now is the time to complete the move to MV3. Ship an MV3 version of your extension and submit the update through Microsoft Partner Center. The Migrate an extension from Manifest Version 2 to V3 guide outlines the required changes.
+This progress only works because of the developers who have already moved their extensions to MV3 and shared feedback along the way. Thank you for your partnership and continued support in improving Microsoft Edge. If you run into questions during your migration, please reach out to the Microsoft Edge extensions team. We’re happy to help.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ae5899a93b9')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aaa318676fb">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/msedgedev/2026/08/04/bring-your-security-stack-into-edge-for-business-with-support-for-more-partners/" target="_blank" rel="noopener noreferrer" class="article-title">Bring your security stack into Edge for Business — with support for more partners</a>
+          <div class="article-meta">blogs.windows.com &bull; Aug 04, 2026</div>
+          <div class="article-summary"><p>Bring your security stack into Edge for Business — with support for more partners
+At a glance
+Edge for Business security connectors extend your security tools into the browser, so you gain visibility and enforcement where work happens. This update adds new partner integrations, including Cisco Secure Access, Tanium, and Clever.
+You’ve built a security stack to protect your organization. As work shifts into the browser, a critical question emerges: can those tools protect work at the point where it happens?
+Good news, they can—when combined with the Edge for Business security connector framework. The framework extends your existing security stack into the browser, bringing greater visibility and policy enforcement into everyday work without adding another control plane or duplicating tools.
+We’re expanding this ecosystem with new integrations so you can maintain consistent protection wherever work happens.
+Now generally available
+- Cisco Secure Access is an advanced enterprise browser integration for Edge for Business. As a single integrated connector, it brings not only secure access but also unified data protection and AI guardrails directly into the browser.
+- Tanium Connector for Microsoft Edge for Business delivers real-time browser telemetry into Tanium Autonomous IT Platform, helping organizations gain deeper visibility into browser-based threats, close critical security blind spots, improve compliance validation, and strengthen overall endpoint security across the enterprise.
+- Clever Classroom MFA TrustPass helps streamline logins in education environments by recognizing trusted devices in Edge for Business—reducing unnecessary MFA prompts while maintaining strong security.
+Bringing it all together
+Our goal at Edge for Business is to give you a simpler way to secure how work gets done.
+As our connector ecosystem continues to grow, you have more options than ever to easily integrate the security tools you already use into the browser.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aaa318676fb')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a94d5fde0ed">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-teams-powershell-7-9-wam-authentication/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Teams PowerShell 7.9 Adds WAM Authentication and New Governance Controls</a>
+          <div class="article-meta">petri.com &bull; Aug 04, 2026</div>
+          <div class="article-summary"><p>New release brings federated chat restrictions, synthetic media controls, and voice phishing protections.
+Key Takeaways:
+Microsoft has released version 7.9 of the Teams PowerShell module. This release strengthens authentication and introduces new governance controls for Microsoft Teams collaboration and meetings.
+The biggest platform change is that Connect-MicrosoftTeams now uses Web Account Manager (WAM) by default for authentication. Web Account Manager (WAM) is a built-in authentication broker for Windows that securely manages user sign-ins and access tokens across Microsoft apps and services.
+Microsoft is aligning Teams PowerShell with other Microsoft 365 management modules to improve token protection and overall security. The latest update introduces a temporary -DisableWAM switch for organizations experiencing compatibility issues, though it will be removed in a future release.
+Microsoft has added several new parameters to CsTeamsChannelsPolicy to give administrators more granular control over channel creation, private channels, shared channels, external participation, and cross-team sharing behavior. These settings help administrators better govern how teams collaborate internally and with external users.
+The latest Teams PowerShell module brings new controls for managing federated group chats more securely. Administrators can use the Set-CsTenantFederationConfiguration cmdlet to enforce stricter rules about who can participate in conversations involving users from external organizations.
+The EnableExternalAccessRestrictionsForChatParticipants control is designed to ensure that users who are restricted from external federation by policy cannot be added to federated group chats and may even be removed from existing chats with external participants. Moreover, the EnableMutualFederationForChatParticipants control requires a valid federation relationship between all participating tenants. It requires Microsoft Teams to verify that communication is permitted between organizations before allowing a user to join a federated chat.
+Previously, users with restricted federation settings could still end up participating in federated group chats under certain circumstances. These new controls help IT admins align chat behavior with tenant-level external access policies.
+The Get-CsAiAgents cmdlet is getting a Channel parameter, which makes it easier to filter or manage AI agents across Microsoft Teams environments. Moreover, the new Teams meeting Policy settings include synthetic media detection, synthetic media detection App ID, conditional Access attendee verification, and pre-meeting consent controls.
+Lastly, Microsoft has rolled out new Teams calling policy settings, including knowledge generation controls and voice phishing detection. This move is a part of Microsoft’s broader effort to expand AI-powered protections against social engineering and voice-based attacks.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a94d5fde0ed')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ae4fdd47a68">
+        <div class="article-body">
+          <a href="https://petri.com/windows-hello-ess-external-fingerprint-readers/" target="_blank" rel="noopener noreferrer" class="article-title">Windows Hello Enhanced Sign-In Security Now Supports External Fingerprint Readers</a>
+          <div class="article-meta">petri.com &bull; Aug 03, 2026</div>
+          <div class="article-summary"><p>New support allows desktop PCs and docked laptops to use TPM-protected biometric authentication.
+Key Takeaways:
+Microsoft is making passwordless sign-ins more secure and accessible for desktop users by extending Windows Hello Enhanced Sign-in Security (ESS) to compatible external fingerprint readers. This update enables hardware-backed biometric authentication on more Windows 11 devices, which helps protect sensitive data from sophisticated cyberattacks.
+Windows Hello Enhanced Sign-in Security (ESS) is an advanced security feature in Windows 11 that strengthens biometric sign-ins by creating a protected pathway between users’ fingerprint reader or facial recognition camera and the operating system. ESS uses hardware-backed protections, such as the Trusted Platform Module (TPM) and Virtualization-Based Security (VBS), to isolate sensitive biometric data and authentication processes from potential malware and unauthorized access. This capability makes it harder for an attacker with elevated privileges to intercept, manipulate, or spoof biometric credentials.
+Previously, devices with built-in fingerprint sensors could take advantage of enhanced Sign-in Security (ESS). However, users with external USB fingerprint readers often couldn’t access the same level of protection. Consequently, desktop users and those with docked laptops had to choose between the convenience of biometric sign-in and the stronger security safeguards provided by ESS.
+Microsoft’s latest update (KB5101684) addresses this gap by allowing compatible external fingerprint readers to work within the ESS framework. This release brings secure, passwordless authentication to a much wider range of Windows 11 devices.
+“Windows Hello Enhanced Sign-in Security (ESS) now supports external fingerprint sensors. With this update, this secure sign-in option extends beyond devices with integrated fingerprint sensors to desktop PCs and other Windows 11 PCs, including Copilot+ PCs. To get started, connect a supported ESS fingerprint reader,” Microsoft explained.
+Microsoft has started rolling out this optional update to PCs running Windows 11 versions 25H2 and 24H2. Users can get started with fingerprint authentication by connecting a reader that supports Enhanced Sign-in Security and configuring it under Settings &gt; Accounts &gt; Sign-in options.
+For IT administrators, this update simplifies the task of balancing security and user convenience. With support for ESS-certified external fingerprint readers, IT teams can now deploy passwordless authentication more broadly without weakening security policies. It helps organizations improve user experience while maintaining stronger protection against credential theft and biometric-related attacks.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ae4fdd47a68')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a23ae2f8a25">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiggJBVV95cUxNRjlHYzdXR01SVWZEQ3FnVXFOaHAySzBFYXVxejhrNERHazlqeHVEZXlzbFJNNVlzLUtNUDJuWEVMRmpXajZOT0d2VjlVMThHMGF6cEp2a1Zvd3psRmJFVWNMWHFLNDNFUXNfZFQ5dXp1VHpFSnRuMVRpMGFtbGlOdWNpNTkxaFJSQmZNd2NCT05kaW9IMld0aklIN2R1SWdSWmRPajVNQ0RkQ2h0T1FHMHlFLVlrcXpGVzh2NXBUNDBVdGEwYTIzZzFhWTFNY2UzcUZJcFBBNk05Sk4wbTN2U1N5QzJqVkdDWDRHN183N181WmNjMjVudU5acVoycGNuMlE?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft is overhauling the Windows 11 interface with WinUI everywhere - windowscentral.com</a>
+          <div class="article-meta">windowscentral.com &bull; Aug 06, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft is overhauling the Windows 11 interface with WinUI everywhere&amp;nbsp;&amp;nbsp;windowscentral.com</p><a href="https://news.google.com/rss/articles/CBMiggJBVV95cUxNRjlHYzdXR01SVWZEQ3FnVXFOaHAySzBFYXVxejhrNERHazlqeHVEZXlzbFJNNVlzLUtNUDJuWEVMRmpXajZOT0d2VjlVMThHMGF6cEp2a1Zvd3psRmJFVWNMWHFLNDNFUXNfZFQ5dXp1VHpFSnRuMVRpMGFtbGlOdWNpNTkxaFJSQmZNd2NCT05kaW9IMld0aklIN2R1SWdSWmRPajVNQ0RkQ2h0T1FHMHlFLVlrcXpGVzh2NXBUNDBVdGEwYTIzZzFhWTFNY2UzcUZJcFBBNk05Sk4wbTN2U1N5QzJqVkdDWDRHN183N181WmNjMjVudU5acVoycGNuMlE?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a23ae2f8a25')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ae645b4763c">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMisAFBVV95cUxPOVl0c1JaakZLRnJHN2R3cXRBOVNqN1ZUdGVyd19jMUZhcURnZG5iZGdqbTNYaEVLTkNIaTYwNEh5RWw2aExHS01KOGdiTlJaTkRHNG11STFRaXVQNEVrZFlJMmVyREJxRFdlRzVoOFpHbDZUdWFDeGpUS1BoajVGQUZEWXhuZ1NEUXlxN3YybHVPVTdXTDdJeVhEU01sUWp6Vk1nZkt3MW1BY1Jxc1gtQg?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">I read Microsoft's Windows 11 'quality' progress report - and the subtext says it all - ZDNET</a>
+          <div class="article-meta">ZDNET &bull; Aug 07, 2026</div>
+          <div class="article-summary snippet"><p>I read Microsoft's Windows 11 'quality' progress report - and the subtext says it all&amp;nbsp;&amp;nbsp;ZDNET</p><a href="https://news.google.com/rss/articles/CBMisAFBVV95cUxPOVl0c1JaakZLRnJHN2R3cXRBOVNqN1ZUdGVyd19jMUZhcURnZG5iZGdqbTNYaEVLTkNIaTYwNEh5RWw2aExHS01KOGdiTlJaTkRHNG11STFRaXVQNEVrZFlJMmVyREJxRFdlRzVoOFpHbDZUdWFDeGpUS1BoajVGQUZEWXhuZ1NEUXlxN3YybHVPVTdXTDdJeVhEU01sUWp6Vk1nZkt3MW1BY1Jxc1gtQg?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ae645b4763c')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ad74e66a323">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMirAFBVV95cUxQVVhNMGhMblBTd0ZDSS1TYTRlZnRGUndBQmJWaFpIaWhPUC1TaU5wbzM3T21ZYTI4Y09TNnExMGE2TWlzNXFTYlo1VURlcFVrNTBvc3FzM3I2MUIzenE4NlVFVmN6d1lXMmR3NjN4bWhQblJKdG9JMjhZUTFCZTZvRDg0cWxMRFVXNWJCYnZxMTI1Ri0yTHNGSjVhVjNZOWI0VGJ5enFzaDVhOVF4?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft removes 32GB of RAM recommendation for Windows 11 - TweakTown</a>
+          <div class="article-meta">TweakTown &bull; Aug 06, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft removes 32GB of RAM recommendation for Windows 11&amp;nbsp;&amp;nbsp;TweakTown</p><a href="https://news.google.com/rss/articles/CBMirAFBVV95cUxQVVhNMGhMblBTd0ZDSS1TYTRlZnRGUndBQmJWaFpIaWhPUC1TaU5wbzM3T21ZYTI4Y09TNnExMGE2TWlzNXFTYlo1VURlcFVrNTBvc3FzM3I2MUIzenE4NlVFVmN6d1lXMmR3NjN4bWhQblJKdG9JMjhZUTFCZTZvRDg0cWxMRFVXNWJCYnZxMTI1Ri0yTHNGSjVhVjNZOWI0VGJ5enFzaDVhOVF4?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ad74e66a323')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a8a2473b3c5">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/08/malware-can-abuse-windows-hello-for.html" target="_blank" rel="noopener noreferrer" class="article-title">Malware Can Abuse Windows Hello for Business Keys for Persistent Entra ID Access - The Hacker News</a>
+          <div class="article-meta">The Hacker News &bull; Aug 07, 2026</div>
+          <div class="article-summary"><p>Entra ID researcher Dirk-jan Mollema demonstrated that malware already running in a signed-in Windows session can silently use the victim's Windows Hello for Business key to authenticate to Microsoft Entra ID.
+The attacker can then establish longer-term cloud access, register a device it controls, obtain a Primary Refresh Token (PRT), and add further authentication methods where tenant policies permit.
+On TPM-backed systems, the attacker does not extract the private key, recover the PIN, or trigger a biometric prompt. Windows ticketing keeps private-key operations available while the user is interactively signed in, allowing code running as the user to ask Windows to sign authentication data. Administrator privileges are not required.
+The technique requires code execution in the victim's signed-in session. Mollema describes the behavior as a consequence of how Windows Hello for Business works and says it was left as-is. The disclosure does not report active exploitation or victims. Mollema recommends monitoring unexpected device registrations.
+The disclosure does not identify the exact Windows builds or Windows Hello for Business deployment models tested. The Hacker News found no CVE or Microsoft advisory tied to the technique in searches of Microsoft's Security Update Guide, NVD, and CVE.org as of August 6, 2026. The Hacker News has contacted Microsoft and Mollema; replies are pending.
+Microsoft documents the ticketing behavior. Mollema said the ability to invoke Windows Hello for Business keys from a compromised session was presented at DEF CON 32 in 2024. That method could produce a signed assertion for a PRT, but also required access to an Entra-registered or joined device.
+The new work removes that requirement by treating the Windows Hello for Business key as a FIDO2 passkey through WebAuthn. Mollema found that the five-minute Entra ID challenge is not bound to a session, user, or tenant.
+An attacker can therefore request it on another host and have the compromised endpoint produce the signed assertion. ROADtools, a framework for interacting with Entra ID, can use the assertion to request tokens or open a browser session as the victim.
+Mollema found that the token carries no device ID claim. A token without that device binding lets the attacker register a new device, request a PRT for it, and reach Microsoft cloud services. Microsoft documents that a PRT remains valid for 90 days and is continuously renewed while the user actively uses the device.
+Mollema found that the WebAuthn sign-in can satisfy Conditional Access policies requiring Microsoft's phishing-resistant authentication strength. He said the sign-in also counts as fresh multi-factor authentication, allowing an attacker to add passkeys or Windows Hello for Business keys on the new device where policies allow. Separate device-state or compliance policies can still interrupt the chain, so the complete persistence route will not work in every deployment.
+The finding exposes a limit of phishing-resistant authentication: the credential can remain hardware-bound and unexported while malware inside the signed-in endpoint session invokes it for the attacker.
+Mollema published the PowerShell proof-of-concept scripts in the ROADtools repository. The Hacker News found fido_assertion.ps1 and hellopoc.ps1 in the folder on August 6, 2026. For detection, he recommended hunting for Windows Hello for Business sign-ins with an empty device ID. Legitimate incognito or non-SSO browser sessions can produce the same pattern.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a8a2473b3c5')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="azure" class="topic-section">
+      <h2 class="topic-title" style="--c:#00BCF2">Azure <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a5c4671d74c">
+        <div class="article-body">
+          <a href="https://azure.microsoft.com/en-us/blog/microsoft-named-a-leader-in-the-2026-gartner-magic-quadrant-for-ai-augmented-code-modernization-tools/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft named a Leader in the 2026 Gartner® Magic Quadrant™ for AI-Augmented Code Modernization Tools</a>
+          <div class="article-meta">azure.microsoft.com &bull; Aug 06, 2026</div>
+          <div class="article-summary"><p>Microsoft has been named a Leader in the inaugural 2026 Gartner® Magic Quadrant™ for AI-Augmented Code Modernization Tools, which recognizes software solutions that use specialized AI agents, generative AI, and deterministic analysis to accelerate the transformation of legacy systems. We are proud of our placement as a Leader in this first edition of the report.
+Cloud-native modernization
+Microsoft’s conviction from the start has been that modernization should become one of the fastest, most trusted, and most predictable workflows organizations undertake, and agentic AI is what finally makes that possible. For years, modernization and innovation competed for the same budget, and modernization usually lost. Now the math has changed: modernization is no longer the tax teams pay before they can innovate, it is the fastest path to it, and the gateway to AI. Eliminating decades of technical debt is what lets teams embed intelligence directly into the proven, high-value systems that already run their business. This modern foundation turns the assets they depend on most into the platform for what comes next.
+None of this is on the horizon; it is happening now. Modernization is shifting from a multi-year program into something teams finish in days or weeks.
+Today, organizations are not just moving to the cloud or reducing technical debt, they are fundamentally rethinking their applications, their data, and their infrastructure because they know the decisions they make today will determine whether they are AI-ready tomorrow. Every modernization decision is now an AI decision.
+Microsoft Azure was built for this moment. It provides the agentic foundation and engine for modernization and AI transformation, along with the governance and trust enterprises require, so modernization lowers security, data, and operational risk as much as it accelerates AI readiness. With agentic tooling and an end-to-end modernization solution powered by GitHub Copilot and Azure Copilot, Microsoft is accelerating the shift, not just leading it.
+The problem we set out to solve
+Every enterprise carries code it cannot afford to rewrite and cannot afford to ignore. Legacy .NET Framework applications, Java runtimes, aging dependencies, and accumulated security debt power critical business processes while also limiting an organization’s ability to move forward. For decades, modernization meant large teams, months of manual effort, and a real risk of breaking what already works. As a result, it got deferred, repeatedly, while technical debt compounded and the distance to the cloud grew.
+We feel Gartner frames the opportunity perfectly: software engineering leaders can meaningfully reduce the time, effort, and risk of modernization by using AI-powered tools rather than manual approaches. That distance, between the cost of standing still and the cost of moving, is exactly where we put our focus. The goal was never to help teams modernize a little faster. It was to fundamentally change the economics of modernization.
+How it works
+The engine behind this is GitHub Copilot modernization, an agentic, end-to-end approach that helps teams assess, upgrade, and migrate applications to Azure, with AI handling repetitive tasks while developers remain firmly in control.
+We deliver it through two layers that work together. The modernization agent, available through the Modernize CLI, enables architects and application owners to orchestrate assessment, planning, and framework-upgrade automation across many applications at once, then delivers robust application-specific plans to developers. Inside the IDE, developers use GitHub Copilot to execute those plans: upgrading runtimes and frameworks, migrating dependencies to Azure services, generating infrastructure-as-code, and deploying to production.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a5c4671d74c')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ac556bd0759">
+        <div class="article-body">
+          <a href="https://petri.com/best-entra-id-backup-and-recovery-solutions/" target="_blank" rel="noopener noreferrer" class="article-title">Best Entra ID Backup and Recovery Solutions for Enterprises</a>
+          <div class="article-meta">petri.com &bull; Aug 07, 2026</div>
+          <div class="article-summary"><p>A practical guide to the leading Microsoft Entra ID backup and recovery tools for identity resilience, rollback, cyberattack recovery, and hybrid Microsoft environments.
+Microsoft Entra ID sits underneath Microsoft 365, Azure, and thousands of enterprise Software-as-a-Service (SaaS) applications. If users, groups, app registrations, Conditional Access policies, roles, or service principals are deleted or misconfigured, the impact is not limited to the identity team. Users can lose access to core business applications, administrators can lose privileged access workflows, and security controls can stop applying as intended.
+Microsoft has improved the native recovery story with Microsoft Entra Backup and Recovery, a built-in service that can recover supported directory objects to a previously known good state after accidental changes or security compromises. But enterprises still need to evaluate third-party products where they require longer retention, hard-delete recovery, hybrid Active Directory integration, richer relationship recovery, isolated storage, broader Microsoft 365 backup coverage, or identity-specific cyber recovery.
+Entra ID is no longer just a user directory. It is the control plane for authentication, authorization, app access, Conditional Access, service principals, administrative roles, and increasingly device and security posture decisions. Microsoft’s native Backup and Recovery supports objects such as users, groups, apps, service principals, Conditional Access policies, named locations, authentication method policy, and authorization policy, which illustrates how many critical access controls now live in the tenant itself.
+The problem is that identity failures are often relationship failures. Restoring a user or group is useful, but enterprise environments also depend on group memberships, app assignments, Conditional Access scopes, role assignments, ownership, Privileged Identity Management (PIM) configuration, Intune policies, and audit evidence. Some tools in this list are dedicated identity resilience platforms, while others are broader Microsoft 365 or SaaS backup platforms that now include meaningful Entra ID protection.
+The best Entra ID recovery products should protect more than users and groups. Enterprise buyers should look for coverage of:
+Microsoft’s own native object support is broad but selected by object/property type, and recovery applies only to supported properties rather than implying full object rollback.
+Recovery depth is the next major differentiator. Look for attribute-level recovery, object-level restore, difference reporting, rollback from change history, relationship recovery, restore to original or alternate tenant, and documented handling of soft-deleted versus hard-deleted objects.
+Microsoft explicitly states that Microsoft Entra Backup and Recovery does not support recovery or re-creation of hard-deleted objects, which is a key reason third-party tools remain relevant.
+Security architecture also matters. Entra ID backups are valuable targets because they describe how the organization authenticates and authorizes access. Evaluate immutable or logically air-gapped storage, encryption, role-based access control (RBAC), multifactor authentication (MFA), Security Information and Event Management (SIEM) integration, audit reporting, recovery testing, and whether the product is designed for identity incident response or simply for scheduled SaaS backup.
+Finally, match the tool to the ownership model in your organization. Identity teams may prefer dedicated identity resilience platforms such as Cayosoft, Quest, or Semperis. Backup teams may prefer Commvault, Veeam, Rubrik, Keepit, Druva, AvePoint, or ManageEngine if Entra ID protection needs to sit alongside Microsoft 365, SaaS, endpoint, or broader enterprise data protection.
+Before we get to third-party tools, let’s address the native option.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac556bd0759')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ac779c093cc">
+        <div class="article-body">
+          <a href="https://petri.com/trusted-launch-default-gen2-azure-vms/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Makes Trusted Launch the Default for New Azure Gen2 Virtual Machines</a>
+          <div class="article-meta">petri.com &bull; Aug 06, 2026</div>
+          <div class="article-summary"><p>New deployments receive hardware-backed security protections automatically without added cost or configuration.
+Key Takeaways:
+Microsoft is making Azure virtual machines more secure out of the box with the general availability of Trusted Launch as Default (TLaD) for new Generation 2 (Gen2) VMs and virtual machine scale sets. The update automatically applies key security protections to new deployments without adding cost or administrative overhead.
+Trusted Launch is a security capability for Azure Generation 2 virtual machines that helps protect systems from sophisticated threats targeting the boot process and operating system. This feature combines technologies (such as Secure Boot, a virtual Trusted Platform Module (vTPM), and continuous boot integrity checks) to create a trusted foundation for workloads and helps organizations detect unauthorized changes before they can compromise a virtual machine.
+Microsoft highlighted that Trusted Launch as Default (TLaD) automatically strengthens the security of new Azure Gen2 virtual machines without requiring additional setup or costs. Organizations can enable protections (such as Secure Boot and vTPM by default) to reduce the risk of attacks that target a system during startup and establish a stronger security foundation for VMs.
+TLaD also simplifies cloud security management by applying these protections automatically while still respecting any security settings explicitly defined by administrators. However, keep in mind that this change won’t impact existing virtual machines. For ARM templates, Bicep, Terraform, and Azure SDKs, a one-time subscription registration is required to enable Trusted Launch as the default setting for new deployments.
+After registration, deployments using newer Compute API versions will automatically use Trusted Launch when no security profile is specified, provided the selected VM size, operating system image, gallery image, and disk all support the feature. If any requirement is unsupported, deployment still succeeds as a standard Gen2 VM.
+Microsoft notes that this feature is available across public Azure regions as well as Azure Government and Azure China environments. Organizations can choose to opt out for specific workloads by explicitly setting the security type to Standard when compatibility issues exist.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac779c093cc')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a8a27b88216">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi8AFBVV95cUxQLU9jOC1pWHdUcXBVek1PMHFaYUJkNGtvdzFXWlZldGFjNldnbVlXVnlKZGRPMmhjT2xvVkxONVVrNFpHT3ZBbXBDTU5xU3VhbS1MUjE5X0Fkdlh0by1XRTFRVjNDaXhBVTBfN1RXNEp3YlY0ejJEbm5DQkFHNklMVmVPSEVfS0V2aXBOTWpnc3lGaXFSckQwbEkxZUhIRHlES2RWcVQteFRZWjBaa0ZnMjZvYlZ5bGtSU2VpNnN0MGxoUGR6U1Nrckphb3ZYWGl2dWF2UkQzeGJhMFhleVh1UDU5SDZ6dzlNdEhxWEZuVFo?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft’s newest India datacenter region goes live to power the country’s AI economy and enable Frontier Firms - Microsoft Source</a>
+          <div class="article-meta">Microsoft Source &bull; Aug 06, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft’s newest India datacenter region goes live to power the country’s AI economy and enable Frontier Firms&amp;nbsp;&amp;nbsp;Microsoft Source</p><a href="https://news.google.com/rss/articles/CBMi8AFBVV95cUxQLU9jOC1pWHdUcXBVek1PMHFaYUJkNGtvdzFXWlZldGFjNldnbVlXVnlKZGRPMmhjT2xvVkxONVVrNFpHT3ZBbXBDTU5xU3VhbS1MUjE5X0Fkdlh0by1XRTFRVjNDaXhBVTBfN1RXNEp3YlY0ejJEbm5DQkFHNklMVmVPSEVfS0V2aXBOTWpnc3lGaXFSckQwbEkxZUhIRHlES2RWcVQteFRZWjBaa0ZnMjZvYlZ5bGtSU2VpNnN0MGxoUGR6U1Nrckphb3ZYWGl2dWF2UkQzeGJhMFhleVh1UDU5SDZ6dzlNdEhxWEZuVFo?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a8a27b88216')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a6bc44b05c5">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMic0FVX3lxTE92MXdjSlRUTklVdC02TGJXX3ZmLVhGZmx1LVhaRk9lWUdrQXBFX0t6bjJEQzFwdjZhVzJxb2JYNlBPTFNOVHp6TzN2REQ4bkJ4ZW4xX1VRaDVwNEN5ZFlxdWpfMFdrb3l2WHVHbS15ZWhYZXM?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft opens its largest data center in India as cloud race intensifies - qz.com</a>
+          <div class="article-meta">qz.com &bull; Aug 07, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft opens its largest data center in India as cloud race intensifies&amp;nbsp;&amp;nbsp;qz.com</p><a href="https://news.google.com/rss/articles/CBMic0FVX3lxTE92MXdjSlRUTklVdC02TGJXX3ZmLVhGZmx1LVhaRk9lWUdrQXBFX0t6bjJEQzFwdjZhVzJxb2JYNlBPTFNOVHp6TzN2REQ4bkJ4ZW4xX1VRaDVwNEN5ZFlxdWpfMFdrb3l2WHVHbS15ZWhYZXM?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a6bc44b05c5')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="af704ed2611">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiqgFBVV95cUxPdE96MFRXdTZsdENNME9JVmswQ3lla245eDlLX3RweTNuTHdRWHpNSFRVT1FONE5zUWY2dmhHYVVuR2ZnU04tWXJYWnNlWlBEOXd1dW5HNlFXaHYyMTZ1TVpjaHFjUjdmNnFqbEVITzgtWHpTYmZOTFNBdENVU2VydGhCTklDWjVxdXFaMV9XU3FPNHhnRjlSTzNJM0EwcDRGMHpYbDluUWJzUQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">IFI TECHSOLUTIONS ACHIEVES MICROSOFT AZURE CLOUD SECURITY SPECIALIZATION - Yahoo Finance</a>
+          <div class="article-meta">Yahoo Finance &bull; Aug 06, 2026</div>
+          <div class="article-summary snippet"><p>IFI TECHSOLUTIONS ACHIEVES MICROSOFT AZURE CLOUD SECURITY SPECIALIZATION&amp;nbsp;&amp;nbsp;Yahoo Finance</p><a href="https://news.google.com/rss/articles/CBMiqgFBVV95cUxPdE96MFRXdTZsdENNME9JVmswQ3lla245eDlLX3RweTNuTHdRWHpNSFRVT1FONE5zUWY2dmhHYVVuR2ZnU04tWXJYWnNlWlBEOXd1dW5HNlFXaHYyMTZ1TVpjaHFjUjdmNnFqbEVITzgtWHpTYmZOTFNBdENVU2VydGhCTklDWjVxdXFaMV9XU3FPNHhnRjlSTzNJM0EwcDRGMHpYbDluUWJzUQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('af704ed2611')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a72c6377f4b">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMimAFBVV95cUxOMmI5SFJVeW0xaGxodEtrbUdSejZCNk1ycWMyQVkzSnhuR0Z2WkNNbW04SGRzOTdmdjhJOEhWVWVQcGN6TmEwZ1UxTThMYThnUXNwZzQ5alAyV01LLWhlSVBMS082dnJGcFYxeVJCMWpmLUVpcXZDNkp1V0VRQmcyUWx5bHpXdlA3Ykcwb2xNd0g0MDVYN044bw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">AWS vs Azure vs Google Cloud: Where Are the Best IT Jobs? - Buttondown</a>
+          <div class="article-meta">Buttondown &bull; Aug 09, 2026</div>
+          <div class="article-summary snippet"><p>AWS vs Azure vs Google Cloud: Where Are the Best IT Jobs?&amp;nbsp;&amp;nbsp;Buttondown</p><a href="https://news.google.com/rss/articles/CBMimAFBVV95cUxOMmI5SFJVeW0xaGxodEtrbUdSejZCNk1ycWMyQVkzSnhuR0Z2WkNNbW04SGRzOTdmdjhJOEhWVWVQcGN6TmEwZ1UxTThMYThnUXNwZzQ5alAyV01LLWhlSVBMS082dnJGcFYxeVJCMWpmLUVpcXZDNkp1V0VRQmcyUWx5bHpXdlA3Ykcwb2xNd0g0MDVYN044bw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a72c6377f4b')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a8e20f4a4f4">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMimgFBVV95cUxOSERobjBKSXZlV05EMURJYzI1QWxlRjRIVEJsejBZSDJHUlpDeWprRFBFcHhYU2F0WmlHdGNtQnFuZDd3Wk5oek5CeWJ2dlV0NVNsV0Z2M3NoRGVVRHdQbENwS0tnQ0xQWEVOejRHaEcwVHRRZE1ucTNIek54U29VY0xUSUpjS3pzRXlhUkVsNGdQZ0ZGTjUtM0Vn?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">AWS Vs. Microsoft Vs. Google Cloud Earnings Q2 2026 Face-Off - crn.com</a>
+          <div class="article-meta">crn.com &bull; Aug 03, 2026</div>
+          <div class="article-summary snippet"><p>AWS Vs. Microsoft Vs. Google Cloud Earnings Q2 2026 Face-Off&amp;nbsp;&amp;nbsp;crn.com</p><a href="https://news.google.com/rss/articles/CBMimgFBVV95cUxOSERobjBKSXZlV05EMURJYzI1QWxlRjRIVEJsejBZSDJHUlpDeWprRFBFcHhYU2F0WmlHdGNtQnFuZDd3Wk5oek5CeWJ2dlV0NVNsV0Z2M3NoRGVVRHdQbENwS0tnQ0xQWEVOejRHaEcwVHRRZE1ucTNIek54U29VY0xUSUpjS3pzRXlhUkVsNGdQZ0ZGTjUtM0Vn?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a8e20f4a4f4')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="sharepoint" class="topic-section">
+      <h2 class="topic-title" style="--c:#036C70">SharePoint <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a5530e33beb">
+        <div class="article-body">
+          <a href="https://www.bleepingcomputer.com/news/security/swiss-government-sharepoint-breach-compromised-200-accounts/" target="_blank" rel="noopener noreferrer" class="article-title">Swiss government SharePoint breach compromised 200 accounts</a>
+          <div class="article-meta">bleepingcomputer.com &bull; Aug 06, 2026</div>
+          <div class="article-summary"><p>Switzerland’s federal IT office says hackers exploited vulnerabilities to breach its Microsoft SharePoint servers and compromised approximately 200 accounts.
+The Federal Office for Information Technology and Telecommunication (BIT) detected the cyberattack after security specialists noticed unusual activity on its SharePoint servers on July 28.
+After confirming the breach, BIT blocked external internet access to SharePoint, patched the suspected vulnerabilities, and reset the passwords for the affected accounts.
+&quot;During the analysis, security specialists discovered on Friday, July 31, that the login credentials for several accounts had been compromised,&quot; BIT said.
+The agency believes the attackers exploited SharePoint vulnerabilities disclosed by Microsoft in mid-July and fixed in the July Patch Tuesday updates. However, it has not disclosed which flaw was used.
+The attack potentially involved either CVE-2026-56164, an actively exploited SharePoint privilege escalation vulnerability, or CVE-2026-50522, a critical remote code execution flaw later exploited to steal SharePoint machine keys and maintain access after servers were patched.
+Both of these flaws were fixed as part of the July 2026 Patch Tuesday updates.
+It remains unclear whether either vulnerability was used in the Swiss government attack or whether the attackers exploited another flaw fixed in the same updates.
+BIT is investigating the incident with assistance from the Swiss Federal Office for Cyber Security and Microsoft.
+So far, it has found no evidence that data was stolen beyond the compromised login credentials.
+The agency said confidential information and particularly sensitive personal data are not permitted to be stored on the affected SharePoint platform.
+BIT is reinstalling the compromised servers as a precaution, and external access will remain blocked until that work is completed.
+Federal employees can continue accessing documents and sharing them with external personnel through alternative methods.
+At this time, no ransomware or data extortion group has claimed responsibility for the breach.
+BleepingComputer contacted BIT to ask which vulnerability was exploited and whether its investigation had uncovered evidence of data theft, but a response was not immediately available.
+Test every layer before attackers do
+Security teams log 54% of successful attacks and alert on just 14%. The rest move through your environment unseen.
+The Picus whitepaper shows how breach and attack simulation tests your SIEM and EDR rules so threats stop slipping by detection.
+Get the whitepaper</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a5530e33beb')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a57cea74ff5">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMingFBVV95cUxQeTJPQnlHLURxRlpaLS1FTHFzNWtWQ1B1MWMzNEdENm9aZUU4QlE2OVh2ZnR0dWliRlZMMVVBWnM4QXludFl0V19aQ1JHcVpBb2FETGNYdU44dnRWYmhVSTRVUkYwa2dRZW0zMm9Gd1NDWUNTc0lJbmJaSk9jT09tUUNrc25uVXBKWmNJOTFJd1E1dnE1R1pERE96aV9hZw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">200 accounts compromised in Swiss government’s Microsoft SharePoint breach - Help Net Security</a>
+          <div class="article-meta">Help Net Security &bull; Aug 07, 2026</div>
+          <div class="article-summary snippet"><p>200 accounts compromised in Swiss government’s Microsoft SharePoint breach&amp;nbsp;&amp;nbsp;Help Net Security</p><a href="https://news.google.com/rss/articles/CBMingFBVV95cUxQeTJPQnlHLURxRlpaLS1FTHFzNWtWQ1B1MWMzNEdENm9aZUU4QlE2OVh2ZnR0dWliRlZMMVVBWnM4QXludFl0V19aQ1JHcVpBb2FETGNYdU44dnRWYmhVSTRVUkYwa2dRZW0zMm9Gd1NDWUNTc0lJbmJaSk9jT09tUUNrc25uVXBKWmNJOTFJd1E1dnE1R1pERE96aV9hZw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a57cea74ff5')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aa422fe704d">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMitAFBVV95cUxQbWdUb0Y0V2pqcHIxaElnVlJRVk1adENQblRLNHowVkRacDlYclV4WGplQVUyQkNKYnFBeWEwTDNhTklFeEdfVHhzVG1YZUprN2tmbDhPNFREYWh3R0U2YWh4Z3pOblZuUS10UjJDN2hRa3AtcEE3NHpydmlUanFabl9mOFBJUzRld2w4QnF4eEc5Q2NWdlhuY3VpOW9wM3NPZFNlNUlITkZKSm5PTXQ0U29relc?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Swiss Federal IT Agency FOITT compromised about 200 accounts due to SharePoint flaws - scworld.com</a>
+          <div class="article-meta">scworld.com &bull; Aug 05, 2026</div>
+          <div class="article-summary snippet"><p>Swiss Federal IT Agency FOITT compromised about 200 accounts due to SharePoint flaws&amp;nbsp;&amp;nbsp;scworld.com</p><a href="https://news.google.com/rss/articles/CBMitAFBVV95cUxQbWdUb0Y0V2pqcHIxaElnVlJRVk1adENQblRLNHowVkRacDlYclV4WGplQVUyQkNKYnFBeWEwTDNhTklFeEdfVHhzVG1YZUprN2tmbDhPNFREYWh3R0U2YWh4Z3pOblZuUS10UjJDN2hRa3AtcEE3NHpydmlUanFabl9mOFBJUzRld2w4QnF4eEc5Q2NWdlhuY3VpOW9wM3NPZFNlNUlITkZKSm5PTXQ0U29relc?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aa422fe704d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a67ae260363">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiigFBVV95cUxNbGQ0Q080Sjh3SlRWcHY4WTNUelVUY0dUVnpyNFVpZDFwTml1UGJDSG1kdS10VGpuTi1vQ3V5MFdkMzduM0h5UjE4SzR6cFVzZmxEZTVJbHF1aU5aWWlSdUZQR0Y2NUFsS0pnOExBcUhON1lma3ZoTEFuNmFubzFNWF9LaklRWVkxZUE?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Swiss IT agency hacked, 200 accounts compromised, SharePoint vulns suspected - The Record from Recorded Future News</a>
+          <div class="article-meta">The Record from Recorded Future News &bull; Aug 04, 2026</div>
+          <div class="article-summary snippet"><p>Swiss IT agency hacked, 200 accounts compromised, SharePoint vulns suspected&amp;nbsp;&amp;nbsp;The Record from Recorded Future News</p><a href="https://news.google.com/rss/articles/CBMiigFBVV95cUxNbGQ0Q080Sjh3SlRWcHY4WTNUelVUY0dUVnpyNFVpZDFwTml1UGJDSG1kdS10VGpuTi1vQ3V5MFdkMzduM0h5UjE4SzR6cFVzZmxEZTVJbHF1aU5aWWlSdUZQR0Y2NUFsS0pnOExBcUhON1lma3ZoTEFuNmFubzFNWF9LaklRWVkxZUE?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a67ae260363')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="af085a0ebd0">
+        <div class="article-body">
+          <a href="https://www.bleepingcomputer.com/news/security/swiss-government-sharepoint-breach-compromised-200-accounts/" target="_blank" rel="noopener noreferrer" class="article-title">Swiss government SharePoint breach compromised 200 accounts - BleepingComputer</a>
+          <div class="article-meta">BleepingComputer &bull; Aug 06, 2026</div>
+          <div class="article-summary"><p>Switzerland’s federal IT office says hackers exploited vulnerabilities to breach its Microsoft SharePoint servers and compromised approximately 200 accounts.
+The Federal Office for Information Technology and Telecommunication (BIT) detected the cyberattack after security specialists noticed unusual activity on its SharePoint servers on July 28.
+After confirming the breach, BIT blocked external internet access to SharePoint, patched the suspected vulnerabilities, and reset the passwords for the affected accounts.
+&quot;During the analysis, security specialists discovered on Friday, July 31, that the login credentials for several accounts had been compromised,&quot; BIT said.
+The agency believes the attackers exploited SharePoint vulnerabilities disclosed by Microsoft in mid-July and fixed in the July Patch Tuesday updates. However, it has not disclosed which flaw was used.
+The attack potentially involved either CVE-2026-56164, an actively exploited SharePoint privilege escalation vulnerability, or CVE-2026-50522, a critical remote code execution flaw later exploited to steal SharePoint machine keys and maintain access after servers were patched.
+Both of these flaws were fixed as part of the July 2026 Patch Tuesday updates.
+It remains unclear whether either vulnerability was used in the Swiss government attack or whether the attackers exploited another flaw fixed in the same updates.
+BIT is investigating the incident with assistance from the Swiss Federal Office for Cyber Security and Microsoft.
+So far, it has found no evidence that data was stolen beyond the compromised login credentials.
+The agency said confidential information and particularly sensitive personal data are not permitted to be stored on the affected SharePoint platform.
+BIT is reinstalling the compromised servers as a precaution, and external access will remain blocked until that work is completed.
+Federal employees can continue accessing documents and sharing them with external personnel through alternative methods.
+At this time, no ransomware or data extortion group has claimed responsibility for the breach.
+BleepingComputer contacted BIT to ask which vulnerability was exploited and whether its investigation had uncovered evidence of data theft, but a response was not immediately available.
+Test every layer before attackers do
+Security teams log 54% of successful attacks and alert on just 14%. The rest move through your environment unseen.
+The Picus whitepaper shows how breach and attack simulation tests your SIEM and EDR rules so threats stop slipping by detection.
+Get the whitepaper</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('af085a0ebd0')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a7dc5e21a32">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMihAFBVV95cUxOWlFKemJFbXJjSkhNS0EwLVJuWFhxMmNFT3o3dkxtcU44bWdyWmRjRUVkMUd1eVhSTk45WU96UXFxeWFwUG92MFVCSGtnN2VOZzktck9nU2pwNFBzNDZCOVFVbDJrR3o3ZGRPX3ZmRWhCdFNPb1QwMWRrdC1XQlZEd3JIOEI?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">August 2026 Patch Tuesday forecast: How do we deal with the patch apocalypse? - Help Net Security</a>
+          <div class="article-meta">Help Net Security &bull; Aug 07, 2026</div>
+          <div class="article-summary snippet"><p>August 2026 Patch Tuesday forecast: How do we deal with the patch apocalypse?&amp;nbsp;&amp;nbsp;Help Net Security</p><a href="https://news.google.com/rss/articles/CBMihAFBVV95cUxOWlFKemJFbXJjSkhNS0EwLVJuWFhxMmNFT3o3dkxtcU44bWdyWmRjRUVkMUd1eVhSTk45WU96UXFxeWFwUG92MFVCSGtnN2VOZzktck9nU2pwNFBzNDZCOVFVbDJrR3o3ZGRPX3ZmRWhCdFNPb1QwMWRrdC1XQlZEd3JIOEI?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a7dc5e21a32')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a56d8f4981c">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMivAFBVV95cUxQYVhNcGp3NWs4MmxRZlllbERjMi1OQ2c2cGpJZGpMc1MxZmdmamJGQ0JFOWdqckJIRUhUS2x0R2tUb1lmamVtaHYzQWJSclNkQ3RBbUFXWVotWXVJUGdIaU5NaE1meTdseGFDYUd0aUYwTVE0YVp3Nnh4cFpOX1pFN2xhbzdILUktUzJRUERybVd6Q1h6Tm1KNmhkN0NRblMydUhJMGlJTjl3ZG9mNUVSLUs1Wml6Wk1ud09HQQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Swiss government says SharePoint-linked data breach affected hundreds of accounts - TechRadar</a>
+          <div class="article-meta">TechRadar &bull; Aug 07, 2026</div>
+          <div class="article-summary snippet"><p>Swiss government says SharePoint-linked data breach affected hundreds of accounts&amp;nbsp;&amp;nbsp;TechRadar</p><a href="https://news.google.com/rss/articles/CBMivAFBVV95cUxQYVhNcGp3NWs4MmxRZlllbERjMi1OQ2c2cGpJZGpMc1MxZmdmamJGQ0JFOWdqckJIRUhUS2x0R2tUb1lmamVtaHYzQWJSclNkQ3RBbUFXWVotWXVJUGdIaU5NaE1meTdseGFDYUd0aUYwTVE0YVp3Nnh4cFpOX1pFN2xhbzdILUktUzJRUERybVd6Q1h6Tm1KNmhkN0NRblMydUhJMGlJTjl3ZG9mNUVSLUs1Wml6Wk1ud09HQQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a56d8f4981c')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a0e0d63cb87">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiekFVX3lxTFBZRlM2a0VhRGZ5ZmZZQjkzWmxWWVBtdkppMEtsbFV1ZDVVV3pOUUZidERaYXhfQjFUX2pNaTZHZllrdzJjZVFVR3A1SlhacmlqUzhOXzV0V2hvS3RQVE5ORGJ2TFVfeTZJbzlyR2Nnai02WVF3V05LWGZR0gF_QVVfeXFMUC1DNlBHNGhmOTd6eG9DSjlzcWwxOFRaRUx5NlBtRmFESWdBOFpmTEFUVVdmYm5ZeV9pNUxpYmtoTlo3MW5lY1luX25NLWFVOHNIRDMzUktfSHAtRVo0NEp2WUlKQUc4WXQ1NG9YUWQ2MHp3UmlIVTFwSkpaZDQtYw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Hackers Breach Swiss Government SharePoint Servers, Compromise 200 Accounts - CyberSecurityNews</a>
+          <div class="article-meta">CyberSecurityNews &bull; Aug 07, 2026</div>
+          <div class="article-summary snippet"><p>Hackers Breach Swiss Government SharePoint Servers, Compromise 200 Accounts&amp;nbsp;&amp;nbsp;CyberSecurityNews</p><a href="https://news.google.com/rss/articles/CBMiekFVX3lxTFBZRlM2a0VhRGZ5ZmZZQjkzWmxWWVBtdkppMEtsbFV1ZDVVV3pOUUZidERaYXhfQjFUX2pNaTZHZllrdzJjZVFVR3A1SlhacmlqUzhOXzV0V2hvS3RQVE5ORGJ2TFVfeTZJbzlyR2Nnai02WVF3V05LWGZR0gF_QVVfeXFMUC1DNlBHNGhmOTd6eG9DSjlzcWwxOFRaRUx5NlBtRmFESWdBOFpmTEFUVVdmYm5ZeV9pNUxpYmtoTlo3MW5lY1luX25NLWFVOHNIRDMzUktfSHAtRVo0NEp2WUlKQUc4WXQ1NG9YUWQ2MHp3UmlIVTFwSkpaZDQtYw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a0e0d63cb87')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="intune" class="topic-section">
+      <h2 class="topic-title" style="--c:#0F6CBD">Intune <span class="count">(3)</span></h2>
+      <div class="article-card" data-id="ab19c6cc824">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMilgFBVV95cUxObVA3YnRtWWc4TEpETVdOSjhVS0IxbFg2ampvU0V6Xy1haVFtT2hPM1FDN2NLLU14b1ZPaTg3bEMtR3ZYYUw2MkN5WHNpZm96UTFfel91SG5QUmxpRjF6bm9WMGZpTlBlTG1Id0xnbTZ1MDl6M2lPX0tUeTJEZzFRVUV0eTVNcFZNSERIVl85U1ljX2Vvbnc?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft changes Intune’s role with inclusion into Microsoft 365 E5 - RSM</a>
+          <div class="article-meta">RSM &bull; Aug 06, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft changes Intune’s role with inclusion into Microsoft 365 E5&amp;nbsp;&amp;nbsp;RSM</p><a href="https://news.google.com/rss/articles/CBMilgFBVV95cUxObVA3YnRtWWc4TEpETVdOSjhVS0IxbFg2ampvU0V6Xy1haVFtT2hPM1FDN2NLLU14b1ZPaTg3bEMtR3ZYYUw2MkN5WHNpZm96UTFfel91SG5QUmxpRjF6bm9WMGZpTlBlTG1Id0xnbTZ1MDl6M2lPX0tUeTJEZzFRVUV0eTVNcFZNSERIVl85U1ljX2Vvbnc?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ab19c6cc824')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a71b18d0a0c">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi8wFBVV95cUxPbXBQeHNRN0N4TUw1dTdXUFFqa2ttcUFtandyOFdtZjktQ0hqLUZrLUFocTN2X1VYUlE4WjVpX0dGNVFjQVVyaGpDWlBCdHQ2bTR2QUhlaURwUnNCODNwOXNaRm8wWDNCdklhaHVEN0ZYMkZHazdlSUNWQURHUUszcktLZUVaNEt5Q0V0UmtLMlZjTTJWSWpzUGFESzVORkpsOGh3LWJTNnhsWWkyby1wYjNhblNQWVB0SGhnWjUwRGtNbjNtU1p1ZVZuNmJmbzl5N1F2cHVacEdpODJ1WjdrMVFQdmtCZGM1enFJTnhYQzRiZHM?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft never learns, IT admins rage as a new OneDrive app invades Windows 11 and keeps coming back when you remove it - windowslatest.com</a>
+          <div class="article-meta">windowslatest.com &bull; Aug 04, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft never learns, IT admins rage as a new OneDrive app invades Windows 11 and keeps coming back when you remove it&amp;nbsp;&amp;nbsp;windowslatest.com</p><a href="https://news.google.com/rss/articles/CBMi8wFBVV95cUxPbXBQeHNRN0N4TUw1dTdXUFFqa2ttcUFtandyOFdtZjktQ0hqLUZrLUFocTN2X1VYUlE4WjVpX0dGNVFjQVVyaGpDWlBCdHQ2bTR2QUhlaURwUnNCODNwOXNaRm8wWDNCdklhaHVEN0ZYMkZHazdlSUNWQURHUUszcktLZUVaNEt5Q0V0UmtLMlZjTTJWSWpzUGFESzVORkpsOGh3LWJTNnhsWWkyby1wYjNhblNQWVB0SGhnWjUwRGtNbjNtU1p1ZVZuNmJmbzl5N1F2cHVacEdpODJ1WjdrMVFQdmtCZGM1enFJTnhYQzRiZHM?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a71b18d0a0c')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a98364dd9d6">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiiAFBVV95cUxOeENoWFBJNFNCbEpnRHRqMGxrYnNFRkVXTVdZekt1NmlUNGtWOXFIeFBrbFVNRDFaWjhCOTJLYml6bVBiUzVLU0NYdTZtU3hRbTY3WUREWDJscUF2Y0J5Y3ZaX2JfN0NUcmQtLTdSMGJWZDNldG1WdWFRMXZVMktoaFppaUhnQjZ5?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Windows 11 KB5101684 Preview Update Delivers 42 Fixes for Intune, SMB, and File Explorer - TechRepublic</a>
+          <div class="article-meta">TechRepublic &bull; Aug 03, 2026</div>
+          <div class="article-summary snippet"><p>Windows 11 KB5101684 Preview Update Delivers 42 Fixes for Intune, SMB, and File Explorer&amp;nbsp;&amp;nbsp;TechRepublic</p><a href="https://news.google.com/rss/articles/CBMiiAFBVV95cUxOeENoWFBJNFNCbEpnRHRqMGxrYnNFRkVXTVdZekt1NmlUNGtWOXFIeFBrbFVNRDFaWjhCOTJLYml6bVBiUzVLU0NYdTZtU3hRbTY3WUREWDJscUF2Y0J5Y3ZaX2JfN0NUcmQtLTdSMGJWZDNldG1WdWFRMXZVMktoaFppaUhnQjZ5?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a98364dd9d6')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="entraid" class="topic-section">
+      <h2 class="topic-title" style="--c:#6B69D6">Entra ID <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="ac556bd0759">
+        <div class="article-body">
+          <a href="https://petri.com/best-entra-id-backup-and-recovery-solutions/" target="_blank" rel="noopener noreferrer" class="article-title">Best Entra ID Backup and Recovery Solutions for Enterprises</a>
+          <div class="article-meta">petri.com &bull; Aug 07, 2026</div>
+          <div class="article-summary"><p>A practical guide to the leading Microsoft Entra ID backup and recovery tools for identity resilience, rollback, cyberattack recovery, and hybrid Microsoft environments.
+Microsoft Entra ID sits underneath Microsoft 365, Azure, and thousands of enterprise Software-as-a-Service (SaaS) applications. If users, groups, app registrations, Conditional Access policies, roles, or service principals are deleted or misconfigured, the impact is not limited to the identity team. Users can lose access to core business applications, administrators can lose privileged access workflows, and security controls can stop applying as intended.
+Microsoft has improved the native recovery story with Microsoft Entra Backup and Recovery, a built-in service that can recover supported directory objects to a previously known good state after accidental changes or security compromises. But enterprises still need to evaluate third-party products where they require longer retention, hard-delete recovery, hybrid Active Directory integration, richer relationship recovery, isolated storage, broader Microsoft 365 backup coverage, or identity-specific cyber recovery.
+Entra ID is no longer just a user directory. It is the control plane for authentication, authorization, app access, Conditional Access, service principals, administrative roles, and increasingly device and security posture decisions. Microsoft’s native Backup and Recovery supports objects such as users, groups, apps, service principals, Conditional Access policies, named locations, authentication method policy, and authorization policy, which illustrates how many critical access controls now live in the tenant itself.
+The problem is that identity failures are often relationship failures. Restoring a user or group is useful, but enterprise environments also depend on group memberships, app assignments, Conditional Access scopes, role assignments, ownership, Privileged Identity Management (PIM) configuration, Intune policies, and audit evidence. Some tools in this list are dedicated identity resilience platforms, while others are broader Microsoft 365 or SaaS backup platforms that now include meaningful Entra ID protection.
+The best Entra ID recovery products should protect more than users and groups. Enterprise buyers should look for coverage of:
+Microsoft’s own native object support is broad but selected by object/property type, and recovery applies only to supported properties rather than implying full object rollback.
+Recovery depth is the next major differentiator. Look for attribute-level recovery, object-level restore, difference reporting, rollback from change history, relationship recovery, restore to original or alternate tenant, and documented handling of soft-deleted versus hard-deleted objects.
+Microsoft explicitly states that Microsoft Entra Backup and Recovery does not support recovery or re-creation of hard-deleted objects, which is a key reason third-party tools remain relevant.
+Security architecture also matters. Entra ID backups are valuable targets because they describe how the organization authenticates and authorizes access. Evaluate immutable or logically air-gapped storage, encryption, role-based access control (RBAC), multifactor authentication (MFA), Security Information and Event Management (SIEM) integration, audit reporting, recovery testing, and whether the product is designed for identity incident response or simply for scheduled SaaS backup.
+Finally, match the tool to the ownership model in your organization. Identity teams may prefer dedicated identity resilience platforms such as Cayosoft, Quest, or Semperis. Backup teams may prefer Commvault, Veeam, Rubrik, Keepit, Druva, AvePoint, or ManageEngine if Entra ID protection needs to sit alongside Microsoft 365, SaaS, endpoint, or broader enterprise data protection.
+Before we get to third-party tools, let’s address the native option.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac556bd0759')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a740d5ba83d">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-entra-id-memberof-rule-operator-retirement/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft to Retire Entra ID MemberOf Rule Operator</a>
+          <div class="article-meta">petri.com &bull; Aug 06, 2026</div>
+          <div class="article-summary"><p>Organizations must replace affected configurations to avoid outdated memberships and access assignments.
+Key Takeaways:
+Microsoft will retire the MemberOf rule operator in Microsoft Entra ID later this year. This change will require organizations to update or replace affected configurations before November 2026.
+In Microsoft Entra ID, the MemberOf rule operator was introduced as a preview feature, allowing administrators to build dynamic groups, administrative units, or entitlement policies based on a user’s membership in another group. Instead of creating complex attribute-based rules, organizations can automatically include users who already belong to specific groups. This capability makes it easier to manage access and assignments across related resources.
+“Microsoft continues improving the scale and reliability of dynamic membership processing. During preview, Microsoft observed that use of MemberOf can affect dynamic membership processing across a tenant even if you have one MemberOf rule operator in your tenant. Because of this limitation, it is not recommended for production use and will be retired,” the company explained on the Microsoft 365 admin center.
+Microsoft plans to deprecate the MemberOf rule operator for Entra ID customers in early November 2026. Organizations have until November 3, 2026 to update, replace, or remove any configurations that depend on it. This change will impact several Microsoft Entra ID features, including dynamic membership groups, dynamic administrative units (AUs), and Entitlement Management auto-assignment policies.
+If organizations don’t make the necessary changes ahead of the retirement deadline, any memberships or assignments that rely on the MemberOf operator will stop updating and remain locked in their last known state. Consequently, access permissions could become outdated, allowing former users to retain access while preventing new users from receiving the permissions they need.
+This change could affect a wide range of services and controls, including Microsoft Teams, SharePoint, Conditional Access policies, group-based licensing, administrative unit scopes, and Entitlement Management assignments. This could lead to outdated access management and governance challenges across the organization.
+To prepare for the retirement of the MemberOf rule operator, organizations should begin by identifying every dynamic group, administrative unit, and entitlement management policy that relies on it. Administrators should then replace MemberOf-based rules with supported dynamic membership criteria wherever possible or switch to assigned memberships when an equivalent rule cannot be created. It’s advised to thoroughly test and validate memberships, access permissions, and assignment behaviors to ensure users continue receiving the correct level of access.
+Organizations should also review whether existing groups, administrative units, and policies are still necessary. Administrators can remove unused or outdated configurations to identity management and reduce administrative overhead.
+In a Reddit thread, many IT admins appear frustrated because the MemberOf operator, despite remaining in preview, became a practical way to mimic nested group functionality in Microsoft Entra ID. Several administrators noted that they had already incorporated it into production environments due to its usefulness in managing access, licensing, and group memberships.
+The biggest concern is that Microsoft is retiring the feature without offering a direct replacement that provides the same functionality, which will force organizations to redesign existing processes and membership structures.
+Enterprise admins are also concerned about the migration effort required before the November 2026 deadline. They believe that replacing MemberOf-based logic with attribute-driven rules, static groups, or custom automation may require significant planning and testing, especially in larger environments.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a740d5ba83d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ab6327a03d9">
+        <div class="article-body">
+          <a href="https://petri.com/stop-treating-entra-connect-like-middleware/" target="_blank" rel="noopener noreferrer" class="article-title">Stop Treating Entra Connect Like Middleware</a>
+          <div class="article-meta">petri.com &bull; Aug 04, 2026</div>
+          <div class="article-summary"><p>Entra Connect sits between Active Directory and Entra ID, which makes its server, connector accounts, and legacy SSO settings part of your Tier 0 attack surface and not ordinary middleware.
+Entra Connect is well known as the application responsible for synchronizing on-premises Active Directory (AD) identities to the Entra Cloud. This service is not only integral to an environment’s operational health, it must be on your security radar as it straddles two trust boundaries and is the authority for your hybrid identities.
+🎬 Watch This Week in IT.
+All too commonly, Entra Connect is deployed just like an ordinary application rather than being treated as the Tier 0 asset it is. If you run Entra Connect, treat it as Tier 0 infrastructure: isolate the server, restrict the connector accounts, exclude privileged identities from sync, and retire Seamless SSO unless there is a clear business reason to keep it.
+Yes, I still like to use the Tier 0 terminology over the Enterprise Access Model (EAM) or Red Forest because it’s simpler to understand. They’re all built on the fundamental theory of allowing only privileged assets to communicate with other privileged assets.
+As it relates to Entra Connect, this means two things.
+However, Entra Connect is more than simply the server it’s running on. There are a series of identities involved in the synchronization process.
+The security question is not just whether these accounts exist, but what each one can change if the Entra Connect server or its credentials are compromised.
+The AD DS Connector Account, typically named with the MSOL prefix, is the AD side of Entra Connect. Upon deployment, this account is delegated highly privileged access inside of AD and therefore must receive the Tier 0 treatment. A common misconfiguration of the AD DS Connector Account is that it’s also delegated permissions via the AdminSDHolder template, giving it control over your most privileged objects such as Domain Admins.
+Removing permissions on the AdminSDHolder template limits the blast radius of a compromised AD DS Connector Account but it doesn’t prevent synchronization of those admin accounts.
+The second half of this configuration is the sync scope. OU or group filtering should be excluding all Tier 0 and even Tier 1 admins from synchronization. These steps are important to protect against a number of known attack techniques where an on-premises compromise turns into a cloud compromise, or vise-versa.
+The Entra Connector Account, named with the Sync prefix, is the Entra side of Entra Connect. Permissions on this side of the synchronization has undergone several hardening updates over the last few years but due to the nature of its use, this identity must maintain privileges that still make it vulnerable.
+In a July 2025 update, an application identity replaced the user identity. Entra Connect version 2.5.76 and newer default to use the new identity type. New versions are consistently being released that address security issues so it’s important to keep the Entra Connect version updated.
+What’s better than an up-to-date Entra Connect server? Two Entra Connect servers! Establishing resilience by setting up a secondary server in staging mode serves as a warm backup. The servers must be on matching Entra Connect versions to avoid sync-rule incompatibility on failover. Each server holds its own copy of equally sensitive credentials, so all previous hardening recommendations also apply to a secondary server.
+In most cases, modern operating systems and Entra/hybrid-joined devices now use a Primary Refresh Token (PRT) that replaces the need for the Seamless SSO service. Seamless SSO depends on a shared Kerberos decryption key stored on the AZUREADSSOACC computer account in AD. If an attacker extracts that key, they can forge tickets and impersonate any synced user.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ab6327a03d9')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a9f11fd1b6e">
+        <div class="article-body">
+          <a href="https://www.theregister.com/networks/2026/08/07/n-able-god-mode-flaw-vendor-confirms-attackers-reached-customer-networks-as-second-hotfix-lands/5284730" target="_blank" rel="noopener noreferrer" class="article-title">N-able God mode flaw: Vendor confirms attackers reached customer networks as second hotfix lands</a>
+          <div class="article-meta">theregister.com &bull; Aug 07, 2026</div>
+          <div class="article-summary"><p>AI
+- 
+                        
+                            AI and ML OpenAI pledges to add Astra security as Anthropic loosens Fable's leashOr how I learned to stop worrying and love dangerous AI
+- 
+                        
+                            AI and ML AI titans to tidy agent frontier with plugin prescriptionAgent Plugins 1.0 defines a write-once-run-anywhere container for passing tools and skills across different agent platforms
+- 
+                        
+                            AI and ML How the famed USENIX Security conf is managing a flood of papers in the AI eraAI usage is evident but isn't yet a serious problem
+- 
+                        
+                            AI and ML AMD acquires AI chip startup Taalas to boost inference performance by etching models into siliconEarly tech demos show model-specific integrated circuits churning out up to 17,000 tokens a second
+- 
+                        
+                            AI and ML AI struggles to patch vulns without adult supervisionLeft alone, autonomous fixes often fail to fully remediate flaws
+Infosec
+- 
+                        
+                            Security Russians are posing as Signal support to launch phishing attacksPLUS: US takes down Iranian propaganda sites; Marketing company asks 'Why Do We Have Your Information?' And more!
+- 
+                        
+                            Security Microsoft patches failed to fix on-prem SharePoint, which is now under zero-day attackPLUS: China upgrades smartphone surveillance tools; Ring eases anti-snooping stance; and more
+- 
+                        
+                            Black Hat and DEF CON DEF CON Franklin project enlists hackers to harden critical infrastructureVoting village reports have been so successful, says Jeff Moss, that the whole of DEF CON will now be included
+- 
+                        
+                            Security EQT buys majority share in Swiss cybersecurity biz AcronisWent at equivalent of $3.5B+ valuation for entire firm, though portion sold not specified
+- 
+                        
+                            Malware Month Ten years since the first corp ransomware, Mikko Hyppönen sees no end in sightOn the plus side, infosec's a good bet for a long, stable career
+FOSS
+- 
+                        
+                            FOSS smashed one Microsoft monopoly. After 20 years of failure, it's time to smash anotherWord up
+- 
+                        
+                            GNOME can look like Windows – and Flashback can do it without extensionsNew 'Simple-taskbar' is an option, but there's a simpler, stabler way
+- 
+                        
+                            A moment of silence, please, for the final release of Debian on x86-32New Debian versions hit FOSSland in the form of 13.6 and 12.15
+- 
+                        
+                            Baddies caught exploiting extensions bugs with perfect 10 scores on vulnerable Joomla websitesFlaws in iCagenda, Balbooa Forms extensions can impact open source CMS that powers a million sites worldwide
+- 
+                        
+                            Frame: A new X11 server – implemented directly in assemblyJoins yserver, Phoenix, and of course XLibre – and outlier Arcan
+- 
+                        
+                            Cinnamon 6.8 will support Wayland – if you want itNext version of Linux Mint’s desktop has both kinds of display server</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a9f11fd1b6e')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a77ca0d4027">
+        <div class="article-body">
+          <a href="https://www.theregister.com/security/2026/08/04/feds-get-3-days-to-patch-n-able-god-mode-flaw-under-active-exploit/5282894" target="_blank" rel="noopener noreferrer" class="article-title">Feds get 3 days to patch N-able God mode flaw under active exploit</a>
+          <div class="article-meta">theregister.com &bull; Aug 04, 2026</div>
+          <div class="article-summary"><p>AI
+- 
+                        
+                            AI and ML OpenAI pledges to add Astra security as Anthropic loosens Fable's leashOr how I learned to stop worrying and love dangerous AI
+- 
+                        
+                            AI and ML AI titans to tidy agent frontier with plugin prescriptionAgent Plugins 1.0 defines a write-once-run-anywhere container for passing tools and skills across different agent platforms
+- 
+                        
+                            AI and ML How the famed USENIX Security conf is managing a flood of papers in the AI eraAI usage is evident but isn't yet a serious problem
+- 
+                        
+                            AI and ML AMD acquires AI chip startup Taalas to boost inference performance by etching models into siliconEarly tech demos show model-specific integrated circuits churning out up to 17,000 tokens a second
+- 
+                        
+                            AI and ML AI struggles to patch vulns without adult supervisionLeft alone, autonomous fixes often fail to fully remediate flaws
+Infosec
+- 
+                        
+                            Security Russians are posing as Signal support to launch phishing attacksPLUS: US takes down Iranian propaganda sites; Marketing company asks 'Why Do We Have Your Information?' And more!
+- 
+                        
+                            Security Microsoft patches failed to fix on-prem SharePoint, which is now under zero-day attackPLUS: China upgrades smartphone surveillance tools; Ring eases anti-snooping stance; and more
+- 
+                        
+                            Black Hat and DEF CON DEF CON Franklin project enlists hackers to harden critical infrastructureVoting village reports have been so successful, says Jeff Moss, that the whole of DEF CON will now be included
+- 
+                        
+                            Security EQT buys majority share in Swiss cybersecurity biz AcronisWent at equivalent of $3.5B+ valuation for entire firm, though portion sold not specified
+- 
+                        
+                            Malware Month Ten years since the first corp ransomware, Mikko Hyppönen sees no end in sightOn the plus side, infosec's a good bet for a long, stable career
+FOSS
+- 
+                        
+                            FOSS smashed one Microsoft monopoly. After 20 years of failure, it's time to smash anotherWord up
+- 
+                        
+                            GNOME can look like Windows – and Flashback can do it without extensionsNew 'Simple-taskbar' is an option, but there's a simpler, stabler way
+- 
+                        
+                            A moment of silence, please, for the final release of Debian on x86-32New Debian versions hit FOSSland in the form of 13.6 and 12.15
+- 
+                        
+                            Baddies caught exploiting extensions bugs with perfect 10 scores on vulnerable Joomla websitesFlaws in iCagenda, Balbooa Forms extensions can impact open source CMS that powers a million sites worldwide
+- 
+                        
+                            Frame: A new X11 server – implemented directly in assemblyJoins yserver, Phoenix, and of course XLibre – and outlier Arcan
+- 
+                        
+                            Cinnamon 6.8 will support Wayland – if you want itNext version of Linux Mint’s desktop has both kinds of display server</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a77ca0d4027')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ae82e757551">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/08/n-central-attackers-reach-managed.html" target="_blank" rel="noopener noreferrer" class="article-title">N-able Issues N-central Hotfix 2 as Attackers Reach Managed Systems and Persist</a>
+          <div class="article-meta">thehackernews.com &bull; Aug 08, 2026</div>
+          <div class="article-summary"><p>N-able has released a fresh round of hotfixes for N‑central as part of its investigation into ongoing exploitation of a recently disclosed security flaw in the Remote Monitoring and Management (RMM) product.
+&quot;We are proactively expanding protections in response to ongoing monitoring of threat actors as they evolve their attack techniques,&quot; the company said.
+&quot;This is not a duplicate of our previous communication. Hotfix 2 is required, even if you already applied the earlier hotfix. Hotfix 2 supersedes Hotfix 1 with additional hardening measures to further protect you and your customers.&quot;
+The disclosure comes as N-able acknowledged that it detected unusual activity within a customer's environment on July 31, 2026, leading to the discovery of unknown threat actors exploiting a then-zero-day flaw in the N‑central server (CVE-2026-18577, CVSS score: 8.2). It impacts all versions prior to 2026.3.1.7.
+It's worth noting that CVE-2026-18577 relates to an incomplete fix for CVE-2026-18556 (CVSS score: 8.2). Both vulnerabilities, which allow authentication bypass and account takeover in susceptible versions, have been flagged as actively exploited by the U.S. Cybersecurity and Infrastructure Security Agency (CISA).
+In the attacks observed by N-able, the vulnerability allowed the attackers to obtain administrative access remotely and then leverage the Take Control feature to connect to systems within the N‑central managed environment. Upon gaining access to those devices, the threat actors registered a new service for a Cloudflare Tunnel, enabling persistence even after access to the N‑central server was revoked.
+N-able has confirmed that a limited number of customers have been affected by the exploitation activity. Customers running an on-premise version are advised to update their instances to 026.3.1.10 immediately. The company has also shared an expanded set of IP addresses as indicators of compromise (IoCs) -
+- 173.249.252[.]176
+- 173.249.252[.]200
+- 185.156.46[.]150
+- 23.234.94[.]43
+- 37.153.90[.]88
+- 37.19.210[.]32
+- 68.235.46[.]214
+- 68.235.46[.]235
+- 87.249.138[.]34
+- 92.118.112[.]181
+In addition, N-able has released a custom service template that offers an automated way to check for known IoCs against Windows device endpoints in N‑central.
+&quot;A clean result should not be interpreted as a guarantee that your environment has not been impacted,&quot; it said. &quot;Our investigation is ongoing and additional indicators may be identified over time. We strongly recommend this be used as one layer of your assessment, alongside a thorough review of your environment, logs, and account activity.&quot;</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ae82e757551')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a4aee1fe898">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/08/malware-can-abuse-windows-hello-for.html" target="_blank" rel="noopener noreferrer" class="article-title">Malware Can Abuse Windows Hello for Business Keys for Persistent Entra ID Access</a>
+          <div class="article-meta">thehackernews.com &bull; Aug 07, 2026</div>
+          <div class="article-summary"><p>Entra ID researcher Dirk-jan Mollema demonstrated that malware already running in a signed-in Windows session can silently use the victim's Windows Hello for Business key to authenticate to Microsoft Entra ID.
+The attacker can then establish longer-term cloud access, register a device it controls, obtain a Primary Refresh Token (PRT), and add further authentication methods where tenant policies permit.
+On TPM-backed systems, the attacker does not extract the private key, recover the PIN, or trigger a biometric prompt. Windows ticketing keeps private-key operations available while the user is interactively signed in, allowing code running as the user to ask Windows to sign authentication data. Administrator privileges are not required.
+The technique requires code execution in the victim's signed-in session. Mollema describes the behavior as a consequence of how Windows Hello for Business works and says it was left as-is. The disclosure does not report active exploitation or victims. Mollema recommends monitoring unexpected device registrations.
+The disclosure does not identify the exact Windows builds or Windows Hello for Business deployment models tested. The Hacker News found no CVE or Microsoft advisory tied to the technique in searches of Microsoft's Security Update Guide, NVD, and CVE.org as of August 6, 2026. The Hacker News has contacted Microsoft and Mollema; replies are pending.
+Microsoft documents the ticketing behavior. Mollema said the ability to invoke Windows Hello for Business keys from a compromised session was presented at DEF CON 32 in 2024. That method could produce a signed assertion for a PRT, but also required access to an Entra-registered or joined device.
+The new work removes that requirement by treating the Windows Hello for Business key as a FIDO2 passkey through WebAuthn. Mollema found that the five-minute Entra ID challenge is not bound to a session, user, or tenant.
+An attacker can therefore request it on another host and have the compromised endpoint produce the signed assertion. ROADtools, a framework for interacting with Entra ID, can use the assertion to request tokens or open a browser session as the victim.
+Mollema found that the token carries no device ID claim. A token without that device binding lets the attacker register a new device, request a PRT for it, and reach Microsoft cloud services. Microsoft documents that a PRT remains valid for 90 days and is continuously renewed while the user actively uses the device.
+Mollema found that the WebAuthn sign-in can satisfy Conditional Access policies requiring Microsoft's phishing-resistant authentication strength. He said the sign-in also counts as fresh multi-factor authentication, allowing an attacker to add passkeys or Windows Hello for Business keys on the new device where policies allow. Separate device-state or compliance policies can still interrupt the chain, so the complete persistence route will not work in every deployment.
+The finding exposes a limit of phishing-resistant authentication: the credential can remain hardware-bound and unexported while malware inside the signed-in endpoint session invokes it for the attacker.
+Mollema published the PowerShell proof-of-concept scripts in the ROADtools repository. The Hacker News found fido_assertion.ps1 and hellopoc.ps1 in the folder on August 6, 2026. For detection, he recommended hunting for Windows Hello for Business sign-ins with an empty device ID. Legitimate incognito or non-SSO browser sessions can produce the same pattern.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a4aee1fe898')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a21fccabefa">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/08/cisa-flags-langflow-rce-tomcat-and-n.html" target="_blank" rel="noopener noreferrer" class="article-title">CISA Flags Langflow RCE, Tomcat, and N-central Flaws as Actively Exploited</a>
+          <div class="article-meta">thehackernews.com &bull; Aug 05, 2026</div>
+          <div class="article-summary"><p>The U.S. Cybersecurity and Infrastructure Security Agency (CISA), on August 5, 2026, added three flaws to its Known Exploited Vulnerabilities (KEV) catalog, citing evidence of active exploitation in the wild.
+The list of vulnerabilities is as follows -
+- CVE-2026-9198 (CVSS score: 9.8) - A code injection vulnerability in Langflow that allows unauthenticated attackers to achieve full remote code execution on default Langflow deployments. (Fixed in July 2026 with version 1.10.1)
+- CVE-2026-34486 (CVS score: 7.5) - A missing encryption of sensitive data vulnerability in Apache Tomcat that allows a bypass of EncryptInterceptor, a cluster component that adds pre-shared key encryption to messages sent between cluster nodes. (Fixed in April 2026 with versions 11.0.21, 10.1.54, and 9.0.117)
+Also added to the KEV catalog is CVE-2026-18556 (CVSS score: 8.2), an authentication bypass vulnerability in N-able N-central. It's worth noting that an incomplete fix for this issue prompted N-able to issue a fresh patch, which is tracked as CVE-2026-18577 (CVSS score: 8.2).
+While CVE-2026-18577 was placed in the KEV catalog on Monday, the latest development signals that both vulnerabilities are being exploited by threat actors.
+There are currently no details on how the Langflow flaw is being exploited. However, security defects in the open-source artificial intelligence (AI) application development platform have been repeatedly weaponized by bad actors in recent months.
+Telemetry data from KEVIntel shows that 650 exploitation attempts against CVE-2026-9198 have been recorded starting July 6, 2026, from 244 unique attacker IP addresses from 41 countries.
+The exploitation of CVE-2026-34486, on the other hand, has been attributed to an AI-enabled autonomous hacking campaign orchestrated by a Chinese-speaking threat actor operating under the aliases knaithe and KnYuan. The threat actor, based in Zhuhai, China, is said to have leveraged DeepSeek, via the Hermes Agent framework, as an offensive operator to target internet-exposed devices.
+When initial attempts to exploit a Langflow flaw (CVE-2026-33017, CVSS 9.8) breach failed due to the target environment's restrictive configurations, the AI agent is said to have conducted autonomous research to identify other higher-value vulnerabilities, including flaws in n8n, to find a way in.
+Separately, the Chinese-speaking adversary has been found conducting manual operations using known vulnerabilities in Citrix NetScaler (CVE-2026-3055), Marimo (CVE-2026-39987), Apache Tomcat (CVE-2026-34486), and IKE VPN (CVE-2026-33824) endpoints.
+&quot;This actor attempted to exploit over 460 targets, leveraging a mix of autonomous and manual techniques,&quot; Palo Alto Networks Unit 42 said. &quot;What's interesting is that the actor appeared to allow DeepSeek to narrow the targeting scope, likely to conserve AI compute.&quot;
+&quot;This autonomous process of target identification, sampling and narrowing of scope is notable because the system executed hundreds of hours of manual targeting analysis in mere minutes, while also managing its own compute resources.&quot;
+CVE-2026-34486 has also been weaponized in attacks mounted by a China-nexus threat actor targeting government and commercial infrastructure across more than 100 countries to deliver SNOWLIGHT, a lightweight, C-based Linux dropper and loader. The campaign is assessed to have taken place between late April and early June 2026.
+The activity was discovered by SOCRadar following an analysis of an exposed adversary-operated staging server containing reconnaissance lists, nine weaponized CVEs, a cracked Chinese version of Cobalt Strike dubbed GoCobaltStrike, tunneling tooling, and other payloads.
+&quot;The toolkit comprises a purpose-built reconnaissance pipeline, eleven distinct exploit chains, two tunneling tools, and four C2/RAT/malware families, including a verified SNOWLIGHT instance,&quot; the cybersecurity company said.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a21fccabefa')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="m365" class="topic-section">
+      <h2 class="topic-title" style="--c:#D83B01">Microsoft 365 <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="ac556bd0759">
+        <div class="article-body">
+          <a href="https://petri.com/best-entra-id-backup-and-recovery-solutions/" target="_blank" rel="noopener noreferrer" class="article-title">Best Entra ID Backup and Recovery Solutions for Enterprises</a>
+          <div class="article-meta">petri.com &bull; Aug 07, 2026</div>
+          <div class="article-summary"><p>A practical guide to the leading Microsoft Entra ID backup and recovery tools for identity resilience, rollback, cyberattack recovery, and hybrid Microsoft environments.
+Microsoft Entra ID sits underneath Microsoft 365, Azure, and thousands of enterprise Software-as-a-Service (SaaS) applications. If users, groups, app registrations, Conditional Access policies, roles, or service principals are deleted or misconfigured, the impact is not limited to the identity team. Users can lose access to core business applications, administrators can lose privileged access workflows, and security controls can stop applying as intended.
+Microsoft has improved the native recovery story with Microsoft Entra Backup and Recovery, a built-in service that can recover supported directory objects to a previously known good state after accidental changes or security compromises. But enterprises still need to evaluate third-party products where they require longer retention, hard-delete recovery, hybrid Active Directory integration, richer relationship recovery, isolated storage, broader Microsoft 365 backup coverage, or identity-specific cyber recovery.
+Entra ID is no longer just a user directory. It is the control plane for authentication, authorization, app access, Conditional Access, service principals, administrative roles, and increasingly device and security posture decisions. Microsoft’s native Backup and Recovery supports objects such as users, groups, apps, service principals, Conditional Access policies, named locations, authentication method policy, and authorization policy, which illustrates how many critical access controls now live in the tenant itself.
+The problem is that identity failures are often relationship failures. Restoring a user or group is useful, but enterprise environments also depend on group memberships, app assignments, Conditional Access scopes, role assignments, ownership, Privileged Identity Management (PIM) configuration, Intune policies, and audit evidence. Some tools in this list are dedicated identity resilience platforms, while others are broader Microsoft 365 or SaaS backup platforms that now include meaningful Entra ID protection.
+The best Entra ID recovery products should protect more than users and groups. Enterprise buyers should look for coverage of:
+Microsoft’s own native object support is broad but selected by object/property type, and recovery applies only to supported properties rather than implying full object rollback.
+Recovery depth is the next major differentiator. Look for attribute-level recovery, object-level restore, difference reporting, rollback from change history, relationship recovery, restore to original or alternate tenant, and documented handling of soft-deleted versus hard-deleted objects.
+Microsoft explicitly states that Microsoft Entra Backup and Recovery does not support recovery or re-creation of hard-deleted objects, which is a key reason third-party tools remain relevant.
+Security architecture also matters. Entra ID backups are valuable targets because they describe how the organization authenticates and authorizes access. Evaluate immutable or logically air-gapped storage, encryption, role-based access control (RBAC), multifactor authentication (MFA), Security Information and Event Management (SIEM) integration, audit reporting, recovery testing, and whether the product is designed for identity incident response or simply for scheduled SaaS backup.
+Finally, match the tool to the ownership model in your organization. Identity teams may prefer dedicated identity resilience platforms such as Cayosoft, Quest, or Semperis. Backup teams may prefer Commvault, Veeam, Rubrik, Keepit, Druva, AvePoint, or ManageEngine if Entra ID protection needs to sit alongside Microsoft 365, SaaS, endpoint, or broader enterprise data protection.
+Before we get to third-party tools, let’s address the native option.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac556bd0759')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a0c8a2f8269">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiwAFBVV95cUxPS2VLd2w4Ry1jdkRNTGtaNkRIbzVjYkR4Zk5ZdXJrMjMxTFNhN0c5eWhMMXdxNDlBbFBHa1Q4Mk9CdE5oU1ZZWk1BSzdWRWptcW9QN1UwU3A0X1NFQTY5MkJDbk1UaG9ENThiNURjUHkyeGRMMWR5LU16T2ZnLUJHaFpzQjhpdGtLTnc0cm5JZHE0U2NYa0tLNUdyekg0Y21ZSENQMUZPdmFoSjQyUTRBMVJrRXF4R1BMZmc2SjZyXzk?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">What’s new in Power Platform: July/August 2026 feature update - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; Aug 06, 2026</div>
+          <div class="article-summary snippet"><p>What’s new in Power Platform: July/August 2026 feature update&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMiwAFBVV95cUxPS2VLd2w4Ry1jdkRNTGtaNkRIbzVjYkR4Zk5ZdXJrMjMxTFNhN0c5eWhMMXdxNDlBbFBHa1Q4Mk9CdE5oU1ZZWk1BSzdWRWptcW9QN1UwU3A0X1NFQTY5MkJDbk1UaG9ENThiNURjUHkyeGRMMWR5LU16T2ZnLUJHaFpzQjhpdGtLTnc0cm5JZHE0U2NYa0tLNUdyekg0Y21ZSENQMUZPdmFoSjQyUTRBMVJrRXF4R1BMZmc2SjZyXzk?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a0c8a2f8269')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a09ff641778">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/08/microsoft-365-aitm-phishing-hijacks.html" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft 365 AitM Phishing Hijacks Accounts to Collect Payroll and Finance Emails - The Hacker News</a>
+          <div class="article-meta">The Hacker News &bull; Aug 07, 2026</div>
+          <div class="article-summary"><p>Cybersecurity researchers have called attention to an active &quot;widespread email-driven phishing campaign&quot; that employs adversary-in-the-middle (AitM) techniques to take control of Microsoft 365 accounts with an aim to identify key personnel involved in financial workflows and gather related email.
+&quot;The campaign uses residential proxies to disguise malicious sign-ins as ordinary consumer traffic,&quot; Arctic Wolf Labs said. &quot;Automated activity maintains compromised sessions at approximately eight-hour intervals.&quot;
+The activity is assessed to impact organizations across healthcare, education, manufacturing, government, and professional services sectors located in the U.S., Canada, and Europe. It shares tactical overlaps with Payroll Pirate attacks tracked by Microsoft under the moniker Storm-2755.
+Payroll Pirates is the designation assigned to a broader financially motivated threat cluster that involves hijacking the accounts of employees to reroute salary payments to attacker-controlled accounts. Some aspects of these campaigns have been documented since early 2025, with Microsoft tracking a related threat as Storm-2657.
+Arctic Wolf said it observed hundreds of organizations being targeted by email as part of the latest phishing campaign last month, resulting in successful intrusions spanning a broad range of victim environments.
+Attack chains involve the use of voicemail-themed phishing emails to lead victims to AitM decoy pages that act as a proxy for the legitimate Microsoft account authentication flow, while stealthily capturing their credentials and multi-factor authentication (MFA) codes.
+This is accomplished by means of a six-stage redirection chain that employs legitimate and trusted services like Google, Google Meet, Google Ads, and Amazon S3 to sidestep reputation-driven filters.
+&quot;The chain begins with a Google Meet linkredirect URL, and continues through Google's outbound-link infrastructure before reaching a Campaign Manager /ddm/clk dynamic click tracker,&quot; Arctic Wolf said. &quot;In the activity we observed, the destination embedded in the tracker URL pointed to an HTML object hosted in an Amazon AWS S3 bucket. The S3-hosted page then redirected the victim to the campaign's AitM phishing infrastructure.&quot;
+The phishing pages also employ JavaScript to fingerprint the visiting host, gathering information about the web browser, operating system, screen and window dimensions, browser language, time zone offset, cookie capabilities, WebDriver status, WebGL vendor, and browser API availability. All this information is packaged and sent to a PHP endpoint through an HTTP POST request. The script then redirects the browser to the proxied Microsoft OAuth authorization endpoint.
+It also queries a geolocation API (&quot;api.country[.]is&quot;) for the requester's country code, and stores the result in a &quot;rcfh_country&quot; cookie with a seven-day expiration. Once initial access is obtained, the threat actor abuses the compromised sessions to collect emails from payroll and HR personnel who are involved in financial matters at the enterprise.
+What's more, controlled testing reveals that the malicious sign-in activity originates within minutes from a residential proxy exit node in the victim's country, indicating that the threat actors are possibly leveraging the geolocation data to select geographically matched proxy infrastructure for subsequent logins and evade security controls that otherwise prevent access from unusual IP addresses.
+Some of these sign-in events report &quot;implausible browser and operating-system combinations,&quot; such as mobile versions of Apple Safari or Google Chrome on Windows 10.
+&quot;Typically, 11 to 24 hours after the initial anomalous activity, malicious sign-ins began recurring at eight-hour intervals from rotating residential proxy addresses,&quot; Arctic Wolf added.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a09ff641778')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a0a683adcac">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiwwFBVV95cUxPTEkzQ1gzY1BaWk5vdURDQTF4b0hEMWY3LWxjRFkxVVVLM3hmNHhiOGl0OUxBeHlFNnQ2bTNuUkVwazhlOXVzMWUtQTNfV3FaN2xJNUJ0TldVNm1IbjdqRU9seENKTW9hOFd5VXB1UjhDMllaS2phWTBnbXAyaHg1eWd1dUVlS3pjemM0akNfb1JsWC05cHc4djh5ZVVoVjNjRGFES3NBclBnWEhBTmpoLWpGcGRsQ2xkTFNnbXJ4YmNjYUk?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Trustifi Launches Collaboration Shield To Help MSPs Secure Microsoft 365: Exclusive - crn.com</a>
+          <div class="article-meta">crn.com &bull; Aug 05, 2026</div>
+          <div class="article-summary snippet"><p>Trustifi Launches Collaboration Shield To Help MSPs Secure Microsoft 365: Exclusive&amp;nbsp;&amp;nbsp;crn.com</p><a href="https://news.google.com/rss/articles/CBMiwwFBVV95cUxPTEkzQ1gzY1BaWk5vdURDQTF4b0hEMWY3LWxjRFkxVVVLM3hmNHhiOGl0OUxBeHlFNnQ2bTNuUkVwazhlOXVzMWUtQTNfV3FaN2xJNUJ0TldVNm1IbjdqRU9seENKTW9hOFd5VXB1UjhDMllaS2phWTBnbXAyaHg1eWd1dUVlS3pjemM0akNfb1JsWC05cHc4djh5ZVVoVjNjRGFES3NBclBnWEhBTmpoLWpGcGRsQ2xkTFNnbXJ4YmNjYUk?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a0a683adcac')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ab19c6cc824">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMilgFBVV95cUxObVA3YnRtWWc4TEpETVdOSjhVS0IxbFg2ampvU0V6Xy1haVFtT2hPM1FDN2NLLU14b1ZPaTg3bEMtR3ZYYUw2MkN5WHNpZm96UTFfel91SG5QUmxpRjF6bm9WMGZpTlBlTG1Id0xnbTZ1MDl6M2lPX0tUeTJEZzFRVUV0eTVNcFZNSERIVl85U1ljX2Vvbnc?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft changes Intune’s role with inclusion into Microsoft 365 E5 - RSM</a>
+          <div class="article-meta">RSM &bull; Aug 06, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft changes Intune’s role with inclusion into Microsoft 365 E5&amp;nbsp;&amp;nbsp;RSM</p><a href="https://news.google.com/rss/articles/CBMilgFBVV95cUxObVA3YnRtWWc4TEpETVdOSjhVS0IxbFg2ampvU0V6Xy1haVFtT2hPM1FDN2NLLU14b1ZPaTg3bEMtR3ZYYUw2MkN5WHNpZm96UTFfel91SG5QUmxpRjF6bm9WMGZpTlBlTG1Id0xnbTZ1MDl6M2lPX0tUeTJEZzFRVUV0eTVNcFZNSERIVl85U1ljX2Vvbnc?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ab19c6cc824')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a6756485c9e">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMif0FVX3lxTE1zZGV2cHpXMW5kRDFIMXhoVmpJS0o5YVgyZWZ6SUk4WDM4QjIyMVRFWTU4YWJ6UHgwVTNkdDBIbXRtY3lmcFpWY0FPU0NmcFRXRjA1aVZLTnVTVlRuLVRadUNrRVg5b1hMaU5Kc3JHdUVaaEJHY1JLODhnbF8wUVk?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Rystad Energy for Microsoft 365 Copilot – Trusted energy intelligence for every workflow - Rystad Energy</a>
+          <div class="article-meta">Rystad Energy &bull; Aug 07, 2026</div>
+          <div class="article-summary snippet"><p>Rystad Energy for Microsoft 365 Copilot – Trusted energy intelligence for every workflow&amp;nbsp;&amp;nbsp;Rystad Energy</p><a href="https://news.google.com/rss/articles/CBMif0FVX3lxTE1zZGV2cHpXMW5kRDFIMXhoVmpJS0o5YVgyZWZ6SUk4WDM4QjIyMVRFWTU4YWJ6UHgwVTNkdDBIbXRtY3lmcFpWY0FPU0NmcFRXRjA1aVZLTnVTVlRuLVRadUNrRVg5b1hMaU5Kc3JHdUVaaEJHY1JLODhnbF8wUVk?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a6756485c9e')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ac39c9ba0e9">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMioAFBVV95cUxPNzc2MGtHMTRQSEtFQXN4N1VQNGtyYWN5ejdOQW5rU2ZNcTVyUGV2VXZwaVBSTEZPczJ2N3RsZUt5TWdTcGtMelRtRXpWbnNwQ0dObldxQU9IbEVpajlQTV9CZXN5MG1ESXUwYXVFdGFrOU1jYVRvWEEzYzhzcWxmQ0E3R1FtRzJFREJmZUwxLXlWd2ZPcXAtYWd5UFlER2tz?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Bye, Bye Office 365: The Newest Microsoft Office Just Dropped to Under $55 - PCMag</a>
+          <div class="article-meta">PCMag &bull; Aug 05, 2026</div>
+          <div class="article-summary snippet"><p>Bye, Bye Office 365: The Newest Microsoft Office Just Dropped to Under $55&amp;nbsp;&amp;nbsp;PCMag</p><a href="https://news.google.com/rss/articles/CBMioAFBVV95cUxPNzc2MGtHMTRQSEtFQXN4N1VQNGtyYWN5ejdOQW5rU2ZNcTVyUGV2VXZwaVBSTEZPczJ2N3RsZUt5TWdTcGtMelRtRXpWbnNwQ0dObldxQU9IbEVpajlQTV9CZXN5MG1ESXUwYXVFdGFrOU1jYVRvWEEzYzhzcWxmQ0E3R1FtRzJFREJmZUwxLXlWd2ZPcXAtYWd5UFlER2tz?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac39c9ba0e9')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a626956de93">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMilAFBVV95cUxOZm02OGlaRXJWY3ltYVE0Q1VBV0RrS1dPOHBFNHU2QkF6ekdxbnBVdlI3Q3JQQ01lNXFCR01jUkRhQmtjUF9ZSFhSdjBlRHpPQUpPM1VLQmpBbFQ5Rmc3eTZaQUJoMTBYTEU2RmNDdGNER2hsNjA5OURraE8yUjlUZDU5YVB3VWtDVW5TT0ZGemc1Qm5i?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Russian hackers abuse hotel Wi-Fi networks to steal Microsoft 365 credentials and deploy malware - Help Net Security</a>
+          <div class="article-meta">Help Net Security &bull; Aug 04, 2026</div>
+          <div class="article-summary snippet"><p>Russian hackers abuse hotel Wi-Fi networks to steal Microsoft 365 credentials and deploy malware&amp;nbsp;&amp;nbsp;Help Net Security</p><a href="https://news.google.com/rss/articles/CBMilAFBVV95cUxOZm02OGlaRXJWY3ltYVE0Q1VBV0RrS1dPOHBFNHU2QkF6ekdxbnBVdlI3Q3JQQ01lNXFCR01jUkRhQmtjUF9ZSFhSdjBlRHpPQUpPM1VLQmpBbFQ5Rmc3eTZaQUJoMTBYTEU2RmNDdGNER2hsNjA5OURraE8yUjlUZDU5YVB3VWtDVW5TT0ZGemc1Qm5i?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a626956de93')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="iru" class="topic-section">
+      <h2 class="topic-title" style="--c:#7C3AED">Iru MDM (formerly Kandji) </h2>
+      <p class="no-news">No articles found this week.</p>
+    </section>
+    <section id="cato" class="topic-section">
+      <h2 class="topic-title" style="--c:#FF6B35">Cato Networks <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="abf202087ca">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi4gFBVV95cUxNVzBlZXBWamUwQ0VjVFZ0UlNTdDMzOTdDRlNjRVhCa3VTWmN6OWNFckljOFhZa3o2RTA4VFhDcjVMRkJqa3B6R2xOR0M3WVdHQXNHaDdOVW82R0NfSnY3c1VTYTROeEtzMjktVVdLWjFnUDZqeE1rMXBJLWRXa2xhWlZTbmFacHRPdkNjTTJLZDE5WGxWT2tyNlduUkFrM0tlMGRIY1ozM2hDVXkxWERJbE5LZFJ2LW9ubUVFOFMyQTNTOThQU2tZU3gzeTc1YUxIZlpvTzV4WnRGNG5TNExQWWZ3?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks Launches Agentic Threat Prevention to Predict and Mitigate AI-Assisted Attacks - PR Newswire</a>
+          <div class="article-meta">PR Newswire &bull; Aug 03, 2026</div>
+          <div class="article-summary snippet"><p>Cato Networks Launches Agentic Threat Prevention to Predict and Mitigate AI-Assisted Attacks&amp;nbsp;&amp;nbsp;PR Newswire</p><a href="https://news.google.com/rss/articles/CBMi4gFBVV95cUxNVzBlZXBWamUwQ0VjVFZ0UlNTdDMzOTdDRlNjRVhCa3VTWmN6OWNFckljOFhZa3o2RTA4VFhDcjVMRkJqa3B6R2xOR0M3WVdHQXNHaDdOVW82R0NfSnY3c1VTYTROeEtzMjktVVdLWjFnUDZqeE1rMXBJLWRXa2xhWlZTbmFacHRPdkNjTTJLZDE5WGxWT2tyNlduUkFrM0tlMGRIY1ozM2hDVXkxWERJbE5LZFJ2LW9ubUVFOFMyQTNTOThQU2tZU3gzeTc1YUxIZlpvTzV4WnRGNG5TNExQWWZ3?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('abf202087ca')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aea14747e35">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiogFBVV95cUxNNVpfMUQwQjdnME5sRnBJMEtNa2dSdUYydTJ0ZVZwWndIZXZPQXRqZFJSSGk0b3QzclJyNzEtY3NXSHBqOV9rVW9wTmVYOEpKVE91aVF1RnEySDhnU3JUaC1QWER1S3E5amFCZFhZSHVLaFl2X3VwYlB0TFRDMC1CV2VBLVlsSDBzMjhGWTBrQkFTQUloN3pjTkxDZnV0MnZ6RXc?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks Adds Agentic AI Threat Prevention - Channel Insider</a>
+          <div class="article-meta">Channel Insider &bull; Aug 07, 2026</div>
+          <div class="article-summary snippet"><p>Cato Networks Adds Agentic AI Threat Prevention&amp;nbsp;&amp;nbsp;Channel Insider</p><a href="https://news.google.com/rss/articles/CBMiogFBVV95cUxNNVpfMUQwQjdnME5sRnBJMEtNa2dSdUYydTJ0ZVZwWndIZXZPQXRqZFJSSGk0b3QzclJyNzEtY3NXSHBqOV9rVW9wTmVYOEpKVE91aVF1RnEySDhnU3JUaC1QWER1S3E5amFCZFhZSHVLaFl2X3VwYlB0TFRDMC1CV2VBLVlsSDBzMjhGWTBrQkFTQUloN3pjTkxDZnV0MnZ6RXc?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aea14747e35')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ac3f808aff8">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiswFBVV95cUxOc1VOQ3NkSjE5aU9GeExUTlZ3MGI1YlByMnFaeXlhUEdhSkZveTN3TUlXRG95cW1TT2FRbmRVaFhEajBjVkEzNS1zU0tFQ0hlN2JHSkVWVkc1d0E5Ymk2c3c0ODBtWFE1RHNLdmFvMFdKRVkyYk5XNEhNZ19xaVlKSVFBQmRZMTEybno4aTNHcV9fSll2dU93SjFOSjd0dTNKaEppZW4wNFViRjBtUHMyaGtTOA?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks launches Agentic Threat Prevention to counter AI-assisted attacks - SiliconANGLE</a>
+          <div class="article-meta">SiliconANGLE &bull; Aug 03, 2026</div>
+          <div class="article-summary snippet"><p>Cato Networks launches Agentic Threat Prevention to counter AI-assisted attacks&amp;nbsp;&amp;nbsp;SiliconANGLE</p><a href="https://news.google.com/rss/articles/CBMiswFBVV95cUxOc1VOQ3NkSjE5aU9GeExUTlZ3MGI1YlByMnFaeXlhUEdhSkZveTN3TUlXRG95cW1TT2FRbmRVaFhEajBjVkEzNS1zU0tFQ0hlN2JHSkVWVkc1d0E5Ymk2c3c0ODBtWFE1RHNLdmFvMFdKRVkyYk5XNEhNZ19xaVlKSVFBQmRZMTEybno4aTNHcV9fSll2dU93SjFOSjd0dTNKaEppZW4wNFViRjBtUHMyaGtTOA?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac3f808aff8')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a1dc627bfef">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiwAFBVV95cUxPT3RUdmNILTlYN3duMXdXcTd6N2ctNEdRMWE4VE1rT09aVUdrYmtadmFFSDFqTWd2cHhSMHZCdlVselF4c3dCSW1ZUjVIdXg0MmM5aWlMU1l6M2RTb1lVdmhFVVRIZkJfX3BudGd5cWtBOUJ5TE1xUGx1T2J4eDBTcjVjU0E4bFlMUENRUkhZUk9yaFg4ektrWkhXWjJ0Yk9uNjZBX3oyVFpaUHVhTkswWVB6VjJBaGJMb0lQQjBKN3M?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Gartner SASE 2026 rankings: Netskope leads, Cato Networks leaps, and Palo Alto Networks falls - SDxCentral</a>
+          <div class="article-meta">SDxCentral &bull; Aug 03, 2026</div>
+          <div class="article-summary snippet"><p>Gartner SASE 2026 rankings: Netskope leads, Cato Networks leaps, and Palo Alto Networks falls&amp;nbsp;&amp;nbsp;SDxCentral</p><a href="https://news.google.com/rss/articles/CBMiwAFBVV95cUxPT3RUdmNILTlYN3duMXdXcTd6N2ctNEdRMWE4VE1rT09aVUdrYmtadmFFSDFqTWd2cHhSMHZCdlVselF4c3dCSW1ZUjVIdXg0MmM5aWlMU1l6M2RTb1lVdmhFVVRIZkJfX3BudGd5cWtBOUJ5TE1xUGx1T2J4eDBTcjVjU0E4bFlMUENRUkhZUk9yaFg4ektrWkhXWjJ0Yk9uNjZBX3oyVFpaUHVhTkswWVB6VjJBaGJMb0lQQjBKN3M?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a1dc627bfef')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a62827d4312">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiywFBVV95cUxNbVN5YWpFZ1BQMkV4akhhWkt1azZ1eTJWUzVwY0tiSDdFdVJKSXQ1WDQ3Y0JVN1ZQS2U5bTdwc3p1SFZyNGM1dERmTFhuYkN0OS1qeWdNTUo1Z3VpRDVsOEpySVdHakt4c3BNM2NyNEdQaXI2N2hHX0MtN2pHdlA0aFdQeTRjanFROW1EaUx4ZXloVG50ci1ucS1kR3o5MXpVUjNrVmR0czJmWHRESFpWZ3hsNW1SUEtBTUFKbmluR3E2dkszQ21aRDV1OA?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks Launches Agentic Threat Prevention to Stop AI-Assisted Attacks - The Fast Mode</a>
+          <div class="article-meta">The Fast Mode &bull; Aug 04, 2026</div>
+          <div class="article-summary snippet"><p>Cato Networks Launches Agentic Threat Prevention to Stop AI-Assisted Attacks&amp;nbsp;&amp;nbsp;The Fast Mode</p><a href="https://news.google.com/rss/articles/CBMiywFBVV95cUxNbVN5YWpFZ1BQMkV4akhhWkt1azZ1eTJWUzVwY0tiSDdFdVJKSXQ1WDQ3Y0JVN1ZQS2U5bTdwc3p1SFZyNGM1dERmTFhuYkN0OS1qeWdNTUo1Z3VpRDVsOEpySVdHakt4c3BNM2NyNEdQaXI2N2hHX0MtN2pHdlA0aFdQeTRjanFROW1EaUx4ZXloVG50ci1ucS1kR3o5MXpVUjNrVmR0czJmWHRESFpWZ3hsNW1SUEtBTUFKbmluR3E2dkszQ21aRDV1OA?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a62827d4312')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ac516c9c1e4">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMinwFBVV95cUxOTlNmZ0pTLXZlMU9YVnprQXdDbURwWTNadks4TW5TMTdBZE1yOGF4V2I0Z28xSnl3QTIzSzNjZHRqLTF4OEtFM0szNTZ3VEJnWVFTZ2p6enRzVURMNlBIQld6c2t5SnpUUzl1QTZPd09uTmFRNjVxYTlyX29OZXQzb2ZXYTdwQjdkcXptdzNNLTJMVmw0UEdfUWpvUjY4bk0?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks launches agentic threat prevention - Network World</a>
+          <div class="article-meta">Network World &bull; Aug 03, 2026</div>
+          <div class="article-summary snippet"><p>Cato Networks launches agentic threat prevention&amp;nbsp;&amp;nbsp;Network World</p><a href="https://news.google.com/rss/articles/CBMinwFBVV95cUxOTlNmZ0pTLXZlMU9YVnprQXdDbURwWTNadks4TW5TMTdBZE1yOGF4V2I0Z28xSnl3QTIzSzNjZHRqLTF4OEtFM0szNTZ3VEJnWVFTZ2p6enRzVURMNlBIQld6c2t5SnpUUzl1QTZPd09uTmFRNjVxYTlyX29OZXQzb2ZXYTdwQjdkcXptdzNNLTJMVmw0UEdfUWpvUjY4bk0?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac516c9c1e4')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ab3610be599">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMikAFBVV95cUxQMXVsckxkWWEtNEFQekMwd3F1WEhENzljZTk3c2N2dTJCbXFqUExvOUhzc1I2MlRfYVNqSUtqVVVncVhwal9QUTM5WFZUZ1ZkTTdIWDJSdjJqN05FZDBJSWdKdVhEWmxSVXVRNW8xLXU5SDZJSHRHLW9WQ2JtaFZidmc4WFh5ZDh2Y1lvcHc4dmI?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">The godfather of Israeli cybersecurity: The Hugging Face incident exposes the wrong AI security debate - Fortune</a>
+          <div class="article-meta">Fortune &bull; Aug 07, 2026</div>
+          <div class="article-summary snippet"><p>The godfather of Israeli cybersecurity: The Hugging Face incident exposes the wrong AI security debate&amp;nbsp;&amp;nbsp;Fortune</p><a href="https://news.google.com/rss/articles/CBMikAFBVV95cUxQMXVsckxkWWEtNEFQekMwd3F1WEhENzljZTk3c2N2dTJCbXFqUExvOUhzc1I2MlRfYVNqSUtqVVVncVhwal9QUTM5WFZUZ1ZkTTdIWDJSdjJqN05FZDBJSWdKdVhEWmxSVXVRNW8xLXU5SDZJSHRHLW9WQ2JtaFZidmc4WFh5ZDh2Y1lvcHc4dmI?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ab3610be599')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ab382c708e8">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMirgFBVV95cUxQRk1vOHRzdE45bUNOZU9mUm41dDN1bmp1M2tmY01POUxRSndqNGk1QnFldG5iWjY1OVI5ell3UU1ZVnRXMDZzTS1JN0E4eURFZVExMDdPOEVZZ0tRWEM0UkpqcmRiaGdLdTNmcDZPWGNqSEVicXR5N1c4LV9kWUNiN2E1RkJ1b0xRV1djWTJkMTl5QTNDUWx1TkVUOEhjd3F2WTQyVjNqeDc2eDkxVEE?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks introduces agentic threat prevention to counter AI-driven attacks - scworld.com</a>
+          <div class="article-meta">scworld.com &bull; Aug 04, 2026</div>
+          <div class="article-summary snippet"><p>Cato Networks introduces agentic threat prevention to counter AI-driven attacks&amp;nbsp;&amp;nbsp;scworld.com</p><a href="https://news.google.com/rss/articles/CBMirgFBVV95cUxQRk1vOHRzdE45bUNOZU9mUm41dDN1bmp1M2tmY01POUxRSndqNGk1QnFldG5iWjY1OVI5ell3UU1ZVnRXMDZzTS1JN0E4eURFZVExMDdPOEVZZ0tRWEM0UkpqcmRiaGdLdTNmcDZPWGNqSEVicXR5N1c4LV9kWUNiN2E1RkJ1b0xRV1djWTJkMTl5QTNDUWx1TkVUOEhjd3F2WTQyVjNqeDc2eDkxVEE?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ab382c708e8')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+</main>
+
+<footer>
+  Generated every Sunday &mdash; Topics: Windows &bull; Azure &bull; SharePoint &bull; Intune &bull; Entra ID &bull; Microsoft 365 &bull; Iru MDM (formerly Kandji) &bull; Cato Networks
+</footer>
+
+<script>
+const KEY = 'it-news-hidden-v1';
+function getHidden() {
+  try { return new Set(JSON.parse(localStorage.getItem(KEY) || '[]')); }
+  catch { return new Set(); }
+}
+function saveHidden(s) { localStorage.setItem(KEY, JSON.stringify([...s])); }
+function toggleArticle(id) {
+  const h = getHidden();
+  h.has(id) ? h.delete(id) : h.add(id);
+  saveHidden(h); applyHidden(h);
+}
+function applyHidden(h) {
+  h = h || getHidden();
+  document.querySelectorAll('.article-card[data-id]').forEach(c => {
+    c.classList.toggle('is-hidden', h.has(c.dataset.id));
+  });
+}
+let revealing = false;
+function toggleReveal() {
+  revealing = !revealing;
+  document.body.classList.toggle('reveal-hidden', revealing);
+  document.getElementById('reveal-btn').textContent = revealing ? 'Hide hidden' : 'Show hidden';
+}
+fetch('weeks.json').then(r => r.json()).then(weeks => {
+  const sel = document.getElementById('week-sel');
+  weeks.forEach(w => {
+    const o = document.createElement('option');
+    o.value = w.file; o.textContent = w.label;
+    if (w.current) o.selected = true;
+    sel.appendChild(o);
+  });
+}).catch(() => {});
+applyHidden();
+</script>
+</body>
+</html>
