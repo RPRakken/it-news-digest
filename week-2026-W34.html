@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT News Digest — 2026-W34</title>
+  <style>
+    :root{--bg:#f8fafc;--surface:#fff;--border:#e2e8f0;--text:#1e293b;--muted:#64748b;--accent:#2563eb}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+    a{color:var(--accent)}
+
+    header{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+    .h-inner{max-width:1000px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .h-brand{font-size:1.1rem;font-weight:800;color:#1d4ed8}
+    .h-meta{font-size:.78rem;color:var(--muted)}
+    .h-controls{display:flex;gap:8px;align-items:center}
+    .btn{padding:5px 12px;border-radius:6px;font-size:.78rem;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);white-space:nowrap}
+    .btn:hover{background:#f1f5f9}
+    select.week-sel{padding:5px 10px;border-radius:6px;border:1px solid var(--border);background:var(--surface);font-size:.78rem;cursor:pointer;color:var(--text)}
+
+    .t-nav{background:var(--surface);border-bottom:1px solid var(--border);overflow-x:auto}
+    .t-nav-inner{max-width:1000px;margin:0 auto;padding:8px 20px;display:flex;gap:6px;min-width:max-content}
+    .nav-link{font-size:.72rem;padding:3px 10px;border-radius:20px;border:2px solid var(--c,#2563eb);color:var(--c,#2563eb);text-decoration:none;font-weight:600;white-space:nowrap}
+    .nav-link:hover{background:var(--c,#2563eb);color:#fff}
+
+    main{max-width:1000px;margin:0 auto;padding:24px 20px}
+
+    .week-hero{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin-bottom:28px;display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+    .hero-title{font-size:1.6rem;font-weight:900;color:#1d4ed8}
+    .hero-sub{font-size:.85rem;color:var(--muted);margin-top:2px}
+    .stat-box{text-align:center;min-width:60px}
+    .stat-num{font-size:2rem;font-weight:900;color:#1d4ed8;line-height:1}
+    .stat-lbl{font-size:.65rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+
+    .topic-section{margin-bottom:40px}
+    .topic-title{font-size:1.2rem;font-weight:800;color:var(--c,#2563eb);border-bottom:3px solid var(--c,#2563eb);padding-bottom:8px;margin-bottom:14px}
+    .count{font-size:.8rem;font-weight:400;color:var(--muted)}
+    .no-news{color:var(--muted);font-style:italic;font-size:.88rem}
+
+    .article-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:12px;display:flex;gap:12px;align-items:flex-start;transition:border-color .15s}
+    .article-card:hover{border-color:#94a3b8}
+    .article-body{flex:1;min-width:0}
+    .article-title{font-size:.98rem;font-weight:600;text-decoration:none;display:block;margin-bottom:4px;color:var(--accent)}
+    .article-title:hover{text-decoration:underline}
+    .article-meta{font-size:.72rem;color:var(--muted);margin-bottom:8px}
+
+    .article-summary{margin-top:6px;font-size:.875rem;color:#334155;line-height:1.75}
+    .article-summary p{margin-bottom:.6em}
+    .article-summary p:last-child{margin-bottom:0}
+    .gnews-badge{display:inline-block;font-size:.65rem;background:#fef3c7;color:#92400e;border-radius:4px;padding:1px 5px;margin-bottom:6px;vertical-align:middle}
+    .article-summary.snippet{color:var(--muted)}
+    .read-more{display:inline-block;margin-top:6px;font-size:.8rem;font-weight:600;color:var(--accent);text-decoration:none}
+    .read-more:hover{text-decoration:underline}
+
+    .hide-btn{flex-shrink:0;padding:5px 10px;border-radius:6px;font-size:.72rem;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--muted);white-space:nowrap;align-self:flex-start}
+    .hide-btn:hover{border-color:#ef4444;color:#ef4444;background:#fef2f2}
+    .lbl-show{display:none}
+
+    .article-card.is-hidden{display:none}
+    body.reveal-hidden .article-card.is-hidden{display:flex;opacity:.45;border-style:dashed}
+    .article-card.is-hidden .lbl-hide{display:none}
+    .article-card.is-hidden .lbl-show{display:inline}
+    body.reveal-hidden .article-card.is-hidden .hide-btn{border-color:#16a34a;color:#16a34a}
+    body.reveal-hidden .article-card.is-hidden .hide-btn:hover{background:#f0fdf4}
+
+    footer{text-align:center;padding:24px 20px;color:var(--muted);font-size:.75rem;border-top:1px solid var(--border);margin-top:40px}
+
+    @media(max-width:600px){
+      .h-inner,.main{padding-left:14px;padding-right:14px}
+      .hero-title{font-size:1.3rem}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="h-inner">
+    <div>
+      <div class="h-brand">IT News Digest</div>
+      <div class="h-meta">Week 2026-W34 &bull; Aug 17–23, 2026</div>
+    </div>
+    <div class="h-controls">
+      <button class="btn" id="reveal-btn" onclick="toggleReveal()">Show hidden</button>
+      <select class="week-sel" id="week-sel" onchange="if(this.value) location.href=this.value">
+        <option value="">&#128337; Archive&hellip;</option>
+      </select>
+    </div>
+  </div>
+</header>
+
+<nav class="t-nav"><div class="t-nav-inner"><a href="#windows" class="nav-link" style="--c:#0078D4">Microsoft Windows</a><a href="#azure" class="nav-link" style="--c:#00BCF2">Azure</a><a href="#sharepoint" class="nav-link" style="--c:#036C70">SharePoint</a><a href="#intune" class="nav-link" style="--c:#0F6CBD">Intune</a><a href="#entraid" class="nav-link" style="--c:#6B69D6">Entra ID</a><a href="#m365" class="nav-link" style="--c:#D83B01">Microsoft 365</a><a href="#iru" class="nav-link" style="--c:#7C3AED">Iru MDM (formerly Kandji)</a><a href="#cato" class="nav-link" style="--c:#FF6B35">Cato Networks</a></div></nav>
+
+<main>
+  <div class="week-hero">
+    <div>
+      <div class="hero-title">Week 2026-W34</div>
+      <div class="hero-sub">Aug 17–23, 2026</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">42</div>
+      <div class="stat-lbl">Articles</div>
+    </div>
+  </div>
+
+    <section id="windows" class="topic-section">
+      <h2 class="topic-title" style="--c:#0078D4">Microsoft Windows <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="aa229abbbb5">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windows-insider/2026/08/21/announcing-new-builds-for-21-august-2026/" target="_blank" rel="noopener noreferrer" class="article-title">Announcing new builds for 21 August 2026</a>
+          <div class="article-meta">blogs.windows.com &bull; Aug 21, 2026</div>
+          <div class="article-summary"><p>Announcing new builds for 21 August 2026
+Hello Windows Insiders,
+Today, we’re releasing new Windows 11 Insider Preview builds to the Beta and Experimental Channels.
+Experimental Feature Flags
+We’ve fixed the issue causing the Feature Flags list to show empty for Insiders in the Experimental channel. You should now see Feature Flags reappear after installation of the latest Experimental build.
+New builds this week
+We’re releasing new Windows 11 Insider Preview builds today. Select your channel below to view its release notes:
+- Beta: Build 26220.9223
+- Experimental: Build 26340.9233
+For those on other specific build versions, here are today’s new builds and release notes:
+- Experimental (26H1): Build 28120.2760
+Notable new features:
+[Modernized Autoplay experience]
+Release channel: Experimental
+- We’ve updated the AutoPlay dialog that helps you choose the preferred experience when devices are connected to your PC (e.g., a phone, camera, or removable drive). Rebuilt with WinUI, the refreshed experience is more consistent with the rest of Windows, supports dark mode, and continues to provide the familiar AutoPlay actions you use today. The experience is also more responsive to text scaling and display settings. Notifications for this dialog will now be docked in the notification center for easy access.
+[Accessibility]
+Release channel: Experimental, Beta
+A simpler way to open apps maximized
+- We are introducing a new accessibility setting, “Open apps maximized”, that automatically maximizes app windows when they open — so you no longer have to do it yourself every time. This is a small change that removes a bit of everyday friction, whether you use a screen reader or magnification, work in tablet mode, or simply prefer a consistent, full-screen workspace.
+- To turn it on, go to Settings &gt; Accessibility &gt; Visual effects and switch on Open apps maximized. Once enabled, Windows maximizes app windows for you as they open. Give it a try and let us know how it works for you.
+Thanks,
+Stephen and the Windows Insider Program team
+					Tags:</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aa229abbbb5')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a3cced43e39">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windowsexperience/2026/08/20/windows-365-turns-five-cloud-pcs-enable-workspaces-at-scale/" target="_blank" rel="noopener noreferrer" class="article-title">Windows 365 turns five: Cloud PCs recognized for enabling flexible, trusted workspaces at scale</a>
+          <div class="article-meta">blogs.windows.com &bull; Aug 20, 2026</div>
+          <div class="article-summary"><p>Windows 365 turns five: Cloud PCs recognized for enabling flexible, trusted workspaces at scale
+Five years ago, we introduced Windows 365 and created a new personal computing category: the Cloud PC, providing a familiar Windows desktop running in the Microsoft Cloud that is secure by design, simple to manage, and enables work from any device. On the fifth anniversary of Windows 365, we’re reflecting on what our customers have accomplished, highlighting key advancements that have earned industry recognition, and sharing insights on where leaders should focus next. How work happens has changed a lot with the increasing adoption of AI and agents, but the need for secure, managed, and reliable workspaces remains.
+The measurable impact of Windows 365 Cloud PCs
+Today, tens of thousands of organizations across industries and around the world are using Windows 365 Cloud PCs. Customer feedback tells a consistent story of unlocking significant benefits, including reduced costs, lower network latency, fewer support tickets, and faster employee onboarding.
+Over the past five years, we’ve evolved Windows 365 in meaningful ways and introduced new offerings to meet our customers’ diverse needs:
+- Windows 365 Flex provides Cloud PCs for part-time, shift-based, or occasional use
+- Windows 365 Reserve equips employees with temporary Cloud PCs if their physical devices are unavailable
+- Windows 365 Link is the simple, secure purpose-built device for Windows 365 that’s especially useful for shared workspaces
+- Windows 365 for Agents provides a secure execution environment for AI agents to run.
+These solutions are making it easier for more customers to adopt cloud-powered Windows experiences in ways that fit their workplace needs. Our continued commitment to providing secure, managed and reliable workspaces for human and agentic workforces at scale has earned industry recognition.
+Microsoft recognized as a Leader in the 2026 Gartner® Magic Quadrant™ for Desktop as a Service
+We are honored to share that Microsoft has been named a Leader for 4 consecutive years in the Gartner® Magic Quadrant™ for Desktop as a Service and positioned highest in Ability to Execute. Gartner defines desktop as a service (DaaS) as the provision of virtual desktops by public cloud or other service providers. Read a complimentary copy of the report to see why Microsoft was named a Leader.
+Microsoft recognized as a Leader in the IDC MarketScape: Worldwide Desktop as a Service 2026 Vendor Assessment
+We are also honored to share that Microsoft was recently named a Leader in the IDC MarketScape: Worldwide Desktop as a Service 2026 Vendor Assessment. Read the excerpt to learn why Microsoft was named a Leader.
+“Microsoft offers a fully integrated DaaS stack where endpoint management, identity, security, and compliance serve as native prebuilt components.” Additionally, “Microsoft stands out as the only vendor to productize the agentic workspace as a distinct purchasable offering alongside the standard managed desktop. This provides a robust production foundation for IT leaders whose DaaS strategies must accommodate AI agent deployment over the next three years.”
+– IDC MarketScape: Worldwide Desktop as a Service 2026 Vendor Assessment (Doc #US54118526, July 2026)
+What’s new and next with Windows 365
+Five years in, Cloud PCs are enabling secure, flexible work not only for information workers but also the frontline, developers, and emerging AI agents. We are excited to share our most recent developments and where things are going next. Watch this Microsoft Mechanics demo to take a closer look and read on to learn more:
+Empowering developers
+For developers, we made several announcements at Microsoft Build 2026, including ready‑to‑code Cloud PCs preconfigured with common development tools, now in preview.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a3cced43e39')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ac4261da122">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windows-insider/2026/08/17/improving-file-explorer-context-menu-faster-simpler-and-more-customizable/" target="_blank" rel="noopener noreferrer" class="article-title">Improving File Explorer &amp; Context Menu: faster, simpler, and more customizable</a>
+          <div class="article-meta">blogs.windows.com &bull; Aug 17, 2026</div>
+          <div class="article-summary"><p>Improving File Explorer &amp; Context Menu: faster, simpler, and more customizable
+Hi Windows Insiders,
+File Explorer is one of the most used experiences on Windows. It’s where you get work done: organizing files, finding what you need, and moving content seamlessly across local storage and the cloud.
+Earlier this year, we shared our commitment to improving Windows quality, with a focus on performance, reliability, and craftsmanship. In File Explorer, that means investing in the foundational work needed to improve the experience end-to-end: reducing hangs and delays, improving responsiveness and reliability, addressing customer-reported issues, and removing friction from everyday tasks.
+But quality is also about continually evolving the experience to feel more modern, intuitive, and efficient for the millions of people who rely on File Explorer every day.
+Today we’re sharing progress on both fronts. Alongside continued investments in File Explorer performance and reliability, we are introducing a substantially redesigned context menu experience that’s faster, simpler, and more customizable than ever before. This new context menu experience is now rolling to Windows Insiders and represents one of several major improvements underway as we continue to modernize File Explorer.
+Fewer bad moments
+What people remember most are the worst moments. A single freeze while renaming a file, a slow right-click, or a Home view that flashes and reloads can outweigh dozens of smooth interactions.
+That reality has guided our approach to improving File Explorer. We focused on the everyday experiences people rely on most and set clear goals to make those interactions faster, more reliable, and less disruptive.
+Improving the moments that matter most
+We’ve profiled and invested in improving the performance and responsiveness of File Explorer. File Explorer now launches faster, and the overall experience feels more consistent and predictable.
+We’ve analyzed the issues behind many of the freezes, hangs, and delays users encounter, and eliminated dozens of potential stalls and interruptions in the experience. As a result, you’ll see fewer freezes and flashes when browsing, renaming files, navigating, or selecting multiple files.
+There are many more improvements to come, and these changes are designed to reduce disruptions and make File Explorer feel more responsive and reliable day to day.
+Improving the details that matter every day
+Our work extends beyond performance and reliability improvements. Many of the requests we hear from customers aren’t about major new features, they’re about the small interactions that happen every day. We’ve continued refining File Explorer based on that feedback, removing friction and improving the details that help make everyday tasks feel more natural and predictable.
+For example, file renames no longer get interrupted by background file synchronization, and case-only filename changes now appear immediately.
+We’ve also improved navigation workflows. The Address Bar now supports a wider range of inputs, including paths with quotation marks and double backslashes. Support for opening folders in a new tab with a middle-click has also been expanded to the Address Bar and Home page folders, making multitasking faster and more intuitive.
+Smaller usability improvements add up as well. Home now preserves whether sections are expanded or collapsed so you can pick up where you left off. File sizes are now displayed using appropriate units such as KB, MB, and GB, making them easier to understand at a glance. The Details pane has been reorganized so file properties are easier to find and review.
+Many of these improvements came directly from customer and Windows Insider feedback. They represent just the beginning of our ongoing effort to improve the everyday experiences people depend on most.
+Putting you in control of the context menu
+Right-clicking is one of the most common actions in Windows.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac4261da122')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="af92bb8e698">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windows-insider/2026/08/17/announcing-new-builds-for-17-august-2026/" target="_blank" rel="noopener noreferrer" class="article-title">Announcing new builds for 17 August 2026</a>
+          <div class="article-meta">blogs.windows.com &bull; Aug 17, 2026</div>
+          <div class="article-summary"><p>Announcing new builds for 17 August 2026
+Hello Windows Insiders,
+Today, we’re releasing new Windows 11 Insider Preview builds to the Beta and Experimental Channels. This post also includes reminders about renewed flight certificates and the current Feature Flags settings issue in the Experimental channel.
+Renewed Windows Insider flight certificates
+As a reminder, all new builds include renewed Windows Insider flight certificates, replacing certificates that expired on August 11, 2026. Flight certificates are renewed periodically to help ensure Insider devices remain on supported builds and continue receiving future Windows Insider Preview updates. Devices that are not updated to a newer build with a current certificate may encounter compatibility issues with software such as anti-cheat applications.
+For more information, please visit the certificate renewal FAQ.
+Experimental Feature Flags
+We’re investigating an issue that causes the Feature Flags settings page to appear empty for Windows Insiders in the Experimental channel. We expect to resolve it in the next Experimental build and will share updates on the blog.
+New builds this week
+We’re releasing new Windows 11 Insider Preview builds today. Select your channel below to view its release notes:
+- Beta: Build 26220.9202
+- Experimental: Build 26340.9212
+For those on other specific build versions, here are today’s new builds and release notes:
+- Beta (26H1): Build 28020.2731
+- Experimental (26H1): Build 28120.2738
+- Experimental (Future Platforms): Build 29648.1000
+Notable new features:
+[File Explorer]
+Release channel: Experimental
+Introducing the new, redesigned Context Menu in File Explorer
+- We’re beginning to roll out an updated context menu experience in File Explorer, designed to feel faster, cleaner, and easier to tailor to the way you work. The new design reduces top-level clutter, keeps commonly used actions easy to access, and adds a new Settings experience that gives you more control over what appears in the menu. As we continue refining this experience with Insider feedback, our goal is to make right-click feel more responsive, predictable, and personal.
+[Emoji]
+Release channel: Experimental
+- We’re adding support for Emoji 17.0. This includes new emoji such as distorted face, fight cloud, and hairy creature. To try out the new emoji, you can press the Windows key plus Period (.) to open the emoji panel and insert them from there.
+- As part of this effort, we’ve also made some slight adjustments the design of some of our current emoji to improve consistency across platforms. This includes the saluting face, face with peeking eye, goose, lotus, and kissing cat emoji.
+Thanks,
+Stephen and the Windows Insider Program team</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('af92bb8e698')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aabe687094e">
+        <div class="article-body">
+          <a href="https://www.bleepingcomputer.com/news/security/named-pipes-under-attack-securing-windows-interprocess-communication/" target="_blank" rel="noopener noreferrer" class="article-title">Named Pipes Under Attack: Securing Windows Interprocess Communication</a>
+          <div class="article-meta">bleepingcomputer.com &bull; Aug 22, 2026</div>
+          <div class="article-summary"><p>Written by: Farid Mustafayev, Cybersecurity Expert at ThreatLocker
+Named pipes are a common choice for communication between applications running on the same Windows computer. They are fast, supported directly by the operating system, and work well for communication between Windows services, desktop applications, tray processes, command-line utilities, and background agents.
+A typical design may include a privileged Windows service acting as the named-pipe server while a user-facing application connects as the client. Because both processes run on the same computer, developers often treat this communication as internal and therefore trusted.
+In practice, the pipe is accessible from an environment where many unrelated processes may be running under different users, sessions, and security contexts.
+Local Does Not Mean Trusted
+Named pipes are often treated as private because they are used for communication between applications on the same computer. That assumption is unsafe.
+A Windows workstation may run processes under LocalSystem, administrators, standard users, service accounts, and separate interactive or remote sessions. It may also contain third-party software, scripts, diagnostic tools, and malware operating under a compromised account.
+Any process that knows the pipe name and has sufficient access rights can attempt to connect. Windows does not inherently know which executable the developer intended to use the pipe.
+For that reason, a named pipe should be treated as an exposed local interface. Before processing a request, the application must determine who connected, what that identity is allowed to do, and whether the supplied data is safe.
+Identity, Access Control, and Privilege Boundaries
+The risk is greatest when a privileged Windows service communicates with a less privileged desktop application.
+A service running as LocalSystem may be able to modify protected files and registry keys, launch processes, change system configuration, access other users’ data, or communicate with kernel drivers. When these operations are exposed through a named pipe, the pipe becomes an API to privileged functionality.
+A successful connection proves only that the client was allowed to open the pipe. It does not prove that:
+- the client is the expected application;
+- the connected user is authorized;
+- the requested operation is permitted;
+- the supplied command is safe.
+Pipe permissions should therefore be defined explicitly and restricted to the smallest appropriate set of identities. Broad permissions for Everyone, Authenticated Users, or all interactive users may allow unrelated processes to reach the pipe.
+Authentication and authorization must also remain separate. A user may be allowed to query service status but not stop the service, change protected settings, launch processes, or access arbitrary files. Sensitive commands should be authorized individually.
+Impersonation can help by performing operations under the client’s security context, but it must be handled carefully. The server should verify that impersonation succeeded, limit the work performed while impersonating, and always restore its original identity.
+Fight Back Against AI-Powered Cyberattacks
+See how excessive permissions can turn AI tools into a serious security risk.
+Learn how a practical Zero Trust strategy can help contain AI-enabled threats before they spread.
+Read the blog
+Untrusted Servers, Commands, and Data
+The client must verify the server just as the server verifies the client.
+A predictable pipe name is only an identifier. It is not a secret and does not prove which process created the pipe.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aabe687094e')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ac3b8c8f7e5">
+        <div class="article-body">
+          <a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-blames-windows-gaming-issues-on-rgb-lighting-devices/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft blames Windows gaming issues on RGB lighting devices</a>
+          <div class="article-meta">bleepingcomputer.com &bull; Aug 21, 2026</div>
+          <div class="article-summary"><p>Microsoft says ongoing issues causing games to crash or fail to launch after installing the August 2026 Windows updates may be caused by peripherals with RGB lighting.
+As Microsoft explained when it confirmed it's investigating on Wednesday, this known issue affects games like ARC Raiders, MARVEL Tōkon: Fighting Souls, and The Finals on systems running Windows 11 24H2 and 25H2.
+&quot;Following the release of Windows updates on August 11, 2026 (KB5121003) and later, Microsoft received reports of issues involving inability to run games as expected,&quot; Microsoft said on the Windows release health dashboard.
+On impacted PCs, users are also experiencing gaming freezes, &quot;EXCEPTION_ACCESS_VIOLATION&quot; errors, and even unexpected system restarts.
+In a Thursday update, Microsoft said the gaming issues may be caused by drivers or components installed by RGB devices on affected Windows systems.
+&quot;Ongoing investigation indicates that this issue is related to peripherals or internal device components which have RGB lighting features. Such devices may install drivers or code components with file names similar to inpoutx64. In systems where these drivers are found, the issue is then triggered by launching certain games,&quot; it noted.
+&quot;We are presently working to understand the relationship between these RGB components and the games which trigger this issue. We will provide an update when more information is available.&quot;
+Unofficial workaround shared by game dev
+Embark Studios, the Swedish video game developer behind ARC Raiders and The Finals, also said these issues are caused by inpoutx64.sys, but added that they stem from changes made to the Windows kernel driver.
+&quot;We're aware of a crash that has been impacting some players since the most recent Windows update (KB5121003). This is a crash related to the file inpoutx64.sys, which changed with the Windows update,&quot; Embark said on Monday.
+Until Microsoft ships an official fix, Embark shared a multi-step temporary workaround that requires users to delete the service and remove the inpoutx64 file from the Windows drivers folder.
+This isn't the first time Microsoft has had to address gaming performance and stability issues caused by Windows updates. For instance, in October 2024, Microsoft blocked Windows 24H2 upgrades that caused Asphalt 8 crashes and Easy Anti-Cheat blue screens.
+In January 2025, it also lifted a compatibility hold after fixing a bug in the Auto HDR Windows feature that was breaking some games on Windows 11 24H2 devices.
+Early last year, Microsoft also removed several upgrade blocks that were preventing Asphalt 8: Airborne, Assassin's Creed, Star Wars Outlaws, and Avatar: Frontiers of Pandora players from upgrading their devices to the latest Windows version.
+Once attackers have valid credentials, only 37% of their actions are blocked
+Overall prevention scores can hide what happens after initial access. Once attackers are using valid credentials, prevention drops sharply.
+The Blue Report 2026 measures defenses technique by technique across 338 million simulations run in customer production environments.
+Get the report</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac3b8c8f7e5')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a3261f33817">
+        <div class="article-body">
+          <a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-rolls-out-classic-outlook-theme-for-new-outlook-users/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft rolls out Classic Outlook theme for New Outlook users</a>
+          <div class="article-meta">bleepingcomputer.com &bull; Aug 21, 2026</div>
+          <div class="article-summary"><p>Microsoft has started rolling out a Classic Outlook theme for users of Outlook on the web and the New Outlook for Windows.
+This new Outlook theme is rolling out as part of a targeted release beginning mid-August and expected to complete by the end of September. The theme will become generally available worldwide between late September and late October.
+&quot;When enabled, the setting applies coordinated changes across the Outlook experience, including visual styling, layout, typography, icons, and selected interactions,&quot; Microsoft said in a Microsoft 365 Message Center update.
+Once rolled out, the feature will not override any existing administrator configurations and will not automatically migrate users from classic Outlook to the new Outlook.
+Microsoft also added that the new user interface style will be enabled by default for some users, but they can toggle it off to switch to the standard theme from Settings &gt; General &gt; Appearance.
+&quot;This update is designed to help users who are transitioning from classic Outlook by providing a more familiar experience while maintaining the capabilities of the new Outlook,&quot; it added.
+&quot;The setting will be available to all users and can be turned on or off at any time. It will be off by default for most users. As part of a phased rollout, Microsoft will enable the setting by default for some users moving from classic Outlook to the new Outlook. Those users can change the setting at any time.&quot;
+New Outlook (also known as Outlook for Windows), which still lacks some Classic Outlook features, replaced Windows Mail as a pre-installed app on Windows 11 and Windows starting in October 2023 and January 2025, respectively.
+Microsoft introduced the first preview version of the New Outlook client in May 2022. The app reached general availability for personal accounts in September 2023 (via the September 26 Windows fall update and the Microsoft Store on Windows 11) and for commercial customers in August 2024.
+In February, Microsoft announced that it would postpone the new Outlook opt-out phase for businesses from April 2026 to March 2027, giving enterprise admins 12 additional months to prepare a staged migration to the new client.
+Microsoft made this decision even though, according to the company, it was &quot;seeing strong and accelerating adoption of new Outlook.&quot;
+In July, Microsoft also said that it would disable Outlook Web Access (OWA) Light, a lightweight version of the Outlook Web App email client introduced roughly two decades ago as an alternative to OWA Premium, in a future Exchange Server update.
+Once attackers have valid credentials, only 37% of their actions are blocked
+Overall prevention scores can hide what happens after initial access. Once attackers are using valid credentials, prevention drops sharply.
+The Blue Report 2026 measures defenses technique by technique across 338 million simulations run in customer production environments.
+Get the report</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a3261f33817')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a1fa0b0ea5c">
+        <div class="article-body">
+          <a href="https://www.bleepingcomputer.com/news/security/hackers-abuse-ftp-server-banners-to-deliver-new-windows-malware/" target="_blank" rel="noopener noreferrer" class="article-title">Hackers abuse FTP server banners to deliver new Windows malware</a>
+          <div class="article-meta">bleepingcomputer.com &bull; Aug 21, 2026</div>
+          <div class="article-summary"><p>Threat actors are abusing FTP banners to hide commands that deliver two previously undocumented remote access trojans named E4del and PINHOLE.
+MalwareHunterTeam observed this unusual technique in July in an attack that used shortcut files (.LNK) and FTP server banners as dead-drop resolvers (DDR) to retrieve commands.
+FTP banners are text strings the server uses as a greeting message for connecting hosts before they log in.
+By embedding commands in the initial response sent when a compromised system connects to an FTP server, a malware stager can receive instructions from a remote server.
+After discovering FTP banners being used to deliver malicious commands during an investigation, researchers at threat intelligence platform SOCRadar expanded their hunt and found that the technique remains in use.
+&quot;By utilizing FOFA searches, we determined that this technique has been weaponized since early July 2026 and remains operational, with new infrastructure observed as recently as August 2026.&quot;
+In a report shared with BleepingComputer, SOCRadar says that the observed attacks start with a ZIP archive that triggers an LNK-based infection chain. The researchers note that the initial compromise likely occurs through phishing.
+The infection chain delivers two remote access trojans (RATs) named E4del and PINHOLE via two distinct infection routes, both retrieving a PowerShell script from FTP banners.
+E4del is a Node.js-based RAT packaged inside a digitally signed Electron application that masquerades as Discord.
+The RAT supports running commands through persistent or temporary shells, capturing screenshots, streaming the desktop over WebSockets, and downloading and executing additional payloads.
+SOCRadar also mentions a Node.js module named crypto32.node that attempts privilege escalation, but the researchers could not retrieve it for analysis.
+PINHOLE retrieves its C2 configuration from Pinterest pins and SurveyMonkey survey questions, a tactic that offers versatility and resilience to take-downs.
+The malware leaves a minimal footprint on the host, using shellcode fluctuation to keep only one 4KB section of the payload in memory at a time, and injecting the final assembly into a suspended ApplicationFrameHost.exe process via Early Bird APC injection.
+PINHOLE supports 14 commands, including file enumeration, uploading and downloading files, command execution, process management, capturing screenshots, and deploying a module for stealing credentials stored in browsers.
+At the time of analysis, the PINHOLE script counted only 11 execution events, suggesting that the campaign was in an early stage.
+While abusing FTP banners to deliver commands is a novel alternative, SOCRadar says that the approach is less stealthy than traditional web-based DDRs (e.g., X, GitHub, YouTube) because FTP connections to unknown servers are more likely to stand out.
+“While threat actors typically utilize legitimate web services, such as X, GitHub, or YouTube, to provide cover through high-volume, expected network traffic, FTP banners represent a novel alternative.&quot;
+The researchers note that the technique is very versatile and could &quot;easily&quot; be adapted for ClickFix social engineering campaigns.
+SOCRadar's report provides indicators of compromise that could help defenders identify the malicious infrastructure as well as infected machines on the network.
+Once attackers have valid credentials, only 37% of their actions are blocked
+Overall prevention scores can hide what happens after initial access. Once attackers are using valid credentials, prevention drops sharply.
+The Blue Report 2026 measures defenses technique by technique across 338 million simulations run in customer production environments.
+Get the report</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a1fa0b0ea5c')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="azure" class="topic-section">
+      <h2 class="topic-title" style="--c:#00BCF2">Azure <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="ae51f9f9e45">
+        <div class="article-body">
+          <a href="https://azure.microsoft.com/en-us/blog/microsoft-named-a-leader-in-the-2026-gartner-magic-quadrant-for-cloud-native-application-platforms/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft named a Leader in the 2026 Gartner® Magic Quadrant™ for Cloud-Native Application Platforms</a>
+          <div class="article-meta">azure.microsoft.com &bull; Aug 17, 2026</div>
+          <div class="article-summary"><p>Microsoft has been named a Leader in the 2026 Gartner® Magic Quadrant™ for Cloud-Native Application Platforms, which we believe recognizes the platforms organizations rely on to build, deploy, and operate cloud-native applications at scale. This is our third consecutive year positioned as a Leader in this report.
+We are proud of this recognition. More importantly, we believe it reflects a shift we see across industries. Cloud-native application platforms are no longer where organizations build and run modern applications. They are becoming the foundation for AI transformation.
+The challenge is not a shortage of AI ideas. It is turning those ideas into production systems that can connect to existing applications and data, perform reliably at global scale, and meet the security and governance standards the business already expects. That requires more than a collection of application services. It requires a platform that brings application modernization, AI innovation, operations, and security together.
+Microsoft’s cloud-native application platform is designed around that reality. Azure App Service provides a managed foundation for enterprise web applications and modernization. Container Apps runs cloud-native applications, APIs, AI inferencing, and agents without requiring teams to manage infrastructure. Azure Functions provides event-driven execution and integration, while API Management governs APIs, models, and agent tools through a consistent policy layer. Together with Microsoft Foundry, GitHub Copilot, and the shared Azure foundation for identity, networking, observability, and security, these capabilities give organizations one platform for what they already run and what they build next.
+Gartner® Magic Quadrant™ graphic for Cloud-Native Applications Platform 2026
+Build AI apps and agents faster
+Microsoft brings the application runtime and AI toolchain together so developers can build with the model, framework, and architecture that fits the job. Microsoft Foundry provides the models, agent tooling, evaluation, tracing, and safety capabilities needed to take AI systems into production. GitHub Copilot helps developers move faster across the development lifecycle. Azure’s application platform provides the managed runtime, event-driven execution, integration, and API capabilities to turn those systems into applications people can rely on.
+This is where platform capabilities matter. Developers can deploy a container directly to a production endpoint with Azure Container Apps Express, and use Azure Functions to expose existing business logic through the Model Context Protocol. More than 1,400 connectors help agents act across enterprise systems without requiring developers to rebuild authentication, retries, and integration logic for every connection.
+Azure Container Apps Sandboxes provide the isolated compute that agent platforms run on. The same primitive runs the agent itself, hosts its tools and MCP servers, and executes the code it generates, each in its own microVM, hardware-isolated boundary, with state that survives when the agent pauses. It is the compute layer behind Foundry Agent Service and is available to customers building and operating their own agent platforms on Azure.
+The result is a shorter path from an AI idea to a governed application or agent that can deliver on your business goals.
+Modernize applications regardless of architecture
+AI transformation starts with the application estate organizations already have, not a blank slate. Azure gives teams a practical path to modernize at their own pace. They can move established applications to fully managed Platform as a Service (PaaS) services, containerize where it makes sense, adopt event-driven patterns incrementally, and extend existing business logic so it can participate in AI-powered experiences.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ae51f9f9e45')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a281599f2ae">
+        <div class="article-body">
+          <a href="https://petri.com/azure-vmware-solution-license-included-sales/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft to End License-Included Azure VMware Solution Sales</a>
+          <div class="article-meta">petri.com &bull; Aug 21, 2026</div>
+          <div class="article-summary"><p>New AVS deployments will no longer include bundled VMware licenses as Microsoft aligns with updated VMware licensing models.
+Key Takeaways:
+Microsoft is preparing to end sales of the license-included version of Azure VMware Solution (AVS), marking a significant change for organizations running VMware workloads in Azure. Starting on October 31, 2026, new customers will no longer be able to purchase AVS with VMware software licenses bundled into the service.
+Azure VMware Solution (AVS) is an Azure service that allows organizations to run VMware-based workloads in Azure using familiar VMware technologies such as vSphere, vCenter, vSAN, and NSX without having to redesign or refactor their existing applications. It provides a dedicated VMware environment hosted and managed within Azure, which enables businesses to extend, migrate, or modernize their on-premises data centers while maintaining compatibility with their existing VMware tools, processes, and skills.
+Previously, Azure VMware Solution (AVS) allowed organizations to use key VMware technologies without purchasing the full VMware Cloud Foundation (VCF) stack. The existing AVS offering includes licenses for VMware vSphere, vCenter, vSAN, and NSX as part of the Azure service. However, Microsoft will stop providing these VMware licenses for new AVS deployments after the 2026 cutoff date.
+“On August 30, 2027, as a result of the latest Broadcom VCF licensing change, the AVS license-included service will be retired. Customers currently using license-included Reserved Instance (RI) SKUs will be required to purchase portable Broadcom VCF Licenses and transition to an AVS VCF BYOL SKU or exit AVS prior to August 30, 2027, to avoid service disruption on August 31, 2027,” Microsoft explained.
+Microsoft is advising existing AVS customers to begin planning immediately, purchase appropriate VCF licenses, and complete migration to the BYOL model before service deadlines in 2027. Keep in mind that other major cloud providers have already adjusted their VMware offerings to align with Broadcom’s licensing requirements, which indicates that organizations across the cloud market are facing similar changes.
+This move could increase complexity and potentially costs for organizations that rely on VMware in Azure. Companies must now manage VMware licensing separately and evaluate whether to remain on VMware, adopt VMware Cloud Foundation, or consider alternative virtualization platforms. This change is particularly significant for smaller customers, many of whom have already faced licensing and service disruptions since Broadcom acquired VMware.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a281599f2ae')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a9afbb8ffcc">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiywFBVV95cUxON2lMclhXMnk5R0hTcFNEY291ckFzODczTGwyQjd1UUc4UjJ5V1RUOFVOVmVrb09wanp3LWE1QnFGTFdoQU9nYVJoVHgxQllEbWoxc2FzWUF0RkZTRUZTWDc1RHBLZmx4MDdaeDhaazJod2YxdkVMekYydnQ1SmE1SC1OSnctdXkwSlhWNThpSGFqUDk1d2NDT0VXbFctX0owV2x5RVY5ek0xa1FiNHg0Z2tkWWlPaDh3UEp1UTRzMk5yVDMxWUdPeGp5VQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft ends one of the last ways to buy VMware without big bundles - The Register</a>
+          <div class="article-meta">The Register &bull; Aug 20, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft ends one of the last ways to buy VMware without big bundles&amp;nbsp;&amp;nbsp;The Register</p><a href="https://news.google.com/rss/articles/CBMiywFBVV95cUxON2lMclhXMnk5R0hTcFNEY291ckFzODczTGwyQjd1UUc4UjJ5V1RUOFVOVmVrb09wanp3LWE1QnFGTFdoQU9nYVJoVHgxQllEbWoxc2FzWUF0RkZTRUZTWDc1RHBLZmx4MDdaeDhaazJod2YxdkVMekYydnQ1SmE1SC1OSnctdXkwSlhWNThpSGFqUDk1d2NDT0VXbFctX0owV2x5RVY5ek0xa1FiNHg0Z2tkWWlPaDh3UEp1UTRzMk5yVDMxWUdPeGp5VQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a9afbb8ffcc')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ac5c3e5848e">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMinwFBVV95cUxOSzh6aEN0OGZ1eDR0UjdHVXl3TWFvT3hWREpYd1pUaHFpR0RoZzlCYVI3azBLZHpkNDh1R0RWWU5TMmNaNVVMajVfd0xfa093N251QXZJbTREX2MwUlZIeXdVVHhuYUU0RkhCU19sUVRidzVDb1dHV1BmR0RlSC1pWnYtOTVkcElVMHRhcmlMM18tbUlURHZaaGcxNDRwV2M?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Meta emerges as major Microsoft Azure AI customer - Yahoo Finance</a>
+          <div class="article-meta">Yahoo Finance &bull; Aug 20, 2026</div>
+          <div class="article-summary snippet"><p>Meta emerges as major Microsoft Azure AI customer&amp;nbsp;&amp;nbsp;Yahoo Finance</p><a href="https://news.google.com/rss/articles/CBMinwFBVV95cUxOSzh6aEN0OGZ1eDR0UjdHVXl3TWFvT3hWREpYd1pUaHFpR0RoZzlCYVI3azBLZHpkNDh1R0RWWU5TMmNaNVVMajVfd0xfa093N251QXZJbTREX2MwUlZIeXdVVHhuYUU0RkhCU19sUVRidzVDb1dHV1BmR0RlSC1pWnYtOTVkcElVMHRhcmlMM18tbUlURHZaaGcxNDRwV2M?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac5c3e5848e')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a659be9e677">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMickFVX3lxTE9fMnV2cHFaMkd4TWtBbXpOZ1RpdkhXak13eVhnRlQyUjlteEZIRUJNbU9pTzBkVTEwdkFlSXRiZ1dtOHlHU1JUMHkwMTFYZU96VXVVUUxHWnJyV2cyZlM0ZVdLcFg5TFpjNEJva2lQUHFvdw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">BNB Agent Studio adds Azure as cloud option, Microsoft offers $1,000 credits - Crypto Briefing</a>
+          <div class="article-meta">Crypto Briefing &bull; Aug 20, 2026</div>
+          <div class="article-summary snippet"><p>BNB Agent Studio adds Azure as cloud option, Microsoft offers $1,000 credits&amp;nbsp;&amp;nbsp;Crypto Briefing</p><a href="https://news.google.com/rss/articles/CBMickFVX3lxTE9fMnV2cHFaMkd4TWtBbXpOZ1RpdkhXak13eVhnRlQyUjlteEZIRUJNbU9pTzBkVTEwdkFlSXRiZ1dtOHlHU1JUMHkwMTFYZU96VXVVUUxHWnJyV2cyZlM0ZVdLcFg5TFpjNEJva2lQUHFvdw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a659be9e677')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="adeb48b29b3">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMipgFBVV95cUxNNmZGdUI2eFM2Z0tiOTE5WnZMU2Z1TTZQQVhCU2Y5a2Z5Zkt2UEc4QWxTMUlPaTVNbDc4Si1jX3JpaW0zRjU5RVFZbnRCWXE1UnFQT3VTNG5hOTY3Ulg1TTgzUWpndmY2Tmx0TWlwOEFxdWE5Zm0xa2pXZGhGek5LTkJJRjYzRkhiYXVmWHFKVDNIaUxKN0hlalo3cllRTmJRSTc4bFF3?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft calls time on VMware on Azure as Broadcom makes the VCF case - SDxCentral</a>
+          <div class="article-meta">SDxCentral &bull; Aug 20, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft calls time on VMware on Azure as Broadcom makes the VCF case&amp;nbsp;&amp;nbsp;SDxCentral</p><a href="https://news.google.com/rss/articles/CBMipgFBVV95cUxNNmZGdUI2eFM2Z0tiOTE5WnZMU2Z1TTZQQVhCU2Y5a2Z5Zkt2UEc4QWxTMUlPaTVNbDc4Si1jX3JpaW0zRjU5RVFZbnRCWXE1UnFQT3VTNG5hOTY3Ulg1TTgzUWpndmY2Tmx0TWlwOEFxdWE5Zm0xa2pXZGhGek5LTkJJRjYzRkhiYXVmWHFKVDNIaUxKN0hlalo3cllRTmJRSTc4bFF3?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('adeb48b29b3')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ac6bee7423d">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi1AFBVV95cUxNZ2s4RjBLLU9ldmNqZXNrMktMR3hpallMODZWVDFVWFJtNzcwUEk0djJYbTNqbFBCbFFrUkhsTF9UdUFMMHRTSUE5c2VkTml6bDNuTk5yLTVWTDdKVEx2WG9fU0tLdTh6YWR0QkJfVlZYYk4yYUhHSjFETk42S1FmNXhwTTIwemtyNTAwa3oyQmFEYl9rS1haNDBvMUlhMHZXaERydGRXVVJicjJyS2x0a1ZCbTU0c29icmpZQTZFTEVIQ1lHQlUyZ1RmcnlpeTlJYnprRA?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">From modernization to AI: Why Gartner named Microsoft a Leader in 2026 - Microsoft Azure</a>
+          <div class="article-meta">Microsoft Azure &bull; Aug 17, 2026</div>
+          <div class="article-summary snippet"><p>From modernization to AI: Why Gartner named Microsoft a Leader in 2026&amp;nbsp;&amp;nbsp;Microsoft Azure</p><a href="https://news.google.com/rss/articles/CBMi1AFBVV95cUxNZ2s4RjBLLU9ldmNqZXNrMktMR3hpallMODZWVDFVWFJtNzcwUEk0djJYbTNqbFBCbFFrUkhsTF9UdUFMMHRTSUE5c2VkTml6bDNuTk5yLTVWTDdKVEx2WG9fU0tLdTh6YWR0QkJfVlZYYk4yYUhHSjFETk42S1FmNXhwTTIwemtyNTAwa3oyQmFEYl9rS1haNDBvMUlhMHZXaERydGRXVVJicjJyS2x0a1ZCbTU0c29icmpZQTZFTEVIQ1lHQlUyZ1RmcnlpeTlJYnprRA?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac6bee7423d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a76d9e06e00">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMisAFBVV95cUxNd3I0b3A5ZTdKbW10akppWEMwNFdwRTBVOE8waERweDVYdzA0eFBDM2NrTFctd2UxdTdpcUtvWHNiZEp6V2d3UFBVU0VHREs2WmlrSGdzWnhEOG14ay0wbXFQcnpEdGFjUHhkTVFJaUppX0VhclhqNTZNY2ZWYTlTRFZRY2ZRb0Q5bHFzWnZYYzdURml1RHFYZlBvcE1IR2dWSjBhUWZncDlkMEF4SUJhSg?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cloud cost startup North adds Microsoft Azure to complete hyperscaler support - SiliconANGLE</a>
+          <div class="article-meta">SiliconANGLE &bull; Aug 20, 2026</div>
+          <div class="article-summary snippet"><p>Cloud cost startup North adds Microsoft Azure to complete hyperscaler support&amp;nbsp;&amp;nbsp;SiliconANGLE</p><a href="https://news.google.com/rss/articles/CBMisAFBVV95cUxNd3I0b3A5ZTdKbW10akppWEMwNFdwRTBVOE8waERweDVYdzA0eFBDM2NrTFctd2UxdTdpcUtvWHNiZEp6V2d3UFBVU0VHREs2WmlrSGdzWnhEOG14ay0wbXFQcnpEdGFjUHhkTVFJaUppX0VhclhqNTZNY2ZWYTlTRFZRY2ZRb0Q5bHFzWnZYYzdURml1RHFYZlBvcE1IR2dWSjBhUWZncDlkMEF4SUJhSg?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a76d9e06e00')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="sharepoint" class="topic-section">
+      <h2 class="topic-title" style="--c:#036C70">SharePoint <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="afa5d67880a">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/08/critical-macos-sharepoint-vcenter-and.html" target="_blank" rel="noopener noreferrer" class="article-title">Critical macOS, SharePoint, vCenter, and Microsoft IKE Flaws Under Active Exploitation</a>
+          <div class="article-meta">thehackernews.com &bull; Aug 19, 2026</div>
+          <div class="article-summary"><p>The U.S. Cybersecurity and Infrastructure Security Agency (CISA) on Tuesday added four critical vulnerabilities to its Known Exploited Vulnerabilities (KEV) catalog, stating they are being exploited in the wild.
+The shortcomings added to the KEV catalog are listed below -
+- CVE-2026-65400 (CVSS score: 9.8) - An improper authentication vulnerability impacting Apple macOS that could allow an attacker on the network to authenticate to Screen Sharing without valid credentials.
+- CVE-2026-55040 (CVSS score: 9.1) - A weak authentication vulnerability impacting Microsoft SharePoint that could allow an unauthorized attacker to bypass a security feature over a network.
+- CVE-2026-59310 (CVSS score: 9.8) - A path traversal vulnerability in Broadcom VMware vCenter that could allow a threat actor with network access to vCenter to execute arbitrary code.
+- CVE-2026-33824 (CVSS score: 9.8) - A double free vulnerability in Microsoft Internet Key Exchange (IKE) Service Extensions that could allow an unauthorized attacker to execute code over a network.
+Although the vulnerabilities have since been patched by the respective vendors, they have come under active exploitation, according to multiple public reports.
+While the Apple macOS flaw has been abused to deliver a Monero cryptocurrency miner, the SharePoint vulnerability has been exploited by unknown actors following the release of a proof-of-concept (PoC) code.
+The vulnerability affecting VMware vCenter is assessed to have been exploited by a suspected China-nexus advanced persistent threat (APT) actor to deploy a backdoor along with reverse_ssh binaries for persistent access to compromised instances. In at least one case, the campaign has led to the deployment of a Babuk-derived ransomware.
+In all, the activity has compromised 361 unique victim IP addresses across 47 countries, with most of the infections concentrated in Germany (55), the U.S. (41), Turkey (38), Iran (26), and France (25).
+CVE-2026-33824, per Palo Alto Networks Unit 42, has been observed being exploited by another Chinese-speaking threat actor, who is said to have simultaneously launched an AI-enabled autonomous hacking campaign using DeepSeek and conducted manual operations using known vulnerabilities, including the Microsoft Internet Key Exchange flaw.
+Federal Civilian Executive Branch (FCEB) agencies have until August 21, 2026, to update vulnerable systems to the latest version and adhere to BOD 26-04 patching guidelines for optimal protection.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('afa5d67880a')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ae20b64d86a">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/08/twinloot-abuses-sharepoint-and-teams-to.html" target="_blank" rel="noopener noreferrer" class="article-title">TWINLOOT Abuses SharePoint and Teams to Steal Credentials and Move Across Networks</a>
+          <div class="article-meta">thehackernews.com &bull; Aug 18, 2026</div>
+          <div class="article-summary"><p>Cybersecurity researchers have disclosed details of a previously undocumented Python implant framework dubbed TWINLOOT.
+&quot;TWINLOOT is a modular, PyArmor-hardened Python implant designed to operate its entire command-and-control infrastructure inside trusted Microsoft services,&quot; Ontinue said in a technical report shared with The Hacker News. &quot;Tasking flows through SharePoint Online file dead-drops via the Microsoft Graph API. Interactive operator access routes through WebRTC DataChannels relayed by Microsoft Teams TURN servers.&quot;
+Traffic to and from the Graph API is driven by means of a headless instance of the victim's own Edge browser, thereby making it virtually indistinguishable from legitimate network activity. The implant is equipped to harvest Windows credentials using pixel-perfect fake lock screens, offer a reverse SOCKS5 pivot into victim networks, execute arbitrary commands, and establish persistence on the host.
+Ontinue's Cyber Defense Center said it discovered the implant during its investigation into an ongoing campaign in July 2026. A defining aspect of the malware is its use of multiple command-and-control (C2) channels, all of which make use of Microsoft services -
+- SharePoint Online (Graph API) for tasking
+- Teams TURN relays for interactive access
+- Victim's Edge browser for ferrying Graph traffic
+The initial access vector is assessed to be a social engineering attack via Microsoft Teams, in which the threat actor masquerading as IT support persuaded a target to run a PowerShell command that's responsible for downloading an archive file containing the Python runtime and a 39 MB compiled payload (&quot;bootstrap-fat.pyc&quot;), which serves as a loader for TWINLOOT.
+Describing the threat actor as knowledgeable in offensive tradecraft and Microsoft's cloud architecture, Ontinue said the Python framework is the first such tool to combine Microsoft 365 dead drop C2, Teams TURN relay abuse, and headless browser transport under a single umbrella.
+TWINLOOT runs two parallel channels from the victim machine: One is a SharePoint dead drop that authenticates to an attacker's Azure tenant and polls a SharePoint drive for commands every 15 seconds, allowing the operator to receive instructions, run them, and exfiltrate data back to the server.
+The second channel makes use of a reverse SOCKS5 tunnel to enable interactive access and lateral movement. &quot;It runs over either a direct TLS/WebSocket connection to the attacker's server or through the Teams TURN WebRTC relay,&quot; Ontinue said.
+&quot;The operator gets a SOCKS5 listener on their own machine (127.0.0.1:1080), and proxies traffic through it into the victim's internal network. Those connections exit from pythonw.exe on the victim host to internal targets on ports like 445 (SMB), 3389 (RDP), 5985 (WinRM), and 1433 (MSSQL). To the victim's internal network, it looks like the compromised host is making normal lateral connections.&quot;
+To enable lateral movement, the operator captures the victim's password via bogus lock screen prompts and exfiltrates it over the SharePoint channel. The fake screen is rendered when the &quot;credz_waiting&quot; command is issued by the threat actor.
+It's worth noting that the entered password is not validated against Windows authentication to check if the victim has entered the right system password. Regardless of what is provided, the victim is displayed an error message &quot;The password is incorrect. Try again,&quot; likely causing them to input the correct password the second time.
+Once the credential is entered, the fake lock screen is automatically closed. Every password captured by the screen is encrypted and uploaded to the SharePoint drive. These credentials are then abused through the SOCKS5 tunnel to pivot to the next host using Remote Desktop Protocol (RDP) or WinRM.
+This is not the first time bad actors have leveraged a TURN-based mechanism to communicate with the threat actor.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ae20b64d86a')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ab16af0cad3">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/08/critical-macos-sharepoint-vcenter-and.html" target="_blank" rel="noopener noreferrer" class="article-title">Critical macOS, SharePoint, vCenter, and Microsoft IKE Flaws Under Active Exploitation - The Hacker News</a>
+          <div class="article-meta">The Hacker News &bull; Aug 19, 2026</div>
+          <div class="article-summary"><p>The U.S. Cybersecurity and Infrastructure Security Agency (CISA) on Tuesday added four critical vulnerabilities to its Known Exploited Vulnerabilities (KEV) catalog, stating they are being exploited in the wild.
+The shortcomings added to the KEV catalog are listed below -
+- CVE-2026-65400 (CVSS score: 9.8) - An improper authentication vulnerability impacting Apple macOS that could allow an attacker on the network to authenticate to Screen Sharing without valid credentials.
+- CVE-2026-55040 (CVSS score: 9.1) - A weak authentication vulnerability impacting Microsoft SharePoint that could allow an unauthorized attacker to bypass a security feature over a network.
+- CVE-2026-59310 (CVSS score: 9.8) - A path traversal vulnerability in Broadcom VMware vCenter that could allow a threat actor with network access to vCenter to execute arbitrary code.
+- CVE-2026-33824 (CVSS score: 9.8) - A double free vulnerability in Microsoft Internet Key Exchange (IKE) Service Extensions that could allow an unauthorized attacker to execute code over a network.
+Although the vulnerabilities have since been patched by the respective vendors, they have come under active exploitation, according to multiple public reports.
+While the Apple macOS flaw has been abused to deliver a Monero cryptocurrency miner, the SharePoint vulnerability has been exploited by unknown actors following the release of a proof-of-concept (PoC) code.
+The vulnerability affecting VMware vCenter is assessed to have been exploited by a suspected China-nexus advanced persistent threat (APT) actor to deploy a backdoor along with reverse_ssh binaries for persistent access to compromised instances. In at least one case, the campaign has led to the deployment of a Babuk-derived ransomware.
+In all, the activity has compromised 361 unique victim IP addresses across 47 countries, with most of the infections concentrated in Germany (55), the U.S. (41), Turkey (38), Iran (26), and France (25).
+CVE-2026-33824, per Palo Alto Networks Unit 42, has been observed being exploited by another Chinese-speaking threat actor, who is said to have simultaneously launched an AI-enabled autonomous hacking campaign using DeepSeek and conducted manual operations using known vulnerabilities, including the Microsoft Internet Key Exchange flaw.
+Federal Civilian Executive Branch (FCEB) agencies have until August 21, 2026, to update vulnerable systems to the latest version and adhere to BOD 26-04 patching guidelines for optimal protection.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ab16af0cad3')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a38da1bac49">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMisgFBVV95cUxPX1M2MWZ6YlRSRzU0Z2loVXZyRVpuM3pZdExuUkdLbE40TjMtV1puSmdiTVBDV1VQa3ZLYTkyZWVhanlmdHMtUm80Skc3UXFJQy1OazhoSmpjb1lBMkdHMlpwV1E3Q3hQOWRXU09BNjdyTXZxVTJUZlcwclZVaVhJWlJRcFh1emJaZFF4bjI4MWtUYW80bmJGYngxSFpmSEEtNFY1M2Fvcl84SjNLVGw2bjBn0gG3AUFVX3lxTE1xb213aTl0M0laWDlOMXFBQjBpZWVSSklqRHlSTkl5RU5rOGlnYng5WjFTQnBrZEFlV2xQWHdka2ljZWYyNHlaTmllUTRvcUdIVk5lV002WWVmVUktWnZOZTV6NklYckx4T053Ql8waEppMXF1anRNUU55emNlT09IR2tVWWREZmttdndQSVdIRkFQNVk3TlRCV29MWndZR053YTNpY2E1UFRKTFNtTnZHOWZhaHRVdw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft confirms outage affecting search in Microsoft 365 apps - BleepingComputer</a>
+          <div class="article-meta">BleepingComputer &bull; Aug 18, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft confirms outage affecting search in Microsoft 365 apps&amp;nbsp;&amp;nbsp;BleepingComputer</p><a href="https://news.google.com/rss/articles/CBMisgFBVV95cUxPX1M2MWZ6YlRSRzU0Z2loVXZyRVpuM3pZdExuUkdLbE40TjMtV1puSmdiTVBDV1VQa3ZLYTkyZWVhanlmdHMtUm80Skc3UXFJQy1OazhoSmpjb1lBMkdHMlpwV1E3Q3hQOWRXU09BNjdyTXZxVTJUZlcwclZVaVhJWlJRcFh1emJaZFF4bjI4MWtUYW80bmJGYngxSFpmSEEtNFY1M2Fvcl84SjNLVGw2bjBn0gG3AUFVX3lxTE1xb213aTl0M0laWDlOMXFBQjBpZWVSSklqRHlSTkl5RU5rOGlnYng5WjFTQnBrZEFlV2xQWHdka2ljZWYyNHlaTmllUTRvcUdIVk5lV002WWVmVUktWnZOZTV6NklYckx4T053Ql8waEppMXF1anRNUU55emNlT09IR2tVWWREZmttdndQSVdIRkFQNVk3TlRCV29MWndZR053YTNpY2E1UFRKTFNtTnZHOWZhaHRVdw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a38da1bac49')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a8e1405f588">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMimAJBVV95cUxPZzZ3OHUwZ1lkTjJrWlhXeWFhLUxzZFRpNVRQcXN4NUdQalJCSlFiR1ZQdW4yVGdRSk9WTi1PQzE3eUZFSlphQlVRQ1B4T2NlQ1RkSUpSXzFtaUJELVdiMUJ6dTdOYzFDN1IyN3RPNkdlOGJxeUxieWZBRjFZSkF2TFlBTlR1OTctcVpZanFzUW92WXFMZ242MGk1LThBSG9KVWp0cU1ucmpuZmZKbFNxX2JQRDhkUXRIRkkzV21fUkZ2ZE0tX3hfWXdQMXdzUHg4T3pfT25WYXQwOHdCMXNHYnpJVlJXcVZaVUtMQTNQTnFYNGdFSEJveEkwazZKR1lsMEphWFY0MzUxdU9nVkVmaFFqbjNKSnk40gGeAkFVX3lxTE1XeVp6V0RsWWZjZGZvYzZNSUpZMmpRUVFPOTJrRVlEZ2EyZUNKV185cXMtWXNia3NxX2tqREpMRVhXT1pIazM0eHRqa1R5U3dBcWNGTndTeUFKZk56ZTVJdTV2Yzk5cmgwZVJVdjBDNXNBUTlLWV9QeC1Dc3Bzcmh0dHNPQzAzeUtWRXZBZkRJYTNIREx1UDZwZmZobE53S0ZQNjFFcTh3STFwWjZwUWpNWWVLUTBDM1lsWEhLMzFvOURERG5mX3Qtbzd4bnFxNEp1ZV8wZmlrX2xuYkpWa0daeFRZeGt0MUFjdTJ1eVU2cjVxNm9TT0hqYV90SDV5X3BTYmdsbE9VVlFMMmYwdDhDVWJONkVHSjVyVVlYSXc?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">U.S. CISA adds Apple macOS, Microsoft SharePoint, Broadcom VMware vCenter, and Microsoft IKE flaws to its ... - Security Affairs</a>
+          <div class="article-meta">Security Affairs &bull; Aug 19, 2026</div>
+          <div class="article-summary snippet"><p>U.S. CISA adds Apple macOS, Microsoft SharePoint, Broadcom VMware vCenter, and Microsoft IKE flaws to its ...&amp;nbsp;&amp;nbsp;Security Affairs</p><a href="https://news.google.com/rss/articles/CBMimAJBVV95cUxPZzZ3OHUwZ1lkTjJrWlhXeWFhLUxzZFRpNVRQcXN4NUdQalJCSlFiR1ZQdW4yVGdRSk9WTi1PQzE3eUZFSlphQlVRQ1B4T2NlQ1RkSUpSXzFtaUJELVdiMUJ6dTdOYzFDN1IyN3RPNkdlOGJxeUxieWZBRjFZSkF2TFlBTlR1OTctcVpZanFzUW92WXFMZ242MGk1LThBSG9KVWp0cU1ucmpuZmZKbFNxX2JQRDhkUXRIRkkzV21fUkZ2ZE0tX3hfWXdQMXdzUHg4T3pfT25WYXQwOHdCMXNHYnpJVlJXcVZaVUtMQTNQTnFYNGdFSEJveEkwazZKR1lsMEphWFY0MzUxdU9nVkVmaFFqbjNKSnk40gGeAkFVX3lxTE1XeVp6V0RsWWZjZGZvYzZNSUpZMmpRUVFPOTJrRVlEZ2EyZUNKV185cXMtWXNia3NxX2tqREpMRVhXT1pIazM0eHRqa1R5U3dBcWNGTndTeUFKZk56ZTVJdTV2Yzk5cmgwZVJVdjBDNXNBUTlLWV9QeC1Dc3Bzcmh0dHNPQzAzeUtWRXZBZkRJYTNIREx1UDZwZmZobE53S0ZQNjFFcTh3STFwWjZwUWpNWWVLUTBDM1lsWEhLMzFvOURERG5mX3Qtbzd4bnFxNEp1ZV8wZmlrX2xuYkpWa0daeFRZeGt0MUFjdTJ1eVU2cjVxNm9TT0hqYV90SDV5X3BTYmdsbE9VVlFMMmYwdDhDVWJONkVHSjVyVVlYSXc?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a8e1405f588')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a6326c5e0ff">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE5ZVU5HMnA0dkNxbS1qOXQ5cWlSYU9KM3pBN0F6Y0gzVnlNWW90NzZlRF8zMDZSMjBTMDJTYjMwUEktSjFNWHNYWGJSak9RbWtwQk1DYU9udUFOUldCTHk4NnZwZjFYUkoyTGfSAW9BVV95cUxNNGRRbnE1ZzhWNlA3R1RwS29Odl9KLU1wZ2wwQ01rLWVKU3hXUTN0MGJlZk43bS0yazlEblhTREswSjlFRnFkMFdaQ0pyTVRpZDhteEFUakVpZjlUdkNXYmhaMHM1MzU3LTNHX0w0UUU?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft 365 Search Outage Disrupts SharePoint, OneDrive, and Outlook Users Worldwide - CyberSecurityNews</a>
+          <div class="article-meta">CyberSecurityNews &bull; Aug 18, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft 365 Search Outage Disrupts SharePoint, OneDrive, and Outlook Users Worldwide&amp;nbsp;&amp;nbsp;CyberSecurityNews</p><a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE5ZVU5HMnA0dkNxbS1qOXQ5cWlSYU9KM3pBN0F6Y0gzVnlNWW90NzZlRF8zMDZSMjBTMDJTYjMwUEktSjFNWHNYWGJSak9RbWtwQk1DYU9udUFOUldCTHk4NnZwZjFYUkoyTGfSAW9BVV95cUxNNGRRbnE1ZzhWNlA3R1RwS29Odl9KLU1wZ2wwQ01rLWVKU3hXUTN0MGJlZk43bS0yazlEblhTREswSjlFRnFkMFdaQ0pyTVRpZDhteEFUakVpZjlUdkNXYmhaMHM1MzU3LTNHX0w0UUU?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a6326c5e0ff')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a845905bc87">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/08/twinloot-abuses-sharepoint-and-teams-to.html" target="_blank" rel="noopener noreferrer" class="article-title">TWINLOOT Abuses SharePoint and Teams to Steal Credentials and Move Across Networks - The Hacker News</a>
+          <div class="article-meta">The Hacker News &bull; Aug 18, 2026</div>
+          <div class="article-summary"><p>Cybersecurity researchers have disclosed details of a previously undocumented Python implant framework dubbed TWINLOOT.
+&quot;TWINLOOT is a modular, PyArmor-hardened Python implant designed to operate its entire command-and-control infrastructure inside trusted Microsoft services,&quot; Ontinue said in a technical report shared with The Hacker News. &quot;Tasking flows through SharePoint Online file dead-drops via the Microsoft Graph API. Interactive operator access routes through WebRTC DataChannels relayed by Microsoft Teams TURN servers.&quot;
+Traffic to and from the Graph API is driven by means of a headless instance of the victim's own Edge browser, thereby making it virtually indistinguishable from legitimate network activity. The implant is equipped to harvest Windows credentials using pixel-perfect fake lock screens, offer a reverse SOCKS5 pivot into victim networks, execute arbitrary commands, and establish persistence on the host.
+Ontinue's Cyber Defense Center said it discovered the implant during its investigation into an ongoing campaign in July 2026. A defining aspect of the malware is its use of multiple command-and-control (C2) channels, all of which make use of Microsoft services -
+- SharePoint Online (Graph API) for tasking
+- Teams TURN relays for interactive access
+- Victim's Edge browser for ferrying Graph traffic
+The initial access vector is assessed to be a social engineering attack via Microsoft Teams, in which the threat actor masquerading as IT support persuaded a target to run a PowerShell command that's responsible for downloading an archive file containing the Python runtime and a 39 MB compiled payload (&quot;bootstrap-fat.pyc&quot;), which serves as a loader for TWINLOOT.
+Describing the threat actor as knowledgeable in offensive tradecraft and Microsoft's cloud architecture, Ontinue said the Python framework is the first such tool to combine Microsoft 365 dead drop C2, Teams TURN relay abuse, and headless browser transport under a single umbrella.
+TWINLOOT runs two parallel channels from the victim machine: One is a SharePoint dead drop that authenticates to an attacker's Azure tenant and polls a SharePoint drive for commands every 15 seconds, allowing the operator to receive instructions, run them, and exfiltrate data back to the server.
+The second channel makes use of a reverse SOCKS5 tunnel to enable interactive access and lateral movement. &quot;It runs over either a direct TLS/WebSocket connection to the attacker's server or through the Teams TURN WebRTC relay,&quot; Ontinue said.
+&quot;The operator gets a SOCKS5 listener on their own machine (127.0.0.1:1080), and proxies traffic through it into the victim's internal network. Those connections exit from pythonw.exe on the victim host to internal targets on ports like 445 (SMB), 3389 (RDP), 5985 (WinRM), and 1433 (MSSQL). To the victim's internal network, it looks like the compromised host is making normal lateral connections.&quot;
+To enable lateral movement, the operator captures the victim's password via bogus lock screen prompts and exfiltrates it over the SharePoint channel. The fake screen is rendered when the &quot;credz_waiting&quot; command is issued by the threat actor.
+It's worth noting that the entered password is not validated against Windows authentication to check if the victim has entered the right system password. Regardless of what is provided, the victim is displayed an error message &quot;The password is incorrect. Try again,&quot; likely causing them to input the correct password the second time.
+Once the credential is entered, the fake lock screen is automatically closed. Every password captured by the screen is encrypted and uploaded to the SharePoint drive. These credentials are then abused through the SOCKS5 tunnel to pivot to the next host using Remote Desktop Protocol (RDP) or WinRM.
+This is not the first time bad actors have leveraged a TURN-based mechanism to communicate with the threat actor.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a845905bc87')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a204b5e23a5">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMijgFBVV95cUxPS2cwRXhnNVlBUUhKaGU0UGZNTlNmbFRCOTRGU0ZPRC05RXVKVndFSlJkcEhVZEhMZm9DQ3ZQYU1yWVlZcnVKUlNvVm5iaHU2OE9sVVNrZnFlcXJiRl9fVWo2eDdqTmtjVF9Da2xIWE80TDNqVEpPN1BYZUlSNFdpdDVzdHA4TmxBQXZxT2xn?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft SharePoint Hackers Switch Gears to Spread Ransomware - TechRepublic</a>
+          <div class="article-meta">TechRepublic &bull; Aug 18, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft SharePoint Hackers Switch Gears to Spread Ransomware&amp;nbsp;&amp;nbsp;TechRepublic</p><a href="https://news.google.com/rss/articles/CBMijgFBVV95cUxPS2cwRXhnNVlBUUhKaGU0UGZNTlNmbFRCOTRGU0ZPRC05RXVKVndFSlJkcEhVZEhMZm9DQ3ZQYU1yWVlZcnVKUlNvVm5iaHU2OE9sVVNrZnFlcXJiRl9fVWo2eDdqTmtjVF9Da2xIWE80TDNqVEpPN1BYZUlSNFdpdDVzdHA4TmxBQXZxT2xn?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a204b5e23a5')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="intune" class="topic-section">
+      <h2 class="topic-title" style="--c:#0F6CBD">Intune <span class="count">(2)</span></h2>
+      <div class="article-card" data-id="a6ead6a01b9">
+        <div class="article-body">
+          <a href="https://techcommunity.microsoft.com/t5/intune-customer-success/configure-delivery-optimization-for-windows-to-save-bandwidth/ba-p/4547592" target="_blank" rel="noopener noreferrer" class="article-title">Configure Delivery Optimization for Windows to save bandwidth and speed up deployments</a>
+          <div class="article-meta">techcommunity.microsoft.com &bull; Aug 18, 2026</div>
+          <div class="article-summary snippet"><p>By: Carlos Diaz - Sr. Product Manager and Jason Sandys - Principal Product Manager | Microsoft Intune
+Delivery Optimization is built into Windows and can help reduce bandwidth usage during app and update deployments. Instead of downloading content from the internet every time, devices can download it from nearby devices or a local cache when available.
+Many organizations leave Delivery Optimization at its default settings or disable it entirely. As a result, they may miss opportunities to reduce network traffic, improve deployment performance, and make better use of existing network resources.
+This article focuses on the Delivery Optimization scenarios and the common configurations that Intune admins use most often: large-scale patching, Windows Autopilot provisioning, branch office bandwidth management, and Microsoft Connected Cache for scenarios where peer-to-peer sharing alone isn't enough.
+How Delivery Optimization works
+Delivery Optimization is an HTTP downloader with built-in peer-to-peer capabilities available in supported versions of Windows. It helps distribute Windows updates, Microsoft 365 Apps updates, Microsoft Defender definition updates, Microsoft Store apps, Intune Win32 apps package and other supported content. Delivery Optimization checks local sources before falling back to internet content caches.
+The most important Delivery Optimization policy setting is Download Mode, which determines how devices discover peers.
+ModeDescriptionMode 1 (LAN)Devices share content with peers behind the same IP/NAT boundary.Mode 2 (Group)Devices share content within a defined group, such as an Active Directory site, domain, or custom group ID. Recommended for environments with multiple VLANs or segmented networks.Mode 3 (Internet)Devices can share content with internet peers outside the organization. This mode is rarely used in enterprise environments.
+&amp;nbsp;
+Delivery Optimization checks sources in this order:
+
+LAN or group peers and, if configured, Microsoft Connected Cache in parallel.
+Internet peers, if allowed in the Download Mode setting
+Internet content caches, which are always available as the final fallback
+
+Regardless of the mode you choose, the goal is to keep content download traffic local whenever possible.
+Common misconceptions
+Before configuring Delivery Optimization, it's worth addressing a few common misunderstandings we’ve heard from customers.
+
+&quot;Does Delivery Optimization use my bandwidth to upload content to the internet?&quot;
+In&amp;nbsp;Mode 1 (LAN), peer sharing is restricted to your local subnet. Content is only shared with other devices on the same network segment, and no content leaves your LAN. Additionally, you have full control over upload usage through the &amp;nbsp;Monthly upload data cap setting.
+
+
+&quot;Is Delivery Optimization the same as BranchCache?&quot;
+While both technologies help reduce bandwidth usage, they are built on different architectures and support different scenarios.&amp;nbsp;BranchCache relies on BranchCache-enabled content servers to cache and distribute content, whereas Delivery Optimization is built directly into Windows and is designed to work natively with cloud-delivered content, including Windows updates, Microsoft Store apps, and Microsoft 365 Apps.
+
+
+&quot;We disabled Delivery Optimization years ago. Is there any reason to revisit it?&quot;
+Yes. Delivery Optimization has evolved significantly and now offers extensive management capabilities through the Intune Settings Catalog. Administrators can configure download modes, define group boundaries, control bandwidth usage, set cache sizes, and limit uploads. If Delivery Optimization was disabled in the past, it may be worth reevaluating your configuration. When properly configured, it can help reduce bandwidth consumption, improve content distribution efficiency, and accelerate update and application deployments.
+
+Essential policies
+The following settings, available in the settings catalog under Delivery Optimization, provide you a strong starting point:
+SettingDefault Value*Recommended ValueWhat It DoesDODownloadMode1 (LAN)1 (LAN)Keeps peer-to-peer sharing within your subnet or Delivery Optimization group.DORestrictPeerSelectionBy11Devices discover and peer with others on the same subnet.DOMaxCacheSize20%20% to 30%Amount of local disk space allocated to the Delivery Optimization cache.DOMinFileSizeToCache50 MB5 MBMinimum file size eligible for caching and peer-to-peer distribution.DOMaxCacheAge259,200 seconds (3 days)1,209,600 seconds (14 days)Determines how long cached content remains available before cleanup.DOMonthlyUploadDataCap20 GB20 GBLimits the total amount of data a device can upload to peers each month.
+*The default values in this table are for Windows 11.
+The table above lists common Delivery Optimization settings, their default values, and recommended starting values. However, the best configuration depends on your network topology, device count, update cadence, and whether you’re using Microsoft Connected Cache. Use the scenario guidance below to tune from the baseline. for the full policy reference review:&amp;nbsp; Configure Delivery Optimization (DO) for Windows.
+The defaults provide some immediate value, but organizations often achieve better results by:
+
+Defining peer groups
+Increasing cache size
+Increasing retention periods
+Lowering the minimum file-size threshold when appropriate
+
+When configuring Delivery Optimization, avoid managing the same setting from multiple locations, such as settings catalog and custom policy. Using the settings catalog as your primary management location can help reduce conflicts and simplify troubleshooting.
+Windows quality updates, feature updates, and Office updates are typically the largest bandwidth consuming events most organizations face. A 1 GB cumulative update pushed to 10,000 devices means 10 TB of traffic from the internet unless Delivery Optimization lets devices share locally. This is where properly configured Delivery Optimization pays for itself immediately.
+Coordinate Delivery Optimization with deployment rings. Start with a small seeder ring, typically 5 to 10 percent of devices, so those devices populate peer caches before broader rings begin hours or days later. If Microsoft Connected Cache is deployed, the same seeder ring also populates the cache node, creating a persistent local source for later rings.
+Scenario 1. Large-scale update deployments
+Large scale deployments vary greatly in complexity and challenges. Device count isn’t the only factor to consider. Network infrastructure and configuration can also play a role in your configuration and deployment of Delivery Optimization. &amp;nbsp;
+How you tune Delivery Optimization for large-scale updates depends heavily on your WAN topology. The two most common designs call for different approaches:
+Star (hub-and-spoke) topology
+Branches connect to a central hub; internet traffic may be backhauled. Every update byte a branch device pulls from the internet crosses the internal link between the hub and spoke.
+
+Group boundaries: Identify local LAN configurations at branch locations. If all devices at a branch location are on a single subnet, use DODownloadMode = 1 with DORestrictPeerSelectionBy=1 to restrict peers to that subnet. If a branch site has multiple subnets, DODownloadMode = 2 with a branch-specific DOGroupID is more effective because devices can discover peers throughout the branch instead of being limited to their local subnet.
+
+Tip: Delivery Optimization Has Evolved
+Many organizations disabled Delivery Optimization during early Windows 10 deployments after experiencing unexpected WAN traffic. At that time, peer sharing controls were far less granular, making it difficult to limit content sharing to devices within the same network or site.
+As a result, some organizations chose to disable Delivery Optimization entirely and missed potential bandwidth savings from peer-to-peer content distribution.
+Today, modern Delivery Optimization policies provide significantly more control through features such as Group mode, Group IDs, subnet-based peer restrictions, bandwidth management settings, and integration with Microsoft Connected Cache. These capabilities help organizations realize the benefits of peer caching while maintaining tighter control over network traffic.
+
+
+Bandwidth throttling: Spoke links are often the bottleneck. Use DOPercentageMaxBackgroundBandwidth to limit Delivery Optimization background downloads to 10% to 25% of available bandwidth during business hours. Configure DOSetHoursToLimitBackgroundDownloadBandwidth to define the hours when those limits apply, then relax or remove the limits outside business hours.
+Cache retention: Set DOMaxCacheSize to 40% to 50% and DOMaxCacheAge to match your final deployment ring so cached content survives all ring phase days at branches. Branch peers are the only local sources. They need to hold content long enough for the full ring cycle.
+Hub site: Devices at the hub have direct internet access and also typically have more bandwidth available. Standard cache settings (20% to 30%, 3 days) are usually sufficient.
+
+Tip: Combine Peer Caching and Microsoft Connected Cache
+In star (hub-and-spoke) network topologies, Microsoft Connected Cache (MCC) can deliver the greatest bandwidth savings at central hubs and larger branch offices. By caching frequently requested updates and applications locally, MCC helps reduce the amount of content that must traverse upstream WAN links.
+You can configure an MCC server directly in your Delivery Optimization policy by specifying: DOCacheHost=&amp;lt;MCC FQDN&amp;gt;
+When configured, Delivery Optimization continues to prioritize content from nearby peers. If the requested content isn't available from peers, devices will attempt to download it from Microsoft Connected Cache. If the content isn't present in the cache, devices automatically fall back to Microsoft's internet content source.
+Think of the content retrieval process as a layered approach: Peers → Microsoft Connected Cache → Internet. This hierarchy helps optimize bandwidth usage while maintaining reliable access to updates and applications.
+
+
+
+Distributed topology
+With a distributed topology, all locations have their own local internet access. Each site reaches the internet directly, so the WAN penalty for a cache miss is lower.
+
+Group boundaries: Set DODownloadMode=2 and set a DOGroupID. The key is that each physical site is its own peer group. DORestrictPeerSelectionBy = 1 (Subnet) is still recommended but less critical because cross-site peer-to-peer traffic is less likely.
+Bandwidth limits: More relaxed than star. 25% to 50% during business hours is typical since each site has its own internet cache path.
+
+Tip: With local internet connectivity and Delivery Optimization Group mode, many locations achieve excellent bandwidth savings with no additional infrastructure. Microsoft Connected Cache adds value primarily at the largest locations (more than 100 devices).
+Scenario 2. Branch offices with limited WAN
+Branch offices often see the biggest Delivery Optimization savings. Instead of every device pulling the same update over the WAN, one device can download from the internet and share locally with peers on the subnet.
+Use DODownloadMode = 2 and assign a unique DOGroupID per branch location to keep peer-to-peer traffic within the branch. Set aggressive background limits (15% to 25% of link speed) to protect line-of-business applications. For very small branches with fewer than 10 devices, or locations where devices are frequently reimaged, consider adding a Microsoft Connected Cache node. A small cache server with a 100 GB drive provides a persistent local source that doesn't depend on any single peer being online.
+Scenario 3. Mass provisioning and Windows Autopilot
+During Windows Autopilot bulk provisioning or mass reimaging, many devices request identical content at the same time. Without Delivery Optimization, every device downloads independently from the internet cache, often saturating internet links and extending provisioning times.
+For environments with repeated content consumption, such as shared devices, labs, and kiosks that get reimaged frequently, peer-to-peer distribution has a structural limitation. After a mass reimage, no device has cached content available to share. This is where Microsoft Connected Cache provides the greatest value. Because the cache node retains content on-premises independent of device state, the first device after a wipe can download from the local cache rather than the internet cache. If you're using peer-to-peer alone, consider staggering reimage schedules so that some devices always have content available to share.
+Intune already uses Delivery Optimization to distribute Win32 and Microsoft Store apps, so no extra setup is needed beyond the core Delivery Optimization policies. The main tuning is around thresholds and retention. Lower DOMinFileSizeToCache from 10 MB to 5 MB so snaller app installers qualify for peer-to-peer sharing and extend DOMaxCacheAge to 7 days (604800 seconds) to accommodate app deployments that often span a full week.
+During large provisioning events, be generous with cache resources. Increase DOMaxCacheSize to 50 percent or higher to ensure early devices have room to cache and share content. Set DOMonthlyUploadDataCap to 0 (unlimited) so the first-wave of devices can serve a larger number of peers. Finally, provision devices in stages whenever possible. Even a 15-minute delay between groups gives Delivery Optimization time to build peer availability before the next wave starts.
+Scenario 4. Devices that move between locations
+In environments where employees frequently move between locations, isolating peer traffic can be challenging. For example, a device assigned to the Group ID for Branch A may be physically connected at Branch B, causing it to search for peers across the WAN. In this scenario, use DHCP to provide the appropriate DOGroupID and, when applicable, DOCacheHost source for the device’s current location.
+
+DOCacheHostSource=1 and set the DHCP Option 235 at the site to the FQDN of the Microsoft Connected Cache.
+DOGroupIdSource=3 and set the DHCP Option 234 to the GUID for the GroupID.
+
+Go further with Microsoft Connected Cache
+Microsoft Connected Cache is an optional on-premises content cache. It complements Delivery Optimization by providing a persistent local source when peers are unavailable.
+
+Tip: Start with Peer-to-Peer Caching First
+Before deploying Microsoft Connected Cache (MCC), consider optimizing Delivery Optimization peer-to-peer caching. Many organizations achieve substantial bandwidth savings through properly configured download modes, peer groups, cache settings, and deployment rings without introducing additional infrastructure.
+Peer-to-peer caching is often the simplest and most cost-effective first step because devices can share content directly with one another, reducing internet downloads and WAN utilization across the organization.
+Microsoft Connected Cache becomes particularly valuable when peer sharing alone cannot fully meet business requirements, such as locations with few devices, frequent device reimaging, limited peer availability, or a need for a persistent on-premises content source. In these scenarios, MCC can complement Delivery Optimization to further reduce bandwidth consumption and improve content availability.
+
+Microsoft Connected Cache is most valuable at small locations with few peers, in environments with frequent device resets, or anywhere large content volumes need a guaranteed local source. Devices can find the cache node in two ways:
+
+Static (Intune policy): Set DOCacheHost to the FQDN of your Microsoft Connected Cache server in the Intune Settings catalog. Simple, static, works well for single-site deployments.
+Dynamic (DHCP Option 235): Set DOCacheHostSource = 1 and configure DHCP Option 235 with the MCC server FQDN. Devices discover the correct cache node automatically based on network location. This is the preferred approach for multi-site deployments.
+
+When using Microsoft Connected Cache, configure DODelayForegroundDownloadFromHttp to 30 seconds and DODelayBackgroundDownloadFromHttp to 60 seconds. These timeouts control how long Delivery Optimization waits for a local source before falling back to the internet cache; they don’t control download speed.
+For setup details and hardware requirements, refer to: Release Notes for Microsoft Connected Cache for Enterprise and Education.
+Troubleshooting tips
+
+Slow downloads: The fallback timeout is the most misunderstood Delivery Optimization setting. It controls how long a device waits for a local source before requesting from the internet cache, not download speed. If downloads are slow, check network routing, DNS, and firewall rules.
+Cache misses: Internet cache Vary headers can prevent content from being cached on the first request. Microsoft Connected Cache respects these headers, which can cause initial cache misses. The product team is actively working on a fix.
+Diagnostics: Run the Delivery Optimization troubleshooter at aka.ms/DO-Fix for automated diagnostics.
+PowerShell: Use Get-DeliveryOptimizationStatus in PowerShell to see real-time download source, peer count, and bytes per source for each active download.
+Delivery Optimization reporting: Centralized reporting is available in the Windows Update for Business Delivery Optimization report or through PowerShell cmdlets. Monitor Delivery Optimization.
+
+Get started
+Delivery Optimization is already available on supported Windows devices you manage. The configurations in this post take minutes to deploy through the Intune settings catalog and can save significant bandwidth with every update cycle and application deployment. Start with the essential policies table, pilot the profile with a small device group, and review Windows Update for Business reports after a couple of patch cycles to measure the impact.
+Many organizations achieve their goals using Delivery Optimization peer-to-peer caching alone. For scenarios where peer caching is insufficient or a persistent local cache is required, Microsoft Connected Cache is available as an additional option. The product team is active in the Connected Cache Community at aka.ms/ConnectedCacheCommunity, and feature ideas can be submitted through the Intune feedback portal at aka.ms/IntuneFeedback.
+ResourceLinkConfigure Delivery Optimization Configure Delivery Optimization Delivery Optimization Troubleshooter Run the Delivery Optimization Troubleshooter Microsoft Connected Cache Release Notes View MCC Release Notes Connected Cache Community Join the Community DO + MCC AMA Recording Watch the AMA Recording Intune Feedback Submit Product Feedback 
+&amp;nbsp;
+If you have any feedback or questions, leave a comment below or reach out to us on X @IntuneSuppTeam.</p><a href="https://techcommunity.microsoft.com/t5/intune-customer-success/configure-delivery-optimization-for-windows-to-save-bandwidth/ba-p/4547592" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a6ead6a01b9')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aca629deb48">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiqgFBVV95cUxOdlp2dGxLRFJqMkxYVjMwNzROLXVhYWdSTUZFT2VOWGY0bTE2VGMtaVZlbmpYQkl6S1BvT0pGVWxXX1RsaXJmVHRPdFdrRzA4SXh0bjgxaHpRd0ZTVmJwZVJJNDY1cktsQm1hSVFFYWhJS0xnb2RsdGJETXNWQzRRbkFzdVR6bGlwdzBaQkpiYzVfQmlWX25WZ3p5bTk2QjFlUkVaTHNPR3hOdw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Are You Still Patching Like It’s 2016? The WSUS, Intune &amp; Third-Party Patch Gap - mcpmag.com</a>
+          <div class="article-meta">mcpmag.com &bull; Aug 20, 2026</div>
+          <div class="article-summary snippet"><p>Are You Still Patching Like It’s 2016? The WSUS, Intune &amp; Third-Party Patch Gap&amp;nbsp;&amp;nbsp;mcpmag.com</p><a href="https://news.google.com/rss/articles/CBMiqgFBVV95cUxOdlp2dGxLRFJqMkxYVjMwNzROLXVhYWdSTUZFT2VOWGY0bTE2VGMtaVZlbmpYQkl6S1BvT0pGVWxXX1RsaXJmVHRPdFdrRzA4SXh0bjgxaHpRd0ZTVmJwZVJJNDY1cktsQm1hSVFFYWhJS0xnb2RsdGJETXNWQzRRbkFzdVR6bGlwdzBaQkpiYzVfQmlWX25WZ3p5bTk2QjFlUkVaTHNPR3hOdw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aca629deb48')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="entraid" class="topic-section">
+      <h2 class="topic-title" style="--c:#6B69D6">Entra ID <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a22d5a6113f">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-entra-update-identity-governance-cloud-sync/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Entra Adds Identity Governance, Cloud Sync, and Access Management Updates</a>
+          <div class="article-meta">petri.com &bull; Aug 20, 2026</div>
+          <div class="article-summary"><p>Microsoft expands automation, hybrid identity support, and governance capabilities across the Entra platform.
+Key Takeaways:
+Microsoft has highlighted a range of new and preview capabilities rolled out to Microsoft Entra customers in August 2026. The latest updates strengthen identity management, automate governance tasks, improve hybrid identity scenarios, and give IT admins greater control over user access.
+Administrators can now use a supported registry setting to automatically approve single sign-on (SSO) permissions on managed Windows devices. This new admin control allows users to access Microsoft services with fewer authentication prompts. It’s available for PCs running the July 2026 monthly security update for Windows 11 version 24H2 and 25H2.
+Microsoft has introduced a new writeback feature that allows administrators to synchronize key attribute changes from Exchange Online back to on-premises Active Directory through Entra Cloud Sync.
+The new What-if mode allows IT admins to test workflows before deployment in enterprise environments. Moreover, they can cancel queued or in-progress workflow executions if errors or configuration issues are detected. Administrators can now automatically set or clear user attributes when lifecycle events occur. This feature supports various attributes, including built-in user attributes and on-premises extension attributes for cloud-managed users, as well as directory extension attributes for cloud-managed users and users synchronized from on-premises Active Directory.
+Microsoft has introduced support for a new attribute format and expanded set of dynamic attributes, such as custom security attributes, additional built-in user attributes, directory extensions, and on-premises extension attributes. Microsoft Entra ID has also added support for federation with external identity providers that don’t share users’ email addresses.
+Administrators can synchronize on-premises Active Directory devices with Microsoft Entra ID using Cloud Sync. This capability supports hybrid device management and reduces dependence on traditional synchronization tools. This update also allows IT admins to create workflows that identify and remove guest users who no longer have sponsors. It helps to reduce security risks and maintain cleaner environments.
+Last but not least, Microsoft Entra Domain Services now offers backup and restore capabilities for Group Policy Objects (GPOs). This feature allows administrators to recover policy settings after accidental changes.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a22d5a6113f')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a31219abe4e">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-organizations-move-beyond-active-directory/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Says Active Directory Alone is No Longer Enough for Modern Identity Security</a>
+          <div class="article-meta">petri.com &bull; Aug 19, 2026</div>
+          <div class="article-summary"><p>Growing reliance on SaaS, external users, and AI agents is driving the need for cloud-based identity governance.
+Key Takeaways:
+As organizations embrace cloud applications, hybrid work, and AI-driven services, traditional Active Directory environments are being pushed beyond the role they were originally designed to play. Microsoft is urging IT teams to modernize identity management and adopt Microsoft Entra ID to strengthen security, simplify access governance, and prepare for an increasingly cloud and AI-powered workplace.
+🎬 Watch This Week in IT.
+Microsoft has identified five key indicators that suggest organizations may be relying too heavily on traditional on-premises identity management systems such as Active Directory. IT teams often spend significant time maintaining domain controllers, updates, backups, certificates, and recovery processes. This effort leaves less time for strategic initiatives such as automation, governance, and security improvements.
+Secondly, older identity models were designed around the assumption that users inside the corporate network could be trusted. However, today’s distributed workforce requires access decisions based on various factors such as user risk, device health, and context, rather than network location alone.
+Organizations now depend heavily on SaaS platforms such as Microsoft 365, Salesforce, Workday, and ServiceNow. As these applications become central to operations, identity management also needs to evolve toward cloud-based approaches.
+Microsoft mentioned that companies must manage access for contractors, partners, suppliers, and other external users. Effective governance is needed to ensure people receive appropriate access and that permissions are removed when no longer required.
+Additionally, AI applications and agents require permissions to access data and perform tasks. IT teams need mechanisms to grant, monitor, govern, and revoke these permissions securely, which makes identity management an important part of AI readiness.
+Microsoft advises a gradual modernization approach rather than a complete replacement of Active Directory. IT teams should begin by moving authentication and access controls to cloud-based identity platforms, adopting stronger sign-in methods such as phishing-resistant authentication, and reducing dependence on outdated authentication protocols. Moreover, access decisions should also be based on real-time risk and user context, including device health and user behavior.
+It’s highly recommended to strengthen identity governance across the organization. This includes improving user lifecycle management, regularly reviewing access rights, controlling privileged accounts, and extending governance to external users, applications, and AI-powered agents. Microsoft also advises organizations to identify applications, devices, and infrastructure that still require Active Directory and modernize them over time.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a31219abe4e')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a4d91958a95">
+        <div class="article-body">
+          <a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-warns-of-max-severity-entra-id-flaw-exploited-in-attacks/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft patches max severity code execution, privilege escalation flaws</a>
+          <div class="article-meta">bleepingcomputer.com &bull; Aug 21, 2026</div>
+          <div class="article-summary"><p>Microsoft has patched multiple maximum-severity vulnerabilities in its Entra ID, Azure Arc, and Exchange Online that allowed attackers to gain remote code execution and escalate privileges.
+Formerly known as Azure Active Directory (or Azure AD), it is a cloud-based IAM platform that provides Microsoft 365, Azure, or Dynamics CRM Online customers with authentication, policy enforcement, and protection across apps and resources.
+The first one, discovered by Microsoft principal security engineer Robert Fitzpatrick and tracked as CVE-2026-69836, is a critical flaw in the Entra ID cloud-based IAM platform that allowed threat actors with no privileges to gain code execution in low-complexity attacks.
+&quot;Deserialization of untrusted data in Microsoft Entra ID allows an unauthorized attacker to execute code over a network,&quot; Microsoft said in a security advisory published on Thursday.
+Yesterday, Microsoft also addressed four more maximum severity flaws, three of them allowing unauthenticated attackers to escalate privileges remotely on Azure Arc (CVE-2026-65816 and CVE-2026-69555) and Exchange Online (CVE-2026-65801).
+The fourth, tracked as CVE-2026-65770, enabled remote code execution on an Azure Managed Instance for Apache Cassandra.
+Microsoft says exploit code for these vulnerabilities is not yet available online and added that users don't need to take any action since the flaws have already been fully patched.
+According to Microsoft, the company published the security advisories &quot;to provide further transparency.&quot;
+In September 2025, it patched another critical Entra ID privilege escalation flaw (CVE-2025-55241) reported by Outsider Security security researcher Dirk-jan Mollema that enabled attackers to gain complete access to the Microsoft Entra ID tenant of every company in the world.
+On Friday, CISA also tagged a critical-severity remote code execution (RCE) flaw in the Windows Internet Key Exchange (IKE) Service Extensions component as actively exploited.
+Update August 22, 02:56 EDT: Revised story and title following a statement from Microsoft saying they mistakenly flagged CVE-2026-69836 as exploited in the wild. The original story can be found here.
+Once attackers have valid credentials, only 37% of their actions are blocked
+Overall prevention scores can hide what happens after initial access. Once attackers are using valid credentials, prevention drops sharply.
+The Blue Report 2026 measures defenses technique by technique across 338 million simulations run in customer production environments.
+Get the report</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a4d91958a95')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a316702e0d5">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/08/microsoft-entra-id-flaw-cvss-100.html" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Patches Severe Entra ID Flaw (CVSS 10.0) Allowing Remote Code Execution</a>
+          <div class="article-meta">thehackernews.com &bull; Aug 21, 2026</div>
+          <div class="article-summary"><p>Update: The story was updated after publication to note that the vulnerability has not been exploited.
+Although the security bulletin originally marked the &quot;Exploited&quot; field under the Exploitability Assessment table as &quot;Yes,&quot; on August 21, 2026, Microsoft corrected the &quot;Exploited&quot; status to &quot;No&quot; after The Hacker News contacted the company for comment. It also noted, &quot;this vulnerability was not exploited in the wild.&quot;
+&quot;We identified and addressed this issue with a fix and released CVE-2026-69836 for greater transparency. There are no additional actions customers need to take,” a Microsoft spokesperson told The Hacker News.
+The headline has been edited to reflect this change. The original story follows below -
+Microsoft on Thursday warned of a maximum-severity security flaw in Entra ID that it said has been exploited in the wild, but noted that no customer action is required.
+The vulnerability, tracked as CVE-2026-69836 (CVSS score: 10.0), is a case of remote code execution impacting the tech giant's cloud-based identity and access management service. It was previously called Azure Active Directory or Azure AD.
+&quot;Deserialization of untrusted data in Microsoft Entra ID allows an unauthorized attacker to execute code over a network,&quot; Microsoft said in an alert released Thursday.
+Flaws of this kind occur when an application converts user-controlled data back into an active object or code structure without proper validation. This can lead to code execution, denial-of-service, or access control bypass that can permit an attacker to perform unauthorized actions.
+The company credited principal security engineer Robert Fitzpatrick for discovering and reporting the issue.
+As of writing, there are currently no details on how the vulnerability has been exploited, when these efforts began and if they are still ongoing, and how it was discovered.
+&quot;This vulnerability has already been fully mitigated by Microsoft,&quot; it added. &quot;There is no action for users of this service to take.&quot;
+Earlier this month, Redmond also patched a high-severity security privilege escalation flaw affecting Windows Ancillary Function Driver for WinSock (CVE-2026-68820, CVSS score: 7.0) that was exploited as a zero-day by the North Korea-linked Lazarus Group as part of a long-running campaign dubbed Operation Dream Job.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a316702e0d5')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a5c563c3128">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/08/silkparasite-espionage-campaign-targets.html" target="_blank" rel="noopener noreferrer" class="article-title">SilkParasite Espionage Campaign Targets Central Asian Governments with Five New RATs</a>
+          <div class="article-meta">thehackernews.com &bull; Aug 19, 2026</div>
+          <div class="article-summary"><p>A previously unreported cyber espionage operation dubbed SilkParasite has been observed targeting government bodies in Central Asia.
+The intrusion set makes use of seven remote access tool (RAT) families, five of which have never been previously documented: DriveSilkRAT, CookiETagRAT, NomadRAT, GoginRAT, and NodeEdgeRAT. SilkParasite, first discovered in late 2025, is assessed to be a China-nexus threat cluster with medium confidence.
+&quot;What makes SilkParasite interesting is the traces of AI-assisted development running through otherwise expert code, which is a different thing from AI-generated malware,&quot; Bitdefender Labs said in a technical report shared with The Hacker News.
+Unlike other operations that rely on AI-generated malware, SilkParasite's arsenal exhibits all hallmarks typically associated with professional espionage tooling that's developed by a team of human operators while AI is likely used to streamline the process.
+The Romanian cybersecurity vendor said the clearest sign of the technology use comes from a phishing lure that's indubitably AI-generated. It's also the only place the adversary seems to have been sloppy, which has raised the possibility that it may have been a deliberate choice to confuse attribution efforts.
+SilkParasite is the third prominent threat actor to strike Central Asia in recent years, after UAC-0063 and FamousSparrow. One notable aspect that ties the operation to China is the use of a backdoor dubbed BLOODALCHEMY, which is an updated version of Deed RAT, itself a successor to ShadowPad. ShadowPad, for its part, is an evolution of PlugX. Both ShadowPad and PlugX are widely put to use by Chinese hacking groups.
+First documented by Elastic Security Labs in October 2023, BLOODALCHEMY was observed as part of attacks mounted by REF5961 targeting government organizations in Southern and Southeast Asia. The C-based backdoor is said to be part of a broader toolset that's launched by means of a DLL loader that's sideloaded using a legitimate binary.
+The malware supports basic commands to gather host information, overwrite the malware binary, the loader, or the main trusted binary that's vulnerable to DLL sideloading, and terminate and uninstall itself.
+Another indicator that points to China-nexus is the use of an improved variant of SpiceRAT, which is equipped to download and run executable binaries and arbitrary commands. It's attributed to another Chinese-speaking threat actor codenamed SneakyChef.
+Attack chains begin with password-protected RAR archives bearing malicious Microsoft Office documents that are likely delivered via spear-phishing emails. The password to open the archive is supplied in the email body. Opening the document launches a macro responsible for trigger a DLL sideloading sequence to drop the first-stage payload.
+&quot;The lures were regionally tailored,&quot; Bitdefender said. &quot;Recovered documents were crafted to look relevant to government
+entities in Uzbekistan, Turkmenistan, Kyrgyzstan, Tajikistan, and Kazakhstan, several impersonating specific ministries. A further document, recovered from a public malware-sharing platform, was addressed to a Georgian government entity.&quot;
+Perhaps more significantly, the macro checks if Kaspersky's antivirus software is installed and running on the machine before execution. This is indicative of attempts to bypass detection given the prevalence of the security program in the region.
+Almost every single tool deployed over the course of the attack implements a plugin-oriented architecture that allows the operators to expand its capabilities at will, while selectively serving payloads that can better adapt to the victim environment and keeping the detection footprint small.
+What's more, the modular system offers another crucial advantage in that it enables the threat actors to upgrade the components' capabilities without having to replace the underlying foundations.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a5c563c3128')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a82b7715079">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/08/microsoft-entra-id-flaw-cvss-100.html" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Patches Severe Entra ID Flaw (CVSS 10.0) Allowing Remote Code Execution - The Hacker News</a>
+          <div class="article-meta">The Hacker News &bull; Aug 21, 2026</div>
+          <div class="article-summary"><p>Update: The story was updated after publication to note that the vulnerability has not been exploited.
+Although the security bulletin originally marked the &quot;Exploited&quot; field under the Exploitability Assessment table as &quot;Yes,&quot; on August 21, 2026, Microsoft corrected the &quot;Exploited&quot; status to &quot;No&quot; after The Hacker News contacted the company for comment. It also noted, &quot;this vulnerability was not exploited in the wild.&quot;
+&quot;We identified and addressed this issue with a fix and released CVE-2026-69836 for greater transparency. There are no additional actions customers need to take,” a Microsoft spokesperson told The Hacker News.
+The headline has been edited to reflect this change. The original story follows below -
+Microsoft on Thursday warned of a maximum-severity security flaw in Entra ID that it said has been exploited in the wild, but noted that no customer action is required.
+The vulnerability, tracked as CVE-2026-69836 (CVSS score: 10.0), is a case of remote code execution impacting the tech giant's cloud-based identity and access management service. It was previously called Azure Active Directory or Azure AD.
+&quot;Deserialization of untrusted data in Microsoft Entra ID allows an unauthorized attacker to execute code over a network,&quot; Microsoft said in an alert released Thursday.
+Flaws of this kind occur when an application converts user-controlled data back into an active object or code structure without proper validation. This can lead to code execution, denial-of-service, or access control bypass that can permit an attacker to perform unauthorized actions.
+The company credited principal security engineer Robert Fitzpatrick for discovering and reporting the issue.
+As of writing, there are currently no details on how the vulnerability has been exploited, when these efforts began and if they are still ongoing, and how it was discovered.
+&quot;This vulnerability has already been fully mitigated by Microsoft,&quot; it added. &quot;There is no action for users of this service to take.&quot;
+Earlier this month, Redmond also patched a high-severity security privilege escalation flaw affecting Windows Ancillary Function Driver for WinSock (CVE-2026-68820, CVSS score: 7.0) that was exploited as a zero-day by the North Korea-linked Lazarus Group as part of a long-running campaign dubbed Operation Dream Job.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a82b7715079')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a2acc5f1313">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMidkFVX3lxTE8zOWs5NTRNclk1TE5vcHZZQkFqS3g3NUYwUDRWejR4RFhXV2ZEZ1pjWkQ4d1BzNFRmNW9uWVRQNHdfZHU1SG1CRUlxM2lIWGlhS0RtaUYwOTNlUi1PQ0M1MDB3Qy0wUWVEQ0NmRmJONU83b1Awa2fSAXtBVV95cUxPRnhycDRha1ZNQmtCcGhra0RYTG40WWhGckcxdnVHQTg5LTZ4a0h1TEhxaDUwSFJiRmFOZzB4dmZHb0R5bzRUS19RcFNUVWdCNDV1SFVzcG4zdWRPSnEtSGE0QVVqemJ1RUd1MDBDd05zeWtmZTB6QU84Rm8?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Critical Microsoft Entra ID Vulnerability Enables Remote Code Execution Attacks - CyberSecurityNews</a>
+          <div class="article-meta">CyberSecurityNews &bull; Aug 21, 2026</div>
+          <div class="article-summary snippet"><p>Critical Microsoft Entra ID Vulnerability Enables Remote Code Execution Attacks&amp;nbsp;&amp;nbsp;CyberSecurityNews</p><a href="https://news.google.com/rss/articles/CBMidkFVX3lxTE8zOWs5NTRNclk1TE5vcHZZQkFqS3g3NUYwUDRWejR4RFhXV2ZEZ1pjWkQ4d1BzNFRmNW9uWVRQNHdfZHU1SG1CRUlxM2lIWGlhS0RtaUYwOTNlUi1PQ0M1MDB3Qy0wUWVEQ0NmRmJONU83b1Awa2fSAXtBVV95cUxPRnhycDRha1ZNQmtCcGhra0RYTG40WWhGckcxdnVHQTg5LTZ4a0h1TEhxaDUwSFJiRmFOZzB4dmZHb0R5bzRUS19RcFNUVWdCNDV1SFVzcG4zdWRPSnEtSGE0QVVqemJ1RUd1MDBDd05zeWtmZTB6QU84Rm8?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a2acc5f1313')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="add84cddb2c">
+        <div class="article-body">
+          <a href="https://www.securityweek.com/microsoft-rolls-out-22-fresh-security-patches/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Patches Exploited Entra ID Vulnerability - SecurityWeek</a>
+          <div class="article-meta">SecurityWeek &bull; Aug 21, 2026</div>
+          <div class="article-summary"><p>Microsoft on Thursday announced the rollout of 22 new security updates that resolve severe vulnerabilities across multiple products, including a critical Entra ID zero-day exploited in attacks.
+The exploited Entra ID flaw is tracked as CVE-2026-69836, and it could have been exploited for remote code execution (RCE). Microsoft discovered the issue internally and patched it on the server side, with no action required from customers.
+The tech giant has not shared any information about the attacks involving exploitation of CVE-2026-69836.
+Most of the other patches address critical and high-severity flaws in Microsoft Azure, Entra ID, Exchange, Fabric, and Partner Center products.
+The most severe of these include elevation-of-privilege (EoP) bugs in Azure SQL Database (CVE-2026-69502), Azure Arc (CVE-2026-69555 and CVE-2026-65816), and Exchange Online (CVE-2026-65801), as well as an RCE flaw in Azure Managed Instance for Apache Cassandra (CVE-2026-65770), all with a CVSS score of 10/10.
+Seven other critical EoP issues were resolved: CVE-2026-68782 (Azure SQL Database), CVE-2026-63509 (Microsoft Fabric), CVE-2026-69851 (Entra ID), CVE-2026-68789 (Azure SQL Database), CVE-2026-69400 (Azure Logic Apps), CVE-2026-62834 (Azure Data Factor), and CVE-2026-66309 (Azure SQL Database).
+Additionally, Microsoft patched high-severity vulnerabilities in Azure Virtual Machines, Microsoft Partner Center, Azure Data Factory, Azure Stack HCI, Azure Data Manager for Energy, Copilot in Azure, and Windows Remote Help Defense.
+No customer action is required for the majority of these security defects, as Microsoft has deployed the mitigations on the server side.
+Earlier this week, Microsoft fixed a high-severity command injection bug in Copilot that could be exploited remotely for information disclosure (CVE-2026-24301).
+Last week, the company announced that it was working on patches for ShieldBreak, a zero-day Defender exploit dropped on August 2026 Patch Tuesday by security researcher Nightmare Eclipse (also known as Chaotic Eclipse).
+The company assesses that the vulnerability ShieldBreak targets is a high-severity bug, now tracked as CVE-2026-69414 (CVSS score of 7.8).
+“Microsoft is aware of an elevation of privilege in the Microsoft Malware Protection Engine in Microsoft Defender publicly referred to as ‘ShieldBreak’. We are working to provide a high-quality security update that addresses this vulnerability,” the company said.
+* Headline and body of the article have been updated to show that the Entra ID vulnerability has been exploited
+Related: CISA Urges Immediate Patching of Exploited TrueConf Vulnerabilities
+Related: Exploitation Expected for Critical Authentication Bypass Patched in Citrix NetScaler
+Related: Critical GitLab Flaw Exploited Shortly After Disclosure
+Related: CISA Urges Immediate Patching of Exploited Microsoft, VMware, Apple Vulnerabilities</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('add84cddb2c')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="m365" class="topic-section">
+      <h2 class="topic-title" style="--c:#D83B01">Microsoft 365 <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="aa1d4b50f40">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-365-business-100gb-mailboxes/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Doubles Mailbox Storage to 100 GB for Microsoft 365 Business Users</a>
+          <div class="article-meta">petri.com &bull; Aug 20, 2026</div>
+          <div class="article-summary"><p>Expanded mailbox capacity gives SMBs more room to manage growing email volumes without changing plans.
+Key Takeaways:
+Microsoft is giving small and medium-sized businesses more room to manage growing email volumes by doubling the mailbox storage for eligible Microsoft 365 Business users from 50 GB to 100 GB. This change began rolling out in June as part of the 2026 Microsoft 365 packaging updates.
+Specifically, Microsoft has recently updated mailbox storage entitlements for certain Microsoft 365 Business subscriptions, which increases the primary mailbox size available to eligible users to 100 GB. The additional storage changes will apply to customers with Microsoft 365 Business Basic, Business Standard, and Business Premium subscriptions.
+The 100 GB mailbox entitlement is provided through two combined service plans within the Microsoft 365 Business suite. The first plan, BPOS_S_STANDARD, provides a base mailbox capacity of 50 GB, while the EXCHANGE_STORAGE_50GB service plan adds another 50 GB of storage. Users must have both service plans enabled under their assigned license to receive the full 100 GB mailbox quota.
+“A user who has multiple licenses assigned, which contain multiple Exchange service plans (this is known as Concurrent Licensing), will be granted the maximum quota provided by a single product – the quotas are not additive across products. For example, a user with one of the Business Suite and a separate Enterprise license containing Exchange Online Plan 2, will still be entitled to 100 GB. The quota increase for the Business suites affects the base mailbox size only. It does not provide archive capabilities,” the Exchange team explained.
+Microsoft preserves any mailbox quotas that administrators have manually configured, which ensures that the additional 50 GB entitlement does not automatically override existing custom settings. Similarly, if the extra storage entitlement is later removed, any administrator-defined quota remains unchanged to help organizations maintain their intended mailbox management policies.
+Microsoft says the gradual rollout of the packaging changes will continue through September 2026. The company has warned that administrators should not remove and reassign licenses to force a mailbox quota refresh, as doing so can disrupt service access and potentially trigger the applicable data-retention lifecycle.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aa1d4b50f40')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ac9e0e3b478">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-365-cross-tenant-sharing-access-policies/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Moves Cross-Tenant Calendar Sharing to Cross-Tenant Access Policies</a>
+          <div class="article-meta">petri.com &bull; Aug 18, 2026</div>
+          <div class="article-summary"><p>Organizations using external Microsoft 365 collaboration features should begin migrating from legacy Exchange sharing configurations.
+Key Takeaways:
+Microsoft is changing how organizations share Free/Busy availability, MailTips, and calendar data across different Microsoft 365 tenants. This change comes as Microsoft prepares to retire Exchange Web Services (EWS), which currently supports many of these cross-tenant collaboration capabilities.
+Cross-Tenant Access Policy (CTAP) is a security and collaboration framework that enables organizations to control how users across different Microsoft 365 tenants interact. CTAP provides centralized, policy-driven controls for external collaboration, which allows administrators to securely manage access to resources such as calendar availability, shared calendars, MailTips, Teams, and other cross-tenant services.
+Microsoft is making this change because the existing cross-tenant sharing features depend on Exchange Web Services (EWS), which is being retired. The transition to Cross-Tenant Access Policy provides a more modern, secure, and centrally managed way to support collaboration between Microsoft 365 organizations.
+According to Microsoft, the Cross-Tenant Access Policy (CTAP) will become the new standard for sharing Free/Busy information, MailTips, and calendars between Microsoft 365 organizations. It replaces older Exchange Online mechanisms such as organization relationships, availability address spaces, and sharing policies.
+This change mainly impacts companies that share calendar and availability data with external Microsoft 365 tenants, such as partners, subsidiaries, vendors, or acquired organizations. However, it doesn’t affect internal sharing within the same tenant.
+The new Cross-Tenant Access Policy model is a part of Microsoft’s broader effort to modernize authentication and reduce reliance on high-privilege access methods. It should help to improve security and governance within enterprise environments.
+Organizations that use Free/Busy sharing, MailTips, or calendar sharing with other Microsoft 365 tenants should review their current Exchange Online configurations and determine whether they rely on organization relationships, availability address spaces, or sharing policies. In this case, Microsoft recommends planning a migration to Cross-Tenant Access Policies to ensure these collaboration features continue to work after Exchange Web Services (EWS) is retired.
+Additionally, organizations should test this new configuration before decommissioning their legacy settings and complete the transition as soon as possible. Moving to Cross-Tenant Access Policies provides a more secure and modern framework for collaborating with external partners, subsidiaries, and other Microsoft 365 tenants.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac9e0e3b478')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a8e3cf49c49">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiekFVX3lxTE1nTXF1Ty1GOFZvbjNxdWFNOXhZeXlBcTdYa0NRR2ZMSEFpZFAtTEpETUlDTFBiZThKREhRWVFIWW1NTmNYWUl6ME9SdjNDTldWc2JENTVZT28wWUFDRHIzN1o3OVB1VnZIMGs2SV9tUWJhX2RzdnlUS2t3?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft 365 Family is the cheapest terabyte in tech, and nobody buys it for the storage - MakeUseOf</a>
+          <div class="article-meta">MakeUseOf &bull; Aug 22, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft 365 Family is the cheapest terabyte in tech, and nobody buys it for the storage&amp;nbsp;&amp;nbsp;MakeUseOf</p><a href="https://news.google.com/rss/articles/CBMiekFVX3lxTE1nTXF1Ty1GOFZvbjNxdWFNOXhZeXlBcTdYa0NRR2ZMSEFpZFAtTEpETUlDTFBiZThKREhRWVFIWW1NTmNYWUl6ME9SdjNDTldWc2JENTVZT28wWUFDRHIzN1o3OVB1VnZIMGs2SV9tUWJhX2RzdnlUS2t3?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a8e3cf49c49')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a988aa33e10">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiygFBVV95cUxNcDBURC12V0JsMHJ3NkpKSjdDRVc0WUZFQ0V4Mm12dGZFQWRIZEQ3R3YtR0tEckIyUExqa1JYRVl4YU9xejJVRFVhVU04ZXdodml4bFVRb21MT0tIdUVJU3dDWnZaSk1Ed2pJbmdBc3l0dEVHRmZGN0lJSHZvTmJPMGRIOEpqVDUzaXdNQ1B1Y3hoREZkV1U0aTBiQkl0M2VHVWxXSWpoQkZrUXhMS0pPMUJqSG4yVHRNZVBRWC1Hb0VWa3FLQmduOXRB?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Built for the complexity of education: AI that understands your institution - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; Aug 19, 2026</div>
+          <div class="article-summary snippet"><p>Built for the complexity of education: AI that understands your institution&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMiygFBVV95cUxNcDBURC12V0JsMHJ3NkpKSjdDRVc0WUZFQ0V4Mm12dGZFQWRIZEQ3R3YtR0tEckIyUExqa1JYRVl4YU9xejJVRFVhVU04ZXdodml4bFVRb21MT0tIdUVJU3dDWnZaSk1Ed2pJbmdBc3l0dEVHRmZGN0lJSHZvTmJPMGRIOEpqVDUzaXdNQ1B1Y3hoREZkV1U0aTBiQkl0M2VHVWxXSWpoQkZrUXhMS0pPMUJqSG4yVHRNZVBRWC1Hb0VWa3FLQmduOXRB?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a988aa33e10')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="af4b58d6d06">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiwgFBVV95cUxNcTFGTVVrVjM4VF9xZTdvTlZaLTRYUjlKeEd1SDZ1YzdYMDlFekdDXzFlT3NtNVc5S2d2ZWg3VzFVaTctN0F0TTFCNDRRZlljcjVvcUFhME5uSV8xWGZXUmM1TFVUM0w1ckcyYmNNZjdqTFhWc1hvMEgwcnM1THdxejJ3VmZrUjI1b0lqSnBRVzRQc2pudFdnXzdEYWF6TnFmS0gyV3k5SEZlQV9fc1VfYWZNek1zUi1QdTdMTnB2V2tMQQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">This Microsoft 365 bundle deal gets you a year of NordVPN for free - Windows Central</a>
+          <div class="article-meta">Windows Central &bull; Aug 21, 2026</div>
+          <div class="article-summary snippet"><p>This Microsoft 365 bundle deal gets you a year of NordVPN for free&amp;nbsp;&amp;nbsp;Windows Central</p><a href="https://news.google.com/rss/articles/CBMiwgFBVV95cUxNcTFGTVVrVjM4VF9xZTdvTlZaLTRYUjlKeEd1SDZ1YzdYMDlFekdDXzFlT3NtNVc5S2d2ZWg3VzFVaTctN0F0TTFCNDRRZlljcjVvcUFhME5uSV8xWGZXUmM1TFVUM0w1ckcyYmNNZjdqTFhWc1hvMEgwcnM1THdxejJ3VmZrUjI1b0lqSnBRVzRQc2pudFdnXzdEYWF6TnFmS0gyV3k5SEZlQV9fc1VfYWZNek1zUi1QdTdMTnB2V2tMQQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('af4b58d6d06')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="af6489fa671">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMikAFBVV95cUxNUUpmV1pNLTlqdV96UFNmTFRIY0F3ZHlqd2JmTEx1RExQemZGUmREdTA2RWtFY0VzeUczUm1iTEtQcVNHTFhhT2ZfRUN1S2U2VUg4Tkl2Rndyb1VwTkwtclo2eEhvaG9xQU41V0pScDFwSEN1V0o5TzlsMmJLNnRhWU1HSXZMYW5EZFotWG9zcUw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">I stopped paying for Microsoft 365 and bought Office instead - SFGATE</a>
+          <div class="article-meta">SFGATE &bull; Aug 21, 2026</div>
+          <div class="article-summary snippet"><p>I stopped paying for Microsoft 365 and bought Office instead&amp;nbsp;&amp;nbsp;SFGATE</p><a href="https://news.google.com/rss/articles/CBMikAFBVV95cUxNUUpmV1pNLTlqdV96UFNmTFRIY0F3ZHlqd2JmTEx1RExQemZGUmREdTA2RWtFY0VzeUczUm1iTEtQcVNHTFhhT2ZfRUN1S2U2VUg4Tkl2Rndyb1VwTkwtclo2eEhvaG9xQU41V0pScDFwSEN1V0o5TzlsMmJLNnRhWU1HSXZMYW5EZFotWG9zcUw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('af6489fa671')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a38da1bac49">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMisgFBVV95cUxPX1M2MWZ6YlRSRzU0Z2loVXZyRVpuM3pZdExuUkdLbE40TjMtV1puSmdiTVBDV1VQa3ZLYTkyZWVhanlmdHMtUm80Skc3UXFJQy1OazhoSmpjb1lBMkdHMlpwV1E3Q3hQOWRXU09BNjdyTXZxVTJUZlcwclZVaVhJWlJRcFh1emJaZFF4bjI4MWtUYW80bmJGYngxSFpmSEEtNFY1M2Fvcl84SjNLVGw2bjBn0gG3AUFVX3lxTE1xb213aTl0M0laWDlOMXFBQjBpZWVSSklqRHlSTkl5RU5rOGlnYng5WjFTQnBrZEFlV2xQWHdka2ljZWYyNHlaTmllUTRvcUdIVk5lV002WWVmVUktWnZOZTV6NklYckx4T053Ql8waEppMXF1anRNUU55emNlT09IR2tVWWREZmttdndQSVdIRkFQNVk3TlRCV29MWndZR053YTNpY2E1UFRKTFNtTnZHOWZhaHRVdw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft confirms outage affecting search in Microsoft 365 apps - BleepingComputer</a>
+          <div class="article-meta">BleepingComputer &bull; Aug 18, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft confirms outage affecting search in Microsoft 365 apps&amp;nbsp;&amp;nbsp;BleepingComputer</p><a href="https://news.google.com/rss/articles/CBMisgFBVV95cUxPX1M2MWZ6YlRSRzU0Z2loVXZyRVpuM3pZdExuUkdLbE40TjMtV1puSmdiTVBDV1VQa3ZLYTkyZWVhanlmdHMtUm80Skc3UXFJQy1OazhoSmpjb1lBMkdHMlpwV1E3Q3hQOWRXU09BNjdyTXZxVTJUZlcwclZVaVhJWlJRcFh1emJaZFF4bjI4MWtUYW80bmJGYngxSFpmSEEtNFY1M2Fvcl84SjNLVGw2bjBn0gG3AUFVX3lxTE1xb213aTl0M0laWDlOMXFBQjBpZWVSSklqRHlSTkl5RU5rOGlnYng5WjFTQnBrZEFlV2xQWHdka2ljZWYyNHlaTmllUTRvcUdIVk5lV002WWVmVUktWnZOZTV6NklYckx4T053Ql8waEppMXF1anRNUU55emNlT09IR2tVWWREZmttdndQSVdIRkFQNVk3TlRCV29MWndZR053YTNpY2E1UFRKTFNtTnZHOWZhaHRVdw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a38da1bac49')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a125448dc3b">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMipgFBVV95cUxOZ01JV3IzQ0g1WnJNcGhqRTR3S1lkcGNrZEpoLWhLTlpyS3VYOU9ZZTIzSzh3dWdDUTJzWm90S1Z6c2FTRXN0d1FGa1hOZnhON2lQTzhXYnVROHNVYjRMU1M4OTlRNVhEc0RTQWdsb0pWZTJZLXV4TzFlRURDNDZFLWxvSW5JcDU1Qm1YOW51WlAtOEFtM0xyNlR0MVlUUzVFZG5TSGN3?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Can Microsoft Stock Benefit From Expanding Microsoft 365 Seats? - Zacks Investment Research</a>
+          <div class="article-meta">Zacks Investment Research &bull; Aug 17, 2026</div>
+          <div class="article-summary snippet"><p>Can Microsoft Stock Benefit From Expanding Microsoft 365 Seats?&amp;nbsp;&amp;nbsp;Zacks Investment Research</p><a href="https://news.google.com/rss/articles/CBMipgFBVV95cUxOZ01JV3IzQ0g1WnJNcGhqRTR3S1lkcGNrZEpoLWhLTlpyS3VYOU9ZZTIzSzh3dWdDUTJzWm90S1Z6c2FTRXN0d1FGa1hOZnhON2lQTzhXYnVROHNVYjRMU1M4OTlRNVhEc0RTQWdsb0pWZTJZLXV4TzFlRURDNDZFLWxvSW5JcDU1Qm1YOW51WlAtOEFtM0xyNlR0MVlUUzVFZG5TSGN3?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a125448dc3b')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="iru" class="topic-section">
+      <h2 class="topic-title" style="--c:#7C3AED">Iru MDM (formerly Kandji) </h2>
+      <p class="no-news">No articles found this week.</p>
+    </section>
+    <section id="cato" class="topic-section">
+      <h2 class="topic-title" style="--c:#FF6B35">Cato Networks </h2>
+      <p class="no-news">No articles found this week.</p>
+    </section>
+</main>
+
+<footer>
+  Generated every Sunday &mdash; Topics: Windows &bull; Azure &bull; SharePoint &bull; Intune &bull; Entra ID &bull; Microsoft 365 &bull; Iru MDM (formerly Kandji) &bull; Cato Networks
+</footer>
+
+<script>
+const KEY = 'it-news-hidden-v1';
+function getHidden() {
+  try { return new Set(JSON.parse(localStorage.getItem(KEY) || '[]')); }
+  catch { return new Set(); }
+}
+function saveHidden(s) { localStorage.setItem(KEY, JSON.stringify([...s])); }
+function toggleArticle(id) {
+  const h = getHidden();
+  h.has(id) ? h.delete(id) : h.add(id);
+  saveHidden(h); applyHidden(h);
+}
+function applyHidden(h) {
+  h = h || getHidden();
+  document.querySelectorAll('.article-card[data-id]').forEach(c => {
+    c.classList.toggle('is-hidden', h.has(c.dataset.id));
+  });
+}
+let revealing = false;
+function toggleReveal() {
+  revealing = !revealing;
+  document.body.classList.toggle('reveal-hidden', revealing);
+  document.getElementById('reveal-btn').textContent = revealing ? 'Hide hidden' : 'Show hidden';
+}
+fetch('weeks.json').then(r => r.json()).then(weeks => {
+  const sel = document.getElementById('week-sel');
+  weeks.forEach(w => {
+    const o = document.createElement('option');
+    o.value = w.file; o.textContent = w.label;
+    if (w.current) o.selected = true;
+    sel.appendChild(o);
+  });
+}).catch(() => {});
+applyHidden();
+</script>
+</body>
+</html>
