@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT News Digest — 2026-W35</title>
+  <style>
+    :root{--bg:#f8fafc;--surface:#fff;--border:#e2e8f0;--text:#1e293b;--muted:#64748b;--accent:#2563eb}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+    a{color:var(--accent)}
+
+    header{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+    .h-inner{max-width:1000px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .h-brand{font-size:1.1rem;font-weight:800;color:#1d4ed8}
+    .h-meta{font-size:.78rem;color:var(--muted)}
+    .h-controls{display:flex;gap:8px;align-items:center}
+    .btn{padding:5px 12px;border-radius:6px;font-size:.78rem;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);white-space:nowrap}
+    .btn:hover{background:#f1f5f9}
+    select.week-sel{padding:5px 10px;border-radius:6px;border:1px solid var(--border);background:var(--surface);font-size:.78rem;cursor:pointer;color:var(--text)}
+
+    .t-nav{background:var(--surface);border-bottom:1px solid var(--border);overflow-x:auto}
+    .t-nav-inner{max-width:1000px;margin:0 auto;padding:8px 20px;display:flex;gap:6px;min-width:max-content}
+    .nav-link{font-size:.72rem;padding:3px 10px;border-radius:20px;border:2px solid var(--c,#2563eb);color:var(--c,#2563eb);text-decoration:none;font-weight:600;white-space:nowrap}
+    .nav-link:hover{background:var(--c,#2563eb);color:#fff}
+
+    main{max-width:1000px;margin:0 auto;padding:24px 20px}
+
+    .week-hero{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin-bottom:28px;display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+    .hero-title{font-size:1.6rem;font-weight:900;color:#1d4ed8}
+    .hero-sub{font-size:.85rem;color:var(--muted);margin-top:2px}
+    .stat-box{text-align:center;min-width:60px}
+    .stat-num{font-size:2rem;font-weight:900;color:#1d4ed8;line-height:1}
+    .stat-lbl{font-size:.65rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+
+    .topic-section{margin-bottom:40px}
+    .topic-title{font-size:1.2rem;font-weight:800;color:var(--c,#2563eb);border-bottom:3px solid var(--c,#2563eb);padding-bottom:8px;margin-bottom:14px}
+    .count{font-size:.8rem;font-weight:400;color:var(--muted)}
+    .no-news{color:var(--muted);font-style:italic;font-size:.88rem}
+
+    .article-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:12px;display:flex;gap:12px;align-items:flex-start;transition:border-color .15s}
+    .article-card:hover{border-color:#94a3b8}
+    .article-body{flex:1;min-width:0}
+    .article-title{font-size:.98rem;font-weight:600;text-decoration:none;display:block;margin-bottom:4px;color:var(--accent)}
+    .article-title:hover{text-decoration:underline}
+    .article-meta{font-size:.72rem;color:var(--muted);margin-bottom:8px}
+
+    .article-summary{margin-top:6px;font-size:.875rem;color:#334155;line-height:1.75}
+    .article-summary p{margin-bottom:.6em}
+    .article-summary p:last-child{margin-bottom:0}
+    .gnews-badge{display:inline-block;font-size:.65rem;background:#fef3c7;color:#92400e;border-radius:4px;padding:1px 5px;margin-bottom:6px;vertical-align:middle}
+    .article-summary.snippet{color:var(--muted)}
+    .read-more{display:inline-block;margin-top:6px;font-size:.8rem;font-weight:600;color:var(--accent);text-decoration:none}
+    .read-more:hover{text-decoration:underline}
+
+    .hide-btn{flex-shrink:0;padding:5px 10px;border-radius:6px;font-size:.72rem;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--muted);white-space:nowrap;align-self:flex-start}
+    .hide-btn:hover{border-color:#ef4444;color:#ef4444;background:#fef2f2}
+    .lbl-show{display:none}
+
+    .article-card.is-hidden{display:none}
+    body.reveal-hidden .article-card.is-hidden{display:flex;opacity:.45;border-style:dashed}
+    .article-card.is-hidden .lbl-hide{display:none}
+    .article-card.is-hidden .lbl-show{display:inline}
+    body.reveal-hidden .article-card.is-hidden .hide-btn{border-color:#16a34a;color:#16a34a}
+    body.reveal-hidden .article-card.is-hidden .hide-btn:hover{background:#f0fdf4}
+
+    footer{text-align:center;padding:24px 20px;color:var(--muted);font-size:.75rem;border-top:1px solid var(--border);margin-top:40px}
+
+    @media(max-width:600px){
+      .h-inner,.main{padding-left:14px;padding-right:14px}
+      .hero-title{font-size:1.3rem}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="h-inner">
+    <div>
+      <div class="h-brand">IT News Digest</div>
+      <div class="h-meta">Week 2026-W35 &bull; Aug 24–30, 2026</div>
+    </div>
+    <div class="h-controls">
+      <button class="btn" id="reveal-btn" onclick="toggleReveal()">Show hidden</button>
+      <select class="week-sel" id="week-sel" onchange="if(this.value) location.href=this.value">
+        <option value="">&#128337; Archive&hellip;</option>
+      </select>
+    </div>
+  </div>
+</header>
+
+<nav class="t-nav"><div class="t-nav-inner"><a href="#windows" class="nav-link" style="--c:#0078D4">Microsoft Windows</a><a href="#azure" class="nav-link" style="--c:#00BCF2">Azure</a><a href="#sharepoint" class="nav-link" style="--c:#036C70">SharePoint</a><a href="#intune" class="nav-link" style="--c:#0F6CBD">Intune</a><a href="#entraid" class="nav-link" style="--c:#6B69D6">Entra ID</a><a href="#m365" class="nav-link" style="--c:#D83B01">Microsoft 365</a><a href="#iru" class="nav-link" style="--c:#7C3AED">Iru MDM (formerly Kandji)</a><a href="#cato" class="nav-link" style="--c:#FF6B35">Cato Networks</a></div></nav>
+
+<main>
+  <div class="week-hero">
+    <div>
+      <div class="hero-title">Week 2026-W35</div>
+      <div class="hero-sub">Aug 24–30, 2026</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">54</div>
+      <div class="stat-lbl">Articles</div>
+    </div>
+  </div>
+
+    <section id="windows" class="topic-section">
+      <h2 class="topic-title" style="--c:#0078D4">Microsoft Windows <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a4c73ae4f4b">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windows-insider/2026/08/27/releasing-windows-11-version-26h2-to-the-release-preview-channel/" target="_blank" rel="noopener noreferrer" class="article-title">Releasing Windows 11, version 26H2 to the Release Preview Channel</a>
+          <div class="article-meta">blogs.windows.com &bull; Aug 27, 2026</div>
+          <div class="article-summary"><p>Releasing Windows 11, version 26H2 to the Release Preview Channel
+Hello Windows Insiders!
+Today, we are making this year’s annual feature update, Windows 11, version 26H2 (Build 26300.9278), available in the Release Preview Channel for customers to preview ahead of general availability later this calendar year.
+Windows 11, version 26H2 will be delivered as an enablement package (eKB). This means that Windows 11, versions 24H21, 25H2, and 26H2 use a shared servicing branch. It also means that they share the same new features and enhancements delivered through our continuous innovation efforts. As a result, many of the features and improvements available in Windows 11, version 26H2 might already be familiar, as they have been gradually introduced through monthly updates.
+For commercial customers, Windows 11, version 26H2 enables several experiences that were introduced in earlier releases but not previously enabled by default for commercial devices. This includes Windows settings backup, app-specific actions from the taskbar, and some File Explorer enhancements. For guidance on how to prepare for Windows 11, version 26H2 in your organization, see Get ready for Windows 11, version 26H2.
+Windows Insiders in the Release Preview Channel can install Windows 11, version 26H2 via our “seeker” experience in Windows Update. This means if you are an Insider currently in the Release Preview Channel on a PC that meets the Windows 11 hardware requirements, you can go to Settings and Windows Update and choose to download and install Windows 11, version 26H2. Once you update your PC to Windows 11, version 26H2, you will continue to automatically receive new servicing updates through Windows Update (the typical monthly update process). For instructions on how to join the Windows Insider Program and enroll your PC in the Release Preview Channel, click here.
+If you are a commercial2 customer enrolled in the Windows Insider Program for Business, you can deploy and begin validating Windows 11, version 26H2 on PCs in your organization using Windows Update client policies and Windows Server Update Services (WSUS). Azure Marketplace will be available later today. Should any issues arise, IT admins in organizations deploying Release Preview updates can request Microsoft Support.
+And finally, ISOs will be available for download for Windows 11, version 26H2 via the Windows Insider ISO download page in the near term.
+Thanks,
+Windows Insider Program Team
+1Windows 11, version 24H2 Home and Pro editions will reach end of updates on October 13, 2026. Enterprise and Education editions remain supported until October 12, 2027.
+2We consider a device a commercial device if it is not running the Windows 11 Home edition AND is being managed by an IT administrator (whether via Microsoft Intune or other management solution), or has a volume license key or commercial ID, or is joined to a domain.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a4c73ae4f4b')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ac5f1ae0df0">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windowsdeveloper/2026/08/25/expanding-the-windows-on-arm-app-ecosystem/" target="_blank" rel="noopener noreferrer" class="article-title">Expanding the Windows on Arm app ecosystem across key workloads</a>
+          <div class="article-meta">blogs.windows.com &bull; Aug 25, 2026</div>
+          <div class="article-summary"><p>In a significant milestone for the platform, Microsoft and NVIDIA recently announced NVIDIA RTX Spark. These new devices are the most powerful and efficient, thin-and-light Windows PC ever, built with the Arm architecture. In the fall of 2026, devices from Microsoft Surface, ASUS, Dell, HP, Lenovo, and MSI will be available. NVIDIA’s entry into the Windows on Arm silicon family joins the Qualcomm Snapdragon X series of chipsets that have already established Windows on Arm as the premium experience across Microsoft Surface Copilot+ PCs. The market is sending a clear signal: more silicon providers and more OEM partners are investing in Windows on Arm because customer demand is growing for these powerful and efficient Windows devices and experiences.
+Alongside the expanding PC landscape, the Windows app ecosystem continues to grow rapidly. As powerful Arm-based devices reach more customers, this motivates developers to build and optimize for the platform. Consequently, as the app catalog grows, customers have even more reason to choose Windows on Arm hardware. That virtuous cycle is now clearly in motion. The app catalog growth is evident in the Works on Windows on Arm site. This site catalogs over 7000 verified apps and games available for Windows on Arm and is built with compatibility data from Microsoft. Given the breadth of Arm-capable hardware available from multiple silicon providers and the depth of the app catalog, Windows on Arm has become a first-class platform for any workload.
+App Assure, Microsoft’s app compatibility program, with its dedicated Arm Advisory Service, continues to expand the Windows on Arm ecosystem. We continue working side by side with a diverse set of software development companies to bring their apps to the Windows on Arm catalog, ensuring that no customer is left behind. The goal of this blog is to share App Assure’s latest progress report: a roundup of some of the most notable new additions to the Windows on Arm app portfolio since our previous update.
+STEM and education apps
+This is a rapidly expanding category that demands its own section. Science, Technology, Engineering, and Mathematics (STEM) as well as education tools all play a critical role in how people learn in classrooms, research environments, or via independent study. As Windows on Arm devices become more prevalent, developers in this space now recognize the opportunity to reach learners and professionals who value portable, power-efficient devices without sacrificing performance. The growing number of STEM and education apps now available reflects increasing investment aligned with these needs and the growing adoption of Windows on Arm devices by educational customers.
+Security apps
+Security remains foundational for Windows customers, and it spans far more than a single tool or workload. Modern environments require layered protection across endpoints, consistent device management, and secure connectivity, especially as work increasingly happens across hybrid, mobile, and distributed environments.
+Arm-based devices are designed with security at the core, integrating hardware, firmware, and software protections to help defend against modern threats. In addition to the built-in security features, strong support for Windows on Arm in endpoint protection, endpoint management, VPN and Zero Trust solutions helps ensure that customers can adopt these devices without compromising their security posture.
+Our previous update showcased well-known apps from companies including Norton, CrowdStrike, and McAfee in the Endpoint Protection space; VMware, Beyond Trust, and Cisco in the Endpoint Management space; and Nord, Zscaler, and Palo Alto Networks in the VPN and Zero Trust space.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac5f1ae0df0')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a43e90465a6">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/msedgedev/2026/08/24/webview2-is-moving-to-a-2-week-release-cadence/" target="_blank" rel="noopener noreferrer" class="article-title">WebView2 is moving to a 2-week release cadence</a>
+          <div class="article-meta">blogs.windows.com &bull; Aug 24, 2026</div>
+          <div class="article-summary"><p>WebView2 is moving to a 2-week release cadence
+Microsoft Edge is moving to a two-week release cycle, and the WebView2 Runtime is moving right along with it.
+Starting with 152, the WebView2 Runtime will align with Edge’s new two-week major-release cadence, instead of the previous four-week cadence, for faster security fixes, platform improvements, and other capabilities.
+- On the week of August 27, the WebView2 Runtime version 152 will be last major version to be released 4 weeks after the previous version.
+- On the week of September 10, version 153 will be the very first version to be released only two weeks after the previous version.
+- After that point, a new major version will be released about every two weeks, aligned with the Edge release cadence.
+The WebView2 SDK release cadence will also be updated. Instead of the monthly releases, SDK versions will be released when there are new features, bug fixes, security updates, and other improvements to share. When we do ship an SDK, it will be released on the same date as the corresponding Runtime release.
+What this means for your app
+If you use the Evergreen Runtime distribution mode, which is the default, there’s nothing you need to do. Your users’ machines will start getting security and platform fixes at the more frequent cadence.
+If you ship a Fixed Version Runtime instead, you stay in control of when you update, but new major versions arrive more often. Plan to validate and pick up new versions more frequently, so you don’t fall behind on security fixes.
+Recommended actions
+We recommend that you test your WebView2 app by using the Beta preview channel of Microsoft Edge to catch any bugs before they roll out to your users. Early testing is the best way to catch app-specific issues before they reach Stable. To learn more, see Prerelease testing using preview channels.
+We also recommend automating the validation of your app’s core workflows with the WebView2 preview channels. You can automatically test your app by using Microsoft Edge WebDriver. See Automate and test WebView2 apps with Microsoft Edge WebDriver.
+Finally, report regressions early so we can address them before the Stable release. You can report bugs by using the WebView2Feedback GitHub repository.
+Stay current
+Moving with Edge means your users get a safer, more capable web platform sooner, and you get a single, predictable release train to plan around.
+We’re grateful for the partnership of the WebView2 developer community, and we’ll keep sharing details as the new cadence rolls out.
+To learn more, read our recent announcement, check out our release notes, and review the release schedule. And, as always, feel free to share feedback with us.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a43e90465a6')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aa7a12ffa48">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-intune-remote-help-unattended-windows-devices/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Intune Remote Help Can Now Access Unattended Windows PCs Without User Approval</a>
+          <div class="article-meta">petri.com &bull; Aug 26, 2026</div>
+          <div class="article-summary"><p>Organizations can support locked, shared, and after-hours devices while maintaining role-based security controls.
+Key Takeaways:
+Microsoft is making it easier for IT teams to troubleshoot unattended Windows devices with a new Intune Remote Help feature. Administrators can now remotely access devices even when users are unavailable to approve a support session, which reduces delays for locked, shared, or after-hours devices.
+Previously, Remote Help on Windows required an end user to be present to approve and join a support session before an IT technician could begin troubleshooting. This created delays when devices were unattended, locked at the sign-in screen, used as shared workstations, or needed maintenance outside business hours.
+This new unattended support feature removes that dependency by allowing authorized help desk personnel to securely access and repair devices even in the users’ absence. It also provides session isolation, a security-first design, user awareness, and rich session capabilities. This feature includes controls designed to maintain visibility and accountability around unattended sessions.
+“This feature uses a dedicated permission: Remote Help app &gt; Windows unattended control remote sign-in. It must be explicitly assigned to helpdesk roles targeting specific device groups. To maintain a higher security boundary, this permission isn’t included in any Intune built-in role, including existing roles such as Help Desk Operator or School Administrator, and must be granted through a custom role assignment,” Microsoft explained.
+This update makes Microsoft Intune Remote Help more useful for organizations that regularly manage unattended Windows PCs. Help desk teams can handle certain support and maintenance tasks without coordinating with users or waiting for approval to connect.
+However, unattended access expands what support personnel can do without direct user involvement. Microsoft’s decision to keep the capability outside its built-in Intune roles reflects that added level of access.
+Organizations considering the feature should define appropriate custom roles, limit access to relevant device groups, and review Remote Help logs to ensure unattended sessions remain accountable.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aa7a12ffa48')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a38964ec56f">
+        <div class="article-body">
+          <a href="https://petri.com/parallels-desktop-27-apple-silicon-macs/" target="_blank" rel="noopener noreferrer" class="article-title">Parallels Desktop 27 Adds OpenGL 4.3 Support and AI Acceleration for Apple Silicon Macs</a>
+          <div class="article-meta">petri.com &bull; Aug 25, 2026</div>
+          <div class="article-summary"><p>New enterprise, DevOps, and virtualization enhancements help organizations support demanding Windows workloads on Macs.
+Key Takeaways:
+Parallels has launched Parallels Desktop 27, the latest version of its virtualization software for Apple silicon Macs. The update expands support for demanding Windows applications, delivers improved graphics performance, and adds new AI acceleration features for developers.
+With the just-released Parallels Desktop 27, Parallels has introduced a new Metal-based graphics driver that provides OpenGL 4.3 support in Windows virtual machines. It allows more professional apps (such as engineering, GIS, architecture, and design software) to run effectively on Apple silicon Macs. This update also delivers significantly improved graphics performance, including faster rendering and smoother application workflows.
+“As customers continue to push the limits of what they do on Mac, they’re looking for virtualization that keeps pace with increasingly demanding applications and workflows,” said Elena Koryakina, Chief Product and Technology Officer at Parallels. “Parallels Desktop 27 enables customers to run more of the Windows applications they depend on while giving developers faster local AI performance and expanding what’s possible on Apple silicon.”
+Parallels has added Apple’s Scalable Matrix Extension (SME) instructions support for Linux and Windows virtual machines on M4 and newer Macs. Developers can leverage faster AI model development, machine learning computations, and neural network processing while working locally. This update should also offer significant performance gains for popular AI tools running within virtual machines.
+In addition to this, Parallels has introduced new management capabilities to help IT teams identify how software licenses are activated to simplify administration and reporting. The company has maintained its SOC 2 compliance to demonstrate its ongoing commitment to security and reliability. This release also brings other enterprise features to support secure virtual machine image distribution and automated deployment processes.
+Last but not least, Parallels Desktop 27 brings a new graphical interface that makes it easier to manage virtual machines, hosts, and automation workflows. The enhanced integration with Jenkins allows dynamic provisioning of virtual machines to improve build and testing processes in development environments.
+Parallels Desktop 27 is designed for Apple silicon Macs and is available in Standard, Pro, Business, and Enterprise editions. Customers can purchase, upgrade, or download a trial version through Parallels and its authorized resellers.
+For IT administrators, Parallels Desktop 27 highlights how virtualization is becoming an important part of long-term endpoint strategy as organizations continue to balance Mac adoption with the need to support Windows-based business applications. This release reflects a broader shift toward providing employees with flexibility while allowing IT teams to maintain control, consistency, and governance across increasingly diverse device environments.
+Additionally, this update supports the growing demand for high-performance workloads on corporate devices. As businesses expand their use of AI development, software testing, and specialized professional applications, IT leaders need platforms that can help maximize existing hardware investments rather than requiring separate systems for different tasks.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a38964ec56f')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aaeab17ee14">
+        <div class="article-body">
+          <a href="https://petri.com/windows-code-signing-stronger-cryptography/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Warns Windows Code Signing Changes Could Affect Older Applications</a>
+          <div class="article-meta">petri.com &bull; Aug 24, 2026</div>
+          <div class="article-summary"><p>Microsoft is replacing aging signing certificates and preparing Windows for post-quantum cryptography adoption.
+Key Takeaways:
+Microsoft is warning IT teams and software developers to prepare for major changes to Windows code signing. Organizations that rely on hardcoded certificate checks or legacy cryptographic standards could face application failures if they do not adapt before the transition begins.
+Windows code-signing infrastructure is a service for digitally signing Windows components, drivers, updates, and software so that users and operating systems can verify that the code genuinely comes from a trusted source and has not been altered after it was published. It relies on trusted certificates, certificate authorities, cryptographic algorithms, and validation mechanisms built into Windows to establish trust before software is installed or executed, which helps protect systems from tampered, malicious, or counterfeit applications.
+Microsoft is making these changes as the existing Windows Production PCA 2011 certificate is set to expire in October 2026. The company also aims to strengthen security by adopting stronger cryptographic algorithms and preparing Windows for a future in which quantum computers could potentially weaken current encryption methods.
+To prepare for this change, Microsoft has already begun transitioning to a replacement certificate authority. The company warns that applications tied to the old certificate could experience compatibility issues or stop working properly after the transition.
+“To support evolving security and compliance requirements, Windows is moving toward stronger configurations, including RSA-3072 and SHA-384, by the end of 2026. Applications that hard-code expected signing configurations might fail during this transition,” Microsoft explained.
+In 2027, Microsoft plans to introduce post-quantum cryptography by default for Windows code signing, which enables protection against future quantum-computing threats.
+Microsoft is encouraging IT administrators to take a close look at the software running in their environments before the upcoming Windows code-signing changes take effect. Organizations should engage with key software vendors and confirm that their products use Microsoft’s supported trust-validation mechanisms. Moreover, applications that depend on fixed certificate names, thumbprints, issuers, or outdated cryptographic settings may encounter compatibility problems when Microsoft introduces new signing certificates and stronger security standards.
+Additionally, IT teams should verify that vendors have tested their applications against the new certificate hierarchy and updated signing algorithms, including SHA-384-based signatures. Companies that maintain private trust stores should also ensure they have a reliable process for recognizing and deploying legitimate Microsoft certificate updates. Going forward, Microsoft recommends preparing for the upcoming transition to post-quantum cryptography.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aaeab17ee14')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ae95223d707">
+        <div class="article-body">
+          <a href="https://www.bleepingcomputer.com/news/security/windows-11-kb5120998-update-released-with-35-changes-and-fixes/" target="_blank" rel="noopener noreferrer" class="article-title">Windows 11 KB5120998 update released with 35 changes and fixes</a>
+          <div class="article-meta">bleepingcomputer.com &bull; Aug 28, 2026</div>
+          <div class="article-summary"><p>Microsoft released the KB5120998 preview cumulative update for Windows 11 versions 25H2 and 24H2, which comes with 35 changes, including improvements to the Start menu, taskbar, and Windows search.
+KB5120998 is a preview update that lets IT administrators test Windows bug fixes, improvements, and new features before they roll out to all users during next month's Patch Tuesday release.
+However, unlike cumulative updates, monthly optional updates do not include security fixes and provide only quality improvements.
+After installing the August 2026 preview update, users can move the taskbar to the bottom, top, left, or right side of their screen in Settings &gt; Personalization &gt; Taskbar &gt; Taskbar behaviors &gt; Taskbar position, with most customization settings, like never combining taskbar icons, working in every position.
+The KB5120998 also adds a new smaller taskbar option that reduces the taskbar height and the size of taskbar icons to maximize screen space on smaller devices, and small or large size options for the Start menu (in Settings &gt; Personalization &gt; Taskbar &gt; Taskbar behaviors &gt; Taskbar size dialog), as well as the ability to independently show or hide the Pinned, Recommended, and All sections, and to hide the account name and profile picture.
+With KB5120998, Microsoft has also started rolling out the administrator protection security feature that allows users to perform admin tasks using just-in-time privileges.
+&quot;Administrator protection is not classified as a formal security boundary; it hardens the security against elevation-of-privilege attacks with the introduction of profile separation,&quot; Microsoft said. &quot;This feature is turned off by default and can be enabled using OMA-URI in Microsoft Intune or through Group Policy.&quot;
+You can install KB5120998 by opening Windows Settings, clicking on Windows Update, and then clicking 'Check for Updates.'
+Since this is an optional update, you will need to click the &quot;Download and install&quot; link unless you already have the &quot;Get the latest updates as soon as they're they're available&quot; option enabled, which prompts the OS to install it automatically.
+You can also manually download and install the KB5120998 preview update from the Microsoft Update Catalog.
+Windows 11 KB5120998 highlights
+Once installed, this optional non-security update will upgrade Windows 11 25H2 and 24H2 devices to builds 26200.9278 and 26100.9278, respectively.
+The August 2026 preview update comes with many other changes, some of the more important ones highlighted below:
+- Windows now automatically indexes your most-used folders so those files appear in subsequent search results. You can control the setting at Settings &gt; Privacy &amp; Security &gt; Search &gt; Automatically find additional relevant locations.
+- This update improves restart behavior so PCs that were manually put to sleep return to sleep after completing an update, even when automatic sleep is set to Never.
+- This update adds support for participating apps to coordinate their updates with Windows Update. Supported apps can benefit from improved scheduling and a more streamlined update experience. For more information, see Windows Update Orchestration Platform (UOP).
+- This update improves resiliency and recovery from potential VPN process-related background issues that can cause processes to stop responding.
+- Starting in August 2026, Windows 11, version 24H2 and 25H2 will no longer include the Windows Management Instrumentation Command-line (WMIC) utility.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ae95223d707')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="adc86f7592b">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMirAFBVV95cUxPWmxUZ1dtSUZ2NVFGcXUxWFkwaGpMNFAxUUVuaVp4UV9LOXdHVFR6QW5aOTRNcnJza2VfZEtSYTFRc0l2UWtwMlNrZXZTZWJ1UFoyV3VRbTVWRVNiRjR4b2lxaXhnXzh0eHNqTXRYMnpvczlHYnowRXVBRmFrZVlTR0tmdk1hYlZpUjBJSC10a19pb2E4RGdDcXZvTFBDY2E4T0k2TlJUV1BLSGRq0gGyAUFVX3lxTE1fUTRLWExDakRFd3NYdFliT0hUU1p0QVk0ZW5kOEY4ZE1qMU5tQ2tFNHBtbXJXQU1RN2JBOUs0RzNjMUhJNjlHd2ZDS3pSc3FMeGI1blhLUHd6QjlyeENPMEYwV2YzLVYxV0dqY0VIc3ZkaXo2UFh6dTl0OXh2cld4eDRYenk0ei1CNXl4RExIaW9lOEZnajFfNGl3RUEzUWp5RFJ2UGl6cW04UUhSVmdmNkE?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Confirms Windows 11's KB5120998 Update is Breaking Mouse Cursors - TechPowerUp</a>
+          <div class="article-meta">TechPowerUp &bull; Aug 29, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft Confirms Windows 11's KB5120998 Update is Breaking Mouse Cursors&amp;nbsp;&amp;nbsp;TechPowerUpWindows 11 just revived one of its most missed features&amp;nbsp;&amp;nbsp;PCWorldWindows 11 version 26H2 enters final preview phase before general mass rollout begins&amp;nbsp;&amp;nbsp;Windows Central</p><a href="https://news.google.com/rss/articles/CBMirAFBVV95cUxPWmxUZ1dtSUZ2NVFGcXUxWFkwaGpMNFAxUUVuaVp4UV9LOXdHVFR6QW5aOTRNcnJza2VfZEtSYTFRc0l2UWtwMlNrZXZTZWJ1UFoyV3VRbTVWRVNiRjR4b2lxaXhnXzh0eHNqTXRYMnpvczlHYnowRXVBRmFrZVlTR0tmdk1hYlZpUjBJSC10a19pb2E4RGdDcXZvTFBDY2E4T0k2TlJUV1BLSGRq0gGyAUFVX3lxTE1fUTRLWExDakRFd3NYdFliT0hUU1p0QVk0ZW5kOEY4ZE1qMU5tQ2tFNHBtbXJXQU1RN2JBOUs0RzNjMUhJNjlHd2ZDS3pSc3FMeGI1blhLUHd6QjlyeENPMEYwV2YzLVYxV0dqY0VIc3ZkaXo2UFh6dTl0OXh2cld4eDRYenk0ei1CNXl4RExIaW9lOEZnajFfNGl3RUEzUWp5RFJ2UGl6cW04UUhSVmdmNkE?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('adc86f7592b')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="azure" class="topic-section">
+      <h2 class="topic-title" style="--c:#00BCF2">Azure <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a777c53e18e">
+        <div class="article-body">
+          <a href="https://azure.microsoft.com/en-us/blog/managed-postgresql-vs-self-hosted-postgresql-key-benefits-and-trade-offs/" target="_blank" rel="noopener noreferrer" class="article-title">Managed PostgreSQL vs. self-hosted PostgreSQL: Key benefits and trade-offs</a>
+          <div class="article-meta">azure.microsoft.com &bull; Aug 27, 2026</div>
+          <div class="article-summary"><p>Summary This post is for technical decision makers evaluating where to run production PostgreSQL workloads. It compares two valid operating models—self-managed PostgreSQL and a managed database service—through business and operational outcomes: control, engineering capacity, resilience, security, cost predictability, risk tolerance, and access to specialist expertise. The right choice depends on which responsibilities the organization needs to retain and which it is prepared to transfer to a service provider.
+Why organizations choose PostgreSQL
+PostgreSQL is a powerful, versatile open-source relational database used for workloads ranging from small applications to enterprise systems. It is a natural choice for teams that need a standards-based database with a broad ecosystem and extensive extensibility.
+Managed vs. self-hosted PostgreSQL: Understanding the trade-offs
+Once an organization chooses PostgreSQL, it must decide where and how to operate it: on its own infrastructure, in a virtual machine, or through a managed cloud service. Each model offers a different balance of control, responsibility, cost, and operational effort. Self-hosting provides direct control over the operating system (OS), PostgreSQL installation, and supporting infrastructure, but it also leaves the organization responsible for operating the complete platform. Managed PostgreSQL services, like Azure Database for PostgreSQL and Azure HorizonDB, can reduce selected infrastructure and platform responsibilities and help teams devote more engineering capacity to applications, data, and performance.
+Operational challenges emerge at scale
+Self-hosting creates an ongoing ‘operational tax’: the time, expertise, and resources required to provision, secure, monitor, maintain, and recover the database platform. These activities are essential, but they do not usually differentiate the application or service the organization is building.
+In a self-hosted scenario (e.g., running Postgres on a virtual machine (VM) or an on-premises server), the company’s engineering team is responsible for the entire stack:
+- Full-stack lifecycle management: Provisioning hardware, ensuring adequate power and cooling, maintaining datacenter infrastructure, installing the OS, and correctly configuring PostgreSQL.
+- Security hardening: Manually managing firewalls, OS-level security patches, and encryption at rest and in transit.
+- High Availability (HA): Setting up complex replication and failover mechanisms (like Patroni or Pacemaker), which are notoriously difficult to test and maintain.
+- Disaster recovery: Designing, automating, monitoring, and testing backups and recovery procedures, including point-in-time recovery. Achieving dependable recovery objectives requires sustained engineering effort and operational discipline.
+- Identity management: Manually managing database users and passwords, creating silos of credentials that are difficult to audit.
+Operational tax consumes time that could be spent improving applications, delivering features, refining data models, or tuning the database’s performance.
+When a managed PostgreSQL service may make sense
+Managed database services change the operating model by transferring defined infrastructure and platform responsibilities to the cloud provider. This reduces the undifferentiated work required to keep the database platform available, secure, patched, and recoverable.
+A managed PostgreSQL service is designed to reduce the operational tax associated with infrastructure and platform administration. The provider typically manages the underlying infrastructure, operating-system maintenance, service patching, and physical datacenter security.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a777c53e18e')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ab733581603">
+        <div class="article-body">
+          <a href="https://azure.microsoft.com/en-us/blog/the-economics-of-agent-optimization-four-ways-to-lower-the-cost/" target="_blank" rel="noopener noreferrer" class="article-title">The Economics of Agent Optimization: Four ways to lower the cost</a>
+          <div class="article-meta">azure.microsoft.com &bull; Aug 26, 2026</div>
+          <div class="article-summary"><p>This blog post is the second of a four-part series called The Economics of Agent Optimization which shares the strategies, capabilities, and proof points to help you optimize agent costs and run AI as a managed investment system on Microsoft Foundry. The first post set out the three decisions that system rests on: optimize each request at runtime, optimize each workflow over time, and govern spend continuously. This post takes the first, the one that touches every dollar you will ever spend on AI.
+An agent is a loop around a model. It plans, calls a tool, reads the result, and reasons again, so a single completed outcome can take a dozen model requests. That is why the number the business cares about is the cost of a successful outcome, not the price of a token.
+Every turn in that loop is still one model request, and each request carries decisions about the model, the offer it runs on, what gets reused, and what the model is told. When those decisions are right, the saving repeats on every turn. That is why agent optimization starts here.
+The most expensive habit in production AI
+Most AI applications are built the same way. In the prototype, you pick the strongest model available, put everything the model might need into the prompt, and confirm the idea works. That is the correct instinct for a prototype; the problem is what happens next. The prototype’s defaults quietly become the production architecture, and a pattern designed to answer “can this work?” becomes responsible for answering “can this scale economically?”
+Two things break at that point. First, AI workloads are not uniform. A single application mixes intent classification, extraction, formatting, summarization, and genuine multi-step reasoning—AI workloads vary enormously in complexity. Routing all of them to one frontier model means overpaying on the majority of requests that never needed that capability.
+Second, one outcome is many requests. A prototype pays for a single call. An agent pays for the whole loop, so anything wasteful gets multiplied. That is true of tokens, and it is more true of mistakes. An agent that takes a wrong turn calls the wrong tool and loops to recover, burning tokens on turns that should never have happened and still landing on a weaker answer. Cost per outcome is set as much by the turns you avoid as by the tokens in each one.
+In production, the goal is not to minimize tokens. It’s to reduce the cost of a successful outcome while maintaining quality, safety, and latency. Every runtime decision must balance those factors together, which is why the economics of a request come down to four decisions.
+Four levers you control at runtime
+Microsoft Foundry gives you four levers for making those tradeoffs deliberately, rather than accepting the ones your prototype happened to choose. Each can be adopted on its own, measured against your quality bar, and reversed if the tradeoff does not hold.
+1. Send each request to the right model
+The principle is simple: optimize the outcome based on the task complexity. Routine requests should not pay frontier-model economics, while complex requests should not sacrifice quality simply to save tokens.
+Model router in Foundry Models removes that tradeoff. It assesses each incoming request and dispatches it to the most suitable underlying model in real time, behind a single endpoint and a single deployment. Routing modes let you prioritize cost, quality, or a balance of the two. Model subsets, which now align with Azure Policy, constrain routing to an approved allow-list where a compliance boundary applies. Built-in failover moves a request to the next best model when one is unavailable, so routing also buys resilience.
+The same request can carry very different economics depending on how it is deployed, and this is the lever teams most often leave untouched.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ab733581603')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="afdccd4d54a">
+        <div class="article-body">
+          <a href="https://azure.microsoft.com/en-us/blog/the-patch-window-is-collapsing-why-security-needs-a-new-control-plane/" target="_blank" rel="noopener noreferrer" class="article-title">The patch window is collapsing: Why security needs a new control plane</a>
+          <div class="article-meta">azure.microsoft.com &bull; Aug 25, 2026</div>
+          <div class="article-summary"><p>For decades, cybersecurity defenders have relied on a relatively straightforward model: a vulnerability is disclosed, security teams assess exposure, test available fixes, deploy patches into production, and ultimately close the risk before attackers can exploit it at scale.
+That model increasingly reflects a world that no longer exists.
+Today’s enterprises operate thousands of interconnected workloads across hybrid and multicloud environments. Mission-critical applications power revenue-generating services, customer experiences, and core business operations that cannot simply be taken offline whenever a security update becomes available. At the same time, vulnerabilities are becoming more visible, more widely distributed, and more rapidly weaponized than ever before.
+The result is a growing gap between how quickly organizations can safely remediate vulnerabilities and how quickly adversaries can exploit them. It is time to rethink how the industry approaches security during the critical period between disclosure and remediation.
+The patch window has collapsed
+Traditional vulnerability management was built on the assumption that defenders could move faster than attackers. In many cases, they could.
+When a vulnerability was disclosed, organizations had time to understand the issue, assess affected systems, test patches, coordinate change windows, and deploy fixes before widespread exploitation occurred.
+Today that timeline is rapidly shrinking.
+Modern attack campaigns operate at internet scale. Security research, public disclosures, proof-of-concept exploits, and threat intelligence circulate globally within hours. A vulnerability announced in the morning can become the focus of active scanning and exploitation efforts by the afternoon.
+Meanwhile, the operational realities of enterprise environments have not changed. Organizations still must:
+- Understand the vulnerability and its business impact.
+- Identify affected systems across large estates.
+- Evaluate dependencies and compatibility concerns.
+- Validate fixes in test environments.
+- Coordinate deployment schedules.
+- Monitor for regressions and operational risk.
+These are not signs of inefficiency. They are necessary safeguards for business-critical environments. The challenge is that while defensive processes continue to require days or weeks, offensive timelines are increasingly measured in hours.
+That creates one of the most dangerous periods in modern cybersecurity: the window between awareness and remediation.
+AI is expanding the defender’s challenge
+AI is helping organizations modernize operations, accelerate development, and improve security outcomes. But the same technological advances are also changing the economics of offensive operations.
+Historically, transforming a newly disclosed vulnerability into an effective attack often required extensive manual research and deep technical expertise. Security researchers and attackers alike needed to analyze documentation, understand exploit conditions, study affected software, and develop attack techniques.
+Many of those steps can now be accelerated.
+AI-assisted workflows can help analyze vulnerability disclosures, identify likely attack paths, evaluate technical dependencies, and summarize complex technical information far more quickly than traditional manual processes.
+As these capabilities become more accessible, the timeline between disclosure and exploitation continues to compress. The result is a structural imbalance.
+Defenders remain responsible for protecting entire environments that may include thousands of servers, applications, databases, containers, and network assets.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('afdccd4d54a')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a6ae6e9482a">
+        <div class="article-body">
+          <a href="https://petri.com/azure-sql-managed-instance-subnet-quotas/" target="_blank" rel="noopener noreferrer" class="article-title">Azure SQL Managed Instance Removes a Capacity Planning Hurdle for Large Deployments</a>
+          <div class="article-meta">petri.com &bull; Aug 27, 2026</div>
+          <div class="article-summary"><p>Microsoft is eliminating one quota admins had to monitor while introducing hardware-specific limits behind the scenes.
+Key Takeaways:
+Azure SQL Managed Instance customers no longer need to track service-specific regional subnet quotas, removing a planning hurdle that could complicate large-scale database deployments. Microsoft has also introduced hardware-specific vCore limits, giving organizations more precise control over capacity planning and quota requests.
+Microsoft highlighted that this update reduces some of the complexity involved in planning and scaling Azure SQL Managed Instance deployments. Organizations no longer need to track an additional quota or request increases before expanding their environments. These new hardware-specific vCore quotas also provide more granular control, which allows IT teams to request capacity increases only for the hardware generation they actually use.
+According to Microsoft, the biggest change in this update is the removal of service-specific regional subnet limits. Customers no longer need to track or request increases for Azure SQL Managed Instance subnet quotas, because deployments are now governed by standard Azure Resource Manager virtual networking limits.
+Microsoft has also replaced the single regional vCore quota with separate limits for each supported hardware generation, including Standard Series, Premium Series, and Premium Series Memory Optimized. This capability gives organizations more control over capacity planning because they can request additional quota only for the specific hardware type. Previously, these hardware options shared a single regional vCore quota.
+Microsoft notes that existing customers won’t be required to reconfigure their deployments. The company will automatically convert regional vCore quotas into the new hardware-specific model. The updated limits apply to both single-zone and zone-redundant deployments. Administrators will be able to view and manage the new limits through the Azure portal.
+These changes are designed to make Azure SQL Managed Instance capacity management more straightforward and flexible for commercial customers. Organizations will no longer have to monitor separate subnet quotas for the service, which reduces administrative overhead and simplifies deployment planning.
+Microsoft notes that the introduction of hardware-specific vCore limits allows IT teams to manage capacity with more precision and request additional resources only for the hardware generation that supports their workloads. Microsoft is automatically converting existing quotas to the new model, and customers can benefit from the new approach without having to perform any manual migration or reconfiguration.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a6ae6e9482a')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a07d4e6ff5a">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-fixes-entra-id-remote-code-execution-flaw/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Fixes Entra ID Flaw that Could Allow Remote Code Execution</a>
+          <div class="article-meta">petri.com &bull; Aug 24, 2026</div>
+          <div class="article-summary"><p>Microsoft confirmed the issue was fully mitigated and reported no confirmed exploitation in the wild.
+Key Takeaways:
+Microsoft has patched a critical vulnerability in Microsoft Entra ID (formerly known as Azure Active Directory) that carries the maximum CVSS score of 10.0. The flaw could have allowed unauthenticated attackers to remotely execute malicious code over the network.
+Microsoft first disclosed this Entra ID vulnerability (CVE-2026-69836), reported by security engineer Robert Fitzpatrick on August 20. It could allow remote code execution without requiring user interaction or prior authentication. This flaw stemmed from the improper handling of serialized data, which created a scenario in which an attacker could potentially execute malicious code across the network.
+Microsoft patched this issue directly within its infrastructure before customers needed to take action. Early reports suggested that this flaw had been exploited in the wild, but Microsoft later updated its guidance to clarify that no confirmed exploitation had occurred.
+“Deserialization of untrusted data in Microsoft Entra ID allows an unauthorized attacker to execute code over a network,” Microsoft explained in its advisory. “This vulnerability has already been fully mitigated by Microsoft. There is no action for users of this service to take. The purpose of this CVE is to provide further transparency.”
+The flaw attracted significant attention because Entra ID serves as the authentication backbone for Microsoft cloud services and many enterprise applications. A successful compromise of such a central identity service could potentially affect authentication, authorization, and access management across large numbers of organizations.
+Microsoft has released 22 security patches covering multiple cloud services and products. In addition to the Entra ID vulnerability, Microsoft addressed several other critical Azure, Exchange Online, Fabric, and Partner Center flaws, including multiple vulnerabilities that also received very high severity ratings.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a07d4e6ff5a')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a2ed2f2c87b">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiZkFVX3lxTE9nQ2dPWC1NaWVpSXFZSS1zYUcxdFFhakcya183aFV4OHJZN0ZMQndoaGxoc21lLUtwRkdtaUd6VTN5eVJ0UTVYX3FHejlfX3ZlWTFMUWZOcENYZ0NpRjFPU3NWMjlDZw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cross-Cloud Cost Platforms: North Cloud Holdings Has Added Azure To North 3.0 - Trend Hunter</a>
+          <div class="article-meta">Trend Hunter &bull; Aug 29, 2026</div>
+          <div class="article-summary snippet"><p>Cross-Cloud Cost Platforms: North Cloud Holdings Has Added Azure To North 3.0&amp;nbsp;&amp;nbsp;Trend Hunter</p><a href="https://news.google.com/rss/articles/CBMiZkFVX3lxTE9nQ2dPWC1NaWVpSXFZSS1zYUcxdFFhakcya183aFV4OHJZN0ZMQndoaGxoc21lLUtwRkdtaUd6VTN5eVJ0UTVYX3FHejlfX3ZlWTFMUWZOcENYZ0NpRjFPU3NWMjlDZw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a2ed2f2c87b')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ac609b6b644">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi6wJBVV95cUxQQzN1TWFlTTZFYU8xVXJMaWRMRjl0aWpCbFA2OHpXQmRtckVGZGl1elZHSGVGQTl1b2FJaXlQMTg5MEZ0YktySGVDSm16QnVaV2VPRVZnRDFMbGZWMWVNSHBQdDd2TVpVREljX1V5YUhCZWNqUG96YlJvaWdnZ3FRZldUWENSVUpFTU5Bd0xlQWhiZ3ZyS3plOWxkaGVPck85MTFFdTNwNnhlYVloSnBFWDZtcHhZT1BMY1cyYlROZDlhc051ZE5xaHFOQWJtRFR5RXpBX3dLaXh0UU50enJNNC1KYzlHZFpEbndjckVwVHdxeFhqRU9Wbm14UnJzRzNQTG41djN6aW4xM2FkakdLeWExbHZTTm1YTExMSUhZQXhIcE5wX1N1cElEQy15N0E1c2VEb1NGMmRLX3ROY213Qms3d2VFaWtLYkxxc0ZBR2dNRzRCcm5uN1c4Q3F2NU9QTV9acVI3N2pJV1HSAfACQVVfeXFMTVUxNV9pbGZnS0VLUm9PZXp3ZjlmeGRGeGUwWlFKYU5MRE9xZUlhRU50dzUyV1dvcDRaM2VmMkVoeFdqX2sxMnlGaUNjNUJEbW9XSEs0ZlEtMFBGVUgxNXJ1M2twcEFxWXU4cDZuNHF4TC1Za1RnaTNhYkNWR2hVakhwUUF6dVZCazVBNE55NkpQOUcxS1Y5eEdwLWhwZW9ONTZqUXliSUdZVnd0UmJhNkNjN0xUVGhXbHFvekcxWElkRnVESXhBbkF4S1pFdXl5U3FFZ1pFRDgzMlNxcnNSdFdDZExPcE9Zc2Y4QW9WOER1ZmFaNWVkbFlPQkhhR2lJNVVObHdJQnF6dnMwSUVPWjVESGIxaWpFNUx3RTUzbEJ0NFZTektQUFdNaFZGeWoyb1hUWnh1NVVoaWRKUlhMcnQxaUFrUzVmd3dneDNXZS14NzhWQlVJZmYtY1ZUT3MyS1A5c0FPOFJqclV5OWFaSmM?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Satya Nadella recently shared a rare data point, said that annual revenue of Microsoft's Cloud computing - The Times of India</a>
+          <div class="article-meta">The Times of India &bull; Aug 27, 2026</div>
+          <div class="article-summary snippet"><p>Satya Nadella recently shared a rare data point, said that annual revenue of Microsoft's Cloud computing&amp;nbsp;&amp;nbsp;The Times of India</p><a href="https://news.google.com/rss/articles/CBMi6wJBVV95cUxQQzN1TWFlTTZFYU8xVXJMaWRMRjl0aWpCbFA2OHpXQmRtckVGZGl1elZHSGVGQTl1b2FJaXlQMTg5MEZ0YktySGVDSm16QnVaV2VPRVZnRDFMbGZWMWVNSHBQdDd2TVpVREljX1V5YUhCZWNqUG96YlJvaWdnZ3FRZldUWENSVUpFTU5Bd0xlQWhiZ3ZyS3plOWxkaGVPck85MTFFdTNwNnhlYVloSnBFWDZtcHhZT1BMY1cyYlROZDlhc051ZE5xaHFOQWJtRFR5RXpBX3dLaXh0UU50enJNNC1KYzlHZFpEbndjckVwVHdxeFhqRU9Wbm14UnJzRzNQTG41djN6aW4xM2FkakdLeWExbHZTTm1YTExMSUhZQXhIcE5wX1N1cElEQy15N0E1c2VEb1NGMmRLX3ROY213Qms3d2VFaWtLYkxxc0ZBR2dNRzRCcm5uN1c4Q3F2NU9QTV9acVI3N2pJV1HSAfACQVVfeXFMTVUxNV9pbGZnS0VLUm9PZXp3ZjlmeGRGeGUwWlFKYU5MRE9xZUlhRU50dzUyV1dvcDRaM2VmMkVoeFdqX2sxMnlGaUNjNUJEbW9XSEs0ZlEtMFBGVUgxNXJ1M2twcEFxWXU4cDZuNHF4TC1Za1RnaTNhYkNWR2hVakhwUUF6dVZCazVBNE55NkpQOUcxS1Y5eEdwLWhwZW9ONTZqUXliSUdZVnd0UmJhNkNjN0xUVGhXbHFvekcxWElkRnVESXhBbkF4S1pFdXl5U3FFZ1pFRDgzMlNxcnNSdFdDZExPcE9Zc2Y4QW9WOER1ZmFaNWVkbFlPQkhhR2lJNVVObHdJQnF6dnMwSUVPWjVESGIxaWpFNUx3RTUzbEJ0NFZTektQUFdNaFZGeWoyb1hUWnh1NVVoaWRKUlhMcnQxaUFrUzVmd3dneDNXZS14NzhWQlVJZmYtY1ZUT3MyS1A5c0FPOFJqclV5OWFaSmM?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac609b6b644')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aba6b2c6aa7">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMipgFBVV95cUxPbjRzWUwzWEFpWnM0b09MMDVvSjJQWG02XzNlSHlQZ2pSRVZDZkZhSVpmWnpuRkFBUFFXVWRsLTAyeUNpN3lfeEVTNWhNQWQtb0hzUGpiLUt2cTh3Q25FR0cxN003MnVPUzg3RkUtWnotLWpnY2NOSTU2MGdTSDAxSUFCYWdrZTdjRjVrX3VCTTVhZ0FZZU9VR0VnZmp3M09ma3h5eFZ3?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">AI cost optimization: How to lower AI spend - Microsoft Azure</a>
+          <div class="article-meta">Microsoft Azure &bull; Aug 26, 2026</div>
+          <div class="article-summary snippet"><p>AI cost optimization: How to lower AI spend&amp;nbsp;&amp;nbsp;Microsoft Azure</p><a href="https://news.google.com/rss/articles/CBMipgFBVV95cUxPbjRzWUwzWEFpWnM0b09MMDVvSjJQWG02XzNlSHlQZ2pSRVZDZkZhSVpmWnpuRkFBUFFXVWRsLTAyeUNpN3lfeEVTNWhNQWQtb0hzUGpiLUt2cTh3Q25FR0cxN003MnVPUzg3RkUtWnotLWpnY2NOSTU2MGdTSDAxSUFCYWdrZTdjRjVrX3VCTTVhZ0FZZU9VR0VnZmp3M09ma3h5eFZ3?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aba6b2c6aa7')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="sharepoint" class="topic-section">
+      <h2 class="topic-title" style="--c:#036C70">SharePoint <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="af8ab651b26">
+        <div class="article-body">
+          <a href="https://petri.com/sharepoint-exploit-code-internet-facing-servers-risk/" target="_blank" rel="noopener noreferrer" class="article-title">SharePoint Exploit Code Puts Thousands of Internet-Facing Servers At Risk</a>
+          <div class="article-meta">petri.com &bull; Aug 27, 2026</div>
+          <div class="article-summary"><p>Researchers have observed reconnaissance activity against SharePoint servers, raising concerns that organizations may have little time to patch exposed systems.
+Key Takeaways:
+For IT teams running on-premises SharePoint, patching delays can quickly become a security liability. Once proof-of-concept (PoC) exploit code becomes public, attackers often move quickly to test and weaponize it, which leaves unpatched servers exposed to compromise. Microsoft is now facing that scenario after researchers disclosed a new SharePoint exploit chain that combines two vulnerabilities into a potential path for remote code execution.
+According to threat intelligence firm Defused, cybercriminals leveraged an attack chain (CVE-2026-55040 and CVE-2026-63520) to probe its SharePoint honeypots. This activity follows the public release of PoC code for both vulnerabilities, which reduced the technical barrier for threat actors seeking to exploit vulnerable environments.
+The first vulnerability (CVE-2026-55040) is an authentication bypass flaw in SharePoint’s JWT validation process. If exploited, attackers can impersonate legitimate SharePoint users or administrators without valid credentials. The second flaw, CVE-2026-63520, affects Business Connectivity Services and can be leveraged after the authentication bypass to achieve remote code execution on the SharePoint server.
+Security researchers mentioned that these vulnerabilities become more dangerous when combined. They can provide an unauthenticated path to executing arbitrary code, which potentially gives attackers significant control over affected SharePoint environments.
+Until now, Defused has only observed probing and reconnaissance activity, and not confirmed successful code execution. However, the appearance of public exploit code suggests attackers are actively evaluating targets and looking for vulnerable systems. Some earlier reports also indicated that the authentication bypass flaw began attracting malicious activity shortly after its PoC was released.
+This concern is increased by the large number of internet-facing SharePoint servers. Shadowserver has identified more than 8,700 exposed SharePoint instances, which creates a pool of potential targets if organizations have not applied Microsoft’s security updates.
+Organizations should prioritize patching both vulnerabilities, review Microsoft’s SharePoint hardening guidance, and identify any internet-exposed SharePoint servers that may require additional protection. Security teams should also monitor logs for suspicious authentication activity, administrative enumeration attempts, and unusual interactions with Business Connectivity Services.
+Fortunately, cybersecurity researchers have not yet confirmed widespread compromise in enterprise environments. However, keep in mind that the growing interest from attackers means organizations may have limited time to secure vulnerable SharePoint deployments.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('af8ab651b26')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a362b6d32b9">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/08/threatsday-296k-iot-botnet-100-water.html" target="_blank" rel="noopener noreferrer" class="article-title">ThreatsDay: 296K IoT Botnet, 100+ Water Systems Targeted, SharePoint RCE Chain + 27 New Stories</a>
+          <div class="article-meta">thehackernews.com &bull; Aug 27, 2026</div>
+          <div class="article-summary"><p>A fake login page. A fake security scan. A fake productivity app. Apparently, pretending to be useful is still one of the easier ways into a machine.
+The rest of the week gets stranger: botnets borrowing AI, command traffic hiding in public infrastructure, malicious tools waiting before showing their real behavior, exposed systems getting scanned, and exploit windows shrinking again. Different tricks, same advantage: attackers keep finding places where trust is cheap and friction is low.
+That sets the tone. Here’s the full list of what surfaced this week.
+The threats change every week. Subscribe, and we’ll alert you when each new ThreatsDay Bulletin is out.
+- 
+  
+  Social engineering attempt failsCybersecurity company ReliaQuest has confirmed that one of its employees was targeted in a social engineering attack after hackers impersonated a member of the security team. The incident took place on August 22, 2026. &quot;The threat actor registered a lookalike domain and stood up a fake ReliaQuest single sign-on (SSO) page behind a content delivery network,&quot; the company said. &quot;The threat actor then called multiple ReliaQuest teammates, each time posing as a security employee by name in an attempt to steer them towards the fake page. One teammate entered their password and approved the push notification on their phone. That handed the attacker a brief session on our identity dashboard.&quot; ReliaQuest said the extent of the access was view only, and that no applications or systems were accessed, and no customer data was ever touched. Although the company did not attribute the incident to a particular threat actor, it noted the playbook aligns with tactics adopted by ShinyHunters and other extortion crews, such as &quot;an impersonation call, a throwaway lookalike domain registered and burned within the hour, a harvesting page behind a content delivery network, MFA push abuse, and a rapid attempt to enroll a new authenticator.&quot; The development comes as ShinyHunters listed the company on its dark web portal. Last week, ReliaQuest said it's tracking a ShinyHunters campaign using domains that follow the &quot;company[.]claims&quot; pattern, including &quot;reliaquest[.]claims.&quot;
+- 
+  
+  Trojanized productivity appsFake websites advertising productivity software are being used to lure users into downloading a deceptively functioning program that contains malware. The Electron-based applications, such as Kitchen Canvas, Food or Meal Formula, DocConvertWizard, and other PDF conversion tools under different names, gain the ability to dynamically execute injected scripts and access desktop capture functionality through Electron APIs.
+- 
+  
+  Live operator-driven phishingAn undocumented phishing framework, internally branded &quot;JWR&quot; by its developer, is designed to convincingly impersonate checkout and login pages across major payment and shopping platforms. &quot;The client engine of the JWR phishing framework is a real-time, operator-driven system that, rather than merely logging form submissions like a static credential-stealing page, keeps an AES-CTR encrypted WebSocket open to the threat actor so they can steer each victim's session live,&quot; Cisco Talos said. &quot;The victim data targeted by the actor using JWR extends well beyond payment data, encompassing identity documents, Social Security numbers, passport and driver's license images, website and PayPal credentials, 2FA codes, and full device fingerprints, all committed to the actor's server once a session ends.&quot; The JWR phishing framework is assessed to be a variant of The Outsider phishing-as-a-service (PhaaS) platform, based on several similarities in the client engine scripts and functionalities of the two PhaaS platforms.
+- 
+  
+  Android fraud bot for rentCybersecurity researchers have disclosed Octagon, a previously undocumented Android on-device fraud bot sold as malware-as-a-service (MaaS) by the Russian-speaking actor AndroidKitKat.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a362b6d32b9')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a75664b9a2f">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMirwFBVV95cUxONTh4QndjUlpGeU5HQmdQMUpfal9YaW0xNEItZWpERW1idzg5c0xJdng1UDlla3A3R2JzbG5XUzZsNUFWWFdEZWljMjAyYURLQWxHY1J3ejZqM1IzVVZiRW5Hbk1QcWFZUDI4RnI0a1hiVzktRTZWTGJXamIwc0hjcWd6WExpTDVCSGR3dXlwVzJ6WEp4WjBSTU02V3dSWmpuNzFCN05ScDVwSVlPWGpr0gG0AUFVX3lxTFB1ZnpFZ2g3MFcwUEVTV3FuZ0MyQi1pZ2hUS2dJaDRhYWZldGV3aUE4S3VQa3lvZ2FEWlFOVHFRUml5dDNkTm5acG1hTDBOeDEweWk3OW1zd1o4REJISy12UWlRZEZYa0ZROFdhS1N5emhfMmRQQ0RsbHl1RE1UQUJSazYyTGxXNWpqeUprQlozTHRMWXpLbUc3Q2V1a1VWQ0NDWWZqWUZ1VndPQ3JWd0o2ZXZZQg?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Hackers target Microsoft SharePoint RCE chain with PoC exploit - BleepingComputer</a>
+          <div class="article-meta">BleepingComputer &bull; Aug 26, 2026</div>
+          <div class="article-summary snippet"><p>Hackers target Microsoft SharePoint RCE chain with PoC exploit&amp;nbsp;&amp;nbsp;BleepingComputer</p><a href="https://news.google.com/rss/articles/CBMirwFBVV95cUxONTh4QndjUlpGeU5HQmdQMUpfal9YaW0xNEItZWpERW1idzg5c0xJdng1UDlla3A3R2JzbG5XUzZsNUFWWFdEZWljMjAyYURLQWxHY1J3ejZqM1IzVVZiRW5Hbk1QcWFZUDI4RnI0a1hiVzktRTZWTGJXamIwc0hjcWd6WExpTDVCSGR3dXlwVzJ6WEp4WjBSTU02V3dSWmpuNzFCN05ScDVwSVlPWGpr0gG0AUFVX3lxTFB1ZnpFZ2g3MFcwUEVTV3FuZ0MyQi1pZ2hUS2dJaDRhYWZldGV3aUE4S3VQa3lvZ2FEWlFOVHFRUml5dDNkTm5acG1hTDBOeDEweWk3OW1zd1o4REJISy12UWlRZEZYa0ZROFdhS1N5emhfMmRQQ0RsbHl1RE1UQUJSazYyTGxXNWpqeUprQlozTHRMWXpLbUc3Q2V1a1VWQ0NDWWZqWUZ1VndPQ3JWd0o2ZXZZQg?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a75664b9a2f')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aa0c047ca3f">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMikgFBVV95cUxNLXJEQ2ZJZXJFM2txNmR3UnkwaHd3ZUlEMXdIaThaSTBiQjBMc0JOdXFxYVdja0lYM2NMVzZoc0UtM1FEdndIdDQ1by1yMENHUDhWTFhKM0trNS04cjVDczd4T2wzQ0JSa2VGa0FsTkxWb1NHSzBjODJEX01WZExMVk8tMjBhdDI5WmxMY0xFZmFkZw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">WARNING: Critical Microsoft SharePoint Exploit Chain Discovered - LinkedIn</a>
+          <div class="article-meta">LinkedIn &bull; Aug 26, 2026</div>
+          <div class="article-summary snippet"><p>WARNING: Critical Microsoft SharePoint Exploit Chain Discovered&amp;nbsp;&amp;nbsp;LinkedIn</p><a href="https://news.google.com/rss/articles/CBMikgFBVV95cUxNLXJEQ2ZJZXJFM2txNmR3UnkwaHd3ZUlEMXdIaThaSTBiQjBMc0JOdXFxYVdja0lYM2NMVzZoc0UtM1FEdndIdDQ1by1yMENHUDhWTFhKM0trNS04cjVDczd4T2wzQ0JSa2VGa0FsTkxWb1NHSzBjODJEX01WZExMVk8tMjBhdDI5WmxMY0xFZmFkZw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aa0c047ca3f')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a2baa65adee">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMimgFBVV95cUxNYVBIaERPbU9jck9yUFc4UWNUTnhYS25rb0ZUOEV4ZHJSU2JIZ19TZTI4aHYteERFWi1nT2xFOW0yN3FqbGUydDJuMmh2UmllWDhlUXRwY0ZIWkRWUGhZNmZQd0NSYUdkdDdTWVNQNlFVTEx0N2FRSUFiLUFCNmdpeGptWUFZekNPNGVTQVh2dU9LRmVvbGF2UjF3?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Technical Analysis of Microsoft SharePoint Remote Code Execution vulnerability CVE-2026-63520 - Rapid7</a>
+          <div class="article-meta">Rapid7 &bull; Aug 24, 2026</div>
+          <div class="article-summary snippet"><p>Technical Analysis of Microsoft SharePoint Remote Code Execution vulnerability CVE-2026-63520&amp;nbsp;&amp;nbsp;Rapid7</p><a href="https://news.google.com/rss/articles/CBMimgFBVV95cUxNYVBIaERPbU9jck9yUFc4UWNUTnhYS25rb0ZUOEV4ZHJSU2JIZ19TZTI4aHYteERFWi1nT2xFOW0yN3FqbGUydDJuMmh2UmllWDhlUXRwY0ZIWkRWUGhZNmZQd0NSYUdkdDdTWVNQNlFVTEx0N2FRSUFiLUFCNmdpeGptWUFZekNPNGVTQVh2dU9LRmVvbGF2UjF3?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a2baa65adee')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a4ca39503d8">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMingFBVV95cUxNUVJCY084MWtXb3l6cUR3QnpVVmtNdUhjRTBfWTM2VTA2WFNYRWhNTXhoSzE4S3hBTjg5RmxMSUlHZmthY1dmQ1NTWkFIY2dOcFh2MjNsUjV1MHNCd3o2M1lwUXkwSGc3MlZWT1VCUENfdEN2empyTnJ0X2xxSXV6aHZXQnNNOG1OSHAwd1J0RkZfTEd0SjcyT01WWlk1UQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Researchers warn about chained SharePoint sequence - Cybersecurity Dive</a>
+          <div class="article-meta">Cybersecurity Dive &bull; Aug 25, 2026</div>
+          <div class="article-summary snippet"><p>Researchers warn about chained SharePoint sequence&amp;nbsp;&amp;nbsp;Cybersecurity Dive</p><a href="https://news.google.com/rss/articles/CBMingFBVV95cUxNUVJCY084MWtXb3l6cUR3QnpVVmtNdUhjRTBfWTM2VTA2WFNYRWhNTXhoSzE4S3hBTjg5RmxMSUlHZmthY1dmQ1NTWkFIY2dOcFh2MjNsUjV1MHNCd3o2M1lwUXkwSGc3MlZWT1VCUENfdEN2empyTnJ0X2xxSXV6aHZXQnNNOG1OSHAwd1J0RkZfTEd0SjcyT01WWlk1UQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a4ca39503d8')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ab70e367099">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMie0FVX3lxTFBWbDl5al9qRUVUSWNkRjhjOUxrbWlIV2o4dnBPVWFKQkJ0T2tlSHBVNlBLRGxvZFdZWl9EcW5xbVFqUExFbktqRzZ6dTM4eTJ1c3ZrZU9KRVMxX1NOX3VxNVhIdmZJZ0tXTFo4SEp6aUV0ZUM1bEdmYnA3Zw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">SharePoint Exploit Code Puts Thousands of Internet-Facing Servers At Risk - Petri IT Knowledgebase</a>
+          <div class="article-meta">Petri IT Knowledgebase &bull; Aug 27, 2026</div>
+          <div class="article-summary snippet"><p>SharePoint Exploit Code Puts Thousands of Internet-Facing Servers At Risk&amp;nbsp;&amp;nbsp;Petri IT Knowledgebase</p><a href="https://news.google.com/rss/articles/CBMie0FVX3lxTFBWbDl5al9qRUVUSWNkRjhjOUxrbWlIV2o4dnBPVWFKQkJ0T2tlSHBVNlBLRGxvZFdZWl9EcW5xbVFqUExFbktqRzZ6dTM4eTJ1c3ZrZU9KRVMxX1NOX3VxNVhIdmZJZ0tXTFo4SEp6aUV0ZUM1bEdmYnA3Zw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ab70e367099')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aeeb565e63d">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/08/threatsday-296k-iot-botnet-100-water.html" target="_blank" rel="noopener noreferrer" class="article-title">ThreatsDay: 296K IoT Botnet, 100+ Water Systems Targeted, SharePoint RCE Chain + 27 New Stories - The Hacker News</a>
+          <div class="article-meta">The Hacker News &bull; Aug 27, 2026</div>
+          <div class="article-summary"><p>A fake login page. A fake security scan. A fake productivity app. Apparently, pretending to be useful is still one of the easier ways into a machine.
+The rest of the week gets stranger: botnets borrowing AI, command traffic hiding in public infrastructure, malicious tools waiting before showing their real behavior, exposed systems getting scanned, and exploit windows shrinking again. Different tricks, same advantage: attackers keep finding places where trust is cheap and friction is low.
+That sets the tone. Here’s the full list of what surfaced this week.
+The threats change every week. Subscribe, and we’ll alert you when each new ThreatsDay Bulletin is out.
+- 
+  
+  Social engineering attempt failsCybersecurity company ReliaQuest has confirmed that one of its employees was targeted in a social engineering attack after hackers impersonated a member of the security team. The incident took place on August 22, 2026. &quot;The threat actor registered a lookalike domain and stood up a fake ReliaQuest single sign-on (SSO) page behind a content delivery network,&quot; the company said. &quot;The threat actor then called multiple ReliaQuest teammates, each time posing as a security employee by name in an attempt to steer them towards the fake page. One teammate entered their password and approved the push notification on their phone. That handed the attacker a brief session on our identity dashboard.&quot; ReliaQuest said the extent of the access was view only, and that no applications or systems were accessed, and no customer data was ever touched. Although the company did not attribute the incident to a particular threat actor, it noted the playbook aligns with tactics adopted by ShinyHunters and other extortion crews, such as &quot;an impersonation call, a throwaway lookalike domain registered and burned within the hour, a harvesting page behind a content delivery network, MFA push abuse, and a rapid attempt to enroll a new authenticator.&quot; The development comes as ShinyHunters listed the company on its dark web portal. Last week, ReliaQuest said it's tracking a ShinyHunters campaign using domains that follow the &quot;company[.]claims&quot; pattern, including &quot;reliaquest[.]claims.&quot;
+- 
+  
+  Trojanized productivity appsFake websites advertising productivity software are being used to lure users into downloading a deceptively functioning program that contains malware. The Electron-based applications, such as Kitchen Canvas, Food or Meal Formula, DocConvertWizard, and other PDF conversion tools under different names, gain the ability to dynamically execute injected scripts and access desktop capture functionality through Electron APIs.
+- 
+  
+  Live operator-driven phishingAn undocumented phishing framework, internally branded &quot;JWR&quot; by its developer, is designed to convincingly impersonate checkout and login pages across major payment and shopping platforms. &quot;The client engine of the JWR phishing framework is a real-time, operator-driven system that, rather than merely logging form submissions like a static credential-stealing page, keeps an AES-CTR encrypted WebSocket open to the threat actor so they can steer each victim's session live,&quot; Cisco Talos said. &quot;The victim data targeted by the actor using JWR extends well beyond payment data, encompassing identity documents, Social Security numbers, passport and driver's license images, website and PayPal credentials, 2FA codes, and full device fingerprints, all committed to the actor's server once a session ends.&quot; The JWR phishing framework is assessed to be a variant of The Outsider phishing-as-a-service (PhaaS) platform, based on several similarities in the client engine scripts and functionalities of the two PhaaS platforms.
+- 
+  
+  Android fraud bot for rentCybersecurity researchers have disclosed Octagon, a previously undocumented Android on-device fraud bot sold as malware-as-a-service (MaaS) by the Russian-speaking actor AndroidKitKat.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aeeb565e63d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="intune" class="topic-section">
+      <h2 class="topic-title" style="--c:#0F6CBD">Intune <span class="count">(7)</span></h2>
+      <div class="article-card" data-id="a092d584bc4">
+        <div class="article-body">
+          <a href="https://techcommunity.microsoft.com/t5/intune-customer-success/introducing-device-association-for-windows-autopilot-device/ba-p/4550603" target="_blank" rel="noopener noreferrer" class="article-title">Introducing device association for Windows Autopilot device preparation</a>
+          <div class="article-meta">techcommunity.microsoft.com &bull; Aug 27, 2026</div>
+          <div class="article-summary snippet"><p>By: Maggie Dakeva, Senior Product Manager - Microsoft Intune
+We’ve heard organizations want Windows deployment to be simple for employees and predictable for IT admins. But before a device enrolls, how does the organization know that the device is really one of its own - and how can IT make sure the right experience and policy reach that device regardless of who signs in?
+Today, we're announcing device association for Windows Autopilot device preparation, a new way to bind a physical Windows 11 device to your organization before enrollment begins.
+Device association uses hardware-backed attestation to create a trusted relationship between the device and your tenant at the start of the provisioning journey. That relationship helps Windows Autopilot device preparation recognize the device during the out-of-box experience (OOBE), automatically treat it as corporate-owned, and apply the experience and policy intended for that specific device.
+The result is a more secure, more consistent, and more device-centric onboarding flow.
+Start with the device, not just the user
+Windows Autopilot device preparation already gives IT teams a straightforward way to configure new Windows devices with the apps, scripts, and policies employees need. Device association extends that experience by allowing IT to target a device preparation policy directly to a device before it enrolls.
+This is especially valuable when the deployment experience needs to follow the hardware rather than the person signing in. For example, one employee can enroll multiple devices that serve different purposes, and each device can receive its own device preparation policy. When both device-based and user-based assignments are available, the device-based assignment takes precedence.
+That gives administrators greater confidence that the correct configuration reaches the correct device from the beginning of its lifecycle.
+Create a simpler out-of-box experience
+Because an associated device is recognized before enrollment, IT can configure more of the Windows setup experience in advance.
+Device association enables organizations to:
+
+Configure Language and region.
+Automatically configure the keyboard and skip the keyboard selection page. When the device uses a Wi-Fi network connection during OOBE, the language and keyboard selection screens aren't hidden.
+Hide the Microsoft Software License Terms page.
+Hide privacy settings during OOBE.
+Apply a device name template that uses the serial number or a randomized value.
+Hide account-change options on company sign-in and domain error pages.
+
+These controls reduce the number of decisions an employee must make while setting up a device and help create a consistent, organization-ready experience from the first screen.
+Strengthen trust before enrollment
+Device association isn't only an experience improvement. It establishes device trust earlier in the deployment process.
+The association uses hardware-based attestation and TPM-backed cryptographic validation to verify the device's identity. Tenant affinity is stored in the device's UEFI firmware, where it persists across a Windows reset, operating system reinstallation, or removal of enrollment.
+This durable, hardware-backed relationship helps ensure that the device presenting itself for preparation is the device the organization intended to onboard.
+Associated devices are also automatically marked as corporate-owned. If your organization blocks personally owned Windows devices with Intune enrollment restrictions, device association can be used instead of uploading a separate corporate identifier. You can continue to use corporate identifiers where they fit your process, but an associated device doesn't need both.
+How the device association flow works
+Device association is designed as a clear workflow that starts with IT and finishes automatically during OOBE:
+
+Create the device preparation policy. Configure the apps, scripts, deployment settings, OOBE experience, and optional device name template that should apply.
+Export the device information. During OOBE, a technician opens the Autopilot menu and exports the DeviceLink CSV with the device information required for pre-association to a USB. For an existing device, the same information can be collected from Autopilot diagnostic logs.
+
+
+Figure 1. The Windows Autopilot menu with Assign device association selected.
+Figure 2. The Assign device association screen confirms that device link information was exported to a removable drive.
+
+Pre-associate the device in Intune. In the Microsoft Intune admin center, go to Devices &amp;gt; Enrollment &amp;gt; Device association &amp;gt; Devices, upload the CSV, and optionally assign a device preparation policy directly to the device.Figure 3. The Associated devices page in the Microsoft Intune admin center shows a successfully uploaded pre-associated device.
+Complete association. When the device connects to a network in OOBE, it finds the pre-association record and completes association automatically. A technician can also trigger this step manually from the Autopilot menu.
+Enroll and prepare the device. The device receives the applicable device-targeted policy, is marked as corporate-owned, and presents the configured OOBE experience.
+Monitor the deployment. Administrators can review association state and assigned policy in the Device association blade and filter devices by state, policy, manufacturer, or model.
+
+The device association lifecycle consists of the following states:
+
+Pre-associated: The device was added on the service side and is waiting to complete association in OOBE.
+Associated: The device completed association by writing the tenant affinity to UEFI and is ready for enrollment. This happens automatically when a pre-associated device syncs with an MDM provider.
+Pending removal: A request to remove the pre-association is being processed.
+
+A device's association can be removed by an administrator or partner with physical access to the device who manually runs a local script that clears the tenant affinity information stored in the device's UEFI. This action should be performed only when the device should no longer be associated with the organization, such as when it is sold, recycled, or transferred.
+Manage the full device lifecycle
+The association remains with the device through reset and reinstallation, helping preserve the organization's intended provisioning path when a device is redeployed internally.
+When a device permanently leaves the organization - for example, when it's sold, recycled, or transferred—the association should be removed as part of decommissioning. Because the tenant affinity is stored on the device, clearing a completed association can be performed via script locally on the physical device, without access to the service.
+This lifecycle model is intentional: association is durable during normal reuse inside the organization, while permanent removal can be completed by an admin or partner who has control of the physical device.
+Designed to work alongside your existing Windows Autopilot strategy
+Device association is part of Windows Autopilot device preparation and can coexist with traditional Windows Autopilot deployments in the same organization.
+For a device already registered with Windows Autopilot, the association state determines which deployment runs. If the device isn't associated, its Windows Autopilot registration takes precedence. If it is associated, the Windows Autopilot device preparation deployment takes precedence.
+This gives organizations a practical path to introduce device association while continuing to support existing Windows Autopilot investments.
+Get started
+To use device association, you'll need a supported physical Windows 11 device with TPM 2.0 enabled and in a healthy state. Virtual machines aren't supported because device association relies on hardware-backed identity verification.
+Start by reviewing the Windows Autopilot device association requirements, then create or update your Windows Autopilot device preparation policy. From there, export the device information, pre-associate the device in Intune, and let Windows complete the trusted association during OOBE.
+With device association, Windows Autopilot device preparation moves device trust, targeting, and customization earlier in the deployment journey - before enrollment and before the employee reaches the desktop.
+That means fewer setup decisions for users, more predictable deployments for IT, and stronger confidence that the right device is joining the right organization with the right configuration.
+Learn more
+
+Overview of Windows Autopilot device association
+Requirements for Windows Autopilot device association
+Set up Windows Autopilot device preparation with device association</p><a href="https://techcommunity.microsoft.com/t5/intune-customer-success/introducing-device-association-for-windows-autopilot-device/ba-p/4550603" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a092d584bc4')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ad317afb8ed">
+        <div class="article-body">
+          <a href="https://techcommunity.microsoft.com/t5/intune-customer-success/remote-help-on-windows-unattended-support-with-remote-sign-in-is/ba-p/4549772" target="_blank" rel="noopener noreferrer" class="article-title">Remote Help on Windows: Unattended Support with Remote Sign-In Is Here</a>
+          <div class="article-meta">techcommunity.microsoft.com &bull; Aug 25, 2026</div>
+          <div class="article-summary snippet"><p>By: Rodolfo Bermudez | Sr. Product Manager &amp;amp; Kara Wang | Product Manager 2 - Microsoft Intune
+Helpdesk teams have long asked for a way to remotely troubleshoot Windows devices without needing the user to be present. Whether it’s after-hours maintenance on a shared device in a call center, or a device sitting idle at a remote office, waiting for a user to be available shouldn’t be the blocker to getting work done.
+With Intune’s August release, we’re excited to announce Remote Help Windows Unattended Support with Remote Sign-In a new capability that lets helpdesk staff remotely access physical Windows devices by signing in with credentials they have access to, without requiring the user to grant access or even be logged in.
+Why this matters
+Previously, every Remote Help session on Windows required the user to be present at the device to accept the connection. Now Remote Help Windows Unattended Support enables:
+
+After-hours support - Devices that need maintenance outside business hours can be serviced without scheduling time with users.
+Improved Helpdesk efficiency - Tier 2 support staff don't spend extra time coordinating schedules that often take only minutes to fix.
+Remote locations get the help they need - Branch offices without on-site IT have path to immediate remediation.
+
+With unattended capabilities your helpdesk connects directly to the Windows login screen, authenticates with their own credentials, and works in a separate Windows session, all while the user’s session remains safely locked and preserved.
+What the feature enables
+CapabilityDetailsRemote Access Without User PresenceHelpers can sign in with their own credentials and establish a new Windows session on the target device, even when no user is actively connected.Session IsolationThe user's existing session remains locked and preserved, preventing disruption while support activities are performed in a separate session.Security-First DesignUses least-privilege access, a dedicated RBAC permission, and a complete audit trail to help maintain security and compliance requirements.User AwarenessIf a user is currently signed in, they receive a notification and can choose to accept or reject the remote access request.Rich Session FeaturesSupports file transfer, clipboard passthrough, Remote Desktop Virtual Printer, multi-monitor support, and other productivity-enhancing capabilities.
+Prerequisites
+Licensing
+
+Remote Help is included with Microsoft Intune Suite, Remote Help standalone add-on, or Microsoft 365 E3/E5.
+Remote Help must be enabled in the tenant. You can find step-by-step instructions in the following article: Deploy Remote Help with Microsoft Intune.
+
+Device requirements
+RequirementDetailsOwnershipSupports corporate-owned enrolled devices that are Microsoft Entra joined or Hybrid Microsoft Entra joined. Personal and BYOD devices aren't supported.PlatformRequires physical Windows devices running x64-based operating systems. Virtual machines aren't currently supported.Device StateThe device must be powered on, connected to the internet, able to reach the required Microsoft service endpoints, and have the Intune Management Extension installed.
+Role-based access control (RBAC) permission
+This feature uses a dedicated permission: Remote Help app &amp;gt; Windows unattended control remote sign-in. It must be explicitly assigned to helpdesk roles targeting specific device groups. To maintain a higher security boundary, this permission isn’t included in any Intune built-in role, including existing roles such as Help Desk Operator or School Administrator, and must be granted through a custom role assignment.
+
+Tip: Limit Access to Unattended Support
+Consider creating a dedicated custom role for unattended support rather than including it in your standard Remote Help roles. Because unattended access enables support sessions without an end user present, it's a best practice to restrict this capability to Tier 2 and Tier 3 support staff or senior administrators, and scope access only to the devices they are responsible for managing.
+
+&amp;nbsp;
+
+Figure 1: Remote Help app settings in the Microsoft Intune admin center showing enabled and disabled permissions, including elevation, screen viewing, full control, and Windows unattended control at remote sign-in.
+
+How to set it up
+Step 1: Configure RBAC
+
+In the Intune admin center, go to Tenant administration &amp;gt; Roles
+Create or edit a custom role
+Under Permissions &amp;gt; Remote Help app, enable Windows unattended control remote sign-in
+Assign to your helpdesk groups, scoping to the device groups that should receive unattended support
+
+Step 2: Deploy Azure Virtual Desktop agents
+Required agents
+
+Azure Virtual Desktop Agent.
+Azure Virtual Desktop Agent Bootloader.
+
+Package both the AVD Agent MSI and AVD Agent Bootloader MSI as Win32 apps in Intune. Deploy to the same target device groups that are intended to receive unattended support from Step 1. No ongoing maintenance is required - the components auto-update.
+Step 3: Enable Remote Desktop
+
+Go to Devices &amp;gt; Windows &amp;gt; Configuration profiles &amp;gt; Create profile
+Platform: Windows 10 and later | Profile type: Settings catalog
+Add setting: Search for Remote Desktop &amp;gt; Enable &quot;Allow users to connect remotely using Remote Desktop&quot;
+Assign to your target device groups
+Verify: Devices &amp;gt; Configuration profiles &amp;gt; Device status
+
+The helper experience: A walkthrough
+Starting the session
+From the Intune admin center, navigate to the target device and select &quot;...&quot; &amp;gt; New remote assistance session. A side panel appears with two options:
+
+Initiate attended control: sessions in which a signed-in end user is present and grants access to the helper
+Initiate unattended control: sessions in which an authorized helper can access and control an Intune managed device without a signed in end user present
+
+Select Initiate unattended control and click Select.
+
+Figure 2: Microsoft Intune admin center device overview with the Remote Help panel open, showing the option to initiate an unattended control session on a corporate Windows device.
+
+Built-in safety checks
+Before connecting, the Intune portal validates several conditions:
+ConditionWhat You'll SeeMissing RBAC PermissionThe unattended control option is disabled and displays the message: &quot;You can only select session types for which you have permission.&quot;Personal DeviceThe unattended control option is disabled and displays: &quot;Unattended control is not available on personal devices.&quot;Device NoncompliantA warning appears indicating the device doesn't meet your organization's security or compliance requirements.Device OfflineThe connection attempt fails and displays: &quot;Make sure the user's device is on and connected to the internet.&quot;Missing Prerequisites
+The Remote Help pane in the Intune admin center indicates that required agents, policies, permissions, or device settings haven't been configured.
+
+&amp;nbsp;
+Figure 3: Microsoft Intune Remote Help panel displaying a notice that unattended control is unavailable for a personally owned device, with session options disabled.
+Connection progress and success
+A progress panel shows real-time status: &quot;Starting unattended session on user’s device&quot; followed by green checkmarks when successful, with an &quot;Open Remote Help&quot; link.
+If the connection fails, for example because the device is offline or there is a network connectivity related issue, you’ll see a clear error with a Retry option.
+Figure 4: Microsoft Intune Remote Help panel confirming that an unattended remote session has started on a managed Windows device, with a link to open Remote Help.
+This will launch a new browser tab opening the Windows App (web client). The helper may need to authenticate again using the same username and credentials used to authenticate to Intune Admin portal.
+Signing in to the remote device
+Once connected, the helper then needs to authenticate to the device within the remote session. You can sign in using a local Windows account (ComputerName\UserName), an Active Directory domain account (Domain\UserName or UPN), or a Microsoft Entra ID account (UPN), whichever is appropriate based on the join state of the device and the scenario. Least privilege is enforced - a standard user account does not gain Administrator permissions.
+When a user is currently signed in
+If someone is actively using the device, the helper sees: &quot;Another user is signed in. If you continue, they’ll be disconnected. Do you want to sign in anyway?&quot;
+Figure 5: Windows sign-in screen displaying a prompt warning that another user is signed in and asking whether to continue with a remote sign-in session.
+Choosing &quot;Yes&quot; locks the user’s session (preserving their work) and connects the helper to a separate Windows session.
+The device-side experience
+User notification (when someone is present)
+If a user is signed in, they see a notification: &quot;Do you want to allow the helper to connect to this machine? Click OK to disconnect your session immediately or click Cancel to stay connected. No action will disconnect your session in 30 seconds.&quot;
+Figure 6: Windows 11 desktop showing a Remote Desktop Connection dialog requesting approval for a remote user to connect, with options to allow or cancel the session.
+If they don’t respond in 30 seconds, the unattended session starts automatically.
+During the session
+The end user’s console shows their lock screen. They cannot see what the helper is doing. The helper works in a separate Windows session.
+Taking back control
+The end user can regain control at any time by signing back into their session from the lock screen. The helper is notified and can choose to disconnect.
+Monitoring and audit
+Unattended sessions are fully auditable using the same reporting infrastructure as existing Remote Help:
+
+Session monitoring: Tenant administration &amp;gt; Remote Help &amp;gt; Monitor tab (active sessions, average time, total sessions)
+Session history: Remote Help sessions tab with Provider, Recipient, Device, OS, session type (Unattended/Attended), and export capability
+Audit logs: Tenant administration &amp;gt; Audit logs - filter by category &quot;RemoteHelp&quot; for complete session lifecycle events
+
+For detailed step-by-step instructions on monitoring, reporting, and auditing Remote Help sessions, see: Troubleshoot and monitor Remote Help for Microsoft Intune.
+Security at a glance
+ControlHow It WorksCorporate-Only AccessOnly Intune-enrolled, corporate-owned physical devices that are Microsoft Entra joined or Hybrid Microsoft Entra joined are eligible for unattended support.Explicit RBAC PermissionUses a dedicated permission separate from traditional Remote Help scenarios that require user presence. This permission is included in the built-in Intune Help Desk Operator role.Least PrivilegeThe helper's actions are limited to the permissions associated with the Windows account used to sign in to the target device.User AwarenessIf a user is actively signed in, they receive a notification and a 30-second window to accept or reject the unattended access request.Session IsolationSupport occurs in a separate Windows session, keeping the user's active session locked and preventing access to in-use applications or data.Full Audit TrailAll unattended support sessions are logged to support auditing, compliance reviews, and operational accountability.12-Hour Maximum Session DurationUnattended sessions automatically terminate after 12 hours to help reduce security risk and prevent abandoned connections.
+Key things to remember
+&amp;nbsp;
+Things to Keep in Mind
+✅ Three setup steps: RBAC role + AVD agents + Remote Desktop config profile, all targeting the same device groups.
+✅ Corporate-owned physical devices only: Personal and virtual devices are not supported at GA.
+✅ Dedicated RBAC permission: Use Windows unattended control remote sign-in.
+✅ Devices must be online: Sleep, hibernate, and powered-off devices cannot receive unattended sessions.
+✅ User sessions are preserved: If a user is signed in, their session is locked, not terminated.
+✅ Auto-updating agents: The AVD agent updates automatically, so no ongoing deployment maintenance is required.
+Frequently asked questions
+
+Can I start an unattended session from the Remote Help app?
+No. Unattended sessions can only be initiated from the device page in the Intune admin center.
+
+
+What if a user rejects the connection?
+If they click Cancel, nothing happens and the session doesn't start.
+
+
+What happens if no one responds to the notification?
+After 30 seconds with no response, the unattended session starts automatically.
+
+
+Does this work on Windows 365 or AVD?
+We are working towards providing support for Windows 365 and Azure Virtual Desktop in the future.
+
+
+What's the maximum session length?
+Sessions can last up to 12 hours. After 12 hours, the session automatically disconnects. This limit isn't configurable.
+
+
+What credentials can I use to sign in?
+Users can sign in using a local Windows account (ComputerName\UserName), an Active Directory domain account (Domain\UserName or UPN), or a Microsoft Entra ID account (UPN), whichever is appropriate based on the join state of the device and the scenario.
+
+Resources to learn more
+
+Remote Help overview
+Microsoft 365 Roadmap
+Role-based access control (RBAC) with Microsoft Intune
+Remote Help Documentation: aka.ms/remotehelpdocs
+
+We’d love to hear your feedback! Share your thoughts in the comments below, follow us on&amp;nbsp;LinkedIn&amp;nbsp;or reach out to us on X @IntuneSuppTeam or @MSIntune.</p><a href="https://techcommunity.microsoft.com/t5/intune-customer-success/remote-help-on-windows-unattended-support-with-remote-sign-in-is/ba-p/4549772" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ad317afb8ed')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aa7a12ffa48">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-intune-remote-help-unattended-windows-devices/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Intune Remote Help Can Now Access Unattended Windows PCs Without User Approval</a>
+          <div class="article-meta">petri.com &bull; Aug 26, 2026</div>
+          <div class="article-summary"><p>Organizations can support locked, shared, and after-hours devices while maintaining role-based security controls.
+Key Takeaways:
+Microsoft is making it easier for IT teams to troubleshoot unattended Windows devices with a new Intune Remote Help feature. Administrators can now remotely access devices even when users are unavailable to approve a support session, which reduces delays for locked, shared, or after-hours devices.
+Previously, Remote Help on Windows required an end user to be present to approve and join a support session before an IT technician could begin troubleshooting. This created delays when devices were unattended, locked at the sign-in screen, used as shared workstations, or needed maintenance outside business hours.
+This new unattended support feature removes that dependency by allowing authorized help desk personnel to securely access and repair devices even in the users’ absence. It also provides session isolation, a security-first design, user awareness, and rich session capabilities. This feature includes controls designed to maintain visibility and accountability around unattended sessions.
+“This feature uses a dedicated permission: Remote Help app &gt; Windows unattended control remote sign-in. It must be explicitly assigned to helpdesk roles targeting specific device groups. To maintain a higher security boundary, this permission isn’t included in any Intune built-in role, including existing roles such as Help Desk Operator or School Administrator, and must be granted through a custom role assignment,” Microsoft explained.
+This update makes Microsoft Intune Remote Help more useful for organizations that regularly manage unattended Windows PCs. Help desk teams can handle certain support and maintenance tasks without coordinating with users or waiting for approval to connect.
+However, unattended access expands what support personnel can do without direct user involvement. Microsoft’s decision to keep the capability outside its built-in Intune roles reflects that added level of access.
+Organizations considering the feature should define appropriate custom roles, limit access to relevant device groups, and review Remote Help logs to ensure unattended sessions remain accountable.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aa7a12ffa48')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a158a5eca5e">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-intune-remote-help-unattended-windows-devices/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Intune Remote Help Adds Unattended Windows Support - Redmondmag.com</a>
+          <div class="article-meta">Redmondmag.com &bull; Aug 25, 2026</div>
+          <div class="article-summary"><p>Organizations can support locked, shared, and after-hours devices while maintaining role-based security controls.
+Key Takeaways:
+Microsoft is making it easier for IT teams to troubleshoot unattended Windows devices with a new Intune Remote Help feature. Administrators can now remotely access devices even when users are unavailable to approve a support session, which reduces delays for locked, shared, or after-hours devices.
+Previously, Remote Help on Windows required an end user to be present to approve and join a support session before an IT technician could begin troubleshooting. This created delays when devices were unattended, locked at the sign-in screen, used as shared workstations, or needed maintenance outside business hours.
+This new unattended support feature removes that dependency by allowing authorized help desk personnel to securely access and repair devices even in the users’ absence. It also provides session isolation, a security-first design, user awareness, and rich session capabilities. This feature includes controls designed to maintain visibility and accountability around unattended sessions.
+“This feature uses a dedicated permission: Remote Help app &gt; Windows unattended control remote sign-in. It must be explicitly assigned to helpdesk roles targeting specific device groups. To maintain a higher security boundary, this permission isn’t included in any Intune built-in role, including existing roles such as Help Desk Operator or School Administrator, and must be granted through a custom role assignment,” Microsoft explained.
+This update makes Microsoft Intune Remote Help more useful for organizations that regularly manage unattended Windows PCs. Help desk teams can handle certain support and maintenance tasks without coordinating with users or waiting for approval to connect.
+However, unattended access expands what support personnel can do without direct user involvement. Microsoft’s decision to keep the capability outside its built-in Intune roles reflects that added level of access.
+Organizations considering the feature should define appropriate custom roles, limit access to relevant device groups, and review Remote Help logs to ensure unattended sessions remain accountable.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a158a5eca5e')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="acbdd047cf3">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-intune-remote-help-unattended-windows-devices/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Intune Remote Help Can Now Access Unattended Windows PCs Without User Approval - Petri IT Knowledgebase</a>
+          <div class="article-meta">Petri IT Knowledgebase &bull; Aug 26, 2026</div>
+          <div class="article-summary"><p>Organizations can support locked, shared, and after-hours devices while maintaining role-based security controls.
+Key Takeaways:
+Microsoft is making it easier for IT teams to troubleshoot unattended Windows devices with a new Intune Remote Help feature. Administrators can now remotely access devices even when users are unavailable to approve a support session, which reduces delays for locked, shared, or after-hours devices.
+Previously, Remote Help on Windows required an end user to be present to approve and join a support session before an IT technician could begin troubleshooting. This created delays when devices were unattended, locked at the sign-in screen, used as shared workstations, or needed maintenance outside business hours.
+This new unattended support feature removes that dependency by allowing authorized help desk personnel to securely access and repair devices even in the users’ absence. It also provides session isolation, a security-first design, user awareness, and rich session capabilities. This feature includes controls designed to maintain visibility and accountability around unattended sessions.
+“This feature uses a dedicated permission: Remote Help app &gt; Windows unattended control remote sign-in. It must be explicitly assigned to helpdesk roles targeting specific device groups. To maintain a higher security boundary, this permission isn’t included in any Intune built-in role, including existing roles such as Help Desk Operator or School Administrator, and must be granted through a custom role assignment,” Microsoft explained.
+This update makes Microsoft Intune Remote Help more useful for organizations that regularly manage unattended Windows PCs. Help desk teams can handle certain support and maintenance tasks without coordinating with users or waiting for approval to connect.
+However, unattended access expands what support personnel can do without direct user involvement. Microsoft’s decision to keep the capability outside its built-in Intune roles reflects that added level of access.
+Organizations considering the feature should define appropriate custom roles, limit access to relevant device groups, and review Remote Help logs to ensure unattended sessions remain accountable.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('acbdd047cf3')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a4eb0753645">
+        <div class="article-body">
+          <a href="https://www.neowin.net/news/here-are-all-the-new-features-microsoft-added-to-intune-in-august-2026/?utm_source=rss" target="_blank" rel="noopener noreferrer" class="article-title">Here are all the new features Microsoft added to Intune in August 2026 - Neowin</a>
+          <div class="article-meta">Neowin &bull; Aug 28, 2026</div>
+          <div class="article-summary snippet"><p>Here are all the new features Microsoft added to Intune in August 2026&amp;nbsp;&amp;nbsp;Neowin</p><a href="https://www.neowin.net/news/here-are-all-the-new-features-microsoft-added-to-intune-in-august-2026/?utm_source=rss" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a4eb0753645')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a881e9efedf">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiqgFBVV95cUxPMHZGemtsbnowVU4zUDRPb3JseDAwRmpHV0FaS3dPQTg5MDVqT3JSM2tNTkx3MU5xck52azFYTkpaTjhueGpwUFc0VnVJLTNUM041c25qbkpoR0x0bldxbnV0OW5VNlFFeEx0SU0tUjQ4Y2hic0tSSmtCRFpiS1p4NC1nWXhWWGhSNmVrZTA4VThXRFhFaGxPQjBiZ1NqYnJTa0dsSWNKdmdCUdIBqAFBVV95cUxQcEJ1UXFWTVlEakRta3FBLXI0NDFkWnVDaUV0VjRMUFhWMUgzTk9sWXVFdHo2dUxhLUJSXzN1NS1sVTk5a0tfQVNfeEl0VmhYRDQtMkJBcmtFcFFMRkliVy02V3p2RV9LakxTeUV3ZWN3ZXpFelVndzF1QVpod201SmJ6dGtmVVhLd0ZoS3BMU284X2l1WnBNeUJQQ05OZUxBMDJRQlJjSlE?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft finally brings another long awaited Windows troubleshooting feature - Neowin</a>
+          <div class="article-meta">Neowin &bull; Aug 26, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft finally brings another long awaited Windows troubleshooting feature&amp;nbsp;&amp;nbsp;Neowin</p><a href="https://news.google.com/rss/articles/CBMiqgFBVV95cUxPMHZGemtsbnowVU4zUDRPb3JseDAwRmpHV0FaS3dPQTg5MDVqT3JSM2tNTkx3MU5xck52azFYTkpaTjhueGpwUFc0VnVJLTNUM041c25qbkpoR0x0bldxbnV0OW5VNlFFeEx0SU0tUjQ4Y2hic0tSSmtCRFpiS1p4NC1nWXhWWGhSNmVrZTA4VThXRFhFaGxPQjBiZ1NqYnJTa0dsSWNKdmdCUdIBqAFBVV95cUxQcEJ1UXFWTVlEakRta3FBLXI0NDFkWnVDaUV0VjRMUFhWMUgzTk9sWXVFdHo2dUxhLUJSXzN1NS1sVTk5a0tfQVNfeEl0VmhYRDQtMkJBcmtFcFFMRkliVy02V3p2RV9LakxTeUV3ZWN3ZXpFelVndzF1QVpod201SmJ6dGtmVVhLd0ZoS3BMU284X2l1WnBNeUJQQ05OZUxBMDJRQlJjSlE?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a881e9efedf')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="entraid" class="topic-section">
+      <h2 class="topic-title" style="--c:#6B69D6">Entra ID <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a07d4e6ff5a">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-fixes-entra-id-remote-code-execution-flaw/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Fixes Entra ID Flaw that Could Allow Remote Code Execution</a>
+          <div class="article-meta">petri.com &bull; Aug 24, 2026</div>
+          <div class="article-summary"><p>Microsoft confirmed the issue was fully mitigated and reported no confirmed exploitation in the wild.
+Key Takeaways:
+Microsoft has patched a critical vulnerability in Microsoft Entra ID (formerly known as Azure Active Directory) that carries the maximum CVSS score of 10.0. The flaw could have allowed unauthenticated attackers to remotely execute malicious code over the network.
+Microsoft first disclosed this Entra ID vulnerability (CVE-2026-69836), reported by security engineer Robert Fitzpatrick on August 20. It could allow remote code execution without requiring user interaction or prior authentication. This flaw stemmed from the improper handling of serialized data, which created a scenario in which an attacker could potentially execute malicious code across the network.
+Microsoft patched this issue directly within its infrastructure before customers needed to take action. Early reports suggested that this flaw had been exploited in the wild, but Microsoft later updated its guidance to clarify that no confirmed exploitation had occurred.
+“Deserialization of untrusted data in Microsoft Entra ID allows an unauthorized attacker to execute code over a network,” Microsoft explained in its advisory. “This vulnerability has already been fully mitigated by Microsoft. There is no action for users of this service to take. The purpose of this CVE is to provide further transparency.”
+The flaw attracted significant attention because Entra ID serves as the authentication backbone for Microsoft cloud services and many enterprise applications. A successful compromise of such a central identity service could potentially affect authentication, authorization, and access management across large numbers of organizations.
+Microsoft has released 22 security patches covering multiple cloud services and products. In addition to the Entra ID vulnerability, Microsoft addressed several other critical Azure, Exchange Online, Fabric, and Partner Center flaws, including multiple vulnerabilities that also received very high severity ratings.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a07d4e6ff5a')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a4a819fd54d">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMie0FVX3lxTE1IdmwwaGg0VkM2YjlSRWdpQ0E5Qmg5ZzJmOURVd045STRicGZPTzlmdkdjTnVYMjUySE1pYldQclluUVdRN3RJLXg0WVpGUURCUlc3Wm5EaGdXWE9qcnE3TnJEUGNDZk1lZ3ExYTJLbk43OU95d2FDeEMwUQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">TheHatman Azure Breach: 3.6M Records, 9 Firms Hit [2026] - tech-insider.org</a>
+          <div class="article-meta">tech-insider.org &bull; Aug 29, 2026</div>
+          <div class="article-summary snippet"><p>TheHatman Azure Breach: 3.6M Records, 9 Firms Hit [2026]&amp;nbsp;&amp;nbsp;tech-insider.org</p><a href="https://news.google.com/rss/articles/CBMie0FVX3lxTE1IdmwwaGg0VkM2YjlSRWdpQ0E5Qmg5ZzJmOURVd045STRicGZPTzlmdkdjTnVYMjUySE1pYldQclluUVdRN3RJLXg0WVpGUURCUlc3Wm5EaGdXWE9qcnE3TnJEUGNDZk1lZ3ExYTJLbk43OU95d2FDeEMwUQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a4a819fd54d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ab76f66cb7b">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiSkFVX3lxTE5JcDkteTVKdkNWRUpTanJUSlI3RXJKNjNZLWlEUlZ2RmdxOW1WcVpTUTlfX2lpamhnQnJVQkJLQ1FoOVZrcUlvZElR?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Duo Two-Factor Authentication for Microsoft Entra ID External MFA - Cisco Duo</a>
+          <div class="article-meta">Cisco Duo &bull; Aug 25, 2026</div>
+          <div class="article-summary snippet"><p>Duo Two-Factor Authentication for Microsoft Entra ID External MFA&amp;nbsp;&amp;nbsp;Cisco Duo</p><a href="https://news.google.com/rss/articles/CBMiSkFVX3lxTE5JcDkteTVKdkNWRUpTanJUSlI3RXJKNjNZLWlEUlZ2RmdxOW1WcVpTUTlfX2lpamhnQnJVQkJLQ1FoOVZrcUlvZElR?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ab76f66cb7b')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a5f4b65238b">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMinAFBVV95cUxNSzZ2VjloN0ZoZWFKcjUyTTR6TzBQNUpHS3czQUxDUVpPVnhOMDU4RE1oVUF1TDZHQUVYTmwzcUduMXduTzJma3FYZDdsMWdXcURkRzNsbEtWZjVCdW1GaUg4ZVJuNENXY3QxeFdSS0NpNFdqcGdvdjNHeVBQOHB6TFpqZjBJWTJCUzNkcTU3MVhDWmRpTXFhekZYSGo?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft says Entra ID identity software not exploited, revises CVE - SC Media</a>
+          <div class="article-meta">SC Media &bull; Aug 24, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft says Entra ID identity software not exploited, revises CVE&amp;nbsp;&amp;nbsp;SC Media</p><a href="https://news.google.com/rss/articles/CBMinAFBVV95cUxNSzZ2VjloN0ZoZWFKcjUyTTR6TzBQNUpHS3czQUxDUVpPVnhOMDU4RE1oVUF1TDZHQUVYTmwzcUduMXduTzJma3FYZDdsMWdXcURkRzNsbEtWZjVCdW1GaUg4ZVJuNENXY3QxeFdSS0NpNFdqcGdvdjNHeVBQOHB6TFpqZjBJWTJCUzNkcTU3MVhDWmRpTXFhekZYSGo?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a5f4b65238b')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a47005c850b">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-fixes-entra-id-remote-code-execution-flaw/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Fixes Entra ID Flaw that Could Allow Remote Code Execution - Petri IT Knowledgebase</a>
+          <div class="article-meta">Petri IT Knowledgebase &bull; Aug 24, 2026</div>
+          <div class="article-summary"><p>Microsoft confirmed the issue was fully mitigated and reported no confirmed exploitation in the wild.
+Key Takeaways:
+Microsoft has patched a critical vulnerability in Microsoft Entra ID (formerly known as Azure Active Directory) that carries the maximum CVSS score of 10.0. The flaw could have allowed unauthenticated attackers to remotely execute malicious code over the network.
+Microsoft first disclosed this Entra ID vulnerability (CVE-2026-69836), reported by security engineer Robert Fitzpatrick on August 20. It could allow remote code execution without requiring user interaction or prior authentication. This flaw stemmed from the improper handling of serialized data, which created a scenario in which an attacker could potentially execute malicious code across the network.
+Microsoft patched this issue directly within its infrastructure before customers needed to take action. Early reports suggested that this flaw had been exploited in the wild, but Microsoft later updated its guidance to clarify that no confirmed exploitation had occurred.
+“Deserialization of untrusted data in Microsoft Entra ID allows an unauthorized attacker to execute code over a network,” Microsoft explained in its advisory. “This vulnerability has already been fully mitigated by Microsoft. There is no action for users of this service to take. The purpose of this CVE is to provide further transparency.”
+The flaw attracted significant attention because Entra ID serves as the authentication backbone for Microsoft cloud services and many enterprise applications. A successful compromise of such a central identity service could potentially affect authentication, authorization, and access management across large numbers of organizations.
+Microsoft has released 22 security patches covering multiple cloud services and products. In addition to the Entra ID vulnerability, Microsoft addressed several other critical Azure, Exchange Online, Fabric, and Partner Center flaws, including multiple vulnerabilities that also received very high severity ratings.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a47005c850b')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a98660c0425">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMicEFVX3lxTE51aDlYRjV0WmhRdE9oY0pBajFsWEFLcVpOcVNyb1lWV2xUc0kxbUg5YUtyMEMxM09QVDlXTWJEekQxMjZCdHYxWnVWQ0lwWGIzTlEyQXN2d2k5UnY5SWVfbEhTaWJ4VVpYREJLWmZWSjQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">CVE-2026-69836: Microsoft Entra ID RCE Fixed - SOCRadar Extended Threat Intelligence Platform</a>
+          <div class="article-meta">SOCRadar Extended Threat Intelligence Platform &bull; Aug 24, 2026</div>
+          <div class="article-summary snippet"><p>CVE-2026-69836: Microsoft Entra ID RCE Fixed&amp;nbsp;&amp;nbsp;SOCRadar Extended Threat Intelligence Platform</p><a href="https://news.google.com/rss/articles/CBMicEFVX3lxTE51aDlYRjV0WmhRdE9oY0pBajFsWEFLcVpOcVNyb1lWV2xUc0kxbUg5YUtyMEMxM09QVDlXTWJEekQxMjZCdHYxWnVWQ0lwWGIzTlEyQXN2d2k5UnY5SWVfbEhTaWJ4VVpYREJLWmZWSjQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a98660c0425')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ac3c38cd1eb">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMidkFVX3lxTFBlWGVnc0JDb0NzM202UVRad3BjV1BTbmRQLUdtNnEwTmliUDFfRXhCVUUzQ3RNR3F4OGsteThYUkpCYkZDR3pLa1B6QkhhQmNpdGFvbFlKaXBVYy1kWGhha1RfT243VUQ4M0xIQktuTTYxWUdTbWc?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Discloses CVSS 10.0 Vulnerability in Entra ID—Why It Went Public Despite No User Action Required - finance.biggo.com</a>
+          <div class="article-meta">finance.biggo.com &bull; Aug 24, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft Discloses CVSS 10.0 Vulnerability in Entra ID—Why It Went Public Despite No User Action Required&amp;nbsp;&amp;nbsp;finance.biggo.com</p><a href="https://news.google.com/rss/articles/CBMidkFVX3lxTFBlWGVnc0JDb0NzM202UVRad3BjV1BTbmRQLUdtNnEwTmliUDFfRXhCVUUzQ3RNR3F4OGsteThYUkpCYkZDR3pLa1B6QkhhQmNpdGFvbFlKaXBVYy1kWGhha1RfT243VUQ4M0xIQktuTTYxWUdTbWc?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac3c38cd1eb')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a9fb0936de1">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMif0FVX3lxTE43NkZxb181OU50cEd5ajYwNWo0QWhBMHBsY2xPb0EtSWVROHVKTkt0U3ZYMXhtZW9XUXItMzZIYnBsczZ4SzdNbnZUZUQyYTI5WGduZEl3RExiSWdKb0kzM0FoTUVOUUdYbjhNQXY4S1R3UUllOC1uSVhmWlJiaVE?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Fixes Critical Vulnerability in Entra ID - ForkLog</a>
+          <div class="article-meta">ForkLog &bull; Aug 24, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft Fixes Critical Vulnerability in Entra ID&amp;nbsp;&amp;nbsp;ForkLog</p><a href="https://news.google.com/rss/articles/CBMif0FVX3lxTE43NkZxb181OU50cEd5ajYwNWo0QWhBMHBsY2xPb0EtSWVROHVKTkt0U3ZYMXhtZW9XUXItMzZIYnBsczZ4SzdNbnZUZUQyYTI5WGduZEl3RExiSWdKb0kzM0FoTUVOUUdYbjhNQXY4S1R3UUllOC1uSVhmWlJiaVE?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a9fb0936de1')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="m365" class="topic-section">
+      <h2 class="topic-title" style="--c:#D83B01">Microsoft 365 <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="ad954de948d">
+        <div class="article-body">
+          <a href="https://petri.com/audit-consolidate-and-govern-shared-microsoft-365/" target="_blank" rel="noopener noreferrer" class="article-title">How to Audit, Consolidate, and Govern Shared Calendars in Microsoft 365</a>
+          <div class="article-meta">petri.com &bull; Aug 25, 2026</div>
+          <div class="article-summary"><p>How to find, consolidate, and govern the shared calendars your Microsoft 365 users actually rely on.
+Key Takeaways:
+A new hire on the facilities team asks which calendar she should check for the building’s planned power outages. It’s a fair question. You open the shared calendars list to show her, but you just keep scrolling. “Facilities.” “Facilities Team.” “Facilities – Maintenance.” “FM Calendar (old).” “Building Ops.” And one, notably, called “Calendar2.”
+Three of these have events from this month. Two have been unused since 2023. When you ask around the room, no one can say for sure which one Security actually reads. So, the honest answer to her question is that you don’t have a calendar to give her yet. You have five to clean up first.
+This is where the usual advice falls short. “Here is how to create a shared calendar in Outlook” doesn’t address the real issue. Your calendars exist, but the problem is that there are too many and no way to tell the active ones from the inactive ones. That task requires a different approach, roughly five steps.
+The mess is due to how the defaults work. In Microsoft 365, pretty much anyone with a mailbox can create a calendar and share it. There’s no approval, no naming standard, no assigned owner, and no expiration. It’s handy on a Tuesday when you need something quickly. It’s less helpful three years and two reorganizations later.
+Every campaign, every short-term project, and every employee who has left the company tends to leave a calendar behind. None of these were mistakes at the time. The organization just never had a place to keep track of them, so they piled up.
+Separate calendars earn their place when the audiences genuinely differ: a team that needs its own working calendar the rest of the company shouldn’t see, a bookable resource that has to stay distinct from the schedules using it, or a read-only feed like maintenance windows that several departments watch but none should edit. The problem isn’t having many calendars. It’s having many with no owner, no purpose on record, and no way to tell which is current. Consolidation is about cutting the duplicates and the orphans, not collapsing every legitimately separate calendar into one.
+You can’t tidy up what you can’t see. And the calendars causing the most confusion are often the informal ones that never made it onto any list. Start by creating that list.
+The Exchange Admin Center and PowerShell do most of the work, though discovery takes a few passes rather than one command. For the individual and secondary calendars, enumerate the mailboxes you care about:
+What you need is one clear list: name, type, which mailbox it belongs to, and who has access. Nothing fancy; a spreadsheet works.
+Now go through the list and categorize every calendar into one of three groups. Some are clearly important and will stay, some duplicate others and will be merged, and the ones with no recent events and no owner will be removed.
+Judging real use is harder than it sounds, so weigh several signals together: recent calendar activity, current permissions, any documented dependencies, and feedback from the teams involved.
+Technical activity on its own won’t always tell you which calendar people actually rely on. Watch for the calendar that people genuinely use, which may not be the official one. Promote that one. The tidiest name isn’t always the real source of truth.
+Each calendar you keep needs to have two names associated with it: someone who decides what gets added, and someone who manages its permissions and eventual retirement. A calendar without an owner is just a future item for your next cleanup.
+Pay special attention to the secondary calendars in an individual’s mailbox. These are fragile. If that person changes teams or leaves, the calendar could go with them and take a department’s schedule along.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ad954de948d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a7cf4f680f1">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiygFBVV95cUxNcXh5V3FkUTZEeDltYXE2ME94OHNIUUc5aVF5TGdTcHhGOVdkZUlPSEp2VldINy1uSXViVnZ2S0YtMkttTlhxRi1ibFhuZkRfdEl4eGFLSVpNNW1lbnVGSEMtZHhOazBLQ1c2aEo2ZGcyb1hKemp1U2pqOElxQ0p0ZWxyLUlWQU1RM3Brd1c0M2djRVM3ak1QMUdueGZBNmlhZUlYaHFRbDF5b21Ed2llZjVsSWpjMWNNbVdVT2xjZS1zaGlsdEVid0l3?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">TerminalFix campaign deploys a reverse tunnel through multistage intrusion - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; Aug 29, 2026</div>
+          <div class="article-summary snippet"><p>TerminalFix campaign deploys a reverse tunnel through multistage intrusion&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMiygFBVV95cUxNcXh5V3FkUTZEeDltYXE2ME94OHNIUUc5aVF5TGdTcHhGOVdkZUlPSEp2VldINy1uSXViVnZ2S0YtMkttTlhxRi1ibFhuZkRfdEl4eGFLSVpNNW1lbnVGSEMtZHhOazBLQ1c2aEo2ZGcyb1hKemp1U2pqOElxQ0p0ZWxyLUlWQU1RM3Brd1c0M2djRVM3ak1QMUdueGZBNmlhZUlYaHFRbDF5b21Ed2llZjVsSWpjMWNNbVdVT2xjZS1zaGlsdEVid0l3?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a7cf4f680f1')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a5c98ab2dd2">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMia0FVX3lxTE8xVDF5WUlNUG5nUUxWQ01tVlYzQ2swemtYWU9KUFF5X2RjQVR6T3hmLWdSUGh5MXBTM3BFaXQxVkMwYk9rbWVjZmR3QkVTNUV4dnVLNzVwR0xJNUVvUkdRNmJldjd0RXVlSjhr?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Rovo for Microsoft 365: Turn conversations into Jira work - Atlassian</a>
+          <div class="article-meta">Atlassian &bull; Aug 26, 2026</div>
+          <div class="article-summary snippet"><p>Rovo for Microsoft 365: Turn conversations into Jira work&amp;nbsp;&amp;nbsp;Atlassian</p><a href="https://news.google.com/rss/articles/CBMia0FVX3lxTE8xVDF5WUlNUG5nUUxWQ01tVlYzQ2swemtYWU9KUFF5X2RjQVR6T3hmLWdSUGh5MXBTM3BFaXQxVkMwYk9rbWVjZmR3QkVTNUV4dnVLNzVwR0xJNUVvUkdRNmJldjd0RXVlSjhr?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a5c98ab2dd2')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ac5344c09ea">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMioAFBVV95cUxQUjUwWHFvNXVXbGY0T1hTalhhX0tWS0hSVDRIUTJTM29yREJnRGIyNTVZVTJodzRTckI2Smt4eVlpQ0ZXWVhLMW81b0tmdjNpNWFMSS12VVVpR2NqN2dUdWJVaFBydUdhNnBTeFVPR0ZiOHVDMXltcEMtcFhCc19oWDdwbnctbjNtMnJIaUZTY1lodUVEUEp2aURJMVpvTDNJ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">'NovaCookies' Kit Steals Microsoft 365 Sessions for $320 a Month - Dark Reading</a>
+          <div class="article-meta">Dark Reading &bull; Aug 26, 2026</div>
+          <div class="article-summary snippet"><p>'NovaCookies' Kit Steals Microsoft 365 Sessions for $320 a Month&amp;nbsp;&amp;nbsp;Dark Reading</p><a href="https://news.google.com/rss/articles/CBMioAFBVV95cUxQUjUwWHFvNXVXbGY0T1hTalhhX0tWS0hSVDRIUTJTM29yREJnRGIyNTVZVTJodzRTckI2Smt4eVlpQ0ZXWVhLMW81b0tmdjNpNWFMSS12VVVpR2NqN2dUdWJVaFBydUdhNnBTeFVPR0ZiOHVDMXltcEMtcFhCc19oWDdwbnctbjNtMnJIaUZTY1lodUVEUEp2aURJMVpvTDNJ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac5344c09ea')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a92a483ed46">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiwwFBVV95cUxPelJnT3hJT2VjUHBOQ2VGZVVKQVJwY2t1X3R5YTdaem1iRVhqeE8teUdobjcyNnJ1MGk4cWsyaGp2eDBkajZ5YWhzTUVtOEVXYVMzUGpyZzVxQUVHbEpvSW5iY0FFWnRaVWdqdzZmT1R1UWZ1OUw5a1dGM0JXcG5GSFd2MEZPVGVsVVRWOFp2OVVYTFExZlBXSmJiSW1sYjRXM0JGblZxeUl6ZVJuM2RBTTVUa1h0N044UWFrUENhRmFsdW8?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft slaps a fresh coat of AI paint on the Microsoft 365 Roadmap - The Register</a>
+          <div class="article-meta">The Register &bull; Aug 27, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft slaps a fresh coat of AI paint on the Microsoft 365 Roadmap&amp;nbsp;&amp;nbsp;The Register</p><a href="https://news.google.com/rss/articles/CBMiwwFBVV95cUxPelJnT3hJT2VjUHBOQ2VGZVVKQVJwY2t1X3R5YTdaem1iRVhqeE8teUdobjcyNnJ1MGk4cWsyaGp2eDBkajZ5YWhzTUVtOEVXYVMzUGpyZzVxQUVHbEpvSW5iY0FFWnRaVWdqdzZmT1R1UWZ1OUw5a1dGM0JXcG5GSFd2MEZPVGVsVVRWOFp2OVVYTFExZlBXSmJiSW1sYjRXM0JGblZxeUl6ZVJuM2RBTTVUa1h0N044UWFrUENhRmFsdW8?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a92a483ed46')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a2383983e10">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/08/novacookies-campaigns-abuse-genuine.html" target="_blank" rel="noopener noreferrer" class="article-title">NovaCookies Campaigns Abuse Genuine Docusign Notifications to Steal Microsoft 365 Sessions - The Hacker News</a>
+          <div class="article-meta">The Hacker News &bull; Aug 26, 2026</div>
+          <div class="article-summary"><p>Cybersecurity researchers have disclosed details of a new adversary-in-the-middle (AitM) phishing toolkit called NovaCookies that's used as a proxy to redirect Microsoft 365 sign-ins, while capturing authenticated sessions in the process.
+In a report shared with The Hacker News ahead of publication, Island characterized the $320/month service as a subscription-based phishing platform that facilitates real-time Microsoft 365 session theft. The kit has been used to target hundreds of organizations across multiple sectors in the U.S., the U.K., Canada, Germany, Israel, and the U.A.E. to date.
+&quot;Observed campaigns used genuine Docusign envelopes to carry counterfeit document-share lures, with some clicks routed through legitimate Microsoft or Google sign-in endpoints as redirect hops before reaching the kit,&quot; Island said. &quot;The message, document service and redirect can therefore appear trustworthy until the browser reaches attacker-controlled infrastructure.&quot;
+Like other AitM phishing kits, NovaCookies is designed to relay Microsoft 365 authentication through attacker-controlled infrastructure, allowing it to act as a proxy and harvest the resulting session after victims enter their passwords and multi-factor authentication (MFA) codes.
+Evidence indicates that NovaCookies is advertised via Telegram, with the messaging service also used as infrastructure to manage customer profiles, configure redirect services, and contact support. According to Proofpoint, NovaCookies is assessed to be a variant of the Sneaky 2FA phishing kit.
+&quot;While the original Sneaky 2FA appeared to focus mainly on Microsoft accounts, the NovaCookies variant includes dedicated flows for other identity providers, including Okta, and Entra domains federated to GoDaddy,&quot; Proofpoint noted in an X post last month.
+&quot;Unlike Sneaky2FA, NovaCookies uses a fully managed phishing-as-a-service (PhaaS) model where affiliates pay to use a PhaaS platform, and the infrastructure is hosted centrally by the PhaaS operator rather than by each affiliate.&quot;
+Many NovaCookies lure domains have been found to be hosted on the &quot;.vu&quot; domain (e.g., &quot;fordmotbvmorcompany[.]vu&quot;), with the phishing URLs featuring alternating-case labels such as PwPt-sHaRe, Ms36-AcCeSs, and ClOd-ViEw in an attempt to masquerade as legitimate Microsoft services.
+One of the attack chains employs Docusign notifications as decoys to lead victims to the phishing pages, while bypassing sender-authentication and reputation checks by taking advantage of the fact that the email is a genuine Docusign notification. What's malicious is the document shared via the service.
+&quot;Styled as a Docusign share notice, it claimed that an accounting department had shared a remittance-advice PDF and invited the recipient to open it,&quot; Island said. &quot;The malicious destination sat inside the document, below the layer most mail security products inspect.&quot;
+The attack then employs an OAuth error-redirect technique detailed by Microsoft earlier this March to lead victims to attacker-controlled infrastructure. The phishing infrastructure operated by NovaCookies is a live AitM relay designed to capture credentials and session information, and relay it to Microsoft in real time.
+The commercial offering also boasts of various anti-analysis checks to evade security scanners before serving the bogus login form impersonating Microsoft 365. This includes a Cloudflare gate and a mechanism to detect execution passes associated with debugging tools.
+&quot;NovaCookies is built so each hop can look legitimate on its own: a trusted delivery service, an identity-provider redirect, then a familiar sign-in page,&quot; Island said. &quot;Those pieces often land in different tools. The browser is where they become a single event.&quot;
+The disclosure comes as PhaaS toolkits continue to be a lucrative subscription service in the cybercrime underground, allowing cybercriminals with little to no technical expertise to mount phishing campaigns at scale.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a2383983e10')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aeeb8224334">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiY0FVX3lxTFBYTUVKQ3MwQnVFRm95MmVSand3TTlZaDc5VDBhR2hyTW52aWdYdnRUSFVxdEs0c0o0LWM2VTdaMzVsM3dyZVZKTzQxVG9BWXV1N3BYdlh0VUpMSUEzWDZXcUN3Zw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Free Microsoft 365: All the Legal Options - Spliiit</a>
+          <div class="article-meta">Spliiit &bull; Aug 28, 2026</div>
+          <div class="article-summary snippet"><p>Free Microsoft 365: All the Legal Options&amp;nbsp;&amp;nbsp;Spliiit</p><a href="https://news.google.com/rss/articles/CBMiY0FVX3lxTFBYTUVKQ3MwQnVFRm95MmVSand3TTlZaDc5VDBhR2hyTW52aWdYdnRUSFVxdEs0c0o0LWM2VTdaMzVsM3dyZVZKTzQxVG9BWXV1N3BYdlh0VUpMSUEzWDZXcUN3Zw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aeeb8224334')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a77ee8ef649">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMipgFBVV95cUxPYnFqSm81akY1V29RdXVwSEh6ZjF4eXFTUmdzZTFLTWhLemJ4d0RZVzgzdW1wdzFaU3ozNEFiaFRNQk5mdWZ2M1htV0g5SGhEZV9Lc0FPRU01Q1RyZzJNNGJsNE5SZTFFMFRfU3VrOTBZOW0tcExWY0x1TWZ6WXFRNElybWtzQ0ZZR1IwWmlOUWhEaEpUR3IwWWExLXoybHprUFFoODNB?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Sportfive scales Microsoft 365 Copilot to 93 per cent adoption - Technology Record</a>
+          <div class="article-meta">Technology Record &bull; Aug 27, 2026</div>
+          <div class="article-summary snippet"><p>Sportfive scales Microsoft 365 Copilot to 93 per cent adoption&amp;nbsp;&amp;nbsp;Technology Record</p><a href="https://news.google.com/rss/articles/CBMipgFBVV95cUxPYnFqSm81akY1V29RdXVwSEh6ZjF4eXFTUmdzZTFLTWhLemJ4d0RZVzgzdW1wdzFaU3ozNEFiaFRNQk5mdWZ2M1htV0g5SGhEZV9Lc0FPRU01Q1RyZzJNNGJsNE5SZTFFMFRfU3VrOTBZOW0tcExWY0x1TWZ6WXFRNElybWtzQ0ZZR1IwWmlOUWhEaEpUR3IwWWExLXoybHprUFFoODNB?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a77ee8ef649')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="iru" class="topic-section">
+      <h2 class="topic-title" style="--c:#7C3AED">Iru MDM (formerly Kandji) </h2>
+      <p class="no-news">No articles found this week.</p>
+    </section>
+    <section id="cato" class="topic-section">
+      <h2 class="topic-title" style="--c:#FF6B35">Cato Networks <span class="count">(7)</span></h2>
+      <div class="article-card" data-id="abd3a228e5b">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi7AFBVV95cUxPY2Y3ZGhHSEFtbEI1OTRGNDd0Qi1NeDNfc2JzQ05XcmJpMDNmaWZ1V3hnLTJSR29MVzY4MkdDOEdSaHpuaHFRTjFyMjhpUURfZFo3amtwbHZHcjVMNGR4TEtVTTBINlpHWllMUXJQcWZJdEdSc1VXSEJHNUJoblQ2bElOdmR2Q2hqSE52d0dVTWFZZ25pUmJqTlVBRHhsVGlHekM1TzJHRHoweWhXUVNZQVlzLVhzNlBkSXdOV2VfeFdJd3M4bHRtMXhyZmFLeUtPeXJhczlxUHFNM2F1eXg2TmxvM0xWV1ZmYWNqMg?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato-CrowdStrike Partnership Is ‘Massive’ Win For Reducing Security Complexity, Improving Efficacy: Solution Provider CTO - crn.com</a>
+          <div class="article-meta">crn.com &bull; Aug 28, 2026</div>
+          <div class="article-summary snippet"><p>Cato-CrowdStrike Partnership Is ‘Massive’ Win For Reducing Security Complexity, Improving Efficacy: Solution Provider CTO&amp;nbsp;&amp;nbsp;crn.com</p><a href="https://news.google.com/rss/articles/CBMi7AFBVV95cUxPY2Y3ZGhHSEFtbEI1OTRGNDd0Qi1NeDNfc2JzQ05XcmJpMDNmaWZ1V3hnLTJSR29MVzY4MkdDOEdSaHpuaHFRTjFyMjhpUURfZFo3amtwbHZHcjVMNGR4TEtVTTBINlpHWllMUXJQcWZJdEdSc1VXSEJHNUJoblQ2bElOdmR2Q2hqSE52d0dVTWFZZ25pUmJqTlVBRHhsVGlHekM1TzJHRHoweWhXUVNZQVlzLVhzNlBkSXdOV2VfeFdJd3M4bHRtMXhyZmFLeUtPeXJhczlxUHFNM2F1eXg2TmxvM0xWV1ZmYWNqMg?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('abd3a228e5b')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a4f6757ff40">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMioAFBVV95cUxORzd2bkJNM0JoYTdlSXVoSUJoVUNJOWVLTnpLdFVOc2ZJUEZtYUMyU1FqLVJueUpSdDhjS2ZvZWRMN1NXSHlkSUVKTUdtOUFxZjVzTWl5YXhzdE9DcVh0b05Ha0JCVnhtMi1LbTl5WXY4bm5wR3hFNDlZdWh3Y3NvTnd5eDhIY2VnQ25xSnVWbUo3UkVXdDBBV0lTcFJhR0xM?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Uniti Solutions Named an ‘Advanced Partner’ of Cato Networks; Deepens Award-Winning Partnership - Yahoo Finance</a>
+          <div class="article-meta">Yahoo Finance &bull; Aug 24, 2026</div>
+          <div class="article-summary snippet"><p>Uniti Solutions Named an ‘Advanced Partner’ of Cato Networks; Deepens Award-Winning Partnership&amp;nbsp;&amp;nbsp;Yahoo Finance</p><a href="https://news.google.com/rss/articles/CBMioAFBVV95cUxORzd2bkJNM0JoYTdlSXVoSUJoVUNJOWVLTnpLdFVOc2ZJUEZtYUMyU1FqLVJueUpSdDhjS2ZvZWRMN1NXSHlkSUVKTUdtOUFxZjVzTWl5YXhzdE9DcVh0b05Ha0JCVnhtMi1LbTl5WXY4bm5wR3hFNDlZdWh3Y3NvTnd5eDhIY2VnQ25xSnVWbUo3UkVXdDBBV0lTcFJhR0xM?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a4f6757ff40')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a5c3821c240">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi0AFBVV95cUxNRzJ1bVZZUERDb0k1Tl8wc3F2dzZfZkkwOTVVOGVnSXBJZE1aRU4tME5QSW5wXy1td214d3hSVG5wSHZldVJjckRMV2pyUV90VmprNFdrOXRBd0JiS3l0VTZya0c2VlJLd0JxMGFVdmJkUWNqN1VBYnFMM0Vpak83WDktQXc0VTUzNFg5d1ljX2Myb2RVajVDRDE5WHlDekNZMm9iS3R1SVA5cnU5NnlKSzB3bGV2RHJsRE9URXZvdEtfVTFndVh2aHZILU1KXzM1?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Uniti Solutions Renews Multi-Year Partnership with Cato Networks, Earns Advanced Partner Designation - Quiver Quantitative</a>
+          <div class="article-meta">Quiver Quantitative &bull; Aug 24, 2026</div>
+          <div class="article-summary snippet"><p>Uniti Solutions Renews Multi-Year Partnership with Cato Networks, Earns Advanced Partner Designation&amp;nbsp;&amp;nbsp;Quiver Quantitative</p><a href="https://news.google.com/rss/articles/CBMi0AFBVV95cUxNRzJ1bVZZUERDb0k1Tl8wc3F2dzZfZkkwOTVVOGVnSXBJZE1aRU4tME5QSW5wXy1td214d3hSVG5wSHZldVJjckRMV2pyUV90VmprNFdrOXRBd0JiS3l0VTZya0c2VlJLd0JxMGFVdmJkUWNqN1VBYnFMM0Vpak83WDktQXc0VTUzNFg5d1ljX2Myb2RVajVDRDE5WHlDekNZMm9iS3R1SVA5cnU5NnlKSzB3bGV2RHJsRE9URXZvdEtfVTFndVh2aHZILU1KXzM1?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a5c3821c240')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a2e5db0f4c6">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiigFBVV95cUxOVElweV9OOXJVUVQxN0VLcjNfTm12bU5lRUZFNEhCYmxfQnVVci1lQkMxT2NVX0ZPOERaUkNYMG5vcmxha3hMS1JvYnZaVmNxNDFDTWlvX0d5ek5YUmNGOTFrNEItd3BjXzRqY0xnT29RVmFGLWZFOEFhZEF3Wl9DXzYxS2s3SXp1RHc?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Fake OpenAI Codex download tricks macOS users into installing malware - Help Net Security</a>
+          <div class="article-meta">Help Net Security &bull; Aug 25, 2026</div>
+          <div class="article-summary snippet"><p>Fake OpenAI Codex download tricks macOS users into installing malware&amp;nbsp;&amp;nbsp;Help Net Security</p><a href="https://news.google.com/rss/articles/CBMiigFBVV95cUxOVElweV9OOXJVUVQxN0VLcjNfTm12bU5lRUZFNEhCYmxfQnVVci1lQkMxT2NVX0ZPOERaUkNYMG5vcmxha3hMS1JvYnZaVmNxNDFDTWlvX0d5ek5YUmNGOTFrNEItd3BjXzRqY0xnT29RVmFGLWZFOEFhZEF3Wl9DXzYxS2s3SXp1RHc?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a2e5db0f4c6')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a6e6c854630">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMivgFBVV95cUxPbmFqYWlJVW1saWg0MlZEOXpJT0dCRGRVc2NXSnFTNFVUY09qOWpvZFBmeWQyYUFNbXhydFZraWszZGJkWnRGOG1mLUNhUEVUVTY4OVRvZWk1Rjc4dUJIZ0dpMC1TNE9ua09CcVN0MDBxSWZaMmR6ano0Y2hrLWp3WFJnSGotZUpKbTljVkM1YkJaekxVaG1WN2tKanliYjFDdEpaMFVqSjJVSVpMdFIxcnM3SHpuQmxDcVhONTZR?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Uniti Solutions joins fewer than 2% of Cato’s global partners - Stock Titan</a>
+          <div class="article-meta">Stock Titan &bull; Aug 24, 2026</div>
+          <div class="article-summary snippet"><p>Uniti Solutions joins fewer than 2% of Cato’s global partners&amp;nbsp;&amp;nbsp;Stock Titan</p><a href="https://news.google.com/rss/articles/CBMivgFBVV95cUxPbmFqYWlJVW1saWg0MlZEOXpJT0dCRGRVc2NXSnFTNFVUY09qOWpvZFBmeWQyYUFNbXhydFZraWszZGJkWnRGOG1mLUNhUEVUVTY4OVRvZWk1Rjc4dUJIZ0dpMC1TNE9ua09CcVN0MDBxSWZaMmR6ano0Y2hrLWp3WFJnSGotZUpKbTljVkM1YkJaekxVaG1WN2tKanliYjFDdEpaMFVqSjJVSVpMdFIxcnM3SHpuQmxDcVhONTZR?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a6e6c854630')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ad30f9bd261">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMirwFBVV95cUxOSUNpVTlaS3pJTUFJQkxCUmthR2p0NGxFRGcwV3pIOUlENDBVby1xZ1YyeHB0R2RrZUhjZzRRQVI5YURQNlpPUWFVOTIwcFNXenRFOHFEM1VsTFpFdG9FcWtiLUhhTFZkemxNWmd3MlJEc2hkRUdzdXl4LUtia01TNW5NeVFaUzZGb2dxbHg5dHVsUVBSVlZVd2xaOWk0LUFkUnh6SGQ5clhEVHlyTFpv?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Uniti Solutions renews partnership with Cato Networks - Investing.com</a>
+          <div class="article-meta">Investing.com &bull; Aug 24, 2026</div>
+          <div class="article-summary snippet"><p>Uniti Solutions renews partnership with Cato Networks&amp;nbsp;&amp;nbsp;Investing.com</p><a href="https://news.google.com/rss/articles/CBMirwFBVV95cUxOSUNpVTlaS3pJTUFJQkxCUmthR2p0NGxFRGcwV3pIOUlENDBVby1xZ1YyeHB0R2RrZUhjZzRRQVI5YURQNlpPUWFVOTIwcFNXenRFOHFEM1VsTFpFdG9FcWtiLUhhTFZkemxNWmd3MlJEc2hkRUdzdXl4LUtia01TNW5NeVFaUzZGb2dxbHg5dHVsUVBSVlZVd2xaOWk0LUFkUnh6SGQ5clhEVHlyTFpv?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ad30f9bd261')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a731ffae3ab">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMirAFBVV95cUxPMFRWZ2YtSXJFeHA0WlgtbGFEbVUyczQzaHIwdTlyUEtpSEY4cGE0Z0FkWlg1RDJvLVB6Xzl6bUk5ZDI3bXJyRFRyZWlNeFFlNjBERkVMcVNvQW85Rkd0THVXMjRuUHhyWDM3dUxPM1NEdlhBWWFBSXZUNGZJSkNRVEUyV1hMaEl2S25uSVBvRkFBVk93U0EzSi1NY2JfZ3dRNW5JdlprT3N6Yzla?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Uniti Solutions Named Advanced Partner of Cato Networks - marketscreener.com</a>
+          <div class="article-meta">marketscreener.com &bull; Aug 24, 2026</div>
+          <div class="article-summary snippet"><p>Uniti Solutions Named Advanced Partner of Cato Networks&amp;nbsp;&amp;nbsp;marketscreener.com</p><a href="https://news.google.com/rss/articles/CBMirAFBVV95cUxPMFRWZ2YtSXJFeHA0WlgtbGFEbVUyczQzaHIwdTlyUEtpSEY4cGE0Z0FkWlg1RDJvLVB6Xzl6bUk5ZDI3bXJyRFRyZWlNeFFlNjBERkVMcVNvQW85Rkd0THVXMjRuUHhyWDM3dUxPM1NEdlhBWWFBSXZUNGZJSkNRVEUyV1hMaEl2S25uSVBvRkFBVk93U0EzSi1NY2JfZ3dRNW5JdlprT3N6Yzla?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a731ffae3ab')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+</main>
+
+<footer>
+  Generated every Sunday &mdash; Topics: Windows &bull; Azure &bull; SharePoint &bull; Intune &bull; Entra ID &bull; Microsoft 365 &bull; Iru MDM (formerly Kandji) &bull; Cato Networks
+</footer>
+
+<script>
+const KEY = 'it-news-hidden-v1';
+function getHidden() {
+  try { return new Set(JSON.parse(localStorage.getItem(KEY) || '[]')); }
+  catch { return new Set(); }
+}
+function saveHidden(s) { localStorage.setItem(KEY, JSON.stringify([...s])); }
+function toggleArticle(id) {
+  const h = getHidden();
+  h.has(id) ? h.delete(id) : h.add(id);
+  saveHidden(h); applyHidden(h);
+}
+function applyHidden(h) {
+  h = h || getHidden();
+  document.querySelectorAll('.article-card[data-id]').forEach(c => {
+    c.classList.toggle('is-hidden', h.has(c.dataset.id));
+  });
+}
+let revealing = false;
+function toggleReveal() {
+  revealing = !revealing;
+  document.body.classList.toggle('reveal-hidden', revealing);
+  document.getElementById('reveal-btn').textContent = revealing ? 'Hide hidden' : 'Show hidden';
+}
+fetch('weeks.json').then(r => r.json()).then(weeks => {
+  const sel = document.getElementById('week-sel');
+  weeks.forEach(w => {
+    const o = document.createElement('option');
+    o.value = w.file; o.textContent = w.label;
+    if (w.current) o.selected = true;
+    sel.appendChild(o);
+  });
+}).catch(() => {});
+applyHidden();
+</script>
+</body>
+</html>
