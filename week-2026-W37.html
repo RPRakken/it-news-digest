@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT News Digest — 2026-W37</title>
+  <style>
+    :root{--bg:#f8fafc;--surface:#fff;--border:#e2e8f0;--text:#1e293b;--muted:#64748b;--accent:#2563eb}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+    a{color:var(--accent)}
+
+    header{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+    .h-inner{max-width:1000px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .h-brand{font-size:1.1rem;font-weight:800;color:#1d4ed8}
+    .h-meta{font-size:.78rem;color:var(--muted)}
+    .h-controls{display:flex;gap:8px;align-items:center}
+    .btn{padding:5px 12px;border-radius:6px;font-size:.78rem;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);white-space:nowrap}
+    .btn:hover{background:#f1f5f9}
+    select.week-sel{padding:5px 10px;border-radius:6px;border:1px solid var(--border);background:var(--surface);font-size:.78rem;cursor:pointer;color:var(--text)}
+
+    .t-nav{background:var(--surface);border-bottom:1px solid var(--border);overflow-x:auto}
+    .t-nav-inner{max-width:1000px;margin:0 auto;padding:8px 20px;display:flex;gap:6px;min-width:max-content}
+    .nav-link{font-size:.72rem;padding:3px 10px;border-radius:20px;border:2px solid var(--c,#2563eb);color:var(--c,#2563eb);text-decoration:none;font-weight:600;white-space:nowrap}
+    .nav-link:hover{background:var(--c,#2563eb);color:#fff}
+
+    main{max-width:1000px;margin:0 auto;padding:24px 20px}
+
+    .week-hero{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin-bottom:28px;display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+    .hero-title{font-size:1.6rem;font-weight:900;color:#1d4ed8}
+    .hero-sub{font-size:.85rem;color:var(--muted);margin-top:2px}
+    .stat-box{text-align:center;min-width:60px}
+    .stat-num{font-size:2rem;font-weight:900;color:#1d4ed8;line-height:1}
+    .stat-lbl{font-size:.65rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+
+    .topic-section{margin-bottom:40px}
+    .topic-title{font-size:1.2rem;font-weight:800;color:var(--c,#2563eb);border-bottom:3px solid var(--c,#2563eb);padding-bottom:8px;margin-bottom:14px}
+    .count{font-size:.8rem;font-weight:400;color:var(--muted)}
+    .no-news{color:var(--muted);font-style:italic;font-size:.88rem}
+
+    .article-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:12px;display:flex;gap:12px;align-items:flex-start;transition:border-color .15s}
+    .article-card:hover{border-color:#94a3b8}
+    .article-body{flex:1;min-width:0}
+    .article-title{font-size:.98rem;font-weight:600;text-decoration:none;display:block;margin-bottom:4px;color:var(--accent)}
+    .article-title:hover{text-decoration:underline}
+    .article-meta{font-size:.72rem;color:var(--muted);margin-bottom:8px}
+
+    .article-summary{margin-top:6px;font-size:.875rem;color:#334155;line-height:1.75}
+    .article-summary p{margin-bottom:.6em}
+    .article-summary p:last-child{margin-bottom:0}
+    .gnews-badge{display:inline-block;font-size:.65rem;background:#fef3c7;color:#92400e;border-radius:4px;padding:1px 5px;margin-bottom:6px;vertical-align:middle}
+    .article-summary.snippet{color:var(--muted)}
+    .read-more{display:inline-block;margin-top:6px;font-size:.8rem;font-weight:600;color:var(--accent);text-decoration:none}
+    .read-more:hover{text-decoration:underline}
+
+    .hide-btn{flex-shrink:0;padding:5px 10px;border-radius:6px;font-size:.72rem;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--muted);white-space:nowrap;align-self:flex-start}
+    .hide-btn:hover{border-color:#ef4444;color:#ef4444;background:#fef2f2}
+    .lbl-show{display:none}
+
+    .article-card.is-hidden{display:none}
+    body.reveal-hidden .article-card.is-hidden{display:flex;opacity:.45;border-style:dashed}
+    .article-card.is-hidden .lbl-hide{display:none}
+    .article-card.is-hidden .lbl-show{display:inline}
+    body.reveal-hidden .article-card.is-hidden .hide-btn{border-color:#16a34a;color:#16a34a}
+    body.reveal-hidden .article-card.is-hidden .hide-btn:hover{background:#f0fdf4}
+
+    footer{text-align:center;padding:24px 20px;color:var(--muted);font-size:.75rem;border-top:1px solid var(--border);margin-top:40px}
+
+    @media(max-width:600px){
+      .h-inner,.main{padding-left:14px;padding-right:14px}
+      .hero-title{font-size:1.3rem}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="h-inner">
+    <div>
+      <div class="h-brand">IT News Digest</div>
+      <div class="h-meta">Week 2026-W37 &bull; Sep 07–13, 2026</div>
+    </div>
+    <div class="h-controls">
+      <button class="btn" id="reveal-btn" onclick="toggleReveal()">Show hidden</button>
+      <select class="week-sel" id="week-sel" onchange="if(this.value) location.href=this.value">
+        <option value="">&#128337; Archive&hellip;</option>
+      </select>
+    </div>
+  </div>
+</header>
+
+<nav class="t-nav"><div class="t-nav-inner"><a href="#windows" class="nav-link" style="--c:#0078D4">Microsoft Windows</a><a href="#azure" class="nav-link" style="--c:#00BCF2">Azure</a><a href="#sharepoint" class="nav-link" style="--c:#036C70">SharePoint</a><a href="#intune" class="nav-link" style="--c:#0F6CBD">Intune</a><a href="#entraid" class="nav-link" style="--c:#6B69D6">Entra ID</a><a href="#m365" class="nav-link" style="--c:#D83B01">Microsoft 365</a><a href="#iru" class="nav-link" style="--c:#7C3AED">Iru MDM (formerly Kandji)</a><a href="#cato" class="nav-link" style="--c:#FF6B35">Cato Networks</a></div></nav>
+
+<main>
+  <div class="week-hero">
+    <div>
+      <div class="hero-title">Week 2026-W37</div>
+      <div class="hero-sub">Sep 07–13, 2026</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">18</div>
+      <div class="stat-lbl">Articles</div>
+    </div>
+  </div>
+
+    <section id="windows" class="topic-section">
+      <h2 class="topic-title" style="--c:#0078D4">Microsoft Windows <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a9f0b09bc47">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windows-insider/2026/09/11/announcing-new-builds-for-11-september-2026/" target="_blank" rel="noopener noreferrer" class="article-title">Announcing new builds for 11 September 2026</a>
+          <div class="article-meta">blogs.windows.com &bull; Sep 11, 2026</div>
+          <div class="article-summary"><p>Announcing new builds for 11 September 2026
+Hello Windows Insiders,
+Today, we’re releasing new Windows 11 Insider Preview builds to the Beta, Experimental, and Release Preview channels.
+New builds this week
+Select your channel below to view its release notes:
+- Beta: Build 26220.9472
+- Experimental: Build 26340.9482
+For those on other specific Windows build versions, here are today’s new builds and release notes:
+- Beta (26H1): Build 28020.2991
+- Experimental (26H1): Build 28120.3002
+- Experimental (Future Platforms): Build 29667.1000
+  - Please note it may take your device up to 30 minutes post announce to pick up this build.
+We also have the Windows 11, version 26H1 Release Preview going out today:
+- Release Preview (26H1): Build 28000.3079
+Notable new features:
+[Context menu]
+Release channel: Experimental
+Building on the work we’ve been doing to improve the context menu experience:
+- We’ve added a new teaching tip you might see as a first-time experience to help you learn about the customization options.
+- In theme with giving you more control, you can also now turn off the customize context menu entry in the new context menu settings.
+- We’ve fixed a few small issues with the Send To option in the context menu not working as expected.
+[File Explorer search]
+Release channel: Experimental
+- Search from This PC in File Explorer is now indexer-based, making it much faster and consistent with search from File Explorer Home.
+Thanks,
+Stephen and the Windows Insider Program team
+					Tags:</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a9f0b09bc47')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a200d7bd8cd">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windows-insider/2026/09/10/announcing-windows-11-release-preview-builds-26100-9539-26200-9539/" target="_blank" rel="noopener noreferrer" class="article-title">Announcing Windows 11 Release Preview Builds 26100.9539/26200.9539</a>
+          <div class="article-meta">blogs.windows.com &bull; Sep 10, 2026</div>
+          <div class="article-summary"><p>Announcing Windows 11 Release Preview Builds 26100.9539/26200.9539
+Hello Windows Insiders,
+Today we’re releasing build Builds 26100.9539/26200.9539 for Release Preview for Windows 11, version 24H2/25H2. Release notes can be found over in the Windows Insider Documentation Hub as usual, as well as below:
+Highlights
+This update is available through two release phases: gradual rollout and normal rollout. A gradual rollout delivers an update in phases, so features reach devices over time instead of all at once, meaning availability varies by device. A normal rollout is the broad release to all eligible devices at the same time, usually when it reaches general availability (GA).
+Gradual rollout
+This section highlights some new features and enhancements for Windows 11 PCs, including AI-powered capabilities, continuous innovation, and performance improvements.
+File Explorer
+- New! This update adjusts how the preview pane handles files downloaded from the web. For HTML files, a new Preview anyway button lets you acknowledge the warning and preview the file. Non-HTML files, such as PDFs, are now previewed automatically.
+- New! File Explorer Home now preserves the state of sections (expanded or collapsed), so you can pick up where you left off.
+- New! This update improves the reliability of thumbnail previews for cloud files in the Details pane. The pane has also been reorganized so file properties are easier to find and review at a glance.
+- New! The update addresses an issue that could clear the address bar contents when entering edit mode by clicking near the right side of the address bar.
+Emoji
+- New! This update adds support for Emoji 17.0, including new emoji such as distorted face, fight cloud, and hairy creature. To insert them, press the Windows key + Period (.) to open the emoji panel.
+- New! This update also refines the design of several existing emoji for better consistency across platforms, including saluting face, face with peeking eye, goose, lotus, and kissing cat.
+Widgets
+- New! This update introduces the Tips widget, which provides short, helpful guidance about Windows features. To add it to your Widgets board, open the board, select Add widgets, and then choose Tips.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a200d7bd8cd')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a04ac4eb67b">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windows-insider/2026/09/08/announcing-new-builds-for-8-september-2026/" target="_blank" rel="noopener noreferrer" class="article-title">Announcing new builds for 8 September 2026</a>
+          <div class="article-meta">blogs.windows.com &bull; Sep 08, 2026</div>
+          <div class="article-summary"><p>Announcing new builds for 8 September 2026
+Hello Windows Insiders,
+Today, we’re releasing new Windows 11 Insider Preview builds to the Beta and Experimental channels.
+New builds this week
+Select your channel below to view its release notes:
+- Beta: Build 26620.9343
+- Experimental: Build 26340.9354
+For those on other specific Windows build versions, here are today’s new builds and release notes:
+- Beta (26H1): Build 28020.2904
+- Experimental (26H1): Build 28120.2912
+- Experimental (Future Platforms): Build 29661.1000
+Notable new features:
+[Cross-device resume improvements]
+Release channel: Experimental
+We’re making it easier to continue where you left off on your PC. When you resume a webpage from your phone and the phone’s browser isn’t installed on your PC, the Resume hovercard now gives you two options: open the page directly in your PC’s default browser or install the phone’s browser for a native experience. This update helps you continue your work immediately without requiring an app installation first.
+[Narrator]
+Release channel: Experimental
+Read and explore math equations with Narrator
+We are adding math reading and navigation support in Narrator, bringing clearer and more natural math experiences to users who are blind or have low vision. Math is at the heart of STEM education and learning, and this update helps students and professionals independently read, understand, and explore equations, formulas, and scientific notations with confidence. Read more in release notes link above.
+[Magnifier]
+Release channel: Experimental
+Magnifier now understands each of your displays
+- Every screen keeps its own view, at its own zoom. In earlier versions of Magnifier, zooming in stretched a single magnified view across all of your displays, so one screen’s zoom followed you everywhere and screen edges blurred together. With this update, each monitor’s boundary is respected, and each monitor can hold its own zoom percentage. Your writing screen can sit at 300% while your reference screen stays at 150%, and the magnified view no longer spills from one display into the next. This matters because different tasks, and different screen resolutions, often call for different levels of magnification to stay comfortable to read. Read more in release notes link above.
+Thanks,
+Stephen and the Windows Insider Program team</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a04ac4eb67b')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a749b016711">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windowsexperience/2026/09/08/listening-to-families-improving-microsoft-family/" target="_blank" rel="noopener noreferrer" class="article-title">Listening to families. Improving Microsoft Family.</a>
+          <div class="article-meta">blogs.windows.com &bull; Sep 08, 2026</div>
+          <div class="article-summary"><p>Listening to families. Improving Microsoft Family.
+The latest Windows Family Safety improvements are part of a broader effort to create safer, age-appropriate digital experiences for kids and families.
+As we’ve recently outlined, Microsoft Family has been on a focused journey to raise the quality of the everyday offering that parents and kids rely on — and that journey started by listening to you. We gathered feedback from families and let it guide our priorities, month after month.
+The result is a steady stream of meaningful fixes we continue to iterate on:
+- Parental approvals for offerings like screen-time extensions, app access, and purchases now happen faster, so kids aren’t left waiting and parents stay in control.
+- We restored clear visibility into web and app activity so parents can trust what they see in their reports.
+- Made spending more transparent, with wallet balances.
+- We also gave adults in a family more control over their own experience, making it far easier to add, manage, or leave a family group
+We know these areas have presented pain points, and while we’ve made progress, we know some of you may still run into issues. We’re continuing to improve and will continue to listen to your feedback as we improve the experience.
+Parental control: Faster and reliable approval flows
+Parents and children may have experienced inconsistent and noticeable delays while approving children requests such as app access, screen time extensions, and purchase approvals. During these delays, children are unable to access the requested content or continue their activities, while parents are left uncertain whether their approval has been received and applied.
+Parental approvals for app access, screen time extensions, and purchases now happen faster than before, reducing wait times and frustration for parents and kids alike.
+Activity reporting: full app coverage
+Some parents noticed that certain apps were missing from activity reports, making it difficult to fully understand how their child was using their device. Activity reporting now includes broader app coverage across all applications used on a child’s PC, providing a more complete and trustworthy view. Additional improvements to usage time accuracy are also on the way.
+Both parent and children will have the broader view of apps used and time spend.
+Family funding balance after top-up
+Family funding balance was not reflecting proper updated balance but now this issue has been addressed, and parents can now easily manage the funds for their children.
+Each of these improvements came from a real family experience — from issues parents told us mattered most: speed, accuracy, control, transparency, and peace of mind.
+This is the compounding effect of a team that treats every piece of customer feedback as a commitment to do better. Thank you to every parent who shared their voice; you’ve shaped this product, and we’re just getting started.
+All of the above fixes are available in the latest versions of the Family Safety mobile app both iOS and Android are available. You can also access Family Safety on the web by visiting: https://account.microsoft.com/family/
+What’s next
+We also know the journey is not over. While we have made important progress, some families may still run into issues, and we want to hear about them.
+If something is not working the way you expect, please reach out to us at [email protected]. That inbox is more than a contact point — it is an open invitation from our team to yours. Your feedback helps us understand what families are facing today so we can fix issues at the earliest and keep improving.
+Thank you to every parent who shared their voice. You have shaped this product, and you will continue to shape what comes next.
+We have been listening. We have been fixing. And we will keep going.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a749b016711')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a991054a835">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windowsexperience/2026/09/08/helping-families-and-educators-support-safer-experiences-and-healthier-habits-on-windows/" target="_blank" rel="noopener noreferrer" class="article-title">Helping families and educators support safer experiences and healthier habits on Windows</a>
+          <div class="article-meta">blogs.windows.com &bull; Sep 08, 2026</div>
+          <div class="article-summary"><p>Helping families and educators support safer experiences and healthier habits on Windows
+Our children and teens are growing up in a digital world where apps, games, and AI-powered tools are part of how they learn, play, create, and connect. For parents and educators, that brings both opportunity and responsibility: digital experiences should help young people explore with confidence while supporting their wellbeing, building healthy habits, respecting their privacy, and providing protections that are appropriate for their age.
+At Microsoft, we believe safety should be easier for families to understand and easier for developers to build into experiences for children to use. On Windows, that starts with the account. Microsoft account is a trusted foundation through which Windows brings age-appropriate protections and parental choices into more of the digital experiences encountered by children and teens every day.
+A child’s account should help unlock safer, more age-appropriate experiences wherever they use Windows.
+This is the first in a series of posts on family safety on Windows. Over the coming months I’ll share what we’re building — in the account, in the platform, and in the tools we provide to parents, educators, and developers. As Pavan recently shared, Family is a key focus area in our commitment to improving Windows quality. We’ll build in the open: shipping new capabilities, listening closely to what families tell us, and refining as we learn.
+From account to safer experiences
+Every experience on Windows starts with identity, and for consumers, that foundation is the Microsoft account (MSA).
+MSA enables Windows to understand key context about the user in a consistent and privacy-conscious way:
+- Whether the user is a child, teen, or adult
+- Whether parental controls or consent apply
+- Whether age verification has been completed
+This creates a simple, scalable model:
+User account → age signal → age-appropriate experience and controls
+Because this foundation is tied to the account, protections are designed to follow the user across Windows and apps, creating safer experiences consistently, not just in individual features. This enables product experiences to support a user’s stage of life. Protections are matched to children, teens, and adults.
+Extending safety across the ecosystem with the Windows Age APIs
+As experiences expand across apps, services, and AI, one challenge becomes clear: how can these experiences consistently understand and respect a user’s age?
+To address this, Windows is introducing a new platform capability: the Windows Age API.
+This API brings age awareness beyond the operating system by making it available across the entire Windows ecosystem so that apps and services can deliver age-appropriate experiences using the same trusted foundation. By making age awareness available as a platform capability, Windows helps developers build safeguards into experiences from the start rather than placing the burden on children and families to manage protections app by app.
+The Windows Age API offers the following capabilities:
+- GetUserAgeRangeAsync: Provides non-personally identifiable age group categories for apps to utilize in providing safe and age-appropriate user experiences, while protecting the date of birth data and overall privacy of users.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a991054a835')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a7bbb178a3b">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/msedgedev/2026/09/08/faster-reviews-and-quality-recognition-for-microsoft-edge-extensions/" target="_blank" rel="noopener noreferrer" class="article-title">Faster reviews and quality recognition for Microsoft Edge extensions</a>
+          <div class="article-meta">blogs.windows.com &bull; Sep 08, 2026</div>
+          <div class="article-summary"><p>Faster reviews and quality recognition for Microsoft Edge extensions
+Building an extension has never been easier. Rapid adoption of AI-assisted coding is enabling developers to build extensions faster than ever.
+We have seen that momentum on the Edge Add-ons site. More developers are building, iterating, and submitting extensions, which is great for the ecosystem and ultimately gives users more choice.
+It also creates a challenge: how do we keep up with the pace at which the ecosystem is growing, while maintaining a high bar for quality?
+Speeding up extension reviews
+We know time matters to developers. Whether launching an extension, fixing an issue, or making improvements, waiting for a review can slow progress.
+Last year, we introduced an expedited review process for high-quality and high-value extensions. Since then, submission volumes have continued to increase, and our review pipeline has experienced additional strain, causing an increase in extension review turnaround time.
+At the same time, at Edge we have always held a very high bar on quality. So, the challenge in front of us was to reduce the turnaround time for extension updates while ensuring the quality of extensions is maintained.
+To address this challenge, we’ve introduced automation for many of the repeatable validation checks that are part of the review process and streamlined how reviews move through our pipeline. This doesn’t change our review standards or reduce the checks an extension must pass. Instead, it helps us identify known policy violations and security issues more consistently while allowing reviewers to spend more time on complex cases that benefit from human judgment.
+The result is a more efficient review process that helps extensions move through the pipeline faster while maintaining the high quality and security standards developers and users expect from the Edge Add-ons site.
+For developers, this mean bug fixes and new features reach your users sooner.
+Our objective is to make Edge the easiest place to build, publish, and grow an extension. Faster reviews are just one part of that investment. We continue to look for ways to reduce friction across the developer journey while maintaining a trusted marketplace for users.
+Recognizing quality as it improves
+As more extensions become available on the Edge Add-ons site, helping users discover extensions they can trust is equally important.
+The Featured badge has long helped users identify high-quality extensions in the Edge Add-ons site. It serves as a trust signal, highlighting extensions that demonstrate a strong commitment to quality, reliability, security, and user experience.
+The Featured badge is awarded to select extensions that align with Best practices for extensions. Our evaluation considers more than 60 quality signals across multiple dimensions of an extension. Today, much of our evaluation process is automated to make it more consistent, objective, and scalable as the ecosystem expands.
+But quality is not static. As we continue to refine our badging criteria, and as developers continuously improve their extensions by fixing issues, refining experiences, and responding to user feedback, we automatically update badges on the Edge Add-ons site.
+And now, to more quickly recognize quality improvements, we’re refreshing Featured badges every 15 days.
+With this more frequent cadence, high-quality extensions can earn recognition sooner, and developers receive faster feedback on their investments in quality. At the same time, users benefit from a more up-to-date view of the extensions that meet our quality standards.
+Our goal is simple: make it easier for users to find extensions they can trust while ensuring developers who invest in quality are recognized more quickly.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a7bbb178a3b')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ad6aae0c694">
+        <div class="article-body">
+          <a href="https://petri.com/windows-activation-automation-vbscript/" target="_blank" rel="noopener noreferrer" class="article-title">Legacy Windows Activation Scripts Could Break As VBScript Nears Retirement</a>
+          <div class="article-meta">petri.com &bull; Sep 11, 2026</div>
+          <div class="article-summary"><p>Many activation workflows still depend on scripts written years ago, but Microsoft's long-term plan for VBScript could force administrators to revisit automation they haven't touched in a decade.
+Key Takeaways:
+Many organizations still depend on legacy Windows activation scripts built around slmgr.vbs, often buried inside deployment workflows, task sequences, and IT management tools. The problem is that these automations were designed around VBScript, a feature Microsoft has already started phasing out and plans to remove from future Windows releases.
+According to Microsoft, activation processes that run reliably may eventually fail on newer versions of Windows. VBScript remains available during the current transition period, but organizations that postpone modernization could struggle to repair critical activation workflows once the scripting engine is no longer included in Windows.
+To avoid that scenario, Microsoft is urging IT teams to migrate activation automation to the OSLicense PowerShell module, which is designed to replace common slmgr.vbs functions such as activating Windows, installing product keys, and checking licensing status. The company recommends first identifying dependencies on slmgr, cscript, wscript, and other VBScript-based components, then validating replacement scripts in test environments before moving them into production.
+However, the transition comes with tradeoffs. OSLicense support is not yet universal across all Windows releases, and organizations must verify which devices and server versions are compatible before updating production automation. IT teams may also need to spend time testing scripts, updating documentation, retraining administrators, and maintaining fallback plans during the migration period.
+Microsoft’s guidance reflects a broader shift away from legacy scripting technologies. Organizations that begin planning now can spread the migration effort over time, and those that wait until VBScript reaches its final removal phase may face a more disruptive and time-sensitive transition.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ad6aae0c694')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a1fbddc6f2b">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-september-2026-patch-tuesday-updates/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Fixes More Than 100 Critical Vulnerabilities in September Patch Tuesday</a>
+          <div class="article-meta">petri.com &bull; Sep 09, 2026</div>
+          <div class="article-summary"><p>Microsoft's latest update fixes hundreds of security issues, but several high-severity flaws affecting Exchange and other products are likely to draw the most attention from security teams.
+Key Takeaways:
+Microsoft has released the September 2026 Patch Tuesday Updates for all supported versions of Windows 11 and Windows 10. This month, the company rolled out 974 patches to address several vulnerabilities in Windows, Office, Azure, Active Directory, Exchange Server, Remote Desktop Client and Server, SQL Server, Windows Hello, Microsoft Defender, and other components.
+Microsoft has already fixed 2,760 vulnerabilities this year, which is more than double the number from 2025. On the quality and experience update front, Microsoft has released several improvements for Windows 11 versions 26H1 as well as 25H2 and 24H2.
+According to the Zero Day Initiative, Microsoft has fixed 114 security flaws rated as “Critical,” with the rest being rated Important in terms of severity. Here’s a list of the most notable vulnerabilities Microsoft addressed in September:
+You can find the full list of CVEs addressed in the September 2026 Patch Tuesday Updates below:
+Microsoft released the KB5124008 update for PCs running Windows 11 versions 26H1 and 25H2/24H2. This release brings additionalhigh-confidencee device targeting data, which increases coverage of devices eligible to automatically receive new Secure Boot certificates. Microsoft will continue certificate deployment through Windows updates across supported PCs and non-managed business devices in the next few months.
+The KB5124008 update enhances the diagnostics logging experience for the OMA-DM client. It provides additional information to help troubleshoot device management server connection issues. Microsoft has also fixed a bug that could cause Microsoft Outlook and Teams to unexpectedly close on Arm64-based PCs.
+Microsoft advises organizations to perform thorough testing to confirm that updates do not compromise the stability of their production systems. However, it is crucial to deploy Patch Tuesday updates to proactively address potential threats.
+Additionally, IT administrators must prioritize backing up their systems before applying updates, utilizing the built-in backup features of Windows and Windows Server. These features allow for the restoration of specific files and folders or entire systems as required.
+Last but not least, organizations should consistently monitor their systems for anomalies or unexpected behaviors. Regular monitoring is essential for staying vigilant against emerging risks and adopting appropriate security measures.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a1fbddc6f2b')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="azure" class="topic-section">
+      <h2 class="topic-title" style="--c:#00BCF2">Azure <span class="count">(6)</span></h2>
+      <div class="article-card" data-id="acdd965ef69">
+        <div class="article-body">
+          <a href="https://azure.microsoft.com/en-us/blog/microsoft-named-a-leader-in-the-2026-gartner-magic-quadrant-for-container-management/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft named a Leader in the 2026 Gartner® Magic Quadrant™ for Container Management</a>
+          <div class="article-meta">azure.microsoft.com &bull; Sep 10, 2026</div>
+          <div class="article-summary"><p>I am pleased to share that Microsoft has been named a Leader in the 2026 Gartner® Magic Quadrant™ for Container Management, positioned furthest to the right on Completeness of Vision. We believe this recognition reflects our ability to help customers modernize existing applications and embrace AI workloads without adding operational complexity.
+Furthermore, this recognition comes at a moment when container platforms are being asked to support a far broader range of workloads, operating models, and deployment environments than many organizations ever anticipated.
+When we started working on Kubernetes over a decade ago, the problem was narrow: democratize distributed systems so that reliable services were easier to build. We were careful to describe workloads in terms of what they needed instead of where they should go, mostly because we wanted the scheduler to have room to make good decisions. That turned out to matter more than we expected, because it meant the system never had strong opinions about what the workloads actually were.
+AI has reshaped the requirements for container management. While Kubernetes has proved well suited for AI workloads, the bigger shift is that applications and AI now need to run closer to data and users, and increasingly inside specific sovereign and regulatory boundaries. Organizations now need more than container orchestration; they need a platform that provides a consistent operating model across cloud, edge, and hybrid deployments while adapting to new requirements without needing applications to be rebuilt. This vision underpins Microsoft’s container portfolio, spanning Azure Kubernetes Service (AKS), Azure Container Apps, Azure Arc, and Azure Kubernetes Fleet Manager..
+Run AI on the platform you already operate
+Across customer deployments, we’ve seen it settle into two distinct architectural models. In the first, a platform team owns a persistent serving layer, GPU scheduling, model lifecycle, and the compliance boundary around the system. Once volume is high and predictable, organizations increasingly want AI infrastructure to behave like any other platform capability: application teams consume it, while platform teams retain control over how it is operated and governed. On AKS, open-source tooling such as the AI toolchain operator helps automate model deployment and GPU provisioning, while AKS holding CNCF AI Conformance certification gives customers confidence that the ecosystem around their applications remains compatible as it evolves.
+In the second model, an application or agent invokes inference when needed, runs generated code, and releases capacity when the work finishes. This model places a premium on elasticity and isolation. Capacity needs to appear quickly, be removed when it’s no longer needed, and safely contain workloads whose behavior isn’t always predictable in advance. Azure Container Apps is designed around that operating model, with serverless GPUs for on-demand inference, and hardware-isolated sandboxes for agent hosting that preserve state between interactions.
+Almost every enterprise we work with needs both, and I’d argue the interesting engineering problem is making the boundary between them easy to cross: the same image, the same identity and network controls, the same policy, whichever side a team lands on. Platform teams want the control the first model gives them for the models the business depends on. Application teams and agent frameworks want the second, and they often want it without learning Kubernetes.
+Keep one operating model as the estate spreads out
+Once inference follows the data, the estate stops being centralized. Clusters accumulate across regions, in datacenters, at sites, and in environments where connectivity is intermittent or prohibited outright, often because sovereignty rules require the workload and its data to stay inside a jurisdiction.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('acdd965ef69')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="abbfc9acc21">
+        <div class="article-body">
+          <a href="https://azure.microsoft.com/en-us/blog/the-economics-of-agent-optimization-how-ai-agent-governance-controls-cost-and-proves-roi/" target="_blank" rel="noopener noreferrer" class="article-title">The Economics of Agent Optimization: How AI agent governance controls cost and proves ROI</a>
+          <div class="article-meta">azure.microsoft.com &bull; Sep 10, 2026</div>
+          <div class="article-summary"><p>This blog post is the fourth and final installment of The Economics of Agent Optimization, which shares the strategies, capabilities, and proof points that can help you optimize agent costs and run AI as a managed investment system on Microsoft Foundry. The first post set out the three decisions that systems rest on, the second post took the request at runtime, and the third post took the workflow over time. This post takes the decision that never stops running: governing the spend.
+AI agents are moving from isolated pilots into an enterprise estate. They work across teams, connect to data and tools, and make decisions with varying degrees of autonomy. For IT leaders, that creates a broader operating question: how do you govern a agentic system that can grow and act faster than traditional applications?
+AI agent governance starts with knowing which agents exist, who owns them, what they can access, and which policies apply. It is often discussed in terms of security, compliance, and lifecycle management. It is also fundamental to cost optimization. Without consistent governance, each team makes its own choices about models, tools, capacity, and limits—and small inefficiencies multiply across every agent and every turn.
+Good governance makes consumption visible, attributable, and bounded. IT needs to see which agents and teams are driving usage. Finance needs budgets and cost allocation it can trust, without discovering an unexpected increase after the invoice closes. Developers need controls that can respond at the speed agents run.
+That last requirement exposes an important distinction. Traditional cost management tools can track spending and alert on actual or forecasted costs, but they typically operate on billing data rather than in the request path. An agent caught in a retry loop does not wait for the next budget evaluation.
+A budget alert is a smoke detector. An agent also needs a circuit breaker. Effective cost governance therefore depends on three things: seeing the spend, bounding it, and proving the return.
+See the spend where it starts
+AI costs become difficult to manage when they arrive as one aggregate number. One deployment may serve several agents; one agent may use several models and tools; and one outcome may require many turns. By the time that appears on an invoice, the business context has disappeared.
+Cost management capabilities in Foundry brings that context closer to the systems creating it. Teams can see estimated costs across projects, inspect cost and token usage for individual agents, and monitor model costs. These estimates support operating decisions; Microsoft Cost Management and invoiced charges remain the system of record for financial reconciliation.
+Foundry also supports project-level cost attribution. Every Foundry project is automatically associated with a project tag on its underlying usage. FinOps teams can filter Cost Analysis by that tag to allocate spending to the business unit, team, or workload that incurred it. This capability is currently in preview for models sold by Microsoft Azure, including Azure OpenAI.
+At the gateway, Azure API Management’s AI Gateway can emit token metrics by API, product, user, subscription, gateway, and backend. Tracing in Foundry captures tool usage, retries, latency, token consumption, and costs for an agent run.
+Together, observability signals explain not only how much an agent consumed, but why:
+- Traces reveal model calls, tool invocations, retries, latency, and token usage.
+- Monitoring surfaces production trends and anomalies.
+- Evaluations measure quality, safety, groundedness, and task completion. Run continuously, they give teams evidence to test whether a smaller model still meets their quality bar rather than defaulting to the largest one.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('abbfc9acc21')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a3bfee11feb">
+        <div class="article-body">
+          <a href="https://azure.microsoft.com/en-us/blog/the-future-of-infrastructure-resiliency-starts-with-modernization/" target="_blank" rel="noopener noreferrer" class="article-title">The future of infrastructure resiliency starts with modernization</a>
+          <div class="article-meta">azure.microsoft.com &bull; Sep 10, 2026</div>
+          <div class="article-summary"><p>Why infrastructure resiliency is essential for modern applications and AI workloads
+Organizations today face constant pressure to modernize; business-critical applications are being transformed, AI workloads are becoming foundational to business operations, and infrastructure environments continue to grow in complexity. Yet modernization only succeeds when organizations have confidence that their applications, data, and infrastructure can withstand disruption and continue supporting critical operations.
+As organizations adopt distributed applications, AI-powered services, and hybrid and multicloud architectures, the resiliency of their IT estate has become more than a technical consideration, it is a business requirement. Resiliency is the ability of infrastructure and workloads to withstand, adapt to, and recover from disruptions while maintaining critical business operations. Organizations need infrastructure platforms that can help reduce the impact of disruption, maintain workload availability, and support effective recovery when challenges occur.
+At the same time, resiliency strategy is evolving. Historically, organizations often approached resiliency through backups, redundancy, and disaster recovery plans. While these capabilities remain essential, modern resiliency requires a broader approach that spans architecture, operations, recovery, and continuous optimization. Customers increasingly recognize that resiliency is not about preventing every disruption. It is about designing for uncertainty, minimizing operational impact, recovering effectively, and continuously strengthening readiness over time.
+At Microsoft, we believe Azure IaaS resiliency is an ongoing partnership and shared responsibility that helps organizations modernize with confidence. Microsoft Azure provides the infrastructure foundation, platform capabilities, and guidance that enable customers to build resilience into workloads from the start, maintain operational continuity as environments evolve, and continuously improve recovery readiness over time.
+Resilient by design
+Resiliency starts long before an outage occurs.
+As organizations modernize business-critical applications, cloud-native services, and AI workloads, resiliency can no longer be bolted on after deployment. The most effective resiliency strategies begin during planning and design, with architectures that align availability, recovery, performance, compliance, and operational requirements to the needs of each workload. Not every application requires the same resiliency strategy, and a one-size-fits-all approach is no longer sufficient. This is especially true for AI and business-critical workloads, where downtime, performance degradation, or data loss can have significant business consequences.
+Azure helps organizations build resiliency into infrastructure from the start through availability zones, resilient networking architectures, durable storage options, recovery services, and proven guidance from the Azure Well-Architected Framework and Azure Architecture Center.
+The recently announced Azure Infrastructure Resiliency Manager extends this foundation by helping organizations define resiliency goals, understand workload criticality, identify gaps, and evaluate resiliency posture at the application level. Rather than relying on manual reviews and static assessments, organizations can continuously understand how workloads align to resiliency objectives and where improvements may be needed.
+To further simplify resiliency adoption, Azure Infrastructure Resiliency Manager provides recommendations, deployment guidance, and AI-assisted experiences through the resiliency agent in Azure Copilot. Teams can describe workloads, generate resilient deployment templates, assess existing environments, and receive recommendations aligned to their resiliency goals.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a3bfee11feb')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="adfc98c605c">
+        <div class="article-body">
+          <a href="https://azure.microsoft.com/en-us/blog/two-zones-or-three-a-design-framework-for-zone-resilient-azure-workloads/" target="_blank" rel="noopener noreferrer" class="article-title">Two zones or three? A design framework for zone-resilient Azure workloads</a>
+          <div class="article-meta">azure.microsoft.com &bull; Sep 09, 2026</div>
+          <div class="article-summary"><p>Takeaway: Zone resiliency isn’t a single number you apply to a whole workload. The useful question isn’t “how many zones?” but “how many zones does each component need to survive the loss of one?” Decide zone patterns component by component, use service-managed zone redundancy wherever it fits, and reserve three-zone designs for the components that genuinely require a third failure domain. For a deeper, decision-oriented walkthrough on choosing between two-zone and three-zone patterns for your specific workloads, see the companion post, Choosing two-zone and three-zone patterns for zone-resilient Azure workloads.
+Ask a room of architects how many Microsoft Azure availability zones a production workload needs, and most will answer “three.” It’s a reasonable instinct, but “three zones everywhere” is a rule of thumb standing in for a decision that deserves more thought. Treating it as a default quietly costs you capacity, money, and operational complexity you may not need while occasionally giving you less protection than you assumed.
+Zone resiliency is not a property you switch on for an entire workload. It’s a set of decisions you make component by component. Some components are fully protected across two zones. Some genuinely need a third. And for a growing number, Azure manages zone redundancy for you, and the best decision is to let it. This post is about how to tell the difference.
+What availability zones protect against (and what they don’t)
+An Azure region that supports availability zones is made up of separate groups of datacenters, each with independent power, cooling, and networking. Zone resiliency protects you against the loss of one of those zones. It does not protect you against the loss of the entire region. If your workload is mission-critical or carries strict disaster-recovery requirements, zones are necessary but not sufficient: you also need a multi-region conversation, and that’s a separate design exercise.
+It’s worth being precise about what “using zones” means, because Azure services expose it in two different ways:
+- Zone-redundant resources are spread or replicated across zones by Azure itself. Azure handles the replication, request distribution, and failover. Where a service offers zone redundancy and it meets your requirements, it should generally be the starting point, especially for production workloads.
+- Zonal resources are pinned to one zone. A zonal resource is isolated from failures in other zones, but it is not automatically resilient to a failure in its own. To make a zonal design resilient, you deploy instances across zones yourself and own the routing, replication, failure detection, and recovery.
+That distinction matters, because reliability on Azure is a shared responsibility. The resilience of a zone-redundant service is Microsoft’s responsibility to deliver; the resilience of a zonal design you assemble yourself is largely yours to configure and prove. No layer makes up for a gap in another.
+Decide at the component level, not the workload level
+The reason “three zones everywhere” may not be the correct starting point is that a workload is not one thing. It’s a stateless front end, an application tier, a queue, a cache, a relational database, an object store, and often a quorum-based system or two each with different failure behavior. Applying one zone count to all of them optimizes for none of them.
+Break the workload down by critical flow, then by component, and ask three questions of each:
+- Resource availability: If one zone goes down, can the remaining zone or zones carry the operating state you need? For a single-zone failure, two zones and three zones can both meet the objective.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('adfc98c605c')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ad51b433d38">
+        <div class="article-body">
+          <a href="https://azure.microsoft.com/en-us/blog/beyond-the-benchmark-how-an-adaptive-approach-drives-scientific-discovery/" target="_blank" rel="noopener noreferrer" class="article-title">Beyond the benchmark: How an adaptive approach drives scientific discovery</a>
+          <div class="article-meta">azure.microsoft.com &bull; Sep 08, 2026</div>
+          <div class="article-summary"><p>For research and development (R&amp;D) organizations, the promise of agentic AI is not a better one-time answer. It is a new way to explore complex scientific and engineering problems: pursuing multiple hypotheses, validating them against evidence, learning from what does not work, and adapting their approach as new information becomes available.
+This unique nature of the agentic discovery process has been a core area of research for Microsoft, and a design principle for Microsoft Discovery, our platform for organizations embracing Frontier R&amp;D.
+Measuring adaptive AI for scientific discovery
+A new benchmark result shows how that opportunity is becoming real. On Agent’s Last Exam, a demanding evaluation of long-running, tool-using professional tasks, Microsoft Discovery Engine with CLIO (Cognitive Loop via In-Situ Optimization) achieved higher scores than the other agentic harnesses evaluated across three scientific domains: 61.6% in health and medicine, 75.2% in physical sciences, and 64.6% in life sciences.
+This result builds on Microsoft’s core research into what makes agentic discovery distinctive. CLIO enables independent reasoning paths to explore a problem, compare and share learning, and resolve the strongest trajectory into a single evidence-backed result. The system can determine when to keep exploring, change strategy, use a different model, or bring a domain expert into the loop.
+The CLIO benchmark blog post describes this adaptive reasoning approach in depth. More broadly, this core innovation for scientific discovery, powered by agentic AI, is available to R&amp;D organizations in every industry and the scientific community with Microsoft Discovery not only as a research breakthrough, but as a foundation for real R&amp;D work.
+Why scientific discovery requires adaptive reasoning
+Many of the hardest scientific and engineering challenges do not have a clearly defined workflow or a known answer. A researcher may need to navigate incomplete evidence, competing objectives, specialized tools, and changing constraints. A materials team may be balancing performance, safety, cost, and manufacturability. A life sciences team may need to connect literature, proprietary data, models, and experimental evidence before deciding what to validate next. An engineering team may need to search a vast design space without sacrificing physical fidelity or traceability.
+In these settings, a single model response is not enough. Practitioners need systems that can reason over time, preserve evidence, challenge assumptions, and work within the tools, data, governance, and review processes their experts already use. Just as importantly, they need to understand how a conclusion was reached and where human judgment should enter the process.
+Microsoft Discovery was designed as an enterprise platform for agentic R&amp;D, combining the scientific mindset of hypothesis, experimentation, and refinement with the engineering rigor of problem decomposition, structured execution, and reproducibility. CLIO strengthens that foundation with a more adaptive reasoning loop and a diverse model ecosystem, while allowing researchers to use a diverse model ecosystem and multiple reasoning paths.
+From benchmarks to real-world impact
+The greater opportunity extends beyond benchmark rankings into real research environments. Discovery Engine with CLIO has already supported work that discovered a novel organic redox flow battery. The same approach has potential across design simulation (like for silicon chips), formulation and process optimization (for example in manufacturing and CPG), materials and molecular discovery (which can drive sustainability and drug discovery), and lab automation, areas where organizations need to shorten research cycles, without sacrificing rigor or traceability.
+Agentic discovery does not replace scientists and engineers.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ad51b433d38')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a1fbddc6f2b">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-september-2026-patch-tuesday-updates/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Fixes More Than 100 Critical Vulnerabilities in September Patch Tuesday</a>
+          <div class="article-meta">petri.com &bull; Sep 09, 2026</div>
+          <div class="article-summary"><p>Microsoft's latest update fixes hundreds of security issues, but several high-severity flaws affecting Exchange and other products are likely to draw the most attention from security teams.
+Key Takeaways:
+Microsoft has released the September 2026 Patch Tuesday Updates for all supported versions of Windows 11 and Windows 10. This month, the company rolled out 974 patches to address several vulnerabilities in Windows, Office, Azure, Active Directory, Exchange Server, Remote Desktop Client and Server, SQL Server, Windows Hello, Microsoft Defender, and other components.
+Microsoft has already fixed 2,760 vulnerabilities this year, which is more than double the number from 2025. On the quality and experience update front, Microsoft has released several improvements for Windows 11 versions 26H1 as well as 25H2 and 24H2.
+According to the Zero Day Initiative, Microsoft has fixed 114 security flaws rated as “Critical,” with the rest being rated Important in terms of severity. Here’s a list of the most notable vulnerabilities Microsoft addressed in September:
+You can find the full list of CVEs addressed in the September 2026 Patch Tuesday Updates below:
+Microsoft released the KB5124008 update for PCs running Windows 11 versions 26H1 and 25H2/24H2. This release brings additionalhigh-confidencee device targeting data, which increases coverage of devices eligible to automatically receive new Secure Boot certificates. Microsoft will continue certificate deployment through Windows updates across supported PCs and non-managed business devices in the next few months.
+The KB5124008 update enhances the diagnostics logging experience for the OMA-DM client. It provides additional information to help troubleshoot device management server connection issues. Microsoft has also fixed a bug that could cause Microsoft Outlook and Teams to unexpectedly close on Arm64-based PCs.
+Microsoft advises organizations to perform thorough testing to confirm that updates do not compromise the stability of their production systems. However, it is crucial to deploy Patch Tuesday updates to proactively address potential threats.
+Additionally, IT administrators must prioritize backing up their systems before applying updates, utilizing the built-in backup features of Windows and Windows Server. These features allow for the restoration of specific files and folders or entire systems as required.
+Last but not least, organizations should consistently monitor their systems for anomalies or unexpected behaviors. Regular monitoring is essential for staying vigilant against emerging risks and adopting appropriate security measures.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a1fbddc6f2b')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="sharepoint" class="topic-section">
+      <h2 class="topic-title" style="--c:#036C70">SharePoint </h2>
+      <p class="no-news">No articles found this week.</p>
+    </section>
+    <section id="intune" class="topic-section">
+      <h2 class="topic-title" style="--c:#0F6CBD">Intune </h2>
+      <p class="no-news">No articles found this week.</p>
+    </section>
+    <section id="entraid" class="topic-section">
+      <h2 class="topic-title" style="--c:#6B69D6">Entra ID <span class="count">(2)</span></h2>
+      <div class="article-card" data-id="af4508a3e65">
+        <div class="article-body">
+          <a href="https://petri.com/exchange-server-outlook-adfs-modern-authentication/" target="_blank" rel="noopener noreferrer" class="article-title">Exchange Server Expands Outlook Support for AD FS Modern Authentication</a>
+          <div class="article-meta">petri.com &bull; Sep 09, 2026</div>
+          <div class="article-summary"><p>Organizations that have stayed fully on-premises can now offer a more consistent Outlook sign-in experience.
+Key Takeaways:
+Organizations running Exchange Server entirely on-premises often want stronger, modern authentication methods without adopting Microsoft Entra ID or moving to a hybrid cloud deployment. That limitation has historically left some Outlook clients without support for Exchange Server’s AD FS-based Modern Authentication, which creates inconsistent user experiences and adds complexity for IT teams.
+This challenge becomes more significant as organizations try to improve security while supporting a combination of desktop and mobile devices. When authentication capabilities vary across clients, administrators may need to rely on alternative configurations or restrict application choices, which increases management overhead and potentially slows modernization efforts.
+To address this issue, Microsoft has expanded Exchange Server AD FS Modern Authentication support to the Outlook for iOS and Outlook for Android apps. This feature was already available for the Outlook on Windows and Mac desktop apps, as well as the native Mail apps on iOS and macOS. With this update, organizations running supported on-premises Exchange deployments can provide a more consistent authentication experience across Microsoft’s Outlook apps.
+Microsoft also updated its deployment documentation to consolidate client requirements and configuration steps. This revised guidance includes clearer information on supported operating systems, Outlook versions, Windows configuration requirements, and Mac-specific settings, which makes it easier for IT administrators to validate and deploy.
+However, the expansion comes with an important limitation. AD FS Modern Authentication is intended only for organizations running Exchange entirely on-premises without Microsoft Entra ID or a hybrid Exchange configuration. Companies already operating in a hybrid environment are still expected to use Hybrid Modern Authentication (HMA) with Microsoft Entra ID instead. This announcement primarily benefits select customers that remain committed to fully on-premises Exchange deployments.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('af4508a3e65')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a5250081e99">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/09/n-able-n-central-pre-auth-rce-flaw.html" target="_blank" rel="noopener noreferrer" class="article-title">N-able N-central Pre-Auth RCE Flaw Exploited in the Wild</a>
+          <div class="article-meta">thehackernews.com &bull; Sep 09, 2026</div>
+          <div class="article-summary"><p>The U.S. Cybersecurity and Infrastructure Security Agency (CISA) on Tuesday added a maximum-severity security flaw impacting N-able N-central to its Known Exploited Vulnerabilities (KEV) catalog, requiring Federal Civilian Executive Branch (FCEB) agencies to apply the fixes by September 11, 2026.
+The vulnerability in question is CVE-2026-86218 (CVSS score: 10.0), which has been described as a case of static code injection. It has been patched in N-central 2026.3 Hotfix 4, released on September 5, 2026.
+&quot;N-able N-central contains a static code injection vulnerability that could allow for pre-authentication remote code execution,&quot; CISA said.
+The development came shortly after Huntress said it commenced an investigation following the compromise of a customer's fully patched N-central production environment on September 4, 2026.
+However, it remains unclear if the intrusion involved CVE-2026-86218 or two other vulnerabilities (CVE-2026-86206 and CVE-2026-86207) that were patched by N-able the same day with N-central 2026.3 Hotfix 3. CVE-2026-86206 and CVE-2026-86207 can be chained together to allow a remote unauthenticated attacker to bypass authentication and create a new attacker-controlled System Administrator account on an affected server, per Rapid7's Stephen Fewer, who discovered and reported them.
+&quot;Due to limited historical logging available directly on the appliance, we cannot definitively confirm which specific exploit the threat actor used to achieve their compromise, nor can we rule out the use of alternative vulnerabilities,&quot; Huntress noted.
+In a separate &quot;urgent&quot; notice sent directly to customers, N-able said CVE-2026-86218 &quot;has been observed being exploited in the wild&quot; and that it's &quot;actively investigating this matter and have taken additional steps to help protect customer environments.&quot; It also urged customers to apply the hotfix immediately.
+Preemptive exposure management firm watchTowr said it has successfully reproduced CVE-2026-86218, adding that the pre-authentication vulnerability enables remote code execution and allows attackers to make changes in N-central that can propagate across all connected systems.
+&quot;This is precisely why N-central is so strategically valuable to threat actors, especially ransomware gangs,&quot; Yordan Ganchev, principal threat intelligence specialist at watchTowr, said. &quot;The product is widely used by MSPs, MSSPs, and large IT organizations to manage entire customer and corporate environments. Compromise N-central, and you gain access to all connected computers and downstream systems. Based on historical events, AI-enabled attackers are unlikely to be far behind.&quot;
+&quot;Organizations running internet-facing N-central instances should prioritize upgrading to a patched release. However, as is now quickly becoming the new normal, patching alone is not enough. Organizations must also review their environment for indicators of compromise and anomalous activity that suggest the vulnerability has already been exploited before patching. Ransomware threat actors have historically exploited this product in past campaigns, and this vulnerability is as severe as it gets.&quot;</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a5250081e99')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="m365" class="topic-section">
+      <h2 class="topic-title" style="--c:#D83B01">Microsoft 365 <span class="count">(2)</span></h2>
+      <div class="article-card" data-id="a1515237c1d">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-365-unified-setup-experience/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft 365 Deployment Complexity Prompts a New Unified Setup Experience</a>
+          <div class="article-meta">petri.com &bull; Sep 08, 2026</div>
+          <div class="article-summary"><p>Microsoft wants to make deployment progress easier to track, but administrators will still need to tackle the migration, configuration, and adoption work themselves.
+Key Takeaways:
+Organizations deploying Microsoft 365 often need to juggle onboarding tasks, licensing information, deployment guides, and support resources spread across different sections of the admin center. This fragmented experience can make it harder for IT teams to understand deployment progress and identify which tasks still require attention.
+When deployment data and guidance are scattered across multiple locations, administrators may spend more time navigating between tools instead of completing rollout tasks. This can create delays, make it easier to overlook configuration steps, and complicate large-scale Microsoft 365 deployments.
+To address these challenges, Microsoft is introducing a redesigned Setup experience in the Microsoft 365 admin center. This new dashboard brings together deployment status, onboarding progress, licensing information, readiness insights, deployment guides, and support resources in a single location. It also provides personalized recommendations based on an organization’s deployment activity, which helps administrators prioritize next steps and take action more quickly.
+“Setup goes beyond visibility by using your organization’s deployment status and activity to deliver tailored recommendations in real time. By highlighting the most relevant setup tasks and deployment guidance, it enables admins to spend less time searching and more time taking action. From within the experience, admins can configure products, explore guidance across Microsoft 365 solution areas, and start or resume a deployment guide directly from Setup,” Microsoft explained.
+The unified dashboard should give administrators better visibility into Microsoft 365 rollouts, but organizations will still need to complete the underlying migration, configuration, and adoption work. This streamlined experience reduces complexity and surfaces recommendations more effectively, but it does not eliminate the planning and operational effort required for successful deployments.
+Microsoft also plans to expand the experience over time with additional capabilities, including AI-powered insights. Administrators can configure this new Setup experience by selecting Setup in the Microsoft 365 admin center.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a1515237c1d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a47b2f76e21">
+        <div class="article-body">
+          <a href="https://petri.com/how-to-add-and-use-checkboxes-in-excel/" target="_blank" rel="noopener noreferrer" class="article-title">How to Add and Use Checkboxes in Excel</a>
+          <div class="article-meta">petri.com &bull; Sep 08, 2026</div>
+          <div class="article-summary"><p>Use modern in-cell checkboxes for new workbooks. Treat legacy Form Controls as a compatibility choice because their object positioning and cell-linking requirements create avoidable maintenance work.
+Excel checkboxes turn a worksheet from a static grid into an interactive tool. Instead of typing Yes, No, Done, or Pending, I can click a box to mark an item as complete, approved, reviewed, or selected. In current Microsoft 365 versions of Excel, checkboxes are easier to use because I can insert them directly into cells from the Insert tab and evaluate them as TRUE or FALSE. Older workbooks and many enterprise environments still use the legacy Developer tab Form Control checkbox, so I find it useful to understand both methods.
+Quick answer: Select a cell and choose Insert &gt; Checkbox. In older versions of Excel, I enable the Developer tab and insert a Form Control checkbox.
+In Excel, I use checkboxes because they can feed worksheet logic. A checked box represents TRUE, while an unchecked box represents FALSE. I can then use those TRUE/FALSE values in formulas, filtered lists, dashboards, conditional formatting rules, and progress summaries.
+I usually reach for checkboxes when I want a spreadsheet to behave like a lightweight application. For example, a team can use them to track completed tasks, a manager can use them to review onboarding steps, and an operations team can use them to confirm that inventory or compliance checks have been performed.
+The simplest way to add checkboxes is the modern Microsoft 365 method. Microsoft documents the newer workflow as selecting the target range and choosing Insert &gt; Checkbox. A checked checkbox stores TRUE, and an unchecked checkbox stores FALSE, which means I can reference the checkbox value directly in formulas.
+I use this approach for new task lists, trackers, review logs, and interactive reports because the checkbox lives in the cell and behaves more like worksheet data than a floating object.
+The legacy method uses a Form Control checkbox from the Developer tab. I still see this method in organizations that maintain older Excel workbooks, use perpetual Office versions, or need compatibility with existing spreadsheet templates. Microsoft notes that Form Controls are inserted from the Developer tab and that checkboxes work well for forms with multiple options.
+Developer tab checkbox workflow at a glance
+I still find legacy Form Control checkboxes useful, but they behave differently from modern checkboxes. They sit on top of the worksheet as controls, so positioning, copying, sizing, and cell linking require more care.
+Modern Microsoft 365 checkboxes do not require me to set up a separate linked cell because the selected cell itself evaluates as TRUE or FALSE. With legacy Form Control checkboxes, I usually link each checkbox to a worksheet cell so formulas can read its state.
+When the checkbox is checked, the linked cell returns TRUE. When the checkbox is unchecked, the linked cell returns FALSE. That linked value is what makes checkboxes useful when I build formulas, summaries, and dashboards.
+I add task names in one column and checkboxes in the next column. As work gets completed, I can check each box. A summary cell can count completed items and show progress without requiring manual status updates.
+For project work, I use checkboxes to track deliverables, approvals, testing steps, launch readiness, or documentation reviews. This works especially well when I share the checklist during status calls or use it as a lightweight project control sheet.
+I find checkboxes especially practical for onboarding because each row can represent a required step, such as account creation, equipment assignment, training completion, policy acknowledgment, or access review.
+Operations and IT teams can use checkboxes to mark whether equipment, software licenses, stock items, or configuration records have been reviewed.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a47b2f76e21')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="iru" class="topic-section">
+      <h2 class="topic-title" style="--c:#7C3AED">Iru MDM (formerly Kandji) </h2>
+      <p class="no-news">No articles found this week.</p>
+    </section>
+    <section id="cato" class="topic-section">
+      <h2 class="topic-title" style="--c:#FF6B35">Cato Networks </h2>
+      <p class="no-news">No articles found this week.</p>
+    </section>
+</main>
+
+<footer>
+  Generated every Sunday &mdash; Topics: Windows &bull; Azure &bull; SharePoint &bull; Intune &bull; Entra ID &bull; Microsoft 365 &bull; Iru MDM (formerly Kandji) &bull; Cato Networks
+</footer>
+
+<script>
+const KEY = 'it-news-hidden-v1';
+function getHidden() {
+  try { return new Set(JSON.parse(localStorage.getItem(KEY) || '[]')); }
+  catch { return new Set(); }
+}
+function saveHidden(s) { localStorage.setItem(KEY, JSON.stringify([...s])); }
+function toggleArticle(id) {
+  const h = getHidden();
+  h.has(id) ? h.delete(id) : h.add(id);
+  saveHidden(h); applyHidden(h);
+}
+function applyHidden(h) {
+  h = h || getHidden();
+  document.querySelectorAll('.article-card[data-id]').forEach(c => {
+    c.classList.toggle('is-hidden', h.has(c.dataset.id));
+  });
+}
+let revealing = false;
+function toggleReveal() {
+  revealing = !revealing;
+  document.body.classList.toggle('reveal-hidden', revealing);
+  document.getElementById('reveal-btn').textContent = revealing ? 'Hide hidden' : 'Show hidden';
+}
+fetch('weeks.json').then(r => r.json()).then(weeks => {
+  const sel = document.getElementById('week-sel');
+  weeks.forEach(w => {
+    const o = document.createElement('option');
+    o.value = w.file; o.textContent = w.label;
+    if (w.current) o.selected = true;
+    sel.appendChild(o);
+  });
+}).catch(() => {});
+applyHidden();
+</script>
+</body>
+</html>
