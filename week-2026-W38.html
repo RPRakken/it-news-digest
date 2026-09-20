@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT News Digest — 2026-W38</title>
+  <style>
+    :root{--bg:#f8fafc;--surface:#fff;--border:#e2e8f0;--text:#1e293b;--muted:#64748b;--accent:#2563eb}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+    a{color:var(--accent)}
+
+    header{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+    .h-inner{max-width:1000px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .h-brand{font-size:1.1rem;font-weight:800;color:#1d4ed8}
+    .h-meta{font-size:.78rem;color:var(--muted)}
+    .h-controls{display:flex;gap:8px;align-items:center}
+    .btn{padding:5px 12px;border-radius:6px;font-size:.78rem;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);white-space:nowrap}
+    .btn:hover{background:#f1f5f9}
+    select.week-sel{padding:5px 10px;border-radius:6px;border:1px solid var(--border);background:var(--surface);font-size:.78rem;cursor:pointer;color:var(--text)}
+
+    .t-nav{background:var(--surface);border-bottom:1px solid var(--border);overflow-x:auto}
+    .t-nav-inner{max-width:1000px;margin:0 auto;padding:8px 20px;display:flex;gap:6px;min-width:max-content}
+    .nav-link{font-size:.72rem;padding:3px 10px;border-radius:20px;border:2px solid var(--c,#2563eb);color:var(--c,#2563eb);text-decoration:none;font-weight:600;white-space:nowrap}
+    .nav-link:hover{background:var(--c,#2563eb);color:#fff}
+
+    main{max-width:1000px;margin:0 auto;padding:24px 20px}
+
+    .week-hero{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin-bottom:28px;display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+    .hero-title{font-size:1.6rem;font-weight:900;color:#1d4ed8}
+    .hero-sub{font-size:.85rem;color:var(--muted);margin-top:2px}
+    .stat-box{text-align:center;min-width:60px}
+    .stat-num{font-size:2rem;font-weight:900;color:#1d4ed8;line-height:1}
+    .stat-lbl{font-size:.65rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+
+    .topic-section{margin-bottom:40px}
+    .topic-title{font-size:1.2rem;font-weight:800;color:var(--c,#2563eb);border-bottom:3px solid var(--c,#2563eb);padding-bottom:8px;margin-bottom:14px}
+    .count{font-size:.8rem;font-weight:400;color:var(--muted)}
+    .no-news{color:var(--muted);font-style:italic;font-size:.88rem}
+
+    .article-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:12px;display:flex;gap:12px;align-items:flex-start;transition:border-color .15s}
+    .article-card:hover{border-color:#94a3b8}
+    .article-body{flex:1;min-width:0}
+    .article-title{font-size:.98rem;font-weight:600;text-decoration:none;display:block;margin-bottom:4px;color:var(--accent)}
+    .article-title:hover{text-decoration:underline}
+    .article-meta{font-size:.72rem;color:var(--muted);margin-bottom:8px}
+
+    .article-summary{margin-top:6px;font-size:.875rem;color:#334155;line-height:1.75}
+    .article-summary p{margin-bottom:.6em}
+    .article-summary p:last-child{margin-bottom:0}
+    .gnews-badge{display:inline-block;font-size:.65rem;background:#fef3c7;color:#92400e;border-radius:4px;padding:1px 5px;margin-bottom:6px;vertical-align:middle}
+    .article-summary.snippet{color:var(--muted)}
+    .read-more{display:inline-block;margin-top:6px;font-size:.8rem;font-weight:600;color:var(--accent);text-decoration:none}
+    .read-more:hover{text-decoration:underline}
+
+    .hide-btn{flex-shrink:0;padding:5px 10px;border-radius:6px;font-size:.72rem;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--muted);white-space:nowrap;align-self:flex-start}
+    .hide-btn:hover{border-color:#ef4444;color:#ef4444;background:#fef2f2}
+    .lbl-show{display:none}
+
+    .article-card.is-hidden{display:none}
+    body.reveal-hidden .article-card.is-hidden{display:flex;opacity:.45;border-style:dashed}
+    .article-card.is-hidden .lbl-hide{display:none}
+    .article-card.is-hidden .lbl-show{display:inline}
+    body.reveal-hidden .article-card.is-hidden .hide-btn{border-color:#16a34a;color:#16a34a}
+    body.reveal-hidden .article-card.is-hidden .hide-btn:hover{background:#f0fdf4}
+
+    footer{text-align:center;padding:24px 20px;color:var(--muted);font-size:.75rem;border-top:1px solid var(--border);margin-top:40px}
+
+    @media(max-width:600px){
+      .h-inner,.main{padding-left:14px;padding-right:14px}
+      .hero-title{font-size:1.3rem}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="h-inner">
+    <div>
+      <div class="h-brand">IT News Digest</div>
+      <div class="h-meta">Week 2026-W38 &bull; Sep 14–20, 2026</div>
+    </div>
+    <div class="h-controls">
+      <button class="btn" id="reveal-btn" onclick="toggleReveal()">Show hidden</button>
+      <select class="week-sel" id="week-sel" onchange="if(this.value) location.href=this.value">
+        <option value="">&#128337; Archive&hellip;</option>
+      </select>
+    </div>
+  </div>
+</header>
+
+<nav class="t-nav"><div class="t-nav-inner"><a href="#windows" class="nav-link" style="--c:#0078D4">Microsoft Windows</a><a href="#azure" class="nav-link" style="--c:#00BCF2">Azure</a><a href="#sharepoint" class="nav-link" style="--c:#036C70">SharePoint</a><a href="#intune" class="nav-link" style="--c:#0F6CBD">Intune</a><a href="#entraid" class="nav-link" style="--c:#6B69D6">Entra ID</a><a href="#m365" class="nav-link" style="--c:#D83B01">Microsoft 365</a><a href="#iru" class="nav-link" style="--c:#7C3AED">Iru MDM (formerly Kandji)</a><a href="#cato" class="nav-link" style="--c:#FF6B35">Cato Networks</a></div></nav>
+
+<main>
+  <div class="week-hero">
+    <div>
+      <div class="hero-title">Week 2026-W38</div>
+      <div class="hero-sub">Sep 14–20, 2026</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">46</div>
+      <div class="stat-lbl">Articles</div>
+    </div>
+  </div>
+
+    <section id="windows" class="topic-section">
+      <h2 class="topic-title" style="--c:#0078D4">Microsoft Windows <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="ad1475b44bc">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windows-insider/2026/09/18/announcing-new-builds-for-18-september-2026/" target="_blank" rel="noopener noreferrer" class="article-title">Announcing new builds for 18 September 2026</a>
+          <div class="article-meta">blogs.windows.com &bull; Sep 18, 2026</div>
+          <div class="article-summary"><p>Announcing new builds for 18 September 2026
+Hello Windows Insiders,
+Today, we’re releasing new Windows 11 Insider Preview builds to the Beta and Experimental channels.
+New builds this week
+Select your channel below to view its release notes:
+- Beta: Build 26220.9492
+- Experimental: Build 26340.9502
+For those on other specific Windows build versions, here are today’s new builds and release notes:
+- Experimental (26H1): Build 28120.3032
+- Experimental (Future Platforms): Build 29671.1000
+Notable new features:
+[Accessibility – Mouse indicator]
+Release channel: Experimental
+- We’re introducing a sleeker new animation for the Mouse indicator. This can be enabled under accessibility settings. We’ve also added the option to keep the indicator activated until the user presses the escape key.
+[Magnifier]
+Release channel: Experimental
+- A new contrast theme toggle for a lower-glare screen. If bright screens are uncomfortable, many people use color inversion to reduce glare. However, inversion changes everything on screen, including photos, charts, and videos. With this update, we’re introducing a new contrast theme toggle in Magnifier. Check out the release notes link for more information.
+[Cloud rebuild]
+Release channel: Experimental
+- We’re updating Cloud rebuild, the recovery option that restores a Windows 11 PC to a clean, known-good state by performing a full OS reinstall, with two additions. Cloud rebuild can now sanitize the device’s drives as part of the rebuild and IT administrators can now configure and start Cloud rebuild remotely through the Recovery CSP. See release notes for more information.
+Thanks,
+Stephen and the Windows Insider Program team
+					Tags:</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ad1475b44bc')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aebfbc7a344">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windowsdeveloper/2026/09/14/build-anywhere-stay-in-flow-with-windows-365/" target="_blank" rel="noopener noreferrer" class="article-title">Build anywhere, stay in flow: How Windows 365 is redefining the developer experience</a>
+          <div class="article-meta">blogs.windows.com &bull; Sep 14, 2026</div>
+          <div class="article-summary"><p>Development teams are under increasing pressure to ship software faster, even as the environments they rely on grow more complex. However, modern development has only become harder to provision and maintain with AI-assisted development, cross-platform toolchains, tighter security demands and specialized compute requirements. As a result, developers still spend too much time configuring machines, troubleshooting environment drift, and waiting for access instead of building and shipping software.
+Windows 365 provides secure, flexible Cloud PCs that can complement local development and give teams an easier path from access to first commit. Developers can select an environment suited to each workload while IT applies consistent identity, security, management and governance.
+Five ways Windows 365 supports modern development
+1. Give developers a ready-to-code, customizable environment
+A ready-to-code Windows 11 developer configuration provides developers with a prepared environment from day one. Autopilot device preparation can install required applications and scripts before first sign-in, while Azure Compute Gallery integration supports standardized custom images. Planned VM customization will provide additional flexibility to configure project-specific SDKs, tools, scripts, and dependencies within enterprise guardrails.
+2. Scale compute and run local AI directly on the Cloud PC
+Cloud PC configurations up to 32 vCPU and GPU-enabled options give teams the right compute for memory-intensive development, graphics, AI, data and visualization workloads. Select local language models can run directly on appropriately sized Cloud PCs, providing more predictable costs while preserving access to hosted models when greater scale or performance is required.
+See how a ready-to-code Windows 365 Cloud PC uses Foundry Local and local language models to build and run an AI meeting-summary app without consuming cloud tokens.
+3. Contain agent activity during development
+Developers increasingly use coding and autonomous agents to generate code, execute tasks and maintain long-running workflows. With Windows 365 support for Microsoft Execution Containers (MXC) becoming generally available in the coming months, customers will be able to run supported agent workloads, from coding agents such as GitHub Copilot CLI to autonomous agents such as OpenClaw on managed Cloud PCs. Process and session isolation help contain agent activity, while familiar enterprise security and governance controls allow organizations to manage these workloads with confidence.
+4. Build and run enterprise agents securely
+AI agent builders have different needs. As agents move from development into sustained enterprise workflows, they may require dedicated environments that operate independently from users’ devices. Windows 365 for Agents provides Microsoft Entra-joined, Microsoft Intune-managed, and policy-enforced Cloud PCs where agents can perform computer-use tasks across browsers, desktop applications, and legacy systems. New preview capabilities extend secure access to on-premises applications and help IT manage agent pools at scale.
+Companies such as Login VSI, WorkspaceDNA, and Simular are already building AI agents that can run on Windows 365 for Agents.
+5. Protect sensitive development work
+Organizations need to give developers flexibility without exposing source code or confidential data. Windows 365 works with Microsoft Entra, Microsoft Intune, and Microsoft security capabilities to apply consistent identity, access, compliance and endpoint controls. For example, context-based redirection, now in preview can restrict clipboard, drive, printer or USB redirection based on security conditions, while output protection helps safeguard on-screen information.
+Why modern development needs an environment that responds to change
+As development workflows evolve in the era of AI, developers need different environments based on workloads.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aebfbc7a344')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a472215b04e">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/devices/2026/09/14/more-choice-and-possibility-with-windows-pcs-at-ifa/" target="_blank" rel="noopener noreferrer" class="article-title">More choice and possibility with Windows PCs at IFA</a>
+          <div class="article-meta">blogs.windows.com &bull; Sep 14, 2026</div>
+          <div class="article-summary"><p>More choice and possibility with Windows PCs at IFA
+This year at IFA, I saw the Windows ecosystem doing what it does best: bringing innovation to life through products and experiences for every person, purpose, and price point. Our partners introduced new Windows PCs, spanning dependable everyday devices, beautifully crafted premium designs, new and immersive gaming systems, commercial devices designed to help organizations work securely and productively, and powerful tools for developers, creators, and AI power users. Together, these announcements demonstrated the breadth of what’s possible with a Windows PC.
+This matters because people are being thoughtful about when, where, and how they spend. We know that a new PC is a meaningful purchase, and that customers want to feel confident that they choose the right PC for them. They want to know that it will deliver a better experience today while continuing to meet their needs for years to come. Windows PCs from our partners give people more ways to find the right device without compromising on what matters most to them.
+Innovation available today
+For more than 40 years, our goal has been to put a computer on every desk and in every home. We know the PC is personal and the place you go to play, create, build, connect and learn. Some prioritize battery life and portability, while others need greater performance for gaming or creative work. And increasingly, people are also looking for useful AI experiences that are easy to use and fit seamlessly into their existing workflows. And of course, everyone needs to find the right device at the right price for them.
+IFA showed how our partners are meeting those different needs. The strength of Windows is choice, and the latest Windows PCs bring together modern design, stronger performance, built-in security and useful AI experiences available at different price points. For those who have been holding on to an older PC, the choice and value available today makes it a good time to find the right device.
+Building the next era of the PC
+IFA also demonstrated how Windows is evolving for the next era of computing. The latest OpenClaw Windows App makes it easier to configure and run AI models locally on supported NVIDIA RTX Spark Windows PCs. It builds on the secure agent-execution foundation we introduced at Microsoft Build, helping agents work within defined boundaries while taking advantage of the computing power available on the device.
+We are also making it easier for developers to turn ideas into reality with new ready-to-code Windows experiences for next-generation devices. By pre-installing the essential tools and pre-configuring Windows settings for development on developer class devices with 64GB+ unified memory and 250gbps memory bandwidth, developers can jump right in. Project Zenith devices enable developers to run capable coding models locally and unmetered, helping lower token costs, experiment more freely, and stay in their flow. Project Zenith shows how Windows and our ecosystem partners are bringing these innovations together to create more capable, purpose-built experiences.
+Windows at IFA
+Check out the latest announcements and activity from our partners at IFA.
+Acer
+Acer launched the new Acer Vero 16 laptop, a Copilot+ PC designed to reduce waste and environmental impact throughout its lifecycle. As the fourth-generation Vero consumer laptop, the device debuts a new chassis design incorporating post-industrial recycled aluminum, low-carbon aluminum, and PCR plastic, along with greatly expanded repairability features.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a472215b04e')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a26e90c99ff">
+        <div class="article-body">
+          <a href="https://petri.com/first-ring-daily-a-surprise-surface-event/" target="_blank" rel="noopener noreferrer" class="article-title">First Ring Daily: A Surprise Surface Event</a>
+          <div class="article-meta">petri.com &bull; Sep 18, 2026</div>
+          <div class="article-summary"><p>In this episode of First Ring Daily, Brad Sams and Paul Thurrott discuss Microsoft’s upcoming Windows and Surface event on October 7, where we should hear more about the Surface Laptop Ultra powered by Nvidia’s RTX Spark chip, as well as recent efforts to make Windows 11 a better platform for local AI.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a26e90c99ff')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="adbcabb9032">
+        <div class="article-body">
+          <a href="https://petri.com/windows-11-update-active-directory-trust-relationships/" target="_blank" rel="noopener noreferrer" class="article-title">Windows 11 Security Update Triggers Active Directory Authentication Problems</a>
+          <div class="article-meta">petri.com &bull; Sep 18, 2026</div>
+          <div class="article-summary"><p>A security feature intended to protect machine credentials is creating unexpected login problems for some organizations that haven't met its infrastructure requirements.
+Key Takeaways:
+A recent Windows security update is creating unexpected authentication problems for some organizations that use on-premises Active Directory. After installing the September 2026 security update KB5124008, certain domain-joined Windows 11 devices can lose their secure trust relationship with the domain, which prevents users from signing in with valid domain credentials.
+🎬 Watch This Week in IT.
+This issue affects Windows 11 devices protected by Credential Guard that are joined to an on-premises Active Directory environment. Microsoft has warned that some Windows machines may lose their secure channel with the domain following installation of KB5124008 or later updates. When this happens, users can receive a message stating that the trust relationship between the device and the domain has failed.
+Microsoft notes that this issue does not affect Active Directory replication or domain controller services. In many cases, users can still log in offline using cached credentials, but normal domain authentication may fail.
+The root cause is related to Machine Identity Isolation, which is a security feature designed to better protect machine account credentials. The KB5124008 patch does not automatically enable this feature, but the update causes Windows to honor any existing settings that were previously configured through Microsoft Intune, Group Policy, or registry values.
+Machine Identity Isolation is currently supported only in environments where domain controllers are operating at the Windows Server 2025 Domain Functional Level. Organizations that enabled this feature without meeting that requirement can experience trust relationship failures after installing the update.
+For affected organizations, this problem can create access issues for end users and increase workload for IT administrators. Devices that lose their secure channel may need manual remediation before they can authenticate properly with the domain again.
+This issue is particularly significant because it originates from a security hardening feature. Administrators who enabled Machine Identity Isolation as part of their security strategy may now need to verify whether their Active Directory infrastructure fully supports the feature on affected machines.
+Microsoft’s recommended workaround is to disable Machine Identity Isolation using the same method that was originally used to enable it. Organizations can disable the setting through Microsoft Intune if it was deployed via Intune, disable it through Group Policy if Group Policy was used, or modify the relevant registry settings if the feature was enabled directly in the registry. After disabling the feature, IT admins must restart the device and repair the secure channel relationship with Active Directory.
+This situation highlights a common challenge in enterprise security deployments. Microsoft notes that new protections such as Machine Identity Isolation can strengthen credential security, but they often depend on specific infrastructure requirements. Organizations that adopt these capabilities before fully upgrading their environments may encounter compatibility issues that disrupt normal operations.
+Microsoft plans to address this issue in a future Windows update. As a workaround, the company intends to prevent Machine Identity Isolation enforcement while it works on improvements to the feature.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('adbcabb9032')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ad9feb2d21e">
+        <div class="article-body">
+          <a href="https://petri.com/windows-server-2022-end-of-mainstream-support/" target="_blank" rel="noopener noreferrer" class="article-title">Windows Server 2022 Customers are Running Out of Time to Plan Their Next Upgrade</a>
+          <div class="article-meta">petri.com &bull; Sep 16, 2026</div>
+          <div class="article-summary"><p>Extended support buys organizations more time, but delaying upgrade decisions could make future migrations more complex.
+Key Takeaways:
+Organizations running Windows Server 2022 are approaching a critical milestone as the platform reaches the end of mainstream support on October 13, 2026. The operating system will continue receiving security updates under extended support until October 2031, but Microsoft will no longer provide the full range of mainstream support capabilities that many IT teams rely on.
+After October 2026, customers will lose access to mainstream support and must begin planning for the new version of Windows Server. At the same time, delaying upgrade projects can leave critical infrastructure vulnerable to security vulnerabilities.
+For IT departments, postponing modernization efforts increases long-term operational risk. Microsoft said extended support will continue to deliver monthly security updates through October 2031, but organizations that stay on Windows Server 2022 won’t be able to access new security, management, and performance capabilities in more recent releases. The company has warned that delaying an upgrade can make planning and testing more complex for businesses.
+Microsoft is encouraging IT admins to begin evaluating and testing Windows Server 2025, which is the latest Long-Term Servicing Channel (LTSC) release. The company recommends starting upgrade assessments early to ensure a smooth transition and maintain full support coverage. Customers can also take advantage of a trial version to validate application compatibility and migration plans before deployment.
+Microsoft has also extended support for the Datacenter: Azure Edition’s hotpatching capability by an additional year, which allows eligible environments to continue using the feature until October 2027. This gives some Azure customers more time to plan their migration strategy.
+Keep in mind that the extension of security updates and Azure hotpatching reduces the urgency of an immediate migration, but it does not eliminate the need to upgrade. Organizations can defer major projects and spread costs over a longer period, but doing so means remaining on an older server platform instead of benefiting from the latest capabilities offered by Windows Server 2025. It’s highly recommended that IT teams balance budget and operational constraints against the long-term advantages of modernization.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ad9feb2d21e')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a7109f465f9">
+        <div class="article-body">
+          <a href="https://www.neowin.net/news/microsoft-releases-windows-11-26h2-isos-free-for-limited-time-for-enterprise-evaluation/?utm_source=rss" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft releases Windows 11 26H2 ISOs free for limited time for enterprise evaluation - Neowin</a>
+          <div class="article-meta">Neowin &bull; Sep 18, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft releases Windows 11 26H2 ISOs free for limited time for enterprise evaluation&amp;nbsp;&amp;nbsp;Neowin</p><a href="https://www.neowin.net/news/microsoft-releases-windows-11-26h2-isos-free-for-limited-time-for-enterprise-evaluation/?utm_source=rss" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a7109f465f9')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a431b325dd7">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMirwFBVV95cUxNOHo3MjlNemtwb0UwQ3V2NTlBOWFKUUlnZHB3bThTcjFndFZ0NFdjSnJ5RUhVbnVydS1nRHlTbmFEWkVVWFA0YXhJX0VKX2UzSVRDVEFVdWF3S2tBWjlZNjdhUWVOVk84WmEwNnFVQmJBVVVVdkpGY0k0NWt6eTFWSjFJSjRGM05nU0hJOFdKUWFNOGZPVHJ0NmMySXpUY3JzMUx0cy13Ry1VbzZDYUVV0gG0AUFVX3lxTE5zRk5JMmFsR05IaHZqUC10NjU3OG0zWFMwbkdpRmwtX1NiWVM5QlZ4MVQ0YVFVNU8xYk5leWlFRVQ3NnllMzhOeC1aVDZ1V2VaeTF0VlZ6Zzk0Qk9VMEdLdnJ0LUZlVUJMZ0U4M2tIM0lKSmlNdFl5UlpYV04wdWtsRWNzRnJ4V2RqQk9TYzdJZUQxVGNQWlcwdUVjcjF6U1RYZlB2Y3NuUlRETVFDVlczYlNtWA?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Patches Windows Defender Bug That Insisted Your Antivirus Was Off - TechPowerUp</a>
+          <div class="article-meta">TechPowerUp &bull; Sep 20, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft Patches Windows Defender Bug That Insisted Your Antivirus Was Off&amp;nbsp;&amp;nbsp;TechPowerUp</p><a href="https://news.google.com/rss/articles/CBMirwFBVV95cUxNOHo3MjlNemtwb0UwQ3V2NTlBOWFKUUlnZHB3bThTcjFndFZ0NFdjSnJ5RUhVbnVydS1nRHlTbmFEWkVVWFA0YXhJX0VKX2UzSVRDVEFVdWF3S2tBWjlZNjdhUWVOVk84WmEwNnFVQmJBVVVVdkpGY0k0NWt6eTFWSjFJSjRGM05nU0hJOFdKUWFNOGZPVHJ0NmMySXpUY3JzMUx0cy13Ry1VbzZDYUVV0gG0AUFVX3lxTE5zRk5JMmFsR05IaHZqUC10NjU3OG0zWFMwbkdpRmwtX1NiWVM5QlZ4MVQ0YVFVNU8xYk5leWlFRVQ3NnllMzhOeC1aVDZ1V2VaeTF0VlZ6Zzk0Qk9VMEdLdnJ0LUZlVUJMZ0U4M2tIM0lKSmlNdFl5UlpYV04wdWtsRWNzRnJ4V2RqQk9TYzdJZUQxVGNQWlcwdUVjcjF6U1RYZlB2Y3NuUlRETVFDVlczYlNtWA?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a431b325dd7')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="azure" class="topic-section">
+      <h2 class="topic-title" style="--c:#00BCF2">Azure <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a65456dd985">
+        <div class="article-body">
+          <a href="https://azure.microsoft.com/en-us/blog/microsoft-recognized-as-a-leader-in-the-2026-gartner-magic-quadrant-for-distributed-hybrid-infrastructure/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft recognized as a Leader in the 2026 Gartner® Magic Quadrant™ for Distributed Hybrid Infrastructure</a>
+          <div class="article-meta">azure.microsoft.com &bull; Sep 16, 2026</div>
+          <div class="article-summary"><p>We’re proud to share that Microsoft has been recognized as a Leader in the 2026 Gartner® Magic Quadrant™ for Distributed Hybrid Infrastructure for the fourth consecutive year. Microsoft is positioned highest for Ability to Execute.
+We believe this recognition reflects the strength of Microsoft’s unified approach to distributed infrastructure. With Azure Local and Azure Arc, organizations can manage infrastructure across datacenters, edge locations, multi-cloud environments, and sovereign deployments through a consistent Azure foundation.
+One Azure platform for distributed infrastructure
+Customers want the flexibility to run workloads where it makes the most sense for their business without taking on additional operational complexity. As infrastructure extends across datacenters, edge locations, and the cloud, Microsoft helps customers maintain consistency through common tools, processes, and management experiences, reducing fragmentation and allowing teams to focus on delivering business value.
+Azure Arc extends Azure management and governance to resources running in data centers, at the edge, and across multi-cloud environments. Azure Local brings Azure infrastructure and services into customer-controlled locations so organizations can run cloud services and AI workloads closer to their applications and data.
+Together, Azure Arc and Azure Local give organizations a common way to operate across environments without requiring every workload to run in the same place. Some applications are best suited for the public cloud. Others may need to remain in a corporate data center, operate at the edge, or run within a customer-controlled sovereign environment. While deployment locations differ, management and governance can remain consistent.
+Microsoft continues to expand the environments Azure Local can support, from small-form-factor edge deployments to large scale data center environments. Azure Local supports both hyperconverged architectures and options for disaggregated compute and external storage, so infrastructure can be designed around the needs of the workload rather than a single deployment model.
+Choice and operational control for sovereign workloads
+The same workload-centric approach applies to digital sovereignty, an increasingly important consideration for organizations around the world. Microsoft Sovereign Cloud is not a single deployment model, but a continuum of choices and controls.
+For many workloads, sovereignty requirements can be addressed in public cloud through capabilities for data residency, encryption, confidential computing, policy enforcement, and operational oversight. Other workloads need to run in customer-controlled locations or require greater separation from public cloud operations.
+Built on Azure Local, Microsoft Sovereign Private Cloud supports these scenarios by giving customers greater control over infrastructure, data, operations, and access, while retaining a familiar Azure foundation. For environments where connectivity to the cloud is restricted or unavailable, disconnected operations on Azure Local bring a local control plane into the customer environment. This enables customers to deploy and manage Azure Local and supported capabilities without ongoing connectivity to the cloud.
+Together, these options allow organizations to apply different levels of sovereignty and operational control to different workloads instead of forcing the entire estate into a single architecture.
+Bringing AI closer to applications and data
+The growing adoption of AI is making workload placement decisions even more important.
+For some workloads, the scale and breadth of the public cloud are the right fit.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a65456dd985')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ae07914ce05">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/09/microsoft-patches-cvss-100-azure-ai.html" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Patches CVSS 10.0 Azure AI Foundry Flaw Enabling Unauthorized Privilege Escalation - The Hacker News</a>
+          <div class="article-meta">The Hacker News &bull; Sep 18, 2026</div>
+          <div class="article-summary"><p>Microsoft has released fixes for a maximum-severity security flaw in Azure AI Foundry that could be exploited to achieve privilege escalation. No customer action is required.
+The vulnerability, tracked as CVE-2026-85889, carries a CVSS score of 10.0.
+&quot;Missing authentication for critical function in Azure AI Foundry allows an unauthorized attacker to elevate privileges over a network,&quot; Microsoft said in a Thursday advisory.
+Azure AI Foundry, also called Microsoft Foundry, is an enterprise platform designed to build, deploy, and manage generative artificial intelligence (AI) applications and agents.
+The Windows maker credited security researcher Rémy Marot (@R_Marot) for discovering and reporting the flaw. There is no evidence that the issue has been exploited in the wild.
+Also patched by Microsoft in recent days are a number of other critical flaws -
+- CVE-2026-85885 (CVSS score: 9.9) - A command injection vulnerability in Microsoft 365 Copilot that could allow an authorized attacker to elevate privileges over a network
+- CVE-2026-85878 (CVSS score: 9.9) - An improper authorization in Azure Database for PostgreSQL that could allow an authorized attacker to elevate privileges over a network
+- CVE-2026-87701 (CVSS score: 9.6) - An improper neutralization vulnerability in Azure Cosmos DB that could allow an authorized attacker to elevate privileges over a network
+As is typically the case with cloud-based CVEs, Microsoft said the vulnerabilities have already been fully mitigated, and that they require no action for users to take.
+Separately, Microsoft has shipped updates for two other vulnerabilities, one of which was originally disclosed last month.
+- CVE-2026-62721 (CVSS score: 7.8) - An insufficient granularity of access control in Windows User-Mode Power Service (UMPS) that could allow an authorized attacker to elevate privileges locally and gain SYSTEM privileges.
+- CVE-2026-85921 (CVSS score: 8.2) - A double free vulnerability in Windows Secure Kernel Mode that could allow an authorized attacker to elevate privileges locally and gain Virtual Trust Level 1 (VTL1) privileges.
+Both flaws have been addressed as part of an out-of-band update for Windows 11, version 26H1 -
+- 2026-09 Cumulative Update for Windows 11, version 26H1 for arm64-based Systems (KB5129194) (28000.2956)
+- 2026-09 Cumulative Update for Windows 11, version 26H1 for x64-based Systems (KB5129194) (28000.2956)
+The disclosure comes as Microsoft patched a record 974 vulnerabilities spanning its software portfolio earlier last week. Two of those defects impacting Windows Advanced Local Procedure Call (ALPC) and the Windows Update Stack have come under active exploitation.
+According to reports from Proofpoint and Volexity, the ALPC vulnerability has been chained along with two Google Chrome flaws to develop an exploit kit called BlueMoon that has been weaponized by multiple espionage-aligned threat actors to deliver malicious payloads.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ae07914ce05')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="accf2069caf">
+        <div class="article-body">
+          <a href="https://www.securityweek.com/microsoft-patches-18-vulnerabilities-in-ai-cloud-products/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Patches 18 Vulnerabilities in AI, Cloud Products - SecurityWeek</a>
+          <div class="article-meta">SecurityWeek &bull; Sep 18, 2026</div>
+          <div class="article-summary"><p>Microsoft released patches for 18 vulnerabilities on Thursday, spanning its Azure cloud portfolio and Copilot-branded AI products.
+Elevation of privilege flaws made up the bulk of the disclosures, affecting Azure ARC, Azure AI Foundry, Azure Logic Apps, Azure Billing, Azure HorizonDB, Azure Cosmos DB, Azure Container Registry, Microsoft Fabric, Microsoft Dataverse, and Microsoft 365 Copilot.
+Several information disclosure vulnerabilities were addressed in Copilot, Microsoft 365 Copilot, Microsoft 365 Copilot Business Chat, and Azure Machine Learning. A single spoofing vulnerability was patched in Azure Portal.
+Microsoft rated all vulnerabilities as critical, but their CVSS scores indicate high or medium severity for some.
+While some of these flaws were discovered internally by Microsoft, many were reported to the software giant by external researchers.
+None of the vulnerabilities have been flagged as exploited, and Microsoft noted that all fixes were implemented on the server side, meaning that customers do not need to take any action.
+Microsoft also announced patches this week for a privilege escalation vulnerability affecting Windows. Users do need to update Windows to resolve this flaw, tracked as CVE-2026-85921, but Microsoft believes exploitation is ‘less likely’.
+Like most major organizations, Microsoft has seen vulnerability discovery surge in recent months, driven by increased use of advanced AI. The company fixed a record-breaking 970 vulnerabilities across its products with the latest Patch Tuesday updates.
+Related: Microsoft Commits to Sweeping AI Privacy Rules for Students. Will Other Tech Giants Follow?
+Related: Microsoft AI Code of Conduct Sets Cyberattack Boundaries, Chain of Command, Safety Constraints
+Related: New ‘ShieldCrash’ Zero-Day Exploit Targets Microsoft Defender</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('accf2069caf')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a38aab42d59">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi3gFBVV95cUxNTjNtcVdBU1FWczZUaUVncjRYdXdvaWJ1S1VReUlXbWFmYm0ySHp3TTBpZXVzdmdhMTVIRkM4THFYcTExbUZyaWdtaWt1YnB0VDIybkJORWZTTC0ySTZLX203cVZvSWM4alc0enBRTGpjVC1qaks0UEU0eFBjU1gwRUlqZHg1QlNJbjRfdE5HbWZKQkZuOU50SW1GOHpBZHMwU0pzSkNnbXptYkFPVVowaWt4U25wbnU3OHFCUmIza3d4Y3lBMFB0X3ZETUNlT24td0c5MW9tY29sRTVJU0E?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft recognized as a Leader in the 2026 Gartner® Magic Quadrant™ for Distributed Hybrid Infrastructure - Microsoft Azure</a>
+          <div class="article-meta">Microsoft Azure &bull; Sep 16, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft recognized as a Leader in the 2026 Gartner® Magic Quadrant™ for Distributed Hybrid Infrastructure&amp;nbsp;&amp;nbsp;Microsoft Azure</p><a href="https://news.google.com/rss/articles/CBMi3gFBVV95cUxNTjNtcVdBU1FWczZUaUVncjRYdXdvaWJ1S1VReUlXbWFmYm0ySHp3TTBpZXVzdmdhMTVIRkM4THFYcTExbUZyaWdtaWt1YnB0VDIybkJORWZTTC0ySTZLX203cVZvSWM4alc0enBRTGpjVC1qaks0UEU0eFBjU1gwRUlqZHg1QlNJbjRfdE5HbWZKQkZuOU50SW1GOHpBZHMwU0pzSkNnbXptYkFPVVowaWt4U25wbnU3OHFCUmIza3d4Y3lBMFB0X3ZETUNlT24td0c5MW9tY29sRTVJU0E?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a38aab42d59')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a797cb08435">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMioAFBVV95cUxPNXU0QXVtNjZFUnMtTzRtcWphWXdtcWRKY1JlZ1phenRQR05FekV6eTdBNEpwUmNpbTBjZjNjRUxjWFJ1NnZiUVMxQmszaVhvTnh0OU00QkxyS2dfcVQ3MERVb24yclFuYmk2ZkYyUFpZTUpRRWR4TXpfNnl3bzBQLWVPMWJvOGZQWV9nYkM0aXFnMURCY21jNUpMdnQ5TnVi?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft, Marvell and Utimaco to Deliver Industry-first Secure, Cloud-scale Payments Solution - Marvell Technology</a>
+          <div class="article-meta">Marvell Technology &bull; Sep 17, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft, Marvell and Utimaco to Deliver Industry-first Secure, Cloud-scale Payments Solution&amp;nbsp;&amp;nbsp;Marvell Technology</p><a href="https://news.google.com/rss/articles/CBMioAFBVV95cUxPNXU0QXVtNjZFUnMtTzRtcWphWXdtcWRKY1JlZ1phenRQR05FekV6eTdBNEpwUmNpbTBjZjNjRUxjWFJ1NnZiUVMxQmszaVhvTnh0OU00QkxyS2dfcVQ3MERVb24yclFuYmk2ZkYyUFpZTUpRRWR4TXpfNnl3bzBQLWVPMWJvOGZQWV9nYkM0aXFnMURCY21jNUpMdnQ5TnVi?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a797cb08435')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a71e11e9437">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMifEFVX3lxTE1EMmh6dmJtNGpwSW1JUE5ZSkZDTWhUTWgtZE9CYkotVl9HTUU5eGZHTUNnR0FTX3lpa2ZDTWZfVVhYVEhnQ243VE1YOVBvV2RQdVFKRzcycDRLZ2NfWmg1cE52eFlBTmp5d2ltN1o2Q295b0wxdXJFRTRDeWg?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Deploy MAI-Thinking-1 on Azure AI Foundry: 12 Steps [2026] - tech-insider.org</a>
+          <div class="article-meta">tech-insider.org &bull; Sep 20, 2026</div>
+          <div class="article-summary snippet"><p>Deploy MAI-Thinking-1 on Azure AI Foundry: 12 Steps [2026]&amp;nbsp;&amp;nbsp;tech-insider.org</p><a href="https://news.google.com/rss/articles/CBMifEFVX3lxTE1EMmh6dmJtNGpwSW1JUE5ZSkZDTWhUTWgtZE9CYkotVl9HTUU5eGZHTUNnR0FTX3lpa2ZDTWZfVVhYVEhnQ243VE1YOVBvV2RQdVFKRzcycDRLZ2NfWmg1cE52eFlBTmp5d2ltN1o2Q295b0wxdXJFRTRDeWg?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a71e11e9437')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aeee0b506a3">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMizgFBVV95cUxPOS1Ma1ZZYjFheVFJMFZicUttTW1HZWtvZER0Mng0cloyLXhYbXp0RWJ1cXc5WlJnNVVUTko1M3A0ZEMzOUtXUURvRHRLWTc4RTI0MDh4ZER1TUFMTlFfamlkeERHWnBKVjBpdlNSRzRpbnFtYmctMjlTbmR6V3Fwblk4MGN0UnBXWlpPQnpDRm56QVRHTFkxMTdNWDRocl93Wms4RkdJOUxHREgtbndGNm55Ump1clIwNlotRzd3QmYxbmgzZmJQTXdCdTdtQQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Sensitive UK police data vulnerable to ‘compromise’ by US government and foreign actors - The Guardian</a>
+          <div class="article-meta">The Guardian &bull; Sep 18, 2026</div>
+          <div class="article-summary snippet"><p>Sensitive UK police data vulnerable to ‘compromise’ by US government and foreign actors&amp;nbsp;&amp;nbsp;The Guardian</p><a href="https://news.google.com/rss/articles/CBMizgFBVV95cUxPOS1Ma1ZZYjFheVFJMFZicUttTW1HZWtvZER0Mng0cloyLXhYbXp0RWJ1cXc5WlJnNVVUTko1M3A0ZEMzOUtXUURvRHRLWTc4RTI0MDh4ZER1TUFMTlFfamlkeERHWnBKVjBpdlNSRzRpbnFtYmctMjlTbmR6V3Fwblk4MGN0UnBXWlpPQnpDRm56QVRHTFkxMTdNWDRocl93Wms4RkdJOUxHREgtbndGNm55Ump1clIwNlotRzd3QmYxbmgzZmJQTXdCdTdtQQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aeee0b506a3')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a8671f5eb16">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMihwFBVV95cUxNOEZOWGZQNmNVS2hBSHJ5T3dhMVJ0V3I4anlhZXVGcmU3c2V4SFpOOTN1Z3EzSVBRLWZQRlk0RjlwV1RlQzJhYjRlZ2dWd1VqcFJSSTlQOVJCeUNJNnZCSGl6Y0ZtTGQyMDhiOXNoRXY5UUlEcUsxR0s0RVpvZUdjVmxzakJkbUE?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Says New Service Eases Payment Compliance Burdens - Quantum Zeitgeist</a>
+          <div class="article-meta">Quantum Zeitgeist &bull; Sep 17, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft Says New Service Eases Payment Compliance Burdens&amp;nbsp;&amp;nbsp;Quantum Zeitgeist</p><a href="https://news.google.com/rss/articles/CBMihwFBVV95cUxNOEZOWGZQNmNVS2hBSHJ5T3dhMVJ0V3I4anlhZXVGcmU3c2V4SFpOOTN1Z3EzSVBRLWZQRlk0RjlwV1RlQzJhYjRlZ2dWd1VqcFJSSTlQOVJCeUNJNnZCSGl6Y0ZtTGQyMDhiOXNoRXY5UUlEcUsxR0s0RVpvZUdjVmxzakJkbUE?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a8671f5eb16')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="sharepoint" class="topic-section">
+      <h2 class="topic-title" style="--c:#036C70">SharePoint <span class="count">(6)</span></h2>
+      <div class="article-card" data-id="a32aa8572fa">
+        <div class="article-body">
+          <a href="https://petri.com/sharepoint-advanced-management-copilot-readiness-tool/" target="_blank" rel="noopener noreferrer" class="article-title">SharePoint Advanced Management Is Really a Copilot Readiness Tool</a>
+          <div class="article-meta">petri.com &bull; Sep 15, 2026</div>
+          <div class="article-summary"><p>Copilot doesn’t create SharePoint governance problems. It makes stale content, weak ownership, and oversharing much harder to ignore.
+Organizations are rushing to deploy Microsoft 365 Copilot, but in doing so, many are discovering that their biggest challenge isn’t AI adoption but years of unmanaged SharePoint content, inactive sites, and excessive permissions. SharePoint Advanced Management aims to solve those issues before they become Copilot problems.
+SharePoint Advanced Management (SAM) is a Microsoft 365 governance solution that helps administrators identify stale, risky, or overshared content in SharePoint and OneDrive while improving readiness for Microsoft 365 Copilot.
+The add-on helps to prevent oversharing, while also making lifecycle management easier and reducing content sprawl. It helps admins to answer questions such as:
+The SharePoint Advanced Management tools are accessible through the SharePoint Admin Center or through PowerShell. And while these tools are indeed SharePoint oriented, Microsoft has been increasingly positioning them as a Copilot Readiness solution.
+Before treating SharePoint Advanced Management as the answer to every Copilot governance problem, check whether the licensing model makes sense for the tenant you actually run. SAM requires eligible Microsoft 365 or Office 365 licensing, and organizations should confirm entitlement before building it into a Copilot readiness plan.
+The more important decision is whether the additional SAM licensing is justified by the scale and risk of the SharePoint environment. Tenants with large site estates, inactive sites, weak ownership, or broad internal sharing are more likely to need the add-on before Copilot rollout. Smaller or well-controlled environments may be better served by fixing the basics first and using SAM only where specific capabilities, such as restricted site creation, justify the extra cost.
+Microsoft created Microsoft 365 Copilot with governance in mind. To this end, Copilot doesn’t simply ignore SharePoint permissions, it respects them. That adherence to permissions is important from a security standpoint, but it also means that if governance is weak then SharePoint data could potentially be exposed through Copilot.
+The reason why this might happen stems from the fact that Copilot uses Microsoft Graph as a means of accessing the organization’s data. This reliance on Microsoft Graph means that Copilot is free to use any data that a user has access to. So with that in mind, imagine what would happen if a confidential folder containing sensitive data has been accidentally shared with everyone except external users. To date, the overshared folder might have escaped notice. Even though everyone in the organization technically has access to the folder, it’s entirely possible that nobody will ever see it unless someone actively searches on something that aligns with the folder’s contents.
+Copilot completely changes this risk. As Copilot formulates answers to user’s prompts, it uses any relevant information that the user has access to. So even if the user has never gone looking for anything related to the confidential folder, the folder’s contents could potentially be exposed to the user anyway through a Copilot response. In other words, Copilot has made the overshared information easier to discover.
+Another risk associated with Copilot is that outdated content can potentially reduce the quality and accuracy of Copilot’s responses. Remember, Copilot is designed to leverage any information that the user has access to when formulating a response. However, Copilot has no way of knowing if the information contained within a document is current or if that information is outdated and no longer accurate. The mere presence of outdated documents can cause Copilot to provide users with information that is no longer accurate.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a32aa8572fa')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ad56a6bd10e">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMivwFBVV95cUxPX3d0b255VWdtbHNhOUN2LUR6ZndHRl96N1QzSWtUWVVOYXNyR21LazFEUk1qdENZMmlwTXR2OFFoYzBlTURBRE1yOUgzZEFqSEJrVnhHZVBEY0JtaG9sb3Z5SU9HMlRTTEhWMV84SUNXTWZ5dzBqQUtNM2tpRG9xRURaOHNSb2x2aEMydDNkUU5HaHBNQjZGa3NpYXFFT2ZLQzlfdElYTkpZSUV5b25FRHdrUVNzdXY4SVZ0MHpRZw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft configuration change leaves SharePoint pages drawing a blank - The Register</a>
+          <div class="article-meta">The Register &bull; Sep 17, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft configuration change leaves SharePoint pages drawing a blank&amp;nbsp;&amp;nbsp;The Register</p><a href="https://news.google.com/rss/articles/CBMivwFBVV95cUxPX3d0b255VWdtbHNhOUN2LUR6ZndHRl96N1QzSWtUWVVOYXNyR21LazFEUk1qdENZMmlwTXR2OFFoYzBlTURBRE1yOUgzZEFqSEJrVnhHZVBEY0JtaG9sb3Z5SU9HMlRTTEhWMV84SUNXTWZ5dzBqQUtNM2tpRG9xRURaOHNSb2x2aEMydDNkUU5HaHBNQjZGa3NpYXFFT2ZLQzlfdElYTkpZSUV5b25FRHdrUVNzdXY4SVZ0MHpRZw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ad56a6bd10e')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aa3affbdd77">
+        <div class="article-body">
+          <a href="https://petri.com/sharepoint-advanced-management-copilot-readiness-tool/" target="_blank" rel="noopener noreferrer" class="article-title">SharePoint Advanced Management Is Really a Copilot Readiness Tool - Petri IT Knowledgebase</a>
+          <div class="article-meta">Petri IT Knowledgebase &bull; Sep 15, 2026</div>
+          <div class="article-summary"><p>Copilot doesn’t create SharePoint governance problems. It makes stale content, weak ownership, and oversharing much harder to ignore.
+Organizations are rushing to deploy Microsoft 365 Copilot, but in doing so, many are discovering that their biggest challenge isn’t AI adoption but years of unmanaged SharePoint content, inactive sites, and excessive permissions. SharePoint Advanced Management aims to solve those issues before they become Copilot problems.
+SharePoint Advanced Management (SAM) is a Microsoft 365 governance solution that helps administrators identify stale, risky, or overshared content in SharePoint and OneDrive while improving readiness for Microsoft 365 Copilot.
+The add-on helps to prevent oversharing, while also making lifecycle management easier and reducing content sprawl. It helps admins to answer questions such as:
+The SharePoint Advanced Management tools are accessible through the SharePoint Admin Center or through PowerShell. And while these tools are indeed SharePoint oriented, Microsoft has been increasingly positioning them as a Copilot Readiness solution.
+Before treating SharePoint Advanced Management as the answer to every Copilot governance problem, check whether the licensing model makes sense for the tenant you actually run. SAM requires eligible Microsoft 365 or Office 365 licensing, and organizations should confirm entitlement before building it into a Copilot readiness plan.
+The more important decision is whether the additional SAM licensing is justified by the scale and risk of the SharePoint environment. Tenants with large site estates, inactive sites, weak ownership, or broad internal sharing are more likely to need the add-on before Copilot rollout. Smaller or well-controlled environments may be better served by fixing the basics first and using SAM only where specific capabilities, such as restricted site creation, justify the extra cost.
+Microsoft created Microsoft 365 Copilot with governance in mind. To this end, Copilot doesn’t simply ignore SharePoint permissions, it respects them. That adherence to permissions is important from a security standpoint, but it also means that if governance is weak then SharePoint data could potentially be exposed through Copilot.
+The reason why this might happen stems from the fact that Copilot uses Microsoft Graph as a means of accessing the organization’s data. This reliance on Microsoft Graph means that Copilot is free to use any data that a user has access to. So with that in mind, imagine what would happen if a confidential folder containing sensitive data has been accidentally shared with everyone except external users. To date, the overshared folder might have escaped notice. Even though everyone in the organization technically has access to the folder, it’s entirely possible that nobody will ever see it unless someone actively searches on something that aligns with the folder’s contents.
+Copilot completely changes this risk. As Copilot formulates answers to user’s prompts, it uses any relevant information that the user has access to. So even if the user has never gone looking for anything related to the confidential folder, the folder’s contents could potentially be exposed to the user anyway through a Copilot response. In other words, Copilot has made the overshared information easier to discover.
+Another risk associated with Copilot is that outdated content can potentially reduce the quality and accuracy of Copilot’s responses. Remember, Copilot is designed to leverage any information that the user has access to when formulating a response. However, Copilot has no way of knowing if the information contained within a document is current or if that information is outdated and no longer accurate. The mere presence of outdated documents can cause Copilot to provide users with information that is no longer accurate.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aa3affbdd77')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a08d623afe7">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMijgFBVV95cUxNLUJiQ0xqR3NJaVRrdDVHRTFVUUFxT3pnbmQ1NU9UdGdDbFZSUXEyR2d5ZmhpTmptNnMzVkpHTXJFMXhZbnUyVms5MkFkWVZORmJxbmFfUDZRX3VsN3dQbEVKa2FsRDVfM0g5WkZlM0pVd0NicjNyNGt4NDkzLXBpSzJPR0ZIeGRMOHZRdEZ3?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Hackers Are Using Passkey Updates as a New Microsoft Phishing Hook - TechRepublic</a>
+          <div class="article-meta">TechRepublic &bull; Sep 18, 2026</div>
+          <div class="article-summary snippet"><p>Hackers Are Using Passkey Updates as a New Microsoft Phishing Hook&amp;nbsp;&amp;nbsp;TechRepublic</p><a href="https://news.google.com/rss/articles/CBMijgFBVV95cUxNLUJiQ0xqR3NJaVRrdDVHRTFVUUFxT3pnbmQ1NU9UdGdDbFZSUXEyR2d5ZmhpTmptNnMzVkpHTXJFMXhZbnUyVms5MkFkWVZORmJxbmFfUDZRX3VsN3dQbEVKa2FsRDVfM0g5WkZlM0pVd0NicjNyNGt4NDkzLXBpSzJPR0ZIeGRMOHZRdEZ3?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a08d623afe7')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ad0d38d7903">
+        <div class="article-body">
+          <a href="https://www.bleepingcomputer.com/news/security/secure-enterprise-sharing-with-access-reviews-for-microsoft-365/" target="_blank" rel="noopener noreferrer" class="article-title">Secure enterprise sharing with access reviews for Microsoft 365 - BleepingComputer</a>
+          <div class="article-meta">BleepingComputer &bull; Sep 18, 2026</div>
+          <div class="article-summary"><p>Collaboration suites like M365 offer unparalleled convenience. Millions of teams rely on them to quickly share documents with coworkers, clients and business partners. Yet when sharing is this easy, data security becomes a lot harder.
+Cloud sharing is so integral to the modern workplace that it’s difficult to imagine how offices ever got by without it. Dropping files in one-on-one chats. Spreadsheets that live in Teams channels so everyone can see the latest figures. Throwing project folders on SharePoint and sending out invite links.
+Yet for all the ways that cloud sharing has revolutionized office life, remote work and long-distance collaboration, there is a downside.
+With the usage of cloud platforms exploding over recent years, visibility into sharing is falling further and further behind. Many organizations no longer have any idea who their users are sharing potentially sensitive information with.
+Sharing moves fast. How security can keep up
+Unmanaged cloud sharing is a shockingly common problem in enterprise environments. Anywhere organizations use Microsoft 365 to share access, security teams struggle to identify and rein in problematic cloud access.
+In a survey by Wire, 61% of security leads reported that access to shared files often remains active longer than intended. Over a third acknowledge difficulties in even identifying who has access to sensitive shared files.
+One factor that makes cloud sharing difficult to evaluate from a security perspective is how context-driven the use of sharing features is. Employees share files with a specific purpose in mind, whether it’s to coordinate with a coworker or get approval from a client on a design mockup.
+The problem is that shared access often outlives or outgrows its original purpose: A freelancer could be taken off a project, but never removed from the project folder in SharePoint. Members may invite new users into a Teams channel, forgetting that they will get access to every file hosted within it.
+The highly contextual nature of cloud sharing means the only way to know for certain whether shared access is still needed is to ask the person who originally provided it. Access reviews are an essential safeguard, and looping file or channel owners into the review process leads to faster and more accurate audits.
+The challenge is in how to implement this process with the available tools of the platform.
+The problem with built-in governance tools
+The lack of control over shared data presents a growing and often underappreciated security risk in enterprise environments. At the same time, you can hardly blame teams for making full use of sharing features, the central pillar that cloud suites are built around. The problem of unmanaged cloud sharing is not so much about user behavior as it is insufficient governance features built into Microsoft 365.
+Microsoft 365 provides two reporting options that offer visibility into shared data, but both come with major limitations.
+You can generate a global report on sharing links using SharePoint Advanced Management, but this only tells you which sites had the most new links created in the last 28 days. By itself, that figure does not give you enough context to draw any useful conclusions. A high number of new links could point to misuse, or it could simply be due to a project with outside involvement, such as onboarding a new supplier.
+Similarly, you can create site-level sharing reports to get a CSV table showing every shared file within a site and everyone who has access to it. However, running this report across every SharePoint and OneDrive in your organization is incredibly time-consuming.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ad0d38d7903')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a101302c0ae">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMifEFVX3lxTFBNZUxwOWpoRENDWlA5YlA1MU54U0xfWGdtVzRFNV9QTHdZQy1DUFFiam5TeW9zT2Q1YlRPb3BNYnBQV1Z4cUM5RzJxTjFSakpYMWlOWEtvYzdDRjc3SmdTRzFybnZ6MXJXZG1zekY4Mm9lal96YTdNeHZxYVY?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Attackers Use Passkey Phishing to Hijack Microsoft Cloud Accounts and Exfiltrate Data - The Hacker News</a>
+          <div class="article-meta">The Hacker News &bull; Sep 13, 2026</div>
+          <div class="article-summary snippet"><p>Attackers Use Passkey Phishing to Hijack Microsoft Cloud Accounts and Exfiltrate Data&amp;nbsp;&amp;nbsp;The Hacker News</p><a href="https://news.google.com/rss/articles/CBMifEFVX3lxTFBNZUxwOWpoRENDWlA5YlA1MU54U0xfWGdtVzRFNV9QTHdZQy1DUFFiam5TeW9zT2Q1YlRPb3BNYnBQV1Z4cUM5RzJxTjFSakpYMWlOWEtvYzdDRjc3SmdTRzFybnZ6MXJXZG1zekY4Mm9lal96YTdNeHZxYVY?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a101302c0ae')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="intune" class="topic-section">
+      <h2 class="topic-title" style="--c:#0F6CBD">Intune <span class="count">(4)</span></h2>
+      <div class="article-card" data-id="a072f689945">
+        <div class="article-body">
+          <a href="https://techcommunity.microsoft.com/t5/intune-customer-success/moving-from-windows-autopilot-to-windows-autopilot-device/ba-p/4557269" target="_blank" rel="noopener noreferrer" class="article-title">Moving from Windows Autopilot to Windows Autopilot device preparation</a>
+          <div class="article-meta">techcommunity.microsoft.com &bull; Sep 16, 2026</div>
+          <div class="article-summary snippet"><p>By: Maggie Dakeva, Senior Product Manager - Microsoft Intune
+Organizations have spent years refining Windows Autopilot deployments. Profiles, Enrollment Status Page settings, group tags, dynamic groups, application assignments, and support processes all work together to deliver a familiar provisioning experience.
+Windows Autopilot device preparation is a re-architecture of Windows Autopilot designed around the customer asks we hear most often: simpler configuration, faster and more reliable setup, clearer progress for users, and near real-time deployment reporting for administrators. A single device preparation policy brings deployment and the out-of-box experience (OOBE) settings together, enrollment time grouping (ETG) places devices into the right security group during enrollment, and granular application and PowerShell script status makes troubleshooting easier.
+Autopilot device preparation is now the recommended solution for user-driven scenarios. Future engineering investments will focus on Windows Autopilot device preparation, enabling organizations to benefit from ongoing improvements to provisioning, reliability, reporting, and support. Moving eligible deployments positions your organization to benefit from those ongoing improvements while reducing the complexity of provisioning and support.
+So how do you move without disrupting devices that are already working - or forcing every deployment scenario to transition at once?
+The answer is a phased approach.
+Windows Autopilot and Windows Autopilot device preparation can coexist in the same organization. You can move eligible user-driven Microsoft Entra join populations in controlled waves, validate the full experience, and keep scenarios that still require Windows Autopilot on their existing path.
+The result is a practical way to adopt a simpler provisioning model while protecting the investments and workflows your organization still depends on.
+Start with the outcome, not a one-for-one migration
+Windows Autopilot device preparation brings enrollment settings, OOBE, device naming, required applications, PowerShell scripts, and enrollment-time targeting into a more coherent policy flow. The device preparation page, which replaces the Enrollment status page, gives users clearer progress and gives administrators more detailed deployment status for troubleshooting.
+Windows Autopilot device preparation includes two complementary capabilities:
+
+Device preparation policy defines the deployment experience, including OOBE settings, applications, scripts, naming, and ETG.
+Device association optionally binds a physical device to your organization before enrollment. It can establish corporate ownership and tenant affinity, enable associated-device OOBE settings, and support direct per-device policy assignment.
+
+Based on organizational needs, customers can choose to use device preparation policy, device association, or both. Device preparation policy provides the deployment configuration and experience, while device association adds pre-enrollment device affinity and device-based capabilities. Organizations can adopt each capability where it adds value to their provisioning model.
+But moving to that model shouldn't mean recreating every Windows Autopilot object exactly as it exists today.
+Instead, begin with the outcome each device population needs. Identify the required OOBE behavior, applications, scripts, naming, assignments, and support experience. Then design the device preparation policy and ETG model that delivers that outcome.
+This approach reduces inherited complexity and helps ensure that the new deployment is designed for Windows Autopilot device preparation and not constrained by the architecture it replaces.
+Choose what moves - and what stays
+Windows Autopilot device preparation is the recommended path for eligible user-driven provisioning scenarios, including:
+
+Corporate-owned Windows 11 devices
+User-driven Microsoft Entra join
+Windows 365
+
+Continue using Windows Autopilot for scenarios that aren't supported or recommended for transition, including:
+
+Pre-provisioning
+Self-deploying mode
+Hybrid Microsoft Entra join
+Autopilot into co-management
+
+This isn't an all-or-nothing decision. The right transition plan deliberately separates eligible populations from valid exceptions.
+Translate the provisioning model
+Several familiar Windows Autopilot concepts have a corresponding role in Windows Autopilot device preparation:
+Windows Autopilot ConceptWindows Autopilot Device Preparation ModelDeployment profileDevice preparation policyEnrollment Status Page profileDevice preparation policyEnrollment Status Page in OOBEDevice preparation page in OOBE
+Windows Autopilot registration
+Optional device associationProfile and dynamic group-based targeting based on group tagsGranular device preparation policy assignment with enrollment time grouping (ETG) using Microsoft Entra static security groupsDevice name template defined in the Autopilot deployment profileDevice name template defined in the device preparation policyWindows Autopilot deployments reportWindows Autopilot device preparation deployments report
+The goal is to preserve the required customer and administrator experience - not every historical configuration object.
+How the transition flow works
+A controlled transition can follow eight steps:
+
+Define the eligible population: Start with corporate-owned Windows 11 devices using user-driven Microsoft Entra join. Exclude scenarios that should remain on Windows Autopilot.
+Design enrollment time grouping (ETG): Create assigned, static Microsoft Entra security groups for populations that genuinely differ by location, role, device type, or required configuration. Don't build the new design around a group tag or a device object that must exist before enrollment.
+Create device preparation policy equivalents: Inventory each deployment profile and Enrollment Status Page pairing. Map the required OOBE settings, naming, applications, PowerShell scripts, blocking requirements, and dependencies into the new device preparation policy.
+Evaluate whether device association is required for all scenarios. For user-targeted deployments that don't need pre-enrollment tenant affinity or per-device policy selection, the organization can use the device preparation policy without device association and simplify the setup and management of device onboarding. For devices that need automatic corporate ownership, OOBE customization settings, or stronger pre-enrollment trust, continue with step 5.
+Pre-associate eligible devices. For existing registered or enrolled devices, collect the pre-association information by collecting the diagnostics logs, then exporting the DeviceLink CSV file found in the logs. Upload the CSV in the Associated devices blade in Intune and assign a device preparation policy to the device. Assignment can be done during the CSV upload process or after. Confirm that the device reaches the Pre-associated state before its planned reset or refresh.
+
+
+Note: Device pre-association is only available for devices that meet the  minimum OS and hardware requirements , including TPM 2.0.
+
+
+Pilot the complete OOBE experience. Start with new devices or reset a small, representative set of devices. Validate policy selection, ETG placement, applications, scripts, naming, progress reporting.
+Expand and pre-associate remaining devices. Pre-associate additional populations in controlled waves. You do not need to force resets to all existing enrolled devices but simply pre-associate to prepare them so they enroll via the Windows Autopilot device preparation flow whenever each device next undergoes a natural or required reset.
+Retire registered flows. Retire deployment profiles, Enrollment Status Page profiles, groups, registrations, and processes only after reporting confirms that no active or planned population still depends on them.
+
+Pre-association doesn’t reset the device or disrupt its current use. The device remains enrolled and productive until its next natural or required reset, when Windows Autopilot device preparation takes effect.
+Don't remove the Windows Autopilot registration early. Doing so can remove Autopilot properties and affect dynamic-group membership that supports the device's current configuration.
+The next time the device enters OOBE, Windows recognizes the association and follows the Windows Autopilot device preparation path. If a device is both registered and associated, association takes precedence. Plan the pilot around this behavior rather than expecting an automatic fallback to Windows Autopilot.
+OEM and partner note: Device association uploads are currently only supported through Intune. OEM and partner pre-association scenarios aren't supported yet, but they’re on the roadmap.
+What this means for your organization
+
+You can prepare existing devices for transition while they remain enrolled and in use.
+You can move one eligible population at a time instead of committing to an organization-wide cutover.
+You can preserve Windows Autopilot for scenarios that still require it.
+You can use the transition to simplify assignment and provisioning logic rather than carry every legacy object forward.
+You can retire the old configuration gradually - after validation and dependency checks confirm that nothing still relies on it.
+
+A sample customer pilot setup scenario
+Consider a multinational organization, Contoso, that uses group tags to distinguish devices in the United Kingdom and Germany and to identify different device use cases. Dynamic groups use those tags to determine which deployment profile, Enrollment Status Page configuration, applications, policies, scope tags, and naming rules apply. The organization wants to move its eligible user-driven Windows 11 populations to Windows Autopilot device preparation without reproducing the same pre-created record and dynamic-group dependencies.
+The Contoso deployment team transitions to Autopilot device preparation with the following steps:
+
+Create static security groups for each required configuration. The team creates assigned Microsoft Entra security groups such as User Devices UK and User Devices Germany. It creates separate groups only when location, role, device type, scope, or required configuration differs.
+Create a device preparation policy for each population. The team creates a policy such as User Devices UK DPP and User Devices Germany DPP. Each policy contains the required OOBE settings, applications, PowerShell scripts, blocking behavior, and device name template, and identifies the corresponding enrollment time grouping (ETG) security group.
+Assign the device preparation policies to each population. The team assigns each device preparation policy to the respective sets of devices at time of pre-association or later. During enrollment, the device joins the group selected by the device preparation policy. For example, devices assigned the User Devices UK DPP join the User Devices UK group and receive the apps and policies assigned to that group.
+Configure scope through the static groups. The team assigns the appropriate regional scope tag to each ETG security group. The device receives the associated scope tag when it joins the group during enrollment.
+Set a naming template for each device preparation policy. The organization uses a naming convention where devices start with a prefix indicating their location. The team sets UK-%SERIAL% in User Devices UK DPP and DE-%SERIAL% in User Devices Germany DPP.
+Pre-associate pilot devices without disruption. Selected devices can be pre-associated while they remain enrolled and in use. The team collects diagnostics logs via script, extracts the DeviceLink CSV files, imports them in Intune, confirms the devices reach the Pre-associated state, and keeps the Windows Autopilot registration in place until the approved reset or refresh window.
+Validate the end-to-end experience with representative devices. The admin team uses test devices representing each target population to verify policy assignment, static group membership, scope tags, naming, applications, scripts, reporting, and successful completion of the device preparation flow. Existing devices can remain in service until their next natural or required reset.
+
+Figure 1: Seven-step regional Windows Autopilot device preparation rollout workflow, from creating security groups and device preparation policies through regional configuration, pilot association, and device validation.
+This scenario is illustrative, not a completed deployment or a measured customer outcome. It shows the transition pattern: define the supported scope, replace group-tag dependencies with ETG, move Enrollment Status Page and deployment profile settings to the device preparation policy, decide where device association adds value, validate end to end, and expand in controlled waves.
+Get started
+Begin with one eligible user-driven Microsoft Entra join population. Map its current Windows Autopilot outcomes to enrollment time grouping (ETG) and a device preparation policy. Pre-associate a representative pilot, validate the complete reset-to-desktop experience, and expand only when the results meet your deployment and support criteria.
+Moving to Windows Autopilot device preparation doesn't require a forced cutover. It requires a clear boundary, a deliberately redesigned assignment model, and evidence from each wave.
+That gives IT a controlled path toward simpler provisioning while keeping every device population on the experience that supports it best.
+Learn more
+
+Windows Autopilot device preparation overview
+Compare Windows Autopilot device preparation and Windows Autopilot
+Windows Autopilot device preparation user-driven Microsoft Entra join workflow
+Windows Autopilot device preparation requirements
+
+&amp;nbsp;
+We’d love to hear your feedback! Share your thoughts in the comments below, follow us on&amp;nbsp;LinkedIn&amp;nbsp;or reach out to us on X @IntuneSuppTeam or @MSIntune.</p><a href="https://techcommunity.microsoft.com/t5/intune-customer-success/moving-from-windows-autopilot-to-windows-autopilot-device/ba-p/4557269" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a072f689945')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a110b9fb8ce">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMirwFBVV95cUxQZkZxeTNUREdEeDlMdmVLb1U1V3FUWlpzalR1YmRqU1prX2lhS1lFWU9rN1dFS2I0enJLWnBRSU1lVXFfelF6YzlDdUg1aFlPYnYzV3RQaVNqSDhPUW9ERHkxTVhNQ0ZEZnhTYlMxbUp6eGE4ei1NYXNYYkREOHZQSjFrU0kyVjNtYmszMmdlNHN2Umh6cEMwOHA5dlhiZFMxSEJ0QXlKbjl6UjJ0dUFv?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Devicie Makes Application Management Automatic within Microsoft Intune, Matching the Speed of AI - Yahoo Finance</a>
+          <div class="article-meta">Yahoo Finance &bull; Sep 14, 2026</div>
+          <div class="article-summary snippet"><p>Devicie Makes Application Management Automatic within Microsoft Intune, Matching the Speed of AI&amp;nbsp;&amp;nbsp;Yahoo Finance</p><a href="https://news.google.com/rss/articles/CBMirwFBVV95cUxQZkZxeTNUREdEeDlMdmVLb1U1V3FUWlpzalR1YmRqU1prX2lhS1lFWU9rN1dFS2I0enJLWnBRSU1lVXFfelF6YzlDdUg1aFlPYnYzV3RQaVNqSDhPUW9ERHkxTVhNQ0ZEZnhTYlMxbUp6eGE4ei1NYXNYYkREOHZQSjFrU0kyVjNtYmszMmdlNHN2Umh6cEMwOHA5dlhiZFMxSEJ0QXlKbjl6UjJ0dUFv?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a110b9fb8ce')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aa581c9996f">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiZkFVX3lxTE5kaFRQSXhKb1ZlTVBQR1NJSnI1WGI4QzRQY0RPT0Ffd0VfdlpqbjNhb3M4aGhVREpvdmxwVXg5aFZwM1ZWS1lsMmJ5MGVoT0R0S2xDYjJ3T3Z4UnZKNjBwWVMxMzFlUQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Jamf vs Intune vs Kandji: 200M vs 33M Devices [2026] - tech-insider.org</a>
+          <div class="article-meta">tech-insider.org &bull; Sep 15, 2026</div>
+          <div class="article-summary snippet"><p>Jamf vs Intune vs Kandji: 200M vs 33M Devices [2026]&amp;nbsp;&amp;nbsp;tech-insider.org</p><a href="https://news.google.com/rss/articles/CBMiZkFVX3lxTE5kaFRQSXhKb1ZlTVBQR1NJSnI1WGI4QzRQY0RPT0Ffd0VfdlpqbjNhb3M4aGhVREpvdmxwVXg5aFZwM1ZWS1lsMmJ5MGVoT0R0S2xDYjJ3T3Z4UnZKNjBwWVMxMzFlUQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aa581c9996f')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a00ce3a8bc6">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi5wFBVV95cUxNbGhycm1fZ3RNQ19NR25wWl9YM0JmSjAxNUVXRGJKeXVPWS04SG1pZTlzak1MMUZNN3BQMG5YX0V5WE5yckc0SzBoRVVPMmtRZ0xZdlpwaHE1QURnNDd3UGE5NFRneGlnc0JfSzFJSlhHWWJYd0I5UFhpTXJhNnRaTUtwZEJxVG1WWFpjLTNlZ1VIZjY0QkJLOXY2SUZKQkhTUE4weHgxb01oWm9tT3AxLW43ektrOEtwR0l0S1JlX3RXaDM5N21pRy0yTjB2dWFPY1BGZG1rVDVXWVNON19vQjkxSC03UlU?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Devicie Pty Ltd Makes Application Management Automatic Within Microsoft Intune, Matching the Speed of Ai ... - marketscreener.com</a>
+          <div class="article-meta">marketscreener.com &bull; Sep 14, 2026</div>
+          <div class="article-summary snippet"><p>Devicie Pty Ltd Makes Application Management Automatic Within Microsoft Intune, Matching the Speed of Ai ...&amp;nbsp;&amp;nbsp;marketscreener.com</p><a href="https://news.google.com/rss/articles/CBMi5wFBVV95cUxNbGhycm1fZ3RNQ19NR25wWl9YM0JmSjAxNUVXRGJKeXVPWS04SG1pZTlzak1MMUZNN3BQMG5YX0V5WE5yckc0SzBoRVVPMmtRZ0xZdlpwaHE1QURnNDd3UGE5NFRneGlnc0JfSzFJSlhHWWJYd0I5UFhpTXJhNnRaTUtwZEJxVG1WWFpjLTNlZ1VIZjY0QkJLOXY2SUZKQkhTUE4weHgxb01oWm9tT3AxLW43ektrOEtwR0l0S1JlX3RXaDM5N21pRy0yTjB2dWFPY1BGZG1rVDVXWVNON19vQjkxSC03UlU?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a00ce3a8bc6')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="entraid" class="topic-section">
+      <h2 class="topic-title" style="--c:#6B69D6">Entra ID <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a41fc1c3af4">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-agent-365-centralized-governance-ai-agents/" target="_blank" rel="noopener noreferrer" class="article-title">AI Agent Sprawl is Creating New Governance Challenges for IT Teams</a>
+          <div class="article-meta">petri.com &bull; Sep 17, 2026</div>
+          <div class="article-summary"><p>As organizations deploy more AI agents, many are discovering they have the same visibility and control problems that once fueled the rise of shadow IT.
+Key Takeaways:
+As organizations deploy more AI agents across different platforms, IT teams often lack a centralized way to track, secure, and manage them. Agents built in different environments can operate with varying permissions, data access levels, and compliance controls, making oversight more complex. Microsoft warns that this fragmented approach can increase the risk of security gaps, policy violations, and unchecked AI agent growth across the enterprise.
+Administrators may lose visibility into what agents are running, what data they can access, and whether they comply with organizational requirements. As enterprises expand their use of AI, unmanaged agents can create governance gaps similar to those seen with shadow IT, which increases operational and compliance risks.
+To address these issues, Microsoft is expanding Agent 365 with new administrative controls. This update introduces a centralized agent registry that allows administrators to view and manage agents from both Microsoft’s ecosystem and selected third-party platforms.
+Organizations can synchronize agents from environments such as Amazon Bedrock, Google Vertex AI, Salesforce Agentforce, and Databricks, which gives IT admins a single governance layer across multiple AI platforms. The new controls also support monitoring, approval workflows, policy enforcement, and lifecycle management to help organizations maintain security and compliance standards as their agent deployments grow.
+Microsoft emphasized that stronger governance introduces additional administrative oversight and management responsibilities. Organizations gain improved visibility and control, but they may need to invest time in configuring integrations, establishing approval processes, and maintaining cross-platform governance policies. The centralized approach can reduce risk, but it may also slow the rapid deployment of agents that some IT teams are used to in enterprise environments.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a41fc1c3af4')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ab61df34e74">
+        <div class="article-body">
+          <a href="https://petri.com/vmware-vcenter-flaw-ransomware-groups/" target="_blank" rel="noopener noreferrer" class="article-title">Ransomware Operators are Exploiting a Critical VMware vCenter Flaw</a>
+          <div class="article-meta">petri.com &bull; Sep 15, 2026</div>
+          <div class="article-summary"><p>What began as a vulnerability used for persistence is now attracting ransomware groups, increasing the pressure on organizations that have not yet applied Broadcom's July patch.
+Key Takeaways:
+Organizations running VMware vCenter face growing risk from a critical remote code execution vulnerability (CVE-2026-59310) that ransomware operators are now actively exploiting. This flaw, which was patched by Broadcom in July, allows unauthenticated attackers to execute code on vulnerable systems, which makes exposed vCenter deployments a high-value target.
+VMware vCenter is a centralized management platform that helps IT admins monitor, configure, and control virtualized environments built on VMware technology. They can use vCenter to oversee multiple hosts and virtual machines from a single console, automate routine tasks, allocate computing resources, enforce security policies, and support features such as workload balancing, backup, and disaster recovery.
+According to CISA, initial exploitation of the CVE-2026-59310 flaw was linked to threat actors deploying persistence tools for long-term access, but ransomware groups have now joined the campaign. A successful vCenter compromise can provide attackers with access to critical systems, sensitive data, and large numbers of virtual machines.
+CISA recommends that organizations should immediately apply the available security updates, review internet-facing vCenter instances, and verify that systems are not already compromised. CISA has added this vulnerability to its Known Exploited Vulnerabilities catalog and requires U.S. federal agencies to remediate affected systems within days.
+Emergency patching can disrupt planned maintenance schedules and require accelerated testing, but delaying remediation increases the likelihood of ransomware-related incidents. It’s advised that organizations must prioritize rapid patch deployment over their normal change-management timelines.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ab61df34e74')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a70fcd12f5f">
+        <div class="article-body">
+          <a href="https://www.bleepingcomputer.com/news/security/secure-enterprise-sharing-with-access-reviews-for-microsoft-365/" target="_blank" rel="noopener noreferrer" class="article-title">Secure enterprise sharing with access reviews for Microsoft 365</a>
+          <div class="article-meta">bleepingcomputer.com &bull; Sep 18, 2026</div>
+          <div class="article-summary"><p>Collaboration suites like M365 offer unparalleled convenience. Millions of teams rely on them to quickly share documents with coworkers, clients and business partners. Yet when sharing is this easy, data security becomes a lot harder.
+Cloud sharing is so integral to the modern workplace that it’s difficult to imagine how offices ever got by without it. Dropping files in one-on-one chats. Spreadsheets that live in Teams channels so everyone can see the latest figures. Throwing project folders on SharePoint and sending out invite links.
+Yet for all the ways that cloud sharing has revolutionized office life, remote work and long-distance collaboration, there is a downside.
+With the usage of cloud platforms exploding over recent years, visibility into sharing is falling further and further behind. Many organizations no longer have any idea who their users are sharing potentially sensitive information with.
+Sharing moves fast. How security can keep up
+Unmanaged cloud sharing is a shockingly common problem in enterprise environments. Anywhere organizations use Microsoft 365 to share access, security teams struggle to identify and rein in problematic cloud access.
+In a survey by Wire, 61% of security leads reported that access to shared files often remains active longer than intended. Over a third acknowledge difficulties in even identifying who has access to sensitive shared files.
+One factor that makes cloud sharing difficult to evaluate from a security perspective is how context-driven the use of sharing features is. Employees share files with a specific purpose in mind, whether it’s to coordinate with a coworker or get approval from a client on a design mockup.
+The problem is that shared access often outlives or outgrows its original purpose: A freelancer could be taken off a project, but never removed from the project folder in SharePoint. Members may invite new users into a Teams channel, forgetting that they will get access to every file hosted within it.
+The highly contextual nature of cloud sharing means the only way to know for certain whether shared access is still needed is to ask the person who originally provided it. Access reviews are an essential safeguard, and looping file or channel owners into the review process leads to faster and more accurate audits.
+The challenge is in how to implement this process with the available tools of the platform.
+The problem with built-in governance tools
+The lack of control over shared data presents a growing and often underappreciated security risk in enterprise environments. At the same time, you can hardly blame teams for making full use of sharing features, the central pillar that cloud suites are built around. The problem of unmanaged cloud sharing is not so much about user behavior as it is insufficient governance features built into Microsoft 365.
+Microsoft 365 provides two reporting options that offer visibility into shared data, but both come with major limitations.
+You can generate a global report on sharing links using SharePoint Advanced Management, but this only tells you which sites had the most new links created in the last 28 days. By itself, that figure does not give you enough context to draw any useful conclusions. A high number of new links could point to misuse, or it could simply be due to a project with outside involvement, such as onboarding a new supplier.
+Similarly, you can create site-level sharing reports to get a CSV table showing every shared file within a site and everyone who has access to it. However, running this report across every SharePoint and OneDrive in your organization is incredibly time-consuming.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a70fcd12f5f')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a6525718385">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMirgFBVV95cUxOXzVrTEpfZHpfTXBYN1llNFBOLXduTVl6Z3BqS0ZpQWpfanI2T3hzY21oZWRjT0p1QndleG5oaWFtN1k4SjdRRGJHMHc5ZmtEVThSdXNYZkhObUE2YkdGWTRBWUhyNUpBdjJDemRGRzdpeTJhVnRqWTZVNHhDeEpEY09QR190cHhJaE5ORjAzYzRjZjIwbkItMkxVOXIteUFsREVQaW5peU1tbklGN0E?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft wants organizations to ditch traditional VPNs for Entra Private Access - Neowin</a>
+          <div class="article-meta">Neowin &bull; Sep 17, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft wants organizations to ditch traditional VPNs for Entra Private Access&amp;nbsp;&amp;nbsp;Neowin</p><a href="https://news.google.com/rss/articles/CBMirgFBVV95cUxOXzVrTEpfZHpfTXBYN1llNFBOLXduTVl6Z3BqS0ZpQWpfanI2T3hzY21oZWRjT0p1QndleG5oaWFtN1k4SjdRRGJHMHc5ZmtEVThSdXNYZkhObUE2YkdGWTRBWUhyNUpBdjJDemRGRzdpeTJhVnRqWTZVNHhDeEpEY09QR190cHhJaE5ORjAzYzRjZjIwbkItMkxVOXIteUFsREVQaW5peU1tbklGN0E?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a6525718385')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ac4a6c93fc5">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMivgFBVV95cUxQUFpWOEs5ZG9XQ0ZWcmNMazJGOVAxakNsVjlXQ0FPUU82U1NpamxRNHJTQjVCWTJIelhXTDFBbUwzUVlnMGJ6WVBmbVEzblJpQnpLallIZjVaYXNNTnFrd3FTMkYybE9RdEhiVTR2ZUZCUEhGYllXbWlmTGR1b0VWWjBHdGpRS3VxX3ZPVVdSSE1NZUJ5LWFvaDZReHJQT2NzZTR3VDR5T0lkNEpJOFlUc1hnUVgyR2psY3NKNHF3?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Entra Agent ID Expands with MCP Firewall, Adding Network-Level Control to Agent Governance - forkast.news</a>
+          <div class="article-meta">forkast.news &bull; Sep 17, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft Entra Agent ID Expands with MCP Firewall, Adding Network-Level Control to Agent Governance&amp;nbsp;&amp;nbsp;forkast.news</p><a href="https://news.google.com/rss/articles/CBMivgFBVV95cUxQUFpWOEs5ZG9XQ0ZWcmNMazJGOVAxakNsVjlXQ0FPUU82U1NpamxRNHJTQjVCWTJIelhXTDFBbUwzUVlnMGJ6WVBmbVEzblJpQnpLallIZjVaYXNNTnFrd3FTMkYybE9RdEhiVTR2ZUZCUEhGYllXbWlmTGR1b0VWWjBHdGpRS3VxX3ZPVVdSSE1NZUJ5LWFvaDZReHJQT2NzZTR3VDR5T0lkNEpJOFlUc1hnUVgyR2psY3NKNHF3?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac4a6c93fc5')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a50605a400c">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMilgFBVV95cUxNa3ZobzF1dTBibzd4SS0xcmRIcjJ6Y0d5Wml5cGl1WGV5NmItZUN1amM5UWpMVnVwTlRtSEprTGhXMHItTWkzb2E0Zk83Mi1xUFJnQ3JqQnJZOXA4YWhCb2pHOFpuODRJY3lEcDhvUHJYdEV2OEZKY3dOdmRmak8wSEFLb2RGN1lqV0R5bkdPLWUwekE4UHc?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">IDrive Adds Microsoft Entra ID Backup to Strengthen Identity and Access Protection for Microsoft 365 Organizations - Yahoo Finance</a>
+          <div class="article-meta">Yahoo Finance &bull; Sep 14, 2026</div>
+          <div class="article-summary snippet"><p>IDrive Adds Microsoft Entra ID Backup to Strengthen Identity and Access Protection for Microsoft 365 Organizations&amp;nbsp;&amp;nbsp;Yahoo Finance</p><a href="https://news.google.com/rss/articles/CBMilgFBVV95cUxNa3ZobzF1dTBibzd4SS0xcmRIcjJ6Y0d5Wml5cGl1WGV5NmItZUN1amM5UWpMVnVwTlRtSEprTGhXMHItTWkzb2E0Zk83Mi1xUFJnQ3JqQnJZOXA4YWhCb2pHOFpuODRJY3lEcDhvUHJYdEV2OEZKY3dOdmRmak8wSEFLb2RGN1lqV0R5bkdPLWUwekE4UHc?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a50605a400c')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a70b48109e0">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMif0FVX3lxTE9uMEFUZ3ZDMGVRdVFzRlQtX1RwV25ySUExY0NTNzVjQ3ctZzV0c3N3YW94aWJtZTB1RS1RWXNMeXI2TU1Zby1IU1RhM0xacFJkeDhoZWRORjNMY2ZQS2l2QTNhQUhCSHNxREJPQVRDVk1sTGViMllBSjN0eE5Ma2M?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">SailPoint vs Saviynt vs Entra ID Governance [2026] - tech-insider.org</a>
+          <div class="article-meta">tech-insider.org &bull; Sep 15, 2026</div>
+          <div class="article-summary snippet"><p>SailPoint vs Saviynt vs Entra ID Governance [2026]&amp;nbsp;&amp;nbsp;tech-insider.org</p><a href="https://news.google.com/rss/articles/CBMif0FVX3lxTE9uMEFUZ3ZDMGVRdVFzRlQtX1RwV25ySUExY0NTNzVjQ3ctZzV0c3N3YW94aWJtZTB1RS1RWXNMeXI2TU1Zby1IU1RhM0xacFJkeDhoZWRORjNMY2ZQS2l2QTNhQUhCSHNxREJPQVRDVk1sTGViMllBSjN0eE5Ma2M?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a70b48109e0')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a13dbec0d1f">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMizwFBVV95cUxOYmRUMHpQNUZxUDNhN2ZzODRUT0x6N0d6cHpNNUZxa2R6eklVZm5sMzJNbDFiLTlWcXhlS2o4UGtLeFo3YVNrTE9TdkVIcmpYbkRyUjRaWWs1djJaNFpOLVRzSWQ1aUZwcU00RXZUZ19PRlpYalNCc1JrNjNEWlRISldqSk9UeUdxeWYxRTFMbEhSX3BaZE1jTFd5WDdTOW9RbktRS2N6LXNobzRJM2pTaDhWcVpIOVJYcjRhOXotOWZiaHA1T1NFOGVBWVlVNTQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">BlackBerry AtHoc adds Teams, Entra ID integrations for faster crisis response - scanx.trade</a>
+          <div class="article-meta">scanx.trade &bull; Sep 18, 2026</div>
+          <div class="article-summary snippet"><p>BlackBerry AtHoc adds Teams, Entra ID integrations for faster crisis response&amp;nbsp;&amp;nbsp;scanx.trade</p><a href="https://news.google.com/rss/articles/CBMizwFBVV95cUxOYmRUMHpQNUZxUDNhN2ZzODRUT0x6N0d6cHpNNUZxa2R6eklVZm5sMzJNbDFiLTlWcXhlS2o4UGtLeFo3YVNrTE9TdkVIcmpYbkRyUjRaWWs1djJaNFpOLVRzSWQ1aUZwcU00RXZUZ19PRlpYalNCc1JrNjNEWlRISldqSk9UeUdxeWYxRTFMbEhSX3BaZE1jTFd5WDdTOW9RbktRS2N6LXNobzRJM2pTaDhWcVpIOVJYcjRhOXotOWZiaHA1T1NFOGVBWVlVNTQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a13dbec0d1f')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="m365" class="topic-section">
+      <h2 class="topic-title" style="--c:#D83B01">Microsoft 365 <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="ae1dc5f5277">
+        <div class="article-body">
+          <a href="https://www.microsoft.com/en-us/microsoft-cloud/blog/government/government-operations-and-infrastructure/2026/09/15/introducing-microsoft-365-g7-intelligence-trust-for-the-mission-ahead/" target="_blank" rel="noopener noreferrer" class="article-title">Introducing Microsoft 365 G7: Intelligence + Trust for the mission ahead</a>
+          <div class="article-meta">microsoft.com &bull; Sep 15, 2026</div>
+          <div class="article-summary"><p>The next evolution of Microsoft 365 for government brings productivity, AI, agents, security, identity, compliance, and governance together for organizations operating in Government Community Cloud (GCC) environments.
+Across government, leaders are being asked to modernize services, address evolving cybersecurity needs, and help their teams meet growing demands simultaneously. AI tools can play an important role, but technology alone is not enough. Agencies need intelligence grounded in how they work, agents that extend that intelligence, and a control plane to help govern AI adoption securely. Innovation and trust must advance together.
+Today, we are announcing the launch of Microsoft 365 G7, the Frontier Suite for government, to Government Community Cloud (GCC) environments. G7 extends the Intelligence + Trust vision introduced with Microsoft 365 E7 to government agencies, bringing together productivity, AI, agents, security, identity, compliance, and governance to support government organizations as they help accelerate mission outcomes and further mature their governed approach to adopting AI at organizational scale.
+Both Microsoft 365 G7 and Agent 365 will be available for GCC customers to purchase on October 1, with capabilities expanding in phases. Customers can begin licensing, planning, and adopting available experiences at launch, with additional workloads rolling out as they complete required GCC authorization milestones. This phased approach advances innovation with the rigor government missions demand.
+Built on the trusted foundation of Microsoft 365 for government
+Microsoft 365 G7 extends the Microsoft 365 foundation agencies know, starting with Microsoft 365 G5 solutions that bring together productivity and collaboration with information protection, security, and compliance capabilities. Microsoft Entra Suite builds on this with advanced identity, access governance, and network security capabilities for users and agents.
+G7 is designed to support Frontier Transformation across the U.S. public sector by providing capabilities that agencies can use as they move from isolated AI experimentation toward governed adoption at organizational scale. It connects intelligence to the flow of everyday work, gives agencies a foundation for creating and using mission-focused agents, and provides the controls that IT and security leaders need to manage people, agents, data, and access with confidence.
+AI embedded in the flow of work
+AI should make everyday work simpler, not create another destination. G7 brings Microsoft Copilot and AI-powered Microsoft 365 experiences into the applications government employees already use. Work IQ grounds these experiences in organizational data, context, and tools with governance capabilities designed to operate in accordance with applicable permissions, so Copilot can provide assistance informed by an agency’s work context and help users complete mission-related work.
+At general availability, G7 will bring the value of Microsoft Copilot into a unified offering designed for government. Government teams can use Copilot to support research and analysis, find and synthesize organizational knowledge, and draft, refine, and collaborate on content in the Microsoft 365 apps and experiences they use every day.
+In the months following GA, G7 will also benefit from a surge of new capabilities rolling out in Microsoft Copilot across our US Government clouds, including the latest commercially available GPT models, Work IQ memory and personalization, Edit with Copilot across Word, Excel, and PowerPoint, and Copilot Cowork for longer-running, multi-step work.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ae1dc5f5277')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a32aa8572fa">
+        <div class="article-body">
+          <a href="https://petri.com/sharepoint-advanced-management-copilot-readiness-tool/" target="_blank" rel="noopener noreferrer" class="article-title">SharePoint Advanced Management Is Really a Copilot Readiness Tool</a>
+          <div class="article-meta">petri.com &bull; Sep 15, 2026</div>
+          <div class="article-summary"><p>Copilot doesn’t create SharePoint governance problems. It makes stale content, weak ownership, and oversharing much harder to ignore.
+Organizations are rushing to deploy Microsoft 365 Copilot, but in doing so, many are discovering that their biggest challenge isn’t AI adoption but years of unmanaged SharePoint content, inactive sites, and excessive permissions. SharePoint Advanced Management aims to solve those issues before they become Copilot problems.
+SharePoint Advanced Management (SAM) is a Microsoft 365 governance solution that helps administrators identify stale, risky, or overshared content in SharePoint and OneDrive while improving readiness for Microsoft 365 Copilot.
+The add-on helps to prevent oversharing, while also making lifecycle management easier and reducing content sprawl. It helps admins to answer questions such as:
+The SharePoint Advanced Management tools are accessible through the SharePoint Admin Center or through PowerShell. And while these tools are indeed SharePoint oriented, Microsoft has been increasingly positioning them as a Copilot Readiness solution.
+Before treating SharePoint Advanced Management as the answer to every Copilot governance problem, check whether the licensing model makes sense for the tenant you actually run. SAM requires eligible Microsoft 365 or Office 365 licensing, and organizations should confirm entitlement before building it into a Copilot readiness plan.
+The more important decision is whether the additional SAM licensing is justified by the scale and risk of the SharePoint environment. Tenants with large site estates, inactive sites, weak ownership, or broad internal sharing are more likely to need the add-on before Copilot rollout. Smaller or well-controlled environments may be better served by fixing the basics first and using SAM only where specific capabilities, such as restricted site creation, justify the extra cost.
+Microsoft created Microsoft 365 Copilot with governance in mind. To this end, Copilot doesn’t simply ignore SharePoint permissions, it respects them. That adherence to permissions is important from a security standpoint, but it also means that if governance is weak then SharePoint data could potentially be exposed through Copilot.
+The reason why this might happen stems from the fact that Copilot uses Microsoft Graph as a means of accessing the organization’s data. This reliance on Microsoft Graph means that Copilot is free to use any data that a user has access to. So with that in mind, imagine what would happen if a confidential folder containing sensitive data has been accidentally shared with everyone except external users. To date, the overshared folder might have escaped notice. Even though everyone in the organization technically has access to the folder, it’s entirely possible that nobody will ever see it unless someone actively searches on something that aligns with the folder’s contents.
+Copilot completely changes this risk. As Copilot formulates answers to user’s prompts, it uses any relevant information that the user has access to. So even if the user has never gone looking for anything related to the confidential folder, the folder’s contents could potentially be exposed to the user anyway through a Copilot response. In other words, Copilot has made the overshared information easier to discover.
+Another risk associated with Copilot is that outdated content can potentially reduce the quality and accuracy of Copilot’s responses. Remember, Copilot is designed to leverage any information that the user has access to when formulating a response. However, Copilot has no way of knowing if the information contained within a document is current or if that information is outdated and no longer accurate. The mere presence of outdated documents can cause Copilot to provide users with information that is no longer accurate.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a32aa8572fa')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a0076740b27">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-365-governance-under-pressure/" target="_blank" rel="noopener noreferrer" class="article-title">AI is Exposing Microsoft 365 Governance Problems Organizations Thought They Had Solved</a>
+          <div class="article-meta">petri.com &bull; Sep 15, 2026</div>
+          <div class="article-summary"><p>Many IT leaders believe governance is under control, but AI is making long-standing permission and visibility problems much harder to overlook.
+Key Takeaways:
+Many organizations believe they have strong Microsoft 365 governance practices in place, but the data suggests otherwise. According to the State of M365 Governance Report 2026, most IT leaders are confident they know who can access sensitive information and trust their governance controls.
+However, that confidence often disguises significant issues such as excessive permissions, poorly monitored audit logs, and confidential content that remains accessible to unauthorized groups. As AI tools like Microsoft 365 Copilot gain access to organizational data, these governance weaknesses become much harder to ignore in enterprise environments.
+Organizations face growing security and compliance risks despite believing their environments are under control. This report found various experiences with security incidents linked to misconfigurations and over-permissioned access.
+However, many companies continue to struggle with content sprawl and visibility gaps. In an AI-powered workplace, these issues can have greater impact because AI systems can surface information according to existing permissions, which potentially exposes sensitive data that was never intended to be broadly accessible.
+According to the report, governance must move beyond basic compliance exercises and become a continuous operational discipline. Organizations should regularly review permissions, monitor audit activity more actively, reduce unnecessary access rights, and establish clearer ownership of content across Microsoft 365 workloads.
+Additionally, strong governance is positioned as a prerequisite for secure AI adoption rather than a separate IT initiative. This research emphasizes the need for greater visibility and control over SharePoint, Microsoft Teams, and OneDrive environments before deploying AI at scale.
+However, keep in mind that improving governance requires additional oversight, tighter controls, and ongoing administrative effort. Organizations may need to slow down some AI deployments, invest in governance tooling, or implement stricter access-management processes. This report suggests these measures are necessary compromises for reducing security exposure and ensuring that AI tools operate within a properly governed data environment.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a0076740b27')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ae9bfc3d9c3">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMihgFBVV95cUxOSGpCcjBsOVRLVHR3cUJHWS05d1pPNDJqUk9VblE2VjBKaUI3dmpMMmZWVlMyd2MxVDdSN21pS3ZZYXhmblVWNzJmMXk4NFE3Z01VZlp1UlV4UmRXUFZWZjVoaTB6X3ZmNHJ2Nm1EdlpMM1VOWVlMbTZXa3BpcEZ2OHY5aEdSdw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Moody’s guards against risk with decision-grade intelligence live in Copilot - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; Sep 19, 2026</div>
+          <div class="article-summary snippet"><p>Moody’s guards against risk with decision-grade intelligence live in Copilot&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMihgFBVV95cUxOSGpCcjBsOVRLVHR3cUJHWS05d1pPNDJqUk9VblE2VjBKaUI3dmpMMmZWVlMyd2MxVDdSN21pS3ZZYXhmblVWNzJmMXk4NFE3Z01VZlp1UlV4UmRXUFZWZjVoaTB6X3ZmNHJ2Nm1EdlpMM1VOWVlMbTZXa3BpcEZ2OHY5aEdSdw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ae9bfc3d9c3')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="acb28ca23de">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMilgFBVV95cUxNS1FpN1ZuX0VPZ1FiRTRGWmNPdVVPTVlwREJQUUlKSXcxZXZ1TkVPcjZRdm1KdHR3M1d4bVlxa0h1a3NBUEFMSGNOcHRtNi1oQVVlMWdCY2NseGE4LUdjSHgwd2hVSlo2MVpDYlRoR2daVnBscE8zT0NDM2J5S2lucW01UkpBSzBkbjBfLW1qU3Y0MC1EMVE?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">What’s New in Microsoft 365 – September 2026 - Seton Hall</a>
+          <div class="article-meta">Seton Hall &bull; Sep 16, 2026</div>
+          <div class="article-summary snippet"><p>What’s New in Microsoft 365 – September 2026&amp;nbsp;&amp;nbsp;Seton Hall</p><a href="https://news.google.com/rss/articles/CBMilgFBVV95cUxNS1FpN1ZuX0VPZ1FiRTRGWmNPdVVPTVlwREJQUUlKSXcxZXZ1TkVPcjZRdm1KdHR3M1d4bVlxa0h1a3NBUEFMSGNOcHRtNi1oQVVlMWdCY2NseGE4LUdjSHgwd2hVSlo2MVpDYlRoR2daVnBscE8zT0NDM2J5S2lucW01UkpBSzBkbjBfLW1qU3Y0MC1EMVE?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('acb28ca23de')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a88d98d0882">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMitwFBVV95cUxOTVl5TGxJeGFvb1NOVWVfQUN1a3hjZEstQmFVeTAwLWwtZm5BOWxwZ3RGNmhsdThxbWR1c003U0VicTBldlF0ZUFuZGZ5TDMtSnJyU2thRVQ2Xy1tSkIwUVNuZlJnamZGMWVPSnExWTE2eURUb2ppdzdNa0M1ZFB0akEwSUJUbEdVellnbE9QY3RscjFDcmQ3SEdoM1NpX3p6UjNmQURheWR0YlFkcHFLRV9PMGFFem8?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft 365 Sensitivity Labels coming to Coast Guard files Sept. 28 - United States Coast Guard (.mil)</a>
+          <div class="article-meta">United States Coast Guard (.mil) &bull; Sep 15, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft 365 Sensitivity Labels coming to Coast Guard files Sept. 28&amp;nbsp;&amp;nbsp;United States Coast Guard (.mil)</p><a href="https://news.google.com/rss/articles/CBMitwFBVV95cUxOTVl5TGxJeGFvb1NOVWVfQUN1a3hjZEstQmFVeTAwLWwtZm5BOWxwZ3RGNmhsdThxbWR1c003U0VicTBldlF0ZUFuZGZ5TDMtSnJyU2thRVQ2Xy1tSkIwUVNuZlJnamZGMWVPSnExWTE2eURUb2ppdzdNa0M1ZFB0akEwSUJUbEdVellnbE9QY3RscjFDcmQ3SEdoM1NpX3p6UjNmQURheWR0YlFkcHFLRV9PMGFFem8?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a88d98d0882')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ad0d38d7903">
+        <div class="article-body">
+          <a href="https://www.bleepingcomputer.com/news/security/secure-enterprise-sharing-with-access-reviews-for-microsoft-365/" target="_blank" rel="noopener noreferrer" class="article-title">Secure enterprise sharing with access reviews for Microsoft 365 - BleepingComputer</a>
+          <div class="article-meta">BleepingComputer &bull; Sep 18, 2026</div>
+          <div class="article-summary"><p>Collaboration suites like M365 offer unparalleled convenience. Millions of teams rely on them to quickly share documents with coworkers, clients and business partners. Yet when sharing is this easy, data security becomes a lot harder.
+Cloud sharing is so integral to the modern workplace that it’s difficult to imagine how offices ever got by without it. Dropping files in one-on-one chats. Spreadsheets that live in Teams channels so everyone can see the latest figures. Throwing project folders on SharePoint and sending out invite links.
+Yet for all the ways that cloud sharing has revolutionized office life, remote work and long-distance collaboration, there is a downside.
+With the usage of cloud platforms exploding over recent years, visibility into sharing is falling further and further behind. Many organizations no longer have any idea who their users are sharing potentially sensitive information with.
+Sharing moves fast. How security can keep up
+Unmanaged cloud sharing is a shockingly common problem in enterprise environments. Anywhere organizations use Microsoft 365 to share access, security teams struggle to identify and rein in problematic cloud access.
+In a survey by Wire, 61% of security leads reported that access to shared files often remains active longer than intended. Over a third acknowledge difficulties in even identifying who has access to sensitive shared files.
+One factor that makes cloud sharing difficult to evaluate from a security perspective is how context-driven the use of sharing features is. Employees share files with a specific purpose in mind, whether it’s to coordinate with a coworker or get approval from a client on a design mockup.
+The problem is that shared access often outlives or outgrows its original purpose: A freelancer could be taken off a project, but never removed from the project folder in SharePoint. Members may invite new users into a Teams channel, forgetting that they will get access to every file hosted within it.
+The highly contextual nature of cloud sharing means the only way to know for certain whether shared access is still needed is to ask the person who originally provided it. Access reviews are an essential safeguard, and looping file or channel owners into the review process leads to faster and more accurate audits.
+The challenge is in how to implement this process with the available tools of the platform.
+The problem with built-in governance tools
+The lack of control over shared data presents a growing and often underappreciated security risk in enterprise environments. At the same time, you can hardly blame teams for making full use of sharing features, the central pillar that cloud suites are built around. The problem of unmanaged cloud sharing is not so much about user behavior as it is insufficient governance features built into Microsoft 365.
+Microsoft 365 provides two reporting options that offer visibility into shared data, but both come with major limitations.
+You can generate a global report on sharing links using SharePoint Advanced Management, but this only tells you which sites had the most new links created in the last 28 days. By itself, that figure does not give you enough context to draw any useful conclusions. A high number of new links could point to misuse, or it could simply be due to a project with outside involvement, such as onboarding a new supplier.
+Similarly, you can create site-level sharing reports to get a CSV table showing every shared file within a site and everyone who has access to it. However, running this report across every SharePoint and OneDrive in your organization is incredibly time-consuming.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ad0d38d7903')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ac0434c0918">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiwAFBVV95cUxOWmprSHdOa2JyMFZLWEg2cFhPNXBkUzVyZHZwYnp3bDBCdGZPVXVmLVZDUDE1Wk51SnBlZ0JIbUJ3UWdvdWp5OVhPSjNvTzJOdDdQRnRTdHJZcm44enl3TlFwRkJlZ0xHU0trYVlWVHVaQTFPeUtMaW9Temg3YkRzUFVpamltdW9RcTE1UlpLZlZwNHJHUHJjWkxodEd0OW93RVJac2VnN0RacGtydVhFaVdhSVR5cnZwdHUtX3BIQTM?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">GhostCode attackers abuse device codes to hijack Microsoft 365 accounts - csoonline.com</a>
+          <div class="article-meta">csoonline.com &bull; Sep 18, 2026</div>
+          <div class="article-summary snippet"><p>GhostCode attackers abuse device codes to hijack Microsoft 365 accounts&amp;nbsp;&amp;nbsp;csoonline.com</p><a href="https://news.google.com/rss/articles/CBMiwAFBVV95cUxOWmprSHdOa2JyMFZLWEg2cFhPNXBkUzVyZHZwYnp3bDBCdGZPVXVmLVZDUDE1Wk51SnBlZ0JIbUJ3UWdvdWp5OVhPSjNvTzJOdDdQRnRTdHJZcm44enl3TlFwRkJlZ0xHU0trYVlWVHVaQTFPeUtMaW9Temg3YkRzUFVpamltdW9RcTE1UlpLZlZwNHJHUHJjWkxodEd0OW93RVJac2VnN0RacGtydVhFaVdhSVR5cnZwdHUtX3BIQTM?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac0434c0918')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="iru" class="topic-section">
+      <h2 class="topic-title" style="--c:#7C3AED">Iru MDM (formerly Kandji) </h2>
+      <p class="no-news">No articles found this week.</p>
+    </section>
+    <section id="cato" class="topic-section">
+      <h2 class="topic-title" style="--c:#FF6B35">Cato Networks <span class="count">(4)</span></h2>
+      <div class="article-card" data-id="a6d7a8963b7">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMirwFBVV95cUxOaTVWaHppTW56aFNzZkg1Skt3RGhsdjN6WVRoNUVzcHRHNEdISVBfRVFaTDlDaXFBNTA3aFdIbklONTI4Y2VHQzdfamhVclplRTlkd251dnpFd3B5ZGRRS2x6dWJaVERKVTYxM0V6eVdQbERpZXRrNThRTGdTYUUtNXFWMzhkMEt2Q0lwSUtqSkxhZHNwSjVlNWg4c19iQl9FMFpqWHBYSEw3OXVjdG1j0gG0AUFVX3lxTE83QVc3dU5zbHV0S1E0MlVBQ0NuMHFnMmM0SGlaUmhQZ2FIUkJHLWJfTXFCVWRoOE16ZkhlSlZFdm1BLVd2QkVGODQ3ZjR1QjN0VXlySzlCWlVpbXJIRmFHNjZLRHV4UU9fdzNxckxkNDNvN2dKVEhTLW1idnN5VmQycEFhM3FWQTl2S0M1VjU2aFM2V0gwZlhaV3hQLTY1VTl4aDJkWEFxTFMyTEQ1aXg0R0RlTQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Thrive Expands NextGen Platform With Elastic MDR And Cato Networks Zero Trust Integrations - Pulse 2.0</a>
+          <div class="article-meta">Pulse 2.0 &bull; Sep 16, 2026</div>
+          <div class="article-summary snippet"><p>Thrive Expands NextGen Platform With Elastic MDR And Cato Networks Zero Trust Integrations&amp;nbsp;&amp;nbsp;Pulse 2.0</p><a href="https://news.google.com/rss/articles/CBMirwFBVV95cUxOaTVWaHppTW56aFNzZkg1Skt3RGhsdjN6WVRoNUVzcHRHNEdISVBfRVFaTDlDaXFBNTA3aFdIbklONTI4Y2VHQzdfamhVclplRTlkd251dnpFd3B5ZGRRS2x6dWJaVERKVTYxM0V6eVdQbERpZXRrNThRTGdTYUUtNXFWMzhkMEt2Q0lwSUtqSkxhZHNwSjVlNWg4c19iQl9FMFpqWHBYSEw3OXVjdG1j0gG0AUFVX3lxTE83QVc3dU5zbHV0S1E0MlVBQ0NuMHFnMmM0SGlaUmhQZ2FIUkJHLWJfTXFCVWRoOE16ZkhlSlZFdm1BLVd2QkVGODQ3ZjR1QjN0VXlySzlCWlVpbXJIRmFHNjZLRHV4UU9fdzNxckxkNDNvN2dKVEhTLW1idnN5VmQycEFhM3FWQTl2S0M1VjU2aFM2V0gwZlhaV3hQLTY1VTl4aDJkWEFxTFMyTEQ1aXg0R0RlTQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a6d7a8963b7')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a52b92defd9">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMikAFBVV95cUxOWk5FdHdaRmNEU2F5em5TVms2c0V4bFY4Y1dDUVo1QnpueXdrTnp3YXNpOU1ORFNsUDRDMXVMYmRxYllWSVhUdlA2WHFySnYzcGwtREFxaGlCaGE1M190dWpmN2FYREwzWlI0MU5MbFJScnlqVkxaM25PdTNkMU5ZTHluc05uY3Z6am1YTU1UdzE?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Thrive adds Elastic &amp; Cato to NextGen security platform - SecurityBrief UK</a>
+          <div class="article-meta">SecurityBrief UK &bull; Sep 16, 2026</div>
+          <div class="article-summary snippet"><p>Thrive adds Elastic &amp; Cato to NextGen security platform&amp;nbsp;&amp;nbsp;SecurityBrief UK</p><a href="https://news.google.com/rss/articles/CBMikAFBVV95cUxOWk5FdHdaRmNEU2F5em5TVms2c0V4bFY4Y1dDUVo1QnpueXdrTnp3YXNpOU1ORFNsUDRDMXVMYmRxYllWSVhUdlA2WHFySnYzcGwtREFxaGlCaGE1M190dWpmN2FYREwzWlI0MU5MbFJScnlqVkxaM25PdTNkMU5ZTHluc05uY3Z6am1YTU1UdzE?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a52b92defd9')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a4f67b585b5">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi-gFBVV95cUxQeG1pUTdXUkx5SGtTWElPaTJSNjBTX0ZxaUkyTEtFbGtEYTkxZFZHZlNvVmZLdkhoeGJCdnFxVGs3Y2xDUFhFQlpjdGRjWDVFeUNtRm52bWtnM0gyQk1YM1NkQ2FJRWU0SklvWG1TRGt3aDZMTmdPekl5U3dIMF9YMmpHb2NEeXRCa29IRmROd3BxWi04VHJTX3ZKZ05SUzh3bXdxa2tCX04yYkZmR19lbW03d0RxNnk1UVZlRlQ1di10VzE1VEQ0S3M3REZoVnNzZ1p1ZDMtYXYxT01pYTQ5dXRidU93SG4tcElRblpYRUxzb3U3QXRaRXd3?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">ZAWYA: South Africa: IOCO adds the Cato SASE Platform to its managed cybersecurity portfolio - TradingView</a>
+          <div class="article-meta">TradingView &bull; Sep 14, 2026</div>
+          <div class="article-summary snippet"><p>ZAWYA: South Africa: IOCO adds the Cato SASE Platform to its managed cybersecurity portfolio&amp;nbsp;&amp;nbsp;TradingView</p><a href="https://news.google.com/rss/articles/CBMi-gFBVV95cUxQeG1pUTdXUkx5SGtTWElPaTJSNjBTX0ZxaUkyTEtFbGtEYTkxZFZHZlNvVmZLdkhoeGJCdnFxVGs3Y2xDUFhFQlpjdGRjWDVFeUNtRm52bWtnM0gyQk1YM1NkQ2FJRWU0SklvWG1TRGt3aDZMTmdPekl5U3dIMF9YMmpHb2NEeXRCa29IRmROd3BxWi04VHJTX3ZKZ05SUzh3bXdxa2tCX04yYkZmR19lbW03d0RxNnk1UVZlRlQ1di10VzE1VEQ0S3M3REZoVnNzZ1p1ZDMtYXYxT01pYTQ5dXRidU93SG4tcElRblpYRUxzb3U3QXRaRXd3?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a4f67b585b5')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a77dc5ff3eb">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMivAFBVV95cUxOdTlicktNYlhYUkZvRTJMZ1VnYlo0bjdOU1hreG5jYWE1QUpoazQ0WHk5QnRqMUZkd2JfWUUwZENVTnF0a2Rwa3JzSGN1bURqRnNQYjU3UHpTS3BIMXQwSHFLN1NmeEUtYW8za2lWWC00cXVSSkR4M01mZ2I5NXdTOG9wZlBxMjdEQUhxVXNGMTQzZ3YxamNwN1BFN1piWnNfVmVtMDRBR2tvemptS2J6aEZjc2RKempGQWd0OA?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">IOCO widens cybersecurity push with Cato SASE tie-up - ciosea.economictimes.indiatimes.com</a>
+          <div class="article-meta">ciosea.economictimes.indiatimes.com &bull; Sep 16, 2026</div>
+          <div class="article-summary snippet"><p>IOCO widens cybersecurity push with Cato SASE tie-up&amp;nbsp;&amp;nbsp;ciosea.economictimes.indiatimes.com</p><a href="https://news.google.com/rss/articles/CBMivAFBVV95cUxOdTlicktNYlhYUkZvRTJMZ1VnYlo0bjdOU1hreG5jYWE1QUpoazQ0WHk5QnRqMUZkd2JfWUUwZENVTnF0a2Rwa3JzSGN1bURqRnNQYjU3UHpTS3BIMXQwSHFLN1NmeEUtYW8za2lWWC00cXVSSkR4M01mZ2I5NXdTOG9wZlBxMjdEQUhxVXNGMTQzZ3YxamNwN1BFN1piWnNfVmVtMDRBR2tvemptS2J6aEZjc2RKempGQWd0OA?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a77dc5ff3eb')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+</main>
+
+<footer>
+  Generated every Sunday &mdash; Topics: Windows &bull; Azure &bull; SharePoint &bull; Intune &bull; Entra ID &bull; Microsoft 365 &bull; Iru MDM (formerly Kandji) &bull; Cato Networks
+</footer>
+
+<script>
+const KEY = 'it-news-hidden-v1';
+function getHidden() {
+  try { return new Set(JSON.parse(localStorage.getItem(KEY) || '[]')); }
+  catch { return new Set(); }
+}
+function saveHidden(s) { localStorage.setItem(KEY, JSON.stringify([...s])); }
+function toggleArticle(id) {
+  const h = getHidden();
+  h.has(id) ? h.delete(id) : h.add(id);
+  saveHidden(h); applyHidden(h);
+}
+function applyHidden(h) {
+  h = h || getHidden();
+  document.querySelectorAll('.article-card[data-id]').forEach(c => {
+    c.classList.toggle('is-hidden', h.has(c.dataset.id));
+  });
+}
+let revealing = false;
+function toggleReveal() {
+  revealing = !revealing;
+  document.body.classList.toggle('reveal-hidden', revealing);
+  document.getElementById('reveal-btn').textContent = revealing ? 'Hide hidden' : 'Show hidden';
+}
+fetch('weeks.json').then(r => r.json()).then(weeks => {
+  const sel = document.getElementById('week-sel');
+  weeks.forEach(w => {
+    const o = document.createElement('option');
+    o.value = w.file; o.textContent = w.label;
+    if (w.current) o.selected = true;
+    sel.appendChild(o);
+  });
+}).catch(() => {});
+applyHidden();
+</script>
+</body>
+</html>
