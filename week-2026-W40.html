@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT News Digest — 2026-W40</title>
+  <style>
+    :root{--bg:#f8fafc;--surface:#fff;--border:#e2e8f0;--text:#1e293b;--muted:#64748b;--accent:#2563eb}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+    a{color:var(--accent)}
+
+    header{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+    .h-inner{max-width:1000px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .h-brand{font-size:1.1rem;font-weight:800;color:#1d4ed8}
+    .h-meta{font-size:.78rem;color:var(--muted)}
+    .h-controls{display:flex;gap:8px;align-items:center}
+    .btn{padding:5px 12px;border-radius:6px;font-size:.78rem;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);white-space:nowrap}
+    .btn:hover{background:#f1f5f9}
+    select.week-sel{padding:5px 10px;border-radius:6px;border:1px solid var(--border);background:var(--surface);font-size:.78rem;cursor:pointer;color:var(--text)}
+
+    .t-nav{background:var(--surface);border-bottom:1px solid var(--border);overflow-x:auto}
+    .t-nav-inner{max-width:1000px;margin:0 auto;padding:8px 20px;display:flex;gap:6px;min-width:max-content}
+    .nav-link{font-size:.72rem;padding:3px 10px;border-radius:20px;border:2px solid var(--c,#2563eb);color:var(--c,#2563eb);text-decoration:none;font-weight:600;white-space:nowrap}
+    .nav-link:hover{background:var(--c,#2563eb);color:#fff}
+
+    main{max-width:1000px;margin:0 auto;padding:24px 20px}
+
+    .week-hero{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin-bottom:28px;display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+    .hero-title{font-size:1.6rem;font-weight:900;color:#1d4ed8}
+    .hero-sub{font-size:.85rem;color:var(--muted);margin-top:2px}
+    .stat-box{text-align:center;min-width:60px}
+    .stat-num{font-size:2rem;font-weight:900;color:#1d4ed8;line-height:1}
+    .stat-lbl{font-size:.65rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+
+    .topic-section{margin-bottom:40px}
+    .topic-title{font-size:1.2rem;font-weight:800;color:var(--c,#2563eb);border-bottom:3px solid var(--c,#2563eb);padding-bottom:8px;margin-bottom:14px}
+    .count{font-size:.8rem;font-weight:400;color:var(--muted)}
+    .no-news{color:var(--muted);font-style:italic;font-size:.88rem}
+
+    .article-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:12px;display:flex;gap:12px;align-items:flex-start;transition:border-color .15s}
+    .article-card:hover{border-color:#94a3b8}
+    .article-body{flex:1;min-width:0}
+    .article-title{font-size:.98rem;font-weight:600;text-decoration:none;display:block;margin-bottom:4px;color:var(--accent)}
+    .article-title:hover{text-decoration:underline}
+    .article-meta{font-size:.72rem;color:var(--muted);margin-bottom:8px}
+
+    .article-summary{margin-top:6px;font-size:.875rem;color:#334155;line-height:1.75}
+    .article-summary p{margin-bottom:.6em}
+    .article-summary p:last-child{margin-bottom:0}
+    .gnews-badge{display:inline-block;font-size:.65rem;background:#fef3c7;color:#92400e;border-radius:4px;padding:1px 5px;margin-bottom:6px;vertical-align:middle}
+    .article-summary.snippet{color:var(--muted)}
+    .read-more{display:inline-block;margin-top:6px;font-size:.8rem;font-weight:600;color:var(--accent);text-decoration:none}
+    .read-more:hover{text-decoration:underline}
+
+    .hide-btn{flex-shrink:0;padding:5px 10px;border-radius:6px;font-size:.72rem;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--muted);white-space:nowrap;align-self:flex-start}
+    .hide-btn:hover{border-color:#ef4444;color:#ef4444;background:#fef2f2}
+    .lbl-show{display:none}
+
+    .article-card.is-hidden{display:none}
+    body.reveal-hidden .article-card.is-hidden{display:flex;opacity:.45;border-style:dashed}
+    .article-card.is-hidden .lbl-hide{display:none}
+    .article-card.is-hidden .lbl-show{display:inline}
+    body.reveal-hidden .article-card.is-hidden .hide-btn{border-color:#16a34a;color:#16a34a}
+    body.reveal-hidden .article-card.is-hidden .hide-btn:hover{background:#f0fdf4}
+
+    footer{text-align:center;padding:24px 20px;color:var(--muted);font-size:.75rem;border-top:1px solid var(--border);margin-top:40px}
+
+    @media(max-width:600px){
+      .h-inner,.main{padding-left:14px;padding-right:14px}
+      .hero-title{font-size:1.3rem}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="h-inner">
+    <div>
+      <div class="h-brand">IT News Digest</div>
+      <div class="h-meta">Week 2026-W40 &bull; Sep 28 – Oct 04, 2026</div>
+    </div>
+    <div class="h-controls">
+      <button class="btn" id="reveal-btn" onclick="toggleReveal()">Show hidden</button>
+      <select class="week-sel" id="week-sel" onchange="if(this.value) location.href=this.value">
+        <option value="">&#128337; Archive&hellip;</option>
+      </select>
+    </div>
+  </div>
+</header>
+
+<nav class="t-nav"><div class="t-nav-inner"><a href="#windows" class="nav-link" style="--c:#0078D4">Microsoft Windows</a><a href="#azure" class="nav-link" style="--c:#00BCF2">Azure</a><a href="#sharepoint" class="nav-link" style="--c:#036C70">SharePoint</a><a href="#intune" class="nav-link" style="--c:#0F6CBD">Intune</a><a href="#entraid" class="nav-link" style="--c:#6B69D6">Entra ID</a><a href="#m365" class="nav-link" style="--c:#D83B01">Microsoft 365</a><a href="#iru" class="nav-link" style="--c:#7C3AED">Iru MDM (formerly Kandji)</a><a href="#cato" class="nav-link" style="--c:#FF6B35">Cato Networks</a></div></nav>
+
+<main>
+  <div class="week-hero">
+    <div>
+      <div class="hero-title">Week 2026-W40</div>
+      <div class="hero-sub">Sep 28 – Oct 04, 2026</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">49</div>
+      <div class="stat-lbl">Articles</div>
+    </div>
+  </div>
+
+    <section id="windows" class="topic-section">
+      <h2 class="topic-title" style="--c:#0078D4">Microsoft Windows <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a11d53f2d0d">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windows-insider/2026/10/02/announcing-new-builds-for-2-october-2026/" target="_blank" rel="noopener noreferrer" class="article-title">Announcing new builds for 2 October 2026</a>
+          <div class="article-meta">blogs.windows.com &bull; Oct 02, 2026</div>
+          <div class="article-summary"><p>Announcing new builds for 2 October 2026
+Hello Windows Insiders,
+Today, we’re releasing new Windows 11 Insider Preview builds to the Beta and Experimental channels.
+New builds this week
+Select your channel below to view its release notes:
+- Beta: Build 26220.9587
+- Experimental: Build 26340.9596
+For those on other specific Windows build versions, here are today’s new builds and release notes:
+- Beta (26H1): Build 28020.3142
+- Experimental (26H1): Build 28120.3151
+- Experimental (Future Platforms): Build 29680.1000
+Also a reminder that next week October 7, we have our Windows and Surface event at 10AM Pacific time! Tune in to watch live via the Windows YouTube channel.
+Thanks,
+Stephen and the Windows Insider Program team</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a11d53f2d0d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a942d9378df">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windowsdeveloper/2026/09/29/wsl-containers-now-generally-available/" target="_blank" rel="noopener noreferrer" class="article-title">WSL containers is now generally available</a>
+          <div class="article-meta">blogs.windows.com &bull; Sep 29, 2026</div>
+          <div class="article-summary"><p>WSL containers is now generally available
+WSL is central to our commitment to making Windows the best place to build, run and manage Linux workloads. As AI, cloud-native development, containers, and open-source ecosystems continue to converge on Linux, more developers are choosing to perform these workloads directly on Windows devices. We’re continuing our journey towards this goal with a new feature in WSL: WSL containers, which is generally available today.
+To try it out,  simply runwsl --update in your terminal or download the latest release from GitHub and you will gain access to:
+- WSL containers CLI: wslc.exe to directly build, run and deploy Linux containers on Windows, or use its built-in alias container.exe to run the same familiar container commands
+- WSL containers API: Access functions to run Linux containers programmatically in your native Windows apps – unlocking scenarios like running local AI workloads or using cloud-based containerized applications locally.
+For a deeper look at how WSL containers are built, how they work with WSL, and the architecture behind the platform, see our WSL containers architecture blog.
+Let’s get into what’s new with GA.
+New commands and capabilities
+Since public preview, we’ve continued to evolve WSL containers and our focus has been on making every day container workflows simpler, improving visibility into running environments, and adding the flexibility needed to manage containers at scale. As part of the GA release, we’ve introduced several new commands and capabilities across container lifecycle, networking, and observability.
+Here are a few highlights, and you can view the full change logs on our releases page:
+- wslc container restart — restart a running container
+- wslc container cp — copy files in and out via tar archive
+- wslc system info — see the state of your container environment at a glance
+- wslc network connect and wslc network disconnect — attach and detach containers from networks
+- wslc network create now supports arbitrary network driver options
+- wslc events – Streams real time container activity
+- Container health checks are now supported
+- --stop-timeout on wslc create and wslc run, including -1 for an infinite timeout
+- --mount support during wslc create and wslc run
+- A configurable storage path for the default wslc session, so you can put your container storage on the drive you want.
+Alongside new commands and platform enhancements for developers, we’ve also focused on helping organizations adopt WSL containers with the governance and security controls required for production environments.
+Enterprise manageability for WSL containers
+This release extends Microsoft Intune and Microsoft Defender for Endpoint (MDE) integrations in WSL to include container workflows as well.
+MDE’s existing plugin for WSL has been augmented to also include support for containers. MDE can surface process, file and network activity from WSL containers and connect that activity back to Windows host, helping security teams investigate suspicious activity without creating a separate security workflow.
+Microsoft Intune has also added controls to enable or disable WSL container and restrict image pulls to approved registries. Additionally, on your Intune dashboard you will see new settings specific to the WSL container feature:
+- Allow WSL containers access – Control access to the entire WSL containers feature.
+- WSL containers registry allow list – For WSL containers enterprise adoption, organizations need stronger controls over the container images that can be introduced into their environment.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a942d9378df')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a43dae0cd77">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windowsexperience/2026/09/29/how-to-get-windows-11-2026-update/" target="_blank" rel="noopener noreferrer" class="article-title">How to get the Windows 11 2026 Update</a>
+          <div class="article-meta">blogs.windows.com &bull; Sep 29, 2026</div>
+          <div class="article-summary"><p>How to get the Windows 11 2026 Update
+Windows powers how people around the world work, learn, create, and connect every day. Today, we’re announcing the availability of the Windows 11 2026 Update, also known as Windows 11, version 26H2. Built on the same servicing foundation as recent Windows 11 releases, version 26H2 delivers the latest Windows innovations with a streamlined update experience designed to minimize disruption and help you stay secure, productive, and up to date.
+As organizations and individuals continue to expect faster deployments and less downtime, Windows 11, version 26H2 takes advantage of the same modern servicing technologies that have simplified recent feature updates. For many eligible devices, moving to version 26H2 is as simple as installing a small enablement package, allowing people to start using this new release with minimal download size, quick installation, and a single restart.
+A predictable and low-disruption update
+Windows 11, version 26H2 is delivered as an enablement package for eligible devices running Windows 11, versions 25H2 and 24H2.
+An enablement package is a lightweight update that activates new features already included in the operating system through previous monthly servicing updates. Because versions 26H2, 25H2, and 24H2 share a common servicing branch and underlying codebase, many of the components required for version 26H2 are already present on devices before the feature update becomes available.
+This approach enables a significantly faster update experience compared to a traditional operating system upgrade. For eligible devices, installation is similar to a monthly update, requiring only a small download and a quick restart to transition to Windows 11, version 26H2.
+As with every Windows release, version 26H2 includes the latest quality, reliability, and security improvements designed to help protect people and organizations while delivering a dependable Windows experience.
+How to get it
+Windows 11, version 26H2 is now available for eligible devices running Windows 11, versions 25H2 and 24H2.
+To be among the first to receive the update, go to Settings &gt; Windows Update and turn on Get the latest updates as soon as they’re available. Once your device is eligible, you’ll see the option to download and install Windows 11, version 26H2.
+As always, we take a measured and data-driven approach to broad availability and will be releasing version 26H2 using a controlled feature rollout. During rollout, we might place safeguard holds on devices where we detect a known compatibility issue that could impact the update experience. We will continue expanding availability over time and provide updates through the Windows release health hub.
+Information for commercial and education customers
+Windows 11, version 26H2 is available now through the tools organizations use to manage Windows updates, including Windows Autopatch and the Microsoft 365 admin center[i].
+Existing management tools, update rings, policies, and deployment practices can continue to be used. We recommend that commercial and education customers begin targeted deployments to validate applications, devices, and business-critical workflows before expanding deployment more broadly throughout their organizations.
+Windows 11, version 26H2 continues the annual Windows feature update cadence, with a new Windows 11 feature update released during the second half of the calendar year. As with previous annual releases, installing version 26H2 resets the support lifecycle for supported editions of Windows 11. That means 24 months of support for Home and Pro editions and 36 months of support for Enterprise and Education editions.
+Select features and enhancements initially released as disabled by default in version 25H2 will be enabled by default in version 26H2.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a43dae0cd77')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aed51224cf2">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-enables-windows-settings-backup-by-default/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Enables Windows Settings Backup by Default in Windows 11 version 26H2</a>
+          <div class="article-meta">petri.com &bull; Oct 01, 2026</div>
+          <div class="article-summary"><p>Microsoft Enables Windows Settings Backup by Default in Windows 11 version 26H2
+Microsoft is making Windows settings backup a default feature in Windows 11 26H2, but administrators still need to decide how and when recovery data can be restored.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aed51224cf2')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a970a47dc81">
+        <div class="article-body">
+          <a href="https://petri.com/windows-11-version-26h2-simpler-upgrade-path/" target="_blank" rel="noopener noreferrer" class="article-title">Windows 11 Version 26H2 Gives IT Admins a Simple Upgrade Path</a>
+          <div class="article-meta">petri.com &bull; Sep 30, 2026</div>
+          <div class="article-summary"><p>Windows 11 Version 26H2 Gives IT Admins a Simple Upgrade Path
+Microsoft says Windows 11 version 26H2 can be deployed much like a regular monthly update, giving IT teams a potentially simpler path to the latest release.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a970a47dc81')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a5e692d1c5c">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-retires-windows-powershell-support-graph-sdk/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Begins Retirement of Windows PowerShell Support for Graph SDK</a>
+          <div class="article-meta">petri.com &bull; Sep 29, 2026</div>
+          <div class="article-summary"><p>Microsoft Begins Retirement of Windows PowerShell Support for Graph SDK
+Microsoft has started a 12-month retirement period for Windows PowerShell 5.1 support in the Graph PowerShell SDK as it prepares to transition customers to PowerShell 7.x.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a5e692d1c5c')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ac90c2c68b0">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMihgFBVV95cUxObmIyS0lFR2syc0VhdXEtY29yZWJPeWNsOWFpdFd1ejNkcWFrZ09EanZiZGx1WGt1bEtBYnRlSl9QbWpjMDY4NV9YbWJQbXowWlpPV2FRY1RvWl9XUmlIV1FOU2RnVjZ3NDhvUWxhTXVYODBBTVFxdlRhZkxUblpmSlQ0N0p6dw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Windows 11 version 27H2: Everything we know so far - Windows Central</a>
+          <div class="article-meta">Windows Central &bull; Sep 30, 2026</div>
+          <div class="article-summary snippet"><p>Windows 11 version 27H2: Everything we know so far&amp;nbsp;&amp;nbsp;Windows CentralMicrosoft makes Windows settings backup the default in 26H2&amp;nbsp;&amp;nbsp;theregister.comHow to get the Windows 11 2026 Update&amp;nbsp;&amp;nbsp;Windows Blog</p><a href="https://news.google.com/rss/articles/CBMihgFBVV95cUxObmIyS0lFR2syc0VhdXEtY29yZWJPeWNsOWFpdFd1ejNkcWFrZ09EanZiZGx1WGt1bEtBYnRlSl9QbWpjMDY4NV9YbWJQbXowWlpPV2FRY1RvWl9XUmlIV1FOU2RnVjZ3NDhvUWxhTXVYODBBTVFxdlRhZkxUblpmSlQ0N0p6dw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac90c2c68b0')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a5355e723a4">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi4gFBVV95cUxPUkp2a3ZfeVlVTUF4d3B0cHk3NEhNSktOS1FGSFgyTGhwSThOOUJfNWJEcklVMUJmQ0dfRUF4UWlDTE9fWHRjUTVNOTRnMEg5bGFnSWVoZ2F0bGp3cGFqRVh1b09waVFKR2JJeFB4QlpscHJMLVNZQURGUklzWWUybnpkQkJNMnlLdTJKNVVhSjVvNWlKZmhURmZ4OXFES0ZKakw3LVFwZmtwdVNweE8wNm9fdzQwTFBRU2tlWGtZekNwRERJRC1LS2J2Q0NVRzd6YnJhRzJ1am0tdnhDWEY2b0t3?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft confirms big Windows 11 announcement, as it keeps ripping out Windows 95-era UI and chasing speed - Windows Latest</a>
+          <div class="article-meta">Windows Latest &bull; Oct 03, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft confirms big Windows 11 announcement, as it keeps ripping out Windows 95-era UI and chasing speed&amp;nbsp;&amp;nbsp;Windows Latest</p><a href="https://news.google.com/rss/articles/CBMi4gFBVV95cUxPUkp2a3ZfeVlVTUF4d3B0cHk3NEhNSktOS1FGSFgyTGhwSThOOUJfNWJEcklVMUJmQ0dfRUF4UWlDTE9fWHRjUTVNOTRnMEg5bGFnSWVoZ2F0bGp3cGFqRVh1b09waVFKR2JJeFB4QlpscHJMLVNZQURGUklzWWUybnpkQkJNMnlLdTJKNVVhSjVvNWlKZmhURmZ4OXFES0ZKakw3LVFwZmtwdVNweE8wNm9fdzQwTFBRU2tlWGtZekNwRERJRC1LS2J2Q0NVRzd6YnJhRzJ1am0tdnhDWEY2b0t3?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a5355e723a4')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="azure" class="topic-section">
+      <h2 class="topic-title" style="--c:#00BCF2">Azure <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a6755d5bbb4">
+        <div class="article-body">
+          <a href="https://azure.microsoft.com/en-us/blog/responsible-infrastructure-at-hyperscale-managing-the-full-lifecycle-of-azure-hardware/" target="_blank" rel="noopener noreferrer" class="article-title">Responsible infrastructure at hyperscale: Managing the full lifecycle of Azure hardware</a>
+          <div class="article-meta">azure.microsoft.com &bull; Sep 30, 2026</div>
+          <div class="article-summary"><p>Every new generation of cloud infrastructure creates two jobs. We must deploy more capable systems quickly, and we must manage the hardware they replace responsibly.
+Even though these jobs happen behind the scenes, the results matter to Microsoft Azure customers. Newer systems deliver more compute capacity from the space and power available in a datacenter. At the same time, the reuse, refurbishment, and recycling of older equipment can extend the life of valuable components and return materials to the supply chain, ensuring cost efficiency and reliability.
+Managing this process starts early in the lifecycle, with the design of our silicon, servers, networks, and datacenters. It continues through years of operation. When equipment leaves active service, Microsoft Circular Centers help determine its next useful life.
+With new Circular Centers in Newport, Wales, and Sydney, Australia, this work now spans North America, Europe, and Asia Pacific. These facilities help us recover components, prepare space for new infrastructure, and get more value from the hardware and materials already in our system.
+Getting more from every rack and every watt
+Cloud infrastructure must keep pace with the work customers want to run. That means increasing compute capacity while making better use of the space and power available in each datacenter.
+Compared with early general-purpose systems, today’s servers provide significantly more processor cores, more memory capacity, and network bandwidth. As shown in the chart below, Azure infrastructure has become both denser and more efficient over time. Since 2014, cores per rack have increased approximately 13-fold, while the power required to complete the same task has decreased by roughly 90%. For example, a workload such as code compilation that consumed approximately 100 watts on early systems can now be completed using less than 10 watts.
+This increase in compute density means we’re able to provide more server capacity to support customer workloads using the same datacenter footprint. By delivering more useful work from each rack, newer infrastructure helps improve resource efficiency while supporting continued growth and scale to meet cloud and AI demand.
+Azure Cobalt is one example of this systems approach. Our custom-designed cloud processor allows Microsoft to optimize silicon, servers, networking, storage, and software together. Cobalt 200 delivers up to 50% higher performance than Cobalt 100 and incorporates the latest Microsoft security, networking, and storage technologies.
+This constant cycle of innovation is one of the defining characteristics of cloud infrastructure. As new generations of cloud and AI infrastructure are deployed, older hardware is gradually taken out of service. What happens to the equipment being replaced?
+Giving hardware its next useful life
+Last year, Microsoft achieved a 92% reuse and recycling rate for decommissioned servers and components. However, at the scale we operate, retiring a server is a little more complex than simply sorting components into the correct recycling bin. Every server must be securely decommissioned, and data-bearing components wiped. Then we must decide how to recover the most value from it. Can the complete system serve another purpose? Can processors, memory, and other components keep working elsewhere? Which materials can return to the supply chain?
+Microsoft Circular Centers manage these decisions as part of our datacenter operations. At these facilities, our staff give decommissioned hardware a series of possible next lives. Complete systems can support Microsoft labs and training environments, help schools and universities teach technical skills, or be sold to qualified buyers for continued use. Components can become spare parts for other systems. Materials are recycled when reuse is no longer possible.
+Our Circular Centers operate as a connected global network.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a6755d5bbb4')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a5cabe4df36">
+        <div class="article-body">
+          <a href="https://www.microsoft.com/en-us/sql-server/blog/2026/09/28/sql-server-on-azure-local-is-now-generally-available/" target="_blank" rel="noopener noreferrer" class="article-title">SQL Server on Azure Local is now generally available</a>
+          <div class="article-meta">microsoft.com &bull; Sep 29, 2026</div>
+          <div class="article-summary"><p>Some of the world’s most critical databases run in places where cloud connectivity cannot be assumed. A remote industrial site, for example, may need production systems to continue operating when external connectivity is unavailable. A regulated organization may need sensitive data and processing to remain within sovereign boundaries.
+Today, SQL Server on Azure Local is generally available for connected and disconnected operations. With this release, customers can modernize where their data resides while maintaining control over infrastructure, connectivity, and data placement. They can bring AI closer to their data with Foundry Local on Azure Local, currently in preview, and use eligible existing SQL Server licensing investments.
+Run SQL Server where your data needs to stay
+SQL Server has a long history of supporting mission-critical workloads on customer infrastructure. Azure Local builds on that flexibility by bringing Azure infrastructure to customer-owned environments, giving organizations a consistent platform for running SQL Server across datacenters and edge locations.
+Customers can choose the deployment model that fits each environment:
+- Connected environments: Run SQL Server locally on Azure Local, while using Azure Arc to manage SQL Server resources through Azure.
+- Azure Local Disconnected Operations (ALDO): Run SQL Server in environments where external connectivity is restricted, intermittent, or unavailable, with operations continuing locally.
+This means organizations can choose the deployment approach that fits the requirements of individual environments rather than making the same connectivity decision across their entire data estate.
+Bring AI closer to your data
+Modernizing infrastructure is only part of the opportunity. Organizations also want to bring generative AI to existing enterprise data, including information that cannot leave their environment.
+With Foundry Local, customers can run AI models on Azure Local infrastructure alongside SQL Server, bringing inferencing closer to the data. This enables organizations to explore AI-powered applications while keeping sensitive information and processing within their environment.
+This can be particularly valuable in sovereign, regulated, and edge scenarios, where organizations want the benefits of AI but need greater control over where models execute and where their data is processed.
+The goal is simple: customers should not have to move sensitive data somewhere else simply to begin building intelligent applications around it.
+Build on your existing SQL server investments
+Modernization should also make it easier to build on existing investments.
+SQL Server is licensed separately from the Azure Local infrastructure platform. For connected deployments, customers can use eligible existing SQL Server licenses, including licenses with Software Assurance or qualifying subscriptions, or use pay-as-you-go licensing through Azure Arc.
+For fully disconnected deployments, customers can use eligible existing SQL Server licenses through Azure Hybrid Benefit.
+This gives organizations options to modernize their SQL Server environments while taking advantage of eligible licensing investments they already own.
+A foundation for sovereign and edge data
+Enterprise data estates increasingly span cloud, datacenter, edge, and sovereign environments. The opportunity is not to force every workload into the same deployment model, but to give organizations a consistent path to modernization across them.
+SQL Server on Azure Local extends that choice to mission-critical SQL Server workloads, helping customers modernize close to their data, applications, and operations while bringing Azure-consistent infrastructure and local AI capabilities into those environments.
+SQL Server on Azure Local FAQ
+What is SQL Server on Azure Local?
+SQL Server on Azure Local lets organizations run SQL Server on Azure Local infrastructure in their own datacenters and edge locations.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a5cabe4df36')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a14848b019b">
+        <div class="article-body">
+          <a href="https://azure.microsoft.com/en-us/blog/fabcon-and-sqlcon-2026-in-barcelona-building-the-data-foundation-for-microsoft-copilot-and-agents/" target="_blank" rel="noopener noreferrer" class="article-title">FabCon and SQLCon 2026 in Barcelona: Building the data foundation for Microsoft Copilot and agents</a>
+          <div class="article-meta">azure.microsoft.com &bull; Sep 29, 2026</div>
+          <div class="article-summary"><p>One of the defining strengths of the Fabric and SQL communities is how openly people share what they are building and learning. This week, nearly 5,000 data professionals are coming together in Barcelona to do exactly that. Across more than 130 sessions, more than 10 tutorials, community meetups, and roundtable discussions, attendees will exchange practical insights and real-world experiences that others can apply in their own organizations.
+The excitement in Barcelona mirrors the momentum we’re seeing throughout Microsoft’s data portfolio. Microsoft Fabric now supports more than 40,000 customers worldwide, and for decades Microsoft SQL Server has provided the backbone of enterprise workloads including more than 90% of the Fortune 500. Customers like Levi Strauss, H&amp;M, and Thomson Reuters are using these capabilities to unify their data estates, ground AI in their business context, and scale while remaining governed and secure.
+Today, we’re announcing new innovations across Microsoft Fabric and our database portfolio designed to help organizations power their Frontier Transformation, including deep integrations with the new Microsoft Copilot, agentic app development in Microsoft Power BI, end-to-end observability in Fabric, the database hub, and more.
+Enabling Frontier Transformation with Microsoft Copilot and Microsoft Fabric
+Software development has changed dramatically. AI is no longer simply helping developers write code faster. Agents are beginning to work across the full development lifecycle, from planning and coding to testing and deployment.
+The opportunity now is to bring that same transformation to the rest of the enterprise. But organizations need more than models and agents. They need trusted context: governed data, shared business definitions, operational knowledge, and the guardrails that help AI act reliably.
+This is the foundation of Frontier Transformation: embedding AI into core business processes, grounded in an organization’s unique data, knowledge, and workflows. Microsoft is helping enable this transformation through Microsoft Copilot and Microsoft IQ, which connect AI to an organization’s knowledge, data, applications, and business context.
+At the center of this system is Fabric IQ, a shared intelligence layer that connects enterprise data, business metrics, and operational context across the Microsoft ecosystem. By combining unified data from Microsoft OneLake, trusted metrics from Power BI semantic models, and operational context from ontologies and real-time intelligence, Fabric IQ gives people and agents a shared understanding of the business.
+Powering the new Microsoft Copilot with trusted data from Fabric IQ
+Millions of Microsoft 365 users rely on Microsoft Copilot every day to find information, create content, analyze data, and take action in the flow of work. With the introduction of the new Copilot last week, it’s evolving from a conversational assistant into a unified experience where people can assist, delegate, and even build. Home brings Chat and Cowork together, while Code now gives everyone ways to build their own solutions. As Copilot takes on increasingly sophisticated work, access to trusted business context becomes essential.
+Today, we are excited to share we are bringing business context from Fabric IQ into Microsoft Copilot, grounding your work in a shared understanding of the business. Microsoft Copilot customers can now tap into AI-powered insights from Fabric as part of their Copilot experience, without additional AI token costs. Fabric IQ in Copilot Chat and Cowork is generally available today, with integration into the new Code experience coming soon through the Frontier program.
+For Power BI customers, this semantic foundation is already in place. Business definitions, key metrics, and organizational knowledge captured in trusted Power BI semantic models and reports can now directly inform decisions and actions in Microsoft Copilot.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a14848b019b')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a4b8c266c9d">
+        <div class="article-body">
+          <a href="https://azure.microsoft.com/en-us/blog/enhancing-microsoft-azure-virtual-machine-lifecycle/" target="_blank" rel="noopener noreferrer" class="article-title">Enhancing Microsoft Azure Virtual Machine lifecycle</a>
+          <div class="article-meta">azure.microsoft.com &bull; Sep 28, 2026</div>
+          <div class="article-summary"><p>Azure continuously advances through new infrastructure generations, platform capabilities, services, and innovations that lead the industry in performance, security, reliability, and efficiency. Our Virtual Machine (VM) Lifecycle policy guides how we manage these transitions, giving Azure customers transparency, predictability, and guidance to plan for and execute technology changes with confidence. Our goal is to help every organization plan and navigate these modernization steps in line with Azure’s latest innovations and ongoing platform investments.
+To give you access to the most advanced cloud and AI infrastructure, deployed on the most sophisticated silicon and hardware, the Azure Virtual Machine lifecycle is built around three customer outcomes:
+- Transparency to easily understand the lifecycle status of Azure technologies, Microsoft’s level of ongoing investment, and the recommended path forward as new innovations become available.
+- Predictability to plan against defined lifecycle stages, understand what to expect at each stage, and advance notice as technologies progress through their lifecycle.
+- Guidance to help you modernize and adopt newer technologies rapidly and with confidence, along with AI-led tooling to accelerate workload transitions and recommendations.
+This lifecycle provides a shared taxonomy, common stages, and consistent commitments for how we communicate technology evolution.
+Azure General Purpose, Memory Optimized, Compute Optimized, and Storage Optimized VMs are the first VM families covered by this policy.
+The lifecycle stages, spanning Current, Extended, End of Life, and Retired, are defined below, with dedicated Microsoft investment levels, regional and quota availability, applicable purchasing options, and pricing. The policy establishes clear lifecycle stages, expected customer experiences, and Microsoft’s commitments at each stage so customers can confidently plan, deploy, and modernize workloads over time.
+Note: Lifecycle details described in this policy represent general guidance and may be subject to product-specific, regional, or operational exceptions.
+Platform experiences and tools to help simplify transitions
+Microsoft is committed to helping you modernize your workload portfolio with the greatest possible speed, confidence, and simplicity. Azure Advisor and Azure Service Health give you clear insight into your subscriptions and resources—helping you discover upcoming VM retirements, identify affected resources, and track your modernization progress with recommended actions built in. Beyond this, Microsoft is investing in intelligent, AI-augmented tools designed to apply lifecycle guidance across your entire workload portfolio, further reducing friction as you modernize.
+Microsoft is committed to helping you navigate these infrastructure transitions and take advantage of the next wave of innovation. As Azure continues to advance, our commitment is to make change predictable, transparent, and supported through clear lifecycle guidance, early visibility, and practical help to modernize with confidence. This policy is an important step toward making modernization easier to plan, simpler to execute, and more valuable for every Azure customer.
+For more information about the Azure Virtual Machines lifecycle, visit the VM lifecycle overview page.
+Azure Virtual Machines
+Create and manage virtual machines</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a4b8c266c9d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a469a9896d3">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMixwFBVV95cUxPaEIyVFRNcF92TkNYVlBXYzJnMGhyS0dMcVg4TVRYSWZfUEktblRVMnJkVlZiYjcxMVZjY1VEcHVtV084RFFSbXJRaE41U1ZpODQ3c1dGR0ZHSWpZRUxFdDljSTh3VFpDUWxFRFJHX1RMUm1xMHhKZmpwVXJVLUowVDRFQ3pab0c5SzZaQ2tHTkJpdnNKWUxrMVp5dW96cFFuMHRqZE40bnY0dmQ5T29XZk1aRWFsektrZ0hEc0VVT1VpaEFmTWxF?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft, Amazon Cloud Arms Set to Face Deeper Scrutiny Under EU’s Tech Rules - Bloomberg.com</a>
+          <div class="article-meta">Bloomberg.com &bull; Oct 02, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft, Amazon Cloud Arms Set to Face Deeper Scrutiny Under EU’s Tech Rules&amp;nbsp;&amp;nbsp;Bloomberg.com</p><a href="https://news.google.com/rss/articles/CBMixwFBVV95cUxPaEIyVFRNcF92TkNYVlBXYzJnMGhyS0dMcVg4TVRYSWZfUEktblRVMnJkVlZiYjcxMVZjY1VEcHVtV084RFFSbXJRaE41U1ZpODQ3c1dGR0ZHSWpZRUxFdDljSTh3VFpDUWxFRFJHX1RMUm1xMHhKZmpwVXJVLUowVDRFQ3pab0c5SzZaQ2tHTkJpdnNKWUxrMVp5dW96cFFuMHRqZE40bnY0dmQ5T29XZk1aRWFsektrZ0hEc0VVT1VpaEFmTWxF?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a469a9896d3')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a20c9f64424">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiygFBVV95cUxQWGpxZXJyNnpzdXE3b3R0ZVVqc2FUWjc4WV9vV0JraFdDaWdUamo2d1BGUURrcG5sVFQ5elp5U0xaY09aRHVsb1JXMDBLZ2JYQVd6bmJSdjJSUFVoc2NUVnY1TzlXQTg1S1phaFdRM3dGYTQ0UkRteHVBc3ZDUGRlaXZENU9JclV4NDJxbFVuMUU0eGZLUVdoVU5NMjFEWWFpVUsxZlBqOFVTeUpkQWQxdFZvcG1ZaHJmME05bldlbzRpcldoVl9FclBB?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Azure maintenance mess disrupted hybrid clouds, VPNs, cloudy VMware services - theregister.com</a>
+          <div class="article-meta">theregister.com &bull; Sep 30, 2026</div>
+          <div class="article-summary snippet"><p>Azure maintenance mess disrupted hybrid clouds, VPNs, cloudy VMware services&amp;nbsp;&amp;nbsp;theregister.com</p><a href="https://news.google.com/rss/articles/CBMiygFBVV95cUxQWGpxZXJyNnpzdXE3b3R0ZVVqc2FUWjc4WV9vV0JraFdDaWdUamo2d1BGUURrcG5sVFQ5elp5U0xaY09aRHVsb1JXMDBLZ2JYQVd6bmJSdjJSUFVoc2NUVnY1TzlXQTg1S1phaFdRM3dGYTQ0UkRteHVBc3ZDUGRlaXZENU9JclV4NDJxbFVuMUU0eGZLUVdoVU5NMjFEWWFpVUsxZlBqOFVTeUpkQWQxdFZvcG1ZaHJmME05bldlbzRpcldoVl9FclBB?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a20c9f64424')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a93d4975f9c">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMivAFBVV95cUxQaC1KLVNHdFVpR0lDUkdZZE8xbURtZVhLM0R6N2RyY3UxTFJjZlkteUJoSlgweGF1U3ZKSWVQUkZBSnR2RVRTS3hiS3dpQlNTN2tKc1Y1eDdxNTByYkxIRWJfcTRxR3lfeWQwWFVoOHBLbFBvamdtc2RzTHhqQWctVFFXQUtBT25xd296VmdQSjdXU251c09fWXJsN2dIMHBrc3R0R2xyaXZZYVNoVXZHVjJpcVRqc3BpaVpWeA?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Amazon's and Microsoft's cloud units set to fall under EU's Digital Markets Act: report - seekingalpha.com</a>
+          <div class="article-meta">seekingalpha.com &bull; Oct 02, 2026</div>
+          <div class="article-summary snippet"><p>Amazon's and Microsoft's cloud units set to fall under EU's Digital Markets Act: report&amp;nbsp;&amp;nbsp;seekingalpha.com</p><a href="https://news.google.com/rss/articles/CBMivAFBVV95cUxQaC1KLVNHdFVpR0lDUkdZZE8xbURtZVhLM0R6N2RyY3UxTFJjZlkteUJoSlgweGF1U3ZKSWVQUkZBSnR2RVRTS3hiS3dpQlNTN2tKc1Y1eDdxNTByYkxIRWJfcTRxR3lfeWQwWFVoOHBLbFBvamdtc2RzTHhqQWctVFFXQUtBT25xd296VmdQSjdXU251c09fWXJsN2dIMHBrc3R0R2xyaXZZYVNoVXZHVjJpcVRqc3BpaVpWeA?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a93d4975f9c')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a33e54e4f28">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMitgFBVV95cUxQUlQ4MlN6YW9hUmRibnBoSGVQQm9mZ0RUOGhYM0w4SFlwOU9FaXFxUWRuVDloUlc3VmtOektlcTdjQ01sd0VTaEpsU1VMS0JCVVNCMkVXbjQ2akoxQzdYQjZBNlRuamtHY2lEajBrS0tXVDRsVDkwYjlGb0VXbDlpUmVRNFZLdWNFUFEzOHh1aWIxcGRuVGlnMERtOFc4M0hnWk9PYldaaTZkMWxQZDBUbEUwUkpZZw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Amazon and Microsoft Cloud Businesses Could Face Tougher EU Rules as Soon as November - TipRanks</a>
+          <div class="article-meta">TipRanks &bull; Oct 02, 2026</div>
+          <div class="article-summary snippet"><p>Amazon and Microsoft Cloud Businesses Could Face Tougher EU Rules as Soon as November&amp;nbsp;&amp;nbsp;TipRanks</p><a href="https://news.google.com/rss/articles/CBMitgFBVV95cUxQUlQ4MlN6YW9hUmRibnBoSGVQQm9mZ0RUOGhYM0w4SFlwOU9FaXFxUWRuVDloUlc3VmtOektlcTdjQ01sd0VTaEpsU1VMS0JCVVNCMkVXbjQ2akoxQzdYQjZBNlRuamtHY2lEajBrS0tXVDRsVDkwYjlGb0VXbDlpUmVRNFZLdWNFUFEzOHh1aWIxcGRuVGlnMERtOFc4M0hnWk9PYldaaTZkMWxQZDBUbEUwUkpZZw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a33e54e4f28')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="sharepoint" class="topic-section">
+      <h2 class="topic-title" style="--c:#036C70">SharePoint <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a0e462ec0cf">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-copilot-in-sharepoint-general-availability/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Brings Copilot in SharePoint to General Availability</a>
+          <div class="article-meta">petri.com &bull; Sep 28, 2026</div>
+          <div class="article-summary"><p>Microsoft is rolling out Copilot in SharePoint on September 30, expanding how organizations structure content for AI-powered workflows.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a0e462ec0cf')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ae4abf7cb8e">
+        <div class="article-body">
+          <a href="https://www.bleepingcomputer.com/news/security/warlock-ransomware-breach-sharepoint-in-water-telecom-operator-attacks/" target="_blank" rel="noopener noreferrer" class="article-title">Warlock ransomware breach SharePoint in water, telecom operator attacks</a>
+          <div class="article-meta">bleepingcomputer.com &bull; Oct 02, 2026</div>
+          <div class="article-summary"><p>The China-linked ransomware group Warlock targeted a water utility, a telecom provider, a regional government body, and a university by exploiting SharePoint vulnerabilities to gain initial access.
+Over the past two months, the threat actor appears to have focused on countries speaking Portuguese and Spanish across Europe, Africa, and Latin America.
+The gang emerged in June 2025 and gained notoriety a month later after exploiting a chain of zero-day vulnerabilities in Microsoft SharePoint known as ToolShell (CVE-2025-49704, CVE-2025-49706, CVE-2025-53770, and CVE-2025-53771).
+By August, Microsoft observed state-backed hacking groups Linen Typhoon and Violet Typhoon using ToolShell exploits in attacks, along with a ransomware threat actor the company tracks as Storm-2603.
+EDR killer deployed to 40 hosts
+Cybersecurity company Symantec identifies the same actor as Longlegs and attributes the development of the Warlock ransomware to the group.
+According to the researchers, in one intrusion that started on July 22, the threat actor deployed a tool that disabled protection software on “at least 40 hosts within about two hours.” The attacker then launched Warlock ransomware on at least 33 hosts.
+After gaining access, typically by exploiting vulnerabilities in on-premises SharePoint deployments, the attacker drops a web shell designed to function across multiple SharePoint versions.
+Symantec and Carbon Black researchers say that in some attacks attributed to Longlegs, an AV/EDR-killing tool was deployed via the bring your own vulnerable driver (BYOVD) technique using a signed K7RKScan driver vulnerable to CVE-2025-1055.
+Analysis of the intrusion on July 22 revealed that two days after gaining initial access, the threat actor engaged in reconnaissance activity and deleted what seemed like staging artifacts.
+Using VS Code's tunneling capability
+The ransomware payload was staged in the domain’s SYSVOL share, a location that stores public files and is replicated across every domain controller.
+This is “a known method of pushing a payload out for execution by a logon script or Group Policy object across an entire network at once, rather than one host at a time,” the researchers say.
+During the attack, the main executable file for Visual Studio Code Insiders was installed as a service to enable connecting remotely to compromised machines using VS Code's built-in tunneling capability.
+On one of the systems, the researchers found the open-source penetration testing framework NetExec, which helped the attacker with Active Directory enumeration, credential spraying, and remote command execution.
+The final stage of the attack occurred on July 31st, after deploying the AV/EDR killer, with Warlock ransomware “appearing almost as soon as protection was disabled on each host.”
+The researchers warn that ToolShell and other SharePoint vulnerabilities remain viable initial access vectors, more than a year after Warlock first emerged exploiting SharePoint flaws.
+The report from the Symantec and Carbon Black threat hunters includes a set of indicators of compromise for files and infrastructure used in the attacks.
+Build your security blueprint for AI-powered attacks
+Join Mikko Hyppönen and security leaders from the NFL, CHANEL, and Atlassian for a two-hour digital summit on what AI-speed attacks change, what defenders should stop doing, and how to validate, decide, fix, and re-validate at machine speed.
+Save your seat</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ae4abf7cb8e')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ac333863c69">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/10/warlock-exploits-sharepoint-flaws-to.html" target="_blank" rel="noopener noreferrer" class="article-title">Warlock Exploits SharePoint Flaws to Disable Security Tools and Deploy Ransomware</a>
+          <div class="article-meta">thehackernews.com &bull; Oct 03, 2026</div>
+          <div class="article-summary"><p>The suspected China-linked threat actor known as Warlock is still continuing to weaponize Microsoft SharePoint vulnerabilities, likely both old and new, in attacks targeting organizations in Portuguese- and Spanish-speaking countries.
+The activity, observed by the Symantec and Carbon Black Threat Hunter Team, has hit critical infrastructure, government, and education organizations.
+&quot;In the past two months, Longlegs has attacked at least four organizations, including two critical infrastructure operators (a water utility and a telecommunications provider), a regional government body, and a university,&quot; the Broadcom-owned cybersecurity unit said. &quot;Victims were in Portuguese- and Spanish-speaking countries, spanning Europe, Africa, and Latin America.&quot;
+Warlock, also tracked as Gold Salem, Longlegs, and Storm-2603, gained prominence in mid-2025 in connection with the zero-day exploitation of the &quot;ToolShell&quot; SharePoint flaws to deploy ransomware on targeted systems.
+Earlier this year, the group was linked to the compromise of SmarterTools by exploiting an unpatched SmarterMail instance. It has also relied on legitimate tools like Velociraptor for command-and-control (C2) and the bring your own vulnerable driver (BYOVD) technique to disarm security software running on a compromised host.
+According to Symantec, Warlock shares overlaps with older activity clusters known as CL-CRI-1040, CamoFei, and ChamelGang.
+&quot;In one intrusion against a critical infrastructure operator, the attackers pushed a tool designed to disable security software to at least 40 hosts within about two hours, then deployed Warlock on at least 33 hosts by staging it in the domain's SYSVOL share, where ordinary domain replication delivered it to machines,&quot; the researchers said.
+Attacks mounted by Warlock have leveraged multiple vulnerabilities in on-premises Microsoft SharePoint Server deployments. Upon successfully finding a way in, the threat actors have been found to drop web shells that can target multiple versions of SharePoint.
+The end goal of the web shell is to collect the SharePoint farm's ASP.NET machine keys, which are then abused to forge a validly signed payload and achieve remote code execution inside the SharePoint application pool.
+Some of the other observed tactics are listed below -
+- Using DLL sideloading to load malicious code into memory.
+- Downloading follow-on payloads from legitimate cloud file-sharing and storage services such as catbox[.]moe and wasabisys[.]com to fly under the radar.
+- Abusing a legitimate-but-vulnerable driver K7RKScan.sys (CVE-2025-1055) as part of a BYOVD attack to disable security software. The same driver was previously exploited by DragonForce ransomware actors.
+- Using living-off-the-land (LotL) tooling to perform reconnaissance and run commands on the compromised hosts. This includes the abuse of Microsoft Visual Studio Code's built-in tunnel feature to facilitate remote connections to infected systems.
+- Staging payloads inside the compromised domain's SYSVOL share to deploy ransomware at scale.
+As recently as July 22, 2026, the threat actors are said to have exploited SharePoint Server flaws to drop a web shell, conduct discovery, obtain arbitrary code execution inside the SharePoint application pool, deploy additional payloads, burrow deeper into the network, establish VS Code tunnels, terminate security software, and ultimately deploy the ransomware binary.
+&quot;Longlegs' continued activity, more than a year after Warlock ransomware first came to prominence, shows that exploitation of ToolShell and other related-SharePoint vulnerabilities remains a viable initial access route for attackers SharePoint deployments that have not been patched or otherwise mitigated,&quot; Symantec and Carbon Black said.
+&quot;The apparent recent focus on Portuguese- and Spanish-speaking countries suggests either an opportunistic targeting pattern driven by exposed, vulnerable SharePoint servers, or a more deliberate tasking.&quot;</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac333863c69')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a0f72765d85">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/10/warlock-exploits-sharepoint-flaws-to.html" target="_blank" rel="noopener noreferrer" class="article-title">Warlock Exploits SharePoint Flaws to Disable Security Tools and Deploy Ransomware - The Hacker News</a>
+          <div class="article-meta">The Hacker News &bull; Oct 03, 2026</div>
+          <div class="article-summary"><p>The suspected China-linked threat actor known as Warlock is still continuing to weaponize Microsoft SharePoint vulnerabilities, likely both old and new, in attacks targeting organizations in Portuguese- and Spanish-speaking countries.
+The activity, observed by the Symantec and Carbon Black Threat Hunter Team, has hit critical infrastructure, government, and education organizations.
+&quot;In the past two months, Longlegs has attacked at least four organizations, including two critical infrastructure operators (a water utility and a telecommunications provider), a regional government body, and a university,&quot; the Broadcom-owned cybersecurity unit said. &quot;Victims were in Portuguese- and Spanish-speaking countries, spanning Europe, Africa, and Latin America.&quot;
+Warlock, also tracked as Gold Salem, Longlegs, and Storm-2603, gained prominence in mid-2025 in connection with the zero-day exploitation of the &quot;ToolShell&quot; SharePoint flaws to deploy ransomware on targeted systems.
+Earlier this year, the group was linked to the compromise of SmarterTools by exploiting an unpatched SmarterMail instance. It has also relied on legitimate tools like Velociraptor for command-and-control (C2) and the bring your own vulnerable driver (BYOVD) technique to disarm security software running on a compromised host.
+According to Symantec, Warlock shares overlaps with older activity clusters known as CL-CRI-1040, CamoFei, and ChamelGang.
+&quot;In one intrusion against a critical infrastructure operator, the attackers pushed a tool designed to disable security software to at least 40 hosts within about two hours, then deployed Warlock on at least 33 hosts by staging it in the domain's SYSVOL share, where ordinary domain replication delivered it to machines,&quot; the researchers said.
+Attacks mounted by Warlock have leveraged multiple vulnerabilities in on-premises Microsoft SharePoint Server deployments. Upon successfully finding a way in, the threat actors have been found to drop web shells that can target multiple versions of SharePoint.
+The end goal of the web shell is to collect the SharePoint farm's ASP.NET machine keys, which are then abused to forge a validly signed payload and achieve remote code execution inside the SharePoint application pool.
+Some of the other observed tactics are listed below -
+- Using DLL sideloading to load malicious code into memory.
+- Downloading follow-on payloads from legitimate cloud file-sharing and storage services such as catbox[.]moe and wasabisys[.]com to fly under the radar.
+- Abusing a legitimate-but-vulnerable driver K7RKScan.sys (CVE-2025-1055) as part of a BYOVD attack to disable security software. The same driver was previously exploited by DragonForce ransomware actors.
+- Using living-off-the-land (LotL) tooling to perform reconnaissance and run commands on the compromised hosts. This includes the abuse of Microsoft Visual Studio Code's built-in tunnel feature to facilitate remote connections to infected systems.
+- Staging payloads inside the compromised domain's SYSVOL share to deploy ransomware at scale.
+As recently as July 22, 2026, the threat actors are said to have exploited SharePoint Server flaws to drop a web shell, conduct discovery, obtain arbitrary code execution inside the SharePoint application pool, deploy additional payloads, burrow deeper into the network, establish VS Code tunnels, terminate security software, and ultimately deploy the ransomware binary.
+&quot;Longlegs' continued activity, more than a year after Warlock ransomware first came to prominence, shows that exploitation of ToolShell and other related-SharePoint vulnerabilities remains a viable initial access route for attackers SharePoint deployments that have not been patched or otherwise mitigated,&quot; Symantec and Carbon Black said.
+&quot;The apparent recent focus on Portuguese- and Spanish-speaking countries suggests either an opportunistic targeting pattern driven by exposed, vulnerable SharePoint servers, or a more deliberate tasking.&quot;</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a0f72765d85')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ae7e19c615f">
+        <div class="article-body">
+          <a href="https://www.bleepingcomputer.com/news/security/warlock-ransomware-breach-sharepoint-in-water-telecom-operator-attacks/" target="_blank" rel="noopener noreferrer" class="article-title">Warlock ransomware breach SharePoint in water, telecom operator attacks - BleepingComputer</a>
+          <div class="article-meta">BleepingComputer &bull; Oct 02, 2026</div>
+          <div class="article-summary"><p>The China-linked ransomware group Warlock targeted a water utility, a telecom provider, a regional government body, and a university by exploiting SharePoint vulnerabilities to gain initial access.
+Over the past two months, the threat actor appears to have focused on countries speaking Portuguese and Spanish across Europe, Africa, and Latin America.
+The gang emerged in June 2025 and gained notoriety a month later after exploiting a chain of zero-day vulnerabilities in Microsoft SharePoint known as ToolShell (CVE-2025-49704, CVE-2025-49706, CVE-2025-53770, and CVE-2025-53771).
+By August, Microsoft observed state-backed hacking groups Linen Typhoon and Violet Typhoon using ToolShell exploits in attacks, along with a ransomware threat actor the company tracks as Storm-2603.
+EDR killer deployed to 40 hosts
+Cybersecurity company Symantec identifies the same actor as Longlegs and attributes the development of the Warlock ransomware to the group.
+According to the researchers, in one intrusion that started on July 22, the threat actor deployed a tool that disabled protection software on “at least 40 hosts within about two hours.” The attacker then launched Warlock ransomware on at least 33 hosts.
+After gaining access, typically by exploiting vulnerabilities in on-premises SharePoint deployments, the attacker drops a web shell designed to function across multiple SharePoint versions.
+Symantec and Carbon Black researchers say that in some attacks attributed to Longlegs, an AV/EDR-killing tool was deployed via the bring your own vulnerable driver (BYOVD) technique using a signed K7RKScan driver vulnerable to CVE-2025-1055.
+Analysis of the intrusion on July 22 revealed that two days after gaining initial access, the threat actor engaged in reconnaissance activity and deleted what seemed like staging artifacts.
+Using VS Code's tunneling capability
+The ransomware payload was staged in the domain’s SYSVOL share, a location that stores public files and is replicated across every domain controller.
+This is “a known method of pushing a payload out for execution by a logon script or Group Policy object across an entire network at once, rather than one host at a time,” the researchers say.
+During the attack, the main executable file for Visual Studio Code Insiders was installed as a service to enable connecting remotely to compromised machines using VS Code's built-in tunneling capability.
+On one of the systems, the researchers found the open-source penetration testing framework NetExec, which helped the attacker with Active Directory enumeration, credential spraying, and remote command execution.
+The final stage of the attack occurred on July 31st, after deploying the AV/EDR killer, with Warlock ransomware “appearing almost as soon as protection was disabled on each host.”
+The researchers warn that ToolShell and other SharePoint vulnerabilities remain viable initial access vectors, more than a year after Warlock first emerged exploiting SharePoint flaws.
+The report from the Symantec and Carbon Black threat hunters includes a set of indicators of compromise for files and infrastructure used in the attacks.
+Build your security blueprint for AI-powered attacks
+Join Mikko Hyppönen and security leaders from the NFL, CHANEL, and Atlassian for a two-hour digital summit on what AI-speed attacks change, what defenders should stop doing, and how to validate, decide, fix, and re-validate at machine speed.
+Save your seat</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ae7e19c615f')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a875f799114">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMivAFBVV95cUxPcUJ2OURJWm94ekp4ajMwYzJzUUZIN1VLek9MM0xlb0hUcFcwclAwUm9TeGZtY0VCM1FudGE3a05sU0FXRU90QllMcFpEekZXS3BGWVJCeEdsRFJrQlVmTDhnSFMxdUs1cXg3aEljODZ3X0lLRWlWOXdyWnlZNExZSmRZQUI1cUVnNXVZeExiam1nQWNFUXZQcFZOZ0F1bmhtc2VicWZZSUFIcUthb19iMTlCcW9oNzF6N0k4ZQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft sends PDFs to strange new worlds instead of SharePoint - theregister.com</a>
+          <div class="article-meta">theregister.com &bull; Sep 29, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft sends PDFs to strange new worlds instead of SharePoint&amp;nbsp;&amp;nbsp;theregister.com</p><a href="https://news.google.com/rss/articles/CBMivAFBVV95cUxPcUJ2OURJWm94ekp4ajMwYzJzUUZIN1VLek9MM0xlb0hUcFcwclAwUm9TeGZtY0VCM1FudGE3a05sU0FXRU90QllMcFpEekZXS3BGWVJCeEdsRFJrQlVmTDhnSFMxdUs1cXg3aEljODZ3X0lLRWlWOXdyWnlZNExZSmRZQUI1cUVnNXVZeExiam1nQWNFUXZQcFZOZ0F1bmhtc2VicWZZSUFIcUthb19iMTlCcW9oNzF6N0k4ZQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a875f799114')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a5ecab51317">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi2wFBVV95cUxNbnI4WnR5VWROOXVVdUQ5eGxWbW5EdXhzMVJPZDRsQlRTM195RS1uTkItcTVacTQxbjJQWlJsVW9BVDRINUtkVWcteHhxdWE1eG5HZ1RDSTB2M29kREdzY0VMamZHRWphREtLZHllYkhORlQzeUVhdXB3aTR6ZDFLam9LYVZrMmFaZkstaFUxdnZ5T0p3MlN6R1VKQjBFS1R5dzBFZzNINlhUQU02VUtpeC1xakhpY3hmeUxLREVEODdfT3RkQ21mdVYtcmQyVkdJR19Ic1VONmpYWkU?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">More Secure SharePoint Integration in Power Pages with Site‑Scoped Permissions - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; Oct 03, 2026</div>
+          <div class="article-summary snippet"><p>More Secure SharePoint Integration in Power Pages with Site‑Scoped Permissions&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMi2wFBVV95cUxNbnI4WnR5VWROOXVVdUQ5eGxWbW5EdXhzMVJPZDRsQlRTM195RS1uTkItcTVacTQxbjJQWlJsVW9BVDRINUtkVWcteHhxdWE1eG5HZ1RDSTB2M29kREdzY0VMamZHRWphREtLZHllYkhORlQzeUVhdXB3aTR6ZDFLam9LYVZrMmFaZkstaFUxdnZ5T0p3MlN6R1VKQjBFS1R5dzBFZzNINlhUQU02VUtpeC1xakhpY3hmeUxLREVEODdfT3RkQ21mdVYtcmQyVkdJR19Ic1VONmpYWkU?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a5ecab51317')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ad1772f9a14">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi5wFBVV95cUxOZmlCWDJmZjBuNWVGVU83eE9mQVBvdjQ5VFYxUWpFLVZ6MVhJMl9Jd0VtT3hXZ2haVXl3bEVDMXluZExVR0VOODV4cF9nWWl2NzQ2TE1IZ0hUb0xuZV9tLXNqSnliMGY3ZEk4cERTc3J5djhJZUZ2ZzdTMVhNSmJabVJxdHVyeWNHLXUzS0V5bDRqUkpwcElvUHBWUjRxTEk1UlRuSXE4blFkUE52NFZETmZDV1A3a1pmU0pnbnEwR2RPcG5yaHRQb2lxdWZjaWFVVWRxZGpjOGtuNjlXNG4xMW5iaXRLbFk?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Symantec reports Warlock ransomware group targets water, telecom, government organizations through SharePoint flaws - Industrial Cyber</a>
+          <div class="article-meta">Industrial Cyber &bull; Oct 02, 2026</div>
+          <div class="article-summary snippet"><p>Symantec reports Warlock ransomware group targets water, telecom, government organizations through SharePoint flaws&amp;nbsp;&amp;nbsp;Industrial Cyber</p><a href="https://news.google.com/rss/articles/CBMi5wFBVV95cUxOZmlCWDJmZjBuNWVGVU83eE9mQVBvdjQ5VFYxUWpFLVZ6MVhJMl9Jd0VtT3hXZ2haVXl3bEVDMXluZExVR0VOODV4cF9nWWl2NzQ2TE1IZ0hUb0xuZV9tLXNqSnliMGY3ZEk4cERTc3J5djhJZUZ2ZzdTMVhNSmJabVJxdHVyeWNHLXUzS0V5bDRqUkpwcElvUHBWUjRxTEk1UlRuSXE4blFkUE52NFZETmZDV1A3a1pmU0pnbnEwR2RPcG5yaHRQb2lxdWZjaWFVVWRxZGpjOGtuNjlXNG4xMW5iaXRLbFk?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ad1772f9a14')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="intune" class="topic-section">
+      <h2 class="topic-title" style="--c:#0F6CBD">Intune <span class="count">(7)</span></h2>
+      <div class="article-card" data-id="aae7bb4c98c">
+        <div class="article-body">
+          <a href="https://techcommunity.microsoft.com/t5/intune-customer-success/microsoft-intune-settings-catalog-updated-to-support-windows-11/ba-p/4560815" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Intune Settings Catalog updated to support Windows 11, version 26H2</a>
+          <div class="article-meta">techcommunity.microsoft.com &bull; Sep 30, 2026</div>
+          <div class="article-summary snippet"><p>Windows 11, version 26H2 is now available, and Microsoft Intune provides day zero support for validated Windows policy settings in the Settings Catalog.
+We continue to invest in the settings catalog infrastructure to ensure timely support for new Windows policy settings. This enables organizations to adopt new OS versions and features without delay and maintain secure, compliant, and well-managed environments.
+These settings are rolling out globally and should appear across all Intune tenants over the coming days.
+Settings Catalog support for Windows 11, version 26H2
+As part of&amp;nbsp;Windows 11, version 26H2 settings catalog support, the Settings Catalog now includes all newly released settings and updates to existing settings introduced with the latest Windows 11, version 26H2 release. These settings are available to be configured in settings catalog, enabling administrators to manage and configure Windows endpoints using the newest 26H2 capabilities.
+What this means for administrators
+Administrators can find the new settings within the settings catalog in the Microsoft Intune admin center under Devices &amp;gt; Manage devices &amp;gt; Configuration &amp;gt; Create &amp;gt; New policy. Select Windows 10 and later for the platform and Settings catalog for the profile type.
+Before deploying Windows 11, version 26H2:
+
+Review the new and updated settings that apply to your organization.
+Test configuration profiles with a representative device group.
+Confirm that the targeted Windows edition and version support each setting.
+Monitor profile deployment and device status after assignment.
+
+Windows 11, version 26H2 security baseline
+Windows 11 version 26H2 Security Baseline will also be made available shortly in Intune. We are validating the final recommendations and plan to make&amp;nbsp;
+the updated baseline available over the coming days following the Windows 11, version 26H2 release.
+The current baseline includes:
+
+A new recommendation for Configure Windows Ready Print driver ranking.
+An updated Turn off encryption support recommendation that changes the supported Transport Layer Security versions from TLS 1.1 and 1.2 to TLS 1.2 and 1.3.
+Configure NetBIOS settings - This setting is pending availability in the Settings Catalog and will be added to the baseline in a future update.
+
+Learn more
+
+Create a policy using settings catalog in Microsoft Intune
+Windows 11 - release information
+Learn about Intune security baselines for Windows devices
+
+We welcome your feedback. If you have questions about these settings or Windows 11, version 26H2 management in Intune, leave a comment on this post or follow us on&amp;nbsp;LinkedIn  or&amp;nbsp;@MSIntune &amp;nbsp;and @IntuneSuppTeam &amp;nbsp;on X to continue the conversation.</p><a href="https://techcommunity.microsoft.com/t5/intune-customer-success/microsoft-intune-settings-catalog-updated-to-support-windows-11/ba-p/4560815" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aae7bb4c98c')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a9956febe1c">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-intune-deployment-android-features/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Intune Adds Phased Deployments and Android Management Enhancements</a>
+          <div class="article-meta">petri.com &bull; Oct 01, 2026</div>
+          <div class="article-summary"><p>Microsoft Intune Adds Phased Deployments and Android Management Enhancements
+Microsoft is introducing phased rollout controls, streamlined troubleshooting tools, and new Android management capabilities to help IT teams manage deployments.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a9956febe1c')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a7f91ea7898">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-intune-deployment-android-features/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Intune Adds Phased Deployments and Android Management Enhancements - Petri IT Knowledgebase</a>
+          <div class="article-meta">Petri IT Knowledgebase &bull; Oct 01, 2026</div>
+          <div class="article-summary"><p>Microsoft Intune Adds Phased Deployments and Android Management Enhancements
+Microsoft is introducing phased rollout controls, streamlined troubleshooting tools, and new Android management capabilities to help IT teams manage deployments.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a7f91ea7898')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="af408551fe1">
+        <div class="article-body">
+          <a href="https://www.neowin.net/news/here-are-all-the-new-features-microsoft-added-to-teams-in-august-and-september-2026/?utm_source=rss" target="_blank" rel="noopener noreferrer" class="article-title">Here are all the new features Microsoft added to Intune for IT admins in September 2026 - Neowin</a>
+          <div class="article-meta">Neowin &bull; Oct 01, 2026</div>
+          <div class="article-summary snippet"><p>Here are all the new features Microsoft added to Intune for IT admins in September 2026&amp;nbsp;&amp;nbsp;Neowin</p><a href="https://www.neowin.net/news/here-are-all-the-new-features-microsoft-added-to-teams-in-august-and-september-2026/?utm_source=rss" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('af408551fe1')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aa63180533d">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMimAFBVV95cUxQTFlMc1VYR1M4dk5vUGdFQzFHSk1OU09sOEVYa3YyTDJnYU9sZEVDRUstQVZ2QWI4bnpSY0t3SWllQ3FXR0h6Q2hpVTJfZXZ4dFQ2alBfQ3NKaFBXVFhSQjBDWU1mNFFxSFVOaDl3RllJdHdrTVNiSWlHVWctRS1OQWhNS0NyMUxQTlR1aVZoRWMtMlQ4YVpEMQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">WSL containers is now generally available - Windows Blog</a>
+          <div class="article-meta">Windows Blog &bull; Sep 29, 2026</div>
+          <div class="article-summary snippet"><p>WSL containers is now generally available&amp;nbsp;&amp;nbsp;Windows Blog</p><a href="https://news.google.com/rss/articles/CBMimAFBVV95cUxQTFlMc1VYR1M4dk5vUGdFQzFHSk1OU09sOEVYa3YyTDJnYU9sZEVDRUstQVZ2QWI4bnpSY0t3SWllQ3FXR0h6Q2hpVTJfZXZ4dFQ2alBfQ3NKaFBXVFhSQjBDWU1mNFFxSFVOaDl3RllJdHdrTVNiSWlHVWctRS1OQWhNS0NyMUxQTlR1aVZoRWMtMlQ4YVpEMQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aa63180533d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ad19206713b">
+        <div class="article-body">
+          <a href="https://9to5mac.com/2026/10/01/spacexai-releases-a-separate-grok-ios-app-for-enterprise-users/" target="_blank" rel="noopener noreferrer" class="article-title">SpaceXAI releases a separate Grok iOS app for enterprise users - 9to5Mac</a>
+          <div class="article-meta">9to5Mac &bull; Oct 01, 2026</div>
+          <div class="article-summary"><p>Back in May, OpenAI released a dedicated version of their mobile app for enterprise. Now SpaceXAI is doing the same thing for Grok.
+Grok for Intune now available
+The new enterprise-specific app is called Grok for Intune. SpaceXAI says the new dedicated app is “the Microsoft Intune edition of Grok, the AI assistant by xAI — built for organizations that manage apps and data with Intune.”
+“It supports Intune Mobile Application Management, honors your organization’s app protection policies, and signs in with your work email,” the company says.
+SpaceXAI highlights these features with Grok for Intune:
+AI assistant
+- Ask anything and get fast answers, run deep research on the web, or work through hard problems in math, science, and coding.
+- Upload documents and photos, or paste links, and have Grok analyze and explain the content.
+Grok Imagine
+- Generate striking images from simple text prompts, or upload images and have Grok edit them — remove objects, change the scenery, or apply any art style.
+- Create short videos with sound from text prompts, or turn static photos into video.
+Voice Mode
+- Talk to Grok and get natural-sounding replies, hands-free.
+- Live Camera: share what you see and let Grok reason about it in real time.
+Real-time information
+- With access to web and X data, Grok’s answers stay current on the latest news, trends, and developments for any topic.
+Built for managed devices
+- Deployed and configured by your IT team through Microsoft Intune.
+- Honors your organization’s app protection policies, including save, share, and data-transfer restrictions.
+- Work email sign-in. No in-app purchases.
+Grok for Intune is now available on the App Store.
+Do more with your Apple products
+AirPods 5 | Apple’s newest wireless headphones
+Apple AirTag 2 | Add Find My tracking to keys, bags, bikes, more
+AirPods Pro 3 | Apple’s best wireless headphones</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ad19206713b')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a95e9366511">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMikAFBVV95cUxQX05DTXlsb3hrQVIyQjFjSDlPcW81VUw5Q0toeWVJMzBKLWxZVlI0dXRfZ1BvN0EwUUlKR2VWLU9NR3dWSkt6aHJyclFPcUFBTXQ5b1VONW9vSWJyWlJRcUFneG1EcXFUWnV5ZG5fZjFaVTdCdU5tMmdJWllQV1B0TGdBU3p1LWtBT25HYS1iVzA?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">5 Factors That Increase Microsoft Intune Prices When Securing Mobile Devices - Dataconomy</a>
+          <div class="article-meta">Dataconomy &bull; Sep 28, 2026</div>
+          <div class="article-summary snippet"><p>5 Factors That Increase Microsoft Intune Prices When Securing Mobile Devices&amp;nbsp;&amp;nbsp;Dataconomy</p><a href="https://news.google.com/rss/articles/CBMikAFBVV95cUxQX05DTXlsb3hrQVIyQjFjSDlPcW81VUw5Q0toeWVJMzBKLWxZVlI0dXRfZ1BvN0EwUUlKR2VWLU9NR3dWSkt6aHJyclFPcUFBTXQ5b1VONW9vSWJyWlJRcUFneG1EcXFUWnV5ZG5fZjFaVTdCdU5tMmdJWllQV1B0TGdBU3p1LWtBT25HYS1iVzA?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a95e9366511')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="entraid" class="topic-section">
+      <h2 class="topic-title" style="--c:#6B69D6">Entra ID <span class="count">(6)</span></h2>
+      <div class="article-card" data-id="ae0d37109a9">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-block-script-injection-entra-id-sign-in-pages/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft to Block Script Injection on Entra ID Sign-In Pages</a>
+          <div class="article-meta">petri.com &bull; Sep 30, 2026</div>
+          <div class="article-summary"><p>Microsoft to Block Script Injection on Entra ID Sign-In Pages
+Organizations using authentication monitoring, customization, or browser-based security tools may need to review their deployments before Microsoft begins enforcing stricter security controls on Entra ID sign-in pages.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ae0d37109a9')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ac6c1540fd5">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-block-script-injection-entra-id-sign-in-pages/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft to block Entra ID script injection attacks starting October - BleepingComputer</a>
+          <div class="article-meta">BleepingComputer &bull; Sep 30, 2026</div>
+          <div class="article-summary"><p>Microsoft to Block Script Injection on Entra ID Sign-In Pages
+Organizations using authentication monitoring, customization, or browser-based security tools may need to review their deployments before Microsoft begins enforcing stricter security controls on Entra ID sign-in pages.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac6c1540fd5')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a399f2d3ed7">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-block-script-injection-entra-id-sign-in-pages/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft to Block Script Injection on Entra ID Sign-In Pages - Petri IT Knowledgebase</a>
+          <div class="article-meta">Petri IT Knowledgebase &bull; Sep 30, 2026</div>
+          <div class="article-summary"><p>Microsoft to Block Script Injection on Entra ID Sign-In Pages
+Organizations using authentication monitoring, customization, or browser-based security tools may need to review their deployments before Microsoft begins enforcing stricter security controls on Entra ID sign-in pages.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a399f2d3ed7')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a72f1550022">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMic0FVX3lxTE0tSkxIanpuQUM1OUs5Z1lvWV9XUmkwZEFTVmhxRVZsMmpJMFB5VjJlTURUWHdueUFRZmw5bFZNdEQzcnZYX0pyZnRrU3JyYm8wSkdTUGUxY2lTUG5NWWJTV25wMkxQb1ZRSWtNSmxoTG9uNTA?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Entra ID Will Block Injected Scripts at Sign-In - SQ Magazine</a>
+          <div class="article-meta">SQ Magazine &bull; Sep 30, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft Entra ID Will Block Injected Scripts at Sign-In&amp;nbsp;&amp;nbsp;SQ Magazine</p><a href="https://news.google.com/rss/articles/CBMic0FVX3lxTE0tSkxIanpuQUM1OUs5Z1lvWV9XUmkwZEFTVmhxRVZsMmpJMFB5VjJlTURUWHdueUFRZmw5bFZNdEQzcnZYX0pyZnRrU3JyYm8wSkdTUGUxY2lTUG5NWWJTV25wMkxQb1ZRSWtNSmxoTG9uNTA?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a72f1550022')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a029bb3b89a">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiowFBVV95cUxOZ2szdzg3ZU1jUDZoQVJuM05pRzBBdGc0V0ozS1V4V0xJZU1ZWmxKTG0xOTFfeXUtc2FqWFVsZEZWa2xOZ3c2ZmFZNjJXR1lIX19uaTYwellXRWdNNTg5V2JLOUE1UEhmZGQydVQtZndIZ3JkVnpESFRkdXlSMGpMNEhOeUp4V1owOGliOTNhdWhJa2ZvOFJ2Y0RxVlB1UVE5VGZ3?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Entra ID to enhance security against script injection attacks - SC Media</a>
+          <div class="article-meta">SC Media &bull; Sep 30, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft Entra ID to enhance security against script injection attacks&amp;nbsp;&amp;nbsp;SC Media</p><a href="https://news.google.com/rss/articles/CBMiowFBVV95cUxOZ2szdzg3ZU1jUDZoQVJuM05pRzBBdGc0V0ozS1V4V0xJZU1ZWmxKTG0xOTFfeXUtc2FqWFVsZEZWa2xOZ3c2ZmFZNjJXR1lIX19uaTYwellXRWdNNTg5V2JLOUE1UEhmZGQydVQtZndIZ3JkVnpESFRkdXlSMGpMNEhOeUp4V1owOGliOTNhdWhJa2ZvOFJ2Y0RxVlB1UVE5VGZ3?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a029bb3b89a')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aa111c17bc0">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMia0FVX3lxTE9aaGNwV0hJVzZjZ3ZJUUtZXzRxaU1RWEVvZDA3WEpSTTY5eTRRa3ZFNFc3M2wzbFh5WVh6UmJMSzhqVWNSSm9oSktETlQtdzZEUXh2WTJOT09fNVRlMzRSRVNVV1ZOejZHcnBj0gFwQVVfeXFMUGVkQjVjVFVCNUxMUHlXMWVPZXBmRGt3a2xNYWlfejFkRDRMOHEydXM4SlNJNG1rUTR2Y0V2akJuTWZhZ0ozRDViMDEyOVNDVHhCR3JkUHJXTUE5SUZodEtmakozZmdWX2o5eEkxakVBaA?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Session Cookie Vulnerability Lets Attackers Bypass Entra ID MFA and Impersonate Users - CyberSecurityNews</a>
+          <div class="article-meta">CyberSecurityNews &bull; Oct 02, 2026</div>
+          <div class="article-summary snippet"><p>Session Cookie Vulnerability Lets Attackers Bypass Entra ID MFA and Impersonate Users&amp;nbsp;&amp;nbsp;CyberSecurityNews</p><a href="https://news.google.com/rss/articles/CBMia0FVX3lxTE9aaGNwV0hJVzZjZ3ZJUUtZXzRxaU1RWEVvZDA3WEpSTTY5eTRRa3ZFNFc3M2wzbFh5WVh6UmJMSzhqVWNSSm9oSktETlQtdzZEUXh2WTJOT09fNVRlMzRSRVNVV1ZOejZHcnBj0gFwQVVfeXFMUGVkQjVjVFVCNUxMUHlXMWVPZXBmRGt3a2xNYWlfejFkRDRMOHEydXM4SlNJNG1rUTR2Y0V2akJuTWZhZ0ozRDViMDEyOVNDVHhCR3JkUHJXTUE5SUZodEtmakozZmdWX2o5eEkxakVBaA?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aa111c17bc0')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="m365" class="topic-section">
+      <h2 class="topic-title" style="--c:#D83B01">Microsoft 365 <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a3c3c33047f">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-update-office-2016-2019-licensing-issues/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Pauses Office Update After Licensing Issues Affect Office 2016 and 2019</a>
+          <div class="article-meta">petri.com &bull; Sep 29, 2026</div>
+          <div class="article-summary"><p>Reports of unlicensed Office apps, failed reinstalls, and disrupted workflows prompted Microsoft to halt KB5002907 and investigate what went wrong.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a3c3c33047f')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aff5be0db84">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMizgFBVV95cUxPelZRdjZVbXU5RXZQN0VPMU9JT0RETDJsVzFVVFB1V3I3OUpQSkZPSG10S3lxN1g0TzRhbHRPLWljMFptNV9XcGFHakJxcXRXWFM0NmVVcEp6RHkwWDZJWEpyTE5UdnBaODJxVHZFejAxVVhfaXN0NUM5QnM4SXk4cjBJTl95WVVESVFxa0tod3dTWjBNM2FBblQ5ODBQb20teGtDN1V4U2JGYktHd1FSMEhFV0w0dGNJMmkyVVZ4T3pjcUR3c1NPb3lzMVFzZw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Instead of paying $99.99 for Microsoft 365, get the same subscription for $69.99 right here - pcworld.com</a>
+          <div class="article-meta">pcworld.com &bull; Oct 04, 2026</div>
+          <div class="article-summary snippet"><p>Instead of paying $99.99 for Microsoft 365, get the same subscription for $69.99 right here&amp;nbsp;&amp;nbsp;pcworld.com</p><a href="https://news.google.com/rss/articles/CBMizgFBVV95cUxPelZRdjZVbXU5RXZQN0VPMU9JT0RETDJsVzFVVFB1V3I3OUpQSkZPSG10S3lxN1g0TzRhbHRPLWljMFptNV9XcGFHakJxcXRXWFM0NmVVcEp6RHkwWDZJWEpyTE5UdnBaODJxVHZFejAxVVhfaXN0NUM5QnM4SXk4cjBJTl95WVVESVFxa0tod3dTWjBNM2FBblQ5ODBQb20teGtDN1V4U2JGYktHd1FSMEhFV0w0dGNJMmkyVVZ4T3pjcUR3c1NPb3lzMVFzZw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aff5be0db84')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a7c378ce880">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMigAFBVV95cUxQQ0FSdzN3bUdoRUswdkxMeVYtLXN4dkZSQ21RZDZaSXZhWDNDUUdrQ3A4MjlISS0xcmx4MTJrS3RtVXRCaUtkRjl6MDk2RGdWNU5meXEyRU5PcTJwUW5MS0kwYVBuLWNNMXB4V2RLM3RfelhfVElCYXdMRlF4LUxSMA?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Instead of paying $99.99 per year for Microsoft 365, you can get Microsoft Office for life for $89.97 - mashable.com</a>
+          <div class="article-meta">mashable.com &bull; Oct 04, 2026</div>
+          <div class="article-summary snippet"><p>Instead of paying $99.99 per year for Microsoft 365, you can get Microsoft Office for life for $89.97&amp;nbsp;&amp;nbsp;mashable.com</p><a href="https://news.google.com/rss/articles/CBMigAFBVV95cUxQQ0FSdzN3bUdoRUswdkxMeVYtLXN4dkZSQ21RZDZaSXZhWDNDUUdrQ3A4MjlISS0xcmx4MTJrS3RtVXRCaUtkRjl6MDk2RGdWNU5meXEyRU5PcTJwUW5MS0kwYVBuLWNNMXB4V2RLM3RfelhfVElCYXdMRlF4LUxSMA?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a7c378ce880')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a5a6cc0eac2">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiugFBVV95cUxNSHFTczRaZmU2NldoUTUtTUNzUmNIOUllTncxVS1CWmFDU1Y3UlpxTC1XZm1LaWpuWWNiT3RUX3Ixa2R4VENJcEd6VHJrTXA4SWdrZlM0TWlkZVo0SXdyVldtczA2MFpsY2IyODZDQlg2TTZyVWVVNlM5OWhPSlRNTmJ0bVctRjdCR0IxTDhsaXNNX1N0VWVEWktHQ0xBQ05wWkdHLUpNN1JxcFFqc19FX1JGR0hKWkxWblE?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Upcoming changes to Microsoft 365 email access - Auburn University</a>
+          <div class="article-meta">Auburn University &bull; Sep 30, 2026</div>
+          <div class="article-summary snippet"><p>Upcoming changes to Microsoft 365 email access&amp;nbsp;&amp;nbsp;Auburn University</p><a href="https://news.google.com/rss/articles/CBMiugFBVV95cUxNSHFTczRaZmU2NldoUTUtTUNzUmNIOUllTncxVS1CWmFDU1Y3UlpxTC1XZm1LaWpuWWNiT3RUX3Ixa2R4VENJcEd6VHJrTXA4SWdrZlM0TWlkZVo0SXdyVldtczA2MFpsY2IyODZDQlg2TTZyVWVVNlM5OWhPSlRNTmJ0bVctRjdCR0IxTDhsaXNNX1N0VWVEWktHQ0xBQ05wWkdHLUpNN1JxcFFqc19FX1JGR0hKWkxWblE?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a5a6cc0eac2')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ae6f31cacfe">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMizgFBVV95cUxNSEpMNXV3M0owaTc3akJ2WFZOcC1qNnpRdE56c3VsS1M0ZVJGLWhNaWlHOW0xUHcxT2lUNU81M1VPNHN0YzZjeVpNZWVKREhHc1gwX2pjYVhRRDNzQUFhdWxNSWt6RDVNVGdrN2RUSlNjMEJFM1BDejlRVmJYNkx0R3hSS2hSYXZGSndwVllVb2FTT05aa0xES21pN3pOdEN2RWZzbE1oZzhCWk94cjlyYUgtTTFLNWU3c2VIYndtZ0hNT0Y3alVXMlpHVzE1QQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">​​Secure what’s next: Your guide to Microsoft Security at Microsoft Ignite 2026 - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; Sep 30, 2026</div>
+          <div class="article-summary snippet"><p>​​Secure what’s next: Your guide to Microsoft Security at Microsoft Ignite 2026&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMizgFBVV95cUxNSEpMNXV3M0owaTc3akJ2WFZOcC1qNnpRdE56c3VsS1M0ZVJGLWhNaWlHOW0xUHcxT2lUNU81M1VPNHN0YzZjeVpNZWVKREhHc1gwX2pjYVhRRDNzQUFhdWxNSWt6RDVNVGdrN2RUSlNjMEJFM1BDejlRVmJYNkx0R3hSS2hSYXZGSndwVllVb2FTT05aa0xES21pN3pOdEN2RWZzbE1oZzhCWk94cjlyYUgtTTFLNWU3c2VIYndtZ0hNT0Y3alVXMlpHVzE1QQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ae6f31cacfe')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ae488bd2ce9">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/09/us-focused-csuite-phishing-steals.html" target="_blank" rel="noopener noreferrer" class="article-title">US-Focused CSuite Phishing Steals Microsoft 365 Sessions and Deploys RMM Tools for Remote Access - The Hacker News</a>
+          <div class="article-meta">The Hacker News &bull; Sep 30, 2026</div>
+          <div class="article-summary"><p>ANY.RUN researchers traced a US-focused CSuite phishing campaign across 351 sandbox analyses, with 51% of submissions coming from the United States. Technology, manufacturing, government, and consulting organizations showed the highest exposure.
+By combining Microsoft 365 session theft with remote-access tool deployment, CSuite can turn a phishing incident into broader account compromise, fraud, and persistent access to business systems.
+CSuite Phishing Leads to Both Account and Endpoint Access
+CSuite starts with familiar business lures built around Adobe, DocuSign, Zoom, Google Meet, Dropbox, and Microsoft 365.
+From there, the operation can move in two directions. One path delivers installers, archives, or lightweight BAT/VBS droppers that install legitimate management tools such as ScreenConnect or Action1, giving attackers remote access to the endpoint.
+The other path targets identity. Victims can be pushed into credential-harvesting or device-code phishing flows designed to capture Microsoft 365 access and active sessions.
+In one ANY.RUN sandbox session, an Adobe-themed lure delivered a BAT file that elevated privileges and installed ScreenConnect, showing how quickly a phishing page can turn into remote endpoint access.
+The result is broader than a typical phishing incident: CSuite can give attackers control over both business accounts and employee devices, expanding the potential impact from mailbox compromise to persistent access inside the environment.
+Reduce the cost of complex incidents by giving teams the context to contain them before access spreads.
+CSuite Activity Is Concentrated in the US and Business-Critical Sectors
+ANY.RUN sandbox telemetry shows a clear US concentration in CSuite activity, with 51% of related submissions coming from the United States. India accounted for 18%, while additional activity appeared across the Philippines, Australia, the United Kingdom, Canada, and other countries.
+The campaign also reached several high-value sectors. Technology, manufacturing, government and administration, and consulting were among the most exposed in the pivot corpus.
+Why CSuite Escalates Fast
+CSuite can give attackers access to both Microsoft 365 accounts and employee endpoints, creating several ways to turn one successful phish into a wider business incident.
+Potential outcomes include:
+- Mailbox takeover: Attackers can read ongoing conversations, monitor payment threads, and impersonate trusted employees.
+- Financial fraud: Access to real business correspondence can support invoice manipulation, payment redirection, and supplier fraud.
+- Persistent remote access: Abused RMM tools can keep attackers connected to victim systems after the initial phishing event.
+- Internal spread: Compromised accounts can be used to target colleagues, partners, or customers from a trusted identity.
+- Larger incident scope: Security teams may need to contain stolen sessions and compromised endpoints at the same time, increasing response effort and business disruption.
+What Security Leaders Should Prioritize Against CSuite
+CSuite leaves little room for siloed response. Security leaders should focus on shortening investigation time, controlling unauthorized remote-access tooling, and improving visibility across both identity and endpoint activity.
+Give Analysts Full Attack-Chain Visibility
+CSuite can move from a convincing business lure to browser activity, script execution, payload delivery, and remote-access installation. Analysts need to reconstruct that sequence rather than judge an incident from a single file or domain.
+ANY.RUN’s Interactive Sandbox provides visibility into both browser and endpoint activity. In this investigation, in-browser inspection exposed a reference to /m/js/utils.js inside a CSuite lure page.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ae488bd2ce9')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a99eaf4d2db">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi0gFBVV95cUxQN2JpQ0t5aUNfamVnTnZ6dXVDTkNIWkJqczlLZVV6MHJkYVczQ0gxaUVhME5fX1lUVElGYm1Hd2pPeTlLcFl2eHNFX0ljajB6X0ZvSVFtTkhvck9QTEtkM0txd3UtcXV4S1BFZ0J1TE9hQ25wMWNqU1NpN1dIVndoYUdNd1Y0MklOOEtNSzVfaE54WU9BUUhrNDlKaUVQc0V2SDk2Rzk0WUZURXpOOWRBdWpPa29ELTNyNEFUdzA5VHJEbG5DTTBvdnpPbDVtWENia1E?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Replace your $99.99/year Microsoft 365 subscription with this $17 lifetime license - Popular Science</a>
+          <div class="article-meta">Popular Science &bull; Oct 02, 2026</div>
+          <div class="article-summary snippet"><p>Replace your $99.99/year Microsoft 365 subscription with this $17 lifetime license&amp;nbsp;&amp;nbsp;Popular Science</p><a href="https://news.google.com/rss/articles/CBMi0gFBVV95cUxQN2JpQ0t5aUNfamVnTnZ6dXVDTkNIWkJqczlLZVV6MHJkYVczQ0gxaUVhME5fX1lUVElGYm1Hd2pPeTlLcFl2eHNFX0ljajB6X0ZvSVFtTkhvck9QTEtkM0txd3UtcXV4S1BFZ0J1TE9hQ25wMWNqU1NpN1dIVndoYUdNd1Y0MklOOEtNSzVfaE54WU9BUUhrNDlKaUVQc0V2SDk2Rzk0WUZURXpOOWRBdWpPa29ELTNyNEFUdzA5VHJEbG5DTTBvdnpPbDVtWENia1E?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a99eaf4d2db')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a547c21f32d">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMifkFVX3lxTE1ta0N2QjQ2MDVoUDJ0Zm4wU2FNdHJhX1AwOUFERldWVUM4LVVmQUNfZjNWWmd4SHpyOGNnX1ZqclExTVZvT2xSZGZfS1JuMjJKeTY1ZnVYOGxNemdZUXpQNGZ6YmFtVGltVngwQk5HTkg5eFhPbE0yVXhBZVVsQQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">I found the perfect Microsoft Word replacement, and it isn't Google Docs - Pocket-lint</a>
+          <div class="article-meta">Pocket-lint &bull; Oct 03, 2026</div>
+          <div class="article-summary snippet"><p>I found the perfect Microsoft Word replacement, and it isn't Google Docs&amp;nbsp;&amp;nbsp;Pocket-lint</p><a href="https://news.google.com/rss/articles/CBMifkFVX3lxTE1ta0N2QjQ2MDVoUDJ0Zm4wU2FNdHJhX1AwOUFERldWVUM4LVVmQUNfZjNWWmd4SHpyOGNnX1ZqclExTVZvT2xSZGZfS1JuMjJKeTY1ZnVYOGxNemdZUXpQNGZ6YmFtVGltVngwQk5HTkg5eFhPbE0yVXhBZVVsQQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a547c21f32d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="iru" class="topic-section">
+      <h2 class="topic-title" style="--c:#7C3AED">Iru MDM (formerly Kandji) </h2>
+      <p class="no-news">No articles found this week.</p>
+    </section>
+    <section id="cato" class="topic-section">
+      <h2 class="topic-title" style="--c:#FF6B35">Cato Networks <span class="count">(4)</span></h2>
+      <div class="article-card" data-id="a40fc551d3d">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBDak5UXzhCOVhwSFZlcGNockVHd3RNNUlIUGRDekl4dWlhWW1tQlVobDZ4YkZtLTl4YUNpcFRxSHplZ2V5V1JyUWZKaWhXMEtpdWJ5T1NkQWFIdFBwVjJDMy0wRGZUOTg?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks employees sell another $100 million in shares - calcalistech.com</a>
+          <div class="article-meta">calcalistech.com &bull; Sep 29, 2026</div>
+          <div class="article-summary snippet"><p>Cato Networks employees sell another $100 million in shares&amp;nbsp;&amp;nbsp;calcalistech.com</p><a href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBDak5UXzhCOVhwSFZlcGNockVHd3RNNUlIUGRDekl4dWlhWW1tQlVobDZ4YkZtLTl4YUNpcFRxSHplZ2V5V1JyUWZKaWhXMEtpdWJ5T1NkQWFIdFBwVjJDMy0wRGZUOTg?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a40fc551d3d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a82f5044a22">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiuAFBVV95cUxQS3RDNHBFSGFPT2dmbm9xQ3B2RnRGTEpfZ3JTNENtYi1HSjAxUlo4bElEa0Y3b0NNMy1TOWJVbGgycVNhTkhnM3M0cjVfMjJGcnFxUmFJLVRic0ZfODVEd0szd3pES255N2RsdjNnbVFHRWdMQWhMdDN3ZHRmWklGdFJYQnNBYWlseU94VmYwWmFnZE5tS21TTjQ1TnlPYUVrczdzLVVBZ28xVEdyNjV1OFRfcGpyVWhK?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks completes $100M secondary, second nine-figure liquidity event in a year - Dealroom</a>
+          <div class="article-meta">Dealroom &bull; Sep 30, 2026</div>
+          <div class="article-summary snippet"><p>Cato Networks completes $100M secondary, second nine-figure liquidity event in a year&amp;nbsp;&amp;nbsp;Dealroom</p><a href="https://news.google.com/rss/articles/CBMiuAFBVV95cUxQS3RDNHBFSGFPT2dmbm9xQ3B2RnRGTEpfZ3JTNENtYi1HSjAxUlo4bElEa0Y3b0NNMy1TOWJVbGgycVNhTkhnM3M0cjVfMjJGcnFxUmFJLVRic0ZfODVEd0szd3pES255N2RsdjNnbVFHRWdMQWhMdDN3ZHRmWklGdFJYQnNBYWlseU94VmYwWmFnZE5tS21TTjQ1TnlPYUVrczdzLVVBZ28xVEdyNjV1OFRfcGpyVWhK?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a82f5044a22')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a87395ceea3">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMivAFBVV95cUxNVzUxTDFvanNDT25OY1Q4NVZvaGtfRy02TlFpd0hPOVFWR2JMeG9nTkplWi1fd3BMUHZVZmcyWnd0cTNUNFdFX2xSVFdfeUszT1NYbl92QmpSMWxiZ0x1cGhDNjB4bzlCeDczelN6bzBwT1YyMUVQVld6ejdCbmVQM0hHaGhQMTViTFpiSHpyUnRSNnF6UVVZRjFqdFJndmZlbk83LUFzQVdKVFpESzdvRFVZZ2l5MXAtUVpnQg?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks completes $100 million secondary transaction, report - SecondaryLink</a>
+          <div class="article-meta">SecondaryLink &bull; Sep 29, 2026</div>
+          <div class="article-summary snippet"><p>Cato Networks completes $100 million secondary transaction, report&amp;nbsp;&amp;nbsp;SecondaryLink</p><a href="https://news.google.com/rss/articles/CBMivAFBVV95cUxNVzUxTDFvanNDT25OY1Q4NVZvaGtfRy02TlFpd0hPOVFWR2JMeG9nTkplWi1fd3BMUHZVZmcyWnd0cTNUNFdFX2xSVFdfeUszT1NYbl92QmpSMWxiZ0x1cGhDNjB4bzlCeDczelN6bzBwT1YyMUVQVld6ejdCbmVQM0hHaGhQMTViTFpiSHpyUnRSNnF6UVVZRjFqdFJndmZlbk83LUFzQVdKVFpESzdvRFVZZ2l5MXAtUVpnQg?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a87395ceea3')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a2d1fd611f4">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMimAFBVV95cUxQU29TemU0V19FUnR6YmJYaHhINVZfZ1RqQVE1OG1jU3FDcHBhTG9tYnJ3cl9LSWw5SFZHRkZIUWlXcnVCSHZhUWI0cnBkcWJmNGxFbVVfRGJ5Uk50U3hwbzVnTzFOX1dFVVlfcjhib1VpOWk4ZUxvY1RDNWhWWnRZY3E4bmtiMEJUN0FETG95UzliV04yeFBtVQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks completes $100m secondary offering - Globes - Israel Business News</a>
+          <div class="article-meta">Globes - Israel Business News &bull; Sep 30, 2026</div>
+          <div class="article-summary snippet"><p>Cato Networks completes $100m secondary offering&amp;nbsp;&amp;nbsp;Globes - Israel Business News</p><a href="https://news.google.com/rss/articles/CBMimAFBVV95cUxQU29TemU0V19FUnR6YmJYaHhINVZfZ1RqQVE1OG1jU3FDcHBhTG9tYnJ3cl9LSWw5SFZHRkZIUWlXcnVCSHZhUWI0cnBkcWJmNGxFbVVfRGJ5Uk50U3hwbzVnTzFOX1dFVVlfcjhib1VpOWk4ZUxvY1RDNWhWWnRZY3E4bmtiMEJUN0FETG95UzliV04yeFBtVQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a2d1fd611f4')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+</main>
+
+<footer>
+  Generated every Sunday &mdash; Topics: Windows &bull; Azure &bull; SharePoint &bull; Intune &bull; Entra ID &bull; Microsoft 365 &bull; Iru MDM (formerly Kandji) &bull; Cato Networks
+</footer>
+
+<script>
+const KEY = 'it-news-hidden-v1';
+function getHidden() {
+  try { return new Set(JSON.parse(localStorage.getItem(KEY) || '[]')); }
+  catch { return new Set(); }
+}
+function saveHidden(s) { localStorage.setItem(KEY, JSON.stringify([...s])); }
+function toggleArticle(id) {
+  const h = getHidden();
+  h.has(id) ? h.delete(id) : h.add(id);
+  saveHidden(h); applyHidden(h);
+}
+function applyHidden(h) {
+  h = h || getHidden();
+  document.querySelectorAll('.article-card[data-id]').forEach(c => {
+    c.classList.toggle('is-hidden', h.has(c.dataset.id));
+  });
+}
+let revealing = false;
+function toggleReveal() {
+  revealing = !revealing;
+  document.body.classList.toggle('reveal-hidden', revealing);
+  document.getElementById('reveal-btn').textContent = revealing ? 'Hide hidden' : 'Show hidden';
+}
+fetch('weeks.json').then(r => r.json()).then(weeks => {
+  const sel = document.getElementById('week-sel');
+  weeks.forEach(w => {
+    const o = document.createElement('option');
+    o.value = w.file; o.textContent = w.label;
+    if (w.current) o.selected = true;
+    sel.appendChild(o);
+  });
+}).catch(() => {});
+applyHidden();
+</script>
+</body>
+</html>
