@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT News Digest — 2026-W42</title>
+  <style>
+    :root{--bg:#f8fafc;--surface:#fff;--border:#e2e8f0;--text:#1e293b;--muted:#64748b;--accent:#2563eb}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+    a{color:var(--accent)}
+
+    header{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+    .h-inner{max-width:1000px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .h-brand{font-size:1.1rem;font-weight:800;color:#1d4ed8}
+    .h-meta{font-size:.78rem;color:var(--muted)}
+    .h-controls{display:flex;gap:8px;align-items:center}
+    .btn{padding:5px 12px;border-radius:6px;font-size:.78rem;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);white-space:nowrap}
+    .btn:hover{background:#f1f5f9}
+    select.week-sel{padding:5px 10px;border-radius:6px;border:1px solid var(--border);background:var(--surface);font-size:.78rem;cursor:pointer;color:var(--text)}
+
+    .t-nav{background:var(--surface);border-bottom:1px solid var(--border);overflow-x:auto}
+    .t-nav-inner{max-width:1000px;margin:0 auto;padding:8px 20px;display:flex;gap:6px;min-width:max-content}
+    .nav-link{font-size:.72rem;padding:3px 10px;border-radius:20px;border:2px solid var(--c,#2563eb);color:var(--c,#2563eb);text-decoration:none;font-weight:600;white-space:nowrap}
+    .nav-link:hover{background:var(--c,#2563eb);color:#fff}
+
+    main{max-width:1000px;margin:0 auto;padding:24px 20px}
+
+    .week-hero{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin-bottom:28px;display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+    .hero-title{font-size:1.6rem;font-weight:900;color:#1d4ed8}
+    .hero-sub{font-size:.85rem;color:var(--muted);margin-top:2px}
+    .stat-box{text-align:center;min-width:60px}
+    .stat-num{font-size:2rem;font-weight:900;color:#1d4ed8;line-height:1}
+    .stat-lbl{font-size:.65rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+
+    .topic-section{margin-bottom:40px}
+    .topic-title{font-size:1.2rem;font-weight:800;color:var(--c,#2563eb);border-bottom:3px solid var(--c,#2563eb);padding-bottom:8px;margin-bottom:14px}
+    .count{font-size:.8rem;font-weight:400;color:var(--muted)}
+    .no-news{color:var(--muted);font-style:italic;font-size:.88rem}
+
+    .article-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:12px;display:flex;gap:12px;align-items:flex-start;transition:border-color .15s}
+    .article-card:hover{border-color:#94a3b8}
+    .article-body{flex:1;min-width:0}
+    .article-title{font-size:.98rem;font-weight:600;text-decoration:none;display:block;margin-bottom:4px;color:var(--accent)}
+    .article-title:hover{text-decoration:underline}
+    .article-meta{font-size:.72rem;color:var(--muted);margin-bottom:8px}
+
+    .article-summary{margin-top:6px;font-size:.875rem;color:#334155;line-height:1.75}
+    .article-summary p{margin-bottom:.6em}
+    .article-summary p:last-child{margin-bottom:0}
+    .gnews-badge{display:inline-block;font-size:.65rem;background:#fef3c7;color:#92400e;border-radius:4px;padding:1px 5px;margin-bottom:6px;vertical-align:middle}
+    .article-summary.snippet{color:var(--muted)}
+    .read-more{display:inline-block;margin-top:6px;font-size:.8rem;font-weight:600;color:var(--accent);text-decoration:none}
+    .read-more:hover{text-decoration:underline}
+
+    .hide-btn{flex-shrink:0;padding:5px 10px;border-radius:6px;font-size:.72rem;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--muted);white-space:nowrap;align-self:flex-start}
+    .hide-btn:hover{border-color:#ef4444;color:#ef4444;background:#fef2f2}
+    .lbl-show{display:none}
+
+    .article-card.is-hidden{display:none}
+    body.reveal-hidden .article-card.is-hidden{display:flex;opacity:.45;border-style:dashed}
+    .article-card.is-hidden .lbl-hide{display:none}
+    .article-card.is-hidden .lbl-show{display:inline}
+    body.reveal-hidden .article-card.is-hidden .hide-btn{border-color:#16a34a;color:#16a34a}
+    body.reveal-hidden .article-card.is-hidden .hide-btn:hover{background:#f0fdf4}
+
+    footer{text-align:center;padding:24px 20px;color:var(--muted);font-size:.75rem;border-top:1px solid var(--border);margin-top:40px}
+
+    @media(max-width:600px){
+      .h-inner,.main{padding-left:14px;padding-right:14px}
+      .hero-title{font-size:1.3rem}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="h-inner">
+    <div>
+      <div class="h-brand">IT News Digest</div>
+      <div class="h-meta">Week 2026-W42 &bull; Oct 12–18, 2026</div>
+    </div>
+    <div class="h-controls">
+      <button class="btn" id="reveal-btn" onclick="toggleReveal()">Show hidden</button>
+      <select class="week-sel" id="week-sel" onchange="if(this.value) location.href=this.value">
+        <option value="">&#128337; Archive&hellip;</option>
+      </select>
+    </div>
+  </div>
+</header>
+
+<nav class="t-nav"><div class="t-nav-inner"><a href="#windows" class="nav-link" style="--c:#0078D4">Microsoft Windows</a><a href="#azure" class="nav-link" style="--c:#00BCF2">Azure</a><a href="#sharepoint" class="nav-link" style="--c:#036C70">SharePoint</a><a href="#intune" class="nav-link" style="--c:#0F6CBD">Intune</a><a href="#entraid" class="nav-link" style="--c:#6B69D6">Entra ID</a><a href="#m365" class="nav-link" style="--c:#D83B01">Microsoft 365</a><a href="#iru" class="nav-link" style="--c:#7C3AED">Iru MDM (formerly Kandji)</a><a href="#cato" class="nav-link" style="--c:#FF6B35">Cato Networks</a></div></nav>
+
+<main>
+  <div class="week-hero">
+    <div>
+      <div class="hero-title">Week 2026-W42</div>
+      <div class="hero-sub">Oct 12–18, 2026</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">47</div>
+      <div class="stat-lbl">Articles</div>
+    </div>
+  </div>
+
+    <section id="windows" class="topic-section">
+      <h2 class="topic-title" style="--c:#0078D4">Microsoft Windows <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="ac561a8212f">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windows-insider/2026/10/16/announcing-new-builds-for-16-october-2026/" target="_blank" rel="noopener noreferrer" class="article-title">Announcing new builds for 16 October 2026</a>
+          <div class="article-meta">blogs.windows.com &bull; Oct 16, 2026</div>
+          <div class="article-summary"><p>Announcing new builds for 16 October 2026
+Hello Windows Insiders,
+Today, we’re releasing new Windows 11 Insider Preview builds to the Beta, Experimental, and Release Preview channels.
+New builds this week
+Select your channel below to view its release notes:
+- Beta: Build 26220.9739
+- Experimental: Build 26340.9750
+For those on other specific Windows build versions, here are today’s new builds and release notes:
+- Beta (26H1): Build 28020.3262
+- Experimental (26H1): Build 28120.3272
+- Experimental (Future Platforms): We do not have an Experimental (Future Platforms) build today
+We also have Release Preview for Windows 11, version 26H1 and Windows 11, version 25H2/26H2 going out today:
+- Release Preview (25H2/26H2): Build 26200.9807/Build 26300.9807
+- Release Preview (26H1): Build 28000.3351
+NVIDIA RTX Spark launch
+Today we also see the launch of the new range of Windows 11 devices powered by the NVIDIA RTX Spark chip. There’s never been a better time to join the Windows Insider Program, and we look forward to welcoming a new group of Insiders and devices into the program to provide feedback and continue help shape the future of Windows.
+Notable new features:
+[Gaming]
+Release channel: Beta, Experimental
+- We’re introducing a refreshed Gaming Task View experience in XBOX mode, featuring a new navigation bar that provides quick access to Exit to Desktop and Power Options. This update makes key system actions easier to access while gaming.
+[Windows Hello]
+Release channel: Experimental
+- Windows Hello facial recognition can temporarily brighten your screen to help you sign in when you’re in a dark or dimly lit room.
+- To turn on this feature, go to Settings &gt; Accounts &gt; Sign-in options &gt; Facial recognition (Windows Hello) and turn on Automatically adjust screen brightness during face recognition.
+Thanks,
+Stephen and the Windows Insider Program team</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac561a8212f')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a9e2e354545">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/msedgedev/2026/10/15/faster-protection-fewer-interruptions-how-microsoft-edge-is-rethinking-updates/" target="_blank" rel="noopener noreferrer" class="article-title">Faster protection, fewer interruptions: How Microsoft Edge is rethinking updates</a>
+          <div class="article-meta">blogs.windows.com &bull; Oct 15, 2026</div>
+          <div class="article-summary"><p>Faster protection, fewer interruptions: How Microsoft Edge is rethinking updates
+At a glance
+Microsoft Edge is developing new ways to help security updates reach people faster with less disruption. A seamless-updates prototype shows how Edge could update while work continues. Available today, Restart to update on idle (formerly Instant Updates) can apply pending updates when devices are idle and Security Update Alerts help organizations identify devices that need critical updates.
+Imagine an update that does not interrupt your work
+As AI speeds up both the discovery of security flaws and the pace of attacks, getting protection to everyone quickly matters more than ever. Security updates are essential. Interruptions shouldn’t have to be.
+That’s why we’ve developed a working prototype that moves the browser to a new, more secure version while your open work continues, with no restart prompt and hardly anything to notice.
+Imagine you are halfway through a long form, such as an expense report. You’ve found the receipts and entered all the details. Then you notice a security update is ready…but you’re not. Restart now, or risk losing your work? It’s easy to see why people hesitate to take updates. With seamless updates, instead of asking you to pause and relaunch the browser, Edge applies the new version in the background. The browser, its supporting processes, and your open tabs transition to that version while the form stays open and your work remains in place.
+In this demo, we clicked the Update button so you can see the moment the browser begins updating. Our goal is that you won’t have to click the update button at all; you would simply continue working with a safer browser. Importantly, your updates could be applied within minutes of availability.
+There’s a reason browser updates have traditionally relied on a restart. A browser needs to coordinate many connected processes, all of which must transition safely and reliably to the new version while preserving what you are doing.
+We’re sharing this prototype early in development to make the ambition tangible and help advance the broader conversation about how browsers can move to more secure versions without interrupting people’s work. As such, it is not in production code or part of Chromium today. We invite others across the industry to join us in exploring new approaches to getting critical protection to people faster and with less disruption.
+Restart to update on idle: A practical step you can take today
+You don’t need to wait for seamless updates to arrive to reduce update friction. You can opt in to Restart to update on idle (formerly named “Instant Updates”), which relaunches Edge when the device is idle, applies a pending update, and restores open tabs. Organizations can configure the experience through the Monitoring dashboard in Edge management service. This is different from the seamless-updates prototype: a restart still occurs, but it shifts that interruption away from active work and helps important security fixes reach everyone sooner. If you typically wait to update your browser, Restart to update on idle can help you get the latest protection in hours instead of days.
+Why faster updates matter
+A security update can only protect you after apply it. The time between a fix becoming available and the update being applied is known in security circles as the patch gap. Restarts add friction to that gap: people may keep a browser open for days because they are in the middle of something important.
+That window matters even more as AI changes the speed and scale of cybersecurity. The 2026 Microsoft Digital Defense Report describes how AI is compressing attack timelines and accelerating vulnerability discovery. Defenders need to find and fix issues quickly—and help those fixes reach people just as quickly.
+When protection can’t wait, Edge can move faster
+Microsoft Edge is built on Chromium and benefits from the security work of the broader open-source community.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a9e2e354545')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="abe7f8e6d6e">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windowsexperience/2026/10/15/meet-the-new-photos-app-on-windows-11/" target="_blank" rel="noopener noreferrer" class="article-title">Meet the new Photos app on Windows 11</a>
+          <div class="article-meta">blogs.windows.com &bull; Oct 15, 2026</div>
+          <div class="article-summary"><p>Meet the new Photos app on Windows 11
+Photos hold some of our most meaningful memories: the people we love, the milestones we celebrate, and the everyday moments we want to remember. They connect us to our past and help us share our stories. Finding, editing, and enjoying them on Windows should be simple, wherever they’re stored.
+As we shared today, we’re excited to introduce new Photos experiences on Windows 11, with an all-new Gallery, a new native Editor, and a redesigned Viewer. This is a closer look at those new experiences, which are starting to roll out to Windows Insiders today. Our focus is simple: help you rediscover and organize your collection, give you more capable tools for your favorite shots, and make the everyday experience faster.
+At a glance:
+- An all-new Gallery: Bring photos from your PC, OneDrive, and iCloud together in one fast, beautiful gallery. Find favorites by describing them in your own words, search or filter for friends and family, relive memories with Moments for your OneDrive photos, and organize albums to share.
+- A new native Editor: Bring out the best in a favorite photo with a rebuilt Editor that loads 25% faster1, with intuitive tools to crop, enhance, repair, and stylize your photos, plus HDR, HEIC, and WebP editing. Remove unwanted objects from the background, or use Relight to correct lighting and explore a different look.
+- A redesigned native Viewer: Opens photos up to 30% faster1, with a cleaner photo-first design, smoother navigation, improved HDR viewing, expanded file type support, and useful details and actions available when you need them.
+An all-new Gallery: Your collection, together
+Your photos don’t all live in the same place, and you shouldn’t have to remember where you saved a picture to start enjoying your collection.
+The all-new Gallery brings photos and videos from your PC, OneDrive, and Apple iCloud together in one fast, beautiful gallery. Your phone may capture the moment, but your PC gives you the space to see the whole story—and the control to find, organize, and make more of your photos. Browse by date, explore photos by the people in them, organize and share albums, search with natural language, and rediscover your favorite memories, all right on Windows.
+We’ve improved app launch and scrolling performance, too. Whether you’re opening Photos to find a recent picture or taking your time browsing years of memories, you can get to your collection faster and move through it more smoothly.
+You can browse online or offline, with photos available on your device ready to enjoy even when you’re not connected.
+From your phone to your PC, with OneDrive
+OneDrive is a great way to back up the photos and videos on your phone and keep them safer and more accessible anywhere. Turn on Camera Backup in the OneDrive mobile app on iOS or Android to automatically back up your photos and videos. Once saved to OneDrive, they’re available on your phone, in the browser, and in Photos on Windows.
+The familiar ways you explore by searching for friends and family members, the way you organize and share albums, and how you relive memories in OneDrive’s web and mobile photo experiences are now available to you on Windows. It’s one consistent experience for your photos, wherever you choose to enjoy them. Prefer to keep photos on your PC or use iCloud? You can continue using Photos without signing in to OneDrive to enjoy content stored locally on your device and in iCloud.
+Your iCloud photos, on your Windows PC
+Apple’s iCloud for Windows app brings your iCloud photos and videos into Gallery alongside your local collection, keeping them up to date across your PC and other devices.
+You can also use File Explorer to download photos and videos for offline access.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('abe7f8e6d6e')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a9c6b453fcf">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windowsexperience/2026/10/15/whats-new-in-windows-11-everyday-experiences-reimagined/" target="_blank" rel="noopener noreferrer" class="article-title">What’s new in Windows 11: Everyday experiences, reimagined</a>
+          <div class="article-meta">blogs.windows.com &bull; Oct 15, 2026</div>
+          <div class="article-summary"><p>What’s new in Windows 11: Everyday experiences, reimagined
+Every day, your PC helps you get things done, stay connected, capture ideas and make time for what you enjoy. That’s why Windows 11 continues to evolve, starting with a faster, more dependable and refined experience. Throughout the year, we’ve worked with the Windows Insider community on improvements to Windows that are now beginning to roll out broadly, with more to come.
+That same care shapes our latest Windows experiences, building on these foundational improvements with new possibilities that make everyday moments on your PC simpler and more intuitive. From new features for gamers, to a modernized Photos experience, to more seamless phone to PC integration, Windows is built to support the way you work, create, play and connect.
+A faster, more responsive Windows experience
+Responsiveness shapes nearly every experience on your PC. It’s the difference between staying in your flow and waiting for your device to catch up. That’s why we’ve continued to invest across Windows, from the platform and shell to the apps people use every day, to make Windows feel faster, more responsive and more efficient. The result is a Windows experience that’s up to 20% more responsive, with improvements you can feel as soon as you boot into your PC and extending to Start, File Explorer, Search, Snipping Tool, Microsoft 365, Edge and more1.
+A big part of that work is making smarter use of memory and system resources. We’ve improved memory management and efficiency across Windows to help keep more of your PC’s resources focused on what you’re actively doing. That work can make an especially meaningful difference on PCs with 8GB of memory. Windows can now keep up to 2GB more of your active data in memory instead of moving it to slower storage, helping your PC stay responsive as you open more apps or browser tabs. Windows is also making additional memory-saving improvements that reduce background memory use. For example, on PCs with 8GB of memory or less, Widgets load only when you open them, making more than 200 MB of memory available for your apps and other work2. It’s one example of the broader work underway to reduce the Windows memory footprint and deliver a fast, responsive experience across the PCs people use every day, an area we’ve made an explicit focus for Windows.
+But a great Windows experience isn’t only about speed. It’s also about making your PC feel dependable, less disruptive and more your own. We’re giving you more flexibility to personalize Start and your taskbar, including choosing where it appears on your screen, while making Widgets cleaner and quieter so you have more control over what gets your attention. And we’ve improved Windows Update to give you greater control over when updates happen and better coordinate updates to reduce restarts, while continuing to reduce the time it takes to apply an update.
+We’re also improving the everyday interactions you depend on. Bluetooth headphones work more reliably on Windows, with smoother pairing, reconnection, audio and calls, including an AirPods pairing experience that’s up to 15 seconds faster3. And we’ve made signing in with Windows Hello easier, faster and more reliable, with improvements to both face and fingerprint recognition. Alongside that work, we’re partnering with our hardware ecosystem through the Driver Quality Initiative to improve driver stability, reliability, security and performance across Windows devices.
+The result is a Windows experience that feels faster, more responsive and more thoughtfully designed around you, whether you’re opening an app, finding a file, connecting your headphones, arranging your taskbar the way you want or simply getting back to what you were doing.
+From searching to doing, faster
+For hundreds of millions of people each day, Windows search on the taskbar is where intent begins.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a9c6b453fcf')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a20ef8d3f21">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windowsexperience/2026/10/15/incredible-deals-and-more-to-love-in-a-new-windows-pc-this-holiday/" target="_blank" rel="noopener noreferrer" class="article-title">Incredible deals and more to love in a new Windows PC this holiday</a>
+          <div class="article-meta">blogs.windows.com &bull; Oct 15, 2026</div>
+          <div class="article-summary"><p>Incredible deals and more to love in a new Windows PC this holiday
+A new PC is a meaningful purchase. Whether you are upgrading a family laptop, shopping for a student, or someone who loves to create or game, you want your money to go further. The right PC should deliver value when you buy it, and every day after.
+This holiday, Windows brings it all together with a broad choice of new PCs at great seasonal savings, and experiences that make it easier to work, create, connect and play. From Surface to Acer, ASUS, Dell, HP, Lenovo, Samsung, and more, there is a Windows PC for you – with more reasons to make this the season you upgrade.
+Save more. Play more.
+Value matters more than ever this holiday. From great PCs starting at $2491 to our most powerful new devices, Windows has a PC for everyone, at the right price. Look for new deals every week on select Windows 11 PCs across leading brands and retailers throughout this holiday, with savings of up to $500 each week2.
+Explore new offers throughout the holidays at Best Buy, Costco, Walmart and Microsoft.com.
+And to celebrate 25 years of XBOX, starting this November, eligible Windows 11 PC purchased in the US can claim a collection of 25 fan-favorite games at no additional cost. The collection includes $500+ worth of games, such as The Elder Scrolls V: Skyrim Special Edition, Halo: Combat Evolved Anniversary, Age of Empires II: Definitive Edition, Minecraft Dungeons, Gears of War: Reloaded, and more. Once claimed, the PC versions of the games are linked to your Microsoft account and you can play them on any compatible Windows PC, with select titles also playable on XBOX Series X|S consoles with XBOX Play Anywhere. Note that some devices eligible for the offer cannot play all the games in the collection3.
+With more ways to save, more PCs to choose from, and more features ready on day one, now is a great time to move to a new Windows PC.
+The best of Windows, with a PC for you
+Only Windows gives you the flexibility and choice of options from ultra-thin designs, brilliant OLED touch displays, pen support, long battery life, rich colors, and versatile port options you need – with performance options for productivity, creativity, and gaming whatever your budget.
+More ways to save on Microsoft Surface
+Surface brings Microsoft’s hardware and software expertise together for a powerful Windows experience that makes it easy to work, create and play. This holiday is a great time to make it yours, with the Surface Pro 12-inch starting at just $849 and holiday savings across the entire Surface family.
+Ready to break up with your MacBook? The new Surface Laptop Ultra is the most powerful Surface Laptop ever, with NVIDIA RTX Spark™ for demanding creative and developer work.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a20ef8d3f21')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a57cd4fec7d">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windowsdeveloper/2026/10/14/python-3-15-delivers-native-by-default-experience-on-windows-arm/" target="_blank" rel="noopener noreferrer" class="article-title">Python 3.15 delivers a native-by-default experience on Windows on Arm</a>
+          <div class="article-meta">blogs.windows.com &bull; Oct 14, 2026</div>
+          <div class="article-summary"><p>Windows on Arm has been ready for Python development for some time. With Python 3.15, the broader ecosystem has matured significantly, with more package maintainers publishing native Arm64 wheels, allowing Windows on Arm to support mainstream Python development across a broad and growing set of workloads.
+Windows on Arm is now a Tier 2 CPython platform, backed by continuous testing and CPython’s release-quality commitments. That readiness extends beyond the runtime. Widely used packages such as NumPy, SciPy, pandas, scikit-learn, Django, and FastAPI are available, while Jupyter, VS Code, Ruff, and pytest support everyday development workflows. GitHub-hosted Windows on Arm runners also let open-source maintainers build and test their projects natively.
+This did not happen with a single release. Native Windows on Arm builds of CPython have been available for several versions. What changes with Python 3.15 is the maturity of the experience. Windows on Arm is now a regular CPython target; the native runtime is selected by default on Windows on Arm devices, and CPython’s Tier 2 requirements call for platform failures to be fixed or the responsible changes reverted. Package maintainers now have practical infrastructure for native Windows on Arm validation, and many widely used projects publish native Arm64 wheels. Windows on Arm is now a practical platform for many mainstream Python development scenarios. As of September 2026, a scan of the 1,000 most-downloaded PyPI projects shows about 94% of the projects’ latest releases published either a native Windows on Arm wheel or a platform-independent wheel. This measures published wheel availability, not end-to-end application compatibility. Anaconda’s main channel also includes more than 2,500 packages published for Windows on Arm.
+Platform readiness does not mean every Python application is automatically ready for Windows on Arm. The runtime and a broad set of mainstream development workflows are established, but application readiness still depends on the complete dependency graph, particularly when packages rely on native extensions. Developers should confirm native Arm support for their dependencies during migration and testing.
+A native Python experience by default
+Windows on Arm is a PEP 11 Tier 2 platform. This designation reflects a strong support commitment; the platform has reliable continuous integration and active core developers, and platform-breaking changes must be addressed promptly. Windows on Arm CI results are considered as part of CPython’s release process. This is a clear measure of how far Windows on Arm support has progressed.
+Installation is now simpler. With Python Install Manager 26.4, Windows on Arm devices default to the Arm64 platform, so requesting Python 3.15 selects the native Arm64 runtime unless configuration or an explicit architecture tag overrides it.
+Python 3.15 ships a complete set of Windows on Arm component packages alongside the x64 packages. CPython runs tests on Windows on Arm, including the standard interpreter and free-threaded configuration. These jobs run as part of the normal Windows build matrix.
+You can confirm the architecture of the running interpreter by launching Python and inspecting its startup banner. A native Windows on Arm interpreter includes 64-bit (ARM64) in the compiler information; an x64 interpreter includes 64-bit (AMD64).
+Running Python natively keeps the interpreter and native package dependencies on the same Arm64 architecture.
+Applications that still depend on x64 packages can continue to run through Windows emulation, providing a practical transition path while those dependencies add native Arm support.
+An ecosystem for mainstream development
+The runtime is only one part of the developer experience. A useful platform also needs packages, editors, build tools, and CI capacity. Windows on Arm now supports a broad set of Python development scenarios.
+PyPI and packaging.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a57cd4fec7d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="acfcae33883">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-defender-endpoint-linux-desktops/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Brings Defender for Endpoint to Linux Desktops in Public Preview</a>
+          <div class="article-meta">petri.com &bull; Oct 15, 2026</div>
+          <div class="article-summary"><p>Linux desktops are becoming a bigger target for attackers, prompting Microsoft to bring Defender for Endpoint to developer workstations.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('acfcae33883')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a8da4048b5c">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-october-2026-patch-tuesday-updates/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Fixes 80 Critical Flaws in October 2026 Patch Tuesday Updates</a>
+          <div class="article-meta">petri.com &bull; Oct 14, 2026</div>
+          <div class="article-summary"><p>Microsoft Fixes 80 Critical Flaws in October 2026 Patch Tuesday Updates
+The latest Patch Tuesday release fixes more than 1,400 vulnerabilities, including an actively exploited flaw and dozens of critical security issues across Microsoft's product portfolio.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a8da4048b5c')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="azure" class="topic-section">
+      <h2 class="topic-title" style="--c:#00BCF2">Azure <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a684d921042">
+        <div class="article-body">
+          <a href="https://azure.microsoft.com/en-us/blog/evolving-the-cloud-native-foundation-for-the-next-generation-of-ai/" target="_blank" rel="noopener noreferrer" class="article-title">Evolving the cloud-native foundation for the next generation of AI</a>
+          <div class="article-meta">azure.microsoft.com &bull; Oct 15, 2026</div>
+          <div class="article-summary"><p>Building a cloud-native foundation for AI
+The relationship between model innovation and AI infrastructure has never been more clear; as AI becomes more capable, the platform underneath it matters even more. Agents are fundamentally changing how applications work, and with that, what organizations need from the cloud.
+Cloud-native practices gave organizations the scale, flexibility and resilience to build a generation of distributed applications. Agents build on that foundation, but they work differently, placing new demands on it. Unlike applications designed around more predictable workflows, agents behave in entirely new ways, gathering information and deep intelligence from across the business, using tools, making decisions, and coordinating work across long-running processes. To complete complex tasks, they pause for approval, respond to new information in real time and change course as conditions evolve. All this changes what the platform needs to deliver.
+Customers need infrastructure that adapts as demand changes, applications that remain reliable as work becomes more dynamic, and the visibility and control to understand what is happening across the system. Meeting those needs doesn’t mean starting over, but it does require that the cloud-native foundation organizations already rely on, to evolve. Compute, storage and networking need to work together. Application platforms need to make it easier to build and run AI workloads. Open technologies need to give customers flexibility without adding unnecessary complexity.
+The platform decisions organizations make today are increasingly strategic, shaping how effectively they can put AI to work for their business. Evolving the cloud-native foundation is essential to helping organizations get more from AI today while giving them the flexibility to take advantage of new capabilities as they emerge.
+Optimize infrastructure for AI workloads
+The true measure of AI infrastructure is the useful work it enables. AI workloads rarely place the same demands on infrastructure from beginning to end. Different parts of the work may need accelerated compute, CPUs, fast access to data or connectivity across applications and environments. The answer isn’t simply more capacity, but rather, to match the right resources to the right work at the right time.
+That makes coordination across the infrastructure extremely important. Compute, storage and networking need to work together as demands change. When they do, teams can spend less time managing infrastructure and more time focused on the applications and outcomes that matter to their business.
+Economics matter, too. Infrastructure needs to be tuned to the demands of the application and the business value it delivers, with the right balance of performance, reliability and cost across the complete workload.
+Basecamp Research is one example. The company used Azure to assemble 9.7 trillion nucleotides for EDEN, its therapeutic-design models, and reported laboratory validation across three therapeutic applications within about three weeks. In this example, AI didn’t simply require more infrastructure, it needed AI infrastructure that was coordinated and designed around the outcome – bringing together the compute, data and platform capabilities needed to move complex work forward.
+As Glen Gowers, co-founder of Basecamp Research put it: “To really be successful here, we need those three ingredients to come together. We need someone scaling the data; that’s us. But someone who really knows how to scale models and scale compute is Microsoft.”
+Leadership takeaway: Measure success by the useful work AI completes. Judge infrastructure investment by the performance, reliability and cost of delivering those outcomes, with compute, storage and networking operating as one system.
+Turn open-source innovation into production capability
+Open technologies have long helped drive cloud innovation, and AI is accelerating that pace.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a684d921042')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a50d2b65ff0">
+        <div class="article-body">
+          <a href="https://azure.microsoft.com/en-us/blog/microsoft-named-a-leader-in-the-2026-gartner-magic-quadrant-for-server-virtualization-platforms/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft named a Leader in the 2026 Gartner® Magic Quadrant™ for Server Virtualization Platforms</a>
+          <div class="article-meta">azure.microsoft.com &bull; Oct 14, 2026</div>
+          <div class="article-summary"><p>We’re proud to share that Microsoft has been named a Leader in the 2026 Gartner® Magic Quadrant™ for Server Virtualization Platforms. We believe this recognition comes at an important moment for enterprise infrastructure. The question is no longer simply which hypervisor to run. It is how to create a consistent operating model across cloud, datacenter, edge, and sovereign environments. Microsoft addresses that challenge at two levels: operational consistency through Azure and Azure Arc, and infrastructure consistency through Hyper-V.
+From choosing a hypervisor to choosing an operating model
+For years, the primary virtualization decision was which hypervisor to run. Today, the more consequential decision is how infrastructure will be operated across every environment the business depends on. Virtualization remains a critical foundation, but the value of the platform increasingly depends on how infrastructure is managed, governed, secured, updated, and connected across environments. As infrastructure becomes more distributed, how it is operated becomes as important as where it runs.
+Microsoft delivers that consistency at two complementary levels:
+- Operational consistency: Azure provides common management, governance, and security across cloud, datacenter, and edge environments. Azure Arc extends those capabilities to distributed infrastructure, giving organizations a unified way to operate diverse environments.
+- Infrastructure consistency: Hyper-V provides a common virtualization foundation across Azure, Azure Local, and Windows Server, helping organizations maintain a consistent infrastructure layer wherever workloads run.
+Together, these layers help organizations preserve choice without multiplying operational models. Workloads can move, environments can evolve, and new technologies can be adopted without requiring a separate operating model for every environment.
+Ready for what comes next
+Operational and infrastructure consistency will become even more important as AI reshapes enterprise IT. Models, agents, applications, and data will increasingly span cloud, datacenter, edge, and sovereign environments. AI alone will not reduce the complexity of distributed infrastructure; in many cases, it will increase the need for common management, governance, security, and infrastructure foundations.
+Being named a Leader in this Magic Quadrant is an honor for us. More importantly, we believe it reflects a direction many organizations are pursuing: operational consistency across increasingly distributed environments. We remain committed to helping customers combine the flexibility to run workloads where they choose with the consistency required to manage them as one environment.
+Recognized as a Leader
+in the 2026 Gartner® Magic Quadrant™ for Server Virtualization Platforms
+Gartner, Magic Quadrant for Server Virtualization Platforms, Tony Harvey, Daniel Bowers, Paul Delory, Tony Iams, Owen Marino, 14 September 2026.
+Gartner does not endorse any company, vendor, product or service depicted in its publications, and does not advise technology users to select only those vendors with the highest ratings or other designation. Gartner publications consist of the opinions of Gartner’s business and technology insights organization and should not be construed as statements of fact. Gartner disclaims all warranties, expressed or implied, with respect to this publication, including any warranties of merchantability or fitness for a particular purpose.
+Gartner and Magic Quadrant are trademarks of Gartner, Inc., and/or its affiliates. This graphic was published by Gartner, Inc. as part of a larger research document and should be evaluated in the context of the entire document. The Gartner document is available upon request from Microsoft here.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a50d2b65ff0')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a4cfd01dee3">
+        <div class="article-body">
+          <a href="https://azure.microsoft.com/en-us/blog/advancing-hardware-security-with-open-source-integrated-hsm-technology/" target="_blank" rel="noopener noreferrer" class="article-title">Advancing hardware security with open-source Integrated HSM technology</a>
+          <div class="article-meta">azure.microsoft.com &bull; Oct 13, 2026</div>
+          <div class="article-summary"><p>At this year’s OCP Global Summit, Microsoft announced Project Tessera, the evolution of the Azure Integrated Hardware Security Module (HSM), into a fully open-source initiative developed in collaboration with Marvell®, Oracle, and Open Compute Project (OCP). Project Tessera advances our broader commitment to open, industrywide standards for platform security.
+The motivation behind Project Tessera is straightforward: the entire industry benefits when we collaborate and advance hardware security together.
+Project Tessera carries forward the workload directly attached to the HSM architecture introduced by Azure Integrated HSM, making the architecture, specifications, protocols, drivers, software, firmware, and reproducible build environments open source for the broader community. Over time, the initiative will advance toward a fully open-source silicon implementation, while making hardware broadly available, enabling organizations across the ecosystem to adopt, integrate, and contribute to the platform.
+This approach builds on the model Microsoft established with other industry collaborators on Caliptra, a fully open-source silicon root-of-trust that has since been broadly adopted across the hardware ecosystem. Through Project Tessera, industry leaders including Microsoft, Marvell®, Oracle, and the Open Compute Project will apply that same model of transparency and collaboration to advance hardware key protection with the industry.
+The cybersecurity landscape is rapidly changing, and protecting keys and credentials has never been more important. We are now facing two generational transformations that are fundamentally reshaping how we view the cybersecurity landscape:
+- AI is increasing the speed and scale of cyberattacks
+AI-orchestrated attacks are increasing the scale, speed, and sophistication of attacks, giving adversaries new ways to operate and compressing the time between vulnerability discovery and exploitation. These capabilities amplify risks such as credential theft, key exfiltration, and signing abuse.
+Keys and credentials are high-value control assets. When compromised, they can enable attackers to impersonate trusted entities, bypass security controls, authorize malicious operations, expose sensitive data, and undermine software security defenses. Protecting these assets requires infrastructure with layered, hardened protections capable of withstanding sustained attacks across multiple concurrent attack vectors.
+- Quantum computing is changing the cryptographic risk horizon
+Quantum computing promises transformative advances, but it also presents a risk to many of today’s cryptographic algorithms. A sufficiently powerful quantum computer could break widely used public-key cryptography, undermining digital signatures, authentication, and identity verification.
+Post-quantum cryptography was once viewed as an important but distant technology shift. Advances in quantum computing have changed that perspective as organizations recognize the urgency, scale, and complexity of the transition. HSM-backed signing infrastructure will be among the first critical systems to migrate, requiring HSMs that support post-quantum cryptography and are interoperable with classical HSMs to support migration.
+These emerging threats motivated the development of Azure Integrated HSM, which was designed to meet rigorous security standards for hardware-based key protection, while also accelerating Microsoft’s transition to post-quantum cryptography through scale deployments of quantum resilient integrated HSMs.
+Azure Integrated HSM introduced a workload-attached HSM that performs cryptographic operations closer to the workload while keys remain continuously protected within the HSM security boundary.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a4cfd01dee3')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ac0e4ce3ac2">
+        <div class="article-body">
+          <a href="https://azure.microsoft.com/en-us/blog/infrastructure-for-the-frontier-era-scaling-intelligence-through-open-industry-collaboration/" target="_blank" rel="noopener noreferrer" class="article-title">Infrastructure for the frontier era: Scaling intelligence through open industry collaboration</a>
+          <div class="article-meta">azure.microsoft.com &bull; Oct 13, 2026</div>
+          <div class="article-summary"><p>At Microsoft, our vision is to build a Frontier Firm: one where people and technology work together, combining human expertise, context, and judgment with technology that can extend intelligence throughout everyday work. The potential is significant: helping people create, solve complex problems, and make progress on some of society’s most consequential challenges.
+But realizing that potential requires frontier infrastructure. The next phase of Super Intelligence needs a unified infrastructure engine that delivers more intelligence with greater efficiency, making AI more available, reliable, and sustainable across science, healthcare, education, and the economy. This is the work of an entire ecosystem, and precisely the vision we have advanced for years through our industry collaboration within the Open Compute Project Foundation.
+Designing silicon in the loop with real workloads
+As we enter the next phase of Super Intelligence, inference is becoming the dominant workload and that’s where efficiency, latency, and cost really matter. Azure Maia 300, our next generation AI accelerator from our Maia family, advances the inference efficiency frontier. Maia 300 is a complete system designed for the new types of AI workloads emerging today: long-context reasoning, latency-sensitive conversational experiences, and sustained, multi-step agentic tasks. By improving efficiency across the system, we expect Maia 300 to deliver 40% more tokens per watt compared to leading GPU-based systems. And in a full 96-accelerator configuration, it delivers up to seven times the rack-scale token throughput of Maia 200.
+Maia reflects our system co-design approach. It is designed alongside Microsoft infrastructure and production workloads, bringing models, application frameworks, kernels, communication libraries, systems software, and custom silicon into one optimization loop. Maia 200 is deploying across the United States, Europe and Australia and delivering up to 1.7x more tokens per watt for built-in AI capabilities in Microsoft Teams, Copilot and Cowork experiences compared with leading GPU infrastructure.
+AI is not only about accelerators. Agentic workloads create entirely new demands on CPUs. Every agent interaction generates orchestration, data retrieval, memory management, and service calls that must occur quickly and efficiently. That is why we designed Cobalt 200 as an agent-native CPU. Cobalt 200 delivers more than 50% performance improvement over Cobalt 100 and reduces agent call latency by 33%, while providing 23% higher throughput on agentic workloads.
+Maia and Cobalt are designed in the loop with our largest enterprise workloads. That gives Microsoft a unique advantage in tuning performance, reliability, and cost to exactly what customers need in production.
+We are applying the same principle to storage and security. The Azure Boost Data Processing Unit moves compression, networking transactions, and security functions away from the CPU onto purpose-built silicon, enabling us to deliver four times more performance while using significantly less power.
+And Azure Integrated HSM makes security part of the hardware foundation, with our in-house security chip in all new datacenter servers. It brings cryptographic operations closer to the workload while keeping keys protected inside the hardware security boundary—not exposed in application memory.
+Building an open, resilient AI fabric
+Compute creates intelligence and networks make it usable at scale.
+Working with industry partners, Microsoft developed Multipath Reliable Connection (MRC), rethinking Ethernet for AI. Its multi-plane architecture scales beyond 100,000 GPUs with two network tiers, reducing power, complexity, failure points, and cost.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac0e4ce3ac2')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a8b7151e1ad">
+        <div class="article-body">
+          <a href="https://azure.microsoft.com/en-us/blog/deep-dive-into-azure-maia-300-architecture/" target="_blank" rel="noopener noreferrer" class="article-title">Deep dive into Azure Maia 300 architecture</a>
+          <div class="article-meta">azure.microsoft.com &bull; Oct 12, 2026</div>
+          <div class="article-summary"><p>From its inception, Azure Maia has been built around a single architectural philosophy: optimize the entire system for LLM inference so that every watt and every dollar delivers more intelligence. Now in its third generation, Maia 300 is the fullest expression of that philosophy. Maia 300 is built as a complete system, with software, silicon, physical rack infrastructure, networking, and datacenters co-designed to operate as a single platform to meet the demands of cloud-scale agentic inference.
+That system-level approach is increasingly necessary as agentic workloads, including multi-step execution, long-context decoding, and tool use, change the computational profile and arithmetic intensity of inference. Meeting these demands requires sustaining locality, supplying compute with enough memory capacity and bandwidth, minimizing data movement, scaling communication efficiently, and fitting the most capability within a datacenter’s fixed power and cooling envelope.
+At Microsoft, we see this transformation firsthand through the products and platforms our customers use every day, from Microsoft Copilot and GitHub Copilot to Microsoft Foundry. Operating these workloads at scale gives us a unique view into how AI is being adopted across industries and the infrastructure needed to support the next generation of AI applications and agents. Maia 300 is designed to maximize useful tokens per watt and useful tokens per dollar, bringing more capacity, capability, and performance to these products and Microsoft’s broader AI portfolio for our customers.
+Energy-efficient inference through software-defined dataflow
+Maia 200 introduced a new class of accelerator architecture called Software Defined Locally Accessed Dataflow Architecture, or SDLA. It begins with the observation that efficient data management, including storing, moving and converting data, is one of the central challenges in modern AI systems. The Maia programmable dataflow architecture separates control path programming from data path execution and allows software to explicitly coordinate data placement, movement, conversion and synchronization across specialized local memories, DMA engines, compute engines, and the network.
+Maia 300 evolves this architecture for long-context, reasoning-intensive, and decode-heavy inference. First, memory moves from the uniform memory access (UMA) organization of the SoC to a locality-aware non-uniform (NUMA) organization across chiplets, so software can place data near the compute that uses it. Second, new narrow-precision formats with hardware-accelerated data type conversion reduce the bytes moved for each token. Third, the rack doubles to 96 accelerators and the scale-up domain grows to a superpod of 12,288 accelerators, enabling more accelerators to work effectively as a single system.
+Rather than scaling performance through increased power and silicon area alone, Maia 300 improves performance per watt through a set of architectural innovations that optimize data movement, locality, precision, and memory efficiency across the system:
+- Multi-chiplet architecture boosts performance by placing compute on TSMC N2P, where the advanced process delivers the greatest performance-per-watt benefit, while separating memory-controller and I/O functions onto dies optimized for bandwidth, connectivity, and cost. This increases the silicon area dedicated to compute performance and allows each function to use the technology best suited to its role, while SDLA manages locality and data movement across the package. This strategy increases the system’s compute FLOPs by 36%, adds 2.5 times HBM bandwidth, and provides 14% more scale-up bandwidth.
+- Optimized low precision inference, introducing enhanced MXFP4 and sub-3-bit storage formats.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a8b7151e1ad')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ad552f2d544">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-open-source-tools-sql-workload-testing/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Releases Open-Source Tools for SQL Server and Azure SQL Workload Testing</a>
+          <div class="article-meta">petri.com &bull; Oct 15, 2026</div>
+          <div class="article-summary"><p>Microsoft Releases Open-Source Tools for SQL Server and Azure SQL Workload Testing
+Microsoft's new open-source toolkit aims to help database teams generate, replay, and analyze SQL workloads before making changes that could affect production performance.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ad552f2d544')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a8da4048b5c">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-october-2026-patch-tuesday-updates/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Fixes 80 Critical Flaws in October 2026 Patch Tuesday Updates</a>
+          <div class="article-meta">petri.com &bull; Oct 14, 2026</div>
+          <div class="article-summary"><p>Microsoft Fixes 80 Critical Flaws in October 2026 Patch Tuesday Updates
+The latest Patch Tuesday release fixes more than 1,400 vulnerabilities, including an actively exploited flaw and dozens of critical security issues across Microsoft's product portfolio.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a8da4048b5c')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a56d618ef93">
+        <div class="article-body">
+          <a href="https://petri.com/hybrid-euc-environments-becoming-enterprise-norm/" target="_blank" rel="noopener noreferrer" class="article-title">Hybrid EUC Environments Are Becoming the Enterprise Norm</a>
+          <div class="article-meta">petri.com &bull; Oct 12, 2026</div>
+          <div class="article-summary"><p>Hybrid EUC Environments Are Becoming the Enterprise Norm
+Organizations are accelerating cloud desktop adoption, but many are discovering that managing multiple EUC platforms at once creates new operational and governance challenges.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a56d618ef93')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="sharepoint" class="topic-section">
+      <h2 class="topic-title" style="--c:#036C70">SharePoint <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a8da4048b5c">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-october-2026-patch-tuesday-updates/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Fixes 80 Critical Flaws in October 2026 Patch Tuesday Updates</a>
+          <div class="article-meta">petri.com &bull; Oct 14, 2026</div>
+          <div class="article-summary"><p>Microsoft Fixes 80 Critical Flaws in October 2026 Patch Tuesday Updates
+The latest Patch Tuesday release fixes more than 1,400 vulnerabilities, including an actively exploited flaw and dozens of critical security issues across Microsoft's product portfolio.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a8da4048b5c')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a5843cf8969">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/10/microsoft-patches-record-1413-flaws.html" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Patches Record 1,413 Flaws, Including Exploited Windows Shell Bug</a>
+          <div class="article-meta">thehackernews.com &bull; Oct 14, 2026</div>
+          <div class="article-summary"><p>Microsoft on Tuesday shattered its own Patch Tuesday record by shipping patches for a whopping 1,413 vulnerabilities, including one that it said has come under active exploitation.
+These include 1,102 flaws in Windows, 134 in Office, 61 in Developer Tools, 36 in SharePoint Server, and 22 in SQL Server. Of these, more than 670 relate to privilege escalation, followed by over 300 remote code execution flaws and 250 information disclosure flaws. Over 70 flaws are rated Critical in severity.
+&quot;Hundreds of CVEs in a single release used to be the exception; now it's the baseline,&quot; Dustin Childs, head of Threat Awareness at the Zero Day Initiative (ZDI), said. &quot;Is AI to blame? Partly. It's accelerating bug-hunting on both sides of the fence, so vendors are finding (and fixing) more flaws, and researchers are finding them faster too.&quot;
+&quot;But AI isn't creating these bugs out of thin air; it's just shortening the time between a vulnerability existing and someone noticing it. The volume isn't the real story anymore. What matters is that discovery is scaling faster than exploitation, so teams that triage by sheer CVE count instead of exploitability are burning cycles on the wrong bugs. Patch what's proven, prioritized, and public, and treat everything else as this month's new normal.&quot;
+The three vulnerabilities of note are listed below -
+- CVE-2026-96951 (CVSS score: 8.8) - A command injection vulnerability in Windows Shell that allows an unauthorized attacker to bypass a security feature over a network.
+- CVE-2026-108398 (CVSS score: 8.8) - An untrusted search path vulnerability in .NET Framework that allows an authorized attacker to bypass a security feature locally.
+- CVE-2026-92707 (CVSS score: 5.3) - An improperly controlled sequential memory allocation vulnerability in MessagePack-CSharp that allows an unauthorized attacker to deny service over a network.
+Microsoft, which credited Fujitsu's Riku Bamba and Yuya Chudo, as well as Anthropic's Benoit Sevens and a researcher named yhw for reporting CVE-2026-96951, said the vulnerability has been exploited in the wild.
+&quot;An attacker who successfully exploited the vulnerability could evade Mark of the Web (MOTW) defenses,&quot; the Windows-maker said. &quot;In an email or instant message attack scenario, the attacker could send the targeted user a specially crafted file that is designed to exploit the vulnerability.&quot;
+&quot;In any case an attacker would have no way to force a user to view attacker-controlled content. Instead, an attacker would have to convince a user to take action. For example, an attacker could entice a user to either click a link that directs the user to the attacker's site or send a malicious attachment.&quot;
+It's unclear how the vulnerability is being exploited in real-world attacks, by whom, and who has been targeted. The U.S. Cybersecurity and Infrastructure Security Agency (CISA) has added the flaw to its Known Exploited Vulnerabilities (KEV) catalog, requiring federal agencies to apply the fixes by October 16, 2026.
+CVE-2026-108398 has been acknowledged as publicly known at the time of the release of the patches, with Microsoft stating the security flaw could be exploited to bypass Windows Defender Application Control (WDAC) enforcement and run unauthorized applications on target systems.
+&quot;An authenticated attacker could place a specially crafted .NET assembly on an affected system and register it for loading by a protected process,&quot; Microsoft said. &quot;Successful exploitation could bypass Windows Defender Application Control restrictions and allow the attacker to execute code within the protected process. User interaction is not required.&quot;
+&quot;This vulnerability is particularly dangerous as a post-compromise attack technique, enabling attackers with existing local access to circumvent security restrictions without user interaction,&quot; Mike Walters, president and co-founder of Action1, said.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a5843cf8969')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a6ee103bbfb">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiwwFBVV95cUxPYzJjR01hRGhUSGlkMEMwMzd4QmgxSFR4YWwzMW1sODY5REVZaUxuZnZRb0ktMk9YamVxd0RUTWhOaVVUOUo1cWZidmc5bkl5OUZKYVllNkJOQ3NyVE1CTFhZOUE3LXpXODhVazVYaXZtbEd2eWFJdkF0TWNTSmxCeV9RYXZmcVc5SkZxbHJxeEJVWlZscGpBNkhDc0d0eERabTVwTl9WM3NKaGZTNnJ3V3VSMml5cTIyX2Q0LWJIQzh5Vnc?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">October Patch Tuesday: 1,408 CVEs, 1 exploited flaw and a SharePoint surprise - Computerworld</a>
+          <div class="article-meta">Computerworld &bull; Oct 16, 2026</div>
+          <div class="article-summary snippet"><p>October Patch Tuesday: 1,408 CVEs, 1 exploited flaw and a SharePoint surprise&amp;nbsp;&amp;nbsp;Computerworld</p><a href="https://news.google.com/rss/articles/CBMiwwFBVV95cUxPYzJjR01hRGhUSGlkMEMwMzd4QmgxSFR4YWwzMW1sODY5REVZaUxuZnZRb0ktMk9YamVxd0RUTWhOaVVUOUo1cWZidmc5bkl5OUZKYVllNkJOQ3NyVE1CTFhZOUE3LXpXODhVazVYaXZtbEd2eWFJdkF0TWNTSmxCeV9RYXZmcVc5SkZxbHJxeEJVWlZscGpBNkhDc0d0eERabTVwTl9WM3NKaGZTNnJ3V3VSMml5cTIyX2Q0LWJIQzh5Vnc?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a6ee103bbfb')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a42ad7ac402">
+        <div class="article-body">
+          <a href="https://www.neowin.net/news/onedrive-and-sharepoint-are-next-in-line-to-get-ai-powered-search/?utm_source=rss" target="_blank" rel="noopener noreferrer" class="article-title">OneDrive and SharePoint are next in line to get AI-powered search - Neowin</a>
+          <div class="article-meta">Neowin &bull; Oct 16, 2026</div>
+          <div class="article-summary snippet"><p>OneDrive and SharePoint are next in line to get AI-powered search&amp;nbsp;&amp;nbsp;Neowin</p><a href="https://www.neowin.net/news/onedrive-and-sharepoint-are-next-in-line-to-get-ai-powered-search/?utm_source=rss" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a42ad7ac402')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a71cb9e814e">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-october-2026-patch-tuesday-updates/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Fixes 80 Critical Flaws in October 2026 Patch Tuesday Updates - Petri IT Knowledgebase</a>
+          <div class="article-meta">Petri IT Knowledgebase &bull; Oct 14, 2026</div>
+          <div class="article-summary"><p>Microsoft Fixes 80 Critical Flaws in October 2026 Patch Tuesday Updates
+The latest Patch Tuesday release fixes more than 1,400 vulnerabilities, including an actively exploited flaw and dozens of critical security issues across Microsoft's product portfolio.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a71cb9e814e')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aa7da497770">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMitAFBVV95cUxPY0tOcWUxQzZfUkhxNm44ckFzaThKb0pqa0M2a1RyYmFacUNEZUt5Rk5tbFpDbTNWUFVrd2xRaTNOSUpORmZuNzZaUzlBRWhJRzJOY0ZtS1JGNFJlZ3JOZThUSTdmM1VZaDhrZm5lNGVBODZ0ZllDTWhFdXRyUnRqQms2b1RNUHgtOFlJbDhpU2ZXM2lfM1hqanVaQzA2SG12cDFaNktBLWhnQ3dhTXVLcWdmMEo?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft breaks record, fixing 1,416 security flaws. Update Windows now - PCWorld</a>
+          <div class="article-meta">PCWorld &bull; Oct 14, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft breaks record, fixing 1,416 security flaws. Update Windows now&amp;nbsp;&amp;nbsp;PCWorld</p><a href="https://news.google.com/rss/articles/CBMitAFBVV95cUxPY0tOcWUxQzZfUkhxNm44ckFzaThKb0pqa0M2a1RyYmFacUNEZUt5Rk5tbFpDbTNWUFVrd2xRaTNOSUpORmZuNzZaUzlBRWhJRzJOY0ZtS1JGNFJlZ3JOZThUSTdmM1VZaDhrZm5lNGVBODZ0ZllDTWhFdXRyUnRqQms2b1RNUHgtOFlJbDhpU2ZXM2lfM1hqanVaQzA2SG12cDFaNktBLWhnQ3dhTXVLcWdmMEo?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aa7da497770')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="accdf534761">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiqgFBVV95cUxPWjh0MW03Qmc0TlFJZ2RwMkJvWTFFY3JCYXB6UGlWOUZBSnh0RG5FSWRnNUNwczJHQzQ5M2RLUjlFcF9nejFndWdVSm11MEwydGdWTHJJSFVlMWpxVnpiR0tpd0c2ZWFrM0Q1bDlVdjljNUZUVm04SzBEb01rcjRwOHA1Y1Fnejh1LWUyMzRld1Vvd0cyWi1HaUUtMG1rdHRaeVM4aWR1dWlxdw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft finds a way to make AI agents 4x faster while using 30% fewer tokens - Neowin</a>
+          <div class="article-meta">Neowin &bull; Oct 15, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft finds a way to make AI agents 4x faster while using 30% fewer tokens&amp;nbsp;&amp;nbsp;Neowin</p><a href="https://news.google.com/rss/articles/CBMiqgFBVV95cUxPWjh0MW03Qmc0TlFJZ2RwMkJvWTFFY3JCYXB6UGlWOUZBSnh0RG5FSWRnNUNwczJHQzQ5M2RLUjlFcF9nejFndWdVSm11MEwydGdWTHJJSFVlMWpxVnpiR0tpd0c2ZWFrM0Q1bDlVdjljNUZUVm04SzBEb01rcjRwOHA1Y1Fnejh1LWUyMzRld1Vvd0cyWi1HaUUtMG1rdHRaeVM4aWR1dWlxdw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('accdf534761')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a7d88be23b4">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/10/microsoft-patches-record-1413-flaws.html" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Patches Record 1,413 Flaws, Including Exploited Windows Shell Bug - The Hacker News</a>
+          <div class="article-meta">The Hacker News &bull; Oct 14, 2026</div>
+          <div class="article-summary"><p>Microsoft on Tuesday shattered its own Patch Tuesday record by shipping patches for a whopping 1,413 vulnerabilities, including one that it said has come under active exploitation.
+These include 1,102 flaws in Windows, 134 in Office, 61 in Developer Tools, 36 in SharePoint Server, and 22 in SQL Server. Of these, more than 670 relate to privilege escalation, followed by over 300 remote code execution flaws and 250 information disclosure flaws. Over 70 flaws are rated Critical in severity.
+&quot;Hundreds of CVEs in a single release used to be the exception; now it's the baseline,&quot; Dustin Childs, head of Threat Awareness at the Zero Day Initiative (ZDI), said. &quot;Is AI to blame? Partly. It's accelerating bug-hunting on both sides of the fence, so vendors are finding (and fixing) more flaws, and researchers are finding them faster too.&quot;
+&quot;But AI isn't creating these bugs out of thin air; it's just shortening the time between a vulnerability existing and someone noticing it. The volume isn't the real story anymore. What matters is that discovery is scaling faster than exploitation, so teams that triage by sheer CVE count instead of exploitability are burning cycles on the wrong bugs. Patch what's proven, prioritized, and public, and treat everything else as this month's new normal.&quot;
+The three vulnerabilities of note are listed below -
+- CVE-2026-96951 (CVSS score: 8.8) - A command injection vulnerability in Windows Shell that allows an unauthorized attacker to bypass a security feature over a network.
+- CVE-2026-108398 (CVSS score: 8.8) - An untrusted search path vulnerability in .NET Framework that allows an authorized attacker to bypass a security feature locally.
+- CVE-2026-92707 (CVSS score: 5.3) - An improperly controlled sequential memory allocation vulnerability in MessagePack-CSharp that allows an unauthorized attacker to deny service over a network.
+Microsoft, which credited Fujitsu's Riku Bamba and Yuya Chudo, as well as Anthropic's Benoit Sevens and a researcher named yhw for reporting CVE-2026-96951, said the vulnerability has been exploited in the wild.
+&quot;An attacker who successfully exploited the vulnerability could evade Mark of the Web (MOTW) defenses,&quot; the Windows-maker said. &quot;In an email or instant message attack scenario, the attacker could send the targeted user a specially crafted file that is designed to exploit the vulnerability.&quot;
+&quot;In any case an attacker would have no way to force a user to view attacker-controlled content. Instead, an attacker would have to convince a user to take action. For example, an attacker could entice a user to either click a link that directs the user to the attacker's site or send a malicious attachment.&quot;
+It's unclear how the vulnerability is being exploited in real-world attacks, by whom, and who has been targeted. The U.S. Cybersecurity and Infrastructure Security Agency (CISA) has added the flaw to its Known Exploited Vulnerabilities (KEV) catalog, requiring federal agencies to apply the fixes by October 16, 2026.
+CVE-2026-108398 has been acknowledged as publicly known at the time of the release of the patches, with Microsoft stating the security flaw could be exploited to bypass Windows Defender Application Control (WDAC) enforcement and run unauthorized applications on target systems.
+&quot;An authenticated attacker could place a specially crafted .NET assembly on an affected system and register it for loading by a protected process,&quot; Microsoft said. &quot;Successful exploitation could bypass Windows Defender Application Control restrictions and allow the attacker to execute code within the protected process. User interaction is not required.&quot;
+&quot;This vulnerability is particularly dangerous as a post-compromise attack technique, enabling attackers with existing local access to circumvent security restrictions without user interaction,&quot; Mike Walters, president and co-founder of Action1, said.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a7d88be23b4')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="intune" class="topic-section">
+      <h2 class="topic-title" style="--c:#0F6CBD">Intune <span class="count">(2)</span></h2>
+      <div class="article-card" data-id="a0fc2b33e63">
+        <div class="article-body">
+          <a href="https://techcommunity.microsoft.com/t5/intune-customer-success/preparing-for-end-of-support-for-cname-auto-discovery-in-windows/ba-p/4564973" target="_blank" rel="noopener noreferrer" class="article-title">Preparing for end of support for CNAME auto-discovery in Windows MDM-only enrollment</a>
+          <div class="article-meta">techcommunity.microsoft.com &bull; Oct 16, 2026</div>
+          <div class="article-summary snippet"><p>Today, some organizations use an&amp;nbsp;EnterpriseEnrollment DNS CNAME record to automatically direct devices to the Microsoft enrollment service during Windows MDM-only enrollment.
+Starting January 15, 2027, as part of our ongoing efforts to simplify and modernize enrollment experiences, Microsoft Intune will end support for CNAME-based auto-discovery in Windows MDM-only enrollment scenarios. This change reduces dependency on DNS-based discovery while providing a more consistent enrollment experience moving forward.
+After this change, users may need to enter the Microsoft enrollment server URL if it’s not already provided by the enrollment experience:
+https://enrollment.manage.microsoft.com/enrollmentserver/discovery.svc
+Who this change affects
+Your organization may be affected if:
+
+You use Windows MDM-only enrollment.
+You have configured an EnterpriseEnrollment DNS CNAME record.
+Your enrollment process depends on DNS record to automatically discover the enrollment service.
+
+You likely aren't affected if you exclusively use:
+
+Microsoft Entra join enrollment
+Microsoft Entra hybrid join enrollment
+Other enrollment methods that don't rely on EnterpriseEnrollment CNAME discovery
+
+How the user experience will change
+Today, in affected environments, a user can begin Windows MDM-only enrollment, and the enrollment service is automatically discovered using the organization’s EnterpriseEnrollment DNS CNAME record. The user doesn’t need to provide the enrollment server information.
+After this change, CNAME-based auto-discovery will no longer be used for these Windows MDM-only enrollment scenarios. If the enrollment service URL isn't already provided by the enrollment experience, the user will need to enter it when prompted. Enrollment can then continue using the Microsoft enrollment service URL. For example:
+Figure 1: An example of how a user may need to enter the enrollment service URL.
+Identifying affected environments
+Review your organization's DNS configuration and Windows MDM-only enrollment documentation.In particular, look for an EnterpriseEnrollment DNS record similar to:
+EnterpriseEnrollment.contoso.com
+If your organization configured the EnterpriseEnrollment record to support Windows MDM-only enrollment discovery, you should prepare for this change.
+You should also review and update documentation that assumes enrollment service discovery happens automatically through DNS, including:
+
+Internal enrollment guides
+Help desk procedures
+Device deployment instructions
+Provisioning documentation
+User onboarding materials
+
+Actions to take if you’re affected
+To prepare for this change we recommend the following actions:
+
+1. Identify impacted enrollment workflows
+Review all Windows MDM-only enrollment scenarios used within your organization and determine whether they depend on EnterpriseEnrollment DNS discovery.
+
+
+2. Update enrollment documentation
+Update user guides, knowledge base articles, onboarding materials, and other instructions to reflect the new enrollment process.
+
+
+3. Prepare support teams
+Ensure help desk and deployment teams understand the change and know when the enrollment service URL may need to be provided.
+
+
+4. Test enrollment scenarios
+Validate affected enrollment workflows before the change takes effect. Identify any required updates and determine where users may be prompted to enter the enrollment service URL.
+
+
+5. Communicate with impacted users
+If users will need to enter the enrollment service URL, provide updated instructions before the change takes effect.
+
+&amp;nbsp;
+Frequently asked questions
+
+Does this affect existing enrolled devices?
+No. Existing enrolled devices remain enrolled and aren’t affected by this change.
+
+
+Is Windows MDM-only enrollment being retired?
+No. Windows MDM-only enrollment remains supported. Only CNAME-based auto-discovery will become unsupported.
+
+
+Do I need to remove my EnterpriseEnrollment DNS record?
+Review your environment and DNS configuration requirements. This change only affects use of the record for Windows MDM-only enrollment auto-discovery.
+
+
+Will every user need to enter the enrollment service URL?
+Not necessarily. Some enrollment experiences may already provide enrollment server information. Manual entry is only required when the enrollment experience doesn’t provide it automatically.
+
+
+Should we begin testing now?
+Yes. We strongly recommend validating enrollment scenarios as early as possible and updating relevant documentation before this change takes effect.
+
+Next steps
+Review your Windows MDM-only enrollment processes and identify any dependencies on EnterpriseEnrollment DNS CNAME records. Update enrollment guidance, deployment instructions, onboarding materials, and help desk procedures that assume the enrollment service will be discovered automatically through DNS.
+Stay tuned to this blog for updates. If you have any questions, leave a comment below.</p><a href="https://techcommunity.microsoft.com/t5/intune-customer-success/preparing-for-end-of-support-for-cname-auto-discovery-in-windows/ba-p/4564973" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a0fc2b33e63')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ac53cc73f99">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMizAFBVV95cUxQUXNxR041aHVicUpSU0liUHBHZnNLR0RQclVwZWRvRy1XNXdHRDRMTHBXRDFUWmlGeG1BaFA1RWQ1c0VPNjFtcjg4Y3ZtTDZ0VVlZUmhPXzZZT2F3R19ZLVVOb2RIM3RVNnhuSDM2eU45aWJieEd0TC1qSzJQQXNFaUhSSVp2VnBNSm9vc3MyU3NJU3BvaUx5VDJqTXdzOW5DOF9oRzJxb2lxRm5kM21SUDBvblVvSEw5dzVhTjFtNHFyUDR4TnZfREZwRnI?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">3 Factors That Can Dramatically Impact Your Microsoft Intune Spend - TechZone360</a>
+          <div class="article-meta">TechZone360 &bull; Oct 13, 2026</div>
+          <div class="article-summary snippet"><p>3 Factors That Can Dramatically Impact Your Microsoft Intune Spend&amp;nbsp;&amp;nbsp;TechZone360</p><a href="https://news.google.com/rss/articles/CBMizAFBVV95cUxQUXNxR041aHVicUpSU0liUHBHZnNLR0RQclVwZWRvRy1XNXdHRDRMTHBXRDFUWmlGeG1BaFA1RWQ1c0VPNjFtcjg4Y3ZtTDZ0VVlZUmhPXzZZT2F3R19ZLVVOb2RIM3RVNnhuSDM2eU45aWJieEd0TC1qSzJQQXNFaUhSSVp2VnBNSm9vc3MyU3NJU3BvaUx5VDJqTXdzOW5DOF9oRzJxb2lxRm5kM21SUDBvblVvSEw5dzVhTjFtNHFyUDR4TnZfREZwRnI?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac53cc73f99')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="entraid" class="topic-section">
+      <h2 class="topic-title" style="--c:#6B69D6">Entra ID <span class="count">(7)</span></h2>
+      <div class="article-card" data-id="aa27fd64813">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-entra-authentication-access-management/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Highlights New Entra Features for Authentication and Access Management</a>
+          <div class="article-meta">petri.com &bull; Oct 13, 2026</div>
+          <div class="article-summary"><p>Microsoft Highlights New Entra Features for Authentication and Access Management
+As identity attacks continue to evolve, Microsoft is introducing new Entra features aimed at strengthening access controls while reducing user friction.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aa27fd64813')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="abec3e63dac">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/10/anthropic-warns-small-ai-models-could.html" target="_blank" rel="noopener noreferrer" class="article-title">Anthropic Warns Small AI Models Could Soon Form Self-Propagating IoT Botnets</a>
+          <div class="article-meta">thehackernews.com &bull; Oct 13, 2026</div>
+          <div class="article-summary"><p>Small artificial intelligence (AI) models may be months away from developing capabilities to self-replicate on IoT devices like smart ovens and off-brand Android TV boxes, according to a warning from Anthropic.
+The frontier AI lab said small AI models could form autonomous, self-propagating worm botnets that are &quot;challenging to shut down,&quot; since &quot;there's no centralized point to shut off.&quot;
+Prior work has demonstrated that AI agents can act like one by scanning their network, executing an exploit, and copying model weights to a target machine across a GPU cluster with an aim to generate tailored attack strategies and use compromised machines as a botnet to run large language models (LLMs) in order to sustain its reasoning and expand in scale.
+&quot;Such an 'AI worm' could carry its model weights with it as it reproduces (or re-download them from a public hub), and then run inference directly on compromised hardware,&quot; Anthropic said. &quot;Effectively, the weights would become part of the malware payload.&quot;
+The idea, at a high level, explains how AI models could potentially break into internet-connected devices and use their computing power to run themselves and spread to other devices, without having to rely on expensive data centers all the time. A more powerful model that's too large to fit into a single device could be split into small chunks and run across multiple machines to collectively run it.
+A threat actor could build a distributed LLM botnet from poorly secured IoT devices, making it powerful enough to run a capable model. Some of the ways an AI worm could propagate include -
+- Small models that replicate through a compromise of host machines on which they run, also called weight-based replicators. IoT devices make for a lucrative target because of their minimal security controls.
+- Target datacenters and other high-compute targets to set up unmonitored rogue deployments, also classified as frontier replicators or open-weight replicators based on the model used.
+- Steal an AI service provider's API keys or platform credentials to run copies of itself, also called API-based replicators. In this case, the provider could be deceived into thinking it is serving ordinary API requests from a legitimate customer, without realizing that a malicious or self-replicating system is behind them. However, they are also likely to detect more as unusual API usage could trigger security alerts, leading to the credentials being revoked or the accounts getting blocked.
+In its test of 11 open-weights models from Alibaba, DeepSeek, Google, Meta MoonShot AI, OpenAI, and Zhipu AI (aka Z.ai), Anthropic said it found GLM-5.2 to be the only model to propagate Llama3.1-8B reliably to 8/8 nodes running the redroid Android emulator in 4 out of 5 trials.
+It also revealed that an AI IoT worm powered by inexpensive Android TV boxes could be a &quot;slow, distributed&quot; system that can produce a meaningful amount of AI computation when a fleet comprising hundreds of thousands of such devices is networked together to run an inference engine.
+Alternatively, it could take the form of a potent cyber model capable of breaching data centers at a high pace, or a model that scams people for compute credits.
+&quot;We don't yet have a full rogue replicator, but agents are becoming increasingly capable of completing the individual steps in the replication chain (and passing on their adaptations to future copies of themselves),&quot; Anthropic said.
+&quot;We expect AI botnets to infect more than IoT devices, and to use weight-based replication as just one strategy in their playbook. AI botnets could also act intelligently to counter defenders, but we haven’t tested this.&quot;</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('abec3e63dac')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aba60718d77">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMibkFVX3lxTE1FcXA5UkxDbm9BRHR5WG1hYnZkaUJjSEtOZGpwOVJPVU16UmVmQkZKX2tZeTg5U2FpWlJXTGNJRl9SRkhfUEJjbFFqa2U1MHBLTlBGR3pRaE80V19nc3VXTHdqcWszR3JRT1pJUG5B?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Entra ID vs Okta 2026: Pricing, AI Agents - https://tech-insider.org/</a>
+          <div class="article-meta">https://tech-insider.org/ &bull; Oct 17, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft Entra ID vs Okta 2026: Pricing, AI Agents&amp;nbsp;&amp;nbsp;https://tech-insider.org/</p><a href="https://news.google.com/rss/articles/CBMibkFVX3lxTE1FcXA5UkxDbm9BRHR5WG1hYnZkaUJjSEtOZGpwOVJPVU16UmVmQkZKX2tZeTg5U2FpWlJXTGNJRl9SRkhfUEJjbFFqa2U1MHBLTlBGR3pRaE80V19nc3VXTHdqcWszR3JRT1pJUG5B?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aba60718d77')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a922602bcbd">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-entra-authentication-access-management/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Highlights New Entra Features for Authentication and Access Management - Petri IT Knowledgebase</a>
+          <div class="article-meta">Petri IT Knowledgebase &bull; Oct 13, 2026</div>
+          <div class="article-summary"><p>Microsoft Highlights New Entra Features for Authentication and Access Management
+As identity attacks continue to evolve, Microsoft is introducing new Entra features aimed at strengthening access controls while reducing user friction.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a922602bcbd')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a83954e0eb5">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiwgFBVV95cUxORG9lLWgwWEw5QTRENkM4MlkyNExscFJ0Q3hmYi0yMTJ6ZjRQR3dDSFdjcTNyUUdVdnZIM1Vaa1F2eTZuRkRic2lPWnEyOFdzWnZPd293ZFhXbEpjc3B3M3ZCeWt4bTFhalNzY0syOHhham1IU0dTcDdtYWJjYnFMeVpSZGRjSDY2MUJvTUw4SmtleVpVd01EcW1JZUczaFF4a0k2MjVsbjVRWWJoc2piZnVLdnZsQnRaUno5SjlGWHN0Zw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">PosturePass by Ensure Endpoint Now Available in Microsoft Marketplace - The Tennessean</a>
+          <div class="article-meta">The Tennessean &bull; Oct 14, 2026</div>
+          <div class="article-summary snippet"><p>PosturePass by Ensure Endpoint Now Available in Microsoft Marketplace&amp;nbsp;&amp;nbsp;The Tennessean</p><a href="https://news.google.com/rss/articles/CBMiwgFBVV95cUxORG9lLWgwWEw5QTRENkM4MlkyNExscFJ0Q3hmYi0yMTJ6ZjRQR3dDSFdjcTNyUUdVdnZIM1Vaa1F2eTZuRkRic2lPWnEyOFdzWnZPd293ZFhXbEpjc3B3M3ZCeWt4bTFhalNzY0syOHhham1IU0dTcDdtYWJjYnFMeVpSZGRjSDY2MUJvTUw4SmtleVpVd01EcW1JZUczaFF4a0k2MjVsbjVRWWJoc2piZnVLdnZsQnRaUno5SjlGWHN0Zw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a83954e0eb5')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a066e027ed8">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiqgFBVV95cUxOeWVzMVdzVV9PMVBRdWRqVHRPeUVDaHlsMDJhQ2hUSmlCdVJjdWFLclpyUy1mUkZ3bG5pUXc0TnRrYk1RV2NXci1feGlldUFwdy1HRTNOekQxLWxJbEdvOWhMLWVVck5UYVVpQTRTQjFaTjdBZnFjblEtM0dPNVliRWFWZWJ6QkFlWUdRSS0zYll3WXI4T1FGN3VISGdqYUV2MlhwTDRmMDBBUQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Here are all the new features Microsoft recently added to Entra for IT admins - Neowin</a>
+          <div class="article-meta">Neowin &bull; Oct 12, 2026</div>
+          <div class="article-summary snippet"><p>Here are all the new features Microsoft recently added to Entra for IT admins&amp;nbsp;&amp;nbsp;Neowin</p><a href="https://news.google.com/rss/articles/CBMiqgFBVV95cUxOeWVzMVdzVV9PMVBRdWRqVHRPeUVDaHlsMDJhQ2hUSmlCdVJjdWFLclpyUy1mUkZ3bG5pUXc0TnRrYk1RV2NXci1feGlldUFwdy1HRTNOekQxLWxJbEdvOWhMLWVVck5UYVVpQTRTQjFaTjdBZnFjblEtM0dPNVliRWFWZWJ6QkFlWUdRSS0zYll3WXI4T1FGN3VISGdqYUV2MlhwTDRmMDBBUQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a066e027ed8')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a206d69e9ad">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE1YbTc2dXpoSjN5U1ZTS2UtYnB4eEZLdmM5VkpuazZJYUxLZlNKNGZweGNQdEpPVGFOWEFIbnhDMHpjWmhleEQ3bXNpTUpQcExBUHA3Wi1aVllmTUZkNGF1bTF4OTN5bFNW?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Okta vs Microsoft Entra ID: 16.4% Share, $7 Gap [2026] - https://tech-insider.org/</a>
+          <div class="article-meta">https://tech-insider.org/ &bull; Oct 13, 2026</div>
+          <div class="article-summary snippet"><p>Okta vs Microsoft Entra ID: 16.4% Share, $7 Gap [2026]&amp;nbsp;&amp;nbsp;https://tech-insider.org/</p><a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE1YbTc2dXpoSjN5U1ZTS2UtYnB4eEZLdmM5VkpuazZJYUxLZlNKNGZweGNQdEpPVGFOWEFIbnhDMHpjWmhleEQ3bXNpTUpQcExBUHA3Wi1aVllmTUZkNGF1bTF4OTN5bFNW?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a206d69e9ad')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="m365" class="topic-section">
+      <h2 class="topic-title" style="--c:#D83B01">Microsoft 365 <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a495a09e8f8">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiugFBVV95cUxOVENVYkFuNV9XZWh5dTRjZG5EaXM3WktvMGg5dEItdkNaRjhFUmhvSXhtWVdsWGJ2VXhVbTlha0dsWkRwbGxjWUhoOFdDakR5Z094X0tnVEU0bHNYcVpuRnJxa3phaWZvVDdpZzRORk9vTUt2ZjF2eDdWLWI0b3lqNEZNUHBINXg1WFBPeHMzcTBYbkQ2LWFjZGE1Sk4xRG1zUGJQb1ZUVUhORnpYclJvMlMycjNJTHgwRHc?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">New AI framework bridges a critical gap in mid-range weather forecasts - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; Oct 18, 2026</div>
+          <div class="article-summary snippet"><p>New AI framework bridges a critical gap in mid-range weather forecasts&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMiugFBVV95cUxOVENVYkFuNV9XZWh5dTRjZG5EaXM3WktvMGg5dEItdkNaRjhFUmhvSXhtWVdsWGJ2VXhVbTlha0dsWkRwbGxjWUhoOFdDakR5Z094X0tnVEU0bHNYcVpuRnJxa3phaWZvVDdpZzRORk9vTUt2ZjF2eDdWLWI0b3lqNEZNUHBINXg1WFBPeHMzcTBYbkQ2LWFjZGE1Sk4xRG1zUGJQb1ZUVUhORnpYclJvMlMycjNJTHgwRHc?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a495a09e8f8')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a798527dc5b">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiiwFBVV95cUxNNzFqN1dZcDlYYmM5WENNSXVKYmVBcURfa1lFWVVpTmF5SHI4YWdJUHhhdEVUdW1XUE1KTnREWlJaMW1jMWNKWG5PS2RZNmtFLWhJLXYtM25iV1Qxb01JV1BCdGRpVDJiRHROZnFVdHBtc1VRcEM5ZjZkWnhtdjRGeFQ2STl1V1lOdVln?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">You’re Probably Overlooking These Microsoft 365 Tools - Duke Today</a>
+          <div class="article-meta">Duke Today &bull; Oct 14, 2026</div>
+          <div class="article-summary snippet"><p>You’re Probably Overlooking These Microsoft 365 Tools&amp;nbsp;&amp;nbsp;Duke Today</p><a href="https://news.google.com/rss/articles/CBMiiwFBVV95cUxNNzFqN1dZcDlYYmM5WENNSXVKYmVBcURfa1lFWVVpTmF5SHI4YWdJUHhhdEVUdW1XUE1KTnREWlJaMW1jMWNKWG5PS2RZNmtFLWhJLXYtM25iV1Qxb01JV1BCdGRpVDJiRHROZnFVdHBtc1VRcEM5ZjZkWnhtdjRGeFQ2STl1V1lOdVln?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a798527dc5b')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a2342cde87c">
+        <div class="article-body">
+          <a href="https://www.bleepingcomputer.com/news/security/hackers-breach-microsoft-365-tenants-via-connectwise-supply-chain-attack/" target="_blank" rel="noopener noreferrer" class="article-title">WARNING: ConnectWise Supply-Chain Attack Exposes Microsoft 365 Tenants - LinkedIn</a>
+          <div class="article-meta">LinkedIn &bull; Oct 17, 2026</div>
+          <div class="article-summary"><p>ConnectWise has shut down customer access to its Cloud Backup service (formerly SkyKick Cloud Backup) after hackers accessed application identities and compromised Microsoft 365 tenants.
+Reports of the malicious activity began emerging on Friday, with administrators observing unauthorized access to client data in Microsoft 365 tenants due to a potential “SkyKick/CW breach.”
+Later on the same day, managed cybersecurity and threat detection platform Huntress confirmed the worries, saying that it had identified at least 162 compromised tenants in its environment.
+In a post today, Microsoft also confirmed malicious activity involving ConnectWise’s Cloud Backup service, saying it identified unauthorized authentication attempts from an IP address on October 15.
+ConnectWise’s cloud backup solutions provide backup and recovery services that help managed service providers (MSPs) and IT teams protect and restore customer data, such as emails and files, in cloud environments including Microsoft 365 and Google Workspace.
+For Microsoft 365 backups, the service relies on permissions granted through Microsoft Entra ID. An application identity known as a “service principal” represents the software in a customer’s tenant and enables it to access resources according to the permissions granted.
+Microsoft 365 tenant breaches
+In a security advisory, ConnectWise said that it “recently identified unauthorized access to application identities within the ConnectWise Cloud Backup environment” and shut down application access for its partners and clients.
+“We have no indicators to date that Cloud Backup partner backup data has been compromised. The existing cloud backup archive is not impacted by this service interruption and will be accessible once services are restored,” ConnectWise says.
+However, the company has launched an investigation and is engaged in remediation efforts.
+Based on reports from Microsoft, Huntress, and administrators, the malicious activity started at least on October 15 from a single IP address: 144.172.64[.]128.
+One user on Reddit said that they received a notification from the Microsoft Privileged Identity Management (PIM) service on October 15 alerting of a SkyKick service principal assigning itself the role of Exchange Administrator, despite not using the app in years.
+Nevertheless, some of the reported IDs for the offensive SkyKick match those provided by Huntress, Microsoft, and Todyl - a cybersecurity platform primarily for MSPs and IT professionals.
+According to Todyl researchers, the attacker authenticated directly to Microsoft 365 as the backup application using its secret, gaining the permissions customers had already granted it.
+The sign-in requests were performed by an automated script, and since they did not involve a user login, protections such as multi-factor authentication (MFA) were ineffective.
+“Because the application already held broad, previously granted permissions in each tenant, those sign-ins gave the attacker the technical ability to read and write mail and attachments, OneDrive and SharePoint files, and Teams chats,” Todyl said.
+In the analyzed intrusions on nine tenants, Todyl researchers identified only sign-in activity and did not find evidence that the threat actor “created accounts, added permissions, changed passwords, or established persistence in any tenant through the backup app.”
+Reconnaissance and persistence attempts
+However, Huntress saw on nearly 50 tenants it monitors that service principals for “ConnectWise’s Cloud Management apps (Exchange Online, Microsoft Teams, and Microsoft Graph) assigned themselves directory roles, mostly Exchange Administrator.”
+In one tenant, Huntress researchers also observed that the attacker established persistence, the operation taking around five minutes.
+During the activity, Cloud Management - MS Teams (24205314-2b89-4e07-a2a4-579e898a5640) granted itself a Global Administrator role and added credentials to an MSP management tool and to Huntress’s own ap…</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a2342cde87c')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aee5b0d01d6">
+        <div class="article-body">
+          <a href="https://www.bleepingcomputer.com/news/security/hackers-breach-microsoft-365-tenants-via-connectwise-supply-chain-attack/" target="_blank" rel="noopener noreferrer" class="article-title">Hackers breach Microsoft 365 tenants via ConnectWise supply-chain attack - BleepingComputer</a>
+          <div class="article-meta">BleepingComputer &bull; Oct 17, 2026</div>
+          <div class="article-summary"><p>ConnectWise has shut down customer access to its Cloud Backup service (formerly SkyKick Cloud Backup) after hackers accessed application identities and compromised Microsoft 365 tenants.
+Reports of the malicious activity began emerging on Friday, with administrators observing unauthorized access to client data in Microsoft 365 tenants due to a potential “SkyKick/CW breach.”
+Later on the same day, managed cybersecurity and threat detection platform Huntress confirmed the worries, saying that it had identified at least 162 compromised tenants in its environment.
+In a post today, Microsoft also confirmed malicious activity involving ConnectWise’s Cloud Backup service, saying it identified unauthorized authentication attempts from an IP address on October 15.
+ConnectWise’s cloud backup solutions provide backup and recovery services that help managed service providers (MSPs) and IT teams protect and restore customer data, such as emails and files, in cloud environments including Microsoft 365 and Google Workspace.
+For Microsoft 365 backups, the service relies on permissions granted through Microsoft Entra ID. An application identity known as a “service principal” represents the software in a customer’s tenant and enables it to access resources according to the permissions granted.
+Microsoft 365 tenant breaches
+In a security advisory, ConnectWise said that it “recently identified unauthorized access to application identities within the ConnectWise Cloud Backup environment” and shut down application access for its partners and clients.
+“We have no indicators to date that Cloud Backup partner backup data has been compromised. The existing cloud backup archive is not impacted by this service interruption and will be accessible once services are restored,” ConnectWise says.
+However, the company has launched an investigation and is engaged in remediation efforts.
+Based on reports from Microsoft, Huntress, and administrators, the malicious activity started at least on October 15 from a single IP address: 144.172.64[.]128.
+One user on Reddit said that they received a notification from the Microsoft Privileged Identity Management (PIM) service on October 15 alerting of a SkyKick service principal assigning itself the role of Exchange Administrator, despite not using the app in years.
+Nevertheless, some of the reported IDs for the offensive SkyKick match those provided by Huntress, Microsoft, and Todyl - a cybersecurity platform primarily for MSPs and IT professionals.
+According to Todyl researchers, the attacker authenticated directly to Microsoft 365 as the backup application using its secret, gaining the permissions customers had already granted it.
+The sign-in requests were performed by an automated script, and since they did not involve a user login, protections such as multi-factor authentication (MFA) were ineffective.
+“Because the application already held broad, previously granted permissions in each tenant, those sign-ins gave the attacker the technical ability to read and write mail and attachments, OneDrive and SharePoint files, and Teams chats,” Todyl said.
+In the analyzed intrusions on nine tenants, Todyl researchers identified only sign-in activity and did not find evidence that the threat actor “created accounts, added permissions, changed passwords, or established persistence in any tenant through the backup app.”
+Reconnaissance and persistence attempts
+However, Huntress saw on nearly 50 tenants it monitors that service principals for “ConnectWise’s Cloud Management apps (Exchange Online, Microsoft Teams, and Microsoft Graph) assigned themselves directory roles, mostly Exchange Administrator.”
+In one tenant, Huntress researchers also observed that the attacker established persistence, the operation taking around five minutes.
+During the activity, Cloud Management - MS Teams (24205314-2b89-4e07-a2a4-579e898a5640) granted itself a Global Administrator role and added credentials to an MSP management tool and to Huntress’s own ap…</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aee5b0d01d6')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a8105e02f67">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/10/hackers-use-compromised-connectwise.html" target="_blank" rel="noopener noreferrer" class="article-title">Hackers Use Compromised ConnectWise Credential to Sign In to 173 Microsoft 365 Tenants - The Hacker News</a>
+          <div class="article-meta">The Hacker News &bull; Oct 17, 2026</div>
+          <div class="article-summary"><p>Cybersecurity researchers are sounding the alarm related to an active campaign in which unknown threat actors are abusing a compromised Microsoft 365 (M365) credential belonging to ConnectWise Cloud Backup (formerly SkyKick) to gain unauthorized access to customers' M365 environments.
+ConnectWise Cloud Backup is a cloud-based backup and recovery service built for managed service providers (MSPs) to secure their clients' Microsoft 365 or Google Workspace data. To accomplish its tasks, the application is granted broad access to mailboxes, OneDrive, SharePoint, Teams, and directory data in every tenant on which it's installed.
+Huntress said it has observed confirmed unauthorized sign-ins within 173 partner/customer tenants using the compromised vendor credential. The incident impacts every organization that has the app installed, and the credential works against every tenant the app is consented in.
+&quot;The app's credential is in hostile hands,&quot; security researcher Jonathan Semon said. &quot;It was used to obtain Microsoft Graph tokens in customer tenants from 144.172.64[.]128 on October 15, between 06:13 and 08:34 UTC. The actor moved through tenants in sorted GUID order, a few seconds apart, which points to a script working from a target list.&quot;
+In the observed attackers, the adversary has been observed authenticating to the app using their own tooling, in a manner analogous to the backup service, and obtains tokens with the app's existing permissions. Given that the app has extensive permissions to access customer data, an attacker in possession of the tokens can read mailboxes, files, and directory data the backup service can.
+Huntress said the same IP address engaged in password spraying against four law firm tenants on October 13 and 14, 2026, although it said it detected no successful user sign-ins in its telemetry.
+In at least one partner tenant, the cybersecurity company said it found a separate ConnectWise app assigning itself Global Administrator privileges and adding credentials to other trusted applications within this environment, thereby opening a pathway to other privileged apps within customer environments. This effectively extends the risk beyond the vendor account.
+&quot;The ConnectWise Cloud Management app for Microsoft Teams (application ID 24205314-2b89-4e07-a2a4-579e898a5640) added itself to the Global Administrator role, then ran a Python script (User-Agent Python-urllib/3.12) that modified two other applications in the tenant: an MSP management application, and Huntress's own application (Huntress Security Platform), adding new client secrets to both,&quot; Semon explained.
+&quot;The two applications that received new secrets are trusted, privileged tools. Adding a credential to an MSP management application can extend access beyond the one tenant, because those applications are often consented into the MSP's customers' tenants. A credential on a security tool's application gives the holder whatever that tool is permitted to do.&quot;
+Todyl, in a similar analysis, said it detected an unauthorized party authenticating to Microsoft Graph as the ConnectWise Cloud Backup application.
+&quot;The access inherited the app's existing consent, which permits read/write access to mail and attachments (full mailbox access through Exchange Web Services), OneDrive and SharePoint files, and Teams chats, including the ability to restore data,&quot; Nicholas Koken, Todyl's head of Detection Engineering, said.
+&quot;Revoking user sessions does not end this access. Disabling the app in a tenant stops new tokens from being issued there, though tokens already issued stay valid for up to 90 minutes. Any tenant where the app is still enabled stays exposed until ConnectWise rotates the credential.&quot;
+In response to the incident, ConnectWise has taken the step of closing Cloud Backup application access until further notice. The company said it has found no evidence that Cloud Backup partner backup data has been compromised.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a8105e02f67')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a5d102c1d7e">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMivAFBVV95cUxPb0wzNHZ3QmpSNTNoazBaWE5XTGlyUXA0V1BDWlF2OVNSWlExdVpmQXgtQzZGMndDdHQzc2VoamhwYUpQRGtYYWMzd2cxZGwyX3U0dkQtS2xqbzBPQXpYeXdpNnRIdUs3N0dSTHlESUNDUDBOSlNMRFdwYWxkSUU5OWYwaDJMNWJ3WXZvRUgyOVEyUnNaR2lHY3Ffc3ZKS1FmU2puV3JTb2V1VG9RZk1TTzEwQl96X21jaHdTTQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Commvault Brings Discover-to-Recover Resilience to Microsoft 365 - PR Newswire</a>
+          <div class="article-meta">PR Newswire &bull; Oct 15, 2026</div>
+          <div class="article-summary snippet"><p>Commvault Brings Discover-to-Recover Resilience to Microsoft 365&amp;nbsp;&amp;nbsp;PR Newswire</p><a href="https://news.google.com/rss/articles/CBMivAFBVV95cUxPb0wzNHZ3QmpSNTNoazBaWE5XTGlyUXA0V1BDWlF2OVNSWlExdVpmQXgtQzZGMndDdHQzc2VoamhwYUpQRGtYYWMzd2cxZGwyX3U0dkQtS2xqbzBPQXpYeXdpNnRIdUs3N0dSTHlESUNDUDBOSlNMRFdwYWxkSUU5OWYwaDJMNWJ3WXZvRUgyOVEyUnNaR2lHY3Ffc3ZKS1FmU2puV3JTb2V1VG9RZk1TTzEwQl96X21jaHdTTQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a5d102c1d7e')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a8aa0a0e67b">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMigwFBVV95cUxOdjBNbGZBM3lMQXRDeTZOcFc4cVFZenVRZUpiWUpMSW1jaEhZV2s5emRvbm9GdGNYbjIxOHRFMXhDbTZzVjBLaGlIN0hpS0RFSURDdkU3UENDblhqN0JWY0FXc1BmblNjQlJBVXVIZjMxS3lLWVhWQ2hxc0oxNEw4TE9Rb9IBiAFBVV95cUxOd3JZcTlEMjF6THlwWU55M2RWSGxObktWY2RlRVVLSFJHc0pBR25mVUVjWVRxeDNhOHF0aUkzTFpzaVFKUlZiNzB5c0huZHVTMkVQQ3FPa3hTVmMxYUlIZEhTdWNaNkVicm9WNWVwbTlydHZsUGFLd2M1SVVHS3VCeWRnMlNuZnVs?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Hackers used Compromised ConnectWise Backup Credentials to Hack 173 Microsoft 365 Accounts - CyberSecurityNews</a>
+          <div class="article-meta">CyberSecurityNews &bull; Oct 17, 2026</div>
+          <div class="article-summary snippet"><p>Hackers used Compromised ConnectWise Backup Credentials to Hack 173 Microsoft 365 Accounts&amp;nbsp;&amp;nbsp;CyberSecurityNews</p><a href="https://news.google.com/rss/articles/CBMigwFBVV95cUxOdjBNbGZBM3lMQXRDeTZOcFc4cVFZenVRZUpiWUpMSW1jaEhZV2s5emRvbm9GdGNYbjIxOHRFMXhDbTZzVjBLaGlIN0hpS0RFSURDdkU3UENDblhqN0JWY0FXc1BmblNjQlJBVXVIZjMxS3lLWVhWQ2hxc0oxNEw4TE9Rb9IBiAFBVV95cUxOd3JZcTlEMjF6THlwWU55M2RWSGxObktWY2RlRVVLSFJHc0pBR25mVUVjWVRxeDNhOHF0aUkzTFpzaVFKUlZiNzB5c0huZHVTMkVQQ3FPa3hTVmMxYUlIZEhTdWNaNkVicm9WNWVwbTlydHZsUGFLd2M1SVVHS3VCeWRnMlNuZnVs?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a8aa0a0e67b')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a6ec45465de">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMipwFBVV95cUxPcDBfeDBOc2puZGZvSzEtN2JSMkNtbHp4OEJzOEFrRzh1WklmemRlNmtMMUo1RThsREVTMlZRd1RycGFzNk9QbFhRTWhyOUlCMHpJNUs5VU15NkZfX2wzdGp3RHg0UGEwT0M3M1VTUW43UXBveHpNQS1rMkxuWXBnLVRIZ2NaM2Y5a1FxS2lmMnFNTUlzUzJ0cGlRanRGM21aRGwwRlVBcw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Veeam launches Intelligent ResOps for Microsoft 365 - Techzine Global</a>
+          <div class="article-meta">Techzine Global &bull; Oct 15, 2026</div>
+          <div class="article-summary snippet"><p>Veeam launches Intelligent ResOps for Microsoft 365&amp;nbsp;&amp;nbsp;Techzine Global</p><a href="https://news.google.com/rss/articles/CBMipwFBVV95cUxPcDBfeDBOc2puZGZvSzEtN2JSMkNtbHp4OEJzOEFrRzh1WklmemRlNmtMMUo1RThsREVTMlZRd1RycGFzNk9QbFhRTWhyOUlCMHpJNUs5VU15NkZfX2wzdGp3RHg0UGEwT0M3M1VTUW43UXBveHpNQS1rMkxuWXBnLVRIZ2NaM2Y5a1FxS2lmMnFNTUlzUzJ0cGlRanRGM21aRGwwRlVBcw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a6ec45465de')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="iru" class="topic-section">
+      <h2 class="topic-title" style="--c:#7C3AED">Iru MDM (formerly Kandji) </h2>
+      <p class="no-news">No articles found this week.</p>
+    </section>
+    <section id="cato" class="topic-section">
+      <h2 class="topic-title" style="--c:#FF6B35">Cato Networks <span class="count">(6)</span></h2>
+      <div class="article-card" data-id="a24e81e1699">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi3gFBVV95cUxPWDBnTWFZM295X3hTMVJiODhqSlFJeDFnZmNlNHhBbHV4d2l3MTBrNzlaSUJtdHdoSG83MXh4dEpPRGZUZU5oMl91dE95VU1sb2FmSDR1RG9Ia0dHLUZ1V1htcTZvdG5xOTV0RG5oZC1uc1NHNkNTRnRWdTlKZTFRakRMdEF5ODBZMmNpR0ZRY084dHhsWndUVGttNGk4cVRRTUZQdGRkdW1YLUkxV2tqWDNnTXNqMlp3WFkzZ09rUnAtVU9nT2ZuUVgtU0J5Wk5rTG52UU5NUDMxMjJMV2c?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Uniti Solutions Launches AI Security Offering Powered by Cato Networks to Help Businesses Combat Shadow AI Risks - Quiver Quantitative</a>
+          <div class="article-meta">Quiver Quantitative &bull; Oct 13, 2026</div>
+          <div class="article-summary snippet"><p>Uniti Solutions Launches AI Security Offering Powered by Cato Networks to Help Businesses Combat Shadow AI Risks&amp;nbsp;&amp;nbsp;Quiver Quantitative</p><a href="https://news.google.com/rss/articles/CBMi3gFBVV95cUxPWDBnTWFZM295X3hTMVJiODhqSlFJeDFnZmNlNHhBbHV4d2l3MTBrNzlaSUJtdHdoSG83MXh4dEpPRGZUZU5oMl91dE95VU1sb2FmSDR1RG9Ia0dHLUZ1V1htcTZvdG5xOTV0RG5oZC1uc1NHNkNTRnRWdTlKZTFRakRMdEF5ODBZMmNpR0ZRY084dHhsWndUVGttNGk4cVRRTUZQdGRkdW1YLUkxV2tqWDNnTXNqMlp3WFkzZ09rUnAtVU9nT2ZuUVgtU0J5Wk5rTG52UU5NUDMxMjJMV2c?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a24e81e1699')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aecc7ea782f">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMivAFBVV95cUxOSWlGQlNuVGcwamprTTZFVTNDbmdOVUQ2YmJmZDVyMGFiM2pieDMwaTYzNmNITW9HWm1iTVNnZ0NtZmZvX2xHLXIxYTA1Q3dZenl4Z1FkX0tWNzFzdEl2YnU2MFpwZUJBTUlHRXQyTFk5N0xXOXo5VEFSSW5kemVVNTF4U1ZXT2Q0WHZ2VkgySFlhYmt5R3YzNEV1ZWVPa0M3Y2pIODRoWWxQLUlmcHpJMnZ6YWRVMGE0OTlPaQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Uniti Solutions launches AI security service with Cato Networks - Investing.com</a>
+          <div class="article-meta">Investing.com &bull; Oct 13, 2026</div>
+          <div class="article-summary snippet"><p>Uniti Solutions launches AI security service with Cato Networks&amp;nbsp;&amp;nbsp;Investing.com</p><a href="https://news.google.com/rss/articles/CBMivAFBVV95cUxOSWlGQlNuVGcwamprTTZFVTNDbmdOVUQ2YmJmZDVyMGFiM2pieDMwaTYzNmNITW9HWm1iTVNnZ0NtZmZvX2xHLXIxYTA1Q3dZenl4Z1FkX0tWNzFzdEl2YnU2MFpwZUJBTUlHRXQyTFk5N0xXOXo5VEFSSW5kemVVNTF4U1ZXT2Q0WHZ2VkgySFlhYmt5R3YzNEV1ZWVPa0M3Y2pIODRoWWxQLUlmcHpJMnZ6YWRVMGE0OTlPaQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aecc7ea782f')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aa1f82ea3b3">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMigwFBVV95cUxOWWp4dFNwRXdMNWdodWZMT1c5akRRODhfMllYTXIzYVNabTRLTUpPYXo1ekgyb28yR1FXczlIZVBpTFVmaWdwR2hzSEZ0RENfX0FTTG5QcGtxblRPVW5UNTRnUDMyMVhjQ0RMY18tczRiR1RrN3lqNVhkVEdzamNoWEhNQdIBiAFBVV95cUxNTGFMMG15MTBtUWYzUkhQWHF4Z21kdkhfVWItb2J1enBZWEdxc2hxY3Vya1dQNURxcWpDdnJZT0tsYkZWblpvaFcxTWhTNzBlRWRhOTVYT1M4dzAweFFQbXBqQ2RGaktXOE0weGVkSE1oU0tCd094OWZjSDR3VDdqLVdCV3RoVXlm?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks Names Chad Gardner As Chief Revenue Officer - Pulse 2.0</a>
+          <div class="article-meta">Pulse 2.0 &bull; Oct 12, 2026</div>
+          <div class="article-summary snippet"><p>Cato Networks Names Chad Gardner As Chief Revenue Officer&amp;nbsp;&amp;nbsp;Pulse 2.0</p><a href="https://news.google.com/rss/articles/CBMigwFBVV95cUxOWWp4dFNwRXdMNWdodWZMT1c5akRRODhfMllYTXIzYVNabTRLTUpPYXo1ekgyb28yR1FXczlIZVBpTFVmaWdwR2hzSEZ0RENfX0FTTG5QcGtxblRPVW5UNTRnUDMyMVhjQ0RMY18tczRiR1RrN3lqNVhkVEdzamNoWEhNQdIBiAFBVV95cUxNTGFMMG15MTBtUWYzUkhQWHF4Z21kdkhfVWItb2J1enBZWEdxc2hxY3Vya1dQNURxcWpDdnJZT0tsYkZWblpvaFcxTWhTNzBlRWRhOTVYT1M4dzAweFFQbXBqQ2RGaktXOE0weGVkSE1oU0tCd094OWZjSDR3VDdqLVdCV3RoVXlm?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aa1f82ea3b3')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aca4602e932">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiwgFBVV95cUxQNE1qWndSS0VSc0x5a1ZhQTR1Y2drMy13Tm1kYTN6X093NlRVbXZXMVdIdVNieEQtYm1mLUh5eWRoSzE4MEJJa1Jxa0hyV1M4eWlqalZBTVBHcVZMV2xCX0EtTFNtVzc5Q0IzX0hnREJFZEVZaGo1UDBlcjdKRHhnbWNibnZoaFU5RmhWRjl1RkkwUklOcGw3X0NjZjZ6WWFzNDRiNmR5TktkWGRRMDc5dmoyZ0J1Rm9QUHVTaXRuOWk5UQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Uniti Solutions adds AI security service powered by Cato Networks - StreetInsider</a>
+          <div class="article-meta">StreetInsider &bull; Oct 13, 2026</div>
+          <div class="article-summary snippet"><p>Uniti Solutions adds AI security service powered by Cato Networks&amp;nbsp;&amp;nbsp;StreetInsider</p><a href="https://news.google.com/rss/articles/CBMiwgFBVV95cUxQNE1qWndSS0VSc0x5a1ZhQTR1Y2drMy13Tm1kYTN6X093NlRVbXZXMVdIdVNieEQtYm1mLUh5eWRoSzE4MEJJa1Jxa0hyV1M4eWlqalZBTVBHcVZMV2xCX0EtTFNtVzc5Q0IzX0hnREJFZEVZaGo1UDBlcjdKRHhnbWNibnZoaFU5RmhWRjl1RkkwUklOcGw3X0NjZjZ6WWFzNDRiNmR5TktkWGRRMDc5dmoyZ0J1Rm9QUHVTaXRuOWk5UQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aca4602e932')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a02e4e24594">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiwAFBVV95cUxQaVhhMnFRU2Rxa0hERU5FMFBGZ0NSTzFHTHdaYkZUU2xNdURfSVFZSGYzekxDT2t3WGFpMmhlX0g2enFIZVhGNEFRWGR3eHZybVE3Y3RMd043MXFzY0puTElja3pPUHkwNFFublJFV0kybVJnUTY4NFV2MHVleTcwTTRkM1VYNjNZWWNzQXpvTEsxUElpV1pHdEZfSVBCWFA5eENmU3VSNlVNcDMtWjlNMElKb3o3RnVHTk9LQjJvX0U?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Uniti Solutions Launches AI Security Offering Powered By Cato Networks - www.marketscreener.com</a>
+          <div class="article-meta">www.marketscreener.com &bull; Oct 13, 2026</div>
+          <div class="article-summary snippet"><p>Uniti Solutions Launches AI Security Offering Powered By Cato Networks&amp;nbsp;&amp;nbsp;www.marketscreener.com</p><a href="https://news.google.com/rss/articles/CBMiwAFBVV95cUxQaVhhMnFRU2Rxa0hERU5FMFBGZ0NSTzFHTHdaYkZUU2xNdURfSVFZSGYzekxDT2t3WGFpMmhlX0g2enFIZVhGNEFRWGR3eHZybVE3Y3RMd043MXFzY0puTElja3pPUHkwNFFublJFV0kybVJnUTY4NFV2MHVleTcwTTRkM1VYNjNZWWNzQXpvTEsxUElpV1pHdEZfSVBCWFA5eENmU3VSNlVNcDMtWjlNMElKb3o3RnVHTk9LQjJvX0U?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a02e4e24594')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a4ebbfd6166">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi7gFBVV95cUxPcnZOQnhCVlk2VHc0SnFHVDEtRUVPUEV0UzN1cmc2X3dWMTVRV2F1V2pidGMyYmh1dEt5N0puRHZQVmFfNjI4TnpsN1M0d0Z3WlR6Q09UZnUxWFl2M3JKRm9vcVh4Wlc1R0l1b25UYktnaFcxd1dRSVVsUWMtcFhBbjZUNWtMMEhjYzc5WWlLYVZ2WkJNVV9XNnRGdHh6NWZQazl6dUVacHF2NGhIZUhxV2tCTU53ai1sVTFHNlE5bThQSUQ3SmZqX1FFWXdiWVk0Vm9WalphUENmZVhCRHp6MExJbEh0alQzS20teTZn?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Uniti Solutions Launches Managed AI Security to Help Businesses Combat AI Cyber Risks - GlobeNewswire</a>
+          <div class="article-meta">GlobeNewswire &bull; Oct 13, 2026</div>
+          <div class="article-summary snippet"><p>Uniti Solutions Launches Managed AI Security to Help Businesses Combat AI Cyber Risks&amp;nbsp;&amp;nbsp;GlobeNewswire</p><a href="https://news.google.com/rss/articles/CBMi7gFBVV95cUxPcnZOQnhCVlk2VHc0SnFHVDEtRUVPUEV0UzN1cmc2X3dWMTVRV2F1V2pidGMyYmh1dEt5N0puRHZQVmFfNjI4TnpsN1M0d0Z3WlR6Q09UZnUxWFl2M3JKRm9vcVh4Wlc1R0l1b25UYktnaFcxd1dRSVVsUWMtcFhBbjZUNWtMMEhjYzc5WWlLYVZ2WkJNVV9XNnRGdHh6NWZQazl6dUVacHF2NGhIZUhxV2tCTU53ai1sVTFHNlE5bThQSUQ3SmZqX1FFWXdiWVk0Vm9WalphUENmZVhCRHp6MExJbEh0alQzS20teTZn?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a4ebbfd6166')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+</main>
+
+<footer>
+  Generated every Sunday &mdash; Topics: Windows &bull; Azure &bull; SharePoint &bull; Intune &bull; Entra ID &bull; Microsoft 365 &bull; Iru MDM (formerly Kandji) &bull; Cato Networks
+</footer>
+
+<script>
+const KEY = 'it-news-hidden-v1';
+function getHidden() {
+  try { return new Set(JSON.parse(localStorage.getItem(KEY) || '[]')); }
+  catch { return new Set(); }
+}
+function saveHidden(s) { localStorage.setItem(KEY, JSON.stringify([...s])); }
+function toggleArticle(id) {
+  const h = getHidden();
+  h.has(id) ? h.delete(id) : h.add(id);
+  saveHidden(h); applyHidden(h);
+}
+function applyHidden(h) {
+  h = h || getHidden();
+  document.querySelectorAll('.article-card[data-id]').forEach(c => {
+    c.classList.toggle('is-hidden', h.has(c.dataset.id));
+  });
+}
+let revealing = false;
+function toggleReveal() {
+  revealing = !revealing;
+  document.body.classList.toggle('reveal-hidden', revealing);
+  document.getElementById('reveal-btn').textContent = revealing ? 'Hide hidden' : 'Show hidden';
+}
+fetch('weeks.json').then(r => r.json()).then(weeks => {
+  const sel = document.getElementById('week-sel');
+  weeks.forEach(w => {
+    const o = document.createElement('option');
+    o.value = w.file; o.textContent = w.label;
+    if (w.current) o.selected = true;
+    sel.appendChild(o);
+  });
+}).catch(() => {});
+applyHidden();
+</script>
+</body>
+</html>
