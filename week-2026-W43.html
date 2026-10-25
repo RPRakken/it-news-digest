@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT News Digest — 2026-W43</title>
+  <style>
+    :root{--bg:#f8fafc;--surface:#fff;--border:#e2e8f0;--text:#1e293b;--muted:#64748b;--accent:#2563eb}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+    a{color:var(--accent)}
+
+    header{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+    .h-inner{max-width:1000px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .h-brand{font-size:1.1rem;font-weight:800;color:#1d4ed8}
+    .h-meta{font-size:.78rem;color:var(--muted)}
+    .h-controls{display:flex;gap:8px;align-items:center}
+    .btn{padding:5px 12px;border-radius:6px;font-size:.78rem;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);white-space:nowrap}
+    .btn:hover{background:#f1f5f9}
+    select.week-sel{padding:5px 10px;border-radius:6px;border:1px solid var(--border);background:var(--surface);font-size:.78rem;cursor:pointer;color:var(--text)}
+
+    .t-nav{background:var(--surface);border-bottom:1px solid var(--border);overflow-x:auto}
+    .t-nav-inner{max-width:1000px;margin:0 auto;padding:8px 20px;display:flex;gap:6px;min-width:max-content}
+    .nav-link{font-size:.72rem;padding:3px 10px;border-radius:20px;border:2px solid var(--c,#2563eb);color:var(--c,#2563eb);text-decoration:none;font-weight:600;white-space:nowrap}
+    .nav-link:hover{background:var(--c,#2563eb);color:#fff}
+
+    main{max-width:1000px;margin:0 auto;padding:24px 20px}
+
+    .week-hero{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin-bottom:28px;display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+    .hero-title{font-size:1.6rem;font-weight:900;color:#1d4ed8}
+    .hero-sub{font-size:.85rem;color:var(--muted);margin-top:2px}
+    .stat-box{text-align:center;min-width:60px}
+    .stat-num{font-size:2rem;font-weight:900;color:#1d4ed8;line-height:1}
+    .stat-lbl{font-size:.65rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+
+    .topic-section{margin-bottom:40px}
+    .topic-title{font-size:1.2rem;font-weight:800;color:var(--c,#2563eb);border-bottom:3px solid var(--c,#2563eb);padding-bottom:8px;margin-bottom:14px}
+    .count{font-size:.8rem;font-weight:400;color:var(--muted)}
+    .no-news{color:var(--muted);font-style:italic;font-size:.88rem}
+
+    .article-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:12px;display:flex;gap:12px;align-items:flex-start;transition:border-color .15s}
+    .article-card:hover{border-color:#94a3b8}
+    .article-body{flex:1;min-width:0}
+    .article-title{font-size:.98rem;font-weight:600;text-decoration:none;display:block;margin-bottom:4px;color:var(--accent)}
+    .article-title:hover{text-decoration:underline}
+    .article-meta{font-size:.72rem;color:var(--muted);margin-bottom:8px}
+
+    .article-summary{margin-top:6px;font-size:.875rem;color:#334155;line-height:1.75}
+    .article-summary p{margin-bottom:.6em}
+    .article-summary p:last-child{margin-bottom:0}
+    .gnews-badge{display:inline-block;font-size:.65rem;background:#fef3c7;color:#92400e;border-radius:4px;padding:1px 5px;margin-bottom:6px;vertical-align:middle}
+    .article-summary.snippet{color:var(--muted)}
+    .read-more{display:inline-block;margin-top:6px;font-size:.8rem;font-weight:600;color:var(--accent);text-decoration:none}
+    .read-more:hover{text-decoration:underline}
+
+    .hide-btn{flex-shrink:0;padding:5px 10px;border-radius:6px;font-size:.72rem;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--muted);white-space:nowrap;align-self:flex-start}
+    .hide-btn:hover{border-color:#ef4444;color:#ef4444;background:#fef2f2}
+    .lbl-show{display:none}
+
+    .article-card.is-hidden{display:none}
+    body.reveal-hidden .article-card.is-hidden{display:flex;opacity:.45;border-style:dashed}
+    .article-card.is-hidden .lbl-hide{display:none}
+    .article-card.is-hidden .lbl-show{display:inline}
+    body.reveal-hidden .article-card.is-hidden .hide-btn{border-color:#16a34a;color:#16a34a}
+    body.reveal-hidden .article-card.is-hidden .hide-btn:hover{background:#f0fdf4}
+
+    footer{text-align:center;padding:24px 20px;color:var(--muted);font-size:.75rem;border-top:1px solid var(--border);margin-top:40px}
+
+    @media(max-width:600px){
+      .h-inner,.main{padding-left:14px;padding-right:14px}
+      .hero-title{font-size:1.3rem}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="h-inner">
+    <div>
+      <div class="h-brand">IT News Digest</div>
+      <div class="h-meta">Week 2026-W43 &bull; Oct 19–25, 2026</div>
+    </div>
+    <div class="h-controls">
+      <button class="btn" id="reveal-btn" onclick="toggleReveal()">Show hidden</button>
+      <select class="week-sel" id="week-sel" onchange="if(this.value) location.href=this.value">
+        <option value="">&#128337; Archive&hellip;</option>
+      </select>
+    </div>
+  </div>
+</header>
+
+<nav class="t-nav"><div class="t-nav-inner"><a href="#windows" class="nav-link" style="--c:#0078D4">Microsoft Windows</a><a href="#azure" class="nav-link" style="--c:#00BCF2">Azure</a><a href="#sharepoint" class="nav-link" style="--c:#036C70">SharePoint</a><a href="#intune" class="nav-link" style="--c:#0F6CBD">Intune</a><a href="#entraid" class="nav-link" style="--c:#6B69D6">Entra ID</a><a href="#m365" class="nav-link" style="--c:#D83B01">Microsoft 365</a><a href="#iru" class="nav-link" style="--c:#7C3AED">Iru MDM (formerly Kandji)</a><a href="#cato" class="nav-link" style="--c:#FF6B35">Cato Networks</a></div></nav>
+
+<main>
+  <div class="week-hero">
+    <div>
+      <div class="hero-title">Week 2026-W43</div>
+      <div class="hero-sub">Oct 19–25, 2026</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">41</div>
+      <div class="stat-lbl">Articles</div>
+    </div>
+  </div>
+
+    <section id="windows" class="topic-section">
+      <h2 class="topic-title" style="--c:#0078D4">Microsoft Windows <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="aeaddb8933d">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windows-insider/2026/10/23/announcing-new-builds-for-23-october-2026/" target="_blank" rel="noopener noreferrer" class="article-title">Announcing new builds for 23 October 2026</a>
+          <div class="article-meta">blogs.windows.com &bull; Oct 23, 2026</div>
+          <div class="article-summary"><p>Announcing new builds for 23 October 2026
+Hello Windows Insiders,
+Today, we’re releasing new Windows 11 Insider Preview builds to the Beta and Experimental channels.
+New builds this week
+Select your channel below to view its release notes:
+- Beta: Build 26220.9757
+- Experimental: Build 26340.9767
+For those on other specific Windows build versions, here are today’s new builds and release notes:
+- Beta (26H1): Build 28020.3292
+- Experimental (26H1): Build 28120.3302
+- Experimental (Future Platforms): Build 29695.1001
+Notable new features:
+[Windows Insider Settings]
+Release channel: Experimental
+- We’ve added the ability to filter Feature flags by enablement state.
+[Quick Settings]
+Release channel: Experimental
+Access your phone controls from Quick Settings
+- We’re beginning to roll out a new Mobile devices experience in Quick Settings, making it easier to take quick phone actions (such as ring your phone) without breaking your flow on Windows.
+- With your supported Android phone connected, everyday actions are now just a click away. You can turn Do Not Disturb on before a meeting, change your phone’s ringer mode, and play a sound to find your phone nearby.
+- It’s a simpler, faster way to manage your phone from the place you already use for quick Windows actions, helping your PC and phone work better together throughout the day.
+- Capabilities can vary by phone platform and device configuration. The initial experience provides the most complete set of controls for Android phones, while iPhone support starts with a more limited status-focused experience.
+Check your internet speed directly from Quick Settings
+- We’re making it faster and easier to check the performance of your internet connection in Windows. Windows Insiders can now run an internet speed test and see the results directly in Quick Settings, without being redirected to a browser.
+- Start a test from the new Speed test Quick Setting, from the Wi-Fi or Cellular flyout, or by right-clicking the network icon in the system tray and selecting Test internet speed. While the test runs, Quick Settings shows its progress and results, including download speed, upload speed, and ping.
+- Because the test runs against your active internet connection, you can quickly understand how your current connection is performing without leaving your workflow. This updated experience builds on the internet speed test we previously introduced for Windows Insiders, bringing the test and its results directly into Windows.
+Thanks,
+Stephen and the Windows Insider Program team
+					Tags:</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aeaddb8933d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ad6e3afd511">
+        <div class="article-body">
+          <a href="https://petri.com/clickfix-campaign-targets-amazon-business-users/" target="_blank" rel="noopener noreferrer" class="article-title">Researchers Warn of ClickFix Campaign Targeting Amazon Business Users</a>
+          <div class="article-meta">petri.com &bull; Oct 22, 2026</div>
+          <div class="article-summary"><p>A convincing fake Amazon Business login page is being used to trick users into running Windows commands.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ad6e3afd511')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="adb27a4595a">
+        <div class="article-body">
+          <a href="https://petri.com/windows-server-2025-quick-machine-recovery/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Adds Quick Machine Recovery Support to Windows Server 2025</a>
+          <div class="article-meta">petri.com &bull; Oct 20, 2026</div>
+          <div class="article-summary"><p>Microsoft's new Quick Machine Recovery feature aims to help organizations recover from widespread boot failures more efficiently.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('adb27a4595a')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a9306258bcf">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-hybrid-intelligence-strategy-windows-ai/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Outlines a Hybrid Intelligence Strategy for Windows AI</a>
+          <div class="article-meta">petri.com &bull; Oct 20, 2026</div>
+          <div class="article-summary"><p>Microsoft Outlines a Hybrid Intelligence Strategy for Windows AI
+Microsoft is positioning Windows as a hybrid intelligence platform that can route AI workloads between local devices and cloud services while adding new controls for AI agents.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a9306258bcf')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a197035479d">
+        <div class="article-body">
+          <a href="https://petri.com/windows-updates-exchange-server-issues/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Issues Mitigation for Exchange Server Issues Caused by October Windows Updates</a>
+          <div class="article-meta">petri.com &bull; Oct 19, 2026</div>
+          <div class="article-summary"><p>Microsoft Issues Mitigation for Exchange Server Issues Caused by October Windows Updates
+A recently identified Windows Server issue is affecting Exchange Server stability in some environments, prompting Microsoft to publish a temporary mitigation while it works on a permanent fix.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a197035479d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a33414c46bd">
+        <div class="article-body">
+          <a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-windows-server-2016-reaches-end-of-support-in-january/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft: Windows Server 2016 reaches end of support in January</a>
+          <div class="article-meta">bleepingcomputer.com &bull; Oct 23, 2026</div>
+          <div class="article-summary"><p>Microsoft says Windows Server 2016 will stop receiving security updates after it reaches the end of support in January 2027.
+Windows Server 2016 was released in September 2016 at Microsoft's annual Ignite conference and reached general availability one month later, on October 12, 2016
+It reached the end of mainstream support in January 2022, and extended support will end in roughly three months, on January 12.
+&quot;The January 2027 Windows security update will be the last update available for this version. After this date, devices running Windows Server 2016 will no longer receive monthly security updates containing protections from the latest security threats,&quot; Microsoft said in a message center update.
+&quot;This end of updates in 2027 applies to all editions of Windows Server 2016: Datacenter, Essentials, MultiPoint Premium and Standard.&quot;
+On the same date, Microsoft will also stop support for all Windows Server 2016 Essentials features, including Remote Web Access and related Essentials-specific functionality.
+Admins advised to switch to Windows Server 2025
+Before Windows Server 2016 reaches the end of support, Microsoft advised IT administrators to upgrade to Windows Server 2025, which started rolling out to Windows Insiders in January 2024 and reached general availability in November 2024.
+&quot;To help keep your environment protected and supported, plan to upgrade to Windows Server 2025,&quot; the company added.
+Windows Server 2025 is the latest Long-Term Servicing Channel (LTSC) release for Windows Server. According to Microsoft's lifecycle platform, it will reach the end of mainstream support in November 2029 and receive an additional five years of extended support until November 14, 2034.
+Those who want to test Windows Server 2025 before deployment can get a free 180-day Windows Server 2025 trial via the Microsoft Evaluation Center.
+More information about Windows servicing dates is available on the Windows Lifecycle FAQ page or via the Lifecycle Policy search tool.
+Earlier this month, Microsoft also announced that systems running Windows 11 24H2 Home and Pro editions stopped receiving security and non-security preview updates and advised customers to upgrade to Windows 11 26H2 (also known as the Windows 11 2026 Update).
+Once attackers have valid credentials, only 37% of their actions are blocked
+Overall prevention scores can hide what happens after initial access. Once attackers are using valid credentials, prevention drops sharply.
+The Blue Report 2026 measures defenses technique by technique across 338 million simulations run in customer production environments.
+Get the report</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a33414c46bd')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a095ea22f5d">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiywFBVV95cUxNRzcxMVhITE1yVW9hY1h1NnpPaFZTczh4aktWaS1fUm1rUHl0QnlGa3Z2Y1o1WmdWOHViTUtuaHVSeDhQTEhmdVdJbHZmTHMxUm5SR2xJOGVNaWswcUc3UUp2eVNSVGdLZ1l4SF9CcHdDQWxCMmxpSTl2SjlSWDUwQ3o1b2RIZW1jaWpkZE00M2hTVjR1RDVEdk9STnRZZkZlaktDV1g1ZWpTNWdBcXpLaHVtWFhpcEd1U2RxMXM4VFM4NHdKNXVXSEtYcw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Windows 11 is getting a faster, less cluttered File Explorer context menu in Insider builds - Windows Central</a>
+          <div class="article-meta">Windows Central &bull; Oct 23, 2026</div>
+          <div class="article-summary snippet"><p>Windows 11 is getting a faster, less cluttered File Explorer context menu in Insider builds&amp;nbsp;&amp;nbsp;Windows Central</p><a href="https://news.google.com/rss/articles/CBMiywFBVV95cUxNRzcxMVhITE1yVW9hY1h1NnpPaFZTczh4aktWaS1fUm1rUHl0QnlGa3Z2Y1o1WmdWOHViTUtuaHVSeDhQTEhmdVdJbHZmTHMxUm5SR2xJOGVNaWswcUc3UUp2eVNSVGdLZ1l4SF9CcHdDQWxCMmxpSTl2SjlSWDUwQ3o1b2RIZW1jaWpkZE00M2hTVjR1RDVEdk9STnRZZkZlaktDV1g1ZWpTNWdBcXpLaHVtWFhpcEd1U2RxMXM4VFM4NHdKNXVXSEtYcw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a095ea22f5d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a1d9838114c">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi2wFBVV95cUxPbFZldG5BSVNVaEFpbEtFN01qcFhFVGJnYWVXOG90bU9zWXlZSHM5dHpSUlFDQ2dqQ2RDRE1lTV9ldWY3bHNpbnhwUVQxamF5N010YjN2TGFDeGJZY2VkSHU2eVRpalA4UDdZOUpqbzVFVVJsVHBmbGhKQS1kOTRoT0NpMU1rWlVaWVNnSXZaTzlyY0NfWnczWlRHVmZ1RGRDRHFUTjg5UWdzSTBhem9QQjBZYjc2UkVWVEZ5MjIydFNrWnNzVTgwTTRUNE5rbzd2ZWV4Yncxb0FHR2c?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">&quot;Not even Microsoft uses Windows 11&quot;: Its new Windows wallpapers were made on a Mac, and now that’s hidden - Windows Latest</a>
+          <div class="article-meta">Windows Latest &bull; Oct 23, 2026</div>
+          <div class="article-summary snippet"><p>&quot;Not even Microsoft uses Windows 11&quot;: Its new Windows wallpapers were made on a Mac, and now that’s hidden&amp;nbsp;&amp;nbsp;Windows Latest</p><a href="https://news.google.com/rss/articles/CBMi2wFBVV95cUxPbFZldG5BSVNVaEFpbEtFN01qcFhFVGJnYWVXOG90bU9zWXlZSHM5dHpSUlFDQ2dqQ2RDRE1lTV9ldWY3bHNpbnhwUVQxamF5N010YjN2TGFDeGJZY2VkSHU2eVRpalA4UDdZOUpqbzVFVVJsVHBmbGhKQS1kOTRoT0NpMU1rWlVaWVNnSXZaTzlyY0NfWnczWlRHVmZ1RGRDRHFUTjg5UWdzSTBhem9QQjBZYjc2UkVWVEZ5MjIydFNrWnNzVTgwTTRUNE5rbzd2ZWV4Yncxb0FHR2c?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a1d9838114c')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="azure" class="topic-section">
+      <h2 class="topic-title" style="--c:#00BCF2">Azure <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a3f1260209e">
+        <div class="article-body">
+          <a href="https://blogs.microsoft.com/blog/2026/10/20/advancing-digital-sovereignty-with-greater-control-and-choice/" target="_blank" rel="noopener noreferrer" class="article-title">Advancing digital sovereignty with greater control and choice</a>
+          <div class="article-meta">blogs.microsoft.com &bull; Oct 20, 2026</div>
+          <div class="article-summary"><p>Across my conversations with leaders in government, critical infrastructure and regulated industries, one priority consistently rises to the top: putting technology to work on their most important systems while maintaining the control those systems require.
+This challenge is becoming more important as advanced cloud and AI capabilities move into public services, regulated processes and essential operations. Organizations are considering more than where data resides. They also seek to understand who can access and operate their systems, how sensitive digital assets remain protected, which technology dependencies matter most and whether critical services can continue as regulatory, geopolitical, security or network conditions change. Digital sovereignty should give organizations greater control and security over the technology they depend on, while continuing to innovate.
+Last year, we introduced Microsoft Sovereign Cloud to give customers more choice in how they address these requirements. Since then, we have continued to turn our commitments into practical capabilities across public cloud and customer-operated environments, while expanding how we enable partners to address sovereignty requirements in their local markets. Today, we are sharing the next stage of that work.
+A continuum of control, built around the workload
+Our approach to digital sovereignty starts with the workload. Each workload carries different requirements for data, operations, technology dependencies, continuity and risk. Microsoft Sovereign Cloud is designed to make it easier for organizations to apply the appropriate level of control to each workload without forcing every application into the same deployment model.
+Those needs can vary widely across organizations. A public-facing digital service may benefit from the scale and pace of innovation in the public cloud. A system supporting essential operations may need to continue running locally if connectivity is disrupted. An AI workload handling highly sensitive data may require models, data and processing to remain within a customer-controlled environment.
+Microsoft Sovereign Cloud is designed around this workload-based approach, providing a continuum of management, control and options across Sovereign Public Cloud, Sovereign Private Cloud and the Sovereign Partner Ecosystem. Organizations can apply the level of control appropriate to each workload while maintaining a consistent approach to governance and operations across their digital estate. Sovereign Public Cloud adds capabilities for workloads that require greater control and transparency while continuing to benefit from the scale and innovation of Azure.
+Sovereign Private Cloud extends cloud capabilities into customer-operated environments, including connected and disconnected operations. The Sovereign Partner Ecosystem broadens the continuum through independently operated environments, specialized partners, locally relevant expertise and technologies that support customers’ sovereignty requirements.
+These are not isolated destinations. Customers can combine public cloud, private cloud and partner capabilities across their digital estate, applying different levels of control to different workloads as their operating needs evolve.
+Making control more visible in Sovereign Public Cloud
+For many workloads, the public cloud provides a combination of scale, innovation, integrated security and compliance. Organizations can benefit from these capabilities while applying additional sovereignty controls for residency, confidentiality, operator access, policy and continuity. Our work in Sovereign Public Cloud makes these controls easier to understand, apply and demonstrate.
+Sovereign Control Panel, entering public preview at Microsoft Ignite, brings these signals together in a unified Azure portal experience. It helps organizations understand their sovereignty posture, apply and manage controls, identify gaps and risks and take action to address them.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a3f1260209e')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a1131a663df">
+        <div class="article-body">
+          <a href="https://azure.microsoft.com/en-us/blog/designing-for-sovereign-ai-a-shared-foundation-from-edge-to-cloud/" target="_blank" rel="noopener noreferrer" class="article-title">Designing for sovereign AI: A shared foundation from edge to cloud</a>
+          <div class="article-meta">azure.microsoft.com &bull; Oct 19, 2026</div>
+          <div class="article-summary"><p>As organizations apply AI to more business-critical and data-intensive workloads, AI processing is moving closer to where data is created, decisions are made, and operations take place.
+- Manufacturers can analyze confidential production data next to the systems that generate it.
+- Pharmaceutical companies can apply AI to clinical trials within controlled environments.
+- Government agencies can run AI applications on sensitive information while maintaining established security and operational boundaries.
+This shift reflects ongoing innovation across the technology ecosystem to give organizations greater flexibility in where they run AI and process sensitive data, and it is changing the digital sovereignty conversation. It now encompasses where data is stored and processed, where workloads run, who can access and operate the systems around them, and how those systems remain secure and operational as requirements change. The next phase of digital sovereignty will take shape across the technology ecosystem, through closer alignment among silicon, infrastructure, cloud, security, data, and AI.
+As AI extends into more sensitive and mission-critical workloads, sovereignty must be designed across the stack, from silicon and infrastructure to cloud, data, and AI. Microsoft and Intel® are working together to help organizations create a more consistent foundation for innovation, while retaining greater choice over where workloads run and how they are controlled.
+A flexible sovereign architecture allows organizations to place each workload in the right environment, apply the controls it requires, and maintain a more consistent technology and operating foundation as requirements evolve.
+Sovereignty must work across the technology stack
+Sovereignty requirements vary by workload. The right level of control depends on factors such as data sensitivity, regulation, latency, connectivity, operational access, and resilience requirements. This creates a continuum, where organizations can apply different levels of control across public cloud, customer-controlled environments, and trusted partner solutions.
+Delivering that flexibility requires the underlying technology layers to work together. The controls that shape where a workload runs, how data is protected, who can access it, and how the environment is verified extend across silicon, infrastructure, cloud, security, data, and AI.
+This is where the Microsoft and Intel partnership comes into focus. Together, we are working to create a more consistent foundation across these layers, giving organizations greater choice in where workloads run and how they are controlled. This principle is central to the work between Microsoft and Intel. Azure Local, running on Intel® Xeon® 6 processors, brings distributed Azure infrastructure together with a common compute foundation for customer-controlled environments. Organizations can extend cloud and AI capabilities closer to their data and operations while maintaining consistent approaches to security, management, and governance.
+Trust must be designed for and verified
+For sensitive workloads, trust must be supported by technical protections and verifiable evidence. Organizations need to protect workloads across the technology stack and verify that systems are operating under the security conditions they have established.
+That starts at the compute layer and extends through identity, encryption, governance, policy, and operations. For supported Azure Confidential VM configurations, Intel® Xeon® processors provide hardware-based protections, including Intel® Trust Domain Extensions (Intel TDX), which can help isolate workloads while they are in use. Hardware-backed attestation can provide evidence that helps organizations verify relevant security properties of the environment against their requirements.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a1131a663df')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ad2310ff45c">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-metrics-usage-insights-azure-monitor-workspace/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Brings Metrics Usage Insights to Azure Monitor Workspace</a>
+          <div class="article-meta">petri.com &bull; Oct 21, 2026</div>
+          <div class="article-summary"><p>Microsoft Brings Metrics Usage Insights to Azure Monitor Workspace
+Microsoft's new Azure Monitor insights can show which metrics are driving workspace growth and costs, but deciding what to optimize remains an administrative challenge.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ad2310ff45c')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a72bdce303f">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiogFBVV95cUxPU1JyRTlORFZ0X1RETFNsbmNHUlJSa19LVG9fRE1iUGhhM041bi1Fbl9nMXZ2djctZnJFQWMzTVZZdVBTUG1EODRNX2s2NFYtdkJ1R0UyWFc1VVpRdHlYZEZwUWtGOFZqZm1ERFNza1hXUnlJa3dEWWNxQ0tmTUNLanlVc1JwTWw1NExwS2lDbW9sM083NGRZWmtoWVUzczVMc2c?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Poised for Largely In-Line Quarterly Earnings Amid Azure Strength, BofA Says - Yahoo Finance</a>
+          <div class="article-meta">Yahoo Finance &bull; Oct 23, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft Poised for Largely In-Line Quarterly Earnings Amid Azure Strength, BofA Says&amp;nbsp;&amp;nbsp;Yahoo Finance</p><a href="https://news.google.com/rss/articles/CBMiogFBVV95cUxPU1JyRTlORFZ0X1RETFNsbmNHUlJSa19LVG9fRE1iUGhhM041bi1Fbl9nMXZ2djctZnJFQWMzTVZZdVBTUG1EODRNX2s2NFYtdkJ1R0UyWFc1VVpRdHlYZEZwUWtGOFZqZm1ERFNza1hXUnlJa3dEWWNxQ0tmTUNLanlVc1JwTWw1NExwS2lDbW9sM083NGRZWmtoWVUzczVMc2c?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a72bdce303f')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="afb182a3f10">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiyAFBVV95cUxPaWQ5c3BMdXdSWXdfYUU3dHluV2lPcVNWVmZKX2s4M0tjcmYwSVV1MEhWcVJwSHJCeVZkUEZsMHUtWE5HX2Zwa0RoSHdLeDlxNHZGZ1BLS2M0MmQwNTJnUkpibE9pZjRhN2pVNUstbVM3ZjZCYzhnZ1dLTldVb3Y2VGZ5M0Fnd2NWTVJxZGdydmxNRUNxcmFtM2JpVnQ4REYyQ1pCekk0cEVjSnR4c3o1VlZ2X3RmTDRXNjlCVjV1ckwwZk5QX3BrdA?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Strengthens Digital Sovereignty Push with New Cloud and AI Protections - Redmondmag.com</a>
+          <div class="article-meta">Redmondmag.com &bull; Oct 23, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft Strengthens Digital Sovereignty Push with New Cloud and AI Protections&amp;nbsp;&amp;nbsp;Redmondmag.com</p><a href="https://news.google.com/rss/articles/CBMiyAFBVV95cUxPaWQ5c3BMdXdSWXdfYUU3dHluV2lPcVNWVmZKX2s4M0tjcmYwSVV1MEhWcVJwSHJCeVZkUEZsMHUtWE5HX2Zwa0RoSHdLeDlxNHZGZ1BLS2M0MmQwNTJnUkpibE9pZjRhN2pVNUstbVM3ZjZCYzhnZ1dLTldVb3Y2VGZ5M0Fnd2NWTVJxZGdydmxNRUNxcmFtM2JpVnQ4REYyQ1pCekk0cEVjSnR4c3o1VlZ2X3RmTDRXNjlCVjV1ckwwZk5QX3BrdA?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('afb182a3f10')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ad1ac28a352">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiqgFBVV95cUxNdzNuNC1KN05TUXlYZi0tanp3OV9Rb3U2YTJZRFFMdFJ0bGl6aUNNZE5fSy1LbWVFVHNScHEtc2d4RG8wU3hPbmVuUmdMMnVPWURnc3kzNTQyQXpnM09TSHZUZmttcG5KLVB2TWdSTlplYUU2QWNxWVROWkRVZkozeXlBZmZ3S0RJMV93QmhqdVlJbFhBdGFFeWx3UGVTYVJsYXlxV1BPYzdDdw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Advancing digital sovereignty with greater control and choice - The Official Microsoft Blog</a>
+          <div class="article-meta">The Official Microsoft Blog &bull; Oct 20, 2026</div>
+          <div class="article-summary snippet"><p>Advancing digital sovereignty with greater control and choice&amp;nbsp;&amp;nbsp;The Official Microsoft Blog</p><a href="https://news.google.com/rss/articles/CBMiqgFBVV95cUxNdzNuNC1KN05TUXlYZi0tanp3OV9Rb3U2YTJZRFFMdFJ0bGl6aUNNZE5fSy1LbWVFVHNScHEtc2d4RG8wU3hPbmVuUmdMMnVPWURnc3kzNTQyQXpnM09TSHZUZmttcG5KLVB2TWdSTlplYUU2QWNxWVROWkRVZkozeXlBZmZ3S0RJMV93QmhqdVlJbFhBdGFFeWx3UGVTYVJsYXlxV1BPYzdDdw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ad1ac28a352')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="abd667bdc4b">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMizAFBVV95cUxQMUsyVnlVRjI5ZjFFeTQzdG55X3hyaVhqU1VKaFVjMENpZWxoMF9WQUdzRDM2VXg5T1NsTTdNalFCRGtwcG1DaThUOTc1VzlJdlpmdDk2bXBXRjRUOTNkZ1pZdEVPOHByNS1JMFRQLThsTkhscmdwVnNUbHpyellqTEdXMWZGWjZoc3Q4N2dKLVJoazU0YnJfeVhRemFtMmt0UkdqSWpud1IzV2N3SGU3Q1hOYThmRWVOd0I0UWNhTDVtR1NVbGQ1eTdhb1M?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft's $50 Billion Gamble: Can Microsoft’s Azure Growth Justify Its Exploding AI Budget? - 24/7 Wall St.</a>
+          <div class="article-meta">24/7 Wall St. &bull; Oct 24, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft's $50 Billion Gamble: Can Microsoft’s Azure Growth Justify Its Exploding AI Budget?&amp;nbsp;&amp;nbsp;24/7 Wall St.</p><a href="https://news.google.com/rss/articles/CBMizAFBVV95cUxQMUsyVnlVRjI5ZjFFeTQzdG55X3hyaVhqU1VKaFVjMENpZWxoMF9WQUdzRDM2VXg5T1NsTTdNalFCRGtwcG1DaThUOTc1VzlJdlpmdDk2bXBXRjRUOTNkZ1pZdEVPOHByNS1JMFRQLThsTkhscmdwVnNUbHpyellqTEdXMWZGWjZoc3Q4N2dKLVJoazU0YnJfeVhRemFtMmt0UkdqSWpud1IzV2N3SGU3Q1hOYThmRWVOd0I0UWNhTDVtR1NVbGQ1eTdhb1M?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('abd667bdc4b')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a0a1031eff7">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiiAFBVV95cUxOMXAwRU1LQTRhSlV3SmF0NFBIWlNyTmFSY016TXJYQXpjYVVFUzZPSnB5MzMwVzlodGNwb2s3VlQ3YnFwV3d1bHRmWWlkUWZGOWZSajJNUkJMczNrN0o3cDR2ald1em0tSGlCVGstLUpjamNsRk1uTDZJNGk0alNOLW42eGk2R3F5?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft’s $50 Billion Gamble: Can Microsoft’s Azure Growth Justify Its Exploding AI Budget? - AOL.com</a>
+          <div class="article-meta">AOL.com &bull; Oct 24, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft’s $50 Billion Gamble: Can Microsoft’s Azure Growth Justify Its Exploding AI Budget?&amp;nbsp;&amp;nbsp;AOL.com</p><a href="https://news.google.com/rss/articles/CBMiiAFBVV95cUxOMXAwRU1LQTRhSlV3SmF0NFBIWlNyTmFSY016TXJYQXpjYVVFUzZPSnB5MzMwVzlodGNwb2s3VlQ3YnFwV3d1bHRmWWlkUWZGOWZSajJNUkJMczNrN0o3cDR2ald1em0tSGlCVGstLUpjamNsRk1uTDZJNGk0alNOLW42eGk2R3F5?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a0a1031eff7')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="sharepoint" class="topic-section">
+      <h2 class="topic-title" style="--c:#036C70">SharePoint <span class="count">(6)</span></h2>
+      <div class="article-card" data-id="abfc5a43f40">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiwgFBVV95cUxPOXhha3Z0N2padmpmR1p3b1VuOGQ4Rnh3c24wWE0yVVpSQ25NMHpFNDA1SUJMclprN05qQWhONE5oNlJHQUtiS0RNVmJ1Ujdfcl9kMlBtZmg5Y2xSSElkY0RIcXU5aXZNVnNGeUI0Zy1IUGhmMWhmbE1EcDRBUF9fd3I1MVVWU0U5em1QajZNYjRRVERhNmhxVDdKaUMtaGlranJJc0g0MDJnQzVKRUxuTlp0bDNjZWVvQ3htZEhjeDlGdw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Building an Enterprise RAG System with SharePoint Online and Amazon Quick - Amazon Web Services (AWS)</a>
+          <div class="article-meta">Amazon Web Services (AWS) &bull; Oct 20, 2026</div>
+          <div class="article-summary snippet"><p>Building an Enterprise RAG System with SharePoint Online and Amazon Quick&amp;nbsp;&amp;nbsp;Amazon Web Services (AWS)</p><a href="https://news.google.com/rss/articles/CBMiwgFBVV95cUxPOXhha3Z0N2padmpmR1p3b1VuOGQ4Rnh3c24wWE0yVVpSQ25NMHpFNDA1SUJMclprN05qQWhONE5oNlJHQUtiS0RNVmJ1Ujdfcl9kMlBtZmg5Y2xSSElkY0RIcXU5aXZNVnNGeUI0Zy1IUGhmMWhmbE1EcDRBUF9fd3I1MVVWU0U5em1QajZNYjRRVERhNmhxVDdKaUMtaGlranJJc0g0MDJnQzVKRUxuTlp0bDNjZWVvQ3htZEhjeDlGdw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('abfc5a43f40')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a027e409a0f">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMilwFBVV95cUxOODdDdzNxLWwtdld2VDVnZGJjaS1FbXg0VUdCSXFXanZaYUNpZzZmNWZDUnNuTjU4U180ZU5SaklNTjF2REltbDlmZjE0TDE0YlFPVVJYVHNLSFFHcS0yeVNiX21FTm1ZMVN0UVNtbTlKOVN1Z1p3NFdnelVmazNzYkZWM05Ub21ybXo4aldfQ0ZTdHhMT3dJ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Work IQ: Unlock More Value from SharePoint with Microsoft 365 Copilot - MSDynamicsWorld.com</a>
+          <div class="article-meta">MSDynamicsWorld.com &bull; Oct 22, 2026</div>
+          <div class="article-summary snippet"><p>Work IQ: Unlock More Value from SharePoint with Microsoft 365 Copilot&amp;nbsp;&amp;nbsp;MSDynamicsWorld.com</p><a href="https://news.google.com/rss/articles/CBMilwFBVV95cUxOODdDdzNxLWwtdld2VDVnZGJjaS1FbXg0VUdCSXFXanZaYUNpZzZmNWZDUnNuTjU4U180ZU5SaklNTjF2REltbDlmZjE0TDE0YlFPVVJYVHNLSFFHcS0yeVNiX21FTm1ZMVN0UVNtbTlKOVN1Z1p3NFdnelVmazNzYkZWM05Ub21ybXo4aldfQ0ZTdHhMT3dJ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a027e409a0f')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ab314e10098">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMirgFBVV95cUxNd3ZZRUJzdHIycUhlcFBGbjJvcm1nOUxDTnl3dVdFZlNOQU5rX0pJeHZGbVFoX3pmTXY3ajNqd21LT2xRT3g4M3RMRWtSZlRfaGpsdnhaRU1xYzEzeU9qejFTQktlclBYSlZ5VDZGSzZxVVk2Z1U1QUZWUnhxcFBfeVBrQWFhZ05rTGQxRHZXckg5R196cW5XRl9yckZpVVV5al9rTDd4WHNua1JrNVE?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft OneDrive &amp; SharePoint get biggest link sharing upgrade in &quot;over a decade&quot; - Neowin</a>
+          <div class="article-meta">Neowin &bull; Oct 20, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft OneDrive &amp; SharePoint get biggest link sharing upgrade in &quot;over a decade&quot;&amp;nbsp;&amp;nbsp;Neowin</p><a href="https://news.google.com/rss/articles/CBMirgFBVV95cUxNd3ZZRUJzdHIycUhlcFBGbjJvcm1nOUxDTnl3dVdFZlNOQU5rX0pJeHZGbVFoX3pmTXY3ajNqd21LT2xRT3g4M3RMRWtSZlRfaGpsdnhaRU1xYzEzeU9qejFTQktlclBYSlZ5VDZGSzZxVVk2Z1U1QUZWUnhxcFBfeVBrQWFhZ05rTGQxRHZXckg5R196cW5XRl9yckZpVVV5al9rTDd4WHNua1JrNVE?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ab314e10098')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a53b60166ee">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMixgFBVV95cUxPakJCYWZBNXdYT0QxRDdyQ0JINlhvT3JqQ0dDMmUyUTRCRzc1ZkxzUFhlUG56NTdrTEVqUEtsZ044dkRUYkV1ODd0Nm00Vl8wMktZRjA2Q2NoTXhHSGRfX0IwbjNXdGFsYVc5Y1Nsa3AzeHpuTGJhNVpZbms1ajhfeHkxTk5uNjlJbF9oVUxLODFYVjZUZGdVb0VSenNKSjM5N1Q0QkN0V05qRE5mejMzalJvaVFmTkFQX2VGUnd4eTNmenVqRlE?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">SAS Viya Integration with Microsoft SharePoint Using SAS Studio Custom Steps | by Mayur Jadhav | Oct, 2026 - DataDrivenInvestor</a>
+          <div class="article-meta">DataDrivenInvestor &bull; Oct 19, 2026</div>
+          <div class="article-summary snippet"><p>SAS Viya Integration with Microsoft SharePoint Using SAS Studio Custom Steps | by Mayur Jadhav | Oct, 2026&amp;nbsp;&amp;nbsp;DataDrivenInvestor</p><a href="https://news.google.com/rss/articles/CBMixgFBVV95cUxPakJCYWZBNXdYT0QxRDdyQ0JINlhvT3JqQ0dDMmUyUTRCRzc1ZkxzUFhlUG56NTdrTEVqUEtsZ044dkRUYkV1ODd0Nm00Vl8wMktZRjA2Q2NoTXhHSGRfX0IwbjNXdGFsYVc5Y1Nsa3AzeHpuTGJhNVpZbms1ajhfeHkxTk5uNjlJbF9oVUxLODFYVjZUZGdVb0VSenNKSjM5N1Q0QkN0V05qRE5mejMzalJvaVFmTkFQX2VGUnd4eTNmenVqRlE?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a53b60166ee')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a621c4d1f8e">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiakFVX3lxTFB0WVNjV2l4MjIwQ0dXTE44YjhwMHBpcDVDZVF6OTR2S0pySWtsQzVId1V3YU1VdURWNEpSb1dqQ3FxVnlUdTl0cFFuVzlEX2pxcW9kbHI1cFpBcnJHYmJsSnY3VFltclAzdFE?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Word, SharePoint, or Markdown: Choosing a Secure Writing Workspace for Technical Teams - HackMD</a>
+          <div class="article-meta">HackMD &bull; Oct 23, 2026</div>
+          <div class="article-summary snippet"><p>Word, SharePoint, or Markdown: Choosing a Secure Writing Workspace for Technical Teams&amp;nbsp;&amp;nbsp;HackMD</p><a href="https://news.google.com/rss/articles/CBMiakFVX3lxTFB0WVNjV2l4MjIwQ0dXTE44YjhwMHBpcDVDZVF6OTR2S0pySWtsQzVId1V3YU1VdURWNEpSb1dqQ3FxVnlUdTl0cFFuVzlEX2pxcW9kbHI1cFpBcnJHYmJsSnY3VFltclAzdFE?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a621c4d1f8e')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aa05e9bbefb">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMijwFBVV95cUxPSy1HdDVhN2dxaEEzbHc5YngwNWRGdmxYTTRycV9Vd1ZfR242LWV1Y25WVDRwQkx5X1ZhMWR1dXgyRkFESFZ1a21PaF96TXA2aE16NlVFS0FGLUxDNzVEMjdXdGhjZFVxZnY3M3RDNFBMSHp5Vk81X2VCTml1X1pJUi1PY1JtV1dfTWM3bjdpMA?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft just gave OneDrive a massive sync limit upgrade - Neowin</a>
+          <div class="article-meta">Neowin &bull; Oct 20, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft just gave OneDrive a massive sync limit upgrade&amp;nbsp;&amp;nbsp;Neowin</p><a href="https://news.google.com/rss/articles/CBMijwFBVV95cUxPSy1HdDVhN2dxaEEzbHc5YngwNWRGdmxYTTRycV9Vd1ZfR242LWV1Y25WVDRwQkx5X1ZhMWR1dXgyRkFESFZ1a21PaF96TXA2aE16NlVFS0FGLUxDNzVEMjdXdGhjZFVxZnY3M3RDNFBMSHp5Vk81X2VCTml1X1pJUi1PY1JtV1dfTWM3bjdpMA?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aa05e9bbefb')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="intune" class="topic-section">
+      <h2 class="topic-title" style="--c:#0F6CBD">Intune <span class="count">(3)</span></h2>
+      <div class="article-card" data-id="ac0bfb09107">
+        <div class="article-body">
+          <a href="https://techcommunity.microsoft.com/t5/intune-customer-success/require-google-workspace-authentication-on-android-enterprise/ba-p/4565954" target="_blank" rel="noopener noreferrer" class="article-title">Require Google Workspace authentication on Android Enterprise devices with Microsoft Intune</a>
+          <div class="article-meta">techcommunity.microsoft.com &bull; Oct 19, 2026</div>
+          <div class="article-summary snippet"><p>By: Samuel Vara, Software Engineer &amp;amp; Mayur Jadhav, Product Manager | Microsoft Intune
+We’re excited to announce that organizations using Android Enterprise can now require users on managed devices to authenticate with a managed Google Account. This capability is generally available in Microsoft Intune and helps organizations use their Google Workspace identities as the primary management identity on supported Android Enterprise devices.
+The new policy supports organizations that have upgraded their Managed Google Play enterprise to a managed Google domain enterprise.
+Use managed Google Accounts on enrolled devices
+&amp;nbsp;Android Enterprise has traditionally used managed Google Play accounts solely to enroll and manage devices and distribute corporate apps, rather than as user identities for accessing Google services outside the managed device. &amp;nbsp;With this policy, admins can now require users to enroll and authenticate with their organization’s managed Google Workspace Account instead of using the device’s managed Google Play account. This gives users access to Google apps and services with their organizational identity. This feature doesn‘t impact the Microsoft Entra account associated with the managed device.
+This capability supports the following Android Enterprise enrollment types:
+
+Corporate-owned, fully managed devices
+Corporate-owned devices with a work profile
+
+Note: Corporate-owned dedicated devices aren't supported because they aren't associated with an individual user.
+Prepare your environment
+Before you configure the policy, complete these prerequisites:
+
+Verify your organization's Google Workspace domain.
+
+Admins can verify an organization's domain on the Google Admin console by following the instructions from Verify your domain for Google Workspace&amp;nbsp;|&amp;nbsp;Domain management&amp;nbsp;|&amp;nbsp;Google Workspace Help
+
+Upgrade the Managed Google Play enterprise to a managed Google domain enterprise, if required, using the Upgrade button on the Intune admin center.
+
+Customers can follow the instructions in the blog&amp;nbsp; New onboarding flow to managing Android Enterprise devices with Microsoft Intune to upgrade or onboard their tenant.
+Note that the admin performing the upgrade must have &quot;Super Admin&quot; rolein Google Workspace during the upgrade process. More instruction on how to assign such permission to a user can be found in Prebuilt administrator roles&amp;nbsp;| User management&amp;nbsp;|&amp;nbsp;Google Workspace Help
+
+If users don't already have managed Google Accounts created in the enterprise's Google Workspace domain, create them following the instructions in the &quot;Domain verified&quot; section of Add an account for a new user&amp;nbsp;|&amp;nbsp;User management |&amp;nbsp;Google Workspace Help
+Use an account with at least the Policy and Profile Manager role in&amp;nbsp; Intune for the above oprations within the Intune admin center.
+
+Configure the policy in Microsoft Intune
+In the Intune admin center, Create a policy using settings catalog in Microsoft Intune or follow the instructions below:
+
+Go to Devices &amp;gt; Manage devices &amp;gt; Configuration &amp;gt; Create &amp;gt; New policy.
+For Platform, select Android Enterprise.
+For Profile type, select Settings catalog.
+In Configuration settings, open Device restrictions &amp;gt; Users and Accounts.
+Add Require users to authenticate with a Google Workspace account and set it to True.
+ssign the policy to groups containing users that want to use the managed Google accounts for authentication and enrollment on their Intune managed Android devices.
+Review and create the policy.
+
+You can assign the policy before enrollment or to devices that are already enrolled. If you assign it before enrollment, the authentication prompt appears after enrollment. On an enrolled device, the prompt appears after the device receives the policy.
+What users experience
+
+After the policy reaches the device, the user receives a Sign in with your work account prompt on the device.
+The user clicks on the prompt and adds a managed Google Account from the organization's enterprise domain and completes authentication.
+
+Until the user completes the prompt and authenticates with the Google Account, the policy setting reports an &quot;Error&quot; state, and the Gmail app, if present on the device, is disabled.
+This policy's non-compliance doesn't change the device's overall compliance state.
+Once a Google Account is chosen the user completes authentication, the managed Google Play account is replaced on the device by the chosen Google Account.Figure 01: Android phone lock screen showing a Device Policy notification prompting the user to &quot;Sign in with a work account&quot;.
+
+
+
+Verify deployment
+Administrators can monitor the policy from Devices &amp;gt; Manage devices &amp;gt; Configuration &amp;gt; Policies in the Intune admin center. Select the policy to review device and user check-in status, device assignment status, and per-setting status.
+After the user completes authentication, confirm that the managed Google Account is available on the device.
+Conclusion
+This new Intune capability gives organizations greater control over how users access Google apps and services on supported corporate-owned Android Enterprise devices. By requiring authentication with a managed Google Account from the organization’s Google Workspace domain, admins can provide a consistent organizational identity and give users access to the Google Workspace resources and services assigned to that account, while retaining Microsoft Entra as the device’s management identity. Review the prerequisites, configure the settings catalog policy, and monitor deployment to bring this experience to your users.</p><a href="https://techcommunity.microsoft.com/t5/intune-customer-success/require-google-workspace-authentication-on-android-enterprise/ba-p/4565954" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac0bfb09107')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a8463b05c06">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiwAFBVV95cUxQcUVyVTd6a1dGNDJvSnRPTFBvdUFTNTlOUEtETUxTNDhPTGdla3E5VW1iXy1kSGhqREhxMjd3MmRHM2lxcXM0NTE1U0pGVEpJRnVmYlhsNFZHdEc3N3JGWGFGR3d0dDRNOU1pb0dnMk9JQlJxdUpBQ1ZGcVB3SkdyU0lMbTllR2dLSXpSX05pdGh6b0x4NkdmNDduQ2tLeVRGRExmUmNFdWpkQVY4WUFkZGtKaHJQOEYydGU2THNIM2M?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Agents are your newest insiders. Security must move at their speed. - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; Oct 19, 2026</div>
+          <div class="article-summary snippet"><p>Agents are your newest insiders. Security must move at their speed.&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMiwAFBVV95cUxQcUVyVTd6a1dGNDJvSnRPTFBvdUFTNTlOUEtETUxTNDhPTGdla3E5VW1iXy1kSGhqREhxMjd3MmRHM2lxcXM0NTE1U0pGVEpJRnVmYlhsNFZHdEc3N3JGWGFGR3d0dDRNOU1pb0dnMk9JQlJxdUpBQ1ZGcVB3SkdyU0lMbTllR2dLSXpSX05pdGh6b0x4NkdmNDduQ2tLeVRGRExmUmNFdWpkQVY4WUFkZGtKaHJQOEYydGU2THNIM2M?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a8463b05c06')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a7d61251be4">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMirgFBVV95cUxOSjlqVXQzLV90UXdCUmZfbVZDRlRENUg3eU9EMGZGT2dieGZKTDA4clpEY2VzdEowTHNyTUVDVl9JdVVkb2V1OUZlQjU0a1NTRkJTVjhGX2NDWFU3aWFobm5VbVNsc0lpU1A1Z1VmLXhsMTRzUFliVDJ3WWRlcnl1RndpQzhSQzRJVlJXVXBGVGx1QW5qQW9UdjJzZF9PdmYxM21NcUpGYUU5YS04Smc?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Best IT Asset Management Software With Intune, Jamf and Okta Integrations (2026) - Nerdbot</a>
+          <div class="article-meta">Nerdbot &bull; Oct 23, 2026</div>
+          <div class="article-summary snippet"><p>Best IT Asset Management Software With Intune, Jamf and Okta Integrations (2026)&amp;nbsp;&amp;nbsp;Nerdbot</p><a href="https://news.google.com/rss/articles/CBMirgFBVV95cUxOSjlqVXQzLV90UXdCUmZfbVZDRlRENUg3eU9EMGZGT2dieGZKTDA4clpEY2VzdEowTHNyTUVDVl9JdVVkb2V1OUZlQjU0a1NTRkJTVjhGX2NDWFU3aWFobm5VbVNsc0lpU1A1Z1VmLXhsMTRzUFliVDJ3WWRlcnl1RndpQzhSQzRJVlJXVXBGVGx1QW5qQW9UdjJzZF9PdmYxM21NcUpGYUU5YS04Smc?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a7d61251be4')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="entraid" class="topic-section">
+      <h2 class="topic-title" style="--c:#6B69D6">Entra ID <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a318668a6ea">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-entra-id-third-party-sms-voice-mfa/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Entra ID Opens SMS and Voice Authentication to Third-Party Providers</a>
+          <div class="article-meta">petri.com &bull; Oct 22, 2026</div>
+          <div class="article-summary"><p>Organizations that still rely on SMS and voice-based MFA may need to make some important decisions before Microsoft's planned retirement dates arrive.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a318668a6ea')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a0f2175cedd">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/10/blackx-uefi-bootkit-bypasses-secure.html" target="_blank" rel="noopener noreferrer" class="article-title">BlackX UEFI Bootkit Bypasses Secure Boot on Patched Windows Systems Missing Revocations</a>
+          <div class="article-meta">thehackernews.com &bull; Oct 24, 2026</div>
+          <div class="article-summary"><p>Diplomatic organizations in Central Asia have been targeted by a sophisticated new Unified Extensible Firmware Interface (UEFI) bootkit called BlackX.
+The activity, which singled out diplomatic entities in Tajikistan, Uzbekistan, and Turkmenistan in early 2026, is suspected to be orchestrated by a China-linked state-sponsored hacking group known as APT41, Kaspersky said in a technical report published this week.
+The primary objective behind deploying the malware is to undermine Microsoft Windows startup defenses, along with third-party security solutions, while maintaining long-term, covert access to compromised devices.
+Notably, BlackX is assessed to be an updated version of BlackLotus, a notorious bootkit that was first observed being advertised on cybercrime forums in late 2022, before its existence was officially confirmed by ESET in March 2023.
+BlackLotus is designed to exploit a now-patched Secure Boot bypass vulnerability tracked as CVE-2022-21894 (CVSS score: 4.4), also known as Baton Drop, to load malicious code before the operating system starts. However, successful exploitation hinges on an attacker having administrator privileges or physical access to a target host.
+&quot;It is critical to note that a threat actor's use of this bootkit is primarily a persistence and defense evasion mechanism,&quot; Microsoft noted at the time. &quot;It is not a first-stage payload or an initial access vector and can only be deployed to a device to which a threat actor has already gained either privileged access or physical access.&quot;
+That said, completely addressing the threat requires additional actions beyond installing the latest update, including running manual steps to apply Microsoft's Secure Boot revocation mitigations, such as adding the &quot;Windows Production PCA 2011&quot; certificate to the Secure Boot UEFI Forbidden List (DBX).
+The Russian cybersecurity company has found that attackers are capitalizing on the fact that organizations have not carried out these manual steps, allowing them to continue using the Baton Drop vulnerability even on systems where the &quot;patch&quot; has been applied.
+&quot;On October 19, 2026, this certificate expired, but this does not prevent the vulnerable binaries from loading unless the certificate is blocklisted,&quot; researchers Georgy Kucherin, Vladimir Nestor, and Vasily Berdnikov said.
+&quot;It is likely that the threat actor behind this campaign took into account that few organizations realized the importance of manually activating the Baton Drop patch. As such, we believe they decided to invest time in understanding how BlackLotus works and creating a copycat of this bootkit.&quot;
+Attackers have been observed deploying BlackX after breaching victim networks through an unspecified method and gaining administrator privileges. To install the bootkit, the threat actor drops the following files -
+- inst.exe, an installer executable
+- PVMDIJGKAX2, an encrypted extensionless file containing files and strings required for the installation
+The installer is then launched via the command line as &quot;C:\ProgramData\Intel\inst.exe PVMDIJGKAX2 Q46F6MDLI3RX2KV1,&quot; where &quot;Q46F6MDLI3RX2KV1&quot; is the RC4 key used for decryption.
+The binary then drops additional files to both system and UEFI partitions to exploit CVE-2022-21894 in a manner that's &quot;remarkably similar&quot; to the one used in BlackLotus.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a0f2175cedd')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="abe64687d24">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/10/exposed-infrastructure-reveals-how.html" target="_blank" rel="noopener noreferrer" class="article-title">Exposed Infrastructure Reveals How Ransomware Affiliates Used AI Agents to Execute Intrusions</a>
+          <div class="article-meta">thehackernews.com &bull; Oct 23, 2026</div>
+          <div class="article-summary"><p>Cybersecurity researchers have discovered an artificial intelligence (AI)-driven intrusion ecosystem run by affiliates of the INC and The Gentlemen ransomware groups.
+Central to the operation is an &quot;Autonomous Red Team Kill Chain Framework&quot; referred to as Phantom. The threat actor is assessed to be Russian-speaking and functions both as an intrusion and data-extortion operator, as well as an infrastructure provider supporting different partners across the ransomware ecosystem.
+&quot;The operators exploited edge and remote-access systems at scale, including FortiClient EMS, SimpleHelp, cPanel, and VPN gateways,&quot; SOCRadar said. &quot;They used AI-managed knowledge bases to track victims, stolen credentials, and campaign progress.&quot;
+A notable aspect that defines the campaign is its &quot;AI-executed, human-approved operating structure&quot; in which a human operator provides a victim-specific prompt and reviews every step, while the intrusions themselves are executed through OpenCode with OpenRouter-hosted commercial models.
+An examination of the exposed directory at 45.227.254[.]43 has revealed the activity logged 8,257 messages across 133 sessions. Should the models refuse to act on the prompts, the operator has been found to rewrite requests as an authorized red team assessment instead of simply switching models.
+Initial access is achieved by exploiting public-facing edge devices at scale, following which the attackers move laterally, establish persistence, exfiltrate data, and escalate toward ransomware deployment. Operator records indicate that the attacks involve the exploitation of the following flaws -
+- CVE-2024-57727 (SimpleHelp path traversal) (Actively exploited)
+- CVE-2026-35616 (Fortinet FortiClient authentication bypass) (Actively exploited)
+- CVE-2026-41940 (cPanel/WHM authentication bypass) (Actively exploited)
+- CVE-2026-15409 (SonicWall SMA 1000 SSRF) (Staged for targeting, no confirmed compromise)
+- CVE-2026-63030 (WordPress wp2shell) (Developed)
+- CVE-2026-42208 (LiteLLM SQL injection) (Developed or referenced)
+- CVE-2026-9082 (Drupal SQL injection) (Developed or referenced)
+&quot;Once inside, the operators followed a recurring lifecycle: enumerate the domain, escalate to domain admin where possible, harvest credentials with stealer tooling, prioritize finance, HR, legal and executive files, and collect them over reverse-SOCKS tunnels,&quot; SOCRadar said.
+&quot;Credential reuse was the main force multiplier; in one case, a single reused password unlocked the VPN, servers, RMM, backup and security management platforms at once. Security products were impaired with a BYOVD killer and loader-level evasion, although the operators' own logs record mixed results against enterprise EDRs.&quot;
+Supporting the threat actor in their goals is a diverse toolkit comprising bespoke frameworks, modified open-source tools, and compiled binaries -
+- Phantom, an AI-powered offensive security and penetration testing framework that's deployed in live operations via OpenCode and employs an agent that communicates with an external server to retrieve tasks, execute commands, and return outputs.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('abe64687d24')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a9de880d320">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/10/arista-warns-of-critical-velocloud-sql.html" target="_blank" rel="noopener noreferrer" class="article-title">Arista Warns of Critical VeloCloud SQL Injection Zero-Day Exploited in Attacks</a>
+          <div class="article-meta">thehackernews.com &bull; Oct 23, 2026</div>
+          <div class="article-summary"><p>Attackers are exploiting a zero-day SQL injection flaw in Arista's VeloCloud Orchestrator (VCO), the central management system for VeloCloud SD-WAN networks, the company said in an advisory on October 22.
+The flaw lets anyone who can log in to the orchestrator, even with a read-only customer account, gain operator privileges, the top level of control over it.
+For on-premises orchestrators, the fix is in VCO 5.2.3.18, 6.1.3.10, and 6.4.2.12, while Hosted and Dedicated orchestrators have already been patched.
+The flaw is tracked as CVE-2026-114625 and rated 9.9 on the CVSS scale. Orchestrators running the releases that fixed the VCO flaws exploited in July and September are still affected, because those releases are older than the new fixes.
+Arista bought the VeloCloud SD-WAN product line from Broadcom, announcing the deal in July 2025. The products were earlier known as VMware SD-WAN by VeloCloud.
+To exploit the flaw, an attacker needs network access to the orchestrator's web interface and a valid login. The minimum role is Enterprise Read Only, the lowest built-in role for customer users. VCO is exposed by default, and no VCO setting prevents the exposure.
+In VCO, operators create the customer and partner accounts, and each partner can manage a group of customers. The flaw allows an attacker to act as a local superuser, a role with full access. It may also allow an attacker to affect the VCO host itself and expose, modify, or disrupt the orchestrator and the data it manages.
+The advisory does not say when the attacks began, which orchestrators were hit, or what the attackers did after exploiting the flaw.
+The new flaw is the third in VCO since late July that Arista has reported as exploited, and the first of the three that requires a login. Neither the July flaw (CVE-2026-16812) nor the September flaw (CVE-2026-93952) needed one.
+Affected and Fixed Releases
+Each affected release train has its own fix, shown here beside the release that fixed September's flaw on the same train.
+VeloCloud Gateway and VeloCloud Edge are not affected. The 7.0 release train is not on the list, and Arista says any release not on the list is not vulnerable.
+Arista has not checked releases that have reached end of support. Customers on an unsupported release train can contact Arista's Technical Assistance Center (TAC) about upgrade options.
+As of October 22, September's flaw is fixed only in the 5.2 and 6.4 trains. On 6.1, it affects releases up to 6.1.3.7, and no fixed release is listed. Neither advisory says whether 6.1.3.10 also fixes the September flaw.
+If You Cannot Upgrade Yet
+Until the fixed release is installed, Arista recommends these steps:
+- Limit access to the VCO web interface to trusted administrative networks.
+- Monitor the VCO for connections from known malicious IP addresses.
+- Watch for unexpected outbound network activity from the VCO host.
+- Consider blocking outbound ports that normal operation does not need.
+- Watch for backdoor daemons and webshells.
+- Review recent administrator activity for unexpected changes.
+Checking for Compromise
+Two IP addresses have been seen carrying out the attacks, according to Arista. Block them and check logs for any sign of them:
+- IP: 74.82.197[.]86
+- IP: 38.54.50[.]151
+Also check VCO web access logs for requests with unusual URL-like path components, encoded characters, references to local or internal services, or high request rates.
+If you suspect a compromise, save evidence before fixing anything, where possible. That means the VCO web access, backend application, system and database logs, along with the relevant file-system timestamps.
+Regarding the July and September flaws, Arista warned that a compromised orchestrator could also grant attackers access to VeloCloud Edge devices. For this flaw, the advisory does not say whether the risk applies or whether upgrading removes access that an attacker has already gained.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a9de880d320')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aabf67d322f">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/10/attackers-abuse-updraftcentral-keys-to.html" target="_blank" rel="noopener noreferrer" class="article-title">Attackers Abuse UpdraftCentral Keys to Plant Backdoors on WordPress Sites</a>
+          <div class="article-meta">thehackernews.com &bull; Oct 21, 2026</div>
+          <div class="article-summary"><p>Unknown threat actors breached TeamUpdraft's website and potentially gained unauthorized access to customers' connection keys for UpdraftCentral, UpdraftVault, and UpdraftClone, using them to backdoor WordPress sites.
+TeamUpdraft is the developer behind UpdraftPlus, a popular WordPress backup plugin with over four million active installations. The vendor also offers UpdraftCentral, a remote management service that's used for managing multiple sites remotely. A client component of UpdraftCentral is shipped within every copy of UpdraftPlus.
+&quot;Over the weekend of 17-18 October we identified unauthorized access to the teamupdraft.com website,&quot; TeamUpdraft said in a statement. &quot;Our team responded straight away and worked through the night to contain it – we closed the access route, signed out every account and replaced the keys and credentials that could have been affected.&quot;
+As a result of the incident, threat actors are believed to have accessed its customer database, which holds the following information -
+- Names, email addresses, billing addresses and order history
+- Account passwords, stored only in hashed (scrambled) form and never in plain text
+- Two-factor authentication (2FA) settings
+- Connection keys for UpdraftCentral, UpdraftVault and UpdraftClone
+TeamUpdraft said the database does not hold any financial information, and that they are handled by Stripe and PayPal. It also emphasized that the UpdraftPlus plugin, along with self-hosted versions of UpdraftCentral and backups sent to customers' own remote storage, are not impacted.
+&quot;However, if your site was accessed through UpdraftCentral, please also re-authorise your remote storage and change any storage access keys, as a precaution,&quot; it said.
+In addition, TeamUpdraft said it deployed a fix to address the underlying issue, signed out every teamupdraft.com account and reset login security across the site, and released UpdraftPlus 1.26.13 (free) and 2.26.13 (Premium) to automatically disconnect every UpdraftCentral connection made before 10 p.m. BST on October 18, 2026, to prevent the old keys from working.
+Other steps taken by the developer are listed below -
+- Disconnected every site from UpdraftVault and issued new credentials
+- Replaced every UpdraftClone client key
+- Rotated its keys with payment providers and other connected services
+- Implemented additional monitoring in place
+- Reported the incident to the U.K. Information Commissioner's Office (ICO) and other relevant authorities
+Users who have a teamupdraft.com account are advised to change their password with immediate effect (and elsewhere, if the same password has been reused), reset 2FA settings, and exercise caution when receiving unexpected emails claiming to be from TeamUpdraft.
+TeamUpdraft is also recommending that cloud customers of UpdraftCentral follow the steps below as soon as possible, since the connection keys can send commands to the connected sites -
+- Log in to the site's own WordPress dashboard, not through UpdraftCentral.
+- Update UpdraftPlus to version 1.26.12 (free) or 2.26.12 (Premium) or later.
+- Disconnect it from UpdraftCentral: go to Settings &gt; UpdraftPlus &gt; Advanced Tools &gt; UpdraftCentral and delete the connection key.
+- Go to Users and check for any administrator accounts you don’t recognise. Remove them.
+- Go to Plugins, including the Must-Use tab if you can see it, and check for anything you don’t recognise.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aabf67d322f')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a9463a2013f">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-entra-id-third-party-sms-voice-mfa/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Entra ID Opens SMS and Voice Authentication to Third-Party Providers - Petri IT Knowledgebase</a>
+          <div class="article-meta">Petri IT Knowledgebase &bull; Oct 22, 2026</div>
+          <div class="article-summary"><p>Organizations that still rely on SMS and voice-based MFA may need to make some important decisions before Microsoft's planned retirement dates arrive.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a9463a2013f')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a0e6988ad4e">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi2AFBVV95cUxOTnJTOXdmRk5mSGhCSnptbGhaTkZ6ZkNVVFF6b1VFVnAwY0U3blJ5bW45M1BZdWNvVXBlM01PMHZySlk4YmxZSE5vLTFsSFVXLXZ5WUhhaTNsRlltUTR1TnZoRzFWMFhzaC1JRVBMNDNKN0V5TWxNYjEwTEFFaEZZZXRLRzZQRUI5TzJwYWFsUHcxcVItSWQzMHVySnJiTXFObkNMc2M3WGt3UlVYOXdwclhVQmRGMGxfVThEMUFuQjVWRVd5b2UzbldzYXREUmZobEgwWk1Sek4?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Deploy Amazon WorkSpaces across Regions with Entra ID and IAM Identity Center - Amazon Web Services (AWS)</a>
+          <div class="article-meta">Amazon Web Services (AWS) &bull; Oct 23, 2026</div>
+          <div class="article-summary snippet"><p>Deploy Amazon WorkSpaces across Regions with Entra ID and IAM Identity Center&amp;nbsp;&amp;nbsp;Amazon Web Services (AWS)</p><a href="https://news.google.com/rss/articles/CBMi2AFBVV95cUxOTnJTOXdmRk5mSGhCSnptbGhaTkZ6ZkNVVFF6b1VFVnAwY0U3blJ5bW45M1BZdWNvVXBlM01PMHZySlk4YmxZSE5vLTFsSFVXLXZ5WUhhaTNsRlltUTR1TnZoRzFWMFhzaC1JRVBMNDNKN0V5TWxNYjEwTEFFaEZZZXRLRzZQRUI5TzJwYWFsUHcxcVItSWQzMHVySnJiTXFObkNMc2M3WGt3UlVYOXdwclhVQmRGMGxfVThEMUFuQjVWRVd5b2UzbldzYXREUmZobEgwWk1Sek4?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a0e6988ad4e')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="af001b8a342">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMihAFBVV95cUxPamJycFRPeUdfNnlxcWtWXzB2RXZVNFVfTFRCLUs3ZWJxdVplX3J1LUJwbEpZT3dDWHA4bWljVEVqbTJtV3RfNjhjem1PTTBzRXprVmJYbEttTGdvVXFfRExZUTFiYTRmMEw3dnJHaElTeUsxcjR5bl9XWXNxRkFoSk9rcWw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">ConnectWise Suspends Cloud Backup After Attackers Compromise Microsoft 365 Tenants - The Hacker News</a>
+          <div class="article-meta">The Hacker News &bull; Oct 18, 2026</div>
+          <div class="article-summary snippet"><p>ConnectWise Suspends Cloud Backup After Attackers Compromise Microsoft 365 Tenants&amp;nbsp;&amp;nbsp;The Hacker News</p><a href="https://news.google.com/rss/articles/CBMihAFBVV95cUxPamJycFRPeUdfNnlxcWtWXzB2RXZVNFVfTFRCLUs3ZWJxdVplX3J1LUJwbEpZT3dDWHA4bWljVEVqbTJtV3RfNjhjem1PTTBzRXprVmJYbEttTGdvVXFfRExZUTFiYTRmMEw3dnJHaElTeUsxcjR5bl9XWXNxRkFoSk9rcWw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('af001b8a342')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="m365" class="topic-section">
+      <h2 class="topic-title" style="--c:#D83B01">Microsoft 365 <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a71cb7004c5">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMickFVX3lxTFBOM2U1RjBsYjFyUTJPX3V1cTRIb1ppMFhjNGtJSVZKTEZ6UzlKVnBSMlFnQmlJbEk5d1dGbGE4V2c0SnJ4bnJ4LS1WWm5GN19OdVFoc2tQN3ZIbFhXdkw2alQ4TTFyRTlOVEJza0lRX1FqQQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">UH expands Microsoft 365 access while cutting costs - University of Hawaii System</a>
+          <div class="article-meta">University of Hawaii System &bull; Oct 19, 2026</div>
+          <div class="article-summary snippet"><p>UH expands Microsoft 365 access while cutting costs&amp;nbsp;&amp;nbsp;University of Hawaii System</p><a href="https://news.google.com/rss/articles/CBMickFVX3lxTFBOM2U1RjBsYjFyUTJPX3V1cTRIb1ppMFhjNGtJSVZKTEZ6UzlKVnBSMlFnQmlJbEk5d1dGbGE4V2c0SnJ4bnJ4LS1WWm5GN19OdVFoc2tQN3ZIbFhXdkw2alQ4TTFyRTlOVEJza0lRX1FqQQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a71cb7004c5')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ac5c5227449">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMivAFBVV95cUxOMjN2WUluMG1NOGFDZExXR2Vkc185NnBkR053SjU4RVlJZ2l6eDg0QUIxU2xVT0MzeUZfaXh0RnZlbHVKVE9rRkhWdmIzdk9leVY2RGRnX0dvOGJoRFpNZVhXdEk2RDJWNUh5WGw4MUt1VVhldG8zSmlpWkpQbkpVNVJVMWsweS1faTIwa3YzeGdWdW5Hc1llZ2Y4YnV1SmpXRHg4R080aGhYcTdVc3ZFQUZUNmN2TmFrQjd2Xw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Flint-interactive: A language for creating interactive data visualizations - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; Oct 22, 2026</div>
+          <div class="article-summary snippet"><p>Flint-interactive: A language for creating interactive data visualizations&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMivAFBVV95cUxOMjN2WUluMG1NOGFDZExXR2Vkc185NnBkR053SjU4RVlJZ2l6eDg0QUIxU2xVT0MzeUZfaXh0RnZlbHVKVE9rRkhWdmIzdk9leVY2RGRnX0dvOGJoRFpNZVhXdEk2RDJWNUh5WGw4MUt1VVhldG8zSmlpWkpQbkpVNVJVMWsweS1faTIwa3YzeGdWdW5Hc1llZ2Y4YnV1SmpXRHg4R080aGhYcTdVc3ZFQUZUNmN2TmFrQjd2Xw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac5c5227449')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a81b82fb488">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiigFBVV95cUxNaGJjN1JzMEVORzRiSjhxRUtFVDBPS3pfRWNRV0JnZkVGNi1RRkp4TXgyQTNyckw0N1laZkhXbURoRW5qVGNlYXh1blJhY3YyS0U3eTFZWHctZFNWMndBcVhMbjN1RW5WVXhfNWx6dVRHX0lDYzVENzVBNC1PYjQ1Wm8tSU03QUtNdFE?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft 365 accounts compromised at 79 organizations, no passwords needed - Help Net Security</a>
+          <div class="article-meta">Help Net Security &bull; Oct 23, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft 365 accounts compromised at 79 organizations, no passwords needed&amp;nbsp;&amp;nbsp;Help Net Security</p><a href="https://news.google.com/rss/articles/CBMiigFBVV95cUxNaGJjN1JzMEVORzRiSjhxRUtFVDBPS3pfRWNRV0JnZkVGNi1RRkp4TXgyQTNyckw0N1laZkhXbURoRW5qVGNlYXh1blJhY3YyS0U3eTFZWHctZFNWMndBcVhMbjN1RW5WVXhfNWx6dVRHX0lDYzVENzVBNC1PYjQ1Wm8tSU03QUtNdFE?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a81b82fb488')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ac28106dcda">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi0wFBVV95cUxPeU5WZmZweGV2bThHOVlBWnc5Q3RCWWtnNUZkYVRJcGR6ZHAzTk5lYUhUWHZXNW1fNWtXLXgwcUdhdDYyNUtnV3RkV1VqX25hb0Z1TkdRVjVnZDB2VzQ2WWR5SEFpTGxzOWtQSW1TdFRjNFZyRmo2a3NIVndyQkFRN0ZtOEI4UTVscURZdmhlYnJvVkRaWkZSMXFqUDlTbm53Q0JudGwtQ3BMUk16cFZ1Y1JqaDFnblpLUG56bUFoV095cGgxQVl2dWV0djNLNmtKb2ZZ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Unlock the power of Microsoft 365 Copilot with free live and self-paced trainings - University of California</a>
+          <div class="article-meta">University of California &bull; Oct 19, 2026</div>
+          <div class="article-summary snippet"><p>Unlock the power of Microsoft 365 Copilot with free live and self-paced trainings&amp;nbsp;&amp;nbsp;University of California</p><a href="https://news.google.com/rss/articles/CBMi0wFBVV95cUxPeU5WZmZweGV2bThHOVlBWnc5Q3RCWWtnNUZkYVRJcGR6ZHAzTk5lYUhUWHZXNW1fNWtXLXgwcUdhdDYyNUtnV3RkV1VqX25hb0Z1TkdRVjVnZDB2VzQ2WWR5SEFpTGxzOWtQSW1TdFRjNFZyRmo2a3NIVndyQkFRN0ZtOEI4UTVscURZdmhlYnJvVkRaWkZSMXFqUDlTbm53Q0JudGwtQ3BMUk16cFZ1Y1JqaDFnblpLUG56bUFoV095cGgxQVl2dWV0djNLNmtKb2ZZ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac28106dcda')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="af3516f55f9">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiqwFBVV95cUxQdFRra1QwT2RkN3pOdkwybF81dE1Vek5pNmRiVlpQYXVGOFZQaHp2NlhCVW1nM0pEczhqSjhiSUVDT0d5VElqbFlQZkd2LUZrZHpEcjlicFRIb0RsUTBOaFl2SHhxVE1VTDJEd2ZfYnV3Qi1uRGYwcVFRMnY0dW9FNTNrOGhBRTU1NkNSYm9FWHh3WDBPdEpDeEd5Y21HVTJnYWN3LXJ3M1pJSk0?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Stop paying for Microsoft 365 every year and own Office 2021 for $28 - Cville Right Now</a>
+          <div class="article-meta">Cville Right Now &bull; Oct 22, 2026</div>
+          <div class="article-summary snippet"><p>Stop paying for Microsoft 365 every year and own Office 2021 for $28&amp;nbsp;&amp;nbsp;Cville Right Now</p><a href="https://news.google.com/rss/articles/CBMiqwFBVV95cUxQdFRra1QwT2RkN3pOdkwybF81dE1Vek5pNmRiVlpQYXVGOFZQaHp2NlhCVW1nM0pEczhqSjhiSUVDT0d5VElqbFlQZkd2LUZrZHpEcjlicFRIb0RsUTBOaFl2SHhxVE1VTDJEd2ZfYnV3Qi1uRGYwcVFRMnY0dW9FNTNrOGhBRTU1NkNSYm9FWHh3WDBPdEpDeEd5Y21HVTJnYWN3LXJ3M1pJSk0?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('af3516f55f9')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ac1b115bf1a">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMifEFVX3lxTE8tQVkyU3FkLU1NUjZtVHd0Wm8tckQxLWFXN25BZ19MV0VfVE1TWmJnNHpvNFJwcmJxMExhTktwLW81U3hMeUltVjhnUzRXVjJBNmZCZ1FZcHpGcHRXaVpqWS13ZDE3QzUwdGlHUWQ0X2g0cklEZDU0Q00wNGY?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Widespread Token-Spraying Attacks Target Microsoft 365 Accounts For Email Compromise - Infosecurity Magazine</a>
+          <div class="article-meta">Infosecurity Magazine &bull; Oct 23, 2026</div>
+          <div class="article-summary snippet"><p>Widespread Token-Spraying Attacks Target Microsoft 365 Accounts For Email Compromise&amp;nbsp;&amp;nbsp;Infosecurity Magazine</p><a href="https://news.google.com/rss/articles/CBMifEFVX3lxTE8tQVkyU3FkLU1NUjZtVHd0Wm8tckQxLWFXN25BZ19MV0VfVE1TWmJnNHpvNFJwcmJxMExhTktwLW81U3hMeUltVjhnUzRXVjJBNmZCZ1FZcHpGcHRXaVpqWS13ZDE3QzUwdGlHUWQ0X2g0cklEZDU0Q00wNGY?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac1b115bf1a')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="afd92c685ea">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi0wFBVV95cUxObVdoN2ZTOUp5Y3pKVVFydjJtcWR1WjhZOG9uN3RTM3d2YjdwbTlpNFpiRHJ6OWpjNWllQUl6cG5uYnJNSlY1OUpkU3hBWWViaDRXV3BMVUNFbU1NNGx5YlRDN1BQRUgxLXUwNkVhem1TWnJLZEN2UHJBM0NrYmVVdy1yWGdfOG0zRVRmTmM4QkdfajFVclVqc1ZPam5BTG5NdDVzOHZMUXZuRWJXSVVmNHNQVFVyWVhSNC1KSmFhVFpGX2tCVU16cjJZRmZhTVZzRC1j?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft 365 access now free to students, faculty and staff at all 10 University of Hawaiʻi campuses - Maui Now</a>
+          <div class="article-meta">Maui Now &bull; Oct 22, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft 365 access now free to students, faculty and staff at all 10 University of Hawaiʻi campuses&amp;nbsp;&amp;nbsp;Maui Now</p><a href="https://news.google.com/rss/articles/CBMi0wFBVV95cUxObVdoN2ZTOUp5Y3pKVVFydjJtcWR1WjhZOG9uN3RTM3d2YjdwbTlpNFpiRHJ6OWpjNWllQUl6cG5uYnJNSlY1OUpkU3hBWWViaDRXV3BMVUNFbU1NNGx5YlRDN1BQRUgxLXUwNkVhem1TWnJLZEN2UHJBM0NrYmVVdy1yWGdfOG0zRVRmTmM4QkdfajFVclVqc1ZPam5BTG5NdDVzOHZMUXZuRWJXSVVmNHNQVFVyWVhSNC1KSmFhVFpGX2tCVU16cjJZRmZhTVZzRC1j?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('afd92c685ea')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aa56a40b943">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiogFBVV95cUxOMjRXVS02UWNQQmpJcWdZQTcwOFU5UU1wY3E0OWhtYUhrdDRHMGxJU0h2cFE4Ukx2SzVSNFE0SDZGTHhBX0Z6c1pCNjVsMVdsMWt2NHhzbjJqVmFQX1l4TjU0UXY3dk1sbGlzNFJDeEVFREktbVBDRWw4WTdpc1B3OXlHeEdPMlBvRF9LUUdZWGxfTmxoQlJiMU4za0l5SEl0UVE?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">ISMG Editors: Stolen Vendor API Secret Exposes Microsoft 365 - BankInfoSecurity</a>
+          <div class="article-meta">BankInfoSecurity &bull; Oct 23, 2026</div>
+          <div class="article-summary snippet"><p>ISMG Editors: Stolen Vendor API Secret Exposes Microsoft 365&amp;nbsp;&amp;nbsp;BankInfoSecurity</p><a href="https://news.google.com/rss/articles/CBMiogFBVV95cUxOMjRXVS02UWNQQmpJcWdZQTcwOFU5UU1wY3E0OWhtYUhrdDRHMGxJU0h2cFE4Ukx2SzVSNFE0SDZGTHhBX0Z6c1pCNjVsMVdsMWt2NHhzbjJqVmFQX1l4TjU0UXY3dk1sbGlzNFJDeEVFREktbVBDRWw4WTdpc1B3OXlHeEdPMlBvRF9LUUdZWGxfTmxoQlJiMU4za0l5SEl0UVE?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aa56a40b943')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="iru" class="topic-section">
+      <h2 class="topic-title" style="--c:#7C3AED">Iru MDM (formerly Kandji) </h2>
+      <p class="no-news">No articles found this week.</p>
+    </section>
+    <section id="cato" class="topic-section">
+      <h2 class="topic-title" style="--c:#FF6B35">Cato Networks </h2>
+      <p class="no-news">No articles found this week.</p>
+    </section>
+</main>
+
+<footer>
+  Generated every Sunday &mdash; Topics: Windows &bull; Azure &bull; SharePoint &bull; Intune &bull; Entra ID &bull; Microsoft 365 &bull; Iru MDM (formerly Kandji) &bull; Cato Networks
+</footer>
+
+<script>
+const KEY = 'it-news-hidden-v1';
+function getHidden() {
+  try { return new Set(JSON.parse(localStorage.getItem(KEY) || '[]')); }
+  catch { return new Set(); }
+}
+function saveHidden(s) { localStorage.setItem(KEY, JSON.stringify([...s])); }
+function toggleArticle(id) {
+  const h = getHidden();
+  h.has(id) ? h.delete(id) : h.add(id);
+  saveHidden(h); applyHidden(h);
+}
+function applyHidden(h) {
+  h = h || getHidden();
+  document.querySelectorAll('.article-card[data-id]').forEach(c => {
+    c.classList.toggle('is-hidden', h.has(c.dataset.id));
+  });
+}
+let revealing = false;
+function toggleReveal() {
+  revealing = !revealing;
+  document.body.classList.toggle('reveal-hidden', revealing);
+  document.getElementById('reveal-btn').textContent = revealing ? 'Hide hidden' : 'Show hidden';
+}
+fetch('weeks.json').then(r => r.json()).then(weeks => {
+  const sel = document.getElementById('week-sel');
+  weeks.forEach(w => {
+    const o = document.createElement('option');
+    o.value = w.file; o.textContent = w.label;
+    if (w.current) o.selected = true;
+    sel.appendChild(o);
+  });
+}).catch(() => {});
+applyHidden();
+</script>
+</body>
+</html>
