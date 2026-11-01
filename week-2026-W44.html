@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT News Digest — 2026-W44</title>
+  <style>
+    :root{--bg:#f8fafc;--surface:#fff;--border:#e2e8f0;--text:#1e293b;--muted:#64748b;--accent:#2563eb}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+    a{color:var(--accent)}
+
+    header{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+    .h-inner{max-width:1000px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .h-brand{font-size:1.1rem;font-weight:800;color:#1d4ed8}
+    .h-meta{font-size:.78rem;color:var(--muted)}
+    .h-controls{display:flex;gap:8px;align-items:center}
+    .btn{padding:5px 12px;border-radius:6px;font-size:.78rem;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);white-space:nowrap}
+    .btn:hover{background:#f1f5f9}
+    select.week-sel{padding:5px 10px;border-radius:6px;border:1px solid var(--border);background:var(--surface);font-size:.78rem;cursor:pointer;color:var(--text)}
+
+    .t-nav{background:var(--surface);border-bottom:1px solid var(--border);overflow-x:auto}
+    .t-nav-inner{max-width:1000px;margin:0 auto;padding:8px 20px;display:flex;gap:6px;min-width:max-content}
+    .nav-link{font-size:.72rem;padding:3px 10px;border-radius:20px;border:2px solid var(--c,#2563eb);color:var(--c,#2563eb);text-decoration:none;font-weight:600;white-space:nowrap}
+    .nav-link:hover{background:var(--c,#2563eb);color:#fff}
+
+    main{max-width:1000px;margin:0 auto;padding:24px 20px}
+
+    .week-hero{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin-bottom:28px;display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+    .hero-title{font-size:1.6rem;font-weight:900;color:#1d4ed8}
+    .hero-sub{font-size:.85rem;color:var(--muted);margin-top:2px}
+    .stat-box{text-align:center;min-width:60px}
+    .stat-num{font-size:2rem;font-weight:900;color:#1d4ed8;line-height:1}
+    .stat-lbl{font-size:.65rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+
+    .topic-section{margin-bottom:40px}
+    .topic-title{font-size:1.2rem;font-weight:800;color:var(--c,#2563eb);border-bottom:3px solid var(--c,#2563eb);padding-bottom:8px;margin-bottom:14px}
+    .count{font-size:.8rem;font-weight:400;color:var(--muted)}
+    .no-news{color:var(--muted);font-style:italic;font-size:.88rem}
+
+    .article-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:12px;display:flex;gap:12px;align-items:flex-start;transition:border-color .15s}
+    .article-card:hover{border-color:#94a3b8}
+    .article-body{flex:1;min-width:0}
+    .article-title{font-size:.98rem;font-weight:600;text-decoration:none;display:block;margin-bottom:4px;color:var(--accent)}
+    .article-title:hover{text-decoration:underline}
+    .article-meta{font-size:.72rem;color:var(--muted);margin-bottom:8px}
+
+    .article-summary{margin-top:6px;font-size:.875rem;color:#334155;line-height:1.75}
+    .article-summary p{margin-bottom:.6em}
+    .article-summary p:last-child{margin-bottom:0}
+    .gnews-badge{display:inline-block;font-size:.65rem;background:#fef3c7;color:#92400e;border-radius:4px;padding:1px 5px;margin-bottom:6px;vertical-align:middle}
+    .article-summary.snippet{color:var(--muted)}
+    .read-more{display:inline-block;margin-top:6px;font-size:.8rem;font-weight:600;color:var(--accent);text-decoration:none}
+    .read-more:hover{text-decoration:underline}
+
+    .hide-btn{flex-shrink:0;padding:5px 10px;border-radius:6px;font-size:.72rem;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--muted);white-space:nowrap;align-self:flex-start}
+    .hide-btn:hover{border-color:#ef4444;color:#ef4444;background:#fef2f2}
+    .lbl-show{display:none}
+
+    .article-card.is-hidden{display:none}
+    body.reveal-hidden .article-card.is-hidden{display:flex;opacity:.45;border-style:dashed}
+    .article-card.is-hidden .lbl-hide{display:none}
+    .article-card.is-hidden .lbl-show{display:inline}
+    body.reveal-hidden .article-card.is-hidden .hide-btn{border-color:#16a34a;color:#16a34a}
+    body.reveal-hidden .article-card.is-hidden .hide-btn:hover{background:#f0fdf4}
+
+    footer{text-align:center;padding:24px 20px;color:var(--muted);font-size:.75rem;border-top:1px solid var(--border);margin-top:40px}
+
+    @media(max-width:600px){
+      .h-inner,.main{padding-left:14px;padding-right:14px}
+      .hero-title{font-size:1.3rem}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="h-inner">
+    <div>
+      <div class="h-brand">IT News Digest</div>
+      <div class="h-meta">Week 2026-W44 &bull; Oct 26 – Nov 01, 2026</div>
+    </div>
+    <div class="h-controls">
+      <button class="btn" id="reveal-btn" onclick="toggleReveal()">Show hidden</button>
+      <select class="week-sel" id="week-sel" onchange="if(this.value) location.href=this.value">
+        <option value="">&#128337; Archive&hellip;</option>
+      </select>
+    </div>
+  </div>
+</header>
+
+<nav class="t-nav"><div class="t-nav-inner"><a href="#windows" class="nav-link" style="--c:#0078D4">Microsoft Windows</a><a href="#azure" class="nav-link" style="--c:#00BCF2">Azure</a><a href="#sharepoint" class="nav-link" style="--c:#036C70">SharePoint</a><a href="#intune" class="nav-link" style="--c:#0F6CBD">Intune</a><a href="#entraid" class="nav-link" style="--c:#6B69D6">Entra ID</a><a href="#m365" class="nav-link" style="--c:#D83B01">Microsoft 365</a><a href="#iru" class="nav-link" style="--c:#7C3AED">Iru MDM (formerly Kandji)</a><a href="#cato" class="nav-link" style="--c:#FF6B35">Cato Networks</a></div></nav>
+
+<main>
+  <div class="week-hero">
+    <div>
+      <div class="hero-title">Week 2026-W44</div>
+      <div class="hero-sub">Oct 26 – Nov 01, 2026</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">43</div>
+      <div class="stat-lbl">Articles</div>
+    </div>
+  </div>
+
+    <section id="windows" class="topic-section">
+      <h2 class="topic-title" style="--c:#0078D4">Microsoft Windows <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a724e310a9b">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windows-insider/2026/10/30/announcing-new-builds-for-30-october-2026/" target="_blank" rel="noopener noreferrer" class="article-title">Announcing new builds for 30 October 2026</a>
+          <div class="article-meta">blogs.windows.com &bull; Oct 30, 2026</div>
+          <div class="article-summary"><p>Announcing new builds for 30 October 2026
+Hello Windows Insiders,
+Today, we’re releasing new Windows 11 Insider Preview builds to the Beta and Experimental channels, as well as introducing a new commercial Feedback Hub policy for commercial customers.
+New builds this week
+Select your channel below to view its release notes:
+- Beta: Build 26220.9836
+- Experimental: Build 26340.9843
+For those on other specific Windows build versions, here are today’s new builds and release notes:
+- Beta (26H1): Build 28020.3382
+- Experimental (26H1): Build 28120.3393
+- Experimental (Future Platforms): Build 29698.1000
+Private feedback for commercial customers
+We’re introducing a new Intune policy that lets commercial customers keep feedback submitted through Feedback Hub by users in their tenant private. When this policy is enabled, feedback cannot be posted to the public community or shared with users outside the organization. Feedback will only be accessible to Microsoft and users within the same organization (tenant). See release notes for more information.
+Notable new features:
+[Windows Search]
+Release channel: Experimental, Experimental (26H1)
+We’re expanding the new Windows Search experience that began rolling out earlier this month with more ways to find what you need and take action directly from Search.
+- Inline actions: Adjust your volume, screen brightness, or cursor size with inline sliders. Actions are more clearly labeled, and suggested actions help you discover more things you can do.
+- Phone actions: With a supported phone connected through Phone Link, you can now call or text a friend and access phone actions such as Do Not Disturb. Android support is available now with iPhone support coming early next year.
+- Richer results: Preview files and see details such as a file’s last modified date, location, and author. Get web answers for weather, stocks, and facts, and discover apps and games from the Microsoft Store. Like web results, app results from the Store can be toggled on or off in Settings &gt; Privacy &amp; security &gt; Search.
+- Result filters: Scroll to see more results and filter by Files &amp; Folders, Settings, Actions, and more.
+- Feedback controls: Right-click a result or suggestion and choose thumbs up or thumbs down to tell us whether it was helpful. Thanks to your feedback, you can also remove items from the initial Search view before you type. We’ve also made small polish improvements to the look and feel of Windows Search based on what you’ve shared.
+As noted in our blog post, the new Windows Search opens at the bottom center of the screen. Work is underway to have it adapt to different taskbar positions and when using search from the Start menu.
+Thanks,
+Stephen and the Windows Insider Program team</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a724e310a9b')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aa5aec837d2">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/msedgedev/2026/10/29/edge-is-faster-on-windows-with-accelerated-app-launches/" target="_blank" rel="noopener noreferrer" class="article-title">Edge is faster on Windows with Accelerated App Launches</a>
+          <div class="article-meta">blogs.windows.com &bull; Oct 29, 2026</div>
+          <div class="article-summary"><p>Edge is faster on Windows with Accelerated App Launches
+We’re excited to announce that Edge is the first browser to support accelerated app launches on Windows, delivering a faster and more consistent browser launch experience.
+With accelerated app launch, most Windows users will see a 15% launch speed improvement, with wins of up to 33% under heavy multitasking!1 That means you can start browsing faster.
+This has already rolled out starting with Microsoft Edge version 150 and later and is supported on Windows 11, versions 25H2, 26H2, 26H1 with the October 2026 non-security update (KB5127936) or later.
+How does this work?
+The Edge and Windows team partnered to bring this new Windows accelerated app launch capability to Edge users quickly. Edge, like many modern applications on Windows, is often already running. A visible Edge window might already be open, or Edge might already be running in the background through features such as Startup Boost.
+Without accelerated app launches on Windows, when you click on a link or start Edge from the taskbar, Windows must first determine if Edge is already running. To do that, Windows starts an intermediary process that looks for the already-running browser and, if one is found, forwards the request.
+On a PC that just started, you might barely notice. But in real multi-tasking scenarios, the extra work of having to look for an existing Edge process could make Edge feel slow.
+Now, with accelerated app launches on Windows, when an Edge process starts, it sends a registration request to Windows. Windows checks and accepts the request. Later, when Edge is launched again, Windows can use the accelerated-launch registration to notify the already running Edge process directly.
+Accelerated app launches are supported by the Start menu and the Taskbar and opening supported links that open in Edge by default.
+For developers who are interested in supporting accelerated launches in their own Windows apps, see Register your application for accelerated app launches.
+Making Edge work great on Windows
+Accelerated app launches is part of our work to make Edge work great on Windows and we’ll continue innovating in this area. We’re working with Windows on adding other ways to utilize this feature, such as when opening PDF files.
+We’re also contributing this work to Chromium, the open-source project which Edge is based on, so other Chromium-based browsers can benefit from accelerated launches on Windows in the future.
+1 Compared to launching Microsoft Edge without accelerated app launch in Windows, when Edge is already running. Requires Windows 11 (25H2, 26H1 or 26H2) with KB5127936 or later and Edge 150+.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aa5aec837d2')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a919eddf811">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-windows-clat-ipv6-only-networks/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Releases CLAT for IPv6-Only Networks in Windows 11</a>
+          <div class="article-meta">petri.com &bull; Oct 28, 2026</div>
+          <div class="article-summary"><p>Windows CLAT removes a major obstacle to IPv6-only networking, giving IT teams a way to modernize infrastructure without breaking legacy IPv4 applications. Without a transition strategy, organizations risk remaining stuck with the cost and complexity of dual-stack networks.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a919eddf811')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ae067668bba">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-windows-certificate-update/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Releases Windows Certificate Update After eMudhra Key Compromise</a>
+          <div class="article-meta">petri.com &bull; Oct 27, 2026</div>
+          <div class="article-summary"><p>Microsoft Releases Windows Certificate Update After eMudhra Key Compromise
+The eMudhra compromise prompted Microsoft to remove trusted certificates from Windows, but some organizations may need to take additional steps to ensure their systems are protected.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ae067668bba')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ab6a4de1a51">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-universal-print-issues-windows-11/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Confirms Windows 11 Universal Print Issues Affecting Enterprise Printers</a>
+          <div class="article-meta">petri.com &bull; Oct 26, 2026</div>
+          <div class="article-summary"><p>Microsoft Confirms Windows 11 Universal Print Issues Affecting Enterprise Printers
+Printing disruptions, aborted jobs, and connectivity failures are affecting some Universal Print deployments, leaving IT teams to rely on workarounds while Microsoft investigates the root causes.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ab6a4de1a51')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a2fec2ae56c">
+        <div class="article-body">
+          <a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-finally-fixes-vpn-issues-caused-by-september-updates/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft finally fixes VPN issues caused by September updates</a>
+          <div class="article-meta">bleepingcomputer.com &bull; Oct 30, 2026</div>
+          <div class="article-summary"><p>Microsoft has resolved Always On VPN connection failures triggered after installing the September 2026 Windows 11 security updates.
+The Always On VPN remote access solution runs in the background and establishes secure tunnels back to the user's corporate network when their devices connect to the Internet. It has replaced the legacy DirectAccess technology and supports domain-joined, non-domain-joined, and Microsoft Entra ID–joined devices running Windows 10, Windows 11, and Windows Server.
+Microsoft has previously mistakenly flagged this known issue as fixed in the October 2026 Windows 11 cumulative updates.
+The company first acknowledged it in a service alert sent to IT administrators in late September, saying the Always On VPN failures were triggered on Windows 11 systems by the September 2026 security updates when using automatic protocol selection with IKEv2 and SSTP.
+On Wednesday, Microsoft confirmed that this issue has finally been fixed for users who installed this month's KB5127936 preview update.
+&quot;This update fixes an issue that affects Always On VPN connections after installing September security update,&quot; it said. &quot;When automatic protocol selection or protocol fallback was configured, affected VPN connections could remain stuck in a Connecting state or fail to connect after an initial connection attempt failed. In some cases, subsequent connection attempts could display the error, 'The specified port is already in use.'&quot;
+Workaround also available
+Microsoft also provides a temporary fix for users who don't want to install the preview update and would rather wait for next month's Patch Tuesday cumulative updates.
+This requires admins to choose one of two tunneling protocols to prevent Always On VPN failures on affected devices.
+&quot;IT administrators can mitigate this issue by changing the Always On VPN profile from automatic protocol selection to a single protocol, either SSTP only or IKEv2 only, depending on their environment and configuration,&quot; Microsoft said.
+&quot;Organizations should select the protocol based on their environment, security, and deployment requirements.&quot;
+The October 2026 preview update also fixes a known issue preventing non-admin users from connecting to devices via Remote Desktop when the &quot;Administrator protection&quot; security feature is enabled after installing the September 2026 Windows 11 non-security preview update (or Windows updates released since then).
+Uncover email threats your existing defenses may miss.
+Adaptive Security's AI agents analyze email intent, context, and behavior to uncover phishing, business email compromise, and invoice fraud.
+See what's getting through with a 14-day read-only scan of Microsoft 365 or Google Workspace, with no MX changes.
+Start your free email security scan.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a2fec2ae56c')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a9617e6dd21">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMisgJBVV95cUxNRHZET201dHUyM2tKdDB0X09EZ2dWVkJhMVE0TEtkcFZzdDd0NnFEOUhxZEtwS0t3Wkt2bHZISUVRVVVzX0F2eC1iaG1RZ01iUUpvbXJXVnJPRUhlYk5uUG5RS0U4US1VQjlwYTRTUFdBeXV4YWxxaEFFSlBRRWJmdFRyN0ZEMlJHenZfeDBYeTJNN1QzV3czZDdhMTZxVWJVYUNjcUtvUG16bWNqVEE5MjJZaU8yVC1PYnV6SkFfcDdKUDE1VFZGOHZObkY4OTl4SzFxZGVvZHF6TkJidUh3NWpVZzl0U2VmaVA0V0xGRlBPYXFpYXRtaV9qOUlPNk9pdjRYbDBPb3cyWkNQZ01hWUNEQUFnQmhDVEFUcEhVdF9aTVFhR2JoM2FLc0tIVklXY3c?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft explains why Windows 11 users cannot drag the taskbar to reposition it - Windows Central</a>
+          <div class="article-meta">Windows Central &bull; Oct 31, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft explains why Windows 11 users cannot drag the taskbar to reposition it&amp;nbsp;&amp;nbsp;Windows Central</p><a href="https://news.google.com/rss/articles/CBMisgJBVV95cUxNRHZET201dHUyM2tKdDB0X09EZ2dWVkJhMVE0TEtkcFZzdDd0NnFEOUhxZEtwS0t3Wkt2bHZISUVRVVVzX0F2eC1iaG1RZ01iUUpvbXJXVnJPRUhlYk5uUG5RS0U4US1VQjlwYTRTUFdBeXV4YWxxaEFFSlBRRWJmdFRyN0ZEMlJHenZfeDBYeTJNN1QzV3czZDdhMTZxVWJVYUNjcUtvUG16bWNqVEE5MjJZaU8yVC1PYnV6SkFfcDdKUDE1VFZGOHZObkY4OTl4SzFxZGVvZHF6TkJidUh3NWpVZzl0U2VmaVA0V0xGRlBPYXFpYXRtaV9qOUlPNk9pdjRYbDBPb3cyWkNQZ01hWUNEQUFnQmhDVEFUcEhVdF9aTVFhR2JoM2FLc0tIVklXY3c?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a9617e6dd21')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="afd713c3070">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMipgFBVV95cUxNTkxUeEJSQlhCSU4tclgtaTBEb3NGdnVMQVl0SE5pS25yT2JxdmNFSkxGcmhmWFlEeFFabEZtUURsZUVWWjV0ckFGa2t2TVRJWHlpWjJFZ2pKWVJEdzZETFJqOFZLcktBSzdIZUFRYWcxc0k4bjNDbWFoT1N2R1JxS0FmQlJ6T1kwc2gya19ERS1rZzVRalQ3aXMtUXFSN3diMkJuckd3?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Edge is faster on Windows with Accelerated App Launches - Windows Blog</a>
+          <div class="article-meta">Windows Blog &bull; Oct 29, 2026</div>
+          <div class="article-summary snippet"><p>Edge is faster on Windows with Accelerated App Launches&amp;nbsp;&amp;nbsp;Windows Blog</p><a href="https://news.google.com/rss/articles/CBMipgFBVV95cUxNTkxUeEJSQlhCSU4tclgtaTBEb3NGdnVMQVl0SE5pS25yT2JxdmNFSkxGcmhmWFlEeFFabEZtUURsZUVWWjV0ckFGa2t2TVRJWHlpWjJFZ2pKWVJEdzZETFJqOFZLcktBSzdIZUFRYWcxc0k4bjNDbWFoT1N2R1JxS0FmQlJ6T1kwc2gya19ERS1rZzVRalQ3aXMtUXFSN3diMkJuckd3?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('afd713c3070')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="azure" class="topic-section">
+      <h2 class="topic-title" style="--c:#00BCF2">Azure <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="ad0a0febb0b">
+        <div class="article-body">
+          <a href="https://azure.microsoft.com/en-us/blog/azure-cloud-hsm-hardware-audit-logging-verifiable-audit-trails-for-security-and-compliance/" target="_blank" rel="noopener noreferrer" class="article-title">Azure Cloud HSM Hardware Audit Logging: Verifiable audit trails for security and compliance</a>
+          <div class="article-meta">azure.microsoft.com &bull; Oct 29, 2026</div>
+          <div class="article-summary"><p>Organizations running regulated and security-sensitive workloads need trusted evidence of which authenticated users performed management operations on their hardware security modules (HSMs), what actions they took, and when. Today, we are announcing Hardware Audit Logging for Azure Cloud HSM, which collects audit records generated by the HSM itself for supported management operations. Security, compliance, and operations teams can use this hardware-originated evidence for monitoring, compliance reporting, and forensic investigations.
+Why hardware-generated audit evidence matters
+HSMs protect some of an organization’s most sensitive cryptographic assets. The security of those assets depends not only on how keys are generated and protected, but also on how the HSM is configured and administered over time. Authentication events, user changes, policy updates, backup operations, and key lifecycle activity can all be important when teams investigate an incident, validate operational controls, or prepare evidence for an audit.
+Traditional platform and application logs remain valuable, but regulated organizations often want evidence that originates as close as possible to the protected cryptographic boundary. By sourcing audit information directly from the HSM, Azure Cloud HSM provides records tied to the device performing the protected operations. This gives customers an additional layer of evidence for understanding administrative activity and validating the records incorporated into their monitoring and compliance processes.
+Monitor HSM management operations with hardware-generated audit logs
+Hardware Audit Logging captures a broad range of HSM management activities, including:
+- User authentication and session events.
+- User and administrator management.
+- Policy and configuration changes.
+- Key lifecycle operations.
+- Backup and restore activities.
+Together, these events help organizations build a more complete view of how the HSM is being operated. Security teams can examine authentication and administrative activity, compliance teams can use the records as evidence for control assessments, and operations teams can investigate configuration or lifecycle changes that may affect a protected workload.
+Independent, end-to-end audit verification
+Customers can access human-readable audit records, the corresponding HSM-signed binary audit data, signatures, and HSM certificates needed to independently verify the authenticity and integrity of signed audit batches. This customer-controlled verification path helps connect the records used in monitoring and reporting back to the signed evidence produced by the HSM.
+This approach is important because auditability is not only about collecting readable events. It is also about establishing confidence in where the records came from and whether the signed audit batches remain intact.
+Maintain consistent audit coverage for supported management activity
+Audit logging is enabled as an immutable HSM partition policy. This design helps maintain consistent coverage of supported management activity and reduces the risk that logging could be disabled as part of routine HSM administration. For organizations that separate cryptographic administration, security monitoring, and compliance responsibilities, continuous hardware-originated logging can support clearer oversight across those functions.
+The capability is designed to complement an organization’s existing governance model. Customers remain responsible for configuring access to their monitoring environment, defining retention requirements, establishing alerting and review processes, and determining how audit evidence should be used within their control framework.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ad0a0febb0b')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a32aaf4e7eb">
+        <div class="article-body">
+          <a href="https://devblogs.microsoft.com/foundry/microsoft-copilot-harness-in-foundry/" target="_blank" rel="noopener noreferrer" class="article-title">Introducing the Microsoft Copilot harness in Foundry Agent Service</a>
+          <div class="article-meta">devblogs.microsoft.com &bull; Oct 28, 2026</div>
+          <div class="article-summary"><p>A model can reason about a task. Completing that task takes more: the right context, tools, execution environment, and controls, and an agent loop that brings them together.
+Microsoft’s unified harness strategy brings a shared execution foundation across our agent experiences while preserving customer choice. In Microsoft Foundry, that means you can choose a supported model and decide how much of the agent stack to build yourself, without having to assemble every layer around it.
+Today, we’re introducing the Microsoft Copilot harness in Foundry Agent Service in public preview. It gives developers a fully managed way to build agents that reason, use tools, and complete complex, long-running tasks. It’s our opinionated approach to helping agents complete complex work. We’re also announcing general availability of long-running resilience for hosted agents. Together, these capabilities help developers build more reliable agents for complex, long-running workflows.
+Build on a managed agent harness
+Many teams building agents end up implementing the same execution machinery: coordinating model and tool calls, maintaining working context, managing files, and deciding how to continue when a task requires more than one step. That work matters, but it isn’t usually what differentiates your application.
+The Copilot harness gives you a managed execution system for agents you define declaratively in Foundry Agent Service. Microsoft runs the agent loop and sandbox; you bring the knowledge, procedures, and tools that make the agent yours.
+The public preview brings together four building blocks:
+- Reusable skills. Package instructions, scripts, and supporting resources into procedures an agent can apply across tasks.
+- Connected tools. Connect supported Foundry and Model Context Protocol (MCP) tools, with explicitly configured authentication and approvals.
+- Execution and delegation. Let agents work with files and code, and delegate bounded tasks to built-in subagents while the main agent coordinates the result.
+- Source-controlled agent definitions. Create and test in Foundry, or manage agent definitions and supporting resources alongside your application code.
+The harness manages working context as tasks develop and coordinates model and tool steps toward a requested outcome, within configured limits and policy boundaries. You choose a supported Foundry model without having to rewrite the orchestration around it.
+That lets your team focus on improving the agent’s expertise and evaluating its results.
+“With the Microsoft Copilot harness in Foundry Agent Service, we had a solution running in less than a week, allowing us to focus on design and capabilities instead of the infrastructure underneath it. That speed will help us bring our vision of AI that runs within and alongside our products to market faster.”
+— Chris Evans, Chief Technology Officer, Confluence Technologies
+“The Microsoft Copilot harness in Foundry Agent Service gives Fashable a powerful foundation for turning complex sourcing processes into governed, measurable agent workflows. We see the opportunity to generate complete tech packs from our knowledge and templates, while extending our A2A sourcing network beyond digitally connected suppliers through email and voice. Most importantly, we can equip brand and manufacturer agents with deeper knowledge and new capabilities to work across sourcing and negotiation without automating away accountability: agents can discover, engage and calculate, while commercially binding decisions remain under human control.”
+— Orlando Ribas Fernandes, CEO, Fashable
+Create a Copilot harness agent with a reusable skill
+Consider an agent that researches a topic, analyzes supporting data, and produces an evidence-backed brief.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a32aaf4e7eb')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a2c837e8c45">
+        <div class="article-body">
+          <a href="https://azure.microsoft.com/en-us/blog/scale-reservoir-uncertainty-analysis-with-agile-reservoir-modeling/" target="_blank" rel="noopener noreferrer" class="article-title">Scale reservoir uncertainty analysis with agile reservoir modeling</a>
+          <div class="article-meta">azure.microsoft.com &bull; Oct 26, 2026</div>
+          <div class="article-summary"><p>Turn subsurface uncertainty into decision-ready insight
+Drilling campaigns are among the most expensive and operationally complex activities in the energy industry. Rigs, crews, equipment, and logistics are scheduled months in advance, leaving little room for delay. Every hour of downtime can carry significant costs. Geoscientists and engineers rely on reservoir models to understand the subsurface and guide drilling decisions, often under intense time pressure. Yet the current modeling infrastructure that many companies rely on for these critical decisions was designed for smaller datasets, simpler workflows, and siloed operations. As subsurface data grows in scale and complexity, teams need a faster, more connected way to transform uncertainty into actionable decisions.
+Now generally available, agile reservoir modeling (ARM) from SLB, integrated with Azure Data Manager for Energy (ADME), is co-engineered for cloud scale to close that gap. The combined solution connects ensemble-centric reservoir modeling and simulation with a governed data foundation, elastic Azure high-performance computing, and scalable storage designed for the throughput and concurrency of large ensemble studies.
+Scale ensemble modeling with ARM on Azure
+A single reservoir model represents one plausible interpretation of the subsurface. Ensemble modeling evaluates hundreds of model realizations together, giving asset teams a broader view of potential outcomes and a stronger basis for understanding uncertainty and risk.
+The industry has long recognized the value of ensemble modeling for risk-aware decision-making, but adoption has been constrained by infrastructure and software designed for smaller, sequential studies. Moving from a limited model set to hundreds of realizations multiplies the compute, storage, data movement, and results that must be managed. ARM addresses this barrier by distributing realization generation and simulation across elastic Azure high-performance computing, while scalable storage provides the capacity, throughput, and parallel access required by ensembles of different sizes.
+Connect reservoir workflows to a governed data foundation
+Building and updating reservoir models draws on many systems: seismic, wellbore, interpretation, and simulation data, plus the applications and compute that process them. When these pieces are fragmented, customers must connect and orchestrate them on their own, and large-scale simulation becomes a disconnected, one-off exercise.
+SLB and Microsoft combined their respective technologies, ARM engineered by SLB and ADME engineered by Microsoft, to remove that burden. Rather than a set of loosely connected tools, customers get one integrated workflow in which each component has a clear role:
+- Azure Data Manager for Energy is the governed data foundation. OSDU® Technical Standard-aligned services and OSDU Domain Data Management Services (DDMS) manage seismic, wellbore, interpretation, and simulation data.
+- Petrel™ subsurface software is where engineers define interpretation and uncertainty workflows, connected directly to data in ADME.
+- Agile reservoir modeling is the ensemble workflow engine. It orchestrates the generation of reservoir realizations and simulation runs and supports discovery and analysis at enterprise scale.
+As a result, teams build ensembles from trusted corporate data and publish results back for discovery and reuse, which reduces data movement and improves collaboration across asset teams.
+Put ensemble modeling into practice with a connected workflow
+Beyond integration and scale, ARM distinguishes itself by orchestrating all stages of an ensemble study across modeling, simulation, data management, and analysis.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a2c837e8c45')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a0aa1e89ab3">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-licensing-influences-cloud-choices/" target="_blank" rel="noopener noreferrer" class="article-title">Survey Claims Microsoft Licensing Influences Cloud Provider Choices</a>
+          <div class="article-meta">petri.com &bull; Oct 29, 2026</div>
+          <div class="article-summary"><p>Software licensing costs and restrictions are influencing where organizations run Microsoft workloads, affecting cloud migration plans and AI projects. For enterprises, the consequence could be less flexibility in choosing cloud platforms based on technical and business requirements alone.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a0aa1e89ab3')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a808e53a0f4">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMickFVX3lxTE5UcDlST3FGMnBNRExEV0kxc180ZGFJRHBBTGZQTVY0WERoWXFjLWs2RGFIZEFBd25tODRWczNyTjNiMGdvUU8zUGxxNUtuSzhORXprTl8wNldGSmdndURnUGVsNmdYUHROOGNYaHIwdmRmdw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">📊 PRO: Microsoft Azure Hits 48% - App Economy Insights</a>
+          <div class="article-meta">App Economy Insights &bull; Oct 31, 2026</div>
+          <div class="article-summary snippet"><p>📊 PRO: Microsoft Azure Hits 48%&amp;nbsp;&amp;nbsp;App Economy Insights</p><a href="https://news.google.com/rss/articles/CBMickFVX3lxTE5UcDlST3FGMnBNRExEV0kxc180ZGFJRHBBTGZQTVY0WERoWXFjLWs2RGFIZEFBd25tODRWczNyTjNiMGdvUU8zUGxxNUtuSzhORXprTl8wNldGSmdndURnUGVsNmdYUHROOGNYaHIwdmRmdw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a808e53a0f4')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ab0d15d4a74">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMirwFBVV95cUxNb0oweTVqenIwbk1TUTdlWU5vZDBmVzE2M0djYlhvZlFnZ2pEOFhhVFlPcVFTUFMzS1Y3ZUN4bkUzYnd5SzNlUUpwdGNIOUNKcEh4ZXk4YkJXemNNUm50dkZnQmNfUTNRSEV3VUNIMnk2Z242eVhMdjZKRkhuYVFUVFR3eDR4RnNmbDcyTHJnTG1pUm9VeG9KelVvcEtucmF4ZUFfU3ViY0EwMlNHOXc4?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Google Cloud Closes In on Azure, but Microsoft Wins the Day With Investors - The Information</a>
+          <div class="article-meta">The Information &bull; Oct 29, 2026</div>
+          <div class="article-summary snippet"><p>Google Cloud Closes In on Azure, but Microsoft Wins the Day With Investors&amp;nbsp;&amp;nbsp;The Information</p><a href="https://news.google.com/rss/articles/CBMirwFBVV95cUxNb0oweTVqenIwbk1TUTdlWU5vZDBmVzE2M0djYlhvZlFnZ2pEOFhhVFlPcVFTUFMzS1Y3ZUN4bkUzYnd5SzNlUUpwdGNIOUNKcEh4ZXk4YkJXemNNUm50dkZnQmNfUTNRSEV3VUNIMnk2Z242eVhMdjZKRkhuYVFUVFR3eDR4RnNmbDcyTHJnTG1pUm9VeG9KelVvcEtucmF4ZUFfU3ViY0EwMlNHOXc4?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ab0d15d4a74')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a3f2d23df07">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiogFBVV95cUxPeEJ3Zl9oVlZfSGg0U05zWWlTdFdTbnFVLVByaU1pWmNuUlZPTktPWkdZNE13WkpBU2xXbnRYa2xwYkJKMzFjVXVKeWJTYWZxcVBLUGMtNVlON1QyRTdOSHgtcE0yUDdUd3l4azY4d3dETVRiQ082dk5zLUY3R2VoTDI2NlhrajBfdDA1VTNuUkQ4NDJUclNoNjFaQ1k4cU9IVlE?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft thinks its data centers can last for 25 years, reports strong cloud earnings and lower capex - Data Center Dynamics</a>
+          <div class="article-meta">Data Center Dynamics &bull; Oct 29, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft thinks its data centers can last for 25 years, reports strong cloud earnings and lower capex&amp;nbsp;&amp;nbsp;Data Center Dynamics</p><a href="https://news.google.com/rss/articles/CBMiogFBVV95cUxPeEJ3Zl9oVlZfSGg0U05zWWlTdFdTbnFVLVByaU1pWmNuUlZPTktPWkdZNE13WkpBU2xXbnRYa2xwYkJKMzFjVXVKeWJTYWZxcVBLUGMtNVlON1QyRTdOSHgtcE0yUDdUd3l4azY4d3dETVRiQ082dk5zLUY3R2VoTDI2NlhrajBfdDA1VTNuUkQ4NDJUclNoNjFaQ1k4cU9IVlE?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a3f2d23df07')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="abf2dc8a09e">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMipgFBVV95cUxOdG9jYzhJc3NrVUtoWTQ0R2kzU3dZcmduamFkNFJOUGttUTBYMHlMa2htck83cm9FaVFfaUJVTi1vMEFnOXpETXRkbG9OZkNCN04zR0RWVWhFWFZRSVZpV0gtMzFlbWY5cTlNYlRPRVNvRFM1SzVwTEo2VFJSTjROYXRGOU12M0V3ODJrTzY1cGoxWlBPUEk2d1lpbDhLYTg0WjJnTHF3?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft shares retreat despite strong Azure growth as AI spending looms - Yahoo Finance</a>
+          <div class="article-meta">Yahoo Finance &bull; Oct 29, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft shares retreat despite strong Azure growth as AI spending looms&amp;nbsp;&amp;nbsp;Yahoo Finance</p><a href="https://news.google.com/rss/articles/CBMipgFBVV95cUxOdG9jYzhJc3NrVUtoWTQ0R2kzU3dZcmduamFkNFJOUGttUTBYMHlMa2htck83cm9FaVFfaUJVTi1vMEFnOXpETXRkbG9OZkNCN04zR0RWVWhFWFZRSVZpV0gtMzFlbWY5cTlNYlRPRVNvRFM1SzVwTEo2VFJSTjROYXRGOU12M0V3ODJrTzY1cGoxWlBPUEk2d1lpbDhLYTg0WjJnTHF3?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('abf2dc8a09e')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="sharepoint" class="topic-section">
+      <h2 class="topic-title" style="--c:#036C70">SharePoint <span class="count">(2)</span></h2>
+      <div class="article-card" data-id="a6afc34e438">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi4gFBVV95cUxPb0FkYWl4WG1venIySkt2RlpuSTNCcFF5bkRnam9rMzNZTmlVOFQ5YzBNb3A2NktBOVRhNHZMVUhMZzlqODVzd0R1MDB1aDdXWXdjNTc3eGl5NkFVRFI3Vm1CbHV6R3RXNnBXNWllQmpRYXlTbjVtTFNOSVJsZlFaUXVtYldtb3dFdkpIWlJhTkhxZUE1RXY4NHJfVkJ1Z2NMRl9rRDFDSjNPdjB3LVp6ckpSYXNSZ0ZaTkY4OGE3dDhzZUg5dU15M1dSVVI0ZGpaaXNISHJ0a284emhKS0plXy13?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">CloudFiles Document Management Adds Minimum-Access Setup for Salesforce and SharePoint - The Des Moines Register</a>
+          <div class="article-meta">The Des Moines Register &bull; Oct 29, 2026</div>
+          <div class="article-summary snippet"><p>CloudFiles Document Management Adds Minimum-Access Setup for Salesforce and SharePoint&amp;nbsp;&amp;nbsp;The Des Moines Register</p><a href="https://news.google.com/rss/articles/CBMi4gFBVV95cUxPb0FkYWl4WG1venIySkt2RlpuSTNCcFF5bkRnam9rMzNZTmlVOFQ5YzBNb3A2NktBOVRhNHZMVUhMZzlqODVzd0R1MDB1aDdXWXdjNTc3eGl5NkFVRFI3Vm1CbHV6R3RXNnBXNWllQmpRYXlTbjVtTFNOSVJsZlFaUXVtYldtb3dFdkpIWlJhTkhxZUE1RXY4NHJfVkJ1Z2NMRl9rRDFDSjNPdjB3LVp6ckpSYXNSZ0ZaTkY4OGE3dDhzZUg5dU15M1dSVVI0ZGpaaXNISHJ0a284emhKS0plXy13?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a6afc34e438')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a945feb7669">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiiwFBVV95cUxOTWdrekF2OGt4dDhpMjdMSlNWX2xEZ2F4c2lXNERCZS1DUkpBVEw1dmZqYy1pVnFySUFjWHNjczlZNV9ndldhWjNMRHBsUVBGUjBlXzRnaUlaZ0FOUHZyeW8zeDJzOXJzaG9KRlkzUTBZVXJLMm5PdUpUUUtUczVCLUoxLUkwV01lSmlN?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Are you paying too much to store cold data? - Technology Record</a>
+          <div class="article-meta">Technology Record &bull; Oct 27, 2026</div>
+          <div class="article-summary snippet"><p>Are you paying too much to store cold data?&amp;nbsp;&amp;nbsp;Technology Record</p><a href="https://news.google.com/rss/articles/CBMiiwFBVV95cUxOTWdrekF2OGt4dDhpMjdMSlNWX2xEZ2F4c2lXNERCZS1DUkpBVEw1dmZqYy1pVnFySUFjWHNjczlZNV9ndldhWjNMRHBsUVBGUjBlXzRnaUlaZ0FOUHZyeW8zeDJzOXJzaG9KRlkzUTBZVXJLMm5PdUpUUUtUczVCLUoxLUkwV01lSmlN?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a945feb7669')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="intune" class="topic-section">
+      <h2 class="topic-title" style="--c:#0F6CBD">Intune <span class="count">(4)</span></h2>
+      <div class="article-card" data-id="a73305a03c6">
+        <div class="article-body">
+          <a href="https://techcommunity.microsoft.com/t5/intune-customer-success/establish-a-macos-security-baseline-with-mscp-and-microsoft/ba-p/4568222" target="_blank" rel="noopener noreferrer" class="article-title">Establish a macOS security baseline with mSCP and Microsoft Intune custom compliance</a>
+          <div class="article-meta">techcommunity.microsoft.com &bull; Oct 28, 2026</div>
+          <div class="article-summary snippet"><p>By: Iris Yuning Ye, Product Manager | Microsoft Intune
+Organizations that manage Mac devices need a reliable way to evaluate their security posture against a recognized baseline. Microsoft Intune custom compliance provides the device compliance evaluation policy, and the National Institute of Standards and Technology’s (NIST) macOS Security Compliance Project (mSCP) provides macOS security rules and checks mapped to compliance requirements.
+Earlier this year we released Intune custom compliance for macOS devices. The feature uses a discovery script and JSON file to define compliance settings. With the mSCP command-line tool, you can select and tailor a security baseline, generate a macOS discovery script, and pair the discovered identifiers with an Intune rules JSON file. Intune then evaluates each device against the chosen baseline and uses the result in compliance reporting and Conditional Access decisions.
+In this blog, we’re introducing a JSON conversion script (mscp_to_intune_json_conversion.sh). The script converts the mSCP’s generated vendor manifest into the JSON format required for Intune custom compliance.
+&amp;nbsp;
+Figure 1:
+Prerequisite
+Before you begin, set up the mSCP locally by following the NIST guidance: Getting started with the macOS Security Compliance Project.
+Create a security baseline
+Next, we’ll establish and configure the security baseline on the device.
+
+Select your security baseline: Choose a security baseline your organization intends to evaluate devices against by looking through frameworks supported by mSCP (for the example in this blog we’ll use CIS Level 1)
+Configure your baseline: When creating the baseline for the first time, you'll follow a guided process to specify the name of the custom baseline, your name and organization, choose what specific rules to include or exclude.
+
+Once the customization process is completed, a new baseline file containing all the rules you specified is generated under the custom/baselines/ directory as a YAML file.
+./mscp.py baseline –k cis_lvl1 –t
+
+Note: The command uses the following flags:
+
+-k Specifies the keyword. In this example, we're using cis_lvl1.
+-t Enables tailoring, allowing you to select specific rules to include and define organization-specific values.
+
+
+Figure 2: Sample results after running the baseline keyword and tailoring command.Figure 3: Sample of tailoring each security baseline rule to your organization's need.
+Once the baseline YAML file is generated, run the command below to generate mSCP documents. These files will be saved into a build/[your specified project name] directory.
+./mscp.py guidance –s –M [yaml file location]
+&amp;nbsp;
+The yaml file location should be the relative location on top of your mSCP folder.
+
+Note: The command uses the following flags:
+
+-s Generates the compliance script.
+-M Generates the JSON vendor manifest file.
+
+
+Figure 4: Command line shows mSCP document generation complete.
+Once the JSON Vendor Manifest and compliance script are successfully generated, we highly recommend running a test check to verify that all rules and values are defined as expected.
+
+Note: If you're using the container method, exit the container to proceed to run the check.
+(Exit container: NIST macOS Security Getting Started)
+
+&amp;nbsp;
+The key is to locate where you build folder is and where the .sh file was saved in:
+sudo ./[base folder]/cis_lvl1_macos_27.0/cis_lvl1_macos_27.0_compliance.sh --check
+&amp;nbsp;
+Figure 5: Run check to confirm security baseline rule was set as expected.
+Create mobileconfig file
+Create a mobileconfig file by creating a plain text file, then copy and paste the example in GitHub into it.
+&amp;nbsp;
+Figure 6: Sample mobileconfig file.
+Configure the .mobileconfig profile
+
+Update the PayloadType key to match the audit file name. This ensures the compliance script uses the correct managed arguments when running.Example: In our demo, the value is updated to:org.intune_compliance_lv1_macOS_26.0.audit
+Customize the following keys based on your organization's requirements and preferences:
+
+PayloadDescription
+PayloadOrganization
+PayloadDisplayName
+
+
+
+Test the .mobileconfig profile
+To verify the configuration, install the .mobileconfig profile locally on a test MacOS device.
+
+Open System Settings &amp;gt; General &amp;gt; Device Management.
+Select the + button to add a configuration profile.
+Navigate to the saved .mobileconfig file, select it, and click Open.
+Follow the prompts to Continue and Install the profile.
+
+
+Note: Administrator privileges are required to install the device profile.
+
+&amp;nbsp;
+Validating the Results:Once the profile is installed, run the generated compliance script. If the script runs successfully and outputs JSON, the managed arguments are correctly set. Run the generated compliance script with no arguments specified to make sure it uses the managed arguments from the installed mobileconfig file.
+&amp;nbsp;
+sudo ./[base folder]/cis_lvl1_macos_27.0/cis_lvl1_macos_27.0_compliance.sh
+&amp;nbsp;
+Figure 7: Sample result from running the script locally.
+Once testing is complete, remove the test profile for your local Mac. It’s critical to ensure all testing profiles are removed from target devices before deploying from Intune to avoid conflicts.
+You can deploy the custom mobileconfig profile for the managed arguments using Intune to the desired set of macOS devices.
+
+Important: Deploy the .mobileconfig file to target devices before deploying the custom compliance policy. Otherwise, the custom compliance policy may not run correctly.
+
+Use JSON conversion script
+Next, use the mscp_to_intune_json_conversion.sh script from GitHub to convert the mSCP JSON Vendor Manifest file into the specific JSON format required for Intune’s custom compliance policy. The command line is comprised of three parts:
+
+Locate where you saved the conversion script.
+Specify the JSON file from security baseline you intend to convert from.
+Specify the name of the custom compliance JSON file you intend to convert to.
+
+~/ mscp_to_intune_json_conversion.sh [base folder]/cis_lvl1_macos_27.0/cis_lvl1_macos_27.0_compliance.json &amp;gt; intune_custom_compliance.json
+&amp;nbsp;
+Figure 8: Using JSON conversion script to convert mSCP generated rule file into Intune custom compliance policy compatible JSON file.
+You can now upload the compliance script built by the mSCP that can be found in the build directory as your Discovery Script within Intune’s custom compliance policy. &amp;nbsp;You can also upload the converted JSON file as the JSON for custom settings.Devices with the mobileconfig profile installed will run the compliance script using the managed arguments and output the JSON required for the custom discovery script.
+Keep in mind
+
+Start with a small pilot group and a focused baseline of your choice.
+Validate every identifier, returned data type, and expected value before broad deployment.
+Deploy mobileconfig file and make sure the file is already successfully deployed on target devices before custom compliance policy.
+Review the per-setting results in the Intune admin center &amp;gt; Reports &amp;gt; Device compliance -&amp;gt; Noncompliant devices and settings.
+Make sure the JSON file generated is aligned with other discovery scripts’ output to avoid misalignment errors.
+The recommended first step is to pilot one baseline on a small Mac device group, document the source version and rule mapping, and expand only after the discovery script output and Intune results have been validated.
+
+Conclusion
+The steps and scripts provided simplifies the flow to connect the mSCP with Intune’s custom compliance feature. By leveraging mSCP, organizations can efficiently translate recognized macOS security guidance into actionable, measurable compliance signals. While Intune provides the mechanism to capture identifiers and current device values, the rules JSON define the precise evaluation criteria. Together, these tools create a transparent, automated path from a high-level security baseline to detailed, device-level compliance reporting.
+
+A special thank you to&amp;nbsp;Robert Gendler from NIST for authoring the mscp_to_intune_json_conversion.sh script and collaborating on this project.
+
+Disclaimer
+Collaboration on this post does not imply NIST endorsement of the products or services offered by Microsoft. Any mention of specific tools or software is for informational purposes and does not constitute a recommendation by NIST.</p><a href="https://techcommunity.microsoft.com/t5/intune-customer-success/establish-a-macos-security-baseline-with-mscp-and-microsoft/ba-p/4568222" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a73305a03c6')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a368e397c39">
+        <div class="article-body">
+          <a href="https://www.neowin.net/news/here-are-all-the-new-features-microsoft-added-to-intune-in-october-2026/?utm_source=rss" target="_blank" rel="noopener noreferrer" class="article-title">Here are all the new features Microsoft added to Intune in October 2026 - Neowin</a>
+          <div class="article-meta">Neowin &bull; Oct 31, 2026</div>
+          <div class="article-summary snippet"><p>Here are all the new features Microsoft added to Intune in October 2026&amp;nbsp;&amp;nbsp;Neowin</p><a href="https://www.neowin.net/news/here-are-all-the-new-features-microsoft-added-to-intune-in-october-2026/?utm_source=rss" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a368e397c39')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a77d147d6d3">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMirwFBVV95cUxQNmI0R3haUTBjSWg3MnFKUmdHTFFPMVlHcWNJanJhSDdOODVaMVFSUk5xRWJnc1ZPUmJBXy1DdW1RbzQySGZRRWZpdm1Sc2phQUdudWtSc05maTJLUXR4NTJoeFhfZnpHaTN0UjMxVHV2ZlNzVnNMZFBtUkdmdng4OWtvQjBlSldGdVhMbUlUdTlYUHFEMmpHVWpOMzJxakxFNk84WlItTUhtU0RkOFg0?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Why Your Microsoft Intune Deployment Needs a Secure Mobile Browser - Palo Alto Networks</a>
+          <div class="article-meta">Palo Alto Networks &bull; Oct 26, 2026</div>
+          <div class="article-summary snippet"><p>Why Your Microsoft Intune Deployment Needs a Secure Mobile Browser&amp;nbsp;&amp;nbsp;Palo Alto Networks</p><a href="https://news.google.com/rss/articles/CBMirwFBVV95cUxQNmI0R3haUTBjSWg3MnFKUmdHTFFPMVlHcWNJanJhSDdOODVaMVFSUk5xRWJnc1ZPUmJBXy1DdW1RbzQySGZRRWZpdm1Sc2phQUdudWtSc05maTJLUXR4NTJoeFhfZnpHaTN0UjMxVHV2ZlNzVnNMZFBtUkdmdng4OWtvQjBlSldGdVhMbUlUdTlYUHFEMmpHVWpOMzJxakxFNk84WlItTUhtU0RkOFg0?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a77d147d6d3')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aec5a33ee40">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMihwFBVV95cUxQV2VDRm1rTldoR3FfcHNZRzFtTWNUNFoxdllTYlVUNGdKUmZLYjQ2aE9MbnpDaHNwdDdPQThBNC1CdXhpeXVBZXFqZ3JuSVNaOFl2S2I5ODZCYWRSZFBjR2x2UmRVeGplalFrZmlOeDBxZVJHbzZ4bUJkTmtxV0toZXBYTkp2Qjg?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Splashtop launches Agentic Packr for Intune packaging - IT Brief Asia</a>
+          <div class="article-meta">IT Brief Asia &bull; Oct 28, 2026</div>
+          <div class="article-summary snippet"><p>Splashtop launches Agentic Packr for Intune packaging&amp;nbsp;&amp;nbsp;IT Brief Asia</p><a href="https://news.google.com/rss/articles/CBMihwFBVV95cUxQV2VDRm1rTldoR3FfcHNZRzFtTWNUNFoxdllTYlVUNGdKUmZLYjQ2aE9MbnpDaHNwdDdPQThBNC1CdXhpeXVBZXFqZ3JuSVNaOFl2S2I5ODZCYWRSZFBjR2x2UmRVeGplalFrZmlOeDBxZVJHbzZ4bUJkTmtxV0toZXBYTkp2Qjg?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aec5a33ee40')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="entraid" class="topic-section">
+      <h2 class="topic-title" style="--c:#6B69D6">Entra ID <span class="count">(6)</span></h2>
+      <div class="article-card" data-id="a9f04f082ea">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMioAFBVV95cUxNOEdRUzhQTHdGRnJiZ2N1NFBvSE96UkFXMTBFdXFUMExUYm5jNklCMjdtaWh2RHBiU1hydHRXdWJXVjNhQll1VEY0SzZ0M1NjREVmbjN1U3FuRi1saG81MjU4cEhfXy1ScmhwSUNJUU10anFVZ0UwUEZxVERXdS10WWh5MDFMX25ZUWktU3lWdU9oWWVZbkc3RGdPZlRiR21j?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Identity Provider for AI Agents: 6 Compared [2026] - https://tech-insider.org/</a>
+          <div class="article-meta">https://tech-insider.org/ &bull; Oct 30, 2026</div>
+          <div class="article-summary snippet"><p>Identity Provider for AI Agents: 6 Compared [2026]&amp;nbsp;&amp;nbsp;https://tech-insider.org/</p><a href="https://news.google.com/rss/articles/CBMioAFBVV95cUxNOEdRUzhQTHdGRnJiZ2N1NFBvSE96UkFXMTBFdXFUMExUYm5jNklCMjdtaWh2RHBiU1hydHRXdWJXVjNhQll1VEY0SzZ0M1NjREVmbjN1U3FuRi1saG81MjU4cEhfXy1ScmhwSUNJUU10anFVZ0UwUEZxVERXdS10WWh5MDFMX25ZUWktU3lWdU9oWWVZbkc3RGdPZlRiR21j?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a9f04f082ea')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a8c3455614e">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMifkFVX3lxTE9tQVpTS25iYWpyS1p0eVdNbXJNbUlZVzRDV1JDNEZqd1lxRTRpVlRKSkNaY1RlRWx4NDBSZTdXZU9BUHk0Qk9zVDJTLURjWEFTQVNIWURXWW5adld0RGRKZi10ZjVzb0E4UFFkbldTVU1idHlXRXZJVElCNDZSQdIBgwFBVV95cUxPSU1CTU5rVzFyajZYZU8zMGg5N2hFZDJnQ01qdHNxN3VvcktHNXZ0eWxSaEpRd0tZX25NemtINjlNMjc3ZEFLVW5qaVIxdG9DSFl6S0JzZE5NZFZaS3htTkFDSncyTEVnSEVWakVqWmNmSXdQblF0bHcwaUc2aUJpOU51cw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Urges Entra ID Admins to Migrate from SMS and Voice Authentication to Passkeys - CyberSecurityNews</a>
+          <div class="article-meta">CyberSecurityNews &bull; Oct 29, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft Urges Entra ID Admins to Migrate from SMS and Voice Authentication to Passkeys&amp;nbsp;&amp;nbsp;CyberSecurityNews</p><a href="https://news.google.com/rss/articles/CBMifkFVX3lxTE9tQVpTS25iYWpyS1p0eVdNbXJNbUlZVzRDV1JDNEZqd1lxRTRpVlRKSkNaY1RlRWx4NDBSZTdXZU9BUHk0Qk9zVDJTLURjWEFTQVNIWURXWW5adld0RGRKZi10ZjVzb0E4UFFkbldTVU1idHlXRXZJVElCNDZSQdIBgwFBVV95cUxPSU1CTU5rVzFyajZYZU8zMGg5N2hFZDJnQ01qdHNxN3VvcktHNXZ0eWxSaEpRd0tZX25NemtINjlNMjc3ZEFLVW5qaVIxdG9DSFl6S0JzZE5NZFZaS3htTkFDSncyTEVnSEVWakVqWmNmSXdQblF0bHcwaUc2aUJpOU51cw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a8c3455614e')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a68898aa282">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMisAFBVV95cUxQV2ZvTU1JWVhVM0VGNkZ5aWdsTV9Xd2drYTBDcmxndTRDOVY3M2laMHRHcFp6bDBhU1cyd1J4eG9PQlBxQ2M0X184dVZMQnJzLTNqYXhPb2ljMV9fOGRZUTZ2MjVmY1UzMEZod3FhUUh3OFluakV2YjJ1MWdkS3IwOFM2d0NtMDhxM1Y2ZEM3M1V4LUZ6X3JzQnV4N1pJSENZRjYyZ091Z2NPY2dzYWRGR9IBtgFBVV95cUxOSjhKVFQ2el9iMnJMaGZSdl9JbzFDTUNuTENERWIwbzQ5T0Y4cGlwcXZMcFg1RnZqTVpVOF9qSjN1aUNWUEk0bEd5cmJuUmZUYXNJRXBGb25SbnFIcnVQelZlSnFjZWNaWUM1UVgyQlc5bUZ1NkpYWGI0Zk1xU1dYTmFEV2ZnOGxUTkRLNlRYTjcxWkNjOEN4SUg0S0ZMby15a3NJN05QUW9mSXZYRi0wUk40UUFtQQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft urges Entra ID admins to migrate users to passkeys - BleepingComputer</a>
+          <div class="article-meta">BleepingComputer &bull; Oct 28, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft urges Entra ID admins to migrate users to passkeys&amp;nbsp;&amp;nbsp;BleepingComputer</p><a href="https://news.google.com/rss/articles/CBMisAFBVV95cUxQV2ZvTU1JWVhVM0VGNkZ5aWdsTV9Xd2drYTBDcmxndTRDOVY3M2laMHRHcFp6bDBhU1cyd1J4eG9PQlBxQ2M0X184dVZMQnJzLTNqYXhPb2ljMV9fOGRZUTZ2MjVmY1UzMEZod3FhUUh3OFluakV2YjJ1MWdkS3IwOFM2d0NtMDhxM1Y2ZEM3M1V4LUZ6X3JzQnV4N1pJSENZRjYyZ091Z2NPY2dzYWRGR9IBtgFBVV95cUxOSjhKVFQ2el9iMnJMaGZSdl9JbzFDTUNuTENERWIwbzQ5T0Y4cGlwcXZMcFg1RnZqTVpVOF9qSjN1aUNWUEk0bEd5cmJuUmZUYXNJRXBGb25SbnFIcnVQelZlSnFjZWNaWUM1UVgyQlc5bUZ1NkpYWGI0Zk1xU1dYTmFEV2ZnOGxUTkRLNlRYTjcxWkNjOEN4SUg0S0ZMby15a3NJN05QUW9mSXZYRi0wUk40UUFtQQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a68898aa282')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ad045b2c948">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMifkFVX3lxTE9EejdpdUNqenQ4THVDSjlhR1VJSGh6WUhzSTQ1NGd5TkU5cy1MN2tHR1VLLWZOdmtwa0VHMllSS0o4dFZadkljbUtRaU11SFRqdDNFZXdPUFh0Vi1CazV4RFdoU0czYklSdDNIYzRHWHNUZVNzajM1aDFNTFZidw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">ISS connects 169,000 frontline workers with Microsoft Entra ID - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; Oct 27, 2026</div>
+          <div class="article-summary snippet"><p>ISS connects 169,000 frontline workers with Microsoft Entra ID&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMifkFVX3lxTE9EejdpdUNqenQ4THVDSjlhR1VJSGh6WUhzSTQ1NGd5TkU5cy1MN2tHR1VLLWZOdmtwa0VHMllSS0o4dFZadkljbUtRaU11SFRqdDNFZXdPUFh0Vi1CazV4RFdoU0czYklSdDNIYzRHWHNUZVNzajM1aDFNTFZidw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ad045b2c948')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a5eb4318c1b">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiwwFBVV95cUxNaDNSeHhua1lMSWVuUGVaUFBLeVBub3Q2SWtQQzIxRmo4aUpnN2VJLUpsZmZIT1NMazVIdlJyaDlEcUdJbm1wWXRJOW9fRXlHclJteE1NZ20xcHhYVWpfZ1RPZ0RESG1IVHl6Q2tRM01rSXJXUDBGSzUtbDZqWmVSLWRJYXJyTDRDa0VNMC0zdzlKNzFPNndfcTZsaEk5SWF2NnRLRVRZem9WS0I5Z3pSZm9FZ3JHZEcwNWE2dDNGQlhPbW8?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Telesign Joins Microsoft Security Store as Key Authentication Provider - The Fast Mode</a>
+          <div class="article-meta">The Fast Mode &bull; Oct 30, 2026</div>
+          <div class="article-summary snippet"><p>Telesign Joins Microsoft Security Store as Key Authentication Provider&amp;nbsp;&amp;nbsp;The Fast Mode</p><a href="https://news.google.com/rss/articles/CBMiwwFBVV95cUxNaDNSeHhua1lMSWVuUGVaUFBLeVBub3Q2SWtQQzIxRmo4aUpnN2VJLUpsZmZIT1NMazVIdlJyaDlEcUdJbm1wWXRJOW9fRXlHclJteE1NZ20xcHhYVWpfZ1RPZ0RESG1IVHl6Q2tRM01rSXJXUDBGSzUtbDZqWmVSLWRJYXJyTDRDa0VNMC0zdzlKNzFPNndfcTZsaEk5SWF2NnRLRVRZem9WS0I5Z3pSZm9FZ3JHZEcwNWE2dDNGQlhPbW8?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a5eb4318c1b')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a36dac0f6a1">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiyAFBVV95cUxOa2stb3hOaFpEVVYyMDNIWGZPNV94TVJYMHJTN0w4cnlKRG9rWjZ4ZFhyZHNOb0Jkb3RGbFpLbXBWd0x0ZXNSbFV2eDMwaFRCWVFoYVFSUExXcFhXbHZJVmZ1azREbEhSRWhobDlWSUVPMXRhX0trX2txRVUzM1kzTXFuT3V5OGlaNzRzc1ZTUkpoRnlpcWJJaENfSml4MjJyRFRZMzR0TTh4SmdrbnRzZzBmOTlnNU91enoyYnFXa2M5OThvQ0pJZQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft to end SMS, voice authentication for Entra ID, urges switch to passkeys - 디지털투데이</a>
+          <div class="article-meta">디지털투데이 &bull; Oct 28, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft to end SMS, voice authentication for Entra ID, urges switch to passkeys&amp;nbsp;&amp;nbsp;디지털투데이</p><a href="https://news.google.com/rss/articles/CBMiyAFBVV95cUxOa2stb3hOaFpEVVYyMDNIWGZPNV94TVJYMHJTN0w4cnlKRG9rWjZ4ZFhyZHNOb0Jkb3RGbFpLbXBWd0x0ZXNSbFV2eDMwaFRCWVFoYVFSUExXcFhXbHZJVmZ1azREbEhSRWhobDlWSUVPMXRhX0trX2txRVUzM1kzTXFuT3V5OGlaNzRzc1ZTUkpoRnlpcWJJaENfSml4MjJyRFRZMzR0TTh4SmdrbnRzZzBmOTlnNU91enoyYnFXa2M5OThvQ0pJZQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a36dac0f6a1')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="m365" class="topic-section">
+      <h2 class="topic-title" style="--c:#D83B01">Microsoft 365 <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a6aa84e8fba">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiigFBVV95cUxPaXNEUTdVWndDS3RFQS13VmtYUjYya2J6NTJvOU5rX29OY25MVjd0ZDFrakZJanZ6TXpmYnduckNrQ2FkaUFRaXlaR1ktNXhwdEozTUVGcVUwRDRLa3BjdkUyNDU1Skk3cnA1NnlxQWFBWG5JRUNlNU9UQjFueDM1V2pla21XZmFfWUE?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Press Release &amp; Webcast - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; Nov 01, 2026</div>
+          <div class="article-summary snippet"><p>Press Release &amp; Webcast&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMiigFBVV95cUxPaXNEUTdVWndDS3RFQS13VmtYUjYya2J6NTJvOU5rX29OY25MVjd0ZDFrakZJanZ6TXpmYnduckNrQ2FkaUFRaXlaR1ktNXhwdEozTUVGcVUwRDRLa3BjdkUyNDU1Skk3cnA1NnlxQWFBWG5JRUNlNU9UQjFueDM1V2pla21XZmFfWUE?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a6aa84e8fba')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ac623cb81ad">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiygFBVV95cUxNV0cwclBsckFxbzlOUmQ0UWJKV1dwYUtiV2NlMUlnUHBvamlMX25kQU0xMWVxbDhza1I2UkZVcHoybFZxOEFpbnhfZDd1RUdDMVU5VnFsOEIxaHpENzQwQVR3NDRoaGF0eWM4cm5tbjUtYnUzT1JfUDJKeTJ2a0YwT2ZFdlh6eFdPZG9JVmZzN0NfRWRxSWdHdWlOMXJ2YktXdTV3cUxyWHdac1VsQ1JMRGtWRk04TWg5SEJ1dGExRkQ3dllxTGw4VEZ3?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cancel your $99.99 Microsoft 365 subscription and get the same apps for life for $49.97 - PCWorld</a>
+          <div class="article-meta">PCWorld &bull; Nov 01, 2026</div>
+          <div class="article-summary snippet"><p>Cancel your $99.99 Microsoft 365 subscription and get the same apps for life for $49.97&amp;nbsp;&amp;nbsp;PCWorld</p><a href="https://news.google.com/rss/articles/CBMiygFBVV95cUxNV0cwclBsckFxbzlOUmQ0UWJKV1dwYUtiV2NlMUlnUHBvamlMX25kQU0xMWVxbDhza1I2UkZVcHoybFZxOEFpbnhfZDd1RUdDMVU5VnFsOEIxaHpENzQwQVR3NDRoaGF0eWM4cm5tbjUtYnUzT1JfUDJKeTJ2a0YwT2ZFdlh6eFdPZG9JVmZzN0NfRWRxSWdHdWlOMXJ2YktXdTV3cUxyWHdac1VsQ1JMRGtWRk04TWg5SEJ1dGExRkQ3dllxTGw4VEZ3?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac623cb81ad')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a09f12ce7f9">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMirwFBVV95cUxOOHVQeXN5dkZKVHM4LWtQZ19XWEt6a0NUTnFnbm11dG9PbGZseFk2bFozRThVWTVhTENIaHRKanlHd0FSWmVkZ1l1eHZvWkZMRTBoOG5HNmg1SC11NHNDS1p0S21zWEdQN2hjLTFpV0VyOUxQMjBTTlh5NTRTUDY3SXJnbm44aEttcHpNWDJGT1g5ZnNDR1VPOEJXck9qLUh4aVYyNDN2U1pkUVo3MTJ3?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">This Microsoft 365 Family Plan Cloud Storage Change May Leave You Frustrated - Engadget</a>
+          <div class="article-meta">Engadget &bull; Oct 31, 2026</div>
+          <div class="article-summary snippet"><p>This Microsoft 365 Family Plan Cloud Storage Change May Leave You Frustrated&amp;nbsp;&amp;nbsp;Engadget</p><a href="https://news.google.com/rss/articles/CBMirwFBVV95cUxOOHVQeXN5dkZKVHM4LWtQZ19XWEt6a0NUTnFnbm11dG9PbGZseFk2bFozRThVWTVhTENIaHRKanlHd0FSWmVkZ1l1eHZvWkZMRTBoOG5HNmg1SC11NHNDS1p0S21zWEdQN2hjLTFpV0VyOUxQMjBTTlh5NTRTUDY3SXJnbm44aEttcHpNWDJGT1g5ZnNDR1VPOEJXck9qLUh4aVYyNDN2U1pkUVo3MTJ3?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a09f12ce7f9')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a362d8224f6">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMinwFBVV95cUxOWDZrNC1NTEpLV1ZKMVNuR0FhbDhrMWo0a0ZlZjBmakdhWXZvUGtCM2hHTzlIYVJiV1lyUklMb3Z1RnpBdXVEZ2xkLV9qVDJnNWpqSVRwRFhONWdfUVBzellwTVdRVDA2eXppNnc1MlY4TTBtUWVkZ3JyVFhBRjNlaUhtN18xTnFCajJweDRMNzNhTER2Zl9UckxvVFdSR0k?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Inside Track - Our best recipes for cooking up better Copilot prompts - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; Oct 29, 2026</div>
+          <div class="article-summary snippet"><p>Inside Track - Our best recipes for cooking up better Copilot prompts&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMinwFBVV95cUxOWDZrNC1NTEpLV1ZKMVNuR0FhbDhrMWo0a0ZlZjBmakdhWXZvUGtCM2hHTzlIYVJiV1lyUklMb3Z1RnpBdXVEZ2xkLV9qVDJnNWpqSVRwRFhONWdfUVBzellwTVdRVDA2eXppNnc1MlY4TTBtUWVkZ3JyVFhBRjNlaUhtN18xTnFCajJweDRMNzNhTER2Zl9UckxvVFdSR0k?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a362d8224f6')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a766b9b41f4">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiyAFBVV95cUxQODgxQXV3eVFWRHZ1NXA5SWNIVmcyUjZGYjZEWmI3QmxLRVhKMzNsVHVIc3FMUG1rR2tJNHdUd0dMVDJscVZsMWtyajhkMi1CNVdfYUsyVWFBR1NROTczcVVBQTU0WXFnWWlIVjJ5WUNoZjNSZzdNOG5xOS11S25PSlpkVTBuVkY1QmZuNXkyOTNzaFZIMG5NRmJoNXBIWjdGNnBRbDc1QS1YRTRmSmZTZjYwUUgzX2dMdlJaeHJzcHNHc0R3UFZXQg?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">From synthetic enterprise data evaluations to real Microsoft Copilot AI confidence - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; Oct 30, 2026</div>
+          <div class="article-summary snippet"><p>From synthetic enterprise data evaluations to real Microsoft Copilot AI confidence&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMiyAFBVV95cUxQODgxQXV3eVFWRHZ1NXA5SWNIVmcyUjZGYjZEWmI3QmxLRVhKMzNsVHVIc3FMUG1rR2tJNHdUd0dMVDJscVZsMWtyajhkMi1CNVdfYUsyVWFBR1NROTczcVVBQTU0WXFnWWlIVjJ5WUNoZjNSZzdNOG5xOS11S25PSlpkVTBuVkY1QmZuNXkyOTNzaFZIMG5NRmJoNXBIWjdGNnBRbDc1QS1YRTRmSmZTZjYwUUgzX2dMdlJaeHJzcHNHc0R3UFZXQg?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a766b9b41f4')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ac50a4aba04">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMizgFBVV95cUxOQi1NQkJLV3BEb3pQQy1mZkdFTmo5dWxGSHJ6LWYwQnVVX1dQb0V0UHloajFBSnJMalBHbkQySTRyV1JRQ2otdlNpQng0Q2IxZmU1YVdPbmdITkoxcUVxbm1rUnlTSUFFUGN0bmV4Ri1SRTE3NzJQZVJscXhacFBHZzUzYUVtdXNKUUhMaTJXcEtpeVFxYXpyOWQ0UFlkQ1pYRi0zYTNlSVV4ZzE0SWVVUnRlNThaSDhSbWlfcUJYMXhMR1J2LTQ4SkNOUloxUQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">From help desk impersonation to AD CS abuse: Investigating ESC1 and ESC8 intrusion paths - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; Oct 30, 2026</div>
+          <div class="article-summary snippet"><p>From help desk impersonation to AD CS abuse: Investigating ESC1 and ESC8 intrusion paths&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMizgFBVV95cUxOQi1NQkJLV3BEb3pQQy1mZkdFTmo5dWxGSHJ6LWYwQnVVX1dQb0V0UHloajFBSnJMalBHbkQySTRyV1JRQ2otdlNpQng0Q2IxZmU1YVdPbmdITkoxcUVxbm1rUnlTSUFFUGN0bmV4Ri1SRTE3NzJQZVJscXhacFBHZzUzYUVtdXNKUUhMaTJXcEtpeVFxYXpyOWQ0UFlkQ1pYRi0zYTNlSVV4ZzE0SWVVUnRlNThaSDhSbWlfcUJYMXhMR1J2LTQ4SkNOUloxUQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac50a4aba04')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a5c75df0df8">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiwwFBVV95cUxQVWNSRHZtQmU1TExCSDN5d2toaEtaY3FUV3hqWTN2SlJibDdvT2pfVHZRX3cwMUEwYUtGMmRBekRiNlBBQVZTbndxYnpibUZqbnJpOVAyd0tiLTY4SEVtWmY5UmFSSlZfZjZBY0pmSTE3Z0lQSHRiNzdpSHBrR1pOVmNBbWk3Z1Y5SGNvYXNHMjFPT0JrU2pxbURSd0FvUFJOOFc5RGlFWWtCN3RrSTBILXFRSXpCTFk5T2JXN0gxTnljZG8?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">The CISO’s evolving role: Protecting and defending in the agentic era - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; Oct 28, 2026</div>
+          <div class="article-summary snippet"><p>The CISO’s evolving role: Protecting and defending in the agentic era&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMiwwFBVV95cUxQVWNSRHZtQmU1TExCSDN5d2toaEtaY3FUV3hqWTN2SlJibDdvT2pfVHZRX3cwMUEwYUtGMmRBekRiNlBBQVZTbndxYnpibUZqbnJpOVAyd0tiLTY4SEVtWmY5UmFSSlZfZjZBY0pmSTE3Z0lQSHRiNzdpSHBrR1pOVmNBbWk3Z1Y5SGNvYXNHMjFPT0JrU2pxbURSd0FvUFJOOFc5RGlFWWtCN3RrSTBILXFRSXpCTFk5T2JXN0gxTnljZG8?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a5c75df0df8')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aad73031897">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMitgFBVV95cUxOWlBfT21fV2dkRE56VE44d1ZmV1ZrUWprOWpzXzE5bi1mTXFES0IyZ0hzNmEtb1NFNllMeFN6WnFFN3c3TUYyTnBqYTBNbVI3bklHZGEtbzlGRjZ5aGZpSWZvY2NCcmlETllvcnFnODNnNXdYMmc4WnU1ZFhoZHZWZFhyYVZfQWEyRUV0VWxHOVF2U1B3eGpPeEtUN1dfY2FrdjRMRzQ4dVpYV3AxdHpPT3czV21Ndw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Replace Microsoft 365 with a $27.97 lifetime Office license for Windows - PCWorld</a>
+          <div class="article-meta">PCWorld &bull; Oct 31, 2026</div>
+          <div class="article-summary snippet"><p>Replace Microsoft 365 with a $27.97 lifetime Office license for Windows&amp;nbsp;&amp;nbsp;PCWorld</p><a href="https://news.google.com/rss/articles/CBMitgFBVV95cUxOWlBfT21fV2dkRE56VE44d1ZmV1ZrUWprOWpzXzE5bi1mTXFES0IyZ0hzNmEtb1NFNllMeFN6WnFFN3c3TUYyTnBqYTBNbVI3bklHZGEtbzlGRjZ5aGZpSWZvY2NCcmlETllvcnFnODNnNXdYMmc4WnU1ZFhoZHZWZFhyYVZfQWEyRUV0VWxHOVF2U1B3eGpPeEtUN1dfY2FrdjRMRzQ4dVpYV3AxdHpPT3czV21Ndw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aad73031897')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="iru" class="topic-section">
+      <h2 class="topic-title" style="--c:#7C3AED">Iru MDM (formerly Kandji) </h2>
+      <p class="no-news">No articles found this week.</p>
+    </section>
+    <section id="cato" class="topic-section">
+      <h2 class="topic-title" style="--c:#FF6B35">Cato Networks <span class="count">(7)</span></h2>
+      <div class="article-card" data-id="ab0f81e3fdd">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMikAFBVV95cUxOZGh0TENya0t0SlBEZmQ2ME0xemQ2djlsVGRUUkxab1JqWk91cFREVmphdDN3MGtpNTlUaVY5d0ppa245d0VjVnUtbXRVRVJLV3lVVjVEV1MzM2RvYXFpVy1CS1I1bGZHek1hcjV5MHliVkg5dDZBRWYyVkRLUDJUWWVJNG5rcGVVdnR6T1kybnc?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks Extends Reach to Secure AI Clients - Security Boulevard</a>
+          <div class="article-meta">Security Boulevard &bull; Oct 27, 2026</div>
+          <div class="article-summary snippet"><p>Cato Networks Extends Reach to Secure AI Clients&amp;nbsp;&amp;nbsp;Security Boulevard</p><a href="https://news.google.com/rss/articles/CBMikAFBVV95cUxOZGh0TENya0t0SlBEZmQ2ME0xemQ2djlsVGRUUkxab1JqWk91cFREVmphdDN3MGtpNTlUaVY5d0ppa245d0VjVnUtbXRVRVJLV3lVVjVEV1MzM2RvYXFpVy1CS1I1bGZHek1hcjV5MHliVkg5dDZBRWYyVkRLUDJUWWVJNG5rcGVVdnR6T1kybnc?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ab0f81e3fdd')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a09bd73a7b8">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMivAFBVV95cUxPdFRYbnZyZ1M1em10ZUhxVUlCdTJwZXhMNjlJZzhaVF83blNxYm9rZkFDb3c3MEJCa3NQZ2dxVF85dzFGZ3czQm5iZW9oWDRPVXhxNVQteE9yckcyMG5NZGxkM0JjcDFHa0o3MzFFWE1UeUczajlzcVRNYWtTeXBpWVZSUFdhQUVxa3E5Y18wWTZLblBHMnZPcWFJV2JfN1VhNlZ1bU9aSDhuaVp4R0FWQ2tXdzZVb3RJRUNUWQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks Launches AI Endpoint Security for Enterprise AI Use - The Fast Mode</a>
+          <div class="article-meta">The Fast Mode &bull; Oct 28, 2026</div>
+          <div class="article-summary snippet"><p>Cato Networks Launches AI Endpoint Security for Enterprise AI Use&amp;nbsp;&amp;nbsp;The Fast Mode</p><a href="https://news.google.com/rss/articles/CBMivAFBVV95cUxPdFRYbnZyZ1M1em10ZUhxVUlCdTJwZXhMNjlJZzhaVF83blNxYm9rZkFDb3c3MEJCa3NQZ2dxVF85dzFGZ3czQm5iZW9oWDRPVXhxNVQteE9yckcyMG5NZGxkM0JjcDFHa0o3MzFFWE1UeUczajlzcVRNYWtTeXBpWVZSUFdhQUVxa3E5Y18wWTZLblBHMnZPcWFJV2JfN1VhNlZ1bU9aSDhuaVp4R0FWQ2tXdzZVb3RJRUNUWQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a09bd73a7b8')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="af19eceb77d">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMilAFBVV95cUxPTUFOSTA5SW0tWW9iLTFEVUVKNm5FVy1HUndySjJBRUtjVURySllVOGR0WlRWVDc2cWpWb1p2aVZZdW05VUItdXRGMEtTRzJEQnhsN2ZhNEVsaXQ4RDQ5YUxWM21qb1UyNXhLR2JWUFpjZ3hvbXNxZVhyaXFhQTJEODVNckkzejF0cGY3VTZLQi16T1Zv?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato targets shadow AI lurking on enterprise desktops - Fierce Network</a>
+          <div class="article-meta">Fierce Network &bull; Oct 27, 2026</div>
+          <div class="article-summary snippet"><p>Cato targets shadow AI lurking on enterprise desktops&amp;nbsp;&amp;nbsp;Fierce Network</p><a href="https://news.google.com/rss/articles/CBMilAFBVV95cUxPTUFOSTA5SW0tWW9iLTFEVUVKNm5FVy1HUndySjJBRUtjVURySllVOGR0WlRWVDc2cWpWb1p2aVZZdW05VUItdXRGMEtTRzJEQnhsN2ZhNEVsaXQ4RDQ5YUxWM21qb1UyNXhLR2JWUFpjZ3hvbXNxZVhyaXFhQTJEODVNckkzejF0cGY3VTZLQi16T1Zv?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('af19eceb77d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a6a178edd7f">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMifkFVX3lxTE44b3hQdmlLcU8xd20taVZPRzNsUHVzb0tOaUtKZGxNLWIyYUlyaG1lRnI1ZHcxLU5taVBXOXFXV09qbTRtRk5DTEZtZzlDdHhnZW9pdFk2eWZ1Vk9oYU1ZeUptVkpVWU9GYWd1U3dFSzNvazlCbml4OU9idUZfQQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks launches endpoint client - pcr-online.biz</a>
+          <div class="article-meta">pcr-online.biz &bull; Oct 29, 2026</div>
+          <div class="article-summary snippet"><p>Cato Networks launches endpoint client&amp;nbsp;&amp;nbsp;pcr-online.biz</p><a href="https://news.google.com/rss/articles/CBMifkFVX3lxTE44b3hQdmlLcU8xd20taVZPRzNsUHVzb0tOaUtKZGxNLWIyYUlyaG1lRnI1ZHcxLU5taVBXOXFXV09qbTRtRk5DTEZtZzlDdHhnZW9pdFk2eWZ1Vk9oYU1ZeUptVkpVWU9GYWd1U3dFSzNvazlCbml4OU9idUZfQQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a6a178edd7f')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a0d3f2d05aa">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMib0FVX3lxTE1lMDlTUFBtMFg0OG01bldqdnFPZjdzOHJSYm5QdFB5ZDJMNS16SEpTSmV2UFkzWTVrbGhzSGVkRVJjaldFQ3VPZ0NaWHMtVC0zUXZMRmt3NUU1LW1pck9tXzFYQm45dnFYdHk2YWRJYw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Israeli-founded startups claim nearly half of Fortune's 2027 Cyber 60 list - Ynetnews</a>
+          <div class="article-meta">Ynetnews &bull; Oct 30, 2026</div>
+          <div class="article-summary snippet"><p>Israeli-founded startups claim nearly half of Fortune's 2027 Cyber 60 list&amp;nbsp;&amp;nbsp;Ynetnews</p><a href="https://news.google.com/rss/articles/CBMib0FVX3lxTE1lMDlTUFBtMFg0OG01bldqdnFPZjdzOHJSYm5QdFB5ZDJMNS16SEpTSmV2UFkzWTVrbGhzSGVkRVJjaldFQ3VPZ0NaWHMtVC0zUXZMRmt3NUU1LW1pck9tXzFYQm45dnFYdHk2YWRJYw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a0d3f2d05aa')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a2224c9157d">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiywFBVV95cUxQWncxUjBXVVdMamlhX2gzekNlUVh2ZlhQNTNGdEd5SHFlVlZXdXdGRWJGdTZUdmlMRHQ0Z0FuRHQ4ajFTa1hIWlNJczE4cWtTMC03WkVGUkUzM2ctcXYzUGd3Nnp2bHVBLWJmQjN5U3EzMDdkQk51S3g2TlhBMHc0eXNEWWZLem1oRzVTOHdHZ0N5LWVkOUdjNWRfd0NCTWxTRmNQdVduVGJidVFkMV9uZEZCSms3SE1qTG1OT3NpM2VobHBya3FWZWUxbw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks Launches Cato AI Endpoint to Secure AI Use Beyond the Browser - PR Newswire</a>
+          <div class="article-meta">PR Newswire &bull; Oct 27, 2026</div>
+          <div class="article-summary snippet"><p>Cato Networks Launches Cato AI Endpoint to Secure AI Use Beyond the Browser&amp;nbsp;&amp;nbsp;PR Newswire</p><a href="https://news.google.com/rss/articles/CBMiywFBVV95cUxQWncxUjBXVVdMamlhX2gzekNlUVh2ZlhQNTNGdEd5SHFlVlZXdXdGRWJGdTZUdmlMRHQ0Z0FuRHQ4ajFTa1hIWlNJczE4cWtTMC03WkVGUkUzM2ctcXYzUGd3Nnp2bHVBLWJmQjN5U3EzMDdkQk51S3g2TlhBMHc0eXNEWWZLem1oRzVTOHdHZ0N5LWVkOUdjNWRfd0NCTWxTRmNQdVduVGJidVFkMV9uZEZCSms3SE1qTG1OT3NpM2VobHBya3FWZWUxbw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a2224c9157d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a129e7f362f">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMinwFBVV95cUxPNnFFVThpYW9EcHJWZm5tRUxWUDBqM25DQXhmaWlLSkh6Q0s5NTh4cC1qcXJfUWxFVE9nS2l0eVdMaVIwUW45Snd3Nl9IU0tVMkhKdE1mcmMtbkJZc2I0Z2pwWnJRclBjT2NMenJQT0dIUmItYTZ5ODJVZ0p6UnZTS3puS1RWY21mZzNoSXl6NHBjZDR6SmFBM2U0V2VfZzg?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato AI Endpoint brings AI traffic and local-agent controls alongside existing security tools - OpenTools</a>
+          <div class="article-meta">OpenTools &bull; Oct 27, 2026</div>
+          <div class="article-summary snippet"><p>Cato AI Endpoint brings AI traffic and local-agent controls alongside existing security tools&amp;nbsp;&amp;nbsp;OpenTools</p><a href="https://news.google.com/rss/articles/CBMinwFBVV95cUxPNnFFVThpYW9EcHJWZm5tRUxWUDBqM25DQXhmaWlLSkh6Q0s5NTh4cC1qcXJfUWxFVE9nS2l0eVdMaVIwUW45Snd3Nl9IU0tVMkhKdE1mcmMtbkJZc2I0Z2pwWnJRclBjT2NMenJQT0dIUmItYTZ5ODJVZ0p6UnZTS3puS1RWY21mZzNoSXl6NHBjZDR6SmFBM2U0V2VfZzg?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a129e7f362f')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+</main>
+
+<footer>
+  Generated every Sunday &mdash; Topics: Windows &bull; Azure &bull; SharePoint &bull; Intune &bull; Entra ID &bull; Microsoft 365 &bull; Iru MDM (formerly Kandji) &bull; Cato Networks
+</footer>
+
+<script>
+const KEY = 'it-news-hidden-v1';
+function getHidden() {
+  try { return new Set(JSON.parse(localStorage.getItem(KEY) || '[]')); }
+  catch { return new Set(); }
+}
+function saveHidden(s) { localStorage.setItem(KEY, JSON.stringify([...s])); }
+function toggleArticle(id) {
+  const h = getHidden();
+  h.has(id) ? h.delete(id) : h.add(id);
+  saveHidden(h); applyHidden(h);
+}
+function applyHidden(h) {
+  h = h || getHidden();
+  document.querySelectorAll('.article-card[data-id]').forEach(c => {
+    c.classList.toggle('is-hidden', h.has(c.dataset.id));
+  });
+}
+let revealing = false;
+function toggleReveal() {
+  revealing = !revealing;
+  document.body.classList.toggle('reveal-hidden', revealing);
+  document.getElementById('reveal-btn').textContent = revealing ? 'Hide hidden' : 'Show hidden';
+}
+fetch('weeks.json').then(r => r.json()).then(weeks => {
+  const sel = document.getElementById('week-sel');
+  weeks.forEach(w => {
+    const o = document.createElement('option');
+    o.value = w.file; o.textContent = w.label;
+    if (w.current) o.selected = true;
+    sel.appendChild(o);
+  });
+}).catch(() => {});
+applyHidden();
+</script>
+</body>
+</html>
