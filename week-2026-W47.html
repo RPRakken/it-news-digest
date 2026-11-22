@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT News Digest — 2026-W47</title>
+  <style>
+    :root{--bg:#f8fafc;--surface:#fff;--border:#e2e8f0;--text:#1e293b;--muted:#64748b;--accent:#2563eb}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+    a{color:var(--accent)}
+
+    header{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+    .h-inner{max-width:1000px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .h-brand{font-size:1.1rem;font-weight:800;color:#1d4ed8}
+    .h-meta{font-size:.78rem;color:var(--muted)}
+    .h-controls{display:flex;gap:8px;align-items:center}
+    .btn{padding:5px 12px;border-radius:6px;font-size:.78rem;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);white-space:nowrap}
+    .btn:hover{background:#f1f5f9}
+    select.week-sel{padding:5px 10px;border-radius:6px;border:1px solid var(--border);background:var(--surface);font-size:.78rem;cursor:pointer;color:var(--text)}
+
+    .t-nav{background:var(--surface);border-bottom:1px solid var(--border);overflow-x:auto}
+    .t-nav-inner{max-width:1000px;margin:0 auto;padding:8px 20px;display:flex;gap:6px;min-width:max-content}
+    .nav-link{font-size:.72rem;padding:3px 10px;border-radius:20px;border:2px solid var(--c,#2563eb);color:var(--c,#2563eb);text-decoration:none;font-weight:600;white-space:nowrap}
+    .nav-link:hover{background:var(--c,#2563eb);color:#fff}
+
+    main{max-width:1000px;margin:0 auto;padding:24px 20px}
+
+    .week-hero{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin-bottom:28px;display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+    .hero-title{font-size:1.6rem;font-weight:900;color:#1d4ed8}
+    .hero-sub{font-size:.85rem;color:var(--muted);margin-top:2px}
+    .stat-box{text-align:center;min-width:60px}
+    .stat-num{font-size:2rem;font-weight:900;color:#1d4ed8;line-height:1}
+    .stat-lbl{font-size:.65rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+
+    .topic-section{margin-bottom:40px}
+    .topic-title{font-size:1.2rem;font-weight:800;color:var(--c,#2563eb);border-bottom:3px solid var(--c,#2563eb);padding-bottom:8px;margin-bottom:14px}
+    .count{font-size:.8rem;font-weight:400;color:var(--muted)}
+    .no-news{color:var(--muted);font-style:italic;font-size:.88rem}
+
+    .article-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:12px;display:flex;gap:12px;align-items:flex-start;transition:border-color .15s}
+    .article-card:hover{border-color:#94a3b8}
+    .article-body{flex:1;min-width:0}
+    .article-title{font-size:.98rem;font-weight:600;text-decoration:none;display:block;margin-bottom:4px;color:var(--accent)}
+    .article-title:hover{text-decoration:underline}
+    .article-meta{font-size:.72rem;color:var(--muted);margin-bottom:8px}
+
+    .article-summary{margin-top:6px;font-size:.875rem;color:#334155;line-height:1.75}
+    .article-summary p{margin-bottom:.6em}
+    .article-summary p:last-child{margin-bottom:0}
+    .gnews-badge{display:inline-block;font-size:.65rem;background:#fef3c7;color:#92400e;border-radius:4px;padding:1px 5px;margin-bottom:6px;vertical-align:middle}
+    .article-summary.snippet{color:var(--muted)}
+    .read-more{display:inline-block;margin-top:6px;font-size:.8rem;font-weight:600;color:var(--accent);text-decoration:none}
+    .read-more:hover{text-decoration:underline}
+
+    .hide-btn{flex-shrink:0;padding:5px 10px;border-radius:6px;font-size:.72rem;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--muted);white-space:nowrap;align-self:flex-start}
+    .hide-btn:hover{border-color:#ef4444;color:#ef4444;background:#fef2f2}
+    .lbl-show{display:none}
+
+    .article-card.is-hidden{display:none}
+    body.reveal-hidden .article-card.is-hidden{display:flex;opacity:.45;border-style:dashed}
+    .article-card.is-hidden .lbl-hide{display:none}
+    .article-card.is-hidden .lbl-show{display:inline}
+    body.reveal-hidden .article-card.is-hidden .hide-btn{border-color:#16a34a;color:#16a34a}
+    body.reveal-hidden .article-card.is-hidden .hide-btn:hover{background:#f0fdf4}
+
+    footer{text-align:center;padding:24px 20px;color:var(--muted);font-size:.75rem;border-top:1px solid var(--border);margin-top:40px}
+
+    @media(max-width:600px){
+      .h-inner,.main{padding-left:14px;padding-right:14px}
+      .hero-title{font-size:1.3rem}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="h-inner">
+    <div>
+      <div class="h-brand">IT News Digest</div>
+      <div class="h-meta">Week 2026-W47 &bull; Nov 16–22, 2026</div>
+    </div>
+    <div class="h-controls">
+      <button class="btn" id="reveal-btn" onclick="toggleReveal()">Show hidden</button>
+      <select class="week-sel" id="week-sel" onchange="if(this.value) location.href=this.value">
+        <option value="">&#128337; Archive&hellip;</option>
+      </select>
+    </div>
+  </div>
+</header>
+
+<nav class="t-nav"><div class="t-nav-inner"><a href="#windows" class="nav-link" style="--c:#0078D4">Microsoft Windows</a><a href="#azure" class="nav-link" style="--c:#00BCF2">Azure</a><a href="#sharepoint" class="nav-link" style="--c:#036C70">SharePoint</a><a href="#intune" class="nav-link" style="--c:#0F6CBD">Intune</a><a href="#entraid" class="nav-link" style="--c:#6B69D6">Entra ID</a><a href="#m365" class="nav-link" style="--c:#D83B01">Microsoft 365</a><a href="#iru" class="nav-link" style="--c:#7C3AED">Iru MDM (formerly Kandji)</a><a href="#cato" class="nav-link" style="--c:#FF6B35">Cato Networks</a></div></nav>
+
+<main>
+  <div class="week-hero">
+    <div>
+      <div class="hero-title">Week 2026-W47</div>
+      <div class="hero-sub">Nov 16–22, 2026</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">53</div>
+      <div class="stat-lbl">Articles</div>
+    </div>
+  </div>
+
+    <section id="windows" class="topic-section">
+      <h2 class="topic-title" style="--c:#0078D4">Microsoft Windows <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a573c6fc833">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windows-insider/2026/11/20/announcing-new-builds-for-20-november-2026/" target="_blank" rel="noopener noreferrer" class="article-title">Announcing new builds for 20 November 2026</a>
+          <div class="article-meta">blogs.windows.com &bull; Nov 20, 2026</div>
+          <div class="article-summary"><p>Announcing new builds for 20 November 2026
+Hello Windows Insiders,
+Today, we’re releasing new Windows 11 Insider Preview builds to the Beta and Experimental channels.
+New builds this week
+Select your channel below to view its release notes:
+- Beta: Build 26320.10022
+- Experimental: Build 26340.10032
+For those on other specific Windows build versions, here are today’s new builds and release notes:
+- Beta (26H1): Build 28020.3562
+- Experimental (26H1): Build 28120.3571
+- Experimental (Future Platforms): Build 29712.1013
+Insiders can resume moving from the Beta and Experimental channels to Experimental (Future Platforms) after last week’s channel movement pause. Remember that switching channels or leaving the Windows Insider Program out of Experimental (Future Platforms) will require a full reinstall of Windows as this build does not align to a retail version of Windows 11.
+Notable new features:
+[Bluetooth]
+Release channel: Experimental
+- Bluetooth LE Audio devices can now play at full-range stereo fidelity while also using the device’s microphone, ensuring you continue to hear great audio quality when in game chat, in a voice call, using voice typing, or using voice chat in Copilot Chat.
+- When using an LE Audio device with a PC that supports Super Wideband Stereo, choose the new 2 channels, 16 bit, 48000Hz option from Settings &gt; System &gt; Sound &gt; Output &gt; {Bluetooth device} &gt; Output settings &gt; Format when microphone is active. This feature is available for LE Audio devices that support 48kHz playback, like headphones, earbuds, and speakers. If you encounter compatibility issues with the LE Audio device you’re using, let us know through Feedback Hub.
+[People widget]
+Release channel: Experimental
+- The new People widget provides a way to quickly get back to the people you communicate with from the Windows Widgets board. The widget brings together relevant contacts from supported communication apps, making it easier to see the people you connect with and quickly continue a conversation.
+- To try it, open the Widgets board using Windows key + W, select the + button to open the widget picker, and add the People widget. Selecting a contact opens the appropriate conversation in the supported communication app.
+- Prerequisite: To see contacts in the widget, first set up Phone Link, WhatsApp, or both on your PC.
+Thanks,
+Stephen and the Windows Insider Program team</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a573c6fc833')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a40bf5a3faf">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/msedgedev/2026/11/19/hybrid-intelligence-on-the-web-introducing-aion-instruct-and-prompt-api-in-microsoft-edge/" target="_blank" rel="noopener noreferrer" class="article-title">Hybrid intelligence on the Web: Introducing Aion Instruct and Prompt API in Microsoft Edge</a>
+          <div class="article-meta">blogs.windows.com &bull; Nov 19, 2026</div>
+          <div class="article-summary"><p>Hybrid intelligence on the Web: Introducing Aion Instruct and Prompt API in Microsoft Edge
+Rapidly evolving AI capabilities are redefining what sites can do for users on the web. With on-device AI in Microsoft Edge, sites can use task-specific and small language models for capabilities such as writing assistance, summarization, language detection, translation, and speech recognition. Through the Prompt API, they can also use a small language model for more general-purpose intelligence.
+Together, these capabilities provide a foundation for hybrid intelligence on the web: developers can leverage on-device AI models when they are available in the browser and well-suited, and switch to a configured cloud provider to extend device coverage or access more powerful inference when needed.
+To make on-device inference more broadly available, we’re introducing three updates today:
+- General availability of Aion Instruct as an open-weights model on Hugging Face, and as Microsoft Edge’s built-in small language model.
+- An origin trial for the Prompt API, so you can use the Prompt API and Aion Instruct on your live site today.
+- A developer preview of an experimental Decisions API, which gets you fast, structured answers about text.
+These announcements build on our earlier developer preview of Aion-1.0-Instruct. Since then, we’ve heard from early adopters, incorporated your feedback, and refined the model’s training to improve quality and performance for on-device AI needs on the web.
+Aion Instruct is now generally available in Edge
+Aion Instruct is available today as an open-weights model on Hugging Face and is coming to Windows later this year, laying the foundation for richer on-device AI experiences across Windows and Copilot+ PCs. In Microsoft Edge, Aion now replaces Phi-4-mini as the browser’s built-in small language model.
+At 2.3B parameters, Aion is smaller, faster, and available on many more devices than Phi, while delivering comparable quality for common web tasks such as text synthesis and generation, summarization, instruction following, and structured outputs.
+Edge downloads Aion Instruct only when a site or feature first needs it, and only on devices that can run it well. Users stay in control and can turn off on-device AI in Edge settings, which removes the model and stops future downloads.
+Test the Prompt API on your live site
+Until now, the Prompt API has been available as a developer preview only in Edge Canary and Dev channels. Now, with the Prompt API origin trial, you can call the API from your live site in Microsoft Edge and test it with a much broader audience.
+The origin trial lets you bring on-device AI features to your site, evaluate them under real-world conditions, and refine your implementation based on actual usage. Along the way, please share feedback on the API’s design, the model’s performance, and any interoperability challenges you encounter across different browsers and models. This will help inform discussions with other browser vendors and the web community as the Prompt API is considered for standardization.
+To get started, register for the Prompt API Origin Trial, read the developer documentation, try out the playground sample, and engage with us on the GitHub discussion about the API.
+Developer preview of the Decisions API
+We’re also exploring new uses for on-device AI with an early implementation of the experimental Decisions API, powered by Aion Instruct. It is available as a developer preview in Edge Canary and Dev channels for prototyping. Expect both the API and its implementation to change as we learn from developer feedback.
+The Decisions API enables sites to ask yes/no, multiple-choice, or scoring questions about text input and get back probabilities and a confidence value, computed in a single pass without any text generation.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a40bf5a3faf')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a581449d1f2">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/msedgedev/2026/11/17/edge-for-business-ignite-2026-innovations/" target="_blank" rel="noopener noreferrer" class="article-title">Edge for Business becomes the most used enterprise browser and unveils Ignite 2026 innovations</a>
+          <div class="article-meta">blogs.windows.com &bull; Nov 17, 2026</div>
+          <div class="article-summary"><p>Edge for Business becomes the most used enterprise browser and unveils Ignite 2026 innovations
+Summary: Edge for Business is the most used enterprise browser in the world. At Microsoft Ignite 2026, we’re introducing new ways for users and agents to get more done. Deeper integration with Microsoft 365 security capabilities helps IT protect and manage browser activity. We’re also expanding our focus, supporting managed service providers (MSPs) with multi-tenant browser policy management through inforcer.
+The browser looms large in a cloud-centered world. By an industry estimate, roughly 85% of work is now happening in the browser 1. Increasingly, it’s a platform on which AI agents can act alongside people across websites and apps, inside an authenticated enterprise session. Reflecting these shifts, Forrester recently stated that the browser has evolved to a “first-class endpoint” in its “Top 10 Trends Shaping Endpoint Security in 2026” report.
+For IT and security teams, that raises the bar for the browser. Today, Edge for Business is the most used enterprise browser in the world 2. This milestone is built on your trust. You do the critical work behind the scenes to keep your organizations secure and productive, and we’re grateful for the opportunity to support you.
+Looking ahead, our vision is to deliver the best enterprise browser for humans and agents—and expand our impact by helping managed service providers (MSPs) secure work for their customers. Read on to discover how we’re starting to bring that vision to life at Microsoft Ignite 2026.
+Jump to
+- Agents that work your way, on your terms: Reusable skills, faster skills, fewer tokens, agents in managed browsing, and more on governance and a system of safety.
+- Everyday browsing, made smarter: Update web experiences without code, create an interactive brief from tabs, write and plan with context from your work.
+- Browser security in a high-velocity threat environment: Updates with less disruption, manage extension risk, browser signals in Microsoft Sentinel, private web apps without a VPN, on-screen redaction.
+- Browser security, strengthened by our partner ecosystem: Multi-tenant policy management with inforcer, partner connectors on more platforms, and Akamai Workforce Protector on mobile.
+- How should IT teams get started? It’s EZ
+Agents that work your way, on your terms
+Your organization is probably already juggling more than one agent. Alongside Microsoft Copilot, your users may rely on agents such as Claude or ChatGPT, in dedicated apps, command-line tools, or custom builds. Users want the power. You need the control.
+Whatever the agent, Microsoft or otherwise, it should do its best work in Edge for Business: faster, with fewer tokens, and more accurate results. IT and security teams get predictability too: agents can run in the managed browser you’ve configured, under your control and visibility. Today we’re sharing the first building blocks.
+Delegate everyday browsing tasks to Cowork
+At a glance: Cowork in Edge for Business now includes agentic browsing: it can complete multi-step tasks across websites on users’ behalf.
+At Ignite last year, we introduced AI browsing with Copilot in Edge for Business, and many of you put it to work in preview. Thank you. We’re excited to share agentic browsing is now part of Cowork, available via the sidepane, the new tab page, and web. With this, users have one place to delegate work, from creating docs to prepping for meetings or completing a task on the web. It’s an easy way for users to get comfortable with agentic work, starting with small, everyday tasks, so they can get back to the work that takes creativity, judgment, and complex thinking.
+Generally available.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a581449d1f2')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a8aec02460e">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windowsexperience/2026/11/17/microsoft-ignite-2026-building-windows-for-the-next-era-of-work/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Ignite 2026: Building Windows for the next era of work</a>
+          <div class="article-meta">blogs.windows.com &bull; Nov 17, 2026</div>
+          <div class="article-summary"><p>Microsoft Ignite 2026: Building Windows for the next era of work
+Every major shift in computing has changed what people can do at work, and Windows has been at the center. Today, it runs critical work inside your organizations, on over a billion devices across the world. That is a privilege and a responsibility. It’s why, above all else, we’re moving faster than ever on security so you can build on a foundation of trust and lead in the era of Hybrid Intelligence.
+Agents are the next shift in computing. Over the past year, organizations have moved AI from pilots into daily work, and agents are now taking on tasks across apps, files, and systems. In conversations with technology leaders, the questions they’re asking have evolved. They are past debating whether to adopt AI. They are turning to agents and want to know how to run them securely, and how to scale outcomes without cost or risk growing faster than value.
+Today at Ignite, we announced:
+- A trusted, secure, and more resilient foundation. The Windows endpoint security platform and Windows administrator protection are now generally available, Windows baseline protection is in preview, and Windows Autopatch customers deploy updates over 40% faster than with on-premises management.
+- The most secure platform for agents. New containment capabilities in Microsoft Execution Containers (MXC), which OpenAI and Meta are already building on, and Windows 365 for Agents, now eligible for Copilot Credits.
+- Hybrid Intelligence at work. GitHub Copilot Fusion can now route coding work to local models on developer PCs, in preview, and local context, actions and models are coming soon to Copilot on Copilot+ PCs.
+- One estate, from the PC to Azure built as connected AI infrastructure. Direct Stream for Windows 365, and Windows Server 2028 in public preview, with Microsoft Foundry and support for new AI hardware from AMD and NVIDIA.
+A trusted, secure, and more resilient foundation
+Critical work happens on Windows, and staying protected while threats evolve has never been more important. That starts with a trusted, secure, and more resilient Windows foundation. We are making investments to harden the platform, make it easier to protect and manage devices, and keep them current.
+Historically, some security protections ran in the Windows kernel, where one failure could affect the entire device. In 2024, we started working with our security partners on a more resilient approach. Today, the Windows endpoint security platform is generally available. It lets security providers move critical protections from kernel mode to user mode, making Windows more resilient while preserving the protection customers expect. We are deeply grateful to the ecosystem partners who have built on the platform with us, including Bitdefender, CrowdStrike, ESET, SentinelOne, Sophos, Trellix and TrendAI.
+We’re also making device security easier to verify. Windows baseline protection, now in preview in the Windows Insider Program, brings foundational protections like secure boot, virtualization-based security and memory integrity together into one verifiable security state. People get better visibility into the security posture of their PC, and IT gets a clear yes-or-no answer for every device in the fleet. Application developers can use baseline protection to verify that the devices running their applications meet their security requirements. The baseline will continue to evolve as we raise the bar in security.
+We are proud to be collaborating with partners from across the ecosystem to see how Windows baseline protection helps meet their needs.
+We’re also making it easier to protect your devices from the risks that come with elevated privilege. With Windows administrator protection, now generally available, IT can enable local administrators to run with standard user privileges by default. When a task needs administrator rights, Windows Hello verifies the user and grants those rights to that task alone.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a8aec02460e')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="af63210c938">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windowsexperience/2026/11/17/windows-security-at-ignite-2026-start-secure-protect-what-matters-prepare-for-ai/" target="_blank" rel="noopener noreferrer" class="article-title">Windows security at Ignite 2026: Start secure, protect what matters, prepare for AI</a>
+          <div class="article-meta">blogs.windows.com &bull; Nov 17, 2026</div>
+          <div class="article-summary"><p>Windows security at Ignite 2026: Start secure, protect what matters, prepare for AI
+AI is changing the threat landscape as fast as it is changing the way we work. Attackers are using AI to find vulnerabilities, build exploits and scale their campaigns faster than ever, shrinking the time between a weakness being discovered and being used against an organization.
+In this environment, the fundamentals matter more than ever. Devices that are configured securely and patched quickly remain one of the most effective defenses, and the security strategy you have for your users and data must now extend to AI and agents as well.
+Windows can help enforce identity and security controls on the devices where people, apps, and data intersect. Together with Microsoft security and management solutions, as well as tools like Agent 365, Windows provides a trusted foundation that helps organizations start secure, protect what matters, and manage AI securely.
+At Microsoft Ignite 2026, we’re advancing that foundation across Windows with stronger protections by default, hardware-backed security, updated passwordless experiences, resilience and recovery, and new controls for AI agents. These investments extend the work we shared at Build 2026, and take the next step toward a Windows environment designed for the security demands of the AI era.
+Helping organizations start secure and stay secure
+The Windows security foundation is evolving. Windows is becoming more secure and resilient, out of the box, to help organizations and users stay productive and protected. At Ignite, we’re sharing investments that strengthen Windows from hardware and cryptography through the operating system and security ecosystem.
+Last year, we shared how Windows was working with security partners to evolve our platform to better integrate with the ecosystem, while remaining resilient. We can now share that the Windows endpoint security platform is reaching general availability on Windows 11. This marks an important milestone in Microsoft’s work with the security ecosystem to reduce reliance on kernel drivers while preserving the capabilities security solutions depend on. We thank the partners who have joined us on this journey:
+Alongside the Driver Quality Initiative and broader work to reduce kernel exposure and strengthen recovery, these investments are helping make Windows more resilient by design.
+We also know how important it is for users and organizations to better understand the security state of their devices. With Windows baseline protection, now available in preview, Windows brings foundational protections, including secure boot, virtualization-based security, and memory integrity together into a single, versioned security state. Instead of requiring customers and applications to understand and check individual protections, baseline protection makes it easier for users and IT to understand whether a device is in a measurable security state, to keep it up to date with the latest security safeguards, and, when stronger assurance is required, verify that state through hardware-backed attestation. It also provides developers a way to ensure that a Windows device running their applications is operating in a secure state. Windows baseline protection will continue to evolve as more security capabilities are added.
+Baseline protection will show up in an updated Windows Settings experience, making security and privacy protections easier for people to understand.
+A trusted foundation must also prepare for threats that emerge before they become practical at scale. At Ignite, Windows is expanding post-quantum protection in the Windows TLS stack, including pure post-quantum key exchange and authentication, while advancing a broader crypto-agile foundation across the platform.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('af63210c938')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a1e0baaa47d">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windowsdeveloper/2026/11/17/enterprise-deployment-of-governed-agents-on-windows/" target="_blank" rel="noopener noreferrer" class="article-title">Enterprise Deployment of Governed Agents on Windows</a>
+          <div class="article-meta">blogs.windows.com &bull; Nov 17, 2026</div>
+          <div class="article-summary"><p>As AI agents become more capable, they promise substantial productivity gains across enterprise workflows. At the same time, they can collapse familiar execution boundaries and introduce new risk paths—from agent to human, agent to agent, agent to tools, and agent to applications. That tension can leave organizations facing an unacceptable choice: give agents broad access and hope nothing goes wrong or block them and forgo the value they can deliver.
+Traditional application controls remain essential, but they were not designed to express the full context of an agent’s execution across tools, child processes, files, network endpoints, and long-running sessions.
+Running agents safely at enterprise scale requires three foundational operating-system primitives: identity, containment, and manageability.
+Identity
+When an agent operates on a user’s behalf, its actions must be distinguishable from the user’s own activity. Agent identity creates this separation, making agent activity identifiable so organizations can apply appropriate security, access, and governance controls.
+Windows and Microsoft Entra are working together to support agent identity across local and cloud interactions. Microsoft Entra Agent ID provides the identity foundation for governing agent access to resources, while Windows provides the local isolation boundaries that help separate agent activity from the user.
+Containment
+Containment limits agent behavior to only the resources required for the assigned task. Microsoft Execution Containers (MXC) provide platform-enforced boundaries for this control.
+For example, if an agent is asked to build a website, it should access the project folder only, not personal files or unrelated sensitive data. MXC enforces those boundaries through Windows platform controls, not just policy guidance.
+Different agent patterns require different containment strength. A coding assistant may need lightweight process isolation, while a fully autonomous agent may require stronger isolation, including separate Windows sessions. Windows provides this containment spectrum so isolation can be matched to workload risk.
+Management
+Organizations need centralized visibility and control over agent deployment, access, and policy enforcement. Windows connects agent operations to the Microsoft security and management ecosystem.
+- Microsoft Intune and other MDM solutions define and manage agent containment, configuration and compliance policy.
+- Microsoft Entra governs identity, authentication, and access.
+- Agent 365, Microsoft Defender, and Microsoft Purview extend observability, security, and management into agent activity workflows.
+Why identity is foundational
+Identity is the control anchor across all three domains. It establishes which agent is acting, enables the correct containment model, and carries policy context into interactions across devices, applications, and cloud services.
+The target state is consistent governance across endpoint and cloud, rather than fragmented controls.
+Where Microsoft Execution Containers (MXC) fits in an enterprise agent-security strategy
+Microsoft Execution Containers (MXC) should be treated as a key layer in a defense-in-depth architecture, as it connects with identity, endpoint, data, or application controls.
+Its distinctive role is to govern execution: which resources a local agent process can reach, and how strongly the workload is isolated. This closes the gap between granting a user access and constraining what an agent running on that user’s behalf can do.
+The strongest design separates responsibilities across the control plane:
+- Identity and access with Microsoft Entra Agent ID: Agent identity helps distinguish agent activity from a user’s own activity so organizations can apply appropriate access, security, and governance controls.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a1e0baaa47d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a37a2bd88cb">
+        <div class="article-body">
+          <a href="https://blogs.windows.com/windows-insider/2026/11/16/announcing-new-builds-for-16-november-2026/" target="_blank" rel="noopener noreferrer" class="article-title">Announcing new builds for 16 November 2026</a>
+          <div class="article-meta">blogs.windows.com &bull; Nov 16, 2026</div>
+          <div class="article-summary"><p>Announcing new builds for 16 November 2026
+Hello Windows Insiders,
+Today, we’re releasing new Windows 11 Insider Preview builds to the Beta and Experimental channels.
+New builds this week
+Select your channel below to view its release notes:
+- Beta: Build 26320.10003
+- Experimental: Build 26340.10013
+Please note that we are temporarily blocking movement from Experimental or Beta to Experimental (Future Platforms), we are working to resolve this as soon as possible.
+Ignite 2026
+We look forward to welcoming Ignite attendees to San Francisco this week (November 17-19). We will be running a Windows Insider booth where you can meet some of the faces behind the program, provide your feedback and have your chance to win some swag! If you are not attending Ignite this week, digital registration is free and you can sign up here.
+Notable new features:
+[Advanced security key management]
+Release channel: Experimental
+- You can now see the passkeys stored on a FIDO2 (Fast Identity Online 2) security key and remove them one at a time, instead of resetting the entire key. Admins can also configure enterprise settings such as minimum PIN length, always-required user verification, and enterprise attestation.
+[Remote Lock]
+- Remote Lock lets IT lock a lost, stolen or compromised Windows device from Microsoft Intune without wiping it. Windows signs out every active session, hides all sign-in options and shows a Device Locked screen. Nothing is erased: the device stays enrolled and managed; BitLocker stays on, and user data stays in place. Only an admin can lift it remotely, so the user picks up where they left off. Learn more: https://aka.ms/remotelock
+[Taskbar]
+- When you hover over an app on the taskbar, Windows shows previews of its open windows to help you tell them apart and quickly see what’s in each one.
+- Now, you can choose to use the list view anytime. When list view is on, hovering over an app on the taskbar shows all its open windows by title in a list instead of as previews.
+- To turn on list view, go to Settings &gt; Personalization &gt; Taskbar.
+[Magnifier]
+Magnifier, the way you work: now with touch and touchpad
+- Magnifier already works with your keyboard, mouse, and scroll wheel. Now it also supports touchpad and touch gestures, so you can zoom and move around in whatever way feels most natural to you.
+- Before you start: Make sure Magnifier is running. Press Windows key + Plus (+) to turn it on. The gestures below work while Magnifier is on.
+On a touchpad
+- Zoom in or out: Swipe up with three fingers to zoom in or swipe down to zoom out.
+- Pan around the screen: Move one finger as you normally would, and the magnified view follows your pointer.
+- Toggle between 100% and your previous zoom level: Tap with three fingers.
+On a touchscreen
+- Pan around the screen: Drag with three fingers.
+- Zoom in or out: With three fingers, tap once, then tap again and keep your fingers down. Without lifting your fingers, drag up to zoom in or down to zoom out.
+- Toggle between 100% and your previous zoom level: Double-tap with three fingers.
+- Both gesture sets are on by default. To turn either one off, go to Settings &gt; Accessibility &gt; Magnifier and turn off Control Magnifier with touchpad gestures or Control Magnifier with touch gestures.
+See release notes for more features.
+Thanks,
+Stephen and The Windows Insider Program team</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a37a2bd88cb')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a43adfddb2b">
+        <div class="article-body">
+          <a href="https://petri.com/top-10-microsoft-ignite-2026-announcements/" target="_blank" rel="noopener noreferrer" class="article-title">Top 10 Ignite 2026 Announcements That Will Change How Admins Manage Windows, Identity, and AI</a>
+          <div class="article-meta">petri.com &bull; Nov 20, 2026</div>
+          <div class="article-summary"><p>Top 10 Ignite 2026 Announcements That Will Change How Admins Manage Windows, Identity, and AI
+AI agents are becoming a new class of enterprise resource, and Microsoft is giving admins tools to secure them. Here are the 10 Ignite announcements that will shape your priorities, from agent identity and Intune controls to Windows Server 2028.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a43adfddb2b')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="azure" class="topic-section">
+      <h2 class="topic-title" style="--c:#00BCF2">Azure <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="afaed63afb9">
+        <div class="article-body">
+          <a href="https://azure.microsoft.com/en-us/blog/microsoft-and-oracle-bring-agentic-ai-into-flow-of-enterprise-work/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft and Oracle bring agentic AI into flow of enterprise work</a>
+          <div class="article-meta">azure.microsoft.com &bull; Nov 17, 2026</div>
+          <div class="article-summary"><p>This blog is co-authored by Arpan Shah, SVP of Oracle Databases and Muneer Mirza, VP of Multicloud at Oracle Cloud Infrastructure (OCI).
+Today at Microsoft Ignite, we’re bringing agentic AI into the flow of enterprise work. Our new integrations let AI agents reason across Oracle’s business-critical data—from finance and supply chain to HR and customer operations—and the work context Microsoft Work IQ understands across meetings, email, documents, and Teams. Customers can access this combined intelligence through Excel, Teams, and Microsoft Copilot. Built on Oracle AI Database@Azure, the integrations help businesses turn trusted enterprise data into insights and actions, with the choice, security, and performance mission-critical workloads demand.
+With Oracle AI Database@Azure, Oracle and Microsoft have helped customers modernize critical workloads to improve application performance and unlock more value from their enterprise data, by bringing databases closer to applications and connecting enterprise data with Microsoft AI. Oracle AI Database@Azure now spans 33 Azure regions, more than on any other hyperscaler, delivering the performance and flexibility customers need.
+At Oracle AI World 2026, we announced new capabilities for Oracle AI Database@Azure including FedRAMP Class D certification coming soon for US Government and public-sector workloads, and Proximity Placement Groups (PPGs) that enable customers to place their database closer to applications—resulting in approximately 50% lower VM-to-Exadata network round-trip latency than deployments without PPG alignment. Now, at Microsoft Ignite 2026, we’re building on that momentum.
+For IT operations: Monitoring and trust at every layer
+Today, we’re announcing limited preview of Azure Workload Center for Oracle, bringing each workload’s architecture, resources, and dependencies together through a construct called a Workload Virtual Instance (WVI). This significantly reduces the complexity and resources required to manage solutions at the individual component level. Integrations across the Workload Virtual Instance, Azure Monitor Health Models, and the Microsoft Azure Copilot Run Oracle agent connect monitoring signals across application, database, and infrastructure layers.
+This operational visibility is complemented by agent access controls: Oracle AI Database@Azure supports Microsoft Entra authentication and Oracle Deep Data Security, helping agents stay within users’ existing permissions while database calls run through the managed model context protocol (MCP) server and activity remains auditable across your Oracle database estate.
+For example, after business users report poor performance from an order processing application, an admin must quickly diagnose and fix the problem. The admin signs in with their existing Microsoft Entra identity and uses Azure Workload Center for Oracle to get a unified view of workload health including signals across the infrastructure, database, and application layers while Copilot provides a summary highlighting where to focus.
+The admin uses a natural-language prompt to initiate a coordinated investigation involving multiple agents, each with Oracle data access limited by their identify profile. Database calls from the agents run through the managed MCP server, and every action is captured for audit. Working together, the agents synthesize their findings into a single operational conclusion for the admin.
+For end users: Oracle data in the flow of work
+Business users need insights from Oracle data, but they often need assistance from someone more technical to extract, format, and deliver it.
+The new Oracle AI Database plug-in for Excel, available today, lets users connect Excel directly to Oracle Database, pull trusted data into the worksheet, and reason over it with Copilot without leaving the spreadsheet.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('afaed63afb9')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a62787b9b9e">
+        <div class="article-body">
+          <a href="https://azure.microsoft.com/en-us/blog/introducing-azure-catalyst-agentic-modernization-and-new-ai-infrastructure-innovations/" target="_blank" rel="noopener noreferrer" class="article-title">Introducing Azure Catalyst agentic modernization and new AI infrastructure innovations</a>
+          <div class="article-meta">azure.microsoft.com &bull; Nov 17, 2026</div>
+          <div class="article-summary"><p>The top announcements:
+As AI continues to reshape how every business builds, operates, and competes, it is rapidly emerging as the defining workload in the cloud. This new class of agents, more demanding, complex, and dynamic than anything before them, is rewriting the rules of cloud infrastructure. Reasoning across multi-agent systems, drawing on rich context, acting in real time, and running continuously, they ask more of every layer of the platform beneath them. This week, we’re introducing innovations across Microsoft Azure that set a new standard for how the cloud powers AI: expanded AI core capabilities in Azure to build what’s next, and Azure Catalyst, an intelligent agent-led solution to modernize the apps, data, and infrastructure that already run the business.
+For years, we have been reengineering every layer of Azure for the unique demands of AI and proving it on the world’s most advanced AI workloads, from leading frontier models to our own GitHub Copilot, Microsoft Teams, and Microsoft 365. That work has forged Azure into a single, co-engineered system, with models, silicon, and cloud infrastructure tuned as one and value compounding at every layer. This week, we take that even further.
+New capabilities across isolated execution, agent networking, context management, and inference efficiency deliver faster, more secure agents with better unit economics. Every innovation rests on an open foundation, giving customers the freedom to run open models and open systems everywhere they operate. There is a wave of new AI applications scaling in production, and years of existing apps and data are moving to the cloud, becoming AI-ready. Azure was built for this moment.
+Of everything we’re announcing this week, three areas matter most:
+- Building the next generation of AI applications. Silicon, compute, storage, and networking work as one system across Azure for inference, training, and agents. A new connected path from Microsoft Foundry to Azure Kubernetes Service (AKS) gives you choice in how and where you run AI.
+- Modernizing apps and data with agents. Azure Catalyst uses AI agents to modernize applications, data, and infrastructure in a fraction of the time and cost of traditional methods, turning decades of technical debt into the fastest path to AI.
+- Extending AI wherever you operate. Azure Local, flex nodes for AKS and Microsoft Foundry extend AI across cloud and distributed environments, governed through Azure Arc. Windows Server 2028, now in public preview, and Windows PCs, bring AI closer to applications, data, and users, providing the choice to meet workload-specific data, performance, regulatory, and cost needs.
+Build and run the next generation of AI applications
+Microsoft Foundry and AKS are at the center of how you build and run AI from Foundry’s managed experience, to the deep customization of AKS across models, runtimes, performance, security, and infrastructure.
+The connected path between them runs from building AI applications and agents to running them at scale. Open-weight models and agents move seamlessly from Foundry to AKS clusters, deployed from cloud to edge, with consistent infrastructure, security policies, and governance.
+Underneath these experiences, AI applications are challenging infrastructure in new ways: writing and executing code autonomously, connecting dynamically to multiple agents, models, tools, and data, and carrying context across long-running tasks. We’re advancing the infrastructure to meet each of these demands:
+- Isolation and confidentiality. With the Agent Sandbox extension for AKS, agent-generated code runs in secure, managed sandboxes with virtual machine (VM)-level isolation for every session, pre-warmed pools for fast startup, and a serverless option with no infrastructure to manage. Azure confidential computing extends protection to sensitive data and workloads while in use.
+- Agent networking and security.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a62787b9b9e')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a4d97e1466a">
+        <div class="article-body">
+          <a href="https://azure.microsoft.com/en-us/blog/microsoft-ignite-2026-whats-new-in-azure-the-platform-purpose-built-for-ai/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Ignite 2026: What’s new in Azure, the platform purpose-built for AI</a>
+          <div class="article-meta">azure.microsoft.com &bull; Nov 17, 2026</div>
+          <div class="article-summary"><p>Azure at Microsoft Ignite 2026: The headlines
+- Azure AI core: AI on infrastructure you control.
+- Azure Cobalt 200: Our highest-performing general-purpose virtual machines (VMs).
+- Azure Catalyst: Agent-led modernization from plan to code.
+- Agentic cloud operations: Agents that keep your cloud running well.
+- Azure HorizonDB and Fabric HorizonDB: PostgreSQL for AI apps and analytics.
+- Fabric apps: Governed apps built on trusted data.
+- Microsoft IQ: Context for every agent.
+Over the past year, my conversations with customers have changed. A year ago, the question was which model to choose. Now it’s how to put agents to work on the processes that run the business, and how to trust them to do it.
+With the same frontier models available to everyone, the advantage comes from what no one else has: your context. It’s how your business runs, what your people know, and the systems and data you’ve spent years building. That’s your IQ. It’s your intellectual property, so it should stay yours, and it should work wherever your people and agents do. Our job is to make every layer beneath your agents better, from the infrastructure that runs them and the estate they act on to the apps they power and the business context that tells them how your company works.
+Azure is the foundation of Frontier Transformation. We engineer Azure as one system, so the knowledge an agent needs stays governed and the security you use to protect your people extends to the agents acting for them. And because we’re evolving the open, cloud-native platform you already rely on, you don’t have to start over.
+As Satya Nadella shared at Microsoft Build in June, we added more datacenter capacity in 18 months than in Azure’s first decade. Combined with more regions than any other cloud provider, you can scale your AI workloads globally with confidence as demand grows.
+This week at Microsoft Ignite, we’re sharing what’s new across every layer of the platform. New capabilities spanning compute, storage, and networking let you run AI at scale with the control of your own infrastructure, without having to build, secure, and operate all of it yourself. Azure Catalyst brings agent-led modernization together in one experience from estate to code.
+PostgreSQL now has two homes at Microsoft: Azure HorizonDB, generally available for mission-critical scale, and the new Fabric HorizonDB, which connects your PostgreSQL apps to analytics and AI. And Fabric apps, now generally available, let your teams turn trusted enterprise data into working apps.
+We’re also introducing Microsoft IQ, the enterprise context management platform that helps you build your own IQ and put it to work in every app and agent. It also gives your teams a path on Azure to build, run, and continuously improve those agents.
+Run AI at scale with the control you choose
+It starts with the infrastructure that runs your agents. As they take on real work, you should be able to run them on your terms, with your choice of models, your data, and where they run. That control lets you find the right balance of performance and cost for each workload and adapt as models and needs change.
+But control comes with real work and risk. Platform teams end up assembling and operating much of the AI stack themselves and stretching GPUs to keep up with shifting demand. Agents that reach models, tools, and data and run code on their own open new security gaps, putting sensitive data at risk.
+Teams want the control of running their own AI infrastructure without taking on all the manual toil of building, securing, and operating it.
+Building the AI core on Azure
+That’s what we’re bringing to Azure. New capabilities across compute, storage, and networking come together as one AI foundation, so you keep control of your models and workloads while Azure takes on the work underneath.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a4d97e1466a')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ae4eb7ffe63">
+        <div class="article-body">
+          <a href="https://azure.microsoft.com/en-us/blog/azure-cobalt-200-vms-now-available-proven-on-real-workloads-and-built-for-the-agentic-era/" target="_blank" rel="noopener noreferrer" class="article-title">Azure Cobalt 200 VMs now available, proven on real workloads and built for the agentic era</a>
+          <div class="article-meta">azure.microsoft.com &bull; Nov 17, 2026</div>
+          <div class="article-summary"><p>Today at Microsoft Ignite 2026, we’re announcing the general availability of Azure Cobalt 200-based virtual machines (VMs). Cobalt 200 VMs deliver up to 50% better performance than Cobalt 100 and are now available in 14 regions, expanding to 23 regions by the end of 2026. Built for cloud-native, data-intensive, and agentic AI workloads, Cobalt 200 VMs will represent a significant share of new Azure Compute capacity beginning in 2027.
+For customers like Amadeus, Databricks, InMobi, OpenAI, and Snowflake, Cobalt 200 VMs deliver improved performance and efficiency over Cobalt 100 VMs. As a result, customers can deliver faster search results, more responsive database queries, and run their services at higher utilization with fewer cores.
+Cobalt 200’s performance and efficiency gains reflect our systems approach to infrastructure design, which co-optimizes silicon, software, networking, power, and rack infrastructure. Cobalt 200 VMs are also designed for agentic AI workflows, including agent sandboxes, file search, code compilation, and tool execution, where higher per-core performance can help reduce latency.
+As customer need for high-performance and low-latency compute increases, we’re adding new virtual machine types to bring the price-performance benefits of Cobalt to additional workloads:
+- Mpsv4 for high memory workloads.
+- Lpsv5 for workloads needing fast access to large datasets.
+With Microsoft Azure Boost included in every Cobalt 200 VM, customers get the latest accelerated network and remote storage performance in Microsoft Azure.
+Proven on critical customer workloads
+Our benchmarking for Cobalt 200 VMs showed significant performance increases for a wide variety of workloads. We observed up to 1.5 times increased performance for web serving workloads, up to 1.6 times for Java-based workloads, up to 1.5 times for AI agent tool execution workloads, and 1.9 times for database workloads over Cobalt 100.
+We’ve seen these results translate into real-world improvements as our customers bring Cobalt 200 VMs to their own workloads.
+See what customers are saying about Cobalt 200 VMs
+Cobalt has helped us sustain ChatGPT’s growth. Cobalt 100 gave us more CPU capacity when we needed it. By the time we tested Cobalt 200, our services already ran on ARM, so we could compare the same ChatGPT workloads on both generations. We saw higher throughput and lower latency on Cobalt 200. That means we can serve more users with the same number of cores, and they spend less time waiting for ChatGPT to start responding.
+—Vadim Filanovsky, Member of Technical Staff, OpenAI
+Genie, the data-smart AI coworker, puts answers in front of business users in plain language, and those answers depend on fast, efficient compute underneath. Azure Cobalt helps us deliver that. Azure Databricks serverless compute on Cobalt starts faster and runs more efficiently, so customers spend less time waiting and more time acting on their data. Cobalt 200 raises the bar again, and as we bring more of Azure Databricks onto it, Genie questions, SQL queries, and data pipelines get faster.
+—Vinod Marur, SVP Engineering, Databricks
+Snowflake has grown with Arm on Azure, from the first Arm-based v5 VMs to Cobalt 100 and now Cobalt 200. Each generation has brought real performance and efficiency gains for our workloads, and those gains help us give our customers an even better experience. We’re proud to partner with Microsoft on what comes next for Cobalt and excited to see Cobalt 200 reach general availability.
+—Murray Stokely, Distinguished Engineer, Snowflake
+Performance at scale is at the heart of how Amadeus serves the travel industry. In our benchmark lab, Azure Cobalt 200 improved flight search throughput by more than 30% compared with Cobalt 100, a performance gain that exceeded our expectations.
+—Luc Choubert, VP Engineering, Amadeus
+We tested our ad-serving workloads on Cobalt 200 and saw clear performance and efficiency improvements.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ae4eb7ffe63')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a6de6d75db2">
+        <div class="article-body">
+          <a href="https://azure.microsoft.com/en-us/blog/continuous-improvement-comes-to-microsoft-foundry/" target="_blank" rel="noopener noreferrer" class="article-title">Continuous improvement comes to Microsoft Foundry</a>
+          <div class="article-meta">azure.microsoft.com &bull; Nov 17, 2026</div>
+          <div class="article-summary"><p>New models ship every few weeks, and your customers ask questions no one planned for. The agents that learn from all of it pull ahead. That’s continuous improvement, and today at Microsoft Ignite we’re bringing it to Microsoft Foundry. To unlock it, you need an end-to-end system where you build agents, give them context, run them, govern them, and improve them over time.
+And as part of the new Microsoft IQ, Foundry accomplishes two things that only Microsoft can deliver: your unique intelligence stays your advantage, and your agents keep getting better the longer they run.
+Out of the box, an AI model is exactly the same for you as it is for anyone else. Three things help you improve your agents as your teams accomplish real work.
+- Agents on Foundry get better the more you use them. Foundry lets you feed agent traces and user input back into the system, creating a continuous learning loop that improves the performance of the system over time.
+- Foundry looks across every run for ways to make your agents better. The system finds and tests improvements; shows you how each one trades off across quality, speed, and cost; and then you decide what ships.
+- Foundry provides a range of other capabilities that allow you to improve progressively, from lightweight skill improvements to agent configuration, all the way to training model weights using your data.
+Underneath it all, you have GitHub, where you build your agents, and Foundry, where you run and supervise them as they continuously improve. And they both run on Azure as one system that operates on a global scale.
+GitHub: Building intelligent agents
+Before you improve an agent, you need to build it. Say you want an agent to automate your supply chain processes, and you want that agent to be available in Teams—where your team already works. Just explain what you’re trying to do in clear, everyday language, and GitHub Copilot writes most, if not all, of the code. And with GitHub Copilot Fusion under the hood, it routes and orchestrates models while you’re building, so you don’t have to. That means you get the right model for the job, while balancing performance, latency, and cost.
+Foundry: Running and continuously improving agents at scale
+Once you’ve built your agent, you need a place to run it, govern it, and improve it for all your teams, in every region, alongside hundreds or thousands of other agents.
+With more than 11,000 models, from OpenAI and Anthropic to Meta, Mistral, open source, our own Microsoft AI (MAI) models, and more, Foundry lets you do just that. And you don’t have to choose just one or be locked into a single model provider. Foundry’s model router sends simple requests to small, fast models and more complicated asks to larger, state-of-the-art models, so you spend less on tokens, time, and compute. Our testing shows that using Foundry’s model router can save you up to 65% compared with sending everything to the frontier.
+When your agent runs in Foundry, it has an identity. Entra Agent ID and Foundry guardrails give the agent only the access it needs, and sensitive actions keep a human in the loop as required by your business. And your organization stays in control at every step. You set the standard, every change is tested against evidence, and your team decides what reaches production. Agent controls in Foundry Safety extend that oversight to the runtime. For agents built in Foundry and, in the future, outside it, this means checking an agent’s behavior against the guardrail policies you set as it runs.
+ignite session: The trust foundation…
+Run agents with the orchestration layer of your choice. Foundry Agent Service runs agents built with your preferred framework and harness through hosted agents, which now handle more concurrent sessions at once (in general availability [GA]) and start faster (in preview).</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a6de6d75db2')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="aff6a9f9d2f">
+        <div class="article-body">
+          <a href="https://azure.microsoft.com/en-us/blog/introducing-the-new-microsoft-iq-putting-your-organizations-intelligence-to-work-in-every-agent/" target="_blank" rel="noopener noreferrer" class="article-title">Introducing the new Microsoft IQ: Putting your organization’s intelligence to work in every agent</a>
+          <div class="article-meta">azure.microsoft.com &bull; Nov 17, 2026</div>
+          <div class="article-summary"><p>In this article
+Microsoft believes that AI should enhance your advantage, not erode it. Every organization has access to the same frontier models, and those models improve every few weeks. Today, we are announcing Microsoft IQ, the enterprise context management platform that helps organizations create their own IQ. What sets an organization apart is everything around the model: its own intelligence. That includes how its people and teams work, its business processes, institutional knowledge across the enterprise, and data stored across their systems of record including customer relationship management systems.
+This intelligence is the organization’s own IQ. It is what gives the organization a unique advantage; it’s what makes an agent useful and trusted, under the rules of the organization.
+Microsoft IQ enables teams to curate and activate their know-how, data, skills, and tools, and create unique AI advantage that compounds over time. It brings together Work IQ, Fabric IQ, Foundry IQ, and Web IQ, in addition to more than 350 third-party connectors to create an organization’s enterprise context.
+Organizations can now make this context and expertise reusable through new business plugins. Business plugins let you curate and govern the context, skills, and authoritative sources every agent inherits, allowing teams to capture their unique business processes and know-how in their agentic workflows, and creating their own IQ. A manufacturer can give agents what they need for predictive maintenance and quality root-cause analysis. An energy operator can ground control-room incident investigations. A supply chain team can speed up supplier risk and disruption response. In every case, one governed plugin is reused across agents, teams, and platforms. Users can build business plugins wherever they run their agents including Microsoft Copilot, GitHub Copilot, Microsoft Foundry through Model Context Protocol (MCP), and third-party assistants including ChatGPT and Claude marketplaces.
+As part of Microsoft IQ, we are also bringing together capabilities from Microsoft Fabric, Foundry, and GitHub to build, run, and continuously improve the intelligence that makes agents work, and to distribute that intelligence across the organization. The platform is open and model-diverse by design, built for heterogeneous enterprise environments. That means improvements made for one business process become assets your organization can apply to the next update.
+How Microsoft IQ turns intelligence into advantage
+Microsoft IQ brings together four complementary IQs: Work IQ provides context on how people work, including documents, conversations, collaboration, and past decisions. Fabric IQ provides the state of the business through governed data, business entities, relationships, and rules. Foundry IQ provides curated institutional knowledge, including policies and authoritative documents. Web IQ provides timely, relevant context from the web, including news, images, and videos.
+What’s new in Work IQ
+Work IQ moves from understanding work to getting it done. Business Applications in Work IQ, now generally available, adds customer relationship management (CRM) and enterprise resource planning (ERP) records to the grounding set, giving agents a fuller view of the business. Retrieve, now generally available, returns grounded, permission-trimmed Microsoft 365 content and federated connector data in a single call. Real-time meeting context, now generally available, enables agents to act on meeting content while the meeting is still in progress.
+Long-running tasks and agent-to-agent support, also generally available, enable agents to manage multi-step work and ask clarifying questions along the way. Granular MCP policies (generally available) scope access by path, audience, and trusted app rather than relying on a tenant-wide switch.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('aff6a9f9d2f')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a45e3da3f53">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-launches-azure-cobalt-200-vms/" target="_blank" rel="noopener noreferrer" class="article-title">Ignite 2026: Microsoft Launches Azure Cobalt 200 VMs for AI and Data-Intensive Workloads</a>
+          <div class="article-meta">petri.com &bull; Nov 18, 2026</div>
+          <div class="article-summary"><p>Microsoft's new Azure Cobalt 200 platform reflects a growing shift toward infrastructure built for AI, analytics, and cloud-native applications rather than traditional workloads alone. For enterprises, the new Arm-based VMs could offer additional performance and efficiency options, but organizations will need to assess application compatibility and migration requirements before moving production workloads.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a45e3da3f53')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a0f290b3743">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMisAFBVV95cUxPM3hLaXdod0Myc1NGcVJDbHZlMEEyaS1FdzJpVmZKeEVLN3BRQzIzVDJXd1g3RXdzVHVlaXJuOWpmQ1ZwZ0IyVGJPMHVMLWhKZHluYjRmYXhQZkZWOXY3Z0ItS0NHREE0a05KUUVuUUM5MDdpb3drSzhzb2hHdjlvTHNOY2lnOXViSkdKUXI4cndxMjZocEx5LTM5TnFYRzlLY1NBdHY4VFZTdm53MHl0Rw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft to Pay Top Cloud Workers More, Crack Down on Others - Bloomberg.com</a>
+          <div class="article-meta">Bloomberg.com &bull; Nov 20, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft to Pay Top Cloud Workers More, Crack Down on Others&amp;nbsp;&amp;nbsp;Bloomberg.com</p><a href="https://news.google.com/rss/articles/CBMisAFBVV95cUxPM3hLaXdod0Myc1NGcVJDbHZlMEEyaS1FdzJpVmZKeEVLN3BRQzIzVDJXd1g3RXdzVHVlaXJuOWpmQ1ZwZ0IyVGJPMHVMLWhKZHluYjRmYXhQZkZWOXY3Z0ItS0NHREE0a05KUUVuUUM5MDdpb3drSzhzb2hHdjlvTHNOY2lnOXViSkdKUXI4cndxMjZocEx5LTM5TnFYRzlLY1NBdHY4VFZTdm53MHl0Rw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a0f290b3743')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="sharepoint" class="topic-section">
+      <h2 class="topic-title" style="--c:#036C70">SharePoint <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a5f51bbe892">
+        <div class="article-body">
+          <a href="https://www.theregister.com/security/2026/11/16/infoblox-customer-and-staff-data-exposed-in-sharepoint-breach/5310280" target="_blank" rel="noopener noreferrer" class="article-title">Infoblox customer and staff data exposed in Sharepoint breach</a>
+          <div class="article-meta">theregister.com &bull; Nov 16, 2026</div>
+          <div class="article-summary"><p>AI
+- Palo Alto Networks opens wallet for open-weight training biz Security shop buys the hand that feeds it
+- SC26 Qualcomm offers test drive of its rack-scale Nvidia AI challenger Selected customers can put Dragonfly AI200 through its paces on Cirrascale's cloud
+- To rank the world's biggest supercomputers, we're gonna need a bigger bench AI has birthed some truly colossal supers, they just aren't on the Top500
+- GPU giants throw HPC users some tasty crumbs Nvidia unveils an HPC-optimized Rubin GPU to challenge AMD's 288 teraFLOPS MI430X
+- Hackers smash 'n' grab AI vendor: Take off with license data of Uber drivers Ride-hailing biz says stolen credentials allowed crooks to help themselves to driver's license data
+Infosec
+- Security Russians are posing as Signal support to launch phishing attacks PLUS: US takes down Iranian propaganda sites; Marketing company asks 'Why Do We Have Your Information?' And more!
+- Security Microsoft patches failed to fix on-prem SharePoint, which is now under zero-day attack PLUS: China upgrades smartphone surveillance tools; Ring eases anti-snooping stance; and more
+- Black Hat and DEF CON DEF CON Franklin project enlists hackers to harden critical infrastructure Voting village reports have been so successful, says Jeff Moss, that the whole of DEF CON will now be included
+- Security EQT buys majority share in Swiss cybersecurity biz Acronis Went at equivalent of $3.5B+ valuation for entire firm, though portion sold not specified
+- Malware Month Ten years since the first corp ransomware, Mikko Hyppönen sees no end in sight On the plus side, infosec's a good bet for a long, stable career
+FOSS
+- Ubuntu Core Desktop targets 28.04 debut, with default status in its sights Canonical's stretch goal is to make the immutable OS standard in 30.04 – without retiring the traditional distro
+- Inspiring FOSS project Crosspoint Reader has lessons about tech, communities, and LLMs Cheap tiny e-readers and the perils of LLM-generated drive-by pull requests – plus much more
+- Omaxian takes the Omarchy look down a different Linux backstreet Devuan-based distro swaps Wayland for XLibre and i3, with Xfce waiting if the tiling gets tiresome
+- Microsoft’s Azure Linux dons Fedora to dress itself up for mainstream workloads Version 4.0 of Redmond’s cloudy OS is free to use in its cloud. Repeat. Free to use
+- Another Linux kernel developer steps back from some duties due to overload You can probably guess what he blames for the excessive workload
+- The latest FreeBSD report is here, and the AI debate is ongoing Only a minority want to ban it. Plus plenty of updates on 16 projects</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a5f51bbe892')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a36ff9887a8">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/11/new-gitdoor-and-graphdoor-backdoors.html" target="_blank" rel="noopener noreferrer" class="article-title">New GitDoor and GraphDoor Backdoors Turn GitHub and SharePoint Into Covert C2 Channels</a>
+          <div class="article-meta">thehackernews.com &bull; Nov 17, 2026</div>
+          <div class="article-summary"><p>Government sectors in Asia and Africa have been targeted by an active cyber intrusion campaign that delivers to previously undocumented backdoors that leverage legitimate services like Microsoft SharePoint and GitHub for command‑and‑control (C2).
+The activity has been codenamed Operation ShadowCloud by Kaspersky. The Russian cybersecurity company said it identified the campaign in early 2026.
+&quot;The threat actor behind it is abusing the legitimate MeshAgent utility to drop two brand-new backdoors,&quot; Kaspersky researchers Saurabh Sharma and Noushin Shabab said in a two-part analysis. &quot;These implants hide their command‑and‑control (C2) traffic behind cloud services Microsoft SharePoint, GitHub, and Ably, allowing the implants to blend in with normal traffic, effectively evading network-based detections.&quot;
+The modular backdoors, dubbed GraphDoor and GitDoor for their choice of the cloud platform used for C2, enable the download of additional plugins on demand and the execution of shellcode directly in memory to extend their functionality. Traffic between infected systems and the C2 servers is proxied by deploying a modified Erfrp client and Ably messaging service-based plugins.
+The starting point of the attack has been traced back to a MeshCentral Agent, a legitimate remote access tool that's used for remote desktop control, command‑line access, and file management. The attack is said to have targeted an unspecified Taiwanese organization.
+The exact method by which the utility is installed on the host remains unknown. However, signs point to the &quot;reuse of a prior infection already present on the network,&quot; Kaspersky added.
+The MeshCentral Agent is configured to contact a hard-coded C2 server (&quot;wss://27.102.66[.]162:443/agent.ashx&quot;) and then fetch three payloads staged on the endpoint -
+- A legitimate binary used for DLL sideloading (start.exe, pythonw.exe, and zoomit.exe)
+- A rogue loader DLL used to unpack and execute the next-stage malware (jli.dll, SbieDll.dll, python39.dll, WINMM.dll, and libcef.dll)
+- An encrypted file containing the core payload
+At least two different DLL loaders have been identified to date, each employing its own method to decode and launch the encrypted backdoor payload by injecting it into the current process's memory.
+&quot;Loader (Type 1) employs a hybrid scheme: first running the data through an RC4 stream cipher and then applying an XOR mask, while Loader (Type 2) simplifies the process by using a straight XOR operation alone,&quot; Kaspersky noted.
+The end goal is to deploy backdoors like GitDoor and GraphDoor, which employ a number of encryption and obfuscation techniques like control flow flattening and nested helper functions to complicate analysis efforts and make it harder to trace genuine execution flow.
+GitDoor, as the name implies, uses GitHub for C2. It relies on two distinct repositories for receiving command payloads (&quot;/repos/LatonyCharnleyaW/Havo&quot;) and uploading the results of the execution (&quot;/repos/LatonyCharnleyaW/Trix&quot;). While the Havo repository is public, the Trix repository is private.
+The creation date of these repositories suggests that preparations for the campaign have been underway since at least the end of 2024.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a36ff9887a8')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ae1167a0c32">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/11/new-gitdoor-and-graphdoor-backdoors.html" target="_blank" rel="noopener noreferrer" class="article-title">New GitDoor and GraphDoor Backdoors Turn GitHub and SharePoint Into Covert C2 Channels - The Hacker News</a>
+          <div class="article-meta">The Hacker News &bull; Nov 17, 2026</div>
+          <div class="article-summary"><p>Government sectors in Asia and Africa have been targeted by an active cyber intrusion campaign that delivers to previously undocumented backdoors that leverage legitimate services like Microsoft SharePoint and GitHub for command‑and‑control (C2).
+The activity has been codenamed Operation ShadowCloud by Kaspersky. The Russian cybersecurity company said it identified the campaign in early 2026.
+&quot;The threat actor behind it is abusing the legitimate MeshAgent utility to drop two brand-new backdoors,&quot; Kaspersky researchers Saurabh Sharma and Noushin Shabab said in a two-part analysis. &quot;These implants hide their command‑and‑control (C2) traffic behind cloud services Microsoft SharePoint, GitHub, and Ably, allowing the implants to blend in with normal traffic, effectively evading network-based detections.&quot;
+The modular backdoors, dubbed GraphDoor and GitDoor for their choice of the cloud platform used for C2, enable the download of additional plugins on demand and the execution of shellcode directly in memory to extend their functionality. Traffic between infected systems and the C2 servers is proxied by deploying a modified Erfrp client and Ably messaging service-based plugins.
+The starting point of the attack has been traced back to a MeshCentral Agent, a legitimate remote access tool that's used for remote desktop control, command‑line access, and file management. The attack is said to have targeted an unspecified Taiwanese organization.
+The exact method by which the utility is installed on the host remains unknown. However, signs point to the &quot;reuse of a prior infection already present on the network,&quot; Kaspersky added.
+The MeshCentral Agent is configured to contact a hard-coded C2 server (&quot;wss://27.102.66[.]162:443/agent.ashx&quot;) and then fetch three payloads staged on the endpoint -
+- A legitimate binary used for DLL sideloading (start.exe, pythonw.exe, and zoomit.exe)
+- A rogue loader DLL used to unpack and execute the next-stage malware (jli.dll, SbieDll.dll, python39.dll, WINMM.dll, and libcef.dll)
+- An encrypted file containing the core payload
+At least two different DLL loaders have been identified to date, each employing its own method to decode and launch the encrypted backdoor payload by injecting it into the current process's memory.
+&quot;Loader (Type 1) employs a hybrid scheme: first running the data through an RC4 stream cipher and then applying an XOR mask, while Loader (Type 2) simplifies the process by using a straight XOR operation alone,&quot; Kaspersky noted.
+The end goal is to deploy backdoors like GitDoor and GraphDoor, which employ a number of encryption and obfuscation techniques like control flow flattening and nested helper functions to complicate analysis efforts and make it harder to trace genuine execution flow.
+GitDoor, as the name implies, uses GitHub for C2. It relies on two distinct repositories for receiving command payloads (&quot;/repos/LatonyCharnleyaW/Havo&quot;) and uploading the results of the execution (&quot;/repos/LatonyCharnleyaW/Trix&quot;). While the Havo repository is public, the Trix repository is private.
+The creation date of these repositories suggests that preparations for the campaign have been underway since at least the end of 2024.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ae1167a0c32')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ad8e338258f">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiuAFBVV95cUxNam1mQURzYTdhTzAyN2Vrclg0STYtdUdPeGJlVFFJOUx2Nk1wSEdlZkRpTGZIR3hnby1aMEVHTXIySDF6MU5UUzhPejdVdGxVRWFTOGNrZVAtRnR0Nm9pTXpQUmk4NG9pZmlYX2xNUXBsa09nUXlKdjZYR3FUTXloSEppMEpxY0haSmNBSDkxemlsLW9Wbk9yS19tN2gxdkFWVzRqOGZ1TUNxTGFNcGJaTWtGZGlRRWhm0gG-AUFVX3lxTE5Pakg0c0lRYm93cUhxT09MQnJvTFFEV0ZIOVVaMHU4ZkljRzZRWEI1RDl5a01fZ2czZkZZSTNzNkcwWjNDV3V5STVJb0plT19SSjFyYjFDY0ZCMjFoakFVcHRWU1pKWmJIWjZTT3V4YkswYkNQd0dnaURwTmNpZzhtdmJFbzFRVlFjZUhCbGJiNGE5UHBzaUJYTE1YZDlnZ3ROVmFKekMxX3hmYmo0SWJlY3EtQVhyWHZLNHV1UFE?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Hackers Use Microsoft SharePoint and GitHub to Control Backdoors Targeting Government Networks - GBHackers News</a>
+          <div class="article-meta">GBHackers News &bull; Nov 19, 2026</div>
+          <div class="article-summary snippet"><p>Hackers Use Microsoft SharePoint and GitHub to Control Backdoors Targeting Government Networks&amp;nbsp;&amp;nbsp;GBHackers News</p><a href="https://news.google.com/rss/articles/CBMiuAFBVV95cUxNam1mQURzYTdhTzAyN2Vrclg0STYtdUdPeGJlVFFJOUx2Nk1wSEdlZkRpTGZIR3hnby1aMEVHTXIySDF6MU5UUzhPejdVdGxVRWFTOGNrZVAtRnR0Nm9pTXpQUmk4NG9pZmlYX2xNUXBsa09nUXlKdjZYR3FUTXloSEppMEpxY0haSmNBSDkxemlsLW9Wbk9yS19tN2gxdkFWVzRqOGZ1TUNxTGFNcGJaTWtGZGlRRWhm0gG-AUFVX3lxTE5Pakg0c0lRYm93cUhxT09MQnJvTFFEV0ZIOVVaMHU4ZkljRzZRWEI1RDl5a01fZ2czZkZZSTNzNkcwWjNDV3V5STVJb0plT19SSjFyYjFDY0ZCMjFoakFVcHRWU1pKWmJIWjZTT3V4YkswYkNQd0dnaURwTmNpZzhtdmJFbzFRVlFjZUhCbGJiNGE5UHBzaUJYTE1YZDlnZ3ROVmFKekMxX3hmYmo0SWJlY3EtQVhyWHZLNHV1UFE?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ad8e338258f')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ab346a805c3">
+        <div class="article-body">
+          <a href="https://www.theregister.com/security/2026/11/16/infoblox-customer-and-staff-data-exposed-in-sharepoint-breach/5310280" target="_blank" rel="noopener noreferrer" class="article-title">Infoblox customer and staff data exposed in Sharepoint breach - The Register</a>
+          <div class="article-meta">The Register &bull; Nov 16, 2026</div>
+          <div class="article-summary"><p>AI
+- Palo Alto Networks opens wallet for open-weight training biz Security shop buys the hand that feeds it
+- SC26 Qualcomm offers test drive of its rack-scale Nvidia AI challenger Selected customers can put Dragonfly AI200 through its paces on Cirrascale's cloud
+- To rank the world's biggest supercomputers, we're gonna need a bigger bench AI has birthed some truly colossal supers, they just aren't on the Top500
+- GPU giants throw HPC users some tasty crumbs Nvidia unveils an HPC-optimized Rubin GPU to challenge AMD's 288 teraFLOPS MI430X
+- Hackers smash 'n' grab AI vendor: Take off with license data of Uber drivers Ride-hailing biz says stolen credentials allowed crooks to help themselves to driver's license data
+Infosec
+- Security Russians are posing as Signal support to launch phishing attacks PLUS: US takes down Iranian propaganda sites; Marketing company asks 'Why Do We Have Your Information?' And more!
+- Security Microsoft patches failed to fix on-prem SharePoint, which is now under zero-day attack PLUS: China upgrades smartphone surveillance tools; Ring eases anti-snooping stance; and more
+- Black Hat and DEF CON DEF CON Franklin project enlists hackers to harden critical infrastructure Voting village reports have been so successful, says Jeff Moss, that the whole of DEF CON will now be included
+- Security EQT buys majority share in Swiss cybersecurity biz Acronis Went at equivalent of $3.5B+ valuation for entire firm, though portion sold not specified
+- Malware Month Ten years since the first corp ransomware, Mikko Hyppönen sees no end in sight On the plus side, infosec's a good bet for a long, stable career
+FOSS
+- Ubuntu Core Desktop targets 28.04 debut, with default status in its sights Canonical's stretch goal is to make the immutable OS standard in 30.04 – without retiring the traditional distro
+- Inspiring FOSS project Crosspoint Reader has lessons about tech, communities, and LLMs Cheap tiny e-readers and the perils of LLM-generated drive-by pull requests – plus much more
+- Omaxian takes the Omarchy look down a different Linux backstreet Devuan-based distro swaps Wayland for XLibre and i3, with Xfce waiting if the tiling gets tiresome
+- Microsoft’s Azure Linux dons Fedora to dress itself up for mainstream workloads Version 4.0 of Redmond’s cloudy OS is free to use in its cloud. Repeat. Free to use
+- Another Linux kernel developer steps back from some duties due to overload You can probably guess what he blames for the excessive workload
+- The latest FreeBSD report is here, and the AI debate is ongoing Only a minority want to ban it. Plus plenty of updates on 16 projects</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ab346a805c3')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a9ef93f256f">
+        <div class="article-body">
+          <a href="https://www.theregister.com/security/2026/11/16/infoblox-customer-and-staff-data-exposed-in-sharepoint-breach/5310280" target="_blank" rel="noopener noreferrer" class="article-title">Infoblox confirms company and customer data exposed in SharePoint breach - TechRadar</a>
+          <div class="article-meta">TechRadar &bull; Nov 17, 2026</div>
+          <div class="article-summary"><p>AI
+- Palo Alto Networks opens wallet for open-weight training biz Security shop buys the hand that feeds it
+- SC26 Qualcomm offers test drive of its rack-scale Nvidia AI challenger Selected customers can put Dragonfly AI200 through its paces on Cirrascale's cloud
+- To rank the world's biggest supercomputers, we're gonna need a bigger bench AI has birthed some truly colossal supers, they just aren't on the Top500
+- GPU giants throw HPC users some tasty crumbs Nvidia unveils an HPC-optimized Rubin GPU to challenge AMD's 288 teraFLOPS MI430X
+- Hackers smash 'n' grab AI vendor: Take off with license data of Uber drivers Ride-hailing biz says stolen credentials allowed crooks to help themselves to driver's license data
+Infosec
+- Security Russians are posing as Signal support to launch phishing attacks PLUS: US takes down Iranian propaganda sites; Marketing company asks 'Why Do We Have Your Information?' And more!
+- Security Microsoft patches failed to fix on-prem SharePoint, which is now under zero-day attack PLUS: China upgrades smartphone surveillance tools; Ring eases anti-snooping stance; and more
+- Black Hat and DEF CON DEF CON Franklin project enlists hackers to harden critical infrastructure Voting village reports have been so successful, says Jeff Moss, that the whole of DEF CON will now be included
+- Security EQT buys majority share in Swiss cybersecurity biz Acronis Went at equivalent of $3.5B+ valuation for entire firm, though portion sold not specified
+- Malware Month Ten years since the first corp ransomware, Mikko Hyppönen sees no end in sight On the plus side, infosec's a good bet for a long, stable career
+FOSS
+- Ubuntu Core Desktop targets 28.04 debut, with default status in its sights Canonical's stretch goal is to make the immutable OS standard in 30.04 – without retiring the traditional distro
+- Inspiring FOSS project Crosspoint Reader has lessons about tech, communities, and LLMs Cheap tiny e-readers and the perils of LLM-generated drive-by pull requests – plus much more
+- Omaxian takes the Omarchy look down a different Linux backstreet Devuan-based distro swaps Wayland for XLibre and i3, with Xfce waiting if the tiling gets tiresome
+- Microsoft’s Azure Linux dons Fedora to dress itself up for mainstream workloads Version 4.0 of Redmond’s cloudy OS is free to use in its cloud. Repeat. Free to use
+- Another Linux kernel developer steps back from some duties due to overload You can probably guess what he blames for the excessive workload
+- The latest FreeBSD report is here, and the AI debate is ongoing Only a minority want to ban it. Plus plenty of updates on 16 projects</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a9ef93f256f')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ac8eb6fb664">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMimgFBVV95cUxOcWR1X1lULWRlUFNjam1KamNRamxDZGkzYzFJeENnem4tS3ZPUXNWNzdDSm45YmtFaThfQjAyRUM1YzFaMVFGLUdJT1FGT0FuQUU3QmJBWHlqV2JhcnNkU3QwLXotVm9pQjJWckZzVmtocmw0MUVxVk9EOS1iYW15NEpJNlk2ZXZ6R2ZCOFhkRmp3OVR3bUNhUW9B?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">When Microsoft went down, the phone picked up the slack - TechTarget</a>
+          <div class="article-meta">TechTarget &bull; Nov 18, 2026</div>
+          <div class="article-summary snippet"><p>When Microsoft went down, the phone picked up the slack&amp;nbsp;&amp;nbsp;TechTarget</p><a href="https://news.google.com/rss/articles/CBMimgFBVV95cUxOcWR1X1lULWRlUFNjam1KamNRamxDZGkzYzFJeENnem4tS3ZPUXNWNzdDSm45YmtFaThfQjAyRUM1YzFaMVFGLUdJT1FGT0FuQUU3QmJBWHlqV2JhcnNkU3QwLXotVm9pQjJWckZzVmtocmw0MUVxVk9EOS1iYW15NEpJNlk2ZXZ6R2ZCOFhkRmp3OVR3bUNhUW9B?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac8eb6fb664')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ae60af0ff06">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiUkFVX3lxTE9GV3FodHRCSk5JZnA2aDJWendhaExQUWhyRTJJcllMU2RtSjdBY3RKaUt5VlF5dmlrdTdTd0hUeXp6YVJfX3N6c1FpT1BYNzlSMHc?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft outage turns Friday the 13th into a nightmare Staff Reporter THE major Microsoft 365 outage that began on Thursday, 12 November 2026, disrupted email, communication and other cloud-based services across more than 70 countries, including Nam - Instagram</a>
+          <div class="article-meta">Instagram &bull; Nov 16, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft outage turns Friday the 13th into a nightmare Staff Reporter THE major Microsoft 365 outage that began on Thursday, 12 November 2026, disrupted email, communication and other cloud-based services across more than 70 countries, including Nam&amp;nbsp;&amp;nbsp;Instagram</p><a href="https://news.google.com/rss/articles/CBMiUkFVX3lxTE9GV3FodHRCSk5JZnA2aDJWendhaExQUWhyRTJJcllMU2RtSjdBY3RKaUt5VlF5dmlrdTdTd0hUeXp6YVJfX3N6c1FpT1BYNzlSMHc?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ae60af0ff06')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="intune" class="topic-section">
+      <h2 class="topic-title" style="--c:#0F6CBD">Intune <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a25a5637392">
+        <div class="article-body">
+          <a href="https://techcommunity.microsoft.com/t5/intune-customer-success/manage-windows-servers-alongside-pcs-with-microsoft-intune/ba-p/4572643" target="_blank" rel="noopener noreferrer" class="article-title">Manage Windows Servers alongside PCs with Microsoft Intune</a>
+          <div class="article-meta">techcommunity.microsoft.com &bull; Nov 17, 2026</div>
+          <div class="article-summary"><p>Another way into the cloud: Test Intune management for eligible Windows Servers alongside your PCs.
+Microsoft enables organizations to bring more of their workloads into the cloud, but the path looks different for every organization. Some Windows Servers, including servers used as workstations, remote desktop session hosts, and branch-office servers, still run mission-critical workloads and may continue to be managed with traditional tools such as Configuration Manager, Group Policy, and scripts.
+Microsoft is extending familiar endpoint-management workflows to these eligible Windows Servers through Microsoft Intune. Available through the Windows Server Insider program, this preview allows endpoint administrators to manage supported servers in Intune alongside the Windows clients and other devices they already manage.
+With this preview, endpoint administrators will be able to apply configuration and compliance policies, deploy apps, manage updates, and use device compliance as a signal for Conditional Access on eligible Windows Servers. Intune roles and scope tags help control who can view and manage these servers. These familiar workflows give endpoint teams a more consistent way to manage supported Windows Servers alongside their Windows clients. To explore the preview, enroll eligible non-production servers running a supported Windows Server Insider build in a test environment and share feedback with Microsoft.
+Bring servers into familiar endpoint workflows
+For endpoint teams already managing Windows 11 PCs, bringing Windows Server management into Intune is a natural extension. Intune becomes a single pane of glass for both servers and Windows endpoints as many of these servers are managed by the same teams that run Intune for their endpoints. If your Azure team manages both the cloud and on-premise servers, we recommend using Azure Arc.
+Intune-eligible scenarios include Active Directory–joined servers in environments that use Microsoft Entra Connect, and servers that join Microsoft Entra ID. Here are some examples:
+- Windows Server used as workstations: privileged access workstations and jump boxes for reaching production environments, remote desktop session hosts, development and test systems, and factory-floor terminals.
+- Edge, branch, and distributed Windows Server: servers in retail sites, branch offices, and other remote locations where generalist IT teams manage local services alongside PCs.
+- Persistent virtual desktop sessions: Windows Server RDSH sessions in hybrid virtual desktop environments, such as Azure Virtual Desktop Hybrid. Intune manages each session as a device and applies user policies; the virtualization platform continues to manage host pools and images. Multiple concurrent sessions are outside the scope of this preview.
+Keep control of who manages your servers
+Servers such as privileged access workstations and jump boxes often hold the keys to production environments, so who can manage them matters as much as how they are managed. Intune gives you control at each step:
+- Windows Server enrollment is opt-in. Server enrollment is off by default.
+To enroll servers, change the Windows Server devices setting from Block to Allow; existing custom Windows restrictions continue to block servers until changed. Entra groups and assignment filters give you granular control over who can enroll.
+- Identity and compliance gate access. Enrolled Windows Servers join Microsoft Entra ID. You can evaluate them against compliance policies and use Conditional Access to require a compliant device before users reach protected apps and resources.
+- Roles and scope tags determine who can act. Existing Intune roles and scope tags apply to servers. Admins who manage PCs today may be able to see and act on servers after they enroll. Plan role assignments and scope tags before enrollment so server management stays with the right admins.
+- Filters keep policies where they belong.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a25a5637392')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ad5d9921852">
+        <div class="article-body">
+          <a href="https://techcommunity.microsoft.com/t5/intune-customer-success/a-guide-to-governing-local-ai-agents-with-intune/ba-p/4573284" target="_blank" rel="noopener noreferrer" class="article-title">A guide to governing local AI agents with Intune</a>
+          <div class="article-meta">techcommunity.microsoft.com &bull; Nov 17, 2026</div>
+          <div class="article-summary"><p>See how Microsoft Intune helps discover supported local AI agents, govern access, protect work data, and set boundaries.
+Local AI agents are becoming part of everyday work. Employees may use them on managed devices to access repositories, analyze files, automate tasks, or interact with external services. IT needs to understand which agents are present, decide how to handle them, and apply controls that match their approved use.
+Our Ignite 2026 roundup of what's new in Microsoft Intune introduced new controls for agent governance and containment on managed devices. This hands-on follow-up explains how to put them to work.
+No single control fits every agent or task. Coverage depends on the agent, host app, platform, and available signals. As always, test policies to understand behavior before deploying broadly.
+Discover local agents and decide what is allowed
+Microsoft Agent 365 combines available inventory and runtime signals from Microsoft Defender, Intune, and Microsoft Entra to help IT identify supported local AI agents on Windows devices. Intune’s application inventory can help IT identify how and where discovered agents are installed. Admins can create a configuration profile that specifies which app inventory properties to collect and assign it to device or user groups. App inventory collects registered Win32 and Windows Store apps from Windows 10/11 devices that are Intune enrolled and Entra joined.
+For an unwanted agent or app, note the Platform-specific app ID attribute. This is the MSI product code for Win32 apps or the package full name for Store apps. Admins can use this value to enable restrictions with a software compliance policy.
+Local AI agents do not always map one-to-one with a host app. Currently, only host apps installed as Win32 or Windows Store apps appear in Intune’s app inventory.
+Govern agent access to company resources
+Intune software compliance policy, available in public preview, can help restrict device access to protected company resources when a specified unwanted application is detected and applicable Conditional Access requirements are configured.
+Software compliance evaluates installed apps by supported identifiers, not agent identifiers directly. Agents with multiple supported host apps may need multiple restricted software entries. Review these relationships before assigning the policy. In this preview, editor extensions, npm packages, and standalone executables aren't available to select.
+Using the MSI product code or package full name of an unwanted app:
+- Create a software compliance policy in the Intune console
+- Add the app’s identifier as a restricted software entry
+- Assign the policy to a device or user group
+- Ensure a Conditional Access policy is configured to require that devices are compliant to access corporate resources
+Once deployed, Intune marks targeted devices non-compliant if restricted software is found, allowing Conditional Access to block access to protected corporate resources across the entire device, even while the agent is inactive. After uninstalling the software, employees can immediately request a compliance check; once Intune confirms compliance with applicable requirements, access can be restored according to the organization’s Conditional Access policies.
+To provide instructions for the employee, admins can create a custom message explaining why the device is out of compliance and how to fix it. The IT team can then use reporting to see which devices still need attention and adjust the policy as needs change.
+Configure App Protection Policies for supported AI apps on mobile platforms
+App protection policies help control how work data is accessed and transferred within supported AI apps on iOS/iPadOS and Android, with or without device enrollment. Supported AI applications, including eligible offerings from Microsoft and third-party developers, can integrate with Intune app protection policies through the Intune App SDK.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ad5d9921852')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ad86c385282">
+        <div class="article-body">
+          <a href="https://techcommunity.microsoft.com/t5/intune-customer-success/microsoft-perception-helps-it-drive-outcomes-and-scale/ba-p/4573285" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Perception helps IT drive outcomes and scale</a>
+          <div class="article-meta">techcommunity.microsoft.com &bull; Nov 17, 2026</div>
+          <div class="article-summary"><p>Transforming endpoint management with deeper insights, custom reporting, and intelligent remediation
+Attackers now move in hours. The Microsoft Digital Defense Report 2026 notes that new vulnerabilities can be weaponized in under a day, and roughly 40,000 CVEs were published in the first half of 2026 alone, a pace on track to roughly double. Unpatched vulnerabilities can leave organizations exposed, making timely identification, prioritization, and remediation essential to endpoint security.
+Security teams often focus on identifying and prioritizing risk, while IT teams manage the deployment of fixes across devices. IT teams roll out fixes at scale but need the context for which risks matter most. The workflows between these two teams are often fragmented across tickets and manual handoffs. And yet, IT is increasingly being asked to protect more: more devices, more apps, and now AI agents. As Hayete Gallot, Executive Vice President of Microsoft Security, wrote when introducing Project Perception, &quot;approaches built for a world of human actors cannot keep pace&quot; with AI, agents, and machine-speed attacks.
+At Microsoft Ignite, we are introducing Microsoft Perception capabilities specifically for IT in Microsoft Intune to help teams scale to meet this expanding set of responsibilities. These capabilities shift IT from chasing tickets and reconciling lists to reviewing plans, approving change, and proving outcomes.
+What Microsoft Perception means for IT
+Microsoft Perception is an agentic security system in which red, blue, and green team agents drive security outcomes across the security lifecycle, with humans in the loop. In October, we extended Perception to secure the agentic insider specialized agents. Perception and Microsoft Agent 365 now share a unified agent registry, giving IT and security a consistent view of agents and risk.
+We now expand the power of Perception to IT. Perception connects critical workflows and closes the gap between security teams that prioritize risk and IT teams that deploy change.
+For IT pros, Perception brings three connected capabilities into Intune:
+- Plain language exploration converts tenant endpoint data into actionable insights conversationally – no multi-step queries and cross exports needed.
+- The Vulnerability Remediation Agent in Intune turns prioritized risk into exposure reduction plans ready for approval.
+- Custom reports track progress and verify outcomes in a repeatable manner.
+By bringing shared security context and a path to remediation directly into Intune, these capabilities help IT meet expanding responsibilities, prioritize fixes, and move faster from understanding risk to acting on it. With fewer disconnected steps between security and IT, teams can shift from chasing tickets to reviewing plans, approving change, and proving outcomes.
+Putting shared security context and a path to remediation directly into Intune helps to move from understanding which risks matter most to acting on them faster, with fewer disconnected steps between security and IT.
+Get actionable insights: Ask, and get the deeper data story
+It is now incredibly easy to ask deep questions that would otherwise require hand stitching exports. Just ask, “Which non-compliant devices on each OS version have not checked in during the last 30 days?” or “Which devices are still running a vulnerable app version or are missing the latest security update?” Perception returns a table, shows how it arrived at the results, and flags when results are partial.
+Simply open Perception in the Intune admin center, begin a new chat, and describe the required outcome. Perception writes and runs the queries, combines results across data sources, and explains each step with citations. Review the queries behind the answer without having to write them or look up an API.
+To act, add the affected devices or users to a new or existing group and follow through with familiar Intune tools.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ad86c385282')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a3be32a5c1a">
+        <div class="article-body">
+          <a href="https://techcommunity.microsoft.com/t5/intune-customer-success/build-faster-trusted-remote-support-with-diagnostic-data-reports/ba-p/4573942" target="_blank" rel="noopener noreferrer" class="article-title">Build faster, trusted remote support with Diagnostic Data Reports in Remote Help</a>
+          <div class="article-meta">techcommunity.microsoft.com &bull; Nov 18, 2026</div>
+          <div class="article-summary"><p>By: Kara Wang | Product Manager 2, Microsoft Intune &amp; Ingrid Allen | Senior Product Manager, Windows
+Support sessions are most effective when your helpdesk team can quickly start with the right device context. In many cases, helpdesk staff still need to confirm key system details with the user before moving into targeted troubleshooting.
+In attended Windows support sessions, Diagnostic Data Reports in Remote Help for Windows is now available to help quickly onboard helpdesk staff with device information while maintaining user trust. In this context, attended sessions are sessions where the user participates and grants helpdesk staff access. These sessions support view only access, full control, and optional User Account Control (UAC) elevation. This capability is currently not available for Windows Remote Help unattended sessions.
+With this feature, your helpdesk team can request diagnostic data directly in the Remote Help session and generate a Diagnostic Data Report to guide troubleshooting. If updated information is needed, the helpdesk staff can refresh the report during the session. The user decides whether to allow sharing, can view what is shared, and can stop sharing at any time. Helpdesk staff receive practical context for faster, more informed troubleshooting, and the user keeps clear control.
+Why this matters for your support operations
+When your team starts with structured diagnostic context, helpdesk staff spend less time on discovery and more time on resolution. That improves first pass troubleshooting and reduces repeat clarifying questions.
+You also keep the consent model transparent:
+- The user explicitly allows or declines sharing.
+- The user can see the shared data.
+- The user can stop sharing during the session.
+This balance helps you improve support speed while maintaining confidence in your remote support process.
+How Diagnostic Data Reports work in Remote Help
+- For attended Windows device sessions, the helpdesk staff requests diagnostic data collection by selecting the icon in the Remote Help toolbar.
+- The user sees a request asking permission for the helpdesk staff to view and possibly store their device diagnostic data.
+- The user chooses Allow or Decline.
+If the user selects Allow:
+- The helpdesk staff sees a report with collapsible sections with options to Refresh, Copy, and Collapse All.
+- A View Shared Data button appears on the user’s toolbar.
+- When the user selects View Shared Data, the diagnostic panel appears in the Remote Help app.
+- The same diagnostic data report is shown to the helpdesk staff and the user.
+If the user selects Decline, helpdesk staff is notified. If the user initially allows the report to be generated and later chooses to turn sharing off, helpdesk staff is notified that the user stopped sharing data.
+Demo
+What data categories are shared, and how should you use them?
+When the user allows sharing, the report organizes data into practical categories. These categories help your helpdesk staff move from collecting context to resolving issues.
+What to expect from the report during troubleshooting
+Diagnostic Data Reports give your helpdesk staff a reliable snapshot of device state to guide each troubleshooting step.
+- Diagnostic values are captured as a point in time snapshot.
+- Metrics like memory, CPU, and network activity reflect device state at collection time.
+- After a change, the helpdesk staff can refresh to collect a current snapshot and validate whether remediation changed the device’s state.
+- If a field is missing, this means that the device did not report that value. It does not mean healthy, false, or zero by default.
+This gives your helpdesk staff a clearer context for decision making and helps keep troubleshooting steps grounded in current, observable device data.
+User control and session behavior
+Users can inspect what was shared by selecting View Shared Data after they allow sharing.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a3be32a5c1a')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="acc1afe53d5">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi0gFBVV95cUxNSms0NWpLeFVSQXNvMUpuVFB4VUc1eXVFMEgzY3J6NURXVFk5VWpRWUNNSE8xZm4zNzVyWVYtcFc5TjdjZ3hfTWtKLVNKMXFJU21RUWxIemEwSzRMR0xkTkl0RTNVazBVRjRCaTY1NF9oTlVaa0QtN2RjcHgxeTlaaVptQTVsVmM5UGduOVAyR1dBTHFKT3Fvb29INGlUcXhCRlR1aEdqT1VYUWd2RUo1Sm9peDdOSk5teUlHb0FCcW5vRUNUbTMzYUgyZkxKYVlwU3c?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Why Microsoft patches Windows in two days but makes third-party apps wait - MarketScale</a>
+          <div class="article-meta">MarketScale &bull; Nov 21, 2026</div>
+          <div class="article-summary snippet"><p>Why Microsoft patches Windows in two days but makes third-party apps wait&amp;nbsp;&amp;nbsp;MarketScale</p><a href="https://news.google.com/rss/articles/CBMi0gFBVV95cUxNSms0NWpLeFVSQXNvMUpuVFB4VUc1eXVFMEgzY3J6NURXVFk5VWpRWUNNSE8xZm4zNzVyWVYtcFc5TjdjZ3hfTWtKLVNKMXFJU21RUWxIemEwSzRMR0xkTkl0RTNVazBVRjRCaTY1NF9oTlVaa0QtN2RjcHgxeTlaaVptQTVsVmM5UGduOVAyR1dBTHFKT3Fvb29INGlUcXhCRlR1aEdqT1VYUWd2RUo1Sm9peDdOSk5teUlHb0FCcW5vRUNUbTMzYUgyZkxKYVlwU3c?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('acc1afe53d5')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ac9f3ec3531">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi1wFBVV95cUxOYVV1WkRGMEFXZGlzaUJyVGpHOWpUb3h1VDF1Y3VseVdkVzZ0Zl9rTW02Nlo2QVBYckR1UHVRNm9RLUkzRGhLa21JaXN0XzJqU0h1V0xkR0hPdjJfekFRbTE3cFNPTnpiQUNDNmFDQ0JYUnhiZUpUeU5zMTZYeFdwd2syWFJ0VEJDUXlJU0lrTURMQWt1VDF2T2Utd1ZyQ2Rla0VfXy15MDI4OF9MdzlrdEo2RzBCbEZUM1FDNVlETnBOdHE5UHdZSWdIRDZMcG9uX0xpRlRxSQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Inside Track - Keeping corporate IT software current: How we’re modernizing patch management in Microsoft Digital - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; Nov 17, 2026</div>
+          <div class="article-summary snippet"><p>Inside Track - Keeping corporate IT software current: How we’re modernizing patch management in Microsoft Digital&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMi1wFBVV95cUxOYVV1WkRGMEFXZGlzaUJyVGpHOWpUb3h1VDF1Y3VseVdkVzZ0Zl9rTW02Nlo2QVBYckR1UHVRNm9RLUkzRGhLa21JaXN0XzJqU0h1V0xkR0hPdjJfekFRbTE3cFNPTnpiQUNDNmFDQ0JYUnhiZUpUeU5zMTZYeFdwd2syWFJ0VEJDUXlJU0lrTURMQWt1VDF2T2Utd1ZyQ2Rla0VfXy15MDI4OF9MdzlrdEo2RzBCbEZUM1FDNVlETnBOdHE5UHdZSWdIRDZMcG9uX0xpRlRxSQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ac9f3ec3531')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ad9b567563b">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiuwFBVV95cUxQYXlycC12TmFMUVBsUlg2aUQtZW15ck12TUJGckh3WWJHa1pwTXByZ0FGX1hTVGN2eF9wZ01uTV9DcXVlQjFLc09XT3pvY0JxNkp4ZDljbW1DbWRYcjJlVThXdFN5aG5OZXYzb000Q2Etd2FYMkh5Zlp1NGNTSWFyaWwzWVBrdGFVbE11Y21rdTg1Ui1wbklZc0RONjYySHhfQjI3Q19Ld0VnTjBoMmlnQXhyT2I4ZzQ1WEg0?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Ignite 2026: Building Windows for the next era of work - Windows Blog</a>
+          <div class="article-meta">Windows Blog &bull; Nov 17, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft Ignite 2026: Building Windows for the next era of work&amp;nbsp;&amp;nbsp;Windows Blog</p><a href="https://news.google.com/rss/articles/CBMiuwFBVV95cUxQYXlycC12TmFMUVBsUlg2aUQtZW15ck12TUJGckh3WWJHa1pwTXByZ0FGX1hTVGN2eF9wZ01uTV9DcXVlQjFLc09XT3pvY0JxNkp4ZDljbW1DbWRYcjJlVThXdFN5aG5OZXYzb000Q2Etd2FYMkh5Zlp1NGNTSWFyaWwzWVBrdGFVbE11Y21rdTg1Ui1wbklZc0RONjYySHhfQjI3Q19Ld0VnTjBoMmlnQXhyT2I4ZzQ1WEg0?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ad9b567563b')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a9ba77f721e">
+        <div class="article-body">
+          <a href="https://petri.com/top-10-microsoft-ignite-2026-announcements/" target="_blank" rel="noopener noreferrer" class="article-title">Top 10 Ignite 2026 Announcements for Microsoft Admins - Petri IT Knowledgebase</a>
+          <div class="article-meta">Petri IT Knowledgebase &bull; Nov 20, 2026</div>
+          <div class="article-summary"><p>Top 10 Ignite 2026 Announcements That Will Change How Admins Manage Windows, Identity, and AI
+AI agents are becoming a new class of enterprise resource, and Microsoft is giving admins tools to secure them. Here are the 10 Ignite announcements that will shape your priorities, from agent identity and Intune controls to Windows Server 2028.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a9ba77f721e')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="entraid" class="topic-section">
+      <h2 class="topic-title" style="--c:#6B69D6">Entra ID <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a2764700363">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-entra-hard-deletion-protection/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Introduces Hard Deletion Protection for Entra Identities</a>
+          <div class="article-meta">petri.com &bull; Nov 20, 2026</div>
+          <div class="article-summary"><p>Microsoft has introduced Hard Deletion Protection for Entra ID, adding a seven-day safeguard that prevents supported identities and applications from being permanently removed immediately after deletion. For organizations, the feature provides additional recovery time following administrative mistakes, insider incidents, or account compromises.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a2764700363')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a3ac5106deb">
+        <div class="article-body">
+          <a href="https://www.bleepingcomputer.com/news/security/microsoft-entra-connect-health-flaw-exploited-to-steal-tenant-data/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Entra Connect Health flaw exploited to steal tenant data</a>
+          <div class="article-meta">bleepingcomputer.com &bull; Nov 21, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft is warning organizations that it suffered a data breach after attackers exploited a vulnerability in its Entra Connect Health service to gain unauthorized access to administrator email addresses and tenant configuration information. [...]</p><a href="https://www.bleepingcomputer.com/news/security/microsoft-entra-connect-health-flaw-exploited-to-steal-tenant-data/" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a3ac5106deb')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a0aee25c02b">
+        <div class="article-body">
+          <a href="https://www.bleepingcomputer.com/news/security/still-tracking-company-passwords-in-spreadsheets-youre-flying-blind/" target="_blank" rel="noopener noreferrer" class="article-title">Still tracking company passwords in spreadsheets? You’re flying blind.</a>
+          <div class="article-meta">bleepingcomputer.com &bull; Nov 20, 2026</div>
+          <div class="article-summary snippet"><p>Tracking company passwords in spreadsheets can leave IT administrators unaware of weak, reused, or compromised credentials stored and shared outside approved systems. NordPass explains how centralized password management can improve credential visibility, identify security risks, and simplify secure password sharing. [...]</p><a href="https://www.bleepingcomputer.com/news/security/still-tracking-company-passwords-in-spreadsheets-youre-flying-blind/" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a0aee25c02b')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a18306cc167">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/11/critical-vmware-vcenter-flaw-cvss-98.html" target="_blank" rel="noopener noreferrer" class="article-title">Critical VMware vCenter Zero-Day Flaw Lets Network Attackers Bypass Authentication</a>
+          <div class="article-meta">thehackernews.com &bull; Nov 19, 2026</div>
+          <div class="article-summary"><p>A critical flaw in VMware vCenter lets an attacker with network access bypass authentication and gain unauthorized access to the system, Broadcom, which owns VMware, said in an advisory published today.
+Fixed versions are out for all supported branches, and the company lists no workaround. vCenter is the central console for managing an organization's ESX hosts and virtual machines.
+The vulnerability is tracked as CVE-2026-123890 and is rated 9.8 on the CVSS scoring system. &quot;VMware vCenter contains an authentication bypass vulnerability in the VMware Directory Service,&quot; the advisory says.
+In an FAQ published with the advisory, the company says the issue &quot;qualifies under ITIL methodologies as an emergency change,&quot; and urges organizations to consult their security staff immediately on timing.
+The flaw was exploited as a zero-day more than two months before the patch, Google's threat intelligence team said in a technical analysis published November 20. A suspected China-nexus espionage actor tracked as Armory Castle used it in early September to gain administrator access to a vCenter server inside a network the group had already breached. Credit for reporting the bug goes to Google-owned Mandiant.
+The bug is present in vCenter 8.0, 9.0, and 9.1, and in the vCenter builds that ship inside VMware Cloud Foundation, vSphere Foundation, and the Telco Cloud Platform and Telco Cloud Infrastructure products. That includes the older Cloud Foundation 5.x line. It is there whether or not Enhanced Linked Mode is in use.
+Older versions are not cleared. The company no longer evaluates versions past end of support, and says vSphere 6.5 and 6.7 should be presumed affected. The same goes for vSphere 7.0, which left general support in October 2025, and whose customers can request a patch under an extended support contract.
+None of the five flaws in the advisory lets code run on an ESX host from inside a virtual machine, and ESX itself is not affected, the advisory FAQ says.
+There is no fallback for systems that cannot be updated yet: asked whether a workaround exists, the FAQ answers &quot;Not as listed by Broadcom,&quot; while noting that mitigations may still exist in an organization's own defenses.
+The updates are cumulative and cannot be installed through vCenter Quick Patch. Virtual machines continue running while vCenter installs the update, though management access drops briefly, and some encryption operations against a Standard Key Provider become unavailable until vCenter is back online.
+One warning applies to upgrades already in progress: installing vCenter 8.0 U3m or 9.0.2.0200 blocks a later upgrade to VMware Cloud Foundation 9.1.1, a conflict the FAQ calls a &quot;Back-in-Time&quot; issue. The options are to upgrade vCenter to 9.1.1 first and apply the security update there, or to wait briefly for VCF 9.1.2.
+The bypass is the second critical authentication flaw in the VMware Directory Service this year. The earlier vCenter flaws, patched on July 29, included CVE-2026-59309, another 9.8-rated bypass in the same component per the July advisory, alongside a directory-traversal bug, CVE-2026-59310.
+Attacks on that traversal flaw began five days after its disclosure, German incident response firm QUIRSO assessed in August, linking them with moderate confidence to a suspected China-nexus actor.
+The August attacks compromised an estimated 361 IP addresses in 47 countries and deployed Babuk-derived ransomware on ESXi hosts.
+The advisory also fixes four lower-severity flaws, rated 6.7 to 8.1: a SQL injection (CVE-2026-123891) and a command injection (CVE-2026-123892) in SDDC Manager, a privilege escalation to root on the SDDC Manager appliance (CVE-2026-123893), and a SAML token signature bypass in VMware Tools for Windows (CVE-2026-123894), exploitable only where Guest Alias mapping is configured. Each needs an authenticated or already privileged actor, and the last one stays inside the guest virtual machine.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a18306cc167')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ab3c5657f82">
+        <div class="article-body">
+          <a href="https://thehackernews.com/2026/11/n-able-patches-17-n-central-flaws-as.html" target="_blank" rel="noopener noreferrer" class="article-title">N-able Patches 17 N-central Flaws as Attackers Exploit Earlier Bugs to Deploy Crypto Miners</a>
+          <div class="article-meta">thehackernews.com &bull; Nov 17, 2026</div>
+          <div class="article-summary"><p>N-able has released a new security update to address additional critical security flaws impacting N-central.
+Describing N-central 2026.4 Hotfix 3 as a critical security update, the company said it includes a number of security patches and fixes that enhance the security of the Remote Monitoring and Management (RMM) and Unified Endpoint Management (UEM) platform.
+&quot;HF3 builds on the protections delivered in HF2 and includes further improvements across authentication and access controls, Agent and Probe communications, file handling, server components, legacy APIs, and user management,&quot; the company said.
+The improvements relate to authentication and access control; Agent, Probe, and appliance security; file and import handling; server hardening; and user management controls. As part of the change, the configuration option for legacy APIs has been completely removed, permanently blocking them.
+As of writing, N-able notes that both Remote control functionality and Intune integration are blocked.
+Customers running on-premise N-central deployments should upgrade their servers as soon as possible to keep their environments protected. For Hosted N-central servers, no server-side action is required, as the updates are being automatically applied.
+&quot;All customers, hosted and on-premise, must upgrade all of their Agents and Probes to the latest version to be fully protected,&quot; N-able cautioned. &quot;Agents and Probes that are not upgraded are susceptible to impersonation.&quot;
+The complete list of vulnerabilities addressed in the update is below -
+- CVE-2026-129271 - N-central Patch Management Local Privilege Escalation
+- CVE-2026-129272 - MMS3 appliance authentication bypass via predictable passcode
+- CVE-2026-129273 - Audit Export syslog injection allows root command execution
+- CVE-2026-129274 - ServerMMS2 task result submission missing authentication
+- CVE-2026-129275 - repositoryItemGet missing authentication discloses policies
+- CVE-2026-129276 - ServerMMS2 asset data submission missing authentication
+- CVE-2026-129277 - ServerMMS maintenance action read missing authentication
+- CVE-2026-129278 - Take Control audit log tampering without authentication
+- CVE-2026-129279 - Password reset response discrepancy allows user enumeration
+- CVE-2026-129280 - ServerUI SOAP operations missing authorisation checks
+- CVE-2026-129281 - View-only users can set DeviceExecute configuration
+- CVE-2026-129282 - Test email sendmail argument injection, missing authorisation
+- CVE-2026-129283 - N-central custom service import XML external entity injection
+- CVE-2026-129284 - Report Manager and Data Export settings SSRF
+- CVE-2026-129285 - XMPP action response origin validation error
+- CVE-2026-129286 - SIS GenericFiles version path traversal leads to RCE
+- CVE-2026-129287 - SIS repository parser XML external entity injection
+The development comes days after N-able began restricting certain N-central features and integrations following the disclosure of a new set of flaws tracked as 4EverAble2Shell and Agent2Shell.
+The shortcomings can allow attackers to run arbitrary code as root and gain SYSTEM-level access to Windows systems under specific conditions. Successful exploitation of 4EverAble2Shell hinges on the legacy API mode being enabled.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ab3c5657f82')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ab4fac23aec">
+        <div class="article-body">
+          <a href="https://www.bleepingcomputer.com/news/security/microsoft-entra-connect-health-flaw-exploited-to-steal-tenant-data/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Entra Connect Health flaw exploited to steal tenant data - BleepingComputer</a>
+          <div class="article-meta">BleepingComputer &bull; Nov 21, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft Entra Connect Health flaw exploited to steal tenant data&amp;nbsp;&amp;nbsp;BleepingComputer</p><a href="https://www.bleepingcomputer.com/news/security/microsoft-entra-connect-health-flaw-exploited-to-steal-tenant-data/" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ab4fac23aec')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a482f0dd7e8">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMidEFVX3lxTE9CRkFBeGNibWhuZHlBdkF2ek12cTU0ajlNSDA0R1EyaS1ZdDhmc3FabG9YWkZGZGQ0V3Q3TGdlS0dDVi15NTF2TTY5SHJWZXQ0M05NODJDR1hLSGRpbUJ2Y0I0c0Vja3FVUFVxeFRUUVZDRjZr0gF6QVVfeXFMT25SSjgzdGtWUzUyUjl1S3RzdW1tSUpRWC1jVUlLdF9Fem5kYWNrUy1LdVlYYUpyd1lOLWNjNGhzZWxxUjVocnlGbzNobTVPZUxIdmxmYTB3RlkxUUFnd1FBc0IyTlZmZTRrNTVJU0hEdnpCU0l6eEVVYXc?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Hackers Exploit Microsoft Entra Connect Health Flaw to Access Admin Emails and Organization Data - CyberSecurityNews</a>
+          <div class="article-meta">CyberSecurityNews &bull; Nov 22, 2026</div>
+          <div class="article-summary snippet"><p>Hackers Exploit Microsoft Entra Connect Health Flaw to Access Admin Emails and Organization Data&amp;nbsp;&amp;nbsp;CyberSecurityNews</p><a href="https://news.google.com/rss/articles/CBMidEFVX3lxTE9CRkFBeGNibWhuZHlBdkF2ek12cTU0ajlNSDA0R1EyaS1ZdDhmc3FabG9YWkZGZGQ0V3Q3TGdlS0dDVi15NTF2TTY5SHJWZXQ0M05NODJDR1hLSGRpbUJ2Y0I0c0Vja3FVUFVxeFRUUVZDRjZr0gF6QVVfeXFMT25SSjgzdGtWUzUyUjl1S3RzdW1tSUpRWC1jVUlLdF9Fem5kYWNrUy1LdVlYYUpyd1lOLWNjNGhzZWxxUjVocnlGbzNobTVPZUxIdmxmYTB3RlkxUUFnd1FBc0IyTlZmZTRrNTVJU0hEdnpCU0l6eEVVYXc?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a482f0dd7e8')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a156da382e9">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiugFBVV95cUxOV2NrLWpyY2FFNDdmSjRCWklNQ2FhcWZ4czZSeXdsaFB5YVBybVJRUjRZWHUwUjhQZEdOSUVBM1R5SXgwUEU0YTFwUnVfUnc2REVTODUyTDdEaS1ZVEFQdVc2SlV0T015a1AzMC11ZTF2UGFsMXp1U21fczk3T3daWnA2QURla1lwX290Vkd3dEU2MXhNdzNmS252TEkyYkdnbGNiVE1mOUZvOU92QXNfTDkxM3RTX0Iyb1E?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Security for the agentic era, powered by Microsoft Perception - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; Nov 17, 2026</div>
+          <div class="article-summary snippet"><p>Security for the agentic era, powered by Microsoft Perception&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMiugFBVV95cUxOV2NrLWpyY2FFNDdmSjRCWklNQ2FhcWZ4czZSeXdsaFB5YVBybVJRUjRZWHUwUjhQZEdOSUVBM1R5SXgwUEU0YTFwUnVfUnc2REVTODUyTDdEaS1ZVEFQdVc2SlV0T015a1AzMC11ZTF2UGFsMXp1U21fczk3T3daWnA2QURla1lwX290Vkd3dEU2MXhNdzNmS252TEkyYkdnbGNiVE1mOUZvOU92QXNfTDkxM3RTX0Iyb1E?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a156da382e9')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="m365" class="topic-section">
+      <h2 class="topic-title" style="--c:#D83B01">Microsoft 365 <span class="count">(8)</span></h2>
+      <div class="article-card" data-id="a89f46b7477">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-purview-audit-vs-ediscovery/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Purview Audit vs. eDiscovery: Which Tool Should IT Administrators Use?</a>
+          <div class="article-meta">petri.com &bull; Nov 19, 2026</div>
+          <div class="article-summary"><p>Choose the wrong Purview tool and you'll either run a lengthy content search when you needed an activity log, or hand HR a timeline with no message text. Audit tells you who did what and when, eDiscovery finds and preserves the content involved, and most Microsoft 365 investigations need both.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a89f46b7477')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a4d7fd87030">
+        <div class="article-body">
+          <a href="https://petri.com/microsoft-multi-tenant-ai-governance-microsoft-365/" target="_blank" rel="noopener noreferrer" class="article-title">Multi-Tenant AI and Governance Controls Come to Microsoft 365 Admin Center</a>
+          <div class="article-meta">petri.com &bull; Nov 19, 2026</div>
+          <div class="article-summary"><p>Multi-Tenant AI and Governance Controls Come to Microsoft 365 Admin Center
+Admins running many Microsoft 365 tenants will be able to manage agents, configuration drift and AI spend from one console, but the convenience raises the stakes for how delegated access is scoped, reviewed and monitored.</p></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a4d7fd87030')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a3541bc8527">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMivAFBVV95cUxNdHRrZWEwQjB2dzlUQW5wT1MtYU1TVUFYNUkyUjN2RXJGMzFaZFBvZDBmMTZDdDFmYk5sdTVFSWZfUHRIMFNNTWpfYmFBMzIwNC1ndGgyNXQyQ2xXUmdXckJlNXQ2dzl0SlMzS3RVbUFkazFNV0V6QWtIaWdnNlZyVWhBenp3cXZRUDlPRFpKUlM5MGIzdXB4Y042X09JdHYzMUc0c2lvVVprQVJmRnd0WkdLQkU5dWxjOFhLZQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Inside Track - Launching the personal agent era: How we're rolling out Autopilot at Microsoft - Microsoft</a>
+          <div class="article-meta">Microsoft &bull; Nov 19, 2026</div>
+          <div class="article-summary snippet"><p>Inside Track - Launching the personal agent era: How we're rolling out Autopilot at Microsoft&amp;nbsp;&amp;nbsp;Microsoft</p><a href="https://news.google.com/rss/articles/CBMivAFBVV95cUxNdHRrZWEwQjB2dzlUQW5wT1MtYU1TVUFYNUkyUjN2RXJGMzFaZFBvZDBmMTZDdDFmYk5sdTVFSWZfUHRIMFNNTWpfYmFBMzIwNC1ndGgyNXQyQ2xXUmdXckJlNXQ2dzl0SlMzS3RVbUFkazFNV0V6QWtIaWdnNlZyVWhBenp3cXZRUDlPRFpKUlM5MGIzdXB4Y042X09JdHYzMUc0c2lvVVprQVJmRnd0WkdLQkU5dWxjOFhLZQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a3541bc8527')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a1d6e1ab956">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMinAFBVV95cUxPZ3pLYjh0cVNNNlJpRXBlanNMbXlWZ2ktQVFvODlnUGZlNHlfRG9zM2w5T2JKSW5sdUZzRER5OC13bWI4VE5EdktxOVhqdF9NYXQzdkJCYWZMSVc0aHNVdzZqZERrUXdTQWJUS0hWME55dnNqTkZiSHUtVFdIb08zQlQ4RTNmSk13MzBKTk1OTWw4VkdHRzNYNUhPMmE?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Why Pay for Microsoft 365 When an Office Lifetime License is Only $23? - PCMag</a>
+          <div class="article-meta">PCMag &bull; Nov 20, 2026</div>
+          <div class="article-summary snippet"><p>Why Pay for Microsoft 365 When an Office Lifetime License is Only $23?&amp;nbsp;&amp;nbsp;PCMag</p><a href="https://news.google.com/rss/articles/CBMinAFBVV95cUxPZ3pLYjh0cVNNNlJpRXBlanNMbXlWZ2ktQVFvODlnUGZlNHlfRG9zM2w5T2JKSW5sdUZzRER5OC13bWI4VE5EdktxOVhqdF9NYXQzdkJCYWZMSVc0aHNVdzZqZERrUXdTQWJUS0hWME55dnNqTkZiSHUtVFdIb08zQlQ4RTNmSk13MzBKTk1OTWw4VkdHRzNYNUhPMmE?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a1d6e1ab956')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a263d8a9edf">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMinwFBVV95cUxQMkFRandLTXVsN3FwVW9TUkE2OFFWWmF5SGZrdjZPeUlnMW1hY2NnYWZZemdXNWFpYU1ZcVZGZjR3dHJVTXdwOEk1dDZDTTFZUnBsZzdSa0NGTUs4MEpLLUszRUloODh3dHczUDYyOEpGekluRkJZNnIwX1h0UV9HVzVMQzNpTTA5YlBfWmh1OWl3NFEtaHZfTXAyUTZMX0U?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft 365 outage halted social services in Orange County - New University</a>
+          <div class="article-meta">New University &bull; Nov 20, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft 365 outage halted social services in Orange County&amp;nbsp;&amp;nbsp;New University</p><a href="https://news.google.com/rss/articles/CBMinwFBVV95cUxQMkFRandLTXVsN3FwVW9TUkE2OFFWWmF5SGZrdjZPeUlnMW1hY2NnYWZZemdXNWFpYU1ZcVZGZjR3dHJVTXdwOEk1dDZDTTFZUnBsZzdSa0NGTUs4MEpLLUszRUloODh3dHczUDYyOEpGekluRkJZNnIwX1h0UV9HVzVMQzNpTTA5YlBfWmh1OWl3NFEtaHZfTXAyUTZMX0U?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a263d8a9edf')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a8edf30d4d1">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMitAFBVV95cUxPTmJPbjZDR0J6YWduc1FudW9idEozUVh2NmFUdHUzRnNmUWEzU2RadksyTGlYbHpRa3RxY1RhQy1fSHNhNjlrWGVoWVp0a1Q1TkxKZElobHdkTzZ6TExJT0t4NThobWx2Y3RrcTBNRHN3X0thbUdZTENvZWdaTWg5RXJEY2phT25sNnYtUWdINXhPbG1TN2NBTlZSeFBoYlpDUGhMTmlUU01MTFlRam9YYzlRMVg?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Rubrik Launches Configuration Resilience for Microsoft 365 - Yahoo Finance</a>
+          <div class="article-meta">Yahoo Finance &bull; Nov 18, 2026</div>
+          <div class="article-summary snippet"><p>Rubrik Launches Configuration Resilience for Microsoft 365&amp;nbsp;&amp;nbsp;Yahoo Finance</p><a href="https://news.google.com/rss/articles/CBMitAFBVV95cUxPTmJPbjZDR0J6YWduc1FudW9idEozUVh2NmFUdHUzRnNmUWEzU2RadksyTGlYbHpRa3RxY1RhQy1fSHNhNjlrWGVoWVp0a1Q1TkxKZElobHdkTzZ6TExJT0t4NThobWx2Y3RrcTBNRHN3X0thbUdZTENvZWdaTWg5RXJEY2phT25sNnYtUWdINXhPbG1TN2NBTlZSeFBoYlpDUGhMTmlUU01MTFlRam9YYzlRMVg?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a8edf30d4d1')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="ab3754e7db8">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMikgFBVV95cUxQZkowWndRZmdOMlEtRjIyMjV1VjQ2S2xzcXY3Mm1KY1JmR3ZXWnY1aG14YnF2OHUwY0pVQzNZTXZ1R3l6T18wT2NTajQzVE9XdXF3MFk3U3UxX0xhTkFzVzA5VV9uNVJKTUlDY0t5d0p1V1dYbHRqV1FBMHNrbHhCNlBjNmM5bFJsSGVhRUJsaVFGZw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft 365 Went Down: What Should IT Teams Do First? - TechRepublic</a>
+          <div class="article-meta">TechRepublic &bull; Nov 19, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft 365 Went Down: What Should IT Teams Do First?&amp;nbsp;&amp;nbsp;TechRepublic</p><a href="https://news.google.com/rss/articles/CBMikgFBVV95cUxQZkowWndRZmdOMlEtRjIyMjV1VjQ2S2xzcXY3Mm1KY1JmR3ZXWnY1aG14YnF2OHUwY0pVQzNZTXZ1R3l6T18wT2NTajQzVE9XdXF3MFk3U3UxX0xhTkFzVzA5VV9uNVJKTUlDY0t5d0p1V1dYbHRqV1FBMHNrbHhCNlBjNmM5bFJsSGVhRUJsaVFGZw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('ab3754e7db8')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a7bd2b721c0">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMie0FVX3lxTFBGX2Ntc2xtdUhVTjhsTVRRYjVfdmV4VnNUQm0ySHZfbnBGREFoMFZlaDk2SnIzYUZFdERrbUl6ZUE5N04zQnNEZmJhXzVtV05sQUJma2piSGVQRlpFelNuZm0tby1GSmh0YVRDeFNxY0o3ZWItNWcwNW1haw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft 365 Goes Down. What’s Your Backup Plan? - Health-ISAC</a>
+          <div class="article-meta">Health-ISAC &bull; Nov 16, 2026</div>
+          <div class="article-summary snippet"><p>Microsoft 365 Goes Down. What’s Your Backup Plan?&amp;nbsp;&amp;nbsp;Health-ISAC</p><a href="https://news.google.com/rss/articles/CBMie0FVX3lxTFBGX2Ntc2xtdUhVTjhsTVRRYjVfdmV4VnNUQm0ySHZfbnBGREFoMFZlaDk2SnIzYUZFdERrbUl6ZUE5N04zQnNEZmJhXzVtV05sQUJma2piSGVQRlpFelNuZm0tby1GSmh0YVRDeFNxY0o3ZWItNWcwNW1haw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a7bd2b721c0')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+    <section id="iru" class="topic-section">
+      <h2 class="topic-title" style="--c:#7C3AED">Iru MDM (formerly Kandji) </h2>
+      <p class="no-news">No articles found this week.</p>
+    </section>
+    <section id="cato" class="topic-section">
+      <h2 class="topic-title" style="--c:#FF6B35">Cato Networks <span class="count">(5)</span></h2>
+      <div class="article-card" data-id="a5307fe467d">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMinwFBVV95cUxOdDZta3UzNndHRW8tSUg1NkFDZ1o2TVNvcWpSZEdyRkgyc2ZLd01CWnRPRmNZQUhPeVcwWWdGeS1pQi1lVEZVdVpyai1yaFR4Tk9qcnFMdjFuYTlESF92Q3VUOVpjaFR5RkFTaWNLS0JiaHl3dEMyRWcxZXVQbnFQMGZPdWxEWjlicjBkY05ZU2hwU194WTZGTnhtdlNUVUE?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks introduces AgentSense to secure autonomous AI agents - MSSP Alert</a>
+          <div class="article-meta">MSSP Alert &bull; Nov 20, 2026</div>
+          <div class="article-summary snippet"><p>Cato Networks introduces AgentSense to secure autonomous AI agents&amp;nbsp;&amp;nbsp;MSSP Alert</p><a href="https://news.google.com/rss/articles/CBMinwFBVV95cUxOdDZta3UzNndHRW8tSUg1NkFDZ1o2TVNvcWpSZEdyRkgyc2ZLd01CWnRPRmNZQUhPeVcwWWdGeS1pQi1lVEZVdVpyai1yaFR4Tk9qcnFMdjFuYTlESF92Q3VUOVpjaFR5RkFTaWNLS0JiaHl3dEMyRWcxZXVQbnFQMGZPdWxEWjlicjBkY05ZU2hwU194WTZGTnhtdlNUVUE?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a5307fe467d')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a7e094bbae2">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5WOTNzWlRIZ1Z4UEFPN1EwYjhKYW4zUl9fSkpHalZUaENzc2k4bXZqTDJiNGZZRURYa2ZjZlhkejUwZWJ1ZnItQ1dsQkJfVzR4VGFRVnBiUnZKdHNmMlhFWGtYeVgxNDA?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks offers $30,000 to hackers who can trick an AI agent - CTech</a>
+          <div class="article-meta">CTech &bull; Nov 17, 2026</div>
+          <div class="article-summary snippet"><p>Cato Networks offers $30,000 to hackers who can trick an AI agent&amp;nbsp;&amp;nbsp;CTech</p><a href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5WOTNzWlRIZ1Z4UEFPN1EwYjhKYW4zUl9fSkpHalZUaENzc2k4bXZqTDJiNGZZRURYa2ZjZlhkejUwZWJ1ZnItQ1dsQkJfVzR4VGFRVnBiUnZKdHNmMlhFWGtYeVgxNDA?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a7e094bbae2')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a84f9c56e6f">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMivwFBVV95cUxQWXY4SXg4bkJzNVFYYlhDVHh3RjBRTUx1ajI1eXd2dDRtemk4SENST0NCdm5TZlhXVVBLY3hZS1VJTnNsMDJWV1JHbTl4RUF0bTNRbmd4a191S2Y1ZElCT2xzV2NjQ1llYWJTTElNaTRxUlJkMV9zRmdxTzQwYXNBeVItWTZEQXh1UmlTSXV3YW56SXhjSC1fcGpCRkRyZHFZa3dFbzA0ZC16eGNJekpEdUc0dGgyLU1Rd0duM251bw?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks to control agents in real time, declaring zero trust is 'not enough' in AI era - SDxCentral</a>
+          <div class="article-meta">SDxCentral &bull; Nov 18, 2026</div>
+          <div class="article-summary snippet"><p>Cato Networks to control agents in real time, declaring zero trust is 'not enough' in AI era&amp;nbsp;&amp;nbsp;SDxCentral</p><a href="https://news.google.com/rss/articles/CBMivwFBVV95cUxQWXY4SXg4bkJzNVFYYlhDVHh3RjBRTUx1ajI1eXd2dDRtemk4SENST0NCdm5TZlhXVVBLY3hZS1VJTnNsMDJWV1JHbTl4RUF0bTNRbmd4a191S2Y1ZElCT2xzV2NjQ1llYWJTTElNaTRxUlJkMV9zRmdxTzQwYXNBeVItWTZEQXh1UmlTSXV3YW56SXhjSC1fcGpCRkRyZHFZa3dFbzA0ZC16eGNJekpEdUc0dGgyLU1Rd0duM251bw?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a84f9c56e6f')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a8c58ed075f">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMingFBVV95cUxNV3FIOEtoaVZDaUhNNU85NGpONG9OOG9pMzl1aVRRYy1MVnZHWFhLRnhEMVlqU0Q1WEpJZDJBLUVOODZRVFNEajJEYzN3Q25TQ0RyU2RkQVJ0RE0tN0hqaEQxTTU5MEl5a2JCWmpBOGxLVkpKc2Z5SlFQeW5xdzc0RERCYXZxZ25wTzdMd0JvQ0NJYmdjNDhSQmtPYkxNQQ?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato bets $10K its AgentSense tool can keep rogue agents in line - Fierce Network</a>
+          <div class="article-meta">Fierce Network &bull; Nov 20, 2026</div>
+          <div class="article-summary snippet"><p>Cato bets $10K its AgentSense tool can keep rogue agents in line&amp;nbsp;&amp;nbsp;Fierce Network</p><a href="https://news.google.com/rss/articles/CBMingFBVV95cUxNV3FIOEtoaVZDaUhNNU85NGpONG9OOG9pMzl1aVRRYy1MVnZHWFhLRnhEMVlqU0Q1WEpJZDJBLUVOODZRVFNEajJEYzN3Q25TQ0RyU2RkQVJ0RE0tN0hqaEQxTTU5MEl5a2JCWmpBOGxLVkpKc2Z5SlFQeW5xdzc0RERCYXZxZ25wTzdMd0JvQ0NJYmdjNDhSQmtPYkxNQQ?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a8c58ed075f')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+      <div class="article-card" data-id="a6cc419a9c3">
+        <div class="article-body">
+          <a href="https://news.google.com/rss/articles/CBMi9gFBVV95cUxPNkp6YzlhcENwdUM0Si1vd0JuaFZzeXB5X1FlcFZ3SGVnMnpZaGVZdzJxNldKUFFpajBTZ28ybkZGdkVQWlNLdzRxTURmVFhOMkxlM2FnUUJNMFcwSXd5Q0dEa3F6V0JUcWtxU25HYUg2SVVKWUh6Q3R3RjBGM2FsaThrQW1yT1kxdzJaNWwycktoMmN3UEtjdUlJanV5VTJQZEJuMEp5R3hPRUp4QzlfTzdnR1RqVlZ0UGFpTC1kNUo5WEVVLWNxNDRNblhqLUJTVjRjN0k1b0YtLVFQaHdQY1VzY1Z1VkVzTGI3Z2FLTE16RFRJN0E?oc=5" target="_blank" rel="noopener noreferrer" class="article-title">Cato Networks Unveils AgentSense: A Patented Breakthrough in Stopping Harmful AI Agent Behavior in Real-Time - PR Newswire</a>
+          <div class="article-meta">PR Newswire &bull; Nov 17, 2026</div>
+          <div class="article-summary snippet"><p>Cato Networks Unveils AgentSense: A Patented Breakthrough in Stopping Harmful AI Agent Behavior in Real-Time&amp;nbsp;&amp;nbsp;PR Newswire</p><a href="https://news.google.com/rss/articles/CBMi9gFBVV95cUxPNkp6YzlhcENwdUM0Si1vd0JuaFZzeXB5X1FlcFZ3SGVnMnpZaGVZdzJxNldKUFFpajBTZ28ybkZGdkVQWlNLdzRxTURmVFhOMkxlM2FnUUJNMFcwSXd5Q0dEa3F6V0JUcWtxU25HYUg2SVVKWUh6Q3R3RjBGM2FsaThrQW1yT1kxdzJaNWwycktoMmN3UEtjdUlJanV5VTJQZEJuMEp5R3hPRUp4QzlfTzdnR1RqVlZ0UGFpTC1kNUo5WEVVLWNxNDRNblhqLUJTVjRjN0k1b0YtLVFQaHdQY1VzY1Z1VkVzTGI3Z2FLTE16RFRJN0E?oc=5" target="_blank" rel="noopener noreferrer" class="read-more">Read full article &rarr;</a></div>
+        </div>
+        <button class="hide-btn" onclick="toggleArticle('a6cc419a9c3')" title="Collapse for colleagues">
+          <span class="lbl-hide">&#128065; Hide</span>
+          <span class="lbl-show">&#128064; Show</span>
+        </button>
+      </div>
+    </section>
+</main>
+
+<footer>
+  Generated every Sunday &mdash; Topics: Windows &bull; Azure &bull; SharePoint &bull; Intune &bull; Entra ID &bull; Microsoft 365 &bull; Iru MDM (formerly Kandji) &bull; Cato Networks
+</footer>
+
+<script>
+const KEY = 'it-news-hidden-v1';
+function getHidden() {
+  try { return new Set(JSON.parse(localStorage.getItem(KEY) || '[]')); }
+  catch { return new Set(); }
+}
+function saveHidden(s) { localStorage.setItem(KEY, JSON.stringify([...s])); }
+function toggleArticle(id) {
+  const h = getHidden();
+  h.has(id) ? h.delete(id) : h.add(id);
+  saveHidden(h); applyHidden(h);
+}
+function applyHidden(h) {
+  h = h || getHidden();
+  document.querySelectorAll('.article-card[data-id]').forEach(c => {
+    c.classList.toggle('is-hidden', h.has(c.dataset.id));
+  });
+}
+let revealing = false;
+function toggleReveal() {
+  revealing = !revealing;
+  document.body.classList.toggle('reveal-hidden', revealing);
+  document.getElementById('reveal-btn').textContent = revealing ? 'Hide hidden' : 'Show hidden';
+}
+fetch('weeks.json').then(r => r.json()).then(weeks => {
+  const sel = document.getElementById('week-sel');
+  weeks.forEach(w => {
+    const o = document.createElement('option');
+    o.value = w.file; o.textContent = w.label;
+    if (w.current) o.selected = true;
+    sel.appendChild(o);
+  });
+}).catch(() => {});
+applyHidden();
+</script>
+</body>
+</html>
